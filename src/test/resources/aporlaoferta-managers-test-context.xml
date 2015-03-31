@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="userManagerTest" class="com.aporlaoferta.offer.UserManager"/>
+    <bean id="offerManagerTest" class="com.aporlaoferta.offer.OfferManager"/>
+    <bean id="companyManagerTest" class="com.aporlaoferta.offer.CompanyManager"/>
+    <bean id="commentManagerTest" class="com.aporlaoferta.offer.CommentManager"/>
+</beans>

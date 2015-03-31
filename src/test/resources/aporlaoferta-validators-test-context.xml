@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="offerCommentValidator" class="com.aporlaoferta.model.validators.OfferCommentValidator"/>
+    <bean id="offerCommentQuoteValidator" class="com.aporlaoferta.model.validators.OfferCommentQuoteValidator"/>
+    <bean id="offerCompanyValidator" class="com.aporlaoferta.model.validators.OfferCompanyValidator"/>
+    <bean id="theOfferValidator" class="com.aporlaoferta.model.validators.TheOfferValidator"/>
+    <bean id="theUserValidator" class="com.aporlaoferta.model.validators.TheUserValidator"/>
+
+    <bean id="offerValidatorHelper" class="com.aporlaoferta.utils.OfferValidatorHelper">
+        <constructor-arg name="offerCommentValidator" ref="offerCommentValidator"/>
+        <constructor-arg name="offerCompanyValidator" ref="offerCompanyValidator"/>
+        <constructor-arg name="theOfferValidator" ref="theOfferValidator"/>
+        <constructor-arg name="offerCommentQuoteValidator" ref="offerCommentQuoteValidator"/>
+        <constructor-arg name="theUserValidator" ref="theUserValidator"/>
+    </bean>
+</beans>
