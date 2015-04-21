@@ -44,10 +44,10 @@ public class TheUser implements Serializable {
     @Column(name = "TU_AVATAR", nullable = true)
     private String userAvatar;
 
-    @OneToMany(mappedBy = "offerUser", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "offerUser", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<TheOffer> userOffers = new HashSet<>();
 
-    @OneToMany(mappedBy = "commentOwner", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "commentOwner", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<OfferComment> userComments = new HashSet<>();
 
     public Long getId() {
@@ -126,49 +126,5 @@ public class TheUser implements Serializable {
             this.userComments = new HashSet<>();
         }
         this.userComments.add(offerComment);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof TheUser)) return false;
-
-        TheUser theUser = (TheUser) o;
-
-        if (enabled != null ? !enabled.equals(theUser.enabled) : theUser.enabled != null) return false;
-        if (id != null ? !id.equals(theUser.id) : theUser.id != null) return false;
-        if (userAvatar != null ? !userAvatar.equals(theUser.userAvatar) : theUser.userAvatar != null) return false;
-        if (userEmail != null ? !userEmail.equals(theUser.userEmail) : theUser.userEmail != null) return false;
-        if (userNickname != null ? !userNickname.equals(theUser.userNickname) : theUser.userNickname != null)
-            return false;
-        if (userPassword != null ? !userPassword.equals(theUser.userPassword) : theUser.userPassword != null)
-            return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (userNickname != null ? userNickname.hashCode() : 0);
-        result = 31 * result + (userPassword != null ? userPassword.hashCode() : 0);
-        result = 31 * result + (enabled != null ? enabled.hashCode() : 0);
-        result = 31 * result + (userEmail != null ? userEmail.hashCode() : 0);
-        result = 31 * result + (userAvatar != null ? userAvatar.hashCode() : 0);
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("TheUser{");
-        sb.append("id=").append(id);
-        sb.append(", version=").append(version);
-        sb.append(", userNickname='").append(userNickname).append('\'');
-        sb.append(", userPassword='").append(userPassword).append('\'');
-        sb.append(", enabled=").append(enabled);
-        sb.append(", userEmail='").append(userEmail).append('\'');
-        sb.append(", userAvatar='").append(userAvatar).append('\'');
-        sb.append('}');
-        return sb.toString();
     }
 }

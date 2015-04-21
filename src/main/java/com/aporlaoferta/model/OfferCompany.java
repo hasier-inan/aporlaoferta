@@ -41,7 +41,7 @@ public class OfferCompany implements Serializable {
     @Column(name = "TC_AFFILIATE_ID", nullable = true)
     private String companyAffiliateId;
 
-    @OneToMany(mappedBy = "offerCompany", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "offerCompany", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<TheOffer> companyOffers = new HashSet<TheOffer>();
 
     public void setCompanyOffers(Set<TheOffer> companyOffers) {
@@ -101,46 +101,4 @@ public class OfferCompany implements Serializable {
         this.companyAffiliateId = companyAffiliateId;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof OfferCompany)) return false;
-
-        OfferCompany that = (OfferCompany) o;
-
-        if (companyAffiliateId != null ? !companyAffiliateId.equals(that.companyAffiliateId)
-                : that.companyAffiliateId != null)
-            return false;
-        if (companyLogoUrl != null ? !companyLogoUrl.equals(that.companyLogoUrl) : that.companyLogoUrl != null)
-            return false;
-        if (companyName != null ? !companyName.equals(that.companyName) : that.companyName != null) return false;
-        if (companyUrl != null ? !companyUrl.equals(that.companyUrl) : that.companyUrl != null) return false;
-        if (companyOffers != null ? !companyOffers.equals(that.companyOffers) : that.companyOffers != null)
-            return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = companyName != null ? companyName.hashCode() : 0;
-        result = 31 * result + (companyUrl != null ? companyUrl.hashCode() : 0);
-        result = 31 * result + (companyLogoUrl != null ? companyLogoUrl.hashCode() : 0);
-        result = 31 * result + (companyAffiliateId != null ? companyAffiliateId.hashCode() : 0);
-        result = 31 * result + (companyOffers != null ? companyOffers.hashCode() : 0);
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("OfferCompany{");
-        sb.append("id=").append(id);
-        sb.append(", version=").append(version);
-        sb.append(", companyName='").append(companyName).append('\'');
-        sb.append(", companyUrl='").append(companyUrl).append('\'');
-        sb.append(", companyLogoUrl='").append(companyLogoUrl).append('\'');
-        sb.append(", companyAffiliateId='").append(companyAffiliateId).append('\'');
-        sb.append('}');
-        return sb.toString();
-    }
 }

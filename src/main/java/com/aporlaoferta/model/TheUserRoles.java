@@ -48,34 +48,4 @@ public class TheUserRoles implements Serializable {
         this.userRole = userRole;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        TheUserRoles that = (TheUserRoles) o;
-
-        if (userNickname != null ? !userNickname.equals(that.userNickname) : that.userNickname != null) return false;
-        if (userRole != null ? !userRole.equals(that.userRole) : that.userRole != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = userNickname != null ? userNickname.hashCode() : 0;
-        result = 31 * result + (userRole != null ? userRole.hashCode() : 0);
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("TheUserRoles{");
-        sb.append("id=").append(id);
-        sb.append(", version=").append(version);
-        sb.append(", userNickname='").append(userNickname).append('\'');
-        sb.append(", userRole=").append(userRole);
-        sb.append('}');
-        return sb.toString();
-    }
 }

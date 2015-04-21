@@ -20,10 +20,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
+
+import java.util.List;
 
 import static com.aporlaoferta.controller.SecurityRequestPostProcessors.userDeatilsService;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -37,7 +38,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
                 "classpath:aporlaoferta-controller-test-context.xml"
         })
 @RunWith(SpringJUnit4ClassRunner.class)
-@Transactional
 public class CommentControllerTestIntegration {
 
     private static final String REGULAR_USER = "regularUser";
@@ -72,9 +72,11 @@ public class CommentControllerTestIntegration {
         } else {
             theUser = this.userManagerTest.getUserFromNickname(REGULAR_USER);
         }
-        this.theOffer = this.offerManagerTest.createOffer(
-                OfferBuilderManager.aBasicOfferWithoutId().withUser(theUser)
-                        .build());
+        TheOffer offer = OfferBuilderManager.aBasicOfferWithoutId()
+                .build();
+        theUser.addOffer(offer);
+        theUser=this.userManagerTest.saveUser(theUser);
+        List<TheOffer> theOfferList= (List<TheOffer>) theUser.getUserOffers();
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac)
                 .addFilters(this.springSecurityFilterChain).build();
     }
@@ -97,9 +99,9 @@ public class CommentControllerTestIntegration {
     }
 
     @Test
-    public void testValidationExceptionOccursIfOfferIsNotFound()throws Exception{
+    public void testValidationExceptionOccursIfOfferIsNotFound() throws Exception {
         CsrfToken csrfToken = CsrfTokenBuilder.generateAToken();
-        String jsonRequest = RequestMap.getJsonFromMap(CommentBuilderManager.aBasicCommentWithIdAndOffer(6L,7L).build());
+        String jsonRequest = RequestMap.getJsonFromMap(CommentBuilderManager.aBasicCommentWithIdAndOffer(6L, 7L).build());
         String offerId = String.valueOf(this.theOffer.getId());
         this.mockMvc.perform(post("/createComment")
                 .with(userDeatilsService(REGULAR_USER))

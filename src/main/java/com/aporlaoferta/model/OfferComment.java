@@ -94,45 +94,4 @@ public class OfferComment implements Serializable {
         this.commentsOffer = commentsOffer;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof OfferComment)) return false;
-
-        OfferComment that = (OfferComment) o;
-
-        if (commentCreationDate != null ? !commentCreationDate.equals(that.commentCreationDate)
-                : that.commentCreationDate != null)
-            return false;
-        if (commentsOffer != null ? !commentsOffer.equals(that.commentsOffer) : that.commentsOffer != null)
-            return false;
-        if (commentsQuotedComment != null ? !commentsQuotedComment.equals(that.commentsQuotedComment)
-                : that.commentsQuotedComment != null)
-            return false;
-        if (commentOwner != null ? !commentOwner.equals(that.commentOwner) : that.commentOwner != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = commentCreationDate != null ? commentCreationDate.hashCode() : 0;
-        result = 31 * result + (commentOwner != null ? commentOwner.hashCode() : 0);
-        result = 31 * result + (commentsOffer != null ? commentsOffer.hashCode() : 0);
-        result = 31 * result + (commentsQuotedComment != null ? commentsQuotedComment.hashCode() : 0);
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("OfferComment{");
-        sb.append("id=").append(id);
-        sb.append(", version=").append(version);
-        sb.append(", commentCreationDate=").append(commentCreationDate);
-        sb.append(", commentOwner=").append(commentOwner);
-        sb.append(", commentsOffer=").append(commentsOffer);
-        sb.append(", commentsQuotedComment=").append(commentsQuotedComment);
-        sb.append('}');
-        return sb.toString();
-    }
 }
