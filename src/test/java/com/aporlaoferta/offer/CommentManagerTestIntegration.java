@@ -1,12 +1,15 @@
 package com.aporlaoferta.offer;
 
-import com.aporlaoferta.dao.CommentDAO;
 import com.aporlaoferta.data.CommentBuilderManager;
 import com.aporlaoferta.data.OfferBuilderManager;
 import com.aporlaoferta.data.UserBuilderManager;
 import com.aporlaoferta.model.OfferComment;
 import com.aporlaoferta.model.TheOffer;
 import com.aporlaoferta.model.TheUser;
+import com.aporlaoferta.service.CommentManager;
+import com.aporlaoferta.service.OfferManager;
+import com.aporlaoferta.service.TransactionalManager;
+import com.aporlaoferta.service.UserManager;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +35,6 @@ public class CommentManagerTestIntegration {
     private static final Long THE_ID = 1L;
 
     @Autowired
-    CommentDAO commentDAO;
-
-    @Autowired
     OfferManager offerManager;
     @Autowired
     UserManager userManager;
@@ -57,6 +57,10 @@ public class CommentManagerTestIntegration {
         this.offerManager.createOffer(theOffer);
 
         addSomeDummyCommentsToSameOffer(theOffer, 200, 20);
+        assertMultipleCommentsAreCorrectlyManaged();
+    }
+
+    private void assertMultipleCommentsAreCorrectlyManaged() {
         List<OfferComment> offerComments = this.commentManager.getFirstHundredCommentsForOffer(1L, THE_ID);
         assertThat("Expected the newest comment id to be 200", offerComments.get(0).getId(), is(199L));
         //get older 100 comments (after last 'shown' id)
@@ -65,25 +69,6 @@ public class CommentManagerTestIntegration {
 
         List<OfferComment> emptyOfferComments = this.commentManager.getFirstHundredCommentsForOffer(201L, THE_ID);
         assertThat("Expected empty lsit as all comments have been displayed", emptyOfferComments.size(), is(0));
-    }
-
-    @Test
-    public void testANewCommentIsCorrectlyAssignedToItsOwner() {
-        TheUser theUser = this.userManager.createUser(
-                UserBuilderManager.aRegularUserWithNickname("iddqd")
-                        .build()
-        );
-        TheOffer theOffer = this.offerManager.createOffer(
-                OfferBuilderManager.aBasicOfferWithoutId().withUser(theUser)
-                        .build()
-        );
-        OfferComment offerComment = this.commentManager.createComment(
-                CommentBuilderManager.aBasicCommentWithoutId()
-                        .withOwner(theUser)
-                        .withCommentedOffer(theOffer)
-                        .build()
-        );
-        assertNotNull(offerComment.getCommentOwner());
     }
 
     private void addSomeDummyCommentsToSameOffer(TheOffer theOffer, int howManyComments, int sleepTime) {

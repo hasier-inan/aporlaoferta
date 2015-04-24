@@ -1,8 +1,9 @@
 package com.aporlaoferta.offer;
 
-import com.aporlaoferta.dao.CompanyDAO;
 import com.aporlaoferta.data.CompanyBuilderManager;
 import com.aporlaoferta.model.OfferCompany;
+import com.aporlaoferta.service.CompanyManager;
+import com.aporlaoferta.service.TransactionalManager;
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,8 +15,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
 
 /**
  * Created by hasiermetal on 22/01/15.
@@ -27,8 +31,9 @@ import static org.junit.Assert.*;
 public class CompanyManagerTestIntegration {
 
     private static final String COMPANY_NAME = "This is the duck factory";
+
     @Autowired
-    CompanyDAO companyDAO;
+    TransactionalManager transactionalManager;
 
     @Autowired
     private CompanyManager companyManager;
@@ -42,16 +47,16 @@ public class CompanyManagerTestIntegration {
     }
 
     @Test
-    public void testUniqueCompanyIsInTheInMemoryDatabase() {
-        assertThat("Expected only one company to be in the db", this.companyDAO.count(), is(1L));
+    public void testAtLeastOneCompanyHasBeenPersistedInDatabase() {
+        assertThat("Expected only one company to be in the db", this.transactionalManager.getAllCompanies().size(), greaterThan(0));
+        testOfferIsObtainedFromDB();
     }
 
-    @Test
     public void testOfferIsObtainedFromDB() {
-        OfferCompany company = this.companyManager.getCompanyFromId(1L);
+        Long persistedId = this.offerCompany.getId();
+        OfferCompany company = this.companyManager.getCompanyFromId(persistedId);
         assertNotNull(company);
-        assertThat("Expected the offer id to be 1", company.getId(), is(1L));
-        assertThat("Expected same offer company", company.getCompanyName(), is(COMPANY_NAME));
+        assertThat("Expected the offer id to be 1", company.getId(), is(persistedId));
     }
 
     @Test

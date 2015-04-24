@@ -1,11 +1,12 @@
 package com.aporlaoferta.offer;
 
-import com.aporlaoferta.dao.UserDAO;
 import com.aporlaoferta.dao.UserRolesDAO;
 import com.aporlaoferta.data.UserBuilderManager;
 import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.model.TheUserRoles;
 import com.aporlaoferta.model.UserRoles;
+import com.aporlaoferta.service.TransactionalManager;
+import com.aporlaoferta.service.UserManager;
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +17,9 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.verify;
 
@@ -32,10 +35,7 @@ public class UserManagerTest {
     UserManager userManager;
 
     @Mock
-    UserDAO userDAO;
-
-    @Mock
-    UserRolesDAO userRolesDAO;
+    TransactionalManager transactionalManager;
 
     TheUser theUser;
 
@@ -43,13 +43,13 @@ public class UserManagerTest {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         this.theUser = UserBuilderManager.aRegularUserWithNickname(NICKNAME).build();
-        Mockito.when(this.userDAO.findByUserNickname(NICKNAME)).thenReturn(theUser);
+        Mockito.when(this.transactionalManager.getUserFromNickname(NICKNAME)).thenReturn(theUser);
     }
 
     @Test
     public void testUserDaoFindsOneUniqueUserFromNickname() {
         assertNotNull(this.userManager.getUserFromNickname(NICKNAME));
-        verify(this.userDAO).findByUserNickname(NICKNAME);
+        verify(this.transactionalManager).getUserFromNickname(NICKNAME);
     }
 
     @Test
@@ -62,8 +62,8 @@ public class UserManagerTest {
     @Test
     public void testUserIsCreatedUsingDaos() {
         this.userManager.createUser(this.theUser);
-        verify(this.userDAO).save(this.theUser);
-        verify(this.userRolesDAO).save(any(TheUserRoles.class));
+        verify(this.transactionalManager).saveUser(this.theUser);
+        verify(this.transactionalManager).saveUserRole(any(TheUserRoles.class));
     }
 
     @Test
@@ -78,7 +78,7 @@ public class UserManagerTest {
         theNewestUser.setUserPassword(theNewPass);
         this.userManager.updateUser(theNewestUser);
         //this.theUser will be the user model that will be updated with new password etc.
-        verify(this.userDAO).save(this.theUser);
+        verify(this.transactionalManager).saveUser(this.theUser);
         //password updated with the encoded of the new pass
         assertThat(this.theUser.getUserPassword().length(), Matchers.is(60));
     }

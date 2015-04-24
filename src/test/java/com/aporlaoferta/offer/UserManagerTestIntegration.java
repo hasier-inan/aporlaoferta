@@ -7,6 +7,7 @@ import com.aporlaoferta.data.UserRoleBuilderManager;
 import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.model.TheUserRoles;
 import com.aporlaoferta.model.UserRoles;
+import com.aporlaoferta.service.UserManager;
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;

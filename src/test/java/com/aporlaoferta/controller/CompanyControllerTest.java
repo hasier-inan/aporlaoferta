@@ -4,7 +4,7 @@ import com.aporlaoferta.data.CompanyBuilderManager;
 import com.aporlaoferta.model.OfferCompany;
 import com.aporlaoferta.model.TheResponse;
 import com.aporlaoferta.model.validators.ValidationException;
-import com.aporlaoferta.offer.CompanyManager;
+import com.aporlaoferta.service.CompanyManager;
 import com.aporlaoferta.utils.OfferValidatorHelper;
 import org.junit.Before;
 import org.junit.Test;

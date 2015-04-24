@@ -1,13 +1,11 @@
-package com.aporlaoferta.offer;
+package com.aporlaoferta.service;
 
 import com.aporlaoferta.affiliations.GenericAffiliation;
-import com.aporlaoferta.dao.CompanyDAO;
 import com.aporlaoferta.model.OfferCompany;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,16 +15,14 @@ import static org.springframework.util.StringUtils.isEmpty;
  * Created by hasiermetal on 15/01/15.
  */
 @Service
-@Transactional
 public class CompanyManager {
     private final Logger LOG = LoggerFactory.getLogger(CompanyManager.class);
 
-    @Autowired
-    CompanyDAO companyDAO;
+    TransactionalManager transactionalManager;
 
     public OfferCompany getCompanyFromId(Long id) {
         try {
-            return this.companyDAO.findOne(id);
+            return this.transactionalManager.getCompanyFromId(id);
         } catch (IllegalArgumentException e) {
             //null id
             LOG.error("Got a null id while looking for a company ", e);
@@ -47,11 +43,15 @@ public class CompanyManager {
     }
 
     public List<OfferCompany> getAllCompanies() {
-        return this.companyDAO.getListOfPersistedCompanies();
+        return this.transactionalManager.getAllCompanies();
     }
 
     public OfferCompany createCompany(OfferCompany offerCompany) {
-        return this.companyDAO.save(offerCompany);
+        return this.transactionalManager.saveCompany(offerCompany);
     }
 
+    @Autowired
+    public void setTransactionalManager(TransactionalManager transactionalManager) {
+        this.transactionalManager = transactionalManager;
+    }
 }

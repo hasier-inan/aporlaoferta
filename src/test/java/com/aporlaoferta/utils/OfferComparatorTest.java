@@ -5,10 +5,11 @@ import com.aporlaoferta.model.TheOffer;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
-import static com.aporlaoferta.utils.OfferComparator.sort;
 import static org.hamcrest.Matchers.contains;
 import static org.junit.Assert.assertThat;
 
@@ -41,7 +42,8 @@ public class OfferComparatorTest {
 
     @Test
     public void testOffersAreSortedByDateFromNewToOld() {
-        List<TheOffer> theOffers = sort(this.medOffer, this.eldestOffer, this.newestOffer);
+        List<TheOffer> theOffers = Arrays.asList(this.medOffer, this.eldestOffer, this.newestOffer);
+        Collections.sort(theOffers, new OfferComparator());
         assertThat(theOffers, contains(this.newestOffer, this.medOffer, this.eldestOffer));
     }
 

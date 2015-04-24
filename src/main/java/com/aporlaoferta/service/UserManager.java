@@ -1,7 +1,5 @@
-package com.aporlaoferta.offer;
+package com.aporlaoferta.service;
 
-import com.aporlaoferta.dao.UserDAO;
-import com.aporlaoferta.dao.UserRolesDAO;
 import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.model.TheUserRoles;
 import com.aporlaoferta.model.UserRoles;
@@ -13,24 +11,19 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by hasiermetal on 15/01/15.
  */
 @Service
-@Transactional
 public class UserManager {
     private final Logger LOG = LoggerFactory.getLogger(UserManager.class);
 
-    @Autowired
-    UserDAO userDAO;
-    @Autowired
-    UserRolesDAO userRolesDAO;
+    TransactionalManager transactionalManager;
 
     public TheUser getUserFromNickname(String nickname) {
         try {
-            return this.userDAO.findByUserNickname(nickname);
+            return this.transactionalManager.getUserFromNickname(nickname);
         } catch (IllegalArgumentException e) {
             //null nickname
             LOG.error("Got a null nickname while looking for a user ", e);
@@ -48,7 +41,7 @@ public class UserManager {
         theUser.setEnabled(true);
         saveUser(theUser);
         TheUserRoles theUserRoles = getTheUserRoles(theUser);
-        this.userRolesDAO.save(theUserRoles);
+        this.transactionalManager.saveUserRole(theUserRoles);
         return theUser;
     }
 
@@ -63,7 +56,7 @@ public class UserManager {
         adminUser.setEnabled(true);
         saveUser(adminUser);
         TheUserRoles theUserRoles = getTheAdminUserRoles(adminUser);
-        this.userRolesDAO.save(theUserRoles);
+        this.transactionalManager.saveUserRole(theUserRoles);
         return adminUser;
     }
 
@@ -75,7 +68,7 @@ public class UserManager {
     }
 
     public TheUser saveUser(TheUser theUser) {
-        return this.userDAO.save(theUser);
+        return this.transactionalManager.saveUser(theUser);
     }
 
     /**
@@ -98,7 +91,7 @@ public class UserManager {
 
     public boolean doesUserExist(String nickname) {
         try {
-            return this.userDAO.findByUserNickname(nickname) != null;
+            return this.transactionalManager.getUserFromNickname(nickname) != null;
         } catch (IllegalArgumentException e) {
             //null nickname
             LOG.error("Got a null nickname while looking for a user ", e);
@@ -115,5 +108,10 @@ public class UserManager {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User theLoggedUser = (User) authentication.getPrincipal();
         return theLoggedUser.getUsername();
+    }
+
+    @Autowired
+    public void setTransactionalManager(TransactionalManager transactionalManager) {
+        this.transactionalManager = transactionalManager;
     }
 }

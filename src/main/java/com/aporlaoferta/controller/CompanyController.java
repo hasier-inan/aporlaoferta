@@ -3,7 +3,7 @@ package com.aporlaoferta.controller;
 import com.aporlaoferta.model.OfferCompany;
 import com.aporlaoferta.model.TheResponse;
 import com.aporlaoferta.model.validators.ValidationException;
-import com.aporlaoferta.offer.CompanyManager;
+import com.aporlaoferta.service.CompanyManager;
 import com.aporlaoferta.utils.OfferValidatorHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

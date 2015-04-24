@@ -4,8 +4,18 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="userManagerTest" class="com.aporlaoferta.offer.UserManager"/>
-    <bean id="offerManagerTest" class="com.aporlaoferta.offer.OfferManager"/>
-    <bean id="companyManagerTest" class="com.aporlaoferta.offer.CompanyManager"/>
-    <bean id="commentManagerTest" class="com.aporlaoferta.offer.CommentManager"/>
+    <bean id="userManagerTest" class="com.aporlaoferta.service.UserManager">
+        <property name="transactionalManager" ref="transactionalManagerTest"/>
+    </bean>
+    <bean id="offerManagerTest" class="com.aporlaoferta.service.OfferManager">
+        <property name="transactionalManager" ref="transactionalManagerTest"/>
+    </bean>
+    <bean id="companyManagerTest" class="com.aporlaoferta.service.CompanyManager">
+        <property name="transactionalManager" ref="transactionalManagerTest"/>
+    </bean>
+    <bean id="commentManagerTest" class="com.aporlaoferta.service.CommentManager">
+        <property name="transactionalManager" ref="transactionalManagerTest"/>
+    </bean>
+
+    <bean id="transactionalManagerTest" class="com.aporlaoferta.service.TransactionalManager"/>
 </beans>

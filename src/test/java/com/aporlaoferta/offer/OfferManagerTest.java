@@ -1,8 +1,9 @@
 package com.aporlaoferta.offer;
 
-import com.aporlaoferta.dao.OfferDAO;
 import com.aporlaoferta.data.OfferBuilderManager;
 import com.aporlaoferta.model.TheOffer;
+import com.aporlaoferta.service.OfferManager;
+import com.aporlaoferta.service.TransactionalManager;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +13,9 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.verify;
 
@@ -28,7 +31,7 @@ public class OfferManagerTest {
     OfferManager offerManager;
 
     @Mock
-    OfferDAO offerDAO;
+    TransactionalManager transactionalManager;
 
     TheOffer theOffer;
 
@@ -36,14 +39,14 @@ public class OfferManagerTest {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         this.theOffer = OfferBuilderManager.aBasicOfferWithId(THE_ID).build();
-        Mockito.when(this.offerDAO.findOne(THE_ID)).thenReturn(this.theOffer);
-        Mockito.when(this.offerDAO.save(any(TheOffer.class))).thenReturn(this.theOffer);
+        Mockito.when(this.transactionalManager.getOfferFromId(THE_ID)).thenReturn(this.theOffer);
+        Mockito.when(this.transactionalManager.saveOffer(any(TheOffer.class))).thenReturn(this.theOffer);
     }
 
     @Test
     public void testOfferDaoFindsOneUniqueUserFromNickname() {
         assertNotNull(this.offerManager.getOfferFromId(THE_ID));
-        verify(this.offerDAO).findOne(THE_ID);
+        verify(this.transactionalManager).getOfferFromId(THE_ID);
     }
 
     @Test
@@ -54,7 +57,7 @@ public class OfferManagerTest {
     @Test
     public void testOfferIsCreatedUsingDaos() {
         this.offerManager.createOffer(this.theOffer);
-        verify(this.offerDAO).save(this.theOffer);
+        verify(this.transactionalManager).saveOffer(this.theOffer);
     }
 
     @Test
@@ -66,7 +69,7 @@ public class OfferManagerTest {
     @Test
     public void testOneHundredOffersIsCalledInTheManager() {
         this.offerManager.getNextHundredOffers(THE_ID);
-        verify(this.offerDAO).getOneHundredOffersAfterId(THE_ID);
+        verify(this.transactionalManager).getNextHundredOffers(THE_ID);
     }
 }
 

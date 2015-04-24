@@ -1,13 +1,15 @@
 package com.aporlaoferta.controller;
 
 import com.aporlaoferta.data.CommentBuilderManager;
+import com.aporlaoferta.data.OfferBuilderManager;
+import com.aporlaoferta.data.UserBuilderManager;
 import com.aporlaoferta.model.OfferComment;
 import com.aporlaoferta.model.TheResponse;
 import com.aporlaoferta.model.validators.ValidationException;
-import com.aporlaoferta.offer.CommentManager;
-import com.aporlaoferta.offer.UserManager;
+import com.aporlaoferta.service.CommentManager;
+import com.aporlaoferta.service.OfferManager;
+import com.aporlaoferta.service.UserManager;
 import com.aporlaoferta.utils.OfferValidatorHelper;
-import com.aporlaoferta.utils.RequestParameterParser;
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,8 +19,15 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.anyLong;
+import static org.mockito.Mockito.anyObject;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by hasiermetal on 29/01/15.
@@ -32,16 +41,19 @@ public class CommentControllerTest {
     @Mock
     OfferValidatorHelper offerValidatorHelper;
     @Mock
-    RequestParameterParser requestParameterParser;
-    @Mock
     UserManager userManager;
+    @Mock
+    OfferManager offerManager;
     @Mock
     CommentManager commentManager;
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        when(this.userManager.getUserNickNameFromSession()).thenReturn("imtheloggedUser");
+        String imtheloggedUser = "imtheloggedUser";
+        when(this.userManager.getUserNickNameFromSession()).thenReturn(imtheloggedUser);
+        when(this.userManager.getUserFromNickname(imtheloggedUser)).thenReturn(UserBuilderManager.aRegularUserWithNickname(imtheloggedUser).build());
+        when(this.offerManager.getOfferFromId(anyLong())).thenReturn(OfferBuilderManager.aBasicOfferWithoutId().build());
     }
 
     @Test

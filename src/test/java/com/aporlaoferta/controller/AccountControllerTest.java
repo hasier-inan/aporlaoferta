@@ -3,7 +3,7 @@ package com.aporlaoferta.controller;
 import com.aporlaoferta.data.UserBuilderManager;
 import com.aporlaoferta.model.TheResponse;
 import com.aporlaoferta.model.TheUser;
-import com.aporlaoferta.offer.UserManager;
+import com.aporlaoferta.service.UserManager;
 import com.aporlaoferta.utils.OfferValidatorHelper;
 import org.hamcrest.Matchers;
 import org.junit.Assert;

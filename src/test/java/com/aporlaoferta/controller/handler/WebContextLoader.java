@@ -1,4 +1,6 @@
-package com.aporlaoferta.controller;
+package com.aporlaoferta.controller.handler;
+
+import com.aporlaoferta.controller.GenericWebContextLoader;
 
 /**
  * Created with IntelliJ IDEA.

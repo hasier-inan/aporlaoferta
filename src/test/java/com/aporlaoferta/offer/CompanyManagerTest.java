@@ -1,8 +1,9 @@
 package com.aporlaoferta.offer;
 
-import com.aporlaoferta.dao.CompanyDAO;
 import com.aporlaoferta.data.CompanyBuilderManager;
 import com.aporlaoferta.model.OfferCompany;
+import com.aporlaoferta.service.CompanyManager;
+import com.aporlaoferta.service.TransactionalManager;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,7 +28,7 @@ public class CompanyManagerTest {
     CompanyManager companyManager;
 
     @Mock
-    CompanyDAO companyDAO;
+    TransactionalManager transactionalManager;
 
     OfferCompany offerCompany;
 
@@ -35,25 +36,25 @@ public class CompanyManagerTest {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         this.offerCompany = CompanyBuilderManager.aRegularCompanyWithId(THE_ID).build();
-        Mockito.when(this.companyDAO.findOne(THE_ID)).thenReturn(offerCompany);
+        Mockito.when(this.transactionalManager.getCompanyFromId(THE_ID)).thenReturn(offerCompany);
     }
 
     @Test
     public void testCompanyDaoFindsOneUniqueCompanyFromId() {
         assertNotNull(this.companyManager.getCompanyFromId(THE_ID));
-        verify(this.companyDAO).findOne(THE_ID);
+        verify(this.transactionalManager).getCompanyFromId(THE_ID);
     }
 
     @Test
     public void testCompanyIsCreatedUsingDaos() {
         this.companyManager.createCompany(this.offerCompany);
-        verify(this.companyDAO).save(this.offerCompany);
+        verify(this.transactionalManager).saveCompany(this.offerCompany);
     }
 
     @Test
     public void testAllCompaniesAreObtainedUsingCustomQuery() {
         this.companyManager.getAllCompanies();
-        verify(this.companyDAO).getListOfPersistedCompanies();
+        verify(this.transactionalManager).getAllCompanies();
     }
 
     @Test

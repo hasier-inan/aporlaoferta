@@ -3,16 +3,13 @@ package com.aporlaoferta.controller;
 import com.aporlaoferta.data.CompanyBuilder;
 import com.aporlaoferta.data.CompanyBuilderManager;
 import com.aporlaoferta.data.UserBuilderManager;
-import com.aporlaoferta.model.OfferCompany;
-import com.aporlaoferta.offer.UserManager;
 import com.aporlaoferta.rawmap.RequestMap;
+import com.aporlaoferta.service.UserManager;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockHttpServletRequest;
-import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.security.web.FilterChainProxy;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.test.context.ContextConfiguration;
@@ -21,20 +18,16 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 import java.util.Map;
 
 import static com.aporlaoferta.controller.SecurityRequestPostProcessors.userDeatilsService;
 import static org.hamcrest.Matchers.startsWith;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ContextConfiguration(
-        loader = WebContextLoader.class,
         value = {
                 "classpath:mvc-dispatcher-test-servlet.xml",
                 "classpath:aporlaoferta-controller-test-context.xml"
@@ -47,12 +40,6 @@ public class CompanyControllerTestIntegration {
 
     @Autowired
     UserManager userManagerTest;
-
-    @Autowired
-    private RequestMappingHandlerAdapter handlerAdapter;
-
-    @Autowired
-    private RequestMappingHandlerMapping handlerMapping;
 
     @Autowired
     private FilterChainProxy springSecurityFilterChain;
@@ -72,32 +59,6 @@ public class CompanyControllerTestIntegration {
         }
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac)
                 .addFilters(this.springSecurityFilterChain).build();
-    }
-
-    @Test
-    public void testCreateCompanyWithBasicDataReturnsCorrectResult() throws Exception {
-        MockHttpServletRequest httpRequest = new MockHttpServletRequest("POST", "/createCompany");
-        httpRequest.setContent(RequestMap.getJsonFromMap(CompanyBuilderManager.aRegularCompanyWithName("sdf").build()).getBytes());
-        httpRequest.setContentType("application/json");
-        MockHttpServletResponse response = new MockHttpServletResponse();
-        Object handler = this.handlerMapping.getHandler(httpRequest).getHandler();
-        handlerAdapter.handle(httpRequest, response, handler);
-        Map<String, String> responseResult = RequestMap.getMapFromJsonString(response.getContentAsString());
-        assertTrue(responseResult.get("code").equals("0"));
-    }
-
-    @Test
-    public void testCreateCompanyWithMissingDataReturnsExpectedResultMap() throws Exception {
-        MockHttpServletRequest httpRequest = new MockHttpServletRequest("POST", "/createCompany");
-        OfferCompany basicCompanyMapWithMissingData = CompanyBuilder.aCompany().build();
-        httpRequest.setContent(RequestMap.getJsonFromMap(basicCompanyMapWithMissingData).getBytes());
-        httpRequest.setContentType("application/json");
-        MockHttpServletResponse response = new MockHttpServletResponse();
-        Object handler = this.handlerMapping.getHandler(httpRequest).getHandler();
-        handlerAdapter.handle(httpRequest, response, handler);
-        Map<String, String> responseResult = RequestMap.getMapFromJsonString(response.getContentAsString());
-        assertTrue(responseResult.get("code").equals(
-                String.valueOf(ResultCode.CREATE_COMPANY_VALIDATION_ERROR.getCode())));
     }
 
     @Test

@@ -1,18 +1,23 @@
 package com.aporlaoferta.controller;
 
 import com.aporlaoferta.model.OfferComment;
+import com.aporlaoferta.model.TheOffer;
 import com.aporlaoferta.model.TheResponse;
+import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.model.validators.ValidationException;
-import com.aporlaoferta.offer.CommentManager;
-import com.aporlaoferta.offer.UserManager;
+import com.aporlaoferta.service.CommentManager;
+import com.aporlaoferta.service.OfferManager;
+import com.aporlaoferta.service.UserManager;
 import com.aporlaoferta.utils.OfferValidatorHelper;
-import com.aporlaoferta.utils.RequestParameterParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Created by hasiermetal on 2/02/14.
@@ -23,10 +28,6 @@ public class CommentController {
     private final Logger LOG = LoggerFactory.getLogger(CommentController.class);
 
     @Autowired
-    @Qualifier("requestParameterParser")
-    RequestParameterParser requestParameterParser;
-
-    @Autowired
     OfferValidatorHelper offerValidatorHelper;
 
     @Autowired
@@ -35,31 +36,17 @@ public class CommentController {
     @Autowired
     UserManager userManager;
 
+    @Autowired
+    OfferManager offerManager;
+
     @RequestMapping(value = "/createComment", method = RequestMethod.POST)
     @ResponseBody
     public TheResponse createComment(@RequestBody OfferComment thatComment,
                                      @RequestParam(value = "offer", required = false) String offerId
     ) {
-        TheResponse result = new TheResponse();
-        String nickName = this.userManager.getUserNickNameFromSession();
-        try {
-            this.requestParameterParser.parseOfferCommentRawMap(thatComment, offerId, nickName);
-            this.offerValidatorHelper.validateComment(thatComment);
-            OfferComment comment = this.commentManager.createComment(thatComment);
-            if (comment == null) {
-                ControllerHelper.addEmptyDatabaseObjectMessage(result, LOG);
-            } else {
-                String okMessage = String.format("Comment successfully created. Id: %s", comment.getId());
-                LOG.info(okMessage);
-                result.assignResultCode(ResultCode.ALL_OK, okMessage);
-
-            }
-        } catch (ValidationException e) {
-            String resultDescription = ResultCode.COMMENT_VALIDATION_ERROR.getResultDescription();
-            LOG.warn(resultDescription, e);
-            result.assignResultCode(ResultCode.COMMENT_VALIDATION_ERROR);
-        }
-        return result;
+        includeCommentInOffer(thatComment, offerId);
+        includeCommentInUser(thatComment);
+        return validateAndPersistComment(thatComment, ResultCode.COMMENT_VALIDATION_ERROR);
     }
 
     @RequestMapping(value = "/quoteComment", method = RequestMethod.POST)
@@ -67,25 +54,62 @@ public class CommentController {
     public TheResponse quoteComment(@RequestBody OfferComment thatQuotedComment,
                                     @RequestParam(value = "quotedComment", required = true) String quotedCommentId
     ) {
-        TheResponse result = new TheResponse();
-        String nickName = this.userManager.getUserNickNameFromSession();
+        includeCommentInUser(thatQuotedComment);
+        includeQuoteInComment(thatQuotedComment, quotedCommentId);
+        return validateAndPersistComment(thatQuotedComment, ResultCode.QUOTE_VALIDATION_ERROR);
+    }
+
+    private void includeQuoteInComment(OfferComment thatComment, String commentId) {
         try {
-            this.requestParameterParser.parseOfferQuoteRawMap(thatQuotedComment, quotedCommentId, nickName);
-            this.offerValidatorHelper.validateQuote(thatQuotedComment);
-            OfferComment comment = this.commentManager.createComment(thatQuotedComment);
-            if (comment == null) {
-                ControllerHelper.addEmptyDatabaseObjectMessage(result, LOG);
+            OfferComment originalComment = this.commentManager.getCommentFromId(Long.parseLong(commentId));
+            thatComment.setCommentsQuotedComment(originalComment);
+        } catch (NumberFormatException e) {
+            LOG.error("Included quoted comment id is invalid", e);
+        }
+    }
+
+    private void includeCommentInUser(OfferComment thatComment) {
+        String nickName = this.userManager.getUserNickNameFromSession();
+        TheUser theUser = this.userManager.getUserFromNickname(nickName);
+        theUser.addComment(thatComment);
+    }
+
+    private void includeCommentInOffer(OfferComment thatComment, String offerId) {
+        try {
+            TheOffer theOffer = this.offerManager.getOfferFromId(Long.parseLong(offerId));
+            theOffer.addComment(thatComment);
+        } catch (NumberFormatException e) {
+            LOG.error("Included quoted comment id is invalid", e);
+        }
+    }
+
+    private TheResponse validateAndPersistComment(OfferComment thatComment, ResultCode resultCodeError) {
+        TheResponse result = new TheResponse();
+        try {
+            if (ResultCode.QUOTE_VALIDATION_ERROR.equals(
+                    resultCodeError)) {
+                this.offerValidatorHelper.validateQuote(thatComment);
             } else {
-                String okMessage = String.format("Comment successfully created. Id: %s", comment.getId());
-                LOG.info(okMessage);
-                result.assignResultCode(ResultCode.ALL_OK, okMessage);
+                this.offerValidatorHelper.validateComment(thatComment);
             }
+            saveCommentAndUpdateResult(thatComment, result);
         } catch (ValidationException e) {
-            String resultDescription = ResultCode.QUOTE_VALIDATION_ERROR.getResultDescription();
+            String resultDescription = resultCodeError.getResultDescription();
             LOG.warn(resultDescription, e);
-            result.assignResultCode(ResultCode.QUOTE_VALIDATION_ERROR);
+            result.assignResultCode(resultCodeError);
         }
         return result;
+    }
+
+    private void saveCommentAndUpdateResult(OfferComment thatComment, TheResponse result) {
+        OfferComment comment = this.commentManager.createComment(thatComment);
+        if (comment == null) {
+            ControllerHelper.addEmptyDatabaseObjectMessage(result, LOG);
+        } else {
+            String okMessage = String.format("Comment successfully created. Id: %s", comment.getId());
+            LOG.info(okMessage);
+            result.assignResultCode(ResultCode.ALL_OK, okMessage);
+        }
     }
 
 }

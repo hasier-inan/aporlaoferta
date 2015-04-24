@@ -1,8 +1,23 @@
 package com.aporlaoferta.model;
 
-import javax.persistence.*;
+import com.aporlaoferta.utils.OfferComparator;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Version;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.springframework.util.Assert.notNull;
@@ -104,6 +119,24 @@ public class TheUser implements Serializable {
 
     public void setUserOffers(Set<TheOffer> userOffers) {
         this.userOffers = userOffers;
+    }
+
+    public TheOffer obtainLatestOffer() {
+        if (getUserOffers() == null || getUserOffers().isEmpty()) {
+            return null;
+        }
+        return sortByDateAndGetLastOffer();
+    }
+
+    private TheOffer sortByDateAndGetLastOffer() {
+        List<TheOffer> offers = getSortedOffers();
+        return offers.get(offers.size() - 1);
+    }
+
+    private List<TheOffer> getSortedOffers() {
+        List<TheOffer> offers = new ArrayList<>(getUserOffers());
+        Collections.sort(offers, new OfferComparator());
+        return offers;
     }
 
     public void addOffer(TheOffer theOffer) {

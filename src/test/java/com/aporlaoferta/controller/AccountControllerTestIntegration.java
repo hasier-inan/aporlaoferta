@@ -2,15 +2,13 @@ package com.aporlaoferta.controller;
 
 
 import com.aporlaoferta.data.UserBuilderManager;
-import com.aporlaoferta.offer.UserManager;
 import com.aporlaoferta.rawmap.RequestMap;
+import com.aporlaoferta.service.UserManager;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockHttpServletRequest;
-import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.security.web.FilterChainProxy;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.test.context.ContextConfiguration;
@@ -19,23 +17,21 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 import java.util.Map;
 
 import static com.aporlaoferta.controller.SecurityRequestPostProcessors.userDeatilsService;
 import static org.hamcrest.Matchers.startsWith;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrlPattern;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
 @ContextConfiguration(
-        loader = WebContextLoader.class,
         value = {
                 "classpath:mvc-dispatcher-test-servlet.xml",
                 "classpath:aporlaoferta-controller-test-context.xml"
@@ -48,12 +44,6 @@ public class AccountControllerTestIntegration {
 
     @Autowired
     UserManager userManagerTest;
-
-    @Autowired
-    private RequestMappingHandlerAdapter handlerAdapter;
-
-    @Autowired
-    private RequestMappingHandlerMapping handlerMapping;
 
     @Autowired
     private FilterChainProxy springSecurityFilterChain;
@@ -106,39 +96,6 @@ public class AccountControllerTestIntegration {
         this.mockMvc.perform(get("/admin").with(userDeatilsService(ADMIN_USER)))
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(forwardedUrl("/view/admin.jsp"));
-    }
-
-    ////// login
-
-    @Test
-    public void testLoginRequestWithErrorAddsMessage() throws Exception {
-        MockHttpServletRequest httpRequest = new MockHttpServletRequest("GET", "/login");
-        httpRequest.addParameter("error", "");
-        MockHttpServletResponse response = new MockHttpServletResponse();
-        Object handler = this.handlerMapping.getHandler(httpRequest).getHandler();
-        ModelAndView modelAndView = handlerAdapter.handle(httpRequest, response, handler);
-        assertTrue(modelAndView.getModel().size() == 1);
-        assertTrue(modelAndView.getViewName().equals("login"));
-        String error = (String) modelAndView.getModel().get("error");
-        assertTrue(error.equals("Invalid username and password!"));
-    }
-
-    @Test
-    public void testLoginRequestWithLogoutAddsMessage() throws Exception {
-        MockHttpServletRequest httpRequest = new MockHttpServletRequest("GET", "/login");
-        httpRequest.addParameter("logout", "");
-        MockHttpServletResponse response = new MockHttpServletResponse();
-        Object handler = this.handlerMapping.getHandler(httpRequest).getHandler();
-        ModelAndView modelAndView = handlerAdapter.handle(httpRequest, response, handler);
-        assertTrue(modelAndView.getModel().size() == 1);
-        assertTrue(modelAndView.getViewName().equals("login"));
-        String error = (String) modelAndView.getModel().get("msg");
-        assertTrue(error.equals("You've been logged out successfully."));
-    }
-
-    @Test
-    public void testLogoutMethodWorksAsExpected() {
-        //TODO: add deploy and run project, test logout
     }
 
     ////// 403

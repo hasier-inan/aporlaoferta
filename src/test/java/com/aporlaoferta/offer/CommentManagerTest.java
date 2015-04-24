@@ -3,6 +3,8 @@ package com.aporlaoferta.offer;
 import com.aporlaoferta.dao.CommentDAO;
 import com.aporlaoferta.data.CommentBuilderManager;
 import com.aporlaoferta.model.OfferComment;
+import com.aporlaoferta.service.CommentManager;
+import com.aporlaoferta.service.TransactionalManager;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,7 +31,7 @@ public class CommentManagerTest {
     CommentManager commentManager;
 
     @Mock
-    CommentDAO commentDAO;
+    TransactionalManager transactionalManager;
 
     OfferComment offerComment;
 
@@ -37,27 +39,27 @@ public class CommentManagerTest {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         this.offerComment = CommentBuilderManager.aBasicCommentWithId(THE_ID).build();
-        Mockito.when(this.commentDAO.findOne(THE_ID)).thenReturn(offerComment);
-        Mockito.when(this.commentDAO.getOneHundredCommentsAfterId(anyLong(), anyLong()))
+        Mockito.when(this.transactionalManager.getCommentFromId(THE_ID)).thenReturn(offerComment);
+        Mockito.when(this.transactionalManager.getFirstHundredCommentsForOffer(anyLong(), anyLong()))
                 .thenReturn(new ArrayList<OfferComment>());
     }
 
     @Test
     public void testCommentDaoFindsOneUniqueCommentFromId() {
         assertNotNull(this.commentManager.getCommentFromId(THE_ID));
-        verify(this.commentDAO).findOne(THE_ID);
+        verify(this.transactionalManager).getCommentFromId(THE_ID);
     }
 
     @Test
     public void testCommentIsCreatedUsingDaos() {
         this.commentManager.createComment(this.offerComment);
-        verify(this.commentDAO).save(this.offerComment);
+        verify(this.transactionalManager).saveComment(this.offerComment);
     }
 
     @Test
     public void testHundredCommentsAreObtainedUsingCustomQuery() {
         this.commentManager.getFirstHundredCommentsForOffer(0L, 1L);
-        verify(this.commentDAO).getOneHundredCommentsAfterId(0L, 1L);
+        verify(this.transactionalManager).getFirstHundredCommentsForOffer(0L, 1L);
     }
 
 }

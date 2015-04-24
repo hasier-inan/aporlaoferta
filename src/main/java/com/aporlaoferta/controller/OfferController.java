@@ -2,9 +2,8 @@ package com.aporlaoferta.controller;
 
 import com.aporlaoferta.model.TheOffer;
 import com.aporlaoferta.model.validators.ValidationException;
-import com.aporlaoferta.offer.UserManager;
+import com.aporlaoferta.service.UserManager;
 import com.aporlaoferta.utils.OfferValidatorHelper;
-import com.aporlaoferta.utils.RequestParameterParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +27,6 @@ import java.util.Map;
 public class OfferController {
 
     private final Logger LOG = LoggerFactory.getLogger(OfferController.class);
-
-    @Autowired
-    @Qualifier("requestParameterParser")
-    RequestParameterParser requestParameterParser;
 
     @Autowired
     OfferValidatorHelper offerValidatorHelper;
@@ -74,8 +69,8 @@ public class OfferController {
         // process in the backend as well.
         Map<String, String> result = new HashMap<>();
         try {
-            TheOffer theOffer = this.requestParameterParser.parseOfferRawMap(thatOffer,
-                    this.userManager.getUserNickNameFromSession());
+            TheOffer theOffer = null;/*this.requestParameterParser.parseOfferRawMap(thatOffer,
+                    this.userManager.getUserNickNameFromSession());*/
             this.offerValidatorHelper.validateOffer(theOffer);
 
         } catch (ValidationException e) {

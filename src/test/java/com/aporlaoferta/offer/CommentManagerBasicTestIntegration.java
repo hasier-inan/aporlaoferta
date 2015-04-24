@@ -2,7 +2,14 @@ package com.aporlaoferta.offer;
 
 import com.aporlaoferta.dao.CommentDAO;
 import com.aporlaoferta.data.CommentBuilderManager;
+import com.aporlaoferta.data.OfferBuilderManager;
+import com.aporlaoferta.data.UserBuilderManager;
 import com.aporlaoferta.model.OfferComment;
+import com.aporlaoferta.model.TheOffer;
+import com.aporlaoferta.model.TheUser;
+import com.aporlaoferta.service.CommentManager;
+import com.aporlaoferta.service.OfferManager;
+import com.aporlaoferta.service.UserManager;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +53,26 @@ public class CommentManagerBasicTestIntegration {
         assertThat("Expected the comment id to be 1", comment.getId(), is(1L));
         assertThat("Expected same comment", comment.getCommentText(), is(offerComment.getCommentText()));
     }
+
+    @Test
+    public void testANewCommentIsCorrectlyAssignedToItsOwner() {
+        TheUser theUser = this.userManager.createUser(
+                UserBuilderManager.aRegularUserWithNickname("iddqd")
+                        .build()
+        );
+        TheOffer theOffer = this.offerManager.createOffer(
+                OfferBuilderManager.aBasicOfferWithoutId().withUser(theUser)
+                        .build()
+        );
+        OfferComment offerComment = this.commentManager.createComment(
+                CommentBuilderManager.aBasicCommentWithoutId()
+                        .withOwner(theUser)
+                        .withCommentedOffer(theOffer)
+                        .build()
+        );
+        assertNotNull(offerComment.getCommentOwner());
+    }
+
 
 }
 
