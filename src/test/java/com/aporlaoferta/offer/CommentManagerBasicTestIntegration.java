@@ -46,7 +46,7 @@ public class CommentManagerBasicTestIntegration {
     @Test
     public void testCommentIsObtainedFromDB() {
         OfferComment offerComment = CommentBuilderManager.aBasicCommentWithId(THE_ID).build();
-        this.commentManager.createComment(offerComment);
+        this.commentManager.saveComment(offerComment);
         assertThat("Expected only one comment to be in the db", this.commentDAO.count(), is(1L));
         OfferComment comment = this.commentManager.getCommentFromId(THE_ID);
         assertNotNull(comment);
@@ -64,7 +64,7 @@ public class CommentManagerBasicTestIntegration {
                 OfferBuilderManager.aBasicOfferWithoutId().withUser(theUser)
                         .build()
         );
-        OfferComment offerComment = this.commentManager.createComment(
+        OfferComment offerComment = this.commentManager.saveComment(
                 CommentBuilderManager.aBasicCommentWithoutId()
                         .withOwner(theUser)
                         .withCommentedOffer(theOffer)

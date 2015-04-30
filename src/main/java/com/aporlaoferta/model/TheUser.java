@@ -1,6 +1,8 @@
 package com.aporlaoferta.model;
 
+import com.aporlaoferta.utils.CommentComparator;
 import com.aporlaoferta.utils.OfferComparator;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -121,6 +123,13 @@ public class TheUser implements Serializable {
         this.userOffers = userOffers;
     }
 
+    public OfferComment obtainLatestComment(){
+        if(getUserComments()==null || getUserComments().isEmpty()){
+            return null;
+        }
+        return sortByDateAndGetLastComment();
+    }
+
     public TheOffer obtainLatestOffer() {
         if (getUserOffers() == null || getUserOffers().isEmpty()) {
             return null;
@@ -133,10 +142,21 @@ public class TheUser implements Serializable {
         return offers.get(offers.size() - 1);
     }
 
+    private OfferComment sortByDateAndGetLastComment() {
+        List<OfferComment> comments = getSortedComments();
+        return comments.get(comments.size() - 1);
+    }
+
     private List<TheOffer> getSortedOffers() {
         List<TheOffer> offers = new ArrayList<>(getUserOffers());
         Collections.sort(offers, new OfferComparator());
         return offers;
+    }
+
+    private List<OfferComment> getSortedComments() {
+        List<OfferComment> comments = new ArrayList<>(getUserComments());
+        Collections.sort(comments, new CommentComparator());
+        return comments;
     }
 
     public void addOffer(TheOffer theOffer) {

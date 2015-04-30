@@ -16,6 +16,7 @@ public enum ResultCode {
     CREATE_USER_VALIDATION_ERROR(11, ResponseResult.VALIDATION_ERROR, "Validation process failed while creating user"),
     COMMENT_VALIDATION_ERROR(12, ResponseResult.VALIDATION_ERROR, "Validation process failed while creating comment"),
     QUOTE_VALIDATION_ERROR(13, ResponseResult.VALIDATION_ERROR, "Validation process failed while quoting comment"),
+    INVALID_COMMENT_OWNER_ERROR(14, ResponseResult.INVALID_DATA_PROVIDED, "Provided comment is not valid for the user"),
     CREATE_COMPANY_VALIDATION_ERROR(14, ResponseResult.VALIDATION_ERROR,
             "Validation process failed while creating company"),
     CREATE_OFFER_VALIDATION_ERROR(15, ResponseResult.VALIDATION_ERROR,

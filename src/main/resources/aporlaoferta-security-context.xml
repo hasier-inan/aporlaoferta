@@ -14,6 +14,7 @@
         <security:intercept-url method="POST" pattern="/createCompany**" access="hasRole('ROLE_ADMIN')"/>
         <security:intercept-url method="POST" pattern="/updateUser**" access="hasRole('ROLE_USER')"/>
         <security:intercept-url method="POST" pattern="/createComment**" access="hasRole('ROLE_USER')"/>
+        <security:intercept-url method="POST" pattern="/updateComment**" access="hasRole('ROLE_USER')"/>
 
         <!-- access denied page -->
         <security:access-denied-handler error-page="/403"/>
@@ -43,7 +44,7 @@
     </security:authentication-manager>
 
     <bean id="roleVoter" class="org.springframework.security.access.vote.RoleHierarchyVoter">
-        <constructor-arg ref="roleHierarchy" />
+        <constructor-arg ref="roleHierarchy"/>
     </bean>
     <bean id="roleHierarchy" class="org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl">
         <property name="hierarchy">

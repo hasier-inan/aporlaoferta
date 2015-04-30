@@ -8,7 +8,6 @@ import com.aporlaoferta.model.TheOffer;
 import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.service.CommentManager;
 import com.aporlaoferta.service.OfferManager;
-import com.aporlaoferta.service.TransactionalManager;
 import com.aporlaoferta.service.UserManager;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -87,7 +86,7 @@ public class CommentManagerTestIntegration {
         TheUser offerUser = theOffer.getOfferUser();
         offerUser.addComment(aOfferComment);
         theOffer.addComment(aOfferComment);
-        this.commentManager.createComment(aOfferComment);
+        this.commentManager.saveComment(aOfferComment);
     }
 }
 

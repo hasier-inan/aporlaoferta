@@ -32,7 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @ContextConfiguration(
-        value = {
+        loader = WebContextLoader.class,        value = {
                 "classpath:mvc-dispatcher-test-servlet.xml",
                 "classpath:aporlaoferta-controller-test-context.xml"
         })

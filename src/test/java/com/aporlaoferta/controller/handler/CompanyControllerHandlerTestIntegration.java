@@ -20,7 +20,6 @@ import java.util.Map;
 import static org.junit.Assert.assertTrue;
 
 @ContextConfiguration(
-        loader = WebContextLoader.class,
         value = {
                 "classpath:mvc-dispatcher-test-servlet.xml",
                 "classpath:aporlaoferta-controller-test-context.xml"

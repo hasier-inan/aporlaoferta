@@ -1,6 +1,5 @@
 package com.aporlaoferta.offer;
 
-import com.aporlaoferta.dao.CommentDAO;
 import com.aporlaoferta.data.CommentBuilderManager;
 import com.aporlaoferta.model.OfferComment;
 import com.aporlaoferta.service.CommentManager;
@@ -52,7 +51,7 @@ public class CommentManagerTest {
 
     @Test
     public void testCommentIsCreatedUsingDaos() {
-        this.commentManager.createComment(this.offerComment);
+        this.commentManager.saveComment(this.offerComment);
         verify(this.transactionalManager).saveComment(this.offerComment);
     }
 

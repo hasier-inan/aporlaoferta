@@ -1,5 +1,6 @@
 package com.aporlaoferta.model;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
@@ -32,11 +33,11 @@ public class OfferComment implements Serializable {
     @CreatedDate
     private Date commentCreationDate;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "TCM_USER", nullable = false)
     private TheUser commentOwner;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "TCM_OFFER", nullable = false)
     private TheOffer commentsOffer;
 

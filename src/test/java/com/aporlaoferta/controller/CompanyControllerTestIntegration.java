@@ -28,6 +28,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ContextConfiguration(
+        loader = WebContextLoader.class,
         value = {
                 "classpath:mvc-dispatcher-test-servlet.xml",
                 "classpath:aporlaoferta-controller-test-context.xml"

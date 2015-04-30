@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import static org.springframework.util.StringUtils.isEmpty;
+
 /**
  * Created by hasiermetal on 2/02/14.
  */
@@ -59,6 +61,32 @@ public class CommentController {
         return validateAndPersistComment(thatQuotedComment, ResultCode.QUOTE_VALIDATION_ERROR);
     }
 
+    @RequestMapping(value = "/updateComment", method = RequestMethod.POST)
+    @ResponseBody
+    public TheResponse updateComment(@RequestBody OfferComment thatComment,
+                                     @RequestParam(value = "comment", required = false) String commentId
+    ) {
+        OfferComment originalComment = this.commentManager.getCommentFromId(Long.parseLong(commentId));
+        String nickName = this.userManager.getUserNickNameFromSession();
+        TheResponse result = new TheResponse();
+        if (!originalComment.getCommentOwner().getUserNickname().equals(nickName)) {
+            return responseResultWithResultCodeError(ResultCode.INVALID_COMMENT_OWNER_ERROR, result);
+        }
+        String updatedText = thatComment.getCommentText();
+        if (isEmpty(updatedText)) {
+            return responseResultWithResultCodeError(ResultCode.COMMENT_VALIDATION_ERROR, result);
+        }
+        originalComment.setCommentText(updatedText);
+        OfferComment updatedOfferComment = this.commentManager.saveComment(originalComment);
+        updateResultWithSuccessCode(result, updatedOfferComment);
+        return result;
+    }
+
+    private TheResponse responseResultWithResultCodeError(ResultCode resultCodeError, TheResponse theResponse) {
+        createErrorCodeResponseResult(resultCodeError, theResponse, new ValidationException(resultCodeError.name()));
+        return theResponse;
+    }
+
     private void includeQuoteInComment(OfferComment thatComment, String commentId) {
         try {
             OfferComment originalComment = this.commentManager.getCommentFromId(Long.parseLong(commentId));
@@ -77,7 +105,9 @@ public class CommentController {
     private void includeCommentInOffer(OfferComment thatComment, String offerId) {
         try {
             TheOffer theOffer = this.offerManager.getOfferFromId(Long.parseLong(offerId));
-            theOffer.addComment(thatComment);
+            if (theOffer != null) {
+                theOffer.addComment(thatComment);
+            }
         } catch (NumberFormatException e) {
             LOG.error("Included quoted comment id is invalid", e);
         }
@@ -94,22 +124,31 @@ public class CommentController {
             }
             saveCommentAndUpdateResult(thatComment, result);
         } catch (ValidationException e) {
-            String resultDescription = resultCodeError.getResultDescription();
-            LOG.warn(resultDescription, e);
-            result.assignResultCode(resultCodeError);
+            createErrorCodeResponseResult(resultCodeError, result, e);
         }
         return result;
     }
 
     private void saveCommentAndUpdateResult(OfferComment thatComment, TheResponse result) {
-        OfferComment comment = this.commentManager.createComment(thatComment);
+        TheUser theUser = this.userManager.saveUser(thatComment.getCommentOwner());
+        OfferComment comment = theUser.obtainLatestComment();
         if (comment == null) {
             ControllerHelper.addEmptyDatabaseObjectMessage(result, LOG);
         } else {
-            String okMessage = String.format("Comment successfully created. Id: %s", comment.getId());
-            LOG.info(okMessage);
-            result.assignResultCode(ResultCode.ALL_OK, okMessage);
+            updateResultWithSuccessCode(result, comment);
         }
+    }
+
+    private void createErrorCodeResponseResult(ResultCode resultCodeError, TheResponse result, ValidationException e) {
+        String resultDescription = resultCodeError.getResultDescription();
+        LOG.warn(resultDescription, e);
+        result.assignResultCode(resultCodeError);
+    }
+
+    private void updateResultWithSuccessCode(TheResponse result, OfferComment comment) {
+        String okMessage = String.format("Comment successfully created. Id: %s", comment.getId());
+        LOG.info(okMessage);
+        result.assignResultCode(ResultCode.ALL_OK, okMessage);
     }
 
 }

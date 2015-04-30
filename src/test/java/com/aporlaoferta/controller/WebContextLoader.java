@@ -1,4 +1,4 @@
-package com.aporlaoferta.controller.handler;
+package com.aporlaoferta.controller;
 
 import com.aporlaoferta.controller.GenericWebContextLoader;
 

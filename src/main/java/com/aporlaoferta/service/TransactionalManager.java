@@ -10,8 +10,6 @@ import com.aporlaoferta.model.OfferCompany;
 import com.aporlaoferta.model.TheOffer;
 import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.model.TheUserRoles;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,9 +20,7 @@ import java.util.List;
  * Created by hasiermetal on 15/01/15.
  */
 @Service
-@Transactional
 public class TransactionalManager {
-    private final Logger LOG = LoggerFactory.getLogger(TransactionalManager.class);
 
     @Autowired
     CommentDAO commentDAO;
@@ -42,28 +38,34 @@ public class TransactionalManager {
     UserRolesDAO userRolesDAO;
 
     ///Comment
+    @Transactional(readOnly = true)
     public OfferComment getCommentFromId(Long id) {
         return this.commentDAO.findOne(id);
     }
 
+    @Transactional
     public OfferComment saveComment(OfferComment offerComment) {
         return this.commentDAO.save(offerComment);
 
     }
 
+    @Transactional(readOnly = true)
     public List<OfferComment> getFirstHundredCommentsForOffer(Long latestShownId, Long offerId) {
         return this.commentDAO.getOneHundredCommentsAfterId(latestShownId, offerId);
     }
 
     ///Company
+    @Transactional(readOnly = true)
     public OfferCompany getCompanyFromId(Long id) {
         return this.companyDAO.findOne(id);
     }
 
+    @Transactional(readOnly = true)
     public List<OfferCompany> getAllCompanies() {
         return this.companyDAO.getListOfPersistedCompanies();
     }
 
+    @Transactional
     public OfferCompany saveCompany(OfferCompany offerCompany) {
         return this.companyDAO.save(offerCompany);
     }
@@ -73,28 +75,33 @@ public class TransactionalManager {
         return this.offerDAO.save(theOffer);
     }
 
+    @Transactional(readOnly = true)
     public TheOffer getOfferFromId(Long id) {
         return this.offerDAO.findOne(id);
     }
 
+    @Transactional(readOnly = true)
     public List<TheOffer> getNextHundredOffers(Long lastShownId) {
         return this.offerDAO.getOneHundredOffersAfterId(lastShownId);
     }
 
-
+    @Transactional(readOnly = true)
     public Long countAllOffers() {
         return this.offerDAO.count();
     }
 
     ///USER
+    @Transactional
     public TheUserRoles saveUserRole(TheUserRoles theUserRoles) {
         return this.userRolesDAO.save(theUserRoles);
     }
 
+    @Transactional
     public TheUser saveUser(TheUser theUser) {
         return this.userDAO.save(theUser);
     }
 
+    @Transactional(readOnly = true)
     public TheUser getUserFromNickname(String nickname) {
         return this.userDAO.findByUserNickname(nickname);
     }

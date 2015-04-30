@@ -67,7 +67,7 @@ public class CommentControllerTest {
     public void testManagerHandlesComment() {
         OfferComment offerComment = CommentBuilderManager.aBasicCommentWithoutId().build();
         this.commentController.createComment(offerComment, OFFER_ID);
-        verify(this.commentManager).createComment(offerComment);
+        verify(this.commentManager).saveComment(offerComment);
     }
 
     @Test
@@ -81,7 +81,7 @@ public class CommentControllerTest {
 
     @Test
     public void testNotSavedCommentContainsExpectedResultCode() {
-        when(this.commentManager.createComment(any(OfferComment.class))).thenReturn(null);
+        when(this.commentManager.saveComment(any(OfferComment.class))).thenReturn(null);
         TheResponse result = this.commentController.createComment(new OfferComment(), OFFER_ID);
         assertTrue(ResultCode.DATABASE_RETURNED_EMPTY_OBJECT.getCode() == result.getCode());
         assertEquals(result.getDescription(), ResultCode.DATABASE_RETURNED_EMPTY_OBJECT.getResultDescription());
@@ -91,7 +91,7 @@ public class CommentControllerTest {
     public void testSuccessfullyCreatedCommentContainsOKResult() {
         long id = 2L;
         OfferComment offerComment = CommentBuilderManager.aBasicCommentWithId(id).build();
-        when(this.commentManager.createComment(any(OfferComment.class))).thenReturn(offerComment);
+        when(this.commentManager.saveComment(any(OfferComment.class))).thenReturn(offerComment);
         TheResponse result = this.commentController.createComment(offerComment, OFFER_ID);
         assertTrue(ResultCode.ALL_OK.getCode() == result.getCode());
         assertThat(result.getDescription(), Matchers.is("Comment successfully created. Id: " + id));

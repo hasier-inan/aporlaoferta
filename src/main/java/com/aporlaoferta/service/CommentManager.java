@@ -28,7 +28,7 @@ public class CommentManager {
         return null;
     }
 
-    public OfferComment createComment(OfferComment offerComment) {
+    public OfferComment saveComment(OfferComment offerComment) {
         return this.transactionalManager.saveComment(offerComment);
     }
 
