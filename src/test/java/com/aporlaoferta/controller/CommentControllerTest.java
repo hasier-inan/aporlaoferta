@@ -5,6 +5,7 @@ import com.aporlaoferta.data.OfferBuilderManager;
 import com.aporlaoferta.data.UserBuilderManager;
 import com.aporlaoferta.model.OfferComment;
 import com.aporlaoferta.model.TheResponse;
+import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.model.validators.ValidationException;
 import com.aporlaoferta.service.CommentManager;
 import com.aporlaoferta.service.OfferManager;
@@ -52,7 +53,10 @@ public class CommentControllerTest {
         MockitoAnnotations.initMocks(this);
         String imtheloggedUser = "imtheloggedUser";
         when(this.userManager.getUserNickNameFromSession()).thenReturn(imtheloggedUser);
-        when(this.userManager.getUserFromNickname(imtheloggedUser)).thenReturn(UserBuilderManager.aRegularUserWithNickname(imtheloggedUser).build());
+        TheUser theUser = UserBuilderManager.aRegularUserWithNickname(imtheloggedUser).build();
+        theUser.addComment(CommentBuilderManager.aBasicCommentWithoutId().build());
+        when(this.userManager.getUserFromNickname(imtheloggedUser)).thenReturn(theUser);
+        when(this.userManager.saveUser(any(TheUser.class))).thenReturn(theUser);
         when(this.offerManager.getOfferFromId(anyLong())).thenReturn(OfferBuilderManager.aBasicOfferWithoutId().build());
     }
 
@@ -67,7 +71,7 @@ public class CommentControllerTest {
     public void testManagerHandlesComment() {
         OfferComment offerComment = CommentBuilderManager.aBasicCommentWithoutId().build();
         this.commentController.createComment(offerComment, OFFER_ID);
-        verify(this.commentManager).saveComment(offerComment);
+        verify(this.userManager).saveUser(offerComment.getCommentOwner());
     }
 
     @Test
@@ -81,8 +85,8 @@ public class CommentControllerTest {
 
     @Test
     public void testNotSavedCommentContainsExpectedResultCode() {
-        when(this.commentManager.saveComment(any(OfferComment.class))).thenReturn(null);
-        TheResponse result = this.commentController.createComment(new OfferComment(), OFFER_ID);
+        when(this.userManager.saveUser(any(TheUser.class))).thenReturn(UserBuilderManager.aRegularUserWithNickname("as").build());
+        TheResponse result = this.commentController.createComment(CommentBuilderManager.aBasicCommentWithId(55L).build(), OFFER_ID);
         assertTrue(ResultCode.DATABASE_RETURNED_EMPTY_OBJECT.getCode() == result.getCode());
         assertEquals(result.getDescription(), ResultCode.DATABASE_RETURNED_EMPTY_OBJECT.getResultDescription());
     }
@@ -91,7 +95,9 @@ public class CommentControllerTest {
     public void testSuccessfullyCreatedCommentContainsOKResult() {
         long id = 2L;
         OfferComment offerComment = CommentBuilderManager.aBasicCommentWithId(id).build();
-        when(this.commentManager.saveComment(any(OfferComment.class))).thenReturn(offerComment);
+        TheUser theUser = UserBuilderManager.aRegularUserWithNickname("sdaaf").build();
+        theUser.addComment(offerComment);
+        when(this.userManager.saveUser(any(TheUser.class))).thenReturn(theUser);
         TheResponse result = this.commentController.createComment(offerComment, OFFER_ID);
         assertTrue(ResultCode.ALL_OK.getCode() == result.getCode());
         assertThat(result.getDescription(), Matchers.is("Comment successfully created. Id: " + id));
