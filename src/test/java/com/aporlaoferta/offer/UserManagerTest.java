@@ -60,7 +60,8 @@ public class UserManagerTest {
     }
 
     @Test
-    public void testUserIsCreatedUsingDaos() {
+    public void testUserIsCreatedUsingDaosIfUsernameDoesNotExist() {
+        Mockito.when(this.transactionalManager.getUserFromNickname(NICKNAME)).thenReturn(null);
         this.userManager.createUser(this.theUser);
         verify(this.transactionalManager).saveUser(this.theUser);
         verify(this.transactionalManager).saveUserRole(any(TheUserRoles.class));

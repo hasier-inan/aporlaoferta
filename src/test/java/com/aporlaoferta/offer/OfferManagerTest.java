@@ -71,5 +71,7 @@ public class OfferManagerTest {
         this.offerManager.getNextHundredOffers(THE_ID);
         verify(this.transactionalManager).getNextHundredOffers(THE_ID);
     }
+
 }
+
 

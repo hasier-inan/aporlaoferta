@@ -28,6 +28,7 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:aporlaoferta-context.xml</param-value>
     </context-param>
+
 <!--
     <filter>
         <filter-name>cors</filter-name>
@@ -40,6 +41,19 @@
     </filter-mapping>-->
 
     <!-- Enables Spring Security -->
+    <filter>
+        <filter-name>springOpenEntityManagerInViewFilter</filter-name>
+        <filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
+        <init-param>
+            <param-name>entityManagerFactoryBeanName</param-name>
+            <param-value>entityManagerFactory</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>springOpenEntityManagerInViewFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>

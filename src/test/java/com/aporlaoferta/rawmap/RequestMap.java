@@ -19,6 +19,12 @@ public class RequestMap {
         });
     }
 
+    public static Map<String, Object> getOfferMapFromJsonString(String response) throws java.io.IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(response, new TypeReference<HashMap<String, Object>>() {
+        });
+    }
+
     public static String getJsonFromMap(Object map) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(JsonGenerator.Feature.QUOTE_FIELD_NAMES, true);

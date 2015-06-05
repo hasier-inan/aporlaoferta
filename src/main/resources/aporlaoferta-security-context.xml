@@ -15,6 +15,10 @@
         <security:intercept-url method="POST" pattern="/updateUser**" access="hasRole('ROLE_USER')"/>
         <security:intercept-url method="POST" pattern="/createComment**" access="hasRole('ROLE_USER')"/>
         <security:intercept-url method="POST" pattern="/updateComment**" access="hasRole('ROLE_USER')"/>
+        <security:intercept-url method="POST" pattern="/createOffer**" access="hasRole('ROLE_USER')"/>
+        <security:intercept-url method="POST" pattern="/updateOffer**" access="hasRole('ROLE_USER')"/>
+        <security:intercept-url method="POST" pattern="/votePositive**" access="hasRole('ROLE_USER')"/>
+        <security:intercept-url method="POST" pattern="/voteNegative**" access="hasRole('ROLE_USER')"/>
 
         <!-- access denied page -->
         <security:access-denied-handler error-page="/403"/>

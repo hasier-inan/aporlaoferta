@@ -88,21 +88,7 @@ public class AccountController {
         } else if (this.userManager.doesUserExist(userNickname)) {
             result.assignResultCode(ResultCode.USER_NAME_ALREADY_EXISTS);
         } else {
-            try {
-                this.offerValidatorHelper.validateUser(theUser);
-                TheUser user = this.userManager.createUser(theUser);
-                if (user == null) {
-                    ControllerHelper.addEmptyDatabaseObjectMessage(result, ". Nickname: " + userNickname, LOG);
-                } else {
-                    String okMessage = String.format("User successfully created. Id: %s", user.getId());
-                    LOG.info(okMessage);
-                    result.assignResultCode(ResultCode.ALL_OK,okMessage);
-                }
-            } catch (ValidationException e) {
-                String resultDescription = ResultCode.CREATE_USER_VALIDATION_ERROR.getResultDescription();
-                LOG.warn(resultDescription, e);
-                result.assignResultCode(ResultCode.CREATE_USER_VALIDATION_ERROR);
-            }
+            validateAndCreateUser(theUser, result, userNickname);
         }
         return result;
     }
@@ -135,5 +121,23 @@ public class AccountController {
             }
         }
         return result;
+    }
+
+    private void validateAndCreateUser(TheUser theUser, TheResponse result, String userNickname) {
+        try {
+            this.offerValidatorHelper.validateUser(theUser);
+            TheUser user = this.userManager.createUser(theUser);
+            if (user == null) {
+                ControllerHelper.addEmptyDatabaseObjectMessage(result, ". Nickname: " + userNickname, LOG);
+            } else {
+                String okMessage = String.format("User successfully created. Id: %s", user.getId());
+                LOG.info(okMessage);
+                result.assignResultCode(ResultCode.ALL_OK,okMessage);
+            }
+        } catch (ValidationException e) {
+            String resultDescription = ResultCode.CREATE_USER_VALIDATION_ERROR.getResultDescription();
+            LOG.warn(resultDescription, e);
+            result.assignResultCode(ResultCode.CREATE_USER_VALIDATION_ERROR);
+        }
     }
 }

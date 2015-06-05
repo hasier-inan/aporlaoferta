@@ -1,8 +1,18 @@
 package com.aporlaoferta.model;
 
-import org.codehaus.jackson.annotate.JsonManagedReference;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Version;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -44,6 +54,7 @@ public class OfferCompany implements Serializable {
     private String companyAffiliateId;
 
     @OneToMany(mappedBy = "offerCompany", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<TheOffer> companyOffers = new HashSet<TheOffer>();
 
     public void setCompanyOffers(Set<TheOffer> companyOffers) {

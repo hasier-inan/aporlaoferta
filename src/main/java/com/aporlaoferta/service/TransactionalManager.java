@@ -71,6 +71,7 @@ public class TransactionalManager {
     }
 
     ///Offer
+    @Transactional
     public TheOffer saveOffer(TheOffer theOffer) {
         return this.offerDAO.save(theOffer);
     }
@@ -81,8 +82,8 @@ public class TransactionalManager {
     }
 
     @Transactional(readOnly = true)
-    public List<TheOffer> getNextHundredOffers(Long lastShownId) {
-        return this.offerDAO.getOneHundredOffersAfterId(lastShownId);
+    public List<TheOffer> getNextHundredOffers(Long lastShownNumber) {
+        return this.offerDAO.getOneHundredOffersAfterId(lastShownNumber);
     }
 
     @Transactional(readOnly = true)

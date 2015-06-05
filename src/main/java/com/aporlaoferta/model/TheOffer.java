@@ -12,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -70,9 +72,10 @@ public class TheOffer implements Serializable {
     @CreatedDate
     private Date offerCreatedDate;
 
-    @Column(name = "TO_POSITIVE", nullable = false)
+    @Column(name = "TO_POSITIVE", nullable = true)
     private Long offerPositiveVote;
-    @Column(name = "TO_negative", nullable = false)
+
+    @Column(name = "TO_NEGATIVE", nullable = true)
     private Long offerNegativeVote;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -87,11 +90,52 @@ public class TheOffer implements Serializable {
     @JoinColumn(name = "TO_USER", nullable = false)
     private TheUser offerUser;
 
+    //@OneToMany(mappedBy = "commentsOffer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @OneToMany(mappedBy = "commentsOffer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<OfferComment> offerComments = new HashSet<>();
 
+    //@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "OFFER_HAS_POSITIVE", joinColumns = {@JoinColumn(name = "TO_ID")}, inverseJoinColumns = {@JoinColumn(name = "TU_ID")})
+    private Set<TheUser> offerPositives = new HashSet<>();
+
+    //@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "OFFER_HAS_NEGATIVE", joinColumns = {@JoinColumn(name = "TO_ID")}, inverseJoinColumns = {@JoinColumn(name = "TU_ID")})
+    private Set<TheUser> offerNegatives = new HashSet<>();
+
+    public void incrementPositiveFeedback() {
+        setOfferPositiveVote(getOfferPositiveVote() + 1);
+    }
+
+    public void incrementNegativeFeedback() {
+        setOfferNegativeVote(getOfferNegativeVote() + 1);
+    }
+
+    public void addPositiveUser(TheUser theUser) {
+        notNull(theUser, "Atempting to add null user object to positive feedback list");
+        if (!this.offerPositives.contains(theUser)) {
+            this.offerPositives.add(theUser);
+        }
+    }
+
+    public void setOfferPositives(Set<TheUser> offerPositives) {
+        this.offerPositives = offerPositives;
+    }
+
+    public void setOfferNegatives(Set<TheUser> offerNegatives) {
+        this.offerNegatives = offerNegatives;
+    }
+
+    public void addNegativeUser(TheUser theUser) {
+        notNull(theUser, "Atempting to add null user object to negative feedback list");
+        if (!this.offerNegatives.contains(theUser)) {
+            this.offerNegatives.add(theUser);
+        }
+    }
+
     public Long getOfferPositiveVote() {
-        return offerPositiveVote;
+        return offerPositiveVote != null ? offerPositiveVote : 0L;
     }
 
     public void setOfferPositiveVote(Long offerPositiveVote) {
@@ -99,7 +143,7 @@ public class TheOffer implements Serializable {
     }
 
     public Long getOfferNegativeVote() {
-        return offerNegativeVote;
+        return offerNegativeVote != null ? offerNegativeVote : 0L;
     }
 
     public void setOfferNegativeVote(Long offerNegativeVote) {
@@ -217,5 +261,22 @@ public class TheOffer implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof TheOffer)) return false;
+
+        TheOffer theOffer = (TheOffer) o;
+
+        if (id != null ? !id.equals(theOffer.id) : theOffer.id != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
     }
 }

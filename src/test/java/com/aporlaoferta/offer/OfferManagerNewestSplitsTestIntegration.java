@@ -1,7 +1,9 @@
 package com.aporlaoferta.offer;
 
 import com.aporlaoferta.data.OfferBuilderManager;
+import com.aporlaoferta.data.UserBuilderManager;
 import com.aporlaoferta.model.TheOffer;
+import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.service.OfferManager;
 import com.aporlaoferta.service.TransactionalManager;
 import org.junit.Before;
@@ -10,15 +12,12 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Created by hasiermetal on 22/01/15.
@@ -31,14 +30,25 @@ public class OfferManagerNewestSplitsTestIntegration {
     @Autowired
     private OfferManager offerManager;
 
+    @Autowired
+    private TransactionalManager transactionalManager;
+
+    private TheUser theUser;
+
+    @Before
+    public void setUp() {
+        this.theUser = this.transactionalManager.saveUser(UserBuilderManager.aRegularUserWithNickname(UUID.randomUUID().toString()).build());
+    }
+
+
     @Test
     public void testHundredOfOffersAreReturned() {
         addOneThousandDummyOffers();
-        assertThat("Expected only one offer to be in the db", this.offerManager.countAllOffers(), is(1000L));
+        assertThat("Expected 1000 offers persisted in the db", this.offerManager.countAllOffers(), is(1000L));
         List<TheOffer> theNewest100Offers = this.offerManager.getNextHundredOffers(0L);
-        assertThat("Expected the newest offer id to be 1001", theNewest100Offers.get(0).getId(), is(1000L));
-        List<TheOffer> theNext100Offers = this.offerManager.getNextHundredOffers(100L);
-        assertThat("Expected the next newest offer id to be 901", theNext100Offers.get(0).getId(), is(900L));
+        assertThat("Expected the newest offer id to be 1000", theNewest100Offers.get(0).getId(), is(1000L));
+        List<TheOffer> theNext100Offers = this.offerManager.getNextHundredOffers(125L);
+        assertThat("Expected the after 125 offers, newest offer id to be 875", theNext100Offers.get(0).getId(), is(875L));
     }
 
     private void addOneThousandDummyOffers() {
@@ -49,6 +59,7 @@ public class OfferManagerNewestSplitsTestIntegration {
 
     private void addOfferToDB() {
         TheOffer anotherOffer = OfferBuilderManager.aBasicOfferWithoutId().build();
+        this.theUser.addOffer(anotherOffer);
         this.offerManager.createOffer(anotherOffer);
     }
 

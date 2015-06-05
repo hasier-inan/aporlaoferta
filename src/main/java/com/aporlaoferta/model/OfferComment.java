@@ -1,9 +1,20 @@
 package com.aporlaoferta.model;
 
-import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.data.annotation.CreatedDate;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Version;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -39,6 +50,7 @@ public class OfferComment implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "TCM_OFFER", nullable = false)
+    @JsonIgnore
     private TheOffer commentsOffer;
 
     @Column(name = "TCM_QUOTED_COMMENT", nullable = true)

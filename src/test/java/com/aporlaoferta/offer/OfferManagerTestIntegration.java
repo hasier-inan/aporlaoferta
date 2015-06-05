@@ -1,7 +1,9 @@
 package com.aporlaoferta.offer;
 
 import com.aporlaoferta.data.OfferBuilderManager;
+import com.aporlaoferta.data.UserBuilderManager;
 import com.aporlaoferta.model.TheOffer;
+import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.service.OfferManager;
 import com.aporlaoferta.service.TransactionalManager;
 import org.junit.Before;
@@ -10,9 +12,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import java.util.UUID;
 
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
@@ -39,13 +40,15 @@ public class OfferManagerTestIntegration {
 
     @Before
     public void setUp() {
+        TheUser theUser = this.transactionalManager.saveUser(UserBuilderManager.aRegularUserWithNickname(UUID.randomUUID().toString()).build());
         theMainOffer = OfferBuilderManager.aBasicOfferWithoutId().build();
+        theUser.addOffer(theMainOffer);
         this.transactionalManager.saveOffer(theMainOffer);
     }
 
     @Test
     public void testAtLeastOneOfferHasBeenPersistedInDatabase() {
-        assertThat("Expected only one offer to be in the db", this.offerManager.countAllOffers(), greaterThan(1L));
+        assertThat("Expected only one offer to be in the db", this.offerManager.countAllOffers(), greaterThan(0L));
     }
 
     @Test
@@ -62,8 +65,17 @@ public class OfferManagerTestIntegration {
         assertFalse("Expected the offer to be active", theOffer.isOfferExpired());
         TheOffer theOfferExpired = this.offerManager.expireOffer(theOffer);
         assertTrue("Expected the offer to be expired", theOfferExpired.isOfferExpired());
-
     }
 
+    @Test
+    public void testOfferFeedbackIsUpdated() {
+        TheOffer theOffer = this.offerManager.getOfferFromId(1L);
+        assertTrue("Expected the offer positive feedback to be zero", theOffer.getOfferPositiveVote() == 0);
+        assertTrue("Expected the offer positive feedback to be zero", theOffer.getOfferNegativeVote() == 0);
+        TheOffer theOfferPos = this.offerManager.positiveFeedback(theOffer);
+        TheOffer theOfferPosNeg = this.offerManager.negativeFeedback(theOfferPos);
+        assertTrue("Expected the offer positive feedback to be zero", theOfferPosNeg.getOfferPositiveVote() == 1);
+        assertTrue("Expected the offer positive feedback to be zero", theOfferPosNeg.getOfferNegativeVote() == 1);
+    }
 }
 

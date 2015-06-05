@@ -5,6 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -28,6 +30,16 @@ public class OfferManager {
         return this.transactionalManager.saveOffer(theOffer);
     }
 
+    public TheOffer positiveFeedback(TheOffer originalOffer) {
+        originalOffer.incrementPositiveFeedback();
+        return this.transactionalManager.saveOffer(originalOffer);
+    }
+
+    public TheOffer negativeFeedback(TheOffer originalOffer) {
+        originalOffer.incrementNegativeFeedback();
+        return this.transactionalManager.saveOffer(originalOffer);
+    }
+
     public TheOffer getOfferFromId(Long id) {
         try {
             return this.transactionalManager.getOfferFromId(id);
@@ -38,8 +50,8 @@ public class OfferManager {
         return null;
     }
 
-    public List<TheOffer> getNextHundredOffers(Long lastShownId) {
-        return this.transactionalManager.getNextHundredOffers(lastShownId);
+    public List<TheOffer> getNextHundredOffers(Long lastShownNumber) {
+        return this.transactionalManager.getNextHundredOffers(lastShownNumber);
     }
 
     public Long countAllOffers() {

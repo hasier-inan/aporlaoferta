@@ -40,8 +40,6 @@ public class OfferBuilderManager {
                 .withImage("product.image.url.jpg")
                 .withDescription("the amazing product we have here this is a ducking deal")
                 .withLink("this.is.the.direct.url.with.affiliation.id-i.hope")
-                .withNegatives(3L)
-                .withPositives(121L)
                 .withFinalPrice(new BigDecimal(200))
                 .withOriginalPrice(new BigDecimal(300))
                 .withTitle("yellow duck with an amazing price!")

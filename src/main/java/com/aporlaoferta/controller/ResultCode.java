@@ -16,13 +16,23 @@ public enum ResultCode {
     CREATE_USER_VALIDATION_ERROR(11, ResponseResult.VALIDATION_ERROR, "Validation process failed while creating user"),
     COMMENT_VALIDATION_ERROR(12, ResponseResult.VALIDATION_ERROR, "Validation process failed while creating comment"),
     QUOTE_VALIDATION_ERROR(13, ResponseResult.VALIDATION_ERROR, "Validation process failed while quoting comment"),
-    INVALID_COMMENT_OWNER_ERROR(14, ResponseResult.INVALID_DATA_PROVIDED, "Provided comment is not valid for the user"),
     CREATE_COMPANY_VALIDATION_ERROR(14, ResponseResult.VALIDATION_ERROR,
             "Validation process failed while creating company"),
     CREATE_OFFER_VALIDATION_ERROR(15, ResponseResult.VALIDATION_ERROR,
             "Validation process failed while creating offer"),
+    UPDATE_OFFER_VALIDATION_ERROR(16, ResponseResult.VALIDATION_ERROR,
+            "Validation process failed while updating offer"),
+    UPDATE_COMMENT_VALIDATION_ERROR(17, ResponseResult.VALIDATION_ERROR,
+            "Validation process failed while updating comment"),
     DATABASE_RETURNED_EMPTY_OBJECT(20, ResponseResult.SYSTEM_ERROR,
-            "Database has not been updated , empty object returned");
+            "Database has not been updated , empty object returned"),
+    INVALID_OWNER_ERROR(30, ResponseResult.INVALID_DATA_PROVIDED, "Invalid owner found"),
+    FEEDBACK_VALIDATION_ERROR(41, ResponseResult.VALIDATION_ERROR,
+            "Validation process failed while adding feedback"),
+    FEEDBACK_ALREADY_PERFORMED_ERROR(42, ResponseResult.VALIDATION_ERROR,
+            "Feedback process was already performed by user and given offer"),
+    FEEDBACK_FROM_OWNER_PERFORMED_ERROR(43, ResponseResult.VALIDATION_ERROR,
+            "Feedback process can't be performed by offer owner");
 
     private int code;
     private String resultDescription;

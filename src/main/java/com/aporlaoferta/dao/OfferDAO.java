@@ -11,9 +11,9 @@ import java.util.List;
  * Created by hasiermetal on 26/07/14.
  */
 public interface OfferDAO extends CrudRepository<TheOffer, Long> {
-    public final String OFFER_QUERY="SELECT * FROM thatoffer a order by a.TO_ID desc LIMIT :id, 100";
+    public final String OFFER_QUERY="SELECT * FROM thatoffer a order by a.TO_ID desc LIMIT :number, 100";
 
     @Query(value = OFFER_QUERY, nativeQuery = true)
-    public List<TheOffer> getOneHundredOffersAfterId(@Param("id")Long id);
+    public List<TheOffer> getOneHundredOffersAfterId(@Param("number")Long number);
 }
 

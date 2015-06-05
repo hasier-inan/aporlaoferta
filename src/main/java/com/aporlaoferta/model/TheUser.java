@@ -2,7 +2,7 @@ package com.aporlaoferta.model;
 
 import com.aporlaoferta.utils.CommentComparator;
 import com.aporlaoferta.utils.OfferComparator;
-import org.codehaus.jackson.annotate.JsonManagedReference;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -49,7 +50,7 @@ public class TheUser implements Serializable {
     @Column(name = "TU_NICKNAME", nullable = false)
     private String userNickname;
 
-    @Column(name = "TU_PWD_LOCKED", nullable = false, length = 60)
+    @Column(name = "TU_PWD_LOCKED", nullable = false, length = 60 )
     private String userPassword;
 
     @Column(name = "TU_ENABLED", nullable = false)
@@ -62,10 +63,20 @@ public class TheUser implements Serializable {
     private String userAvatar;
 
     @OneToMany(mappedBy = "offerUser", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<TheOffer> userOffers = new HashSet<>();
 
     @OneToMany(mappedBy = "commentOwner", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<OfferComment> userComments = new HashSet<>();
+
+    @ManyToMany(mappedBy = "offerPositives", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<TheOffer> positiveOffers = new HashSet<>();
+
+    @ManyToMany(mappedBy = "offerNegatives", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<TheOffer> negativeOffers = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -123,8 +134,8 @@ public class TheUser implements Serializable {
         this.userOffers = userOffers;
     }
 
-    public OfferComment obtainLatestComment(){
-        if(getUserComments()==null || getUserComments().isEmpty()){
+    public OfferComment obtainLatestComment() {
+        if (getUserComments() == null || getUserComments().isEmpty()) {
             return null;
         }
         return sortByDateAndGetLastComment();
@@ -139,7 +150,7 @@ public class TheUser implements Serializable {
 
     private TheOffer sortByDateAndGetLastOffer() {
         List<TheOffer> offers = getSortedOffers();
-        return offers.get(offers.size() - 1);
+        return offers.get(0);
     }
 
     private OfferComment sortByDateAndGetLastComment() {
@@ -157,6 +168,53 @@ public class TheUser implements Serializable {
         List<OfferComment> comments = new ArrayList<>(getUserComments());
         Collections.sort(comments, new CommentComparator());
         return comments;
+    }
+
+    public void addPositiveFeedback(TheOffer theOffer) {
+        notNull(theOffer, "Atempting to add null offer object to positive feedback list");
+        if (this.positiveOffers == null) {
+            this.positiveOffers = new HashSet<>();
+        }
+        this.positiveOffers.add(theOffer);
+        theOffer.addPositiveUser(this);
+    }
+
+    public void addNegativeFeedback(TheOffer theOffer) {
+        notNull(theOffer, "Atempting to add null offer object to negative feedback list");
+        if (this.negativeOffers == null) {
+            this.negativeOffers = new HashSet<>();
+        }
+        theOffer.addNegativeUser(this);
+        this.negativeOffers.add(theOffer);
+    }
+
+    public Set<TheOffer> getPositiveOffers() {
+        return this.positiveOffers != null ? this.positiveOffers : new HashSet<TheOffer>();
+    }
+
+    public Set<TheOffer> getNegativeOffers() {
+        return this.negativeOffers != null ? this.negativeOffers : new HashSet<TheOffer>();
+    }
+
+    public boolean feedbackHasAlreadyBeenPerformedForOffer(Long id) {
+        return positiveHasBeenPerformed(id) || negativeHasBeenPerformed(id);
+    }
+
+    public boolean positiveHasBeenPerformed(Long id) {
+        return idMatchInSet(id, getPositiveOffers());
+    }
+
+    public boolean negativeHasBeenPerformed(Long id) {
+        return idMatchInSet(id, getNegativeOffers());
+    }
+
+    public boolean idMatchInSet(Long id, Set<TheOffer> offers) {
+        for (TheOffer offer : offers) {
+            if (id == offer.getId()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void addOffer(TheOffer theOffer) {

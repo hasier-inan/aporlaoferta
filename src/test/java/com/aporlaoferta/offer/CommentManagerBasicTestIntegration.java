@@ -9,13 +9,17 @@ import com.aporlaoferta.model.TheOffer;
 import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.service.CommentManager;
 import com.aporlaoferta.service.OfferManager;
+import com.aporlaoferta.service.TransactionalManager;
 import com.aporlaoferta.service.UserManager;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.UUID;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertNotNull;
@@ -43,9 +47,27 @@ public class CommentManagerBasicTestIntegration {
     @Autowired
     private CommentManager commentManager;
 
+    @Autowired
+    private TransactionalManager transactionalManager;
+
+    private TheUser theUser;
+
+    @Before
+    public void setUp() {
+        TheUser theUserLocal = this.transactionalManager.saveUser(UserBuilderManager.aRegularUserWithNickname(UUID.randomUUID().toString()).build());
+        TheOffer theOfferLocal = OfferBuilderManager.aBasicOfferWithoutUserOrId().build();
+        theUserLocal.addOffer(theOfferLocal);
+        this.theUser = this.transactionalManager.saveUser(theUserLocal);
+    }
+
     @Test
     public void testCommentIsObtainedFromDB() {
         OfferComment offerComment = CommentBuilderManager.aBasicCommentWithId(THE_ID).build();
+        TheOffer theOffer = OfferBuilderManager.aBasicOfferWithoutUserOrId().build();
+        theOffer.addComment(offerComment);
+        this.theUser.addOffer(theOffer);
+        this.theUser.addComment(offerComment);
+        this.offerManager.createOffer(theOffer);
         this.commentManager.saveComment(offerComment);
         assertThat("Expected only one comment to be in the db", this.commentDAO.count(), is(1L));
         OfferComment comment = this.commentManager.getCommentFromId(THE_ID);
