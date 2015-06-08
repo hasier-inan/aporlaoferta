@@ -30,6 +30,8 @@ import java.util.Set;
  * Created by hasiermetal on 2/02/14.
  */
 @Controller
+@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+//TODO: Move @Transaction to a service
 public class OfferController {
 
     private final Logger LOG = LoggerFactory.getLogger(OfferController.class);
@@ -49,24 +51,47 @@ public class OfferController {
 
         TheOfferResponse theOfferResponse = new TheOfferResponse();
         List<TheOffer> hundredOffers = this.offerManager.getNextHundredOffers(number != null ? number : 0L);
-        //TODO: Temporary hack as because of the Lazy initialisation comments are empty...
-        for (TheOffer theOffer : hundredOffers) {
-            theOffer.setOfferComments(new HashSet<OfferComment>());
-        }
+        //Temporary hack as because of the Lazy initialisation comments are empty...
+        createEmptyFields(hundredOffers);
         theOfferResponse.setTheOffers(hundredOffers);
         updateResponseWithSuccessCode(theOfferResponse);
         return theOfferResponse;
     }
 
+    private void createEmptyFields(List<TheOffer> hundredOffers) {
+        for (TheOffer theOffer : hundredOffers) {
+            theOffer.setOfferComments(new HashSet<OfferComment>());
+            resetUserSensibleDataFromOffer(theOffer);
+        }
+    }
+
+    private void resetUserSensibleDataFromOffer(TheOffer theOffer) {
+        TheUser offerUser = theOffer.getOfferUser();
+        offerUser.setUserEmail(null);
+        offerUser.setUserPassword(null);
+        theOffer.setOfferUser(offerUser);
+    }
+
+    private void resetUserSensibleDataFromComment(OfferComment theComment) {
+        TheUser offerUser = theComment.getCommentOwner();
+        offerUser.setUserEmail(null);
+        offerUser.setUserPassword(null);
+        theComment.setCommentOwner(offerUser);
+    }
+
     @RequestMapping(value = "/getOffer", method = RequestMethod.GET)
     @ResponseBody
-    //@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public TheOfferResponse getOfferById(@RequestParam(value = "id", required = true) Long number) {
         TheOfferResponse theOfferResponse = new TheOfferResponse();
         TheOffer theOffer = this.offerManager.getOfferFromId(number);
+        resetUserSensibleDataFromOffer(theOffer);
         Set<OfferComment> offerComments = theOffer.getOfferComments();
-        //TODO: do we need this hack for the lazy var?
-        if(offerComments!=null && offerComments.size()>=0){}
+        if (offerComments != null && offerComments.size() >= 0) {
+            //do we need this hack for the lazy var?
+            for (OfferComment offerComment : offerComments) {
+                resetUserSensibleDataFromComment(offerComment);
+            }
+        }
         theOfferResponse.setTheOffers(Arrays.asList(new TheOffer[]{theOffer}));
         updateResponseWithSuccessCode(theOfferResponse);
         return theOfferResponse;

@@ -90,8 +90,8 @@ public class TheOffer implements Serializable {
     @JoinColumn(name = "TO_USER", nullable = false)
     private TheUser offerUser;
 
-    //@OneToMany(mappedBy = "commentsOffer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @OneToMany(mappedBy = "commentsOffer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "commentsOffer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    //@OneToMany(mappedBy = "commentsOffer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<OfferComment> offerComments = new HashSet<>();
 
     //@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

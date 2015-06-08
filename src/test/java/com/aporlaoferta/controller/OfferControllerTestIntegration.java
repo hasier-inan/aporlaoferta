@@ -9,7 +9,6 @@ import org.junit.Test;
 import org.springframework.http.MediaType;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -161,6 +160,46 @@ public class OfferControllerTestIntegration extends ControllerTestIntegration {
         for (Map<String, Object> offer : offerList) {
             Assert.assertNotNull(offer.get("offerComments").toString());
         }
+    }
+
+    @Test
+    public void testGetOfferListShowsNoPersonalInformationOfOwner() throws Exception {
+        ResultActions result = makeAGetOfferByIdRequestCallAndAssertIsSuccessful("1");
+        String mvcResult = result.andReturn().getResponse().getContentAsString();
+        Map<String, Object> jsonResult = RequestMap.getOfferMapFromJsonString(mvcResult);
+        List<Map<String, Object>> offerList = (ArrayList) jsonResult.get("theOffers");
+        for (Map<String, Object> offer : offerList) {
+            Map<String, String> offerUser = (Map) offer.get("offerUser");
+            assertNoPersonalInformationIsReceivedInMap(offerUser);
+            assertNoPersonalInformationIsReceivedInComments(offer);
+        }
+    }
+
+    @Test
+    public void testCreatedOffersContainNoCommentsAndNoUserPersonalInfo() throws Exception {
+        createSampleOfferAndReturnId();
+        createSampleOfferAndReturnId();
+        ResultActions result = makeAGetOfferRequestCallAndAssertIsSuccessful();
+        String mvcResult = result.andReturn().getResponse().getContentAsString();
+        Map<String, Object> jsonResult = RequestMap.getOfferMapFromJsonString(mvcResult);
+        List<Map<String, Object>> offerList = (ArrayList) jsonResult.get("theOffers");
+        for (Map<String, Object> offer : offerList) {
+            List offerComments = (List) offer.get("offerComments");
+            Assert.assertTrue("Expected no comments", offerComments.size() == 0);
+            assertNoPersonalInformationIsReceivedInMap((Map) offer.get("offerUser"));
+        }
+    }
+
+    private void assertNoPersonalInformationIsReceivedInComments(Map<String, Object> offer) {
+        for(Map<String, Object>offerComments: (List<Map>) offer.get("offerComments")){
+            Map<String, String>commentOwner=(Map)offerComments.get("commentOwner");
+            assertNoPersonalInformationIsReceivedInMap(commentOwner);
+        }
+    }
+
+    private void assertNoPersonalInformationIsReceivedInMap(Map<String, String> offerUser) {
+        Assert.assertNull(offerUser.get("userPassword"));
+        Assert.assertNull(offerUser.get("userEmail"));
     }
 
     private void assertResultContainsBothOffers(String oneOffer, String anotherOffer, String mvcResult) throws java.io.IOException {

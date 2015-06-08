@@ -27,7 +27,7 @@ import static org.springframework.util.StringUtils.isEmpty;
  * Created by hasiermetal on 2/02/14.
  */
 @Controller
-//@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 public class CommentController {
 
     private final Logger LOG = LoggerFactory.getLogger(CommentController.class);

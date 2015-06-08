@@ -3,6 +3,7 @@ package com.aporlaoferta.model;
 import com.aporlaoferta.utils.CommentComparator;
 import com.aporlaoferta.utils.OfferComparator;
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

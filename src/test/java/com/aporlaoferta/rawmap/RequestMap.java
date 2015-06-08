@@ -6,6 +6,7 @@ import org.codehaus.jackson.type.TypeReference;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,6 +23,12 @@ public class RequestMap {
     public static Map<String, Object> getOfferMapFromJsonString(String response) throws java.io.IOException {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(response, new TypeReference<HashMap<String, Object>>() {
+        });
+    }
+
+    public static List<Map<String, String>> getMapFromJsonListString(String response) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(response, new TypeReference<List<HashMap<String, String>>>() {
         });
     }
 

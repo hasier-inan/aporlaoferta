@@ -5,6 +5,7 @@ import com.aporlaoferta.data.CompanyBuilderManager;
 import com.aporlaoferta.data.UserBuilderManager;
 import com.aporlaoferta.rawmap.RequestMap;
 import com.aporlaoferta.service.UserManager;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +20,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.List;
 import java.util.Map;
 
 import static com.aporlaoferta.controller.SecurityRequestPostProcessors.userDeatilsService;
@@ -95,17 +97,7 @@ public class CompanyControllerTestIntegration {
 
     @Test
     public void testCompanyCreationIsCorrectlyCreatedIfAdmin() throws Exception {
-        CsrfToken csrfToken = CsrfTokenBuilder.generateAToken();
-        String jsonRequest = RequestMap.getJsonFromMap(CompanyBuilderManager.aRegularCompanyWithName("sdfasdf").build());
-        ResultActions respose = this.mockMvc.perform(post("/createCompany")
-                .with(userDeatilsService(ADMIN_USER))
-                .sessionAttr("_csrf", csrfToken)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonRequest)
-                .param("_csrf", csrfToken.getToken())
-                .sessionAttrs(SessionAttributeBuilder
-                        .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
-        )
+        ResultActions respose = performCreateCompanyPostRequest()
                 .andExpect(status().is2xxSuccessful());
         String rawResult = respose.andReturn().getResponse().getContentAsString();
         Map<String, String> jsonResult = RequestMap.getMapFromJsonString(rawResult);
@@ -114,14 +106,41 @@ public class CompanyControllerTestIntegration {
 
     @Test
     public void testNoNeedToBeIdentifiedToGetCompanyList() throws Exception {
+        performCompanyListPostCall()
+                .andExpect(status().is2xxSuccessful());
+    }
+
+    @Test
+    public void testCompanyListContainsNoSensibleInformation() throws Exception {
+        performCreateCompanyPostRequest();
+        ResultActions result = performCompanyListPostCall()
+                .andExpect(status().is2xxSuccessful());
+        String mvcResult = result.andReturn().getResponse().getContentAsString();
+        List<Map<String, String>> jsonResult = RequestMap.getMapFromJsonListString(mvcResult);
+        Assert.assertNull("Expected empty affiliation id", jsonResult.get(0).get("companyAffiliateId"));
+    }
+
+    private ResultActions performCreateCompanyPostRequest() throws Exception {
         CsrfToken csrfToken = CsrfTokenBuilder.generateAToken();
-        this.mockMvc.perform(post("/companyList")
+        String jsonRequest = RequestMap.getJsonFromMap(CompanyBuilderManager.aRegularCompanyWithName("sdfasdf").build());
+        return this.mockMvc.perform(post("/createCompany")
+                .with(userDeatilsService(ADMIN_USER))
+                .sessionAttr("_csrf", csrfToken)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonRequest)
+                .param("_csrf", csrfToken.getToken())
+                .sessionAttrs(SessionAttributeBuilder
+                        .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
+        );
+    }
+
+    private ResultActions performCompanyListPostCall() throws Exception {
+        CsrfToken csrfToken = CsrfTokenBuilder.generateAToken();
+        return this.mockMvc.perform(post("/companyList")
                 .sessionAttr("_csrf", csrfToken)
                 .param("_csrf", csrfToken.getToken())
                 .sessionAttrs(SessionAttributeBuilder
                         .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
-        )
-                .andExpect(status().is2xxSuccessful());
+        );
     }
-
 }

@@ -1,6 +1,5 @@
 package com.aporlaoferta.offer;
 
-import com.aporlaoferta.dao.UserRolesDAO;
 import com.aporlaoferta.data.UserBuilderManager;
 import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.model.TheUserRoles;

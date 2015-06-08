@@ -51,6 +51,7 @@ public class OfferCompany implements Serializable {
     private String companyLogoUrl;
 
     @Column(name = "TC_AFFILIATE_ID", nullable = true)
+    @JsonIgnore
     private String companyAffiliateId;
 
     @OneToMany(mappedBy = "offerCompany", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
