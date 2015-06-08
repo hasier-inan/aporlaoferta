@@ -41,6 +41,13 @@ public class AccountController {
         return model;
     }
 
+    @RequestMapping(value = {"/start**"}, method = RequestMethod.GET)
+    public ModelAndView start() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("start");
+        return model;
+    }
+
     @RequestMapping(value = "/admin**", method = RequestMethod.GET)
     public ModelAndView adminPage() {
         ModelAndView model = new ModelAndView();

@@ -1,5 +1,6 @@
 package com.aporlaoferta.service;
 
+import com.aporlaoferta.model.OfferCategory;
 import com.aporlaoferta.model.TheOffer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,6 +53,14 @@ public class OfferManager {
 
     public List<TheOffer> getNextHundredOffers(Long lastShownNumber) {
         return this.transactionalManager.getNextHundredOffers(lastShownNumber);
+    }
+
+    public List<TheOffer> getNextHundredOffersByCategory(Long lastShownNumber, OfferCategory offerCategory) {
+        return this.transactionalManager.getNextHundredOffersByCategory(lastShownNumber, offerCategory);
+    }
+
+    public List<TheOffer> getNextHundredHottestOffers(Long lastShownNumber) {
+        return this.transactionalManager.getNextHottestHundredOffers(lastShownNumber);
     }
 
     public Long countAllOffers() {

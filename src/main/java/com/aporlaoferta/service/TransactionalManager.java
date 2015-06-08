@@ -5,6 +5,7 @@ import com.aporlaoferta.dao.CompanyDAO;
 import com.aporlaoferta.dao.OfferDAO;
 import com.aporlaoferta.dao.UserDAO;
 import com.aporlaoferta.dao.UserRolesDAO;
+import com.aporlaoferta.model.OfferCategory;
 import com.aporlaoferta.model.OfferComment;
 import com.aporlaoferta.model.OfferCompany;
 import com.aporlaoferta.model.TheOffer;
@@ -84,6 +85,16 @@ public class TransactionalManager {
     @Transactional(readOnly = true)
     public List<TheOffer> getNextHundredOffers(Long lastShownNumber) {
         return this.offerDAO.getOneHundredOffersAfterId(lastShownNumber);
+    }
+
+    @Transactional(readOnly = true)
+    public List<TheOffer> getNextHundredOffersByCategory(Long lastShownNumber, OfferCategory offerCategory) {
+        return this.offerDAO.getOneHundredOffersAfterIdWithCategory(lastShownNumber, offerCategory.getCode());
+    }
+
+    @Transactional(readOnly = true)
+    public List<TheOffer> getNextHottestHundredOffers(Long lastShownNumber) {
+        return this.offerDAO.getOneHundredHottestOffers(lastShownNumber);
     }
 
     @Transactional(readOnly = true)
