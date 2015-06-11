@@ -1,13 +1,10 @@
 package com.aporlaoferta.controller;
 
-import com.aporlaoferta.controller.GenericWebContextLoader;
-
 /**
  * Created with IntelliJ IDEA.
- * User: hinan
+ * User: hasiermetal
  * Date: 03/02/2015
  * Time: 15:00
- * Hitachi Capital (UK) PLC
  */
 class WebContextLoader extends GenericWebContextLoader {
 

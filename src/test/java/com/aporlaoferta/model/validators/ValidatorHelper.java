@@ -6,10 +6,10 @@ import org.springframework.validation.Validator;
 
 /**
  * Created with IntelliJ IDEA.
- * User: hinan
+ * User: hasiermetal
  * Date: 28/01/2015
  * Time: 18:02
- * Hitachi Capital (UK) PLC
+ *
  */
 public class ValidatorHelper {
 

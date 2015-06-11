@@ -8,10 +8,10 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Created with IntelliJ IDEA.
- * User: hinan
+ * User: hasiermetal
  * Date: 01/05/15
  * Time: 15:09
- * Hitachi Capital (UK) PLC
+ *
  */
 public class ResponseResultHelper {
 

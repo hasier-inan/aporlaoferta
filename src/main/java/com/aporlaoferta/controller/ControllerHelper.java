@@ -5,10 +5,9 @@ import org.slf4j.Logger;
 
 /**
  * Created with IntelliJ IDEA.
- * User: hinan
+ * User: hasiermetal
  * Date: 03/02/2015
  * Time: 08:27
- * Hitachi Capital (UK) PLC
  */
 public class ControllerHelper {
 

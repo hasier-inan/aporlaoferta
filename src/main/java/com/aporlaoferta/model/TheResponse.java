@@ -5,10 +5,10 @@ import com.aporlaoferta.controller.ResultCode;
 
 /**
  * Created with IntelliJ IDEA.
- * User: hinan
+ * User: hasiermetal
  * Date: 11/02/2015
  * Time: 18:23
- * Hitachi Capital (UK) PLC
+ *
  */
 public class TheResponse {
 

@@ -20,7 +20,7 @@ import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
- * User: hinan
+ * User: hasiermetal
  * Date: 14/01/2015
  * Time: 18:15
  */

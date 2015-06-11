@@ -18,10 +18,9 @@ import javax.servlet.RequestDispatcher;
 
 /**
  * Created with IntelliJ IDEA.
- * User: hinan
+ * User: hasiermetal
  * Date: 03/02/2015
  * Time: 15:01
- * Hitachi Capital (UK) PLC
  */
 public class GenericWebContextLoader extends AbstractContextLoader {
     protected final MockServletContext servletContext;

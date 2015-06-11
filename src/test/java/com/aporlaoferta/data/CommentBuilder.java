@@ -8,7 +8,7 @@ import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
- * User: hinan
+ * User: hasiermetal
  * Date: 14/11/2014
  * Time: 16:00
  */
