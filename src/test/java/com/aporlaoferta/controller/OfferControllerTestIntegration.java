@@ -253,10 +253,11 @@ public class OfferControllerTestIntegration extends ControllerTestIntegration {
 
     private ResultActions makeAGetOfferByIdRequestCallAndAssertIsSuccessful(String id) throws Exception {
         CsrfToken csrfToken = CsrfTokenBuilder.generateAToken();
-        return this.mockMvc.perform(get("/getOffer?id=" + id)
+        return this.mockMvc.perform(post("/getOffer")
                 .sessionAttr("_csrf", csrfToken)
                 .contentType(MediaType.APPLICATION_JSON)
                 .param("_csrf", csrfToken.getToken())
+                .param("id", id)
                 .sessionAttrs(SessionAttributeBuilder
                         .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
         )

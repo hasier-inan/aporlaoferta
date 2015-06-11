@@ -6,10 +6,16 @@ aporlaofertaApp
         return {
             restrict: 'A',
             templateUrl: 'resources/js/offer/offer-creation/offerCreation.html',
-            controller: ['$scope', 'offerController', 'offerCreationService', function ($scope, offerController, offerCreationService) {
+            controller: ['$scope', 'requestManager', 'configService', 'offerCreationService', function ($scope, requestManager, configService, offerCreationService) {
                 $scope.offer = {};
                 $scope.createOffer = function () {
-                    var result = offerController.createOffer($scope.offer);
+                    requestManager.makePostCall($scope.offer, {}, configService.getEndpoint('create.offer'))
+                        .success(function (data, status, headers, config) {
+                            return data;
+                        }).error(function (data, status, headers, config) {
+                            //TODO: handle error;
+                            alert("handle this error while retrieving data from newest offers");
+                        });
                 };
                 $scope.$on('selectedCompany', function (event, args) {
                     var selectedCompany = args.company;

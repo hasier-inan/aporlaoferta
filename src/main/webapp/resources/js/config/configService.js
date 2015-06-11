@@ -9,6 +9,10 @@ configManager.service('configService', [function () {
     var CREATE_ACCOUNT_ENDPOINT = "createUser";
     var GET_COMPANIES_ENDPOINT = "companyList";
     var GET_OFFER_CATEGORIES_ENDPOINT = "getOfferCategories";
+    var POSITIVE_FEEDBACK_ENDPOINT = "votePositive";
+    var NEGATIVE_FEEDBACK_ENDPOINT = "voteNegative";
+    var CREATE_COMMENT_ENDPOINT = "createComment";
+    var QUOTE_COMMENT_ENDPOINT = "quoteComment";
     configService.getEndpoint = function (key) {
         return configMap[key];
     };
@@ -19,7 +23,11 @@ configManager.service('configService', [function () {
         'create.offer': CREATE_OFFER_ENDPOINT,
         'create.account': CREATE_ACCOUNT_ENDPOINT,
         'get.companies': GET_COMPANIES_ENDPOINT,
-        'get.offer.categories': GET_OFFER_CATEGORIES_ENDPOINT
+        'get.offer.categories': GET_OFFER_CATEGORIES_ENDPOINT,
+        'positive.feedback': POSITIVE_FEEDBACK_ENDPOINT,
+        'negative.feedback': NEGATIVE_FEEDBACK_ENDPOINT,
+        'create.comment':CREATE_COMMENT_ENDPOINT,
+        'quote.comment':QUOTE_COMMENT_ENDPOINT
     };
     return configService;
 }]);

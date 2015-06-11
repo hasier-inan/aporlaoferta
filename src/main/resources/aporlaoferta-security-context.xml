@@ -25,7 +25,7 @@
 
         <!-- Override default login and logout pages -->
         <security:form-login login-page="/login"
-                             default-target-url="/start"
+                             default-target-url="/"
                              authentication-failure-url="/login?error"
                              username-parameter="username"
                              password-parameter="password"/>

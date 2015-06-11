@@ -62,6 +62,11 @@ public class TransactionalManager {
     }
 
     @Transactional(readOnly = true)
+    public OfferCompany getCompanyFromName(String companyName) {
+        return this.companyDAO.findByCompanyName(companyName);
+    }
+
+    @Transactional(readOnly = true)
     public List<OfferCompany> getAllCompanies() {
         return this.companyDAO.getListOfPersistedCompanies();
     }
@@ -112,7 +117,6 @@ public class TransactionalManager {
     public TheUser saveUser(TheUser theUser) {
         return this.userDAO.save(theUser);
     }
-
     @Transactional(readOnly = true)
     public TheUser getUserFromNickname(String nickname) {
         return this.userDAO.findByUserNickname(nickname);

@@ -1,5 +1,6 @@
 package com.aporlaoferta.controller;
 
+import com.aporlaoferta.data.CompanyBuilderManager;
 import com.aporlaoferta.data.OfferBuilderManager;
 import com.aporlaoferta.data.UserBuilderManager;
 import com.aporlaoferta.model.TheOffer;
@@ -7,6 +8,7 @@ import com.aporlaoferta.model.TheOfferResponse;
 import com.aporlaoferta.model.TheResponse;
 import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.model.validators.ValidationException;
+import com.aporlaoferta.service.CompanyManager;
 import com.aporlaoferta.service.OfferManager;
 import com.aporlaoferta.service.UserManager;
 import com.aporlaoferta.utils.OfferValidatorHelper;
@@ -47,11 +49,14 @@ public class OfferControllerTest {
     UserManager userManager;
     @Mock
     OfferManager offerManager;
+    @Mock
+    CompanyManager companyManager;
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         when(this.userManager.getUserFromNickname(anyString())).thenReturn(UserBuilderManager.aRegularUserWithNickname("dsf").build());
+        when(this.companyManager.getCompanyFromName(anyString())).thenReturn(CompanyBuilderManager.aRegularCompanyWithId(1L).build());
     }
 
     @Test
@@ -125,7 +130,8 @@ public class OfferControllerTest {
         when(this.offerManager.getOfferFromId(Long.parseLong(offerId))).thenReturn(offerFromUser);
         when(this.userManager.getUserNickNameFromSession()).thenReturn(nickname);
         when(this.userManager.saveUser(offerFromUser.getOfferUser())).thenReturn(makeAProperUserWithLastOffer());
-        TheResponse result = this.offerController.updateOffer(new TheOffer(), offerId);
+        TheResponse result = this.offerController.updateOffer(
+                OfferBuilderManager.aBasicOfferWithoutId().build(), offerId);
         assertTrue(result.getResponseResult() == ResultCode.ALL_OK.getResponseResult());
     }
 
@@ -152,9 +158,9 @@ public class OfferControllerTest {
         TheOfferResponse result = this.offerController.getHottestOffers(0L);
         assertOfferListIsInResponse(result, sampleOfferList);
         List<TheOffer> receivedOffers = result.getTheOffers();
-        Long hottest=1000L;
+        Long hottest = 1000L;
         for (TheOffer theOffer : receivedOffers) {
-            Assert.assertTrue("Expected offers to be sorted by hotness", theOffer.getOfferPositiveVote()<hottest);
+            Assert.assertTrue("Expected offers to be sorted by hotness", theOffer.getOfferPositiveVote() < hottest);
         }
     }
 

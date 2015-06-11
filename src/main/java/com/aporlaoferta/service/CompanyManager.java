@@ -30,6 +30,10 @@ public class CompanyManager {
         return null;
     }
 
+    public OfferCompany getCompanyFromName(String companyName) {
+        return this.transactionalManager.getCompanyFromName(companyName);
+    }
+
     public String createAffiliationLink(OfferCompany offerCompany, String rawLink) {
         if (offerCompany == null || isEmpty(offerCompany.getCompanyAffiliateId()) || isEmpty(rawLink)) {
             LOG.info("No affiliation found for the given company");

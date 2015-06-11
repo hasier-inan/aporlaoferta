@@ -72,8 +72,6 @@ public class UserManager {
     }
 
     public TheUser saveUser(TheUser theUser) {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(11);
-        theUser.setUserPassword(bCryptPasswordEncoder.encode(theUser.getUserPassword()));
         return this.transactionalManager.saveUser(theUser);
     }
 
@@ -88,8 +86,6 @@ public class UserManager {
         if (theUser != null) {
             theUser.setUserAvatar(theNewUser.getUserAvatar());
             theUser.setUserEmail(theNewUser.getUserEmail());
-            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-            theUser.setUserPassword(passwordEncoder.encode(theNewUser.getUserPassword()));
             return saveUser(theUser);
         }
         return theUser;

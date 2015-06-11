@@ -21,7 +21,8 @@
     <script src="resources/js/account/accountController.js"></script>
     <script src="resources/js/config/configService.js"></script>
     <script src="resources/js/offer/offer-list/ngOfferListDirective.js"></script>
-    <script src="resources/js/offer/offerController.js"></script>
+    <script src="resources/js/offer/offer-specifications/ngOfferSpecifications.js"></script>
+    <script src="resources/js/offer/offer-specifications/offer-comments/ngOfferComments.js"></script>
     <script src="resources/js/offer/offer-creation/offerCreationService.js"></script>
     <script src="resources/js/offer/offer-creation/ngOfferCreationDirective.js"></script>
     <script src="resources/js/offer/offer-creation/ngCompanyManagerDirective.js"></script>

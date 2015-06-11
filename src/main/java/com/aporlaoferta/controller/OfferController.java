@@ -2,11 +2,13 @@ package com.aporlaoferta.controller;
 
 import com.aporlaoferta.model.OfferCategory;
 import com.aporlaoferta.model.OfferComment;
+import com.aporlaoferta.model.OfferCompany;
 import com.aporlaoferta.model.TheOffer;
 import com.aporlaoferta.model.TheOfferResponse;
 import com.aporlaoferta.model.TheResponse;
 import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.model.validators.ValidationException;
+import com.aporlaoferta.service.CompanyManager;
 import com.aporlaoferta.service.OfferManager;
 import com.aporlaoferta.service.UserManager;
 import com.aporlaoferta.utils.OfferValidatorHelper;
@@ -49,6 +51,9 @@ public class OfferController {
     @Autowired
     OfferManager offerManager;
 
+    @Autowired
+    CompanyManager companyManager;
+
     @RequestMapping(value = "/getOffers", method = RequestMethod.POST)
     @ResponseBody
     public TheOfferResponse getOffers(@RequestParam(value = "number", required = false) Long number) {
@@ -74,7 +79,7 @@ public class OfferController {
         return theOfferResponse;
     }
 
-    @RequestMapping(value = "/getOffer", method = RequestMethod.GET)
+    @RequestMapping(value = "/getOffer", method = RequestMethod.POST)
     @ResponseBody
     public TheOfferResponse getOfferById(@RequestParam(value = "id", required = true) Long number) {
         TheOfferResponse theOfferResponse = new TheOfferResponse();
@@ -97,7 +102,17 @@ public class OfferController {
     public TheResponse createOffer(@RequestBody TheOffer thatOffer) {
         includeOfferInUser(thatOffer);
         thatOffer.setOfferCreatedDate(new Date());
+        updateCompany(thatOffer);
         return validateAndPersistOffer(thatOffer);
+    }
+
+    private void updateCompany(TheOffer thatOffer) {
+        if (thatOffer.getOfferCompany() != null) {
+            OfferCompany offerCompany = this.companyManager.getCompanyFromName(thatOffer.getOfferCompany().getCompanyName());
+            if (offerCompany != null) {
+                thatOffer.setOfferCompany(offerCompany);
+            }
+        }
     }
 
     @RequestMapping(value = "/updateOffer", method = RequestMethod.POST)
@@ -168,13 +183,18 @@ public class OfferController {
     private TheOffer updateOfferWithLastDetails(TheOffer theUpdatedOffer, TheOffer originalOffer) {
         originalOffer.setFinalPrice(theUpdatedOffer.getFinalPrice());
         originalOffer.setOfferTitle(theUpdatedOffer.getOfferTitle());
-        originalOffer.setOfferCompany(theUpdatedOffer.getOfferCompany());
+        if (!originalOffer.getOfferCompany().getCompanyName().equals(
+                theUpdatedOffer.getOfferCompany().getCompanyName())) {
+            originalOffer.setOfferCompany(theUpdatedOffer.getOfferCompany());
+            updateCompany(originalOffer);
+        }
         originalOffer.setOfferCategory(theUpdatedOffer.getOfferCategory());
         originalOffer.setOfferDescription(theUpdatedOffer.getOfferDescription());
         originalOffer.setOfferExpired(theUpdatedOffer.isOfferExpired());
         originalOffer.setOfferImage(theUpdatedOffer.getOfferImage());
         originalOffer.setOfferLink(theUpdatedOffer.getOfferLink());
         originalOffer.setOriginalPrice(theUpdatedOffer.getOriginalPrice());
+        originalOffer.setOfferCreatedDate(new Date());
         return originalOffer;
     }
 

@@ -7,16 +7,20 @@
     </button>
 </div>
 <div>
-    <table>
         <div ng-repeat="offer in offerList track by offer.id">
             <div>
                 <div>
-                    {{offer.offerTitle}}
+                    {{offer.offerTitle}} - {{offer.finalPrice}}eur [+{{offer.offerPositiveVote}} | +{{offer.offerNegativeVote}}]
                 </div>
                 <div>
-                    {{offer.finalPrice}}
+                    {{offer.offerDescription}} - Image to be injected:{{offer.offerImage}}
+                </div>
+                <div>
+                    <a href="http://{{offer.offerLink}}">go to deal</a>
                 </div>
             </div>
+            <button ng-click="showSpecifications(offer.id)">get specifications</button>
+            <div ng-offer-specifications="offerSpecifications" the-offer="offerSpecifications"></div>
+            <hr/>
         </div>
-    </table>
 </div>

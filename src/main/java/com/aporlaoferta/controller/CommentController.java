@@ -21,13 +21,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Date;
+
 import static org.springframework.util.StringUtils.isEmpty;
 
 /**
  * Created by hasiermetal on 2/02/14.
  */
 @Controller
-@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+@Transactional(propagation = Propagation.REQUIRED)
 public class CommentController {
 
     private final Logger LOG = LoggerFactory.getLogger(CommentController.class);
@@ -47,10 +49,11 @@ public class CommentController {
     @RequestMapping(value = "/createComment", method = RequestMethod.POST)
     @ResponseBody
     public TheResponse createComment(@RequestBody OfferComment thatComment,
-                                     @RequestParam(value = "offer", required = false) String offerId
+                                     @RequestParam(value = "offer", required = true) String offerId
     ) {
         includeCommentInOffer(thatComment, offerId);
         includeCommentInUser(thatComment);
+        thatComment.setCommentCreationDate(new Date());
         return validateAndPersistComment(thatComment, ResultCode.COMMENT_VALIDATION_ERROR);
     }
 
@@ -61,6 +64,8 @@ public class CommentController {
     ) {
         includeCommentInUser(thatQuotedComment);
         includeQuoteInComment(thatQuotedComment, quotedCommentId);
+        includeCommentInOffer(thatQuotedComment, thatQuotedComment.getCommentsQuotedComment().getCommentsOffer().getId().toString());
+        thatQuotedComment.setCommentCreationDate(new Date());
         return validateAndPersistComment(thatQuotedComment, ResultCode.QUOTE_VALIDATION_ERROR);
     }
 

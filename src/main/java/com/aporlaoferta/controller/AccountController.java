@@ -12,8 +12,13 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import static org.springframework.util.StringUtils.isEmpty;
@@ -32,7 +37,7 @@ public class AccountController {
     @Autowired
     OfferValidatorHelper offerValidatorHelper;
 
-    @RequestMapping(value = {"/","/start**"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "/start**"}, method = RequestMethod.GET)
     public ModelAndView start() {
         ModelAndView model = new ModelAndView();
         model.setViewName("start");
@@ -86,6 +91,8 @@ public class AccountController {
         } else if (this.userManager.doesUserExist(userNickname)) {
             result.assignResultCode(ResultCode.USER_NAME_ALREADY_EXISTS);
         } else {
+            BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(11);
+            theUser.setUserPassword(bCryptPasswordEncoder.encode(theUser.getUserPassword()));
             validateAndCreateUser(theUser, result, userNickname);
         }
         return result;
@@ -130,7 +137,7 @@ public class AccountController {
             } else {
                 String okMessage = String.format("User successfully created. Id: %s", user.getId());
                 LOG.info(okMessage);
-                result.assignResultCode(ResultCode.ALL_OK,okMessage);
+                result.assignResultCode(ResultCode.ALL_OK, okMessage);
             }
         } catch (ValidationException e) {
             String resultDescription = ResultCode.CREATE_USER_VALIDATION_ERROR.getResultDescription();
