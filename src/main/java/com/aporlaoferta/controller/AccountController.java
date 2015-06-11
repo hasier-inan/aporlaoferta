@@ -32,16 +32,7 @@ public class AccountController {
     @Autowired
     OfferValidatorHelper offerValidatorHelper;
 
-    @RequestMapping(value = {"/", "/welcome**"}, method = RequestMethod.GET)
-    public ModelAndView defaultPage() {
-        ModelAndView model = new ModelAndView();
-        model.addObject("title", "Spring Security Login Form - Database Authentication");
-        model.addObject("message", "This is default page!");
-        model.setViewName("hello");
-        return model;
-    }
-
-    @RequestMapping(value = {"/start**"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/","/start**"}, method = RequestMethod.GET)
     public ModelAndView start() {
         ModelAndView model = new ModelAndView();
         model.setViewName("start");

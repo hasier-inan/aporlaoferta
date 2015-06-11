@@ -1,0 +1,13 @@
+<div>
+    <form>
+        <label for="createUserNickname">Nickname</label><input type="text" id="createUserNickname" ng-model="theUser.userNickname"/>
+        <label for="createUserPassword">Password</label><input type="password" id="createUserPassword" ng-model="theUser.userPassword"/>
+        <label for="createUserEmail">Email</label><input type="text" id="createUserEmail" ng-model="theUser.userEmail"/>
+        <label for="createUserAvatar">Avatar</label><input type="text" id="createUserAvatar" ng-model="theUser.userAvatar"/>
+    </form>
+</div>
+<div>
+    <button ng-click="createAccount(theUser)">
+        create account
+    </button>
+</div>

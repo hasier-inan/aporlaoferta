@@ -21,5 +21,6 @@ public class TheUserValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userPassword",
                 ValidationError.ERROR_FIELD_REQUIRED.getCode());
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userEmail", ValidationError.ERROR_FIELD_REQUIRED.getCode());
+        //TODO: Validate user password length and user email regexp
     }
 }

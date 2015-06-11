@@ -1,0 +1,4 @@
+<label for="createOfferCategories">Category</label>
+<select id="createOfferCategories" name="createOfferCategories"
+        ng-options="k as k for (k,v) in offerCategories" ng-model="category" ng-change="onCategoryChange(category)">
+    </select>

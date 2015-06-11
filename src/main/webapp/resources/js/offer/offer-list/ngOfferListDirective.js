@@ -5,20 +5,17 @@ aporlaofertaApp
     .directive('ngOfferList', function () {
         return {
             restrict: 'A',
-            templateUrl: 'resources/templates/offerList.html',
-            scope: {
-                jsnArt: '='
-            },
-            link: function (scope, elem, attrs) {
-
-            },
+            templateUrl: 'resources/js/offer/offer-list/offerList.html',
+            link: function (scope, elem, attrs) {},
             controller:['$scope', '$timeout', 'offerController', function ($scope, $timeout, offerController) {
                 $scope.requestNewestOffers = function () {
-                    offerController.getNewestOffers();
+                    var result=offerController.getNewestOffers();
+                    //$scope.offerList=result.theOffers;
                 }
 
                 $scope.requestHottestOffers = function () {
-                    offerController.getHottestOffers();
+                    var result=offerController.getHottestOffers();
+                    //$scope.offerList=result.theOffers;
                 }
             }]
         }

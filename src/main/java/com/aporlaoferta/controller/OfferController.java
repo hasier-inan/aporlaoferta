@@ -1,5 +1,6 @@
 package com.aporlaoferta.controller;
 
+import com.aporlaoferta.model.OfferCategory;
 import com.aporlaoferta.model.OfferComment;
 import com.aporlaoferta.model.TheOffer;
 import com.aporlaoferta.model.TheOfferResponse;
@@ -22,8 +23,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -48,35 +52,26 @@ public class OfferController {
     @RequestMapping(value = "/getOffers", method = RequestMethod.POST)
     @ResponseBody
     public TheOfferResponse getOffers(@RequestParam(value = "number", required = false) Long number) {
-
         TheOfferResponse theOfferResponse = new TheOfferResponse();
         List<TheOffer> hundredOffers = this.offerManager.getNextHundredOffers(number != null ? number : 0L);
-        //Temporary hack as because of the Lazy initialisation comments are empty...
+        //Temporary hack  because Lazy initialisation comments are empty...
         createEmptyFields(hundredOffers);
         theOfferResponse.setTheOffers(hundredOffers);
         updateResponseWithSuccessCode(theOfferResponse);
         return theOfferResponse;
     }
 
-    private void createEmptyFields(List<TheOffer> hundredOffers) {
-        for (TheOffer theOffer : hundredOffers) {
-            theOffer.setOfferComments(new HashSet<OfferComment>());
-            resetUserSensibleDataFromOffer(theOffer);
-        }
-    }
 
-    private void resetUserSensibleDataFromOffer(TheOffer theOffer) {
-        TheUser offerUser = theOffer.getOfferUser();
-        offerUser.setUserEmail(null);
-        offerUser.setUserPassword(null);
-        theOffer.setOfferUser(offerUser);
-    }
-
-    private void resetUserSensibleDataFromComment(OfferComment theComment) {
-        TheUser offerUser = theComment.getCommentOwner();
-        offerUser.setUserEmail(null);
-        offerUser.setUserPassword(null);
-        theComment.setCommentOwner(offerUser);
+    @RequestMapping(value = "/getHottestOffers", method = RequestMethod.POST)
+    @ResponseBody
+    public TheOfferResponse getHottestOffers(@RequestParam(value = "number", required = false) Long number) {
+        TheOfferResponse theOfferResponse = new TheOfferResponse();
+        List<TheOffer> hundredOffers = this.offerManager.getNextHundredHottestOffers(number != null ? number : 0L);
+        //Temporary hack  because Lazy initialisation comments are empty...
+        createEmptyFields(hundredOffers);
+        theOfferResponse.setTheOffers(hundredOffers);
+        updateResponseWithSuccessCode(theOfferResponse);
+        return theOfferResponse;
     }
 
     @RequestMapping(value = "/getOffer", method = RequestMethod.GET)
@@ -101,6 +96,7 @@ public class OfferController {
     @ResponseBody
     public TheResponse createOffer(@RequestBody TheOffer thatOffer) {
         includeOfferInUser(thatOffer);
+        thatOffer.setOfferCreatedDate(new Date());
         return validateAndPersistOffer(thatOffer);
     }
 
@@ -119,6 +115,38 @@ public class OfferController {
                     responseResultWithResultCodeError(ResultCode.UPDATE_OFFER_VALIDATION_ERROR, new TheResponse());
         }
         return updateOfferFromOriginal(theOffer, originalOffer);
+    }
+
+    @RequestMapping(value = "/getOfferCategories", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, String> getOfferCategories() {
+        Map<String, String> offerCategories = new HashMap<>();
+        OfferCategory[] categoryValues = OfferCategory.values();
+        for (OfferCategory offerCategory : categoryValues) {
+            offerCategories.put(offerCategory.name(), offerCategory.getCode());
+        }
+        return offerCategories;
+    }
+
+    private void createEmptyFields(List<TheOffer> hundredOffers) {
+        for (TheOffer theOffer : hundredOffers) {
+            theOffer.setOfferComments(new HashSet<OfferComment>());
+            resetUserSensibleDataFromOffer(theOffer);
+        }
+    }
+
+    private void resetUserSensibleDataFromOffer(TheOffer theOffer) {
+        TheUser offerUser = theOffer.getOfferUser();
+        offerUser.setUserEmail(null);
+        offerUser.setUserPassword(null);
+        theOffer.setOfferUser(offerUser);
+    }
+
+    private void resetUserSensibleDataFromComment(OfferComment theComment) {
+        TheUser offerUser = theComment.getCommentOwner();
+        offerUser.setUserEmail(null);
+        offerUser.setUserPassword(null);
+        theComment.setCommentOwner(offerUser);
     }
 
     private void updateResponseWithSuccessCode(TheOfferResponse theOfferResponse) {
@@ -175,6 +203,7 @@ public class OfferController {
         }
 
     }
+
 
     private void includeOfferInUser(TheOffer thatOffer) {
         String nickName = this.userManager.getUserNickNameFromSession();

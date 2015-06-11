@@ -22,7 +22,7 @@ public class TheOfferValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "offerDescription",
                 ValidationError.ERROR_FIELD_REQUIRED.getCode());
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "offerLink", ValidationError.ERROR_FIELD_REQUIRED.getCode());
-        ValidationUtils.rejectIfEmpty(errors, "offerCreatedDate", ValidationError.ERROR_FIELD_REQUIRED.getCode());
+        //ValidationUtils.rejectIfEmpty(errors, "offerCreatedDate", ValidationError.ERROR_FIELD_REQUIRED.getCode());
         ValidationUtils.rejectIfEmpty(errors, "offerCompany", ValidationError.ERROR_FIELD_REQUIRED.getCode());
         ValidationUtils.rejectIfEmpty(errors, "offerCategory", ValidationError.ERROR_FIELD_REQUIRED.getCode());
         ValidationUtils.rejectIfEmpty(errors, "offerUser", ValidationError.ERROR_FIELD_REQUIRED.getCode());

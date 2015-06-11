@@ -2,6 +2,7 @@ package com.aporlaoferta.controller;
 
 
 import com.aporlaoferta.data.OfferBuilderManager;
+import com.aporlaoferta.model.OfferCategory;
 import com.aporlaoferta.model.TheOffer;
 import com.aporlaoferta.rawmap.RequestMap;
 import org.junit.Assert;
@@ -190,9 +191,32 @@ public class OfferControllerTestIntegration extends ControllerTestIntegration {
         }
     }
 
+    @Test
+    public void testOfferCategoriesAreReturned() throws Exception {
+        CsrfToken csrfToken = CsrfTokenBuilder.generateAToken();
+        ResultActions result = this.mockMvc.perform(post("/getOfferCategories")
+                .sessionAttr("_csrf", csrfToken)
+                .contentType(MediaType.APPLICATION_JSON)
+                .param("_csrf", csrfToken.getToken())
+                .sessionAttrs(SessionAttributeBuilder
+                        .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
+        )
+                .andExpect(status().is2xxSuccessful());
+        assertAllCategoriesAreReturned(result);
+    }
+
+    private void assertAllCategoriesAreReturned(ResultActions result) throws java.io.IOException {
+        String mvcResult = result.andReturn().getResponse().getContentAsString();
+        Map<String, String> jsonResult = RequestMap.getMapFromJsonString(mvcResult);
+        OfferCategory[] categories = OfferCategory.values();
+        for (OfferCategory category : categories) {
+            Assert.assertTrue("Expected category to inside the map", jsonResult.containsKey(category.name()));
+        }
+    }
+
     private void assertNoPersonalInformationIsReceivedInComments(Map<String, Object> offer) {
-        for(Map<String, Object>offerComments: (List<Map>) offer.get("offerComments")){
-            Map<String, String>commentOwner=(Map)offerComments.get("commentOwner");
+        for (Map<String, Object> offerComments : (List<Map>) offer.get("offerComments")) {
+            Map<String, String> commentOwner = (Map) offerComments.get("commentOwner");
             assertNoPersonalInformationIsReceivedInMap(commentOwner);
         }
     }

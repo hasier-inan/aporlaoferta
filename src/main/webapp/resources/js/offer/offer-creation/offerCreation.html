@@ -1,0 +1,17 @@
+<div>
+    <form>
+        <label for="createOfferTitle">Title</label><input type="text" id="createOfferTitle" ng-model="offer.offerTitle"/>
+        <label for="createOfferImage">Image</label><input type="text" id="createOfferImage" ng-model="offer.offerImage"/>
+        <label for="createOfferDescription">Descrìption</label><input type="text" id="createOfferDescription" ng-model="offer.offerDescription"/>
+         <div ng-offer-category-manager="offerCategoryManager"></div>
+        <label for="createOfferLink">Link</label><input type="text" id="createOfferLink" ng-model="offer.offerLink"/>
+        <label for="createOfferOriginalPrice">Original Price</label><input type="text" id="createOfferOriginalPrice" ng-model="offer.originalPrice"/>
+        <label for="createOfferFinalPrice">Final Price</label><input type="text" id="createOfferFinalPrice" ng-model="offer.finalPrice"/>
+        <div ng-company-manager="companyManager"></div>
+    </form>
+</div>
+<div>
+    <button ng-click="createOffer()">
+        create offer
+    </button>
+</div>

@@ -146,6 +146,19 @@ public class OfferControllerTest {
     }
 
     @Test
+    public void testHottestOffersAreReturnedInTheResponseWhenRequested() throws Exception {
+        List<TheOffer> sampleOfferList = createSampleHotOfferList();
+        when(this.offerManager.getNextHundredHottestOffers(0L)).thenReturn(sampleOfferList);
+        TheOfferResponse result = this.offerController.getHottestOffers(0L);
+        assertOfferListIsInResponse(result, sampleOfferList);
+        List<TheOffer> receivedOffers = result.getTheOffers();
+        Long hottest=1000L;
+        for (TheOffer theOffer : receivedOffers) {
+            Assert.assertTrue("Expected offers to be sorted by hotness", theOffer.getOfferPositiveVote()<hottest);
+        }
+    }
+
+    @Test
     public void testEmptyListIsReturnedIfNoOffersAreCreated() throws Exception {
         when(this.offerManager.getNextHundredOffers(0L)).thenReturn(new ArrayList<TheOffer>());
         TheOfferResponse result = this.offerController.getOffers(null);
@@ -170,6 +183,14 @@ public class OfferControllerTest {
         List<TheOffer> theOffers = new ArrayList<>();
         theOffers.add(OfferBuilderManager.aBasicOfferWithId(1L).build());
         theOffers.add(OfferBuilderManager.aBasicOfferWithId(2L).build());
+        return theOffers;
+    }
+
+    private List<TheOffer> createSampleHotOfferList() {
+        List<TheOffer> theOffers = new ArrayList<>();
+        theOffers.add(OfferBuilderManager.aBasicOfferWithId(1L).withPositives(100L).build());
+        theOffers.add(OfferBuilderManager.aBasicOfferWithId(2L).withPositives(300L).build());
+        theOffers.add(OfferBuilderManager.aBasicOfferWithId(3L).withPositives(40L).build());
         return theOffers;
     }
 }

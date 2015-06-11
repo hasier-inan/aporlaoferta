@@ -72,6 +72,8 @@ public class UserManager {
     }
 
     public TheUser saveUser(TheUser theUser) {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(11);
+        theUser.setUserPassword(bCryptPasswordEncoder.encode(theUser.getUserPassword()));
         return this.transactionalManager.saveUser(theUser);
     }
 

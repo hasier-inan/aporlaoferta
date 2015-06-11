@@ -68,7 +68,7 @@ public class TheOffer implements Serializable {
     @Column(name = "TO_ORIGINAL_PRICE", nullable = true)
     private BigDecimal originalPrice;
 
-    @Column(name = "TO_CREATED_DATE", nullable = false)
+    @Column(name = "TO_CREATED_DATE", nullable = true)
     @CreatedDate
     private Date offerCreatedDate;
 

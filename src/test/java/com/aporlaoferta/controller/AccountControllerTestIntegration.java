@@ -65,15 +65,6 @@ public class AccountControllerTestIntegration {
                 .addFilters(this.springSecurityFilterChain).build();
     }
 
-    ////// root
-
-    @Test
-    public void testAccessToRootPageIsGrantedToAnyUser() throws Exception {
-        this.mockMvc.perform(get("/welcome"))
-                .andExpect(status().is2xxSuccessful())
-                .andExpect(forwardedUrl("/view/hello.jsp"));
-    }
-
     ////// admin
 
     @Test

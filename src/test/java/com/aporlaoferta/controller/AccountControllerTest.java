@@ -41,12 +41,6 @@ public class AccountControllerTest {
     }
 
     @Test
-    public void testInitialViewIsReturnedAsDefaultPage() {
-        ModelAndView modelAndView = this.accountController.defaultPage();
-        assertEquals(modelAndView.getViewName(), "hello");
-    }
-
-    @Test
     public void testCreateUserCantAddUserToDBReturnsMessage() {
         when(this.userManager.createUser(any(TheUser.class))).thenReturn(null);
         TheResponse result = this.accountController.createUser(

@@ -1,0 +1,22 @@
+<div>
+    <button ng-click="requestNewestOffers()">
+        newest deals
+    </button>
+    <button ng-click="requestHottestOffers()">
+        hottest deals
+    </button>
+</div>
+<div>
+    <table>
+        <div ng-repeat="offer in offerList track by offer.id">
+            <div>
+                <div>
+                    {{offer.offerTitle}}
+                </div>
+                <div>
+                    {{offer.finalPrice}}
+                </div>
+            </div>
+        </div>
+    </table>
+</div>
