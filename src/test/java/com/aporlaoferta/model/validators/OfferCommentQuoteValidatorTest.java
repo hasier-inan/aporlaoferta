@@ -37,7 +37,7 @@ public class OfferCommentQuoteValidatorTest {
     @Test
     public void testQuoteIsAcceptedIfQuotedCommentIsIncluded() {
         this.offerComment = CommentBuilderManager.aCommentWithQuotedCommentAndId(
-                CommentBuilderManager.aBasicCommentWithoutId().build(), 3L).build();
+                CommentBuilderManager.aBasicCommentWithId(2L).build(), 3L).build();
         BindingResult bindingResult = ValidatorHelper.getValidationErrors(this.offerComment,
                 this.offerCommentQuoteValidator);
         assertFalse(bindingResult.hasErrors());

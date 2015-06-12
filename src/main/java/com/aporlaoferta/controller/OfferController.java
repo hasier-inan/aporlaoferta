@@ -24,13 +24,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by hasiermetal on 2/02/14.
@@ -85,7 +84,9 @@ public class OfferController {
         TheOfferResponse theOfferResponse = new TheOfferResponse();
         TheOffer theOffer = this.offerManager.getOfferFromId(number);
         resetUserSensibleDataFromOffer(theOffer);
-        Set<OfferComment> offerComments = theOffer.getOfferComments();
+        theOffer.sortOfferComments();
+        List<OfferComment> offerComments = theOffer.getOfferComments();
+
         if (offerComments != null && offerComments.size() >= 0) {
             //do we need this hack for the lazy var?
             for (OfferComment offerComment : offerComments) {
@@ -145,7 +146,7 @@ public class OfferController {
 
     private void createEmptyFields(List<TheOffer> hundredOffers) {
         for (TheOffer theOffer : hundredOffers) {
-            theOffer.setOfferComments(new HashSet<OfferComment>());
+            theOffer.setOfferComments(new ArrayList<OfferComment>());
             resetUserSensibleDataFromOffer(theOffer);
         }
     }

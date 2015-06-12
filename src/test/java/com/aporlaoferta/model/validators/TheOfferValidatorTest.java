@@ -57,12 +57,6 @@ public class TheOfferValidatorTest {
     }
 
     @Test
-    public void testDateIsMandatory() {
-        this.theOffer.setOfferCreatedDate(null);
-        Assert.assertTrue(ValidatorHelper.getValidationErrors(this.theOffer, this.theOfferValidator).hasErrors());
-    }
-
-    @Test
     public void testCompanyIsMandatory() {
         this.theOffer.setOfferCompany(null);
         Assert.assertTrue(ValidatorHelper.getValidationErrors(this.theOffer, this.theOfferValidator).hasErrors());

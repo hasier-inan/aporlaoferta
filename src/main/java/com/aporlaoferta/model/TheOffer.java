@@ -1,5 +1,6 @@
 package com.aporlaoferta.model;
 
+import com.aporlaoferta.utils.CommentComparator;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.CascadeType;
@@ -20,8 +21,11 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.springframework.util.Assert.notNull;
@@ -92,7 +96,7 @@ public class TheOffer implements Serializable {
 
     @OneToMany(mappedBy = "commentsOffer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     //@OneToMany(mappedBy = "commentsOffer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<OfferComment> offerComments = new HashSet<>();
+    private List<OfferComment> offerComments = new ArrayList<>();
 
     //@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -222,11 +226,11 @@ public class TheOffer implements Serializable {
         this.offerUser = offerUser;
     }
 
-    public Set<OfferComment> getOfferComments() {
+    public List<OfferComment> getOfferComments() {
         return offerComments;
     }
 
-    public void setOfferComments(Set<OfferComment> offerComments) {
+    public void setOfferComments(List<OfferComment> offerComments) {
         this.offerComments = offerComments;
     }
 
@@ -234,9 +238,13 @@ public class TheOffer implements Serializable {
         notNull(offerComment, "Attempting to add null comment object to offer.");
         offerComment.setCommentsOffer(this);
         if (this.offerComments == null) {
-            this.offerComments = new HashSet<>();
+            this.offerComments = new ArrayList<>();
         }
         this.offerComments.add(offerComment);
+    }
+
+    public void sortOfferComments() {
+        Collections.sort(this.offerComments, new CommentComparator());
     }
 
     public BigDecimal getFinalPrice() {

@@ -8,7 +8,7 @@
         </div>
         <div style="background-color: #BBFFF1">
             <div ng-show="theComment.commentsQuotedComment">
-                [quoted#{{theComment.commentsQuotedComment}}]
+                show quoted comment #{{theComment.commentsQuotedComment}}
             </div>
         </div>
         <div>

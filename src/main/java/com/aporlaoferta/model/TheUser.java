@@ -156,7 +156,7 @@ public class TheUser implements Serializable {
 
     private OfferComment sortByDateAndGetLastComment() {
         List<OfferComment> comments = getSortedComments();
-        return comments.get(comments.size() - 1);
+        return comments.get(0);
     }
 
     private List<TheOffer> getSortedOffers() {

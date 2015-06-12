@@ -1,9 +1,14 @@
 package com.aporlaoferta.data;
 
-import com.aporlaoferta.model.*;
+import com.aporlaoferta.model.OfferCategory;
+import com.aporlaoferta.model.OfferComment;
+import com.aporlaoferta.model.OfferCompany;
+import com.aporlaoferta.model.TheOffer;
+import com.aporlaoferta.model.TheUser;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -32,7 +37,7 @@ public class OfferBuilder {
 
     private TheUser owner;
 
-    private Set<OfferComment> comments;
+    private List<OfferComment> comments;
 
     public static OfferBuilder anOffer() {
         return new OfferBuilder();
@@ -112,7 +117,7 @@ public class OfferBuilder {
         return this;
     }
 
-    public OfferBuilder withComments(Set<OfferComment> comments) {
+    public OfferBuilder withComments(List<OfferComment> comments) {
         this.comments = comments;
         return this;
     }

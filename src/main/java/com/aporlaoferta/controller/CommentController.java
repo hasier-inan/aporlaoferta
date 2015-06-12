@@ -124,7 +124,9 @@ public class CommentController {
     private void includeCommentInQuotedOffer(OfferComment thatQuotedComment, String quotedCommentId) {
         try {
             OfferComment originalComment = this.commentManager.getCommentFromId(Long.parseLong(quotedCommentId));
-            originalComment.getCommentsOffer().addComment(thatQuotedComment);
+            if (originalComment != null && originalComment.getCommentsOffer() != null) {
+                thatQuotedComment.setCommentsOffer(originalComment.getCommentsOffer());
+            }
         } catch (NumberFormatException e) {
             LOG.error("Included quoted comment id is invalid", e);
         }
@@ -134,7 +136,7 @@ public class CommentController {
         try {
             TheOffer theOffer = this.offerManager.getOfferFromId(Long.parseLong(offerId));
             if (theOffer != null) {
-                theOffer.addComment(thatComment);
+                thatComment.setCommentsOffer(theOffer);
             }
         } catch (NumberFormatException e) {
             LOG.error("Included quoted comment id is invalid", e);
