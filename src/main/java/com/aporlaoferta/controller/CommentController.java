@@ -64,7 +64,7 @@ public class CommentController {
     ) {
         includeCommentInUser(thatQuotedComment);
         includeQuoteInComment(thatQuotedComment, quotedCommentId);
-        includeCommentInOffer(thatQuotedComment, thatQuotedComment.getCommentsQuotedComment().getCommentsOffer().getId().toString());
+        includeCommentInQuotedOffer(thatQuotedComment, quotedCommentId);
         thatQuotedComment.setCommentCreationDate(new Date());
         return validateAndPersistComment(thatQuotedComment, ResultCode.QUOTE_VALIDATION_ERROR);
     }
@@ -106,20 +106,28 @@ public class CommentController {
         return result;
     }
 
-
     private void includeQuoteInComment(OfferComment thatComment, String commentId) {
         try {
-            OfferComment originalComment = this.commentManager.getCommentFromId(Long.parseLong(commentId));
-            thatComment.setCommentsQuotedComment(originalComment);
+            thatComment.setCommentsQuotedComment(Long.parseLong(commentId));
         } catch (NumberFormatException e) {
             LOG.error("Included quoted comment id is invalid", e);
         }
     }
 
+
     private void includeCommentInUser(OfferComment thatComment) {
         String nickName = this.userManager.getUserNickNameFromSession();
         TheUser theUser = this.userManager.getUserFromNickname(nickName);
         theUser.addComment(thatComment);
+    }
+
+    private void includeCommentInQuotedOffer(OfferComment thatQuotedComment, String quotedCommentId) {
+        try {
+            OfferComment originalComment = this.commentManager.getCommentFromId(Long.parseLong(quotedCommentId));
+            originalComment.getCommentsOffer().addComment(thatQuotedComment);
+        } catch (NumberFormatException e) {
+            LOG.error("Included quoted comment id is invalid", e);
+        }
     }
 
     private void includeCommentInOffer(OfferComment thatComment, String offerId) {

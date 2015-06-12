@@ -18,7 +18,7 @@ public class CommentBuilder {
     private Date commentCreationDate;
     private TheUser commentOwner;
     private TheOffer commentsOffer;
-    private OfferComment commentsQuotedComment;
+    private Long commentsQuotedComment;
     private String commentText;
 
     public static CommentBuilder aComment() {
@@ -49,7 +49,7 @@ public class CommentBuilder {
         return this;
     }
 
-    public CommentBuilder withQuotedComment(OfferComment quotedComment) {
+    public CommentBuilder withQuotedComment(Long quotedComment) {
         this.commentsQuotedComment = quotedComment;
         return this;
     }

@@ -7,7 +7,9 @@
             {{theComment.commentOwner.userNickname}} - {{theComment.commentCreationDate | date:'MM/dd/yyyy @ h:mma'}}
         </div>
         <div style="background-color: #BBFFF1">
-            {{theComment.commentsQuotedComment.commentText}}
+            <div ng-show="theComment.commentsQuotedComment">
+                [quoted#{{theComment.commentsQuotedComment}}]
+            </div>
         </div>
         <div>
             {{theComment.commentText}}

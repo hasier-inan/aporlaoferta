@@ -40,6 +40,6 @@ public class CommentBuilderManager {
     }
 
     public static CommentBuilder aCommentWithQuotedCommentAndId(OfferComment offerComment, Long id) {
-        return aBasicCommentWithId(id).withQuotedComment(offerComment);
+        return aBasicCommentWithId(id).withQuotedComment(offerComment.getId());
     }
 }

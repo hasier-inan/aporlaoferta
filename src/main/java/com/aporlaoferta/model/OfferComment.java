@@ -54,9 +54,9 @@ public class OfferComment implements Serializable {
     private TheOffer commentsOffer;
 
     @Column(name = "TCM_QUOTED_COMMENT", nullable = true)
-    private OfferComment commentsQuotedComment;
+    private Long commentsQuotedComment;
 
-    @Column(name = "TCM_TEXT", nullable = true, length = 1000)
+    @Column(name = "TCM_TEXT", nullable = false)
     private String commentText;
 
     public String getCommentText() {
@@ -83,11 +83,11 @@ public class OfferComment implements Serializable {
         this.commentCreationDate = commentCreationDate;
     }
 
-    public OfferComment getCommentsQuotedComment() {
+    public Long getCommentsQuotedComment() {
         return commentsQuotedComment;
     }
 
-    public void setCommentsQuotedComment(OfferComment commentsQuotedComment) {
+    public void setCommentsQuotedComment(Long commentsQuotedComment) {
         this.commentsQuotedComment = commentsQuotedComment;
     }
 
