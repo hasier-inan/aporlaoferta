@@ -1,17 +1,34 @@
 <div>
-    <form>
-        <label for="createOfferTitle">Title</label><input type="text" id="createOfferTitle" ng-model="offer.offerTitle"/>
-        <label for="createOfferImage">Image</label><input type="text" id="createOfferImage" ng-model="offer.offerImage"/>
-        <label for="createOfferDescription">Description</label><input type="text" id="createOfferDescription" ng-model="offer.offerDescription"/>
-         <div ng-offer-category-manager="offerCategoryManager"></div>
-        <label for="createOfferLink">Link</label><input type="text" id="createOfferLink" ng-model="offer.offerLink"/>
-        <label for="createOfferOriginalPrice">Original Price</label><input type="text" id="createOfferOriginalPrice" ng-model="offer.originalPrice"/>
-        <label for="createOfferFinalPrice">Final Price</label><input type="text" id="createOfferFinalPrice" ng-model="offer.finalPrice"/>
+    <form name="createOfferForm" ng-submit="createOffer()">
+        <label for="createOfferTitle">Título</label>
+        <input type="text" id="createOfferTitle" name="createOfferTitle"
+               ng-model="offer.offerTitle"/>
+        <label for="createOfferImage">Imagen</label>
+        <input type="text" id="createOfferImage"
+               ng-model="offer.offerImage" required/>
+        <label for="createOfferDescription">Descipción</label>
+        <input type="text" id="createOfferDescription"
+               ng-model="offer.offerDescription"/>
+        <div ng-offer-category-manager="offerCategoryManager"></div>
+        <label for="createOfferLink">Link</label>
+        <input type="text" id="createOfferLink" ng-model="offer.offerLink"/>
+        <label for="createOfferOriginalPrice">Precio original</label>
+        <input type="text" id="createOfferOriginalPrice"
+               name="createOfferOriginalPrice"
+               ng-model="offer.originalPrice"
+               ng-pattern="bigDecimalsOnly"/>
+        <span ng-show="createOfferForm.createOfferOriginalPrice.$error.pattern">Precio invalido</span>
+        <label for="createOfferFinalPrice">Precio final</label>
+        <input type="text" id="createOfferFinalPrice"
+               name="createOfferFinalPrice"
+               ng-model="offer.finalPrice"
+               ng-pattern="bigDecimalsOnly"/>
+        <span ng-show="createOfferForm.createOfferFinalPrice.$error.pattern">Precio invalido</span>
         <div ng-company-manager="companyManager"></div>
+        <input type="submit" value="Crear oferta"
+               ng-disabled="createOfferForm.createOfferOriginalPrice.$error.pattern
+               || createOfferForm.createOfferFinalPrice.$error.pattern"/>
     </form>
 </div>
 <div>
-    <button ng-click="createOffer()">
-        create offer
-    </button>
 </div>
