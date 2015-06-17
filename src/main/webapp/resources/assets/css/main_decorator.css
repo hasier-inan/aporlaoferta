@@ -1,0 +1,196 @@
+/*overhead*/
+form.centeredForm, div.centeredForm {
+    text-align: center;
+    margin: 0 auto;
+}
+
+div.overhead_container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1001;
+    background-color: #000000;
+    opacity: 0.4;
+    -webkit-opacity: 0.4;
+    -moz-opacity: 0.4;
+    overflow: hidden;
+}
+
+div.overhead_subcontainer {
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    border: .3em solid #FFFFFF;
+    border-radius: 2em;
+    background-color: #51B1EC;
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+    z-index: 1002;
+    left: 5%;
+    top: 5%;
+    background-image: url("images/overlay.png"), url("images/pattern-size1.svg");
+    background-position: top left, center center;
+    background-attachment: fixed, fixed;
+    background-size: auto, cover;
+}
+
+label.overheadLabel {
+    color: #FFFFFF;
+    margin: 0;
+    display: block;
+}
+div.profileForm > label.overheadLabel{
+    display: inline-block;
+}
+
+input.overheadField {
+    width: 12em;
+    height: 2em;
+    color: #ffffff;
+    background-color: #089eec;
+    display: inline-block;
+    margin-bottom: 1em;
+}
+
+input.overheadField:focus {
+    width: 12em;
+    height: 2em;
+    color: #000000;
+    background-color: #ffffff;
+}
+
+button.close_button {
+    color: #ffffff !important;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: -2.5em 1em 0 0 !important;
+}
+
+button.close_button.mini {
+    margin: -2.5em 1em 0 0 !important;
+}
+
+div button.overheadButton {
+    background-color: #F35E1E;
+    color: #ffffff !important;
+    display: inline-block;
+}
+
+div button.overheadButton.mini {
+    width: 3em;
+    border-radius: 100%;
+    margin: 0 !important;
+    padding: 0 0 0 .5em;
+    display: none;
+}
+
+input.overheadField::selection {
+    background: #f3630a;
+}
+
+input.overheadField::-moz-selection {
+    background: #f3630a;
+}
+
+.fadein,
+.fadeout {
+    -webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) .3s;
+    -moz-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) .3s;
+    -o-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) .3s;
+    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) .3s;
+}
+
+.fadein.ng-hide-remove,
+.fadeout.ng-hide-add.ng-hide-add-active {
+    opacity: 0;
+    display: block !important;
+}
+
+.fadeout.ng-hide-add,
+.fadein.ng-hide-remove.ng-hide-remove-active {
+    opacity: 1;
+    display: block !important;
+}
+
+/*/overhead*/
+
+/*top_header*/
+div#overheadSubContainer ul.top_header {
+    left: 0;
+    margin-top: 2em;
+}
+
+button.whiteButton {
+    color: #ffffff !important;
+}
+
+ul.top_header {
+    position: absolute;
+    top: 1em;
+    left: 1em;
+    width: 100%;
+}
+
+ul.top_header li > button.small,
+div.profileForm > button.small {
+    height: 2em;
+    line-height: 2em;
+    display: inline-block;
+}
+
+ul.top_header li > button.mini,
+div.profileForm > button.mini {
+    width: 3em;
+    border-radius: 100%;
+    margin: 0;
+    padding: 0 0em 0em 2.5em;
+    display: none;
+}
+
+@media screen and (max-width: 480px) and (orientation: portrait) {
+    ul.top_header li > button.small,
+    div button.overheadButton.small, div.profileForm > button.small {
+        display: none;
+    }
+
+    ul.top_header li > button.mini,
+    div.profileForm > button.mini {
+        display: block;
+    }
+
+    div button.overheadButton.mini,
+    div.profileForm > button.mini {
+        display: inline-block !important;
+    }
+}
+
+.profileHiddenForm {
+    display: none;
+}
+
+li.displayProfileLi {
+    position: absolute;
+    right: 3em;
+}
+
+li.displayOfferCreateLi {
+    position: absolute;
+    left: 3em;
+}
+
+/*/top_header*/
+
+/*default values*/
+::selection {
+    background: transparent;
+}
+
+::-moz-selection {
+    background: transparent;
+}
+
+body {
+    overflow-x: hidden;
+}

@@ -1,13 +1,15 @@
 <div>
-    <form>
-        <label for="createUserNickname">Nickname</label><input type="text" id="createUserNickname" ng-model="theUser.userNickname"/>
-        <label for="createUserPassword">Password</label><input type="password" id="createUserPassword" ng-model="theUser.userPassword"/>
-        <label for="createUserEmail">Email</label><input type="text" id="createUserEmail" ng-model="theUser.userEmail"/>
-        <label for="createUserAvatar">Avatar</label><input type="text" id="createUserAvatar" ng-model="theUser.userAvatar"/>
+    <form class="centeredForm">
+        <label for="createUserNickname" class="overheadLabel">Nickname</label><input type="text" id="createUserNickname" ng-model="theUser.userNickname" class="overheadField"/>
+        <label for="createUserPassword" class="overheadLabel">Password</label><input type="password" id="createUserPassword" ng-model="theUser.userPassword" class="overheadField"/>
+        <label for="createUserEmail" class="overheadLabel">Email</label><input type="text" id="createUserEmail" ng-model="theUser.userEmail" class="overheadField"/>
+        <label for="createUserAvatar" class="overheadLabel">Avatar</label><input type="text" id="createUserAvatar" ng-model="theUser.userAvatar" class="overheadField"/>
     </form>
 </div>
-<div>
-    <button ng-click="createAccount(theUser)">
+<div class="centeredForm">
+    <button class="button small icon fa-user overheadButton" ng-click="createAccount(theUser)" class="overheadButton">
         create account
     </button>
+    <button class="button mini icon fa-user overheadButton" ng-click="createAccount(theUser)"></button>
 </div>
+

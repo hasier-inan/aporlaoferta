@@ -37,10 +37,10 @@ public class AccountController {
     @Autowired
     OfferValidatorHelper offerValidatorHelper;
 
-    @RequestMapping(value = {"/", "/start**"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "/start**", "/index**"}, method = RequestMethod.GET)
     public ModelAndView start() {
         ModelAndView model = new ModelAndView();
-        model.setViewName("start");
+        model.setViewName("index");
         return model;
     }
 
@@ -63,7 +63,7 @@ public class AccountController {
         if (logout != null) {
             model.addObject("msg", "You've been logged out successfully.");
         }
-        model.setViewName("login");
+        model.setViewName("index");
         return model;
 
     }
