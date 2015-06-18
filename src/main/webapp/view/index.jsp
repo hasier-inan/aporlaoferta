@@ -1,11 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE HTML>
-<!--
-aporlaoferta, by thatsoftwarecompany
-p4p spanish offer and deals
-Fractal template by HTML5 UP html5up.net
--->
+
+<!--    aporlaoferta, by thatsoftwarecompany    -->
+<!--    p4p spanish offer and deals -->
+<!--    Fractal template by HTML5 UP html5up.net    -->
+<!--    icons and logos by font awesome http://fortawesome.github.io/   -->
 <html data-ng-app="aPorLaOferta" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>aporlaoferta ~ ofertas y promociones online </title>
