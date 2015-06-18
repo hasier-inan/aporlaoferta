@@ -5,7 +5,7 @@ form.centeredForm, div.centeredForm {
 }
 
 div.overhead_container {
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100%;
     z-index: 1001;
@@ -17,9 +17,9 @@ div.overhead_container {
 }
 
 div.overhead_subcontainer {
-    position: absolute;
+    position: fixed;
     width: 90%;
-    height: 90%;
+    height: auto;
     border: .3em solid #FFFFFF;
     border-radius: 2em;
     background-color: #51B1EC;
@@ -36,21 +36,44 @@ div.overhead_subcontainer {
 }
 
 label.overheadLabel {
-    color: #FFFFFF;
+    color: #FFFFFF !important;
+    font-weight: bold;
     margin: 0;
     display: block;
 }
-div.profileForm > label.overheadLabel{
+
+div.profileForm > label.overheadLabel {
     display: inline-block;
 }
 
-input.overheadField {
+input.overheadField, select.overheadField {
     width: 12em;
     height: 2em;
     color: #ffffff;
     background-color: #089eec;
     display: inline-block;
     margin-bottom: 1em;
+}
+
+div.overheadField {
+    width: 12em;
+    height: 2em;
+    color: #ffffff;
+    display: inline-block;
+    background-color: transparent;
+}
+
+div.overheadField.select-wrapper::before {
+    content: '\f078';
+    display: block;
+    height: 2em;
+    line-height: 2em;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+    width: 2.5em;
 }
 
 input.overheadField:focus {
@@ -121,6 +144,9 @@ div#overheadSubContainer ul.top_header {
     left: 0;
     margin-top: 2em;
 }
+ul#overheadSubContainerContent{
+    position:relative !important;
+}
 
 button.whiteButton {
     color: #ffffff !important;
@@ -133,6 +159,7 @@ ul.top_header {
     width: 100%;
 }
 
+ul.top_header > button.small,
 ul.top_header li > button.small,
 div.profileForm > button.small {
     height: 2em;
@@ -140,6 +167,7 @@ div.profileForm > button.small {
     display: inline-block;
 }
 
+ul.top_header > button.mini,
 ul.top_header li > button.mini,
 div.profileForm > button.mini {
     width: 3em;
@@ -150,37 +178,73 @@ div.profileForm > button.mini {
 }
 
 @media screen and (max-width: 480px) and (orientation: portrait) {
+    ul.top_header > button.small,
     ul.top_header li > button.small,
-    div button.overheadButton.small, div.profileForm > button.small {
+    div button.overheadButton.small,
+    div.profileForm > button.small {
         display: none;
     }
 
+    ul.top_header > button.mini,
     ul.top_header li > button.mini,
     div.profileForm > button.mini {
         display: block;
     }
 
     div button.overheadButton.mini,
-    div.profileForm > button.mini {
+    div.profileForm > button.mini,
+    button.mini.inline {
         display: inline-block !important;
     }
+
+    button.mini.inline {
+        padding-left: .7em !important;
+    }
+
 }
 
 .profileHiddenForm {
     display: none;
 }
 
-li.displayProfileLi {
+div.profileForm {
     position: absolute;
-    right: 3em;
-}
-
-li.displayOfferCreateLi {
-    position: absolute;
-    left: 3em;
+    display: inline-block;
+    right: 2em;
 }
 
 /*/top_header*/
+
+/*general values*/
+.red-background {
+    background-color: #D76060;
+}
+
+.green-background {
+    background-color: #97d779;
+}
+
+#header .button.hot-background:hover {
+    color: #d70000 !important;
+}
+
+#header .button.hot-background {
+    box-shadow: none;
+    background-color: #ffffff;
+    color: #51B1EC !important;
+}
+input[type="checkbox"] + label.overheadLabel:before, input[type="radio"] + label.overheadLabel:before{
+    background-color: #55B2EC;
+    border-color: #ffffff;
+    margin: 1em 0em 0em 0em;
+}
+input[type="checkbox"]:checked + label.overheadLabel:before, input[type="radio"]:checked + label.overheadLabel:before {
+    background-color: #ffffff;
+    border-color: #ffffff;
+    color: #51B1EC;
+    margin: 1em 0em 1em 0em;
+}
+/*/general values*/
 
 /*default values*/
 ::selection {

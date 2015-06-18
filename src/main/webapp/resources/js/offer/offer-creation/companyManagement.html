@@ -1,20 +1,26 @@
-<div>
-    <div class="select-wrapper">
-        <select name="offerCompanies"
-                ng-show="!brandNewCompany" ng-options="company as company.companyName for company in offerCompanies"
-                ng-model="company" ng-change="onCompanyChange(company)">
-        </select>
-    </div>
-    <label for="brandNewCompanyForm" class="overheadLabel">Nueva empresa</label><input type="checkbox" id="brandNewCompanyForm"
-                                                                 name="brandNewCompanyForm" ng-model="brandNewCompany"
-                                                                 ng-change="updateSelectedCompany(brandNewCompany)"/>
+<div class="select-wrapper overheadField" ng-show="!brandNewCompany">
+    <select name="offerCompanies"
+            id="offerCompaniesSelect"
+            ng-options="company as company.companyName for company in offerCompanies"
+            ng-model="company" ng-change="onCompanyChange(company)"
+            class="overheadField">
+        <option value selected="selected">- EMPRESA -</option>
+    </select>
+</div>
+<input type="checkbox" id="brandNewCompanyForm"
+       name="brandNewCompanyForm" ng-model="brandNewCompany"
+       ng-change="updateSelectedCompany(brandNewCompany)"/>
+<label for="brandNewCompanyForm" class="overheadLabel">Nueva empresa</label>
 
-    <div ng-show="brandNewCompany">
-        <form>
-            <label for="createCompanyName" class="overheadLabel">Nombre</label><input type="text" id="createCompanyName"
-                                                                ng-model="offerCompany.companyName" class="overheadField"/>
-            <label for="createCompanyUrl" class="overheadLabel">URL</label><input type="text" id="createCompanyUrl"
-                                                            ng-model="offerCompany.companyUrl" class="overheadField"/>
-        </form>
-    </div>
+<div ng-show="brandNewCompany">
+    <form>
+        <input type="text" id="createCompanyName"
+               ng-model="offerCompany.companyName"
+               class="overheadField"
+               placeholder="Nombre"/>
+        <input type="text" id="createCompanyUrl"
+               ng-model="offerCompany.companyUrl"
+               class="overheadField"
+               placeholder="URL"/>
+    </form>
 </div>

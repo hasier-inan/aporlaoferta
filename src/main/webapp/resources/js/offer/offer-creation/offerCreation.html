@@ -1,34 +1,63 @@
 <div>
     <form id="offerCreationForm" name="createOfferForm" ng-submit="createOffer()" class="centeredForm">
-        <label for="createOfferTitle" class="overheadLabel">Título</label>
-        <input type="text" id="createOfferTitle" name="createOfferTitle"
-               ng-model="offer.offerTitle"  class="overheadField"/>
-        <label for="createOfferImage"class="overheadLabel">Imagen</label>
-        <input type="text" id="createOfferImage"
-               ng-model="offer.offerImage" required/>
-        <label for="createOfferDescription" class="overheadLabel">Descipción</label>
-        <input type="text" id="createOfferDescription"
-               ng-model="offer.offerDescription" class="overheadField"/>
-        <div ng-offer-category-manager="offerCategoryManager"></div>
-        <label for="createOfferLink" class="overheadLabel">Link</label>
-        <input type="text" id="createOfferLink" ng-model="offer.offerLink" class="overheadField"/>
-        <label for="createOfferOriginalPrice" class="overheadLabel">Precio original</label>
-        <input type="text" id="createOfferOriginalPrice"
-               name="createOfferOriginalPrice"
-               ng-model="offer.originalPrice"
-               ng-pattern="bigDecimalsOnly"  class="overheadField"/>
-        <span ng-show="createOfferForm.createOfferOriginalPrice.$error.pattern">Precio invalido</span>
-        <label for="createOfferFinalPrice" class="overheadLabel">Precio final</label>
-        <input type="text" id="createOfferFinalPrice"
-               name="createOfferFinalPrice"
-               ng-model="offer.finalPrice"
-               ng-pattern="bigDecimalsOnly"  class="overheadField"/>
-        <span ng-show="createOfferForm.createOfferFinalPrice.$error.pattern">Precio invalido</span>
-        <div ng-company-manager="companyManager"></div>
-        <input type="submit" value="Crear oferta"
-               ng-disabled="createOfferForm.createOfferOriginalPrice.$error.pattern
-               || createOfferForm.createOfferFinalPrice.$error.pattern"/>
+        <ul>
+            <li>
+                <input type="text" id="createOfferTitle" name="createOfferTitle"
+                       ng-model="offer.offerTitle" class="overheadField"
+                       placeholder="T&iacute;tulo"/>
+            </li>
+            <li>
+                <div ng-offer-category-manager="offerCategoryManager"></div>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <input type="text" id="createOfferOriginalPrice"
+                       name="createOfferOriginalPrice"
+                       ng-model="offer.originalPrice"
+                       ng-pattern="bigDecimalsOnly" class="overheadField"
+                       placeholder="Precio original"/>
+                <!--<span ng-show="createOfferForm.createOfferOriginalPrice.$error.pattern">Precio invalido</span>-->
+            </li>
+            <li>
+                <input type="text" id="createOfferFinalPrice"
+                       name="createOfferFinalPrice"
+                       ng-model="offer.finalPrice"
+                       ng-pattern="bigDecimalsOnly" class="overheadField"
+                       placeholder="Precio final"/>
+                <!--<span ng-show="createOfferForm.createOfferFinalPrice.$error.pattern">Precio invalido</span>-->
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <input type="text" id="createOfferLink" ng-model="offer.offerLink" class="overheadField"
+                       placeholder="Link"/>
+            </li>
+            <li>
+                <div ng-company-manager="companyManager"></div>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <input type="text" id="createOfferImage"
+                       ng-model="offer.offerImage" class="overheadField"
+                       placeholder="Imagen" required/>
+            </li>
+            <li>
+                <textarea id="createOfferDescription" ng-model="offer.offerDescription" class="overheadField ng-pristine ng-valid" placeholder="A&ntilde;adir descripci&oacute;n" rows="6"></textarea>
+            </li>
+        </ul>
+
+        <button type="submit"
+                ng-disabled="createOfferForm.createOfferOriginalPrice.$error.pattern
+               || createOfferForm.createOfferFinalPrice.$error.pattern"
+                ng-click="createOfferForm.submit()"
+                class="button small icon fa-shopping-cart overheadButton">Crear oferta
+        </button>
+        <button type="submit"
+                ng-disabled="createOfferForm.createOfferOriginalPrice.$error.pattern
+               || createOfferForm.createOfferFinalPrice.$error.pattern"
+                ng-click="createOfferForm.submit()"
+                class="button mini icon fa-shopping-cart overheadButton"></button>
     </form>
-</div>
-<div>
 </div>

@@ -12,33 +12,42 @@ aporlaofertaApp
                 $scope.displayOfferCreation=false;
                 $scope.displayAccountLogin=false;
                 $scope.displayAccountCreation=false;
+                $scope.displayOfferSpecifications=false;
                 $scope.displayLogin=function(){
-                    $scope.overheadVisible=true;
-                    $scope.displayOfferCreation=false;
+                    $scope.setDefaultVisibility();
                     $scope.displayAccountLogin=true;
-                    $scope.displayAccountCreation=false;
+                    $scope.overheadVisible=true;
                 };
                 $scope.displaySignup=function(){
-                    $scope.overheadVisible=true;
-                    $scope.displayOfferCreation=false;
-                    $scope.displayAccountLogin=false;
+                    $scope.setDefaultVisibility();
                     $scope.displayAccountCreation=true;
+                    $scope.overheadVisible=true;
                 };
                 $scope.displayOfferCreate=function(){
-                    $scope.overheadVisible=true;
+                    $scope.setDefaultVisibility();
                     $scope.displayOfferCreation=true;
-                    $scope.displayAccountLogin=false;
-                    $scope.displayAccountCreation=false;
+                    $scope.overheadVisible=true;
+                };
+                $scope.displayOfferDetails=function(){
+                    $scope.setDefaultVisibility();
+                    $scope.displayOfferSpecifications=true;
+                    $scope.overheadVisible=true;
                 };
                 $scope.setDefaultVisibility=function(){
                     $scope.overheadVisible=false;
                     $scope.displayOfferCreation=false;
                     $scope.displayAccountLogin=false;
                     $scope.displayAccountCreation=false;
+                    $scope.displayOfferSpecifications=false;
                 };
                 $scope.closeOverheadDisplay=function(){
                     $scope.setDefaultVisibility();
-                }
+                };
+                $scope.$on('offerSpecifications', function (event, args) {
+                    $scope.offerSpecifications = args;
+                    $scope.displayOfferDetails();
+
+                });
                 $scope.setDefaultVisibility();
             }]
         }

@@ -1,6 +1,7 @@
-<label for="createOfferCategories" class="overheadLabel">Category</label>
-<div class="select-wrapper">
-<select id="createOfferCategories" name="createOfferCategories"
-        ng-options="k as k for (k,v) in offerCategories" ng-model="category" ng-change="onCategoryChange(category)">
+<div class="select-wrapper overheadField">
+    <select id="createOfferCategories" name="createOfferCategories"
+            ng-options="k as k for (k,v) in offerCategories" ng-model="category" ng-change="onCategoryChange(category)"
+            class="overheadField">
+        <option value selected="selected">- CATEGORIA -</option>
     </select>
-    </div>
+</div>

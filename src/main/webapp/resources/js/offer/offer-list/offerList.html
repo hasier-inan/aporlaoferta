@@ -1,26 +1,45 @@
-<div>
-    <button ng-click="requestNewestOffers()">
-        ofertas recientes
-    </button>
-    <button ng-click="requestHottestOffers()">
-        ofertas calientes
-    </button>
-</div>
-<div>
-        <div ng-repeat="offer in offerList track by offer.id">
-            <div>
-                <div>
-                    {{offer.offerTitle}} - {{offer.finalPrice}}eur [+{{offer.offerPositiveVote}} | +{{offer.offerNegativeVote}}]
-                </div>
-                <div>
-                    {{offer.offerDescription}} - Image to be injected:{{offer.offerImage}}
-                </div>
-                <div>
-                    <a href="http://{{offer.offerLink}}">go to deal</a>
-                </div>
+<header id="header">
+    <div class="content">
+        <h1><em>aporlaoferta</em></h1>
+
+        <p>Ofertas y promociones online</p>
+        <ul class="actions">
+            <li><a href="#promotion_list" class="button icon fa-shopping-cart whiteButton"
+                   ng-click="requestNewestOffers()">&Uacute;ltimas
+                promociones</a></li>
+            <li><a href="#promotion_list" class="button hot-background icon fa-fire whiteButton"
+                   ng-click="requestHottestOffers()">Ofertas calientes</a>
+            </li>
+        </ul>
+    </div>
+    <div class="image phone">
+        <div class="inner"><img src="resources/images/screen.jpg" alt=""/></div>
+    </div>
+</header>
+
+<!--TODO: Separete into another view and directive and controller-->
+<section id="contentFilter" class="wrapper style2 special">
+    <header class="major">
+        <h2>Aqu&iacute; se añadir&aacute;n los filtros</h2>
+    </header>
+    <div class="inner">
+
+    </div>
+</section>
+
+<section id="promotion_list" class="wrapper style2">
+    <div class="inner alt">
+        <section ng-repeat="offer in offerList track by offer.id" class="spotlight">
+            <div class="image"><img src="resources/images/pic01.jpg" alt=""/></div>
+            <div class="content">
+                <h3>{{offer.offerTitle}} - {{offer.finalPrice}}eur [+{{offer.offerPositiveVote}} |
+                    +{{offer.offerNegativeVote}}]</h3>
+
+                <p>{{offer.offerDescription}}</p>
+                <a href="http://{{offer.offerLink}}">obtener oferta</a>
+                <button ng-click="showSpecifications(offer.id)">m&aacute;s detalle</button>
             </div>
-            <button ng-click="showSpecifications(offer.id)">más detalle</button>
-            <hr/>
-        </div>
-</div>
-<div ng-offer-specifications="offerSpecifications" the-offer="offerSpecifications"></div>
+        </section>
+    </div>
+
+</section>
