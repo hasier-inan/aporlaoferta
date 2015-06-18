@@ -11,14 +11,13 @@
             <div ng-account-creation="accountCreation" ng-show="displayAccountCreation"></div>
         </sec:authorize>
         <li>
-            <button class="button small icon fa-times-circle-o close_button" ng-click="closeOverheadDisplay()">Cerrar
+            <button class="button small icon fa-times close_button" ng-click="closeOverheadDisplay()">Cerrar
             </button>
-            <button class="button mini icon fa-times-circle-o close_button" ng-click="closeOverheadDisplay()"></button>
+            <button class="button mini icon fa-times close_button" ng-click="closeOverheadDisplay()"></button>
         </li>
     </ul>
 </div>
-<div id="overheadContainer" class="overhead_container " ng-show="overheadVisible"
-     ng-click="closeOverheadDisplay()"></div>
+<div id="overheadContainer" class="overhead_container " ng-show="overheadVisible"></div>
 <ul class="actions top_header">
     <sec:authorize ifNotGranted="ROLE_USER">
         <li>

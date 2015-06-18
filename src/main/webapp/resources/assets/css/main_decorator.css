@@ -47,7 +47,7 @@ div.profileForm > label.overheadLabel {
 }
 
 input.overheadField, select.overheadField {
-    width: 12em;
+    width: 12em !important;
     height: 2em;
     color: #ffffff;
     background-color: #089eec;
@@ -233,16 +233,19 @@ div.profileForm {
     background-color: #ffffff;
     color: #51B1EC !important;
 }
+
+#brandNewCompanyFormLabel{
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
 input[type="checkbox"] + label.overheadLabel:before, input[type="radio"] + label.overheadLabel:before{
     background-color: #55B2EC;
     border-color: #ffffff;
-    margin: 1em 0em 0em 0em;
 }
 input[type="checkbox"]:checked + label.overheadLabel:before, input[type="radio"]:checked + label.overheadLabel:before {
     background-color: #ffffff;
     border-color: #ffffff;
     color: #51B1EC;
-    margin: 1em 0em 1em 0em;
 }
 /*/general values*/
 
