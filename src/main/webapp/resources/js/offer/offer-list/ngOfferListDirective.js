@@ -37,8 +37,16 @@ aporlaofertaApp
                             alert("handle this error while retrieving data from newest offers");
                         });
                 }
+                $scope.initialiseScrollyButtons=function(){
+                    $('.scrolly')
+                        .scrolly({
+                            speed: 1500
+                        });
+                }
+                $scope.initialiseScrollyButtons();
                 //initialise with newest offers
                 $scope.requestNewestOffers();
+
             }]
         }
     });

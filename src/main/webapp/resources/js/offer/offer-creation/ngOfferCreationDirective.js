@@ -26,6 +26,7 @@ aporlaofertaApp
                 $scope.$on('selectedCategory', function (event, args) {
                     $scope.offer.offerCategory = args.category;
                 });
+
             }]
         }
     });

@@ -4,10 +4,10 @@
 
         <p>Ofertas y promociones online</p>
         <ul class="actions">
-            <li><a href="#promotion_list" class="button icon fa-shopping-cart whiteButton"
+            <li><a href="#promotion_list" class="button icon fa-shopping-cart whiteButton scrolly"
                    ng-click="requestNewestOffers()">&Uacute;ltimas
                 promociones</a></li>
-            <li><a href="#promotion_list" class="button hot-background icon fa-fire whiteButton"
+            <li><a ng-model="hotty" href="#promotion_list" class="button hot-background icon fa-fire whiteButton scrolly"
                    ng-click="requestHottestOffers()">Ofertas calientes</a>
             </li>
         </ul>

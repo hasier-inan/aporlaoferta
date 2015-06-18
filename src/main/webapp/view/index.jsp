@@ -6,7 +6,7 @@ aporlaoferta, by thatsoftwarecompany
 p4p spanish offer and deals
 Fractal template by HTML5 UP html5up.net
 -->
-<html ng-app="aPorLaOferta" xmlns="http://www.w3.org/1999/xhtml">
+<html data-ng-app="aPorLaOferta" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>aporlaoferta ~ ofertas y promociones online </title>
     <meta charset="utf-8"/>
@@ -52,8 +52,7 @@ Fractal template by HTML5 UP html5up.net
     <script src="resources/js/offer/offer-creation/ngOfferCategoryManagerDirective.js"></script>
     <script src="resources/js/header-display/ngHeadDisplayDirective.js"></script>
 </head>
-<body id="top" ng-controller="APorLaOfertaController">
-
+<body id="top" data-ng-controller="APorLaOfertaController">
 <div ng-overhead-display="overheadDisplay"></div>
 
 <div ng-offer-list="offerList"></div>
@@ -67,6 +66,5 @@ Fractal template by HTML5 UP html5up.net
     </ul>
     <p class="copyright">&copy; aporlaoferta, thatsoftwarecompany 2015</p>
 </footer>
-
 </body>
 </html>

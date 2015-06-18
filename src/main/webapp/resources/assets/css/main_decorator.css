@@ -20,8 +20,9 @@ div.overhead_subcontainer {
     position: fixed;
     width: 90%;
     height: auto;
+    max-height: 90%;
     border: .3em solid #FFFFFF;
-    border-radius: 2em;
+    border-radius: 0em;
     background-color: #51B1EC;
     opacity: 1;
     -webkit-opacity: 1;
@@ -46,13 +47,18 @@ div.profileForm > label.overheadLabel {
     display: inline-block;
 }
 
-input.overheadField, select.overheadField {
+input.overheadField,
+select.overheadField,
+textarea#createOfferDescription {
     width: 12em !important;
     height: 2em;
     color: #ffffff;
     background-color: #089eec;
     display: inline-block;
     margin-bottom: 1em;
+}
+textarea#createOfferDescription{
+    height: 10em;
 }
 
 div.overheadField {
@@ -76,11 +82,15 @@ div.overheadField.select-wrapper::before {
     width: 2.5em;
 }
 
-input.overheadField:focus {
+input.overheadField:focus,
+textarea#createOfferDescription:focus{
     width: 12em;
     height: 2em;
     color: #000000;
     background-color: #ffffff;
+}
+textarea#createOfferDescription:focus{
+    height: 10em;
 }
 
 button.close_button {
@@ -260,4 +270,5 @@ input[type="checkbox"]:checked + label.overheadLabel:before, input[type="radio"]
 
 body {
     overflow-x: hidden;
+
 }
