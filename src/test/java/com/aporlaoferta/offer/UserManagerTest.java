@@ -73,14 +73,12 @@ public class UserManagerTest {
 
     @Test
     public void testUserUpdateSavesUserAndUpdatesAllData() {
-        TheUser theNewestUser = UserBuilderManager.aRegularUserWithNickname(NICKNAME).build();
+        TheUser theNewestUser = this.theUser;
         String theNewPass = "abrandnewduckingpassword";
         theNewestUser.setUserPassword(theNewPass);
         this.userManager.updateUser(theNewestUser);
         //this.theUser will be the user model that will be updated with new password etc.
         verify(this.transactionalManager).saveUser(this.theUser);
-        //password updated with the encoded of the new pass
-        assertThat(this.theUser.getUserPassword().length(), Matchers.is(60));
     }
 }
 
