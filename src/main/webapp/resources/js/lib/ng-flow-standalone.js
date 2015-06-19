@@ -86,7 +86,7 @@
             rqManTok: '-1',
             prioritizeFirstAndLastChunk: false,
             target: '/',
-            testChunks: true,
+            testChunks: false,
             generateUniqueIdentifier: null,
             maxChunkRetries: 0,
             chunkRetryInterval: null,
@@ -1415,7 +1415,6 @@
                 });
                 data.append(this.flowObj.opts.fileParameterName, blob, this.fileObj.file.name);
             }
-            console.log( this.flowObj.defaults.rqManTok);
             this.xhr.open(method, target, true);
             this.xhr.withCredentials = this.flowObj.opts.withCredentials;
 
@@ -1637,7 +1636,10 @@ angular.module('flow.init', ['flow.provider'])
                 if ({
                     'progress': 1, 'filesSubmitted': 1, 'fileSuccess': 1, 'fileError': 1, 'complete': 1
                 }[eventName]) {
-                    $scope.$apply();
+                    var phase = $scope.$root.$$phase;
+                    if(phase != '$apply' && phase != '$digest') {
+                        $scope.$apply();
+                    }
                 }
                 if (event.defaultPrevented) {
                     return false;

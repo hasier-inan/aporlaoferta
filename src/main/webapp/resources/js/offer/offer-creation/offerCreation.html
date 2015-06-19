@@ -39,7 +39,9 @@
         </ul>
         <ul>
             <li>
-                <input type="text" id="createOfferImage"
+                <label id="offerImageUploadLabel" for="offerImageUploadContent" class="overheadLabel">Imagen</label>
+                <div id="offerImageUploadContent" ng-image-uploader="imageUploader" finalurl="offer.offerImage"></div>
+                <input type="hidden" id="createOfferImage"
                        ng-model="offer.offerImage" class="overheadField"
                        placeholder="Imagen" required/>
             </li>

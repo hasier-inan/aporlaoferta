@@ -34,7 +34,7 @@ public class ImageUploadManager {
     public String copyUploadedFileIntoServer(MultipartFile file) throws IOException {
         String filePath = creteCustomFilePath(file.getOriginalFilename());
         file.transferTo(new File(filePath));
-        return filePath;
+        return filePath.replace("\\", "/");
     }
 
     private String creteCustomFilePath(String fileName) {

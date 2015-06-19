@@ -1,25 +1,32 @@
-<div class="container">
-    <h1>flow image example</h1>
-    <hr class="soften"/>
+<div flow-init
+     flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
+     flow-file-success="filesIsUploaded($message)"
+     flow-file-error="handleProcessError($message)"
+     flow-error="handleProcessError($message)"
+     flow-files-submitted="$flow.upload()" class="imageUploaderContent">
 
-    <div>
-        <div class="thumbnail" ng-hide="$flow.files.length" style="max-width: 200px; max-height: 150px; line-height: 20px; margin-bottom: 5px;">
-            <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image"/>
+        <div class="thumbnail cubicTransition" ng-hide="$flow.files.length">
+            Solo im&aacute;genes PNG,GIF,JPG son aceptados (max 5MB)
         </div>
-        <div class="thumbnail" ng-show="$flow.files.length">
+        <div class="thumbnail cubicTransition" ng-show="$flow.files.length">
             <img flow-img="$flow.files[0]"/>
         </div>
-        <div>
-            <a href="#" class="btn" ng-hide="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Select
-                image</a>
-            <a href="#" class="btn" ng-show="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Change</a>
-            <a href="#" class="btn btn-danger" ng-show="$flow.files.length"
-               ng-click="$flow.cancel()">
-                Remove
-            </a>
+        <div class="thumbnailButtons">
+            <button class="button small icon fa-upload whiteButton orange-background" ng-hide="$flow.files.length" flow-btn
+                    flow-attrs="{accept:'image/*'}">Seleccionar imagen
+            </button>
+            <button class="button mini icon fa-upload whiteButton orange-background" ng-hide="$flow.files.length" flow-btn></button>
+            <button class="button small icon fa-exchange whiteButton  orange-background" ng-show="$flow.files.length" flow-btn
+                    flow-attrs="{accept:'image/*'}">Cambiar
+            </button>
+            <button class="button mini icon fa-exchange whiteButton  orange-background" ng-show="$flow.files.length" flow-btn
+                    flow-attrs="{accept:'image/*'}">
+            </button>
+            <button class="button small icon fa-trash whiteButton red-background" ng-show="$flow.files.length"
+                    ng-click="$flow.cancel()">Borrar
+            </button>
+            <button class="button mini icon fa-trash whiteButton red-background" ng-show="$flow.files.length"
+                    ng-click="$flow.cancel()">
+            </button>
         </div>
-        <p>
-            Only PNG,GIF,JPG files allowed.
-        </p>
-    </div>
 </div>

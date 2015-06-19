@@ -1,7 +1,7 @@
 /**
  * Created by hasiermetal on 16/03/14.
  */
-aporlaofertaApp = angular.module('aPorLaOferta', ['requestManager', 'accountController', 'configService', 'offerCreationService','flow']);
+aporlaofertaApp = angular.module('aPorLaOferta', ['requestManager', 'accountController', 'configService', 'offerCreationService', 'flow']);
 
 //main controller
 aporlaofertaApp.controller('APorLaOfertaController', function ($scope) {
@@ -16,7 +16,4 @@ aporlaofertaApp.config(['flowFactoryProvider', function (flowFactoryProvider) {
         simultaneousUploads: 4,
         singleFile: true
     };
-    flowFactoryProvider.on('catchAll', function (event) {
-        console.log('catchAll', arguments);
-    });
 }]);
