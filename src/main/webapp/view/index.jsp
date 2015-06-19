@@ -6,6 +6,7 @@
 <!--    p4p spanish offer and deals -->
 <!--    Fractal template by HTML5 UP html5up.net    -->
 <!--    icons and logos by font awesome http://fortawesome.github.io/   -->
+<!--    file upload base by ng-flow -->
 <html data-ng-app="aPorLaOferta" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>aporlaoferta ~ ofertas y promociones online </title>
@@ -35,6 +36,7 @@
     <!--core-->
     <script src="resources/js/lib/angular.js"></script>
     <script src="resources/js/lib/angular-animate.js"></script>
+    <script src="resources/js/lib/ng-flow-standalone.js"></script>
     <script src="resources/assets/js/main.js"></script>
     <script src="resources/js/main-controller/mainController.js"></script>
     <script src="resources/js/request-handler/requestManagerService.js"></script>
@@ -51,8 +53,39 @@
     <script src="resources/js/offer/offer-creation/ngCompanyManagerDirective.js"></script>
     <script src="resources/js/offer/offer-creation/ngOfferCategoryManagerDirective.js"></script>
     <script src="resources/js/header-display/ngHeadDisplayDirective.js"></script>
+    <script src="resources/js/uploader/ngImageUploadDirective.js"></script>
 </head>
 <body id="top" data-ng-controller="APorLaOfertaController">
+
+<div flow-init
+     flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
+     flow-files-submitted="$flow.upload()">
+    <div class="container">
+        <h1>flow image example</h1>
+        <hr class="soften"/>
+
+        <div>
+            <div class="thumbnail" ng-hide="$flow.files.length">
+                <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" />
+            </div>
+            <div class="thumbnail" ng-show="$flow.files.length">
+                <img flow-img="$flow.files[0]" />
+            </div>
+            <div>
+                <a href="#" class="btn" ng-hide="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Select image</a>
+                <a href="#" class="btn" ng-show="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Change</a>
+                <a href="#" class="btn btn-danger" ng-show="$flow.files.length"
+                   ng-click="$flow.cancel()">
+                    Remove
+                </a>
+            </div>
+            <p>
+                Only PNG,GIF,JPG files allowed.
+            </p>
+        </div>
+    </div>
+     </div>
+
 <div ng-overhead-display="overheadDisplay"></div>
 
 <div ng-offer-list="offerList"></div>

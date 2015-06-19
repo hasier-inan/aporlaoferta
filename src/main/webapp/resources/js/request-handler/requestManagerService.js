@@ -20,6 +20,9 @@ requestManager.service('requestManager', ['$http',
                 data: data
             });
         };
+        requestControllerService.getActualToken=function(){
+            return csrfToken;
+        }
         requestControllerService.initMainController();
         return requestControllerService;
     }]);

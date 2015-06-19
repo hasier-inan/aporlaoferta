@@ -42,16 +42,16 @@ public class OfferController {
     private final Logger LOG = LoggerFactory.getLogger(OfferController.class);
 
     @Autowired
-    OfferValidatorHelper offerValidatorHelper;
+    private OfferValidatorHelper offerValidatorHelper;
 
     @Autowired
-    UserManager userManager;
+    private UserManager userManager;
 
     @Autowired
-    OfferManager offerManager;
+    private OfferManager offerManager;
 
     @Autowired
-    CompanyManager companyManager;
+    private CompanyManager companyManager;
 
     @RequestMapping(value = "/getOffers", method = RequestMethod.POST)
     @ResponseBody

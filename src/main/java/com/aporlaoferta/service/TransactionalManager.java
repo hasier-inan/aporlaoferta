@@ -24,19 +24,19 @@ import java.util.List;
 public class TransactionalManager {
 
     @Autowired
-    CommentDAO commentDAO;
+    private CommentDAO commentDAO;
 
     @Autowired
-    CompanyDAO companyDAO;
+    private CompanyDAO companyDAO;
 
     @Autowired
-    OfferDAO offerDAO;
+    private OfferDAO offerDAO;
 
     @Autowired
-    UserDAO userDAO;
+    private UserDAO userDAO;
 
     @Autowired
-    UserRolesDAO userRolesDAO;
+    private UserRolesDAO userRolesDAO;
 
     ///Comment
     @Transactional(readOnly = true)

@@ -16,7 +16,7 @@ import java.util.List;
 public class CommentManager {
     private final Logger LOG = LoggerFactory.getLogger(CommentManager.class);
 
-    TransactionalManager transactionalManager;
+    private TransactionalManager transactionalManager;
 
     public OfferComment getCommentFromId(Long id) {
         try {

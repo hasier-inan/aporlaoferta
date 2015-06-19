@@ -35,16 +35,16 @@ public class CommentController {
     private final Logger LOG = LoggerFactory.getLogger(CommentController.class);
 
     @Autowired
-    OfferValidatorHelper offerValidatorHelper;
+    private OfferValidatorHelper offerValidatorHelper;
 
     @Autowired
-    CommentManager commentManager;
+    private CommentManager commentManager;
 
     @Autowired
-    UserManager userManager;
+    private UserManager userManager;
 
     @Autowired
-    OfferManager offerManager;
+    private OfferManager offerManager;
 
     @RequestMapping(value = "/createComment", method = RequestMethod.POST)
     @ResponseBody

@@ -26,10 +26,10 @@ public class CompanyController {
     private final Logger LOG = LoggerFactory.getLogger(CompanyController.class);
 
     @Autowired
-    OfferValidatorHelper offerValidatorHelper;
+    private OfferValidatorHelper offerValidatorHelper;
 
     @Autowired
-    CompanyManager companyManager;
+    private CompanyManager companyManager;
 
     @RequestMapping(value = "/createCompany", method = RequestMethod.POST)
     @ResponseBody

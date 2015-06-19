@@ -18,7 +18,7 @@ import static org.springframework.util.StringUtils.isEmpty;
 public class CompanyManager {
     private final Logger LOG = LoggerFactory.getLogger(CompanyManager.class);
 
-    TransactionalManager transactionalManager;
+    private TransactionalManager transactionalManager;
 
     public OfferCompany getCompanyFromId(Long id) {
         try {

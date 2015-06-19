@@ -18,9 +18,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserManager {
+
     private final Logger LOG = LoggerFactory.getLogger(UserManager.class);
 
-    TransactionalManager transactionalManager;
+    private TransactionalManager transactionalManager;
 
     public TheUser getUserFromNickname(String nickname) {
         try {

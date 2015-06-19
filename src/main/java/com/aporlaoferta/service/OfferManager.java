@@ -18,7 +18,7 @@ import java.util.List;
 public class OfferManager {
     private final Logger LOG = LoggerFactory.getLogger(OfferManager.class);
 
-    TransactionalManager transactionalManager;
+    private TransactionalManager transactionalManager;
 
     //@Secured({"IS_AUTHENTICATED_ANONYMOUSLY"})
     public TheOffer createOffer(TheOffer theOffer) {

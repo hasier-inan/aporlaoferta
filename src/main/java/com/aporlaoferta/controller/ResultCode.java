@@ -32,7 +32,9 @@ public enum ResultCode {
     FEEDBACK_ALREADY_PERFORMED_ERROR(42, ResponseResult.VALIDATION_ERROR,
             "Feedback process was already performed by user and given offer"),
     FEEDBACK_FROM_OWNER_PERFORMED_ERROR(43, ResponseResult.VALIDATION_ERROR,
-            "Feedback process can't be performed by offer owner");
+            "Feedback process can't be performed by offer owner"),
+    IMAGE_UPLOAD_ERROR(56, ResponseResult.INVALID_DATA_PROVIDED,
+            "Could not perform image upload process");
 
     private int code;
     private String resultDescription;

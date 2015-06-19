@@ -35,7 +35,7 @@ public class AccountController {
     private UserManager userManager;
 
     @Autowired
-    OfferValidatorHelper offerValidatorHelper;
+    private OfferValidatorHelper offerValidatorHelper;
 
     @RequestMapping(value = {"/", "/start**", "/index**"}, method = RequestMethod.GET)
     public ModelAndView start() {

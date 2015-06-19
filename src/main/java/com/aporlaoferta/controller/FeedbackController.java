@@ -26,13 +26,13 @@ public class FeedbackController {
     private final Logger LOG = LoggerFactory.getLogger(FeedbackController.class);
 
     @Autowired
-    OfferValidatorHelper offerValidatorHelper;
+    private OfferValidatorHelper offerValidatorHelper;
 
     @Autowired
-    UserManager userManager;
+    private UserManager userManager;
 
     @Autowired
-    OfferManager offerManager;
+    private OfferManager offerManager;
 
     @RequestMapping(value = "/votePositive", method = RequestMethod.POST)
     @ResponseBody
