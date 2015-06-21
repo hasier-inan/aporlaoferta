@@ -1,6 +1,9 @@
 <%@taglib prefix="sec"
           uri="http://www.springframework.org/security/tags" %>
-<div id="overheadSubContainer" class="overhead_subcontainer fadein fadeout" ng-show="overheadVisible">
+<div id="overheadSubContainer" class="overhead_subcontainer fadein fadeout"
+     ng-class="(displayAccountLogin || displayAccountCreation)?'userRelated':
+     (displayOfferCreation?'offerRelated':'')"
+     ng-show="overheadVisible">
     <ul id="overheadSubContainerContent" class="actions top_header">
         <div ng-show="displayOfferSpecifications" ng-offer-specifications="offerSpecifications" the-offer="offerSpecifications"></div>
         <sec:authorize ifAllGranted="ROLE_USER">

@@ -35,6 +35,13 @@ div.overhead_subcontainer {
     background-attachment: fixed, fixed;
     background-size: auto, cover;
 }
+div.overhead_subcontainer.userRelated{
+    background-image: url("images/background_usr5.png"), url("images/pattern-size1.svg");
+}
+
+div.overhead_subcontainer.offerRelated{
+    background-image: url("images/background_offer5.png"), url("images/pattern-size1.svg");
+}
 
 label.overheadLabel {
     color: #FFFFFF !important;
@@ -272,6 +279,21 @@ input[type="checkbox"]:checked + label.overheadLabel:before, input[type="radio"]
     background-color: #ffffff;
     border-color: #ffffff;
     color: #51B1EC;
+}
+
+.mainLogo{
+    background: url("images/logoright200.png"), url("images/pattern-size1.svg") center;
+    background-size: 90%;
+    width: 2em;
+    background-repeat: no-repeat;
+    height: 2em;
+    position: absolute;
+    display: inline-block;
+}
+@media screen and (max-width: 980px) and (orientation: portrait){
+    .mainLogo {
+        background-size: 80%;
+    }
 }
 
 /*/general values*/
