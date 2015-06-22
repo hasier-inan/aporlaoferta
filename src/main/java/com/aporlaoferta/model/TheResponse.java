@@ -15,17 +15,20 @@ public class TheResponse {
     private int code;
     private ResponseResult responseResult;
     private String description;
+    private String descriptionEsp;
 
     public void assignResultCode(ResultCode resultCode) {
         setCode(resultCode.getCode());
         setResponseResult(resultCode.getResponseResult());
         setDescription(resultCode.getResultDescription());
+        setDescriptionEsp(resultCode.getResultDescriptionEsp());
     }
 
-    public void assignResultCode(ResultCode resultCode, String description) {
+    public void assignResultCode(ResultCode resultCode, String description, String descriptionEsp) {
         setCode(resultCode.getCode());
         setResponseResult(resultCode.getResponseResult());
         setDescription(description);
+        setDescriptionEsp(descriptionEsp);
     }
 
     public int getCode() {
@@ -50,5 +53,13 @@ public class TheResponse {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getDescriptionEsp() {
+        return descriptionEsp;
+    }
+
+    public void setDescriptionEsp(String descriptionEsp) {
+        this.descriptionEsp = descriptionEsp;
     }
 }

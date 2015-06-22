@@ -58,10 +58,10 @@ public class AccountController {
                               @RequestParam(value = "logout", required = false) String logout) {
         ModelAndView model = new ModelAndView();
         if (error != null) {
-            model.addObject("error", "Invalid username and password!");
+            model.addObject("msg", "Usuario / contraseña invalidos");
         }
         if (logout != null) {
-            model.addObject("msg", "You've been logged out successfully.");
+            model.addObject("msg", "Se ha cerrado la sesión");
         }
         model.setViewName("index");
         return model;
@@ -117,7 +117,7 @@ public class AccountController {
                 } else {
                     String okMessage = String.format("User successfully updated. Id: %s", nuUser.getId());
                     LOG.info(okMessage);
-                    result.assignResultCode(ResultCode.ALL_OK, okMessage);
+                    result.assignResultCode(ResultCode.ALL_OK, okMessage, "Usuario actualizado satisfactoriamente");
                 }
             } catch (ValidationException e) {
                 String resultDescription = ResultCode.UPDATE_USER_VALIDATION_ERROR.getResultDescription();
@@ -137,7 +137,7 @@ public class AccountController {
             } else {
                 String okMessage = String.format("User successfully created. Id: %s", user.getId());
                 LOG.info(okMessage);
-                result.assignResultCode(ResultCode.ALL_OK, okMessage);
+                result.assignResultCode(ResultCode.ALL_OK, okMessage, "Usuario creado satisfactoriamente");
             }
         } catch (ValidationException e) {
             String resultDescription = ResultCode.CREATE_USER_VALIDATION_ERROR.getResultDescription();

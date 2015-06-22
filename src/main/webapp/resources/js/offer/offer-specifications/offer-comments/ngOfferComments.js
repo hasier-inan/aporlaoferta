@@ -11,14 +11,16 @@ aporlaofertaApp
                 theComments: '=',
                 theOffer: '='
             },
-            controller: ['$scope', '$timeout', 'requestManager', 'configService', function ($scope, $timeout, requestManager, configService) {
+            controller: ['$rootScope','$scope', '$timeout', 'requestManager', 'configService', function ($rootScope,$scope, $timeout, requestManager, configService) {
                 $scope.writeComment=function(comment, id){
                     requestManager.makePostCall(comment, {'offer': id}, configService.getEndpoint('create.comment'))
                         .success(function (data, status, headers, config) {
-
+                            $rootScope.$broadcast('serverResponse', data);
                         }).error(function (data, status, headers, config) {
-                            //TODO: handle error;
-                            alert("handle this error while retrieving data from newest offers");
+                            var theResponse = {};
+                            theResponse.description = data;
+                            theResponse.responseResult = "error";
+                            $rootScope.$broadcast('serverResponse', theResponse);
                         });
                 };
                 $scope.quoteComment=function(comment, id){
@@ -26,8 +28,10 @@ aporlaofertaApp
                         .success(function (data, status, headers, config) {
 
                         }).error(function (data, status, headers, config) {
-                            //TODO: handle error;
-                            alert("handle this error while retrieving data from newest offers");
+                            var theResponse = {};
+                            theResponse.description = data;
+                            theResponse.responseResult = "error";
+                            $rootScope.$broadcast('serverResponse', theResponse);
                         });
                 };
             }]

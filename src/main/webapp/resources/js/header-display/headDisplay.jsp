@@ -6,6 +6,7 @@
      ng-show="overheadVisible">
     <ul id="overheadSubContainerContent" class="actions top_header">
         <div ng-show="displayOfferSpecifications" ng-offer-specifications="offerSpecifications" the-offer="offerSpecifications"></div>
+        <div ng-show="displayResponseFromServer" ng-response-from-server="responseFromServer" the-response="theResponse"></div>
         <sec:authorize ifAllGranted="ROLE_USER">
             <div ng-offer-creation="offerCreation" ng-show="displayOfferCreation" overhead-display="overheadVisible"></div>
         </sec:authorize>

@@ -6,18 +6,21 @@ aporlaofertaApp
         return {
             restrict: 'A',
             templateUrl: 'resources/js/offer/offer-creation/offerCategoryManagement.html',
-            link: function (scope, elem, attrs) {},
-            controller:['$scope', 'requestManager', 'configService','offerCreationService', function ($scope, requestManager, configService,offerCreationService) {
-                $scope.populateAllCategories=function(){
+            link: function (scope, elem, attrs) {
+            },
+            controller: ['$rootScope','$scope', 'requestManager', 'configService', 'offerCreationService', function ($rootScope,$scope, requestManager, configService, offerCreationService) {
+                $scope.populateAllCategories = function () {
                     requestManager.makePostCall({}, {}, configService.getEndpoint('get.offer.categories'))
                         .success(function (data, status, headers, config) {
-                            $scope.offerCategories=angular.copy(data);
+                            $scope.offerCategories = angular.copy(data);
                         }).error(function (data, status, headers, config) {
-                            //TODO: handle error;
-                            alert("handle this error while retrieving data from categories");
+                            var theResponse = {};
+                            theResponse.description = data;
+                            theResponse.responseResult = "error";
+                            $rootScope.$broadcast('serverResponse', theResponse);
                         });
                 }
-                $scope.onCategoryChange=function(category){
+                $scope.onCategoryChange = function (category) {
                     offerCreationService.setSelectedCategory(category);
                 }
                 $scope.populateAllCategories();

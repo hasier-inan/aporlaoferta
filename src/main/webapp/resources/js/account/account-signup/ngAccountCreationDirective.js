@@ -15,6 +15,7 @@ aporlaofertaApp
                 $scope.theUser = {};
                 $scope.createAccount = function (theUser) {
                     accountController.createAccount(theUser);
+                    $scope.theUser = {};
                     $scope.overheadDisplay = false;
                 }
             }]

@@ -40,7 +40,7 @@
         <ul>
             <li>
                 <label id="offerImageUploadLabel" for="offerImageUploadContent" class="overheadLabel">Imagen</label>
-                <div id="offerImageUploadContent" ng-image-uploader="imageUploader" final-url="offer.offerImage"></div>
+                <div id="offerImageUploadContent" ng-image-uploader="createOfferImageUploader" final-url="offer.offerImage"></div>
                 <input type="hidden" id="createOfferImage"
                        ng-model="offer.offerImage" class="overheadField"
                        placeholder="Imagen" required/>

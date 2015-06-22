@@ -110,7 +110,7 @@ public class FeedbackController {
         String okMessage = String.format("Feedback successfully placed for offer %s from user %s",
                 offerId, theUser.getUserNickname());
         LOG.info(okMessage);
-        result.assignResultCode(ResultCode.ALL_OK, okMessage);
+        result.assignResultCode(ResultCode.ALL_OK, okMessage, "Valoración añadida");
     }
 
     private TheUser obtainUserFromSession() {

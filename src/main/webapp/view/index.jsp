@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page session="true" %>
 <!DOCTYPE HTML>
 
 <!-- aporlaoferta, by thatsoftwarecompany -->
@@ -56,9 +58,14 @@
     <script src="resources/js/offer/offer-creation/ngOfferCategoryManagerDirective.js"></script>
     <script src="resources/js/header-display/ngHeadDisplayDirective.js"></script>
     <script src="resources/js/uploader/ngImageUploadDirective.js"></script>
+    <script src="resources/js/response/ngResponseFromServer.js"></script>
     <link rel="stylesheet" href="resources/js/uploader/imageUpload.css"/>
 </head>
 <body id="top" data-ng-controller="APorLaOfertaController" flow-prevent-drop>
+
+<c:if test="${not empty msg}">
+    <input type="text" id="errorMessage" style="display:none" value="${msg}"/>
+</c:if>
 
 <div ng-overhead-display="overheadDisplay"></div>
 

@@ -2,17 +2,14 @@
 scotch.io
 */
 
-/* when hiding the picture */
 .overhead_subcontainer.ng-hide-add {
     animation: 0.3s fadeOut ease;
 }
 
-/* when showing the picture */
 .overhead_subcontainer.ng-hide-remove {
     animation: 0.5s flipInX ease;
 }
 
-/* flip in */
 @keyframes flipInX {
     0% {
         transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
@@ -47,8 +44,6 @@ scotch.io
         transform: perspective(400px);
     }
 }
-
-/* light speed out */
 
 @keyframes fadeOut {
     0% {

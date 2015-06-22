@@ -16,4 +16,5 @@ aporlaofertaApp.config(['flowFactoryProvider', function (flowFactoryProvider) {
         simultaneousUploads: 4,
         singleFile: true
     };
+
 }]);

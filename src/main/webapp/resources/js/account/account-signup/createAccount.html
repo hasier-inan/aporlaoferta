@@ -8,7 +8,7 @@
                placeholder="Email"/>
 
         <label id="imageUploadLabel" for="imageUploadContent" class="overheadLabel">Avatar</label>
-        <div id="imageUploadContent" ng-image-uploader="imageUploader" finalurl="theUser.userAvatar"></div>
+        <div id="imageUploadContent" ng-image-uploader="createAccountImageUploader" final-url="theUser.userAvatar"></div>
 
         <input type="hidden" id="createUserAvatar" ng-model="theUser.userAvatar" class="overheadField"/>
     </form>

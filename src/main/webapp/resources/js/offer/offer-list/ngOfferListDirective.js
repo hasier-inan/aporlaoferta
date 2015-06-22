@@ -13,8 +13,10 @@ aporlaofertaApp
                         .success(function (data, status, headers, config) {
                             $scope.offerList=data.theOffers;
                         }).error(function (data, status, headers, config) {
-                            //TODO: handle error;
-                            alert("handle this error while retrieving data from newest offers");
+                            var theResponse = {};
+                            theResponse.description = data;
+                            theResponse.responseResult = "error";
+                            $rootScope.$broadcast('serverResponse', theResponse);
                         });
                 }
 
@@ -23,8 +25,10 @@ aporlaofertaApp
                         .success(function (data, status, headers, config) {
                             $scope.offerList= data.theOffers;
                         }).error(function (data, status, headers, config) {
-                            //TODO: handle error;
-                            alert("handle this error while retrieving data from newest offers");
+                            var theResponse = {};
+                            theResponse.description = data;
+                            theResponse.responseResult = "error";
+                            $rootScope.$broadcast('serverResponse', theResponse);
                         });
                 }
 
@@ -33,8 +37,10 @@ aporlaofertaApp
                         .success(function (data, status, headers, config) {
                             $rootScope.$broadcast('offerSpecifications', data.theOffers);
                         }).error(function (data, status, headers, config) {
-                            //TODO: handle error;
-                            alert("handle this error while retrieving data from newest offers");
+                            var theResponse = {};
+                            theResponse.description = data;
+                            theResponse.responseResult = "error";
+                            $rootScope.$broadcast('serverResponse', theResponse);
                         });
                 }
                 $scope.initialiseScrollyButtons=function(){

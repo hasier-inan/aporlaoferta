@@ -21,6 +21,7 @@ div.overhead_subcontainer {
     width: 90%;
     height: auto;
     max-height: 90%;
+    min-height: 6em;
     border: .3em solid #FFFFFF;
     border-radius: 0em;
     background-color: #51B1EC;
@@ -35,16 +36,6 @@ div.overhead_subcontainer {
     opacity: 1;
     -webkit-opacity: 1;
     -moz-opacity: 1;
-}
-
-.cubicTransition {
-    /*opacity: 1;
-    -webkit-opacity: 1;
-    -moz-opacity: 1;*/
-    -webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 31.3s;
-    -moz-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 31.3s;
-    -o-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 31.3s;
-    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 31.3s;
 }
 
 div.overhead_subcontainer.userRelated{
@@ -191,6 +182,13 @@ div.thumbnailButtons > button.mini {
     display: none;
 }
 
+div.thumbnailButtons > button{
+    -moz-transition: 0s;
+    -webkit-transition: 0s;
+    -ms-transition: 0s;
+    transition: 0s;
+}
+
 @media screen and (max-width: 480px) and (orientation: portrait) {
     ul.top_header > button.small,
     ul.top_header li > button.small,
@@ -234,20 +232,16 @@ div.profileForm {
 /*/top_header*/
 
 /*
-vertical overhead hottest offers
+server response
 */
-div#hottestOffersVertical{
-    position: absolute;
-    display: inline-block;
-    margin-left: 6em;
+div.responseDescription{
+    color:#fff;
+    font-size: 1em;
+    text-align: center;
 }
-
-.image.hottestVertical{
-    width: 10em;
-    height: 10em;
-    border: solid .5em #fff;
-    border-radius: 100%;
-}
+/*
+/server response
+*/
 
 /*general values*/
 .red-background {
