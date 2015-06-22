@@ -1,7 +1,7 @@
 /**
  * Created by hasiermetal on 16/03/14.
  */
-aporlaofertaApp = angular.module('aPorLaOferta', ['requestManager', 'accountController', 'configService', 'offerCreationService', 'flow']);
+aporlaofertaApp = angular.module('aPorLaOferta', ['requestManager', 'accountController', 'configService', 'offerCreationService', 'flow', 'ngAnimate']);
 
 //main controller
 aporlaofertaApp.controller('APorLaOfertaController', function ($scope) {

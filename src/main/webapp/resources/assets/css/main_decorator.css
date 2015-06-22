@@ -24,9 +24,6 @@ div.overhead_subcontainer {
     border: .3em solid #FFFFFF;
     border-radius: 0em;
     background-color: #51B1EC;
-    opacity: 1;
-    -webkit-opacity: 1;
-    -moz-opacity: 1;
     z-index: 1002;
     left: 5%;
     top: 5%;
@@ -34,7 +31,22 @@ div.overhead_subcontainer {
     background-position: top left, center center;
     background-attachment: fixed, fixed;
     background-size: auto, cover;
+    overflow-y:auto;
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
 }
+
+.cubicTransition {
+    /*opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;*/
+    -webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 31.3s;
+    -moz-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 31.3s;
+    -o-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 31.3s;
+    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 31.3s;
+}
+
 div.overhead_subcontainer.userRelated{
     background-image: url("images/background_usr5.png"), url("images/pattern-size1.svg");
 }
@@ -136,27 +148,6 @@ input.overheadField::-moz-selection {
     background: #f3630a;
 }
 
-.fadein,
-.fadeout,
-.cubicTransition {
-    -webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) .3s;
-    -moz-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) .3s;
-    -o-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) .3s;
-    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) .3s;
-}
-
-.fadein.ng-hide-remove,
-.fadeout.ng-hide-add.ng-hide-add-active {
-    opacity: 0;
-    display: block !important;
-}
-
-.fadeout.ng-hide-add,
-.fadein.ng-hide-remove.ng-hide-remove-active {
-    opacity: 1;
-    display: block !important;
-}
-
 /*/overhead*/
 
 /*top_header*/
@@ -241,6 +232,22 @@ div.profileForm {
 }
 
 /*/top_header*/
+
+/*
+vertical overhead hottest offers
+*/
+div#hottestOffersVertical{
+    position: absolute;
+    display: inline-block;
+    margin-left: 6em;
+}
+
+.image.hottestVertical{
+    width: 10em;
+    height: 10em;
+    border: solid .5em #fff;
+    border-radius: 100%;
+}
 
 /*general values*/
 .red-background {

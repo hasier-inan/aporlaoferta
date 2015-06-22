@@ -1,4 +1,5 @@
 <div flow-init
+     flow-name="uploader.flow"
      flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
      flow-file-success="filesIsUploaded($message)"
      flow-file-error="handleProcessError($message)"
@@ -8,7 +9,7 @@
         <div class="thumbnail cubicTransition" ng-hide="$flow.files.length">
             Solo im&aacute;genes PNG,GIF,JPG son aceptados (max 5MB)
         </div>
-        <div class="thumbnail cubicTransition" ng-show="$flow.files.length">
+        <div class="thumbnail cubicTransition" ng-show="$flow.files.length" flow-dro>
             <img flow-img="$flow.files[0]"/>
         </div>
         <div class="thumbnailButtons">

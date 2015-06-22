@@ -1,5 +1,5 @@
 <div>
-    <form id="offerCreationForm" name="createOfferForm" ng-submit="createOffer()" class="centeredForm">
+    <form id="offerCreationForm" name="createOfferForm" class="centeredForm">
         <ul>
             <li>
                 <input type="text" id="createOfferTitle" name="createOfferTitle"
@@ -40,7 +40,7 @@
         <ul>
             <li>
                 <label id="offerImageUploadLabel" for="offerImageUploadContent" class="overheadLabel">Imagen</label>
-                <div id="offerImageUploadContent" ng-image-uploader="imageUploader" finalurl="offer.offerImage"></div>
+                <div id="offerImageUploadContent" ng-image-uploader="imageUploader" final-url="offer.offerImage"></div>
                 <input type="hidden" id="createOfferImage"
                        ng-model="offer.offerImage" class="overheadField"
                        placeholder="Imagen" required/>
@@ -50,16 +50,16 @@
             </li>
         </ul>
 
-        <button type="submit"
+        <button
                 ng-disabled="createOfferForm.createOfferOriginalPrice.$error.pattern
                || createOfferForm.createOfferFinalPrice.$error.pattern"
-                ng-click="createOfferForm.submit()"
+                ng-click="createOffer()"
                 class="button small icon fa-shopping-cart overheadButton">Crear oferta
         </button>
         <button type="submit"
                 ng-disabled="createOfferForm.createOfferOriginalPrice.$error.pattern
                || createOfferForm.createOfferFinalPrice.$error.pattern"
-                ng-click="createOfferForm.submit()"
+                ng-click="createOffer()"
                 class="button mini icon fa-shopping-cart overheadButton"></button>
     </form>
 </div>

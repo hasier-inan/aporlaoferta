@@ -6,6 +6,9 @@ aporlaofertaApp
         return {
             restrict: 'A',
             templateUrl: 'resources/js/offer/offer-creation/offerCreation.html',
+            scope: {
+                overheadDisplay: '='
+            },
             controller: ['$scope', 'requestManager', 'configService', 'offerCreationService', function ($scope, requestManager, configService, offerCreationService) {
                 $scope.offer = {};
                 $scope.createOffer = function () {
@@ -16,6 +19,8 @@ aporlaofertaApp
                             //TODO: handle error;
                             alert("handle this error while retrieving data from newest offers");
                         });
+                    $scope.overheadDisplay=false;
+                    $scope.offer={};
                 };
                 $scope.bigDecimalsOnly = /^\-?\d+((\.|\,)\d+)?$/;
                 $scope.$on('selectedCompany', function (event, args) {

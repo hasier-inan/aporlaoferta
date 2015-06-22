@@ -26,6 +26,8 @@
     <!--[if lte IE 9]>
     <link rel="stylesheet" href="resources/assets/css/ie9.css"/><![endif]-->
     <link rel="stylesheet" href="resources/assets/css/main_decorator.css"/>
+    <link rel="stylesheet" href="resources/assets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="resources/assets/css/main_animator.css"/>
     <script src="resources/assets/js/jquery.min.js"></script>
     <script src="resources/assets/js/jquery.scrolly.min.js"></script>
     <script src="resources/assets/js/skel.min.js"></script>
@@ -56,7 +58,7 @@
     <script src="resources/js/uploader/ngImageUploadDirective.js"></script>
     <link rel="stylesheet" href="resources/js/uploader/imageUpload.css"/>
 </head>
-<body id="top" data-ng-controller="APorLaOfertaController">
+<body id="top" data-ng-controller="APorLaOfertaController" flow-prevent-drop>
 
 <div ng-overhead-display="overheadDisplay"></div>
 

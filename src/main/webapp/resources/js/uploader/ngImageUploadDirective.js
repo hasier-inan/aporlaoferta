@@ -5,27 +5,33 @@ aporlaofertaApp
     .directive('ngImageUploader', function () {
         return {
             restrict: 'A',
-            scope:{
-                finalurl:'='
+            scope: {
+                finalUrl: '='
             },
             templateUrl: 'resources/js/uploader/imageUpload.html',
             link: function (scope, elem, attrs) {
             },
             controller: ['$scope', function ($scope) {
+                $scope.uploader = {};
                 $scope.filesIsUploaded = function (message) {
                     var responseResult = JSON.parse(message);
                     if (responseResult.code == 0) {
-                        $scope.finalurl= responseResult.description;
+                        $scope.finalUrl = responseResult.description;
                     }
                     else {
                         $scope.handleUploadError(responseResult);
                     }
                 };
-                $scope.handleUploadError=function(error){
-                       alert("REsponse result from server shows unexpected error");
+                $scope.handleUploadError = function (error) {
+                    alert("Response result from server shows unexpected error");
                 };
-                $scope.handleProcessError=function(){
-                  alert("handle error while uploading image");
+                $scope.$watch('finalUrl', function (newValue, oldValue) {
+                    if (newValue === "" || typeof newValue === 'undefined') {
+                        $scope.uploader.flow.cancel();
+                    }
+                });
+                $scope.handleProcessError = function () {
+                    alert("handle error while uploading image");
                 };
             }]
         }

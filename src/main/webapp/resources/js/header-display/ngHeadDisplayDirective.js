@@ -41,7 +41,7 @@ aporlaofertaApp
                     $scope.displayOfferSpecifications=false;
                 };
                 $scope.closeOverheadDisplay=function(){
-                    $scope.setDefaultVisibility();
+                    $scope.overheadVisible=false;
                 };
                 $scope.$on('offerSpecifications', function (event, args) {
                     $scope.offerSpecifications = args;
