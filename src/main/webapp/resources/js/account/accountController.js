@@ -14,5 +14,16 @@ accountControllerModule.factory('accountController', ['$rootScope','$http','requ
                     $rootScope.$broadcast('serverResponse', theResponse);
                 });
         };
+        createAccountService.updateAccount = function (theUser) {
+            requestManager.makePostCall(theUser, {}, configService.getEndpoint('update.account'))
+                .success(function (data, status, headers, config) {
+                    $rootScope.$broadcast('serverResponse', data);
+                }).error(function (data, status, headers, config) {
+                    var theResponse={};
+                    theResponse.description=data;
+                    theResponse.responseResult="error";
+                    $rootScope.$broadcast('serverResponse', theResponse);
+                });
+        };
         return createAccountService;
     }]);

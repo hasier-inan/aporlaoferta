@@ -1,7 +1,7 @@
 <div>
     <form class="centeredForm">
         <input type="text" id="createUserNickname" ng-model="theUser.userNickname" class="overheadField"
-               placeholder="Nickname"/>
+               placeholder="Nickname" ng-hide="disableNickname"/>
         <input type="password" id="createUserPassword" ng-model="theUser.userPassword" class="overheadField"
                placeholder="Contrase&ntilde;a"/>
         <input type="text" id="createUserEmail" ng-model="theUser.userEmail" class="overheadField"

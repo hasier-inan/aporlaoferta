@@ -13,6 +13,7 @@ aporlaofertaApp
             },
             controller: ['$scope', 'accountController', function ($scope, accountController) {
                 $scope.theUser = {};
+                $scope.disableNickname=false;
                 $scope.createAccount = function (theUser) {
                     accountController.createAccount(theUser);
                     $scope.theUser = {};

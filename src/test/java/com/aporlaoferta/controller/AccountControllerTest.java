@@ -18,6 +18,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
+import static org.springframework.util.StringUtils.isEmpty;
 
 /**
  * Created by hasiermetal on 29/01/15.
@@ -47,4 +48,20 @@ public class AccountControllerTest {
                 Matchers.is(ResultCode.DATABASE_RETURNED_EMPTY_OBJECT.getResponseResult()));
     }
 
+    @Test
+    public void testAccountDetailsReturnsUserWithNoPassword() throws Exception {
+        when(this.userManager.getUserNickNameFromSession()).thenReturn("f");
+        when(this.userManager.getUserFromNickname("f")).thenReturn(UserBuilderManager.aRegularUserWithNickname("f").build());
+        TheUser theUserResult = this.accountController.accountDetails();
+        Assert.assertEquals("Expected user details with empty password", theUserResult.getUserPassword(), "");
+    }
+
+    @Test
+    public void testEmptyUserIsReturnedIfUserNotLoggedIn() throws Exception {
+        when(this.userManager.getUserNickNameFromSession()).thenReturn(null);
+        TheUser theUserResult = this.accountController.accountDetails();
+        Assert.assertTrue("Expected user details to be empty", isEmpty(theUserResult.getUserNickname()));
+
+
+    }
 }

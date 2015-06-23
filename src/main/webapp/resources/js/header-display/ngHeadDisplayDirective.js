@@ -13,6 +13,7 @@ aporlaofertaApp
                 $scope.displayOfferCreation = false;
                 $scope.displayAccountLogin = false;
                 $scope.displayAccountCreation = false;
+                $scope.displayAccountUpdate = false;
                 $scope.displayOfferSpecifications = false;
                 $scope.displayResponseFromServer = false;
                 $scope.theResponse = {};
@@ -24,6 +25,11 @@ aporlaofertaApp
                 $scope.displaySignup = function () {
                     $scope.setDefaultVisibility();
                     $scope.displayAccountCreation = true;
+                    $scope.overheadVisible = true;
+                };
+                $scope.displayAccountUpdateForm = function () {
+                    $scope.setDefaultVisibility();
+                    $scope.displayAccountUpdate = true;
                     $scope.overheadVisible = true;
                 };
                 $scope.displayOfferCreate = function () {
@@ -46,6 +52,7 @@ aporlaofertaApp
                     $scope.displayOfferCreation = false;
                     $scope.displayAccountLogin = false;
                     $scope.displayAccountCreation = false;
+                    $scope.displayAccountUpdate = false;
                     $scope.displayOfferSpecifications = false;
                     $scope.displayResponseFromServer = false;
                 };

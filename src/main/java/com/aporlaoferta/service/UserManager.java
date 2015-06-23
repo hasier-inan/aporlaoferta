@@ -10,7 +10,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -87,6 +86,7 @@ public class UserManager {
         if (theUser != null) {
             theUser.setUserAvatar(theNewUser.getUserAvatar());
             theUser.setUserEmail(theNewUser.getUserEmail());
+            theUser.setUserPassword(theNewUser.getUserPassword());
             return saveUser(theUser);
         }
         return theUser;

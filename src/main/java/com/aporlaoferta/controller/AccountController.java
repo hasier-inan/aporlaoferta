@@ -58,7 +58,7 @@ public class AccountController {
                               @RequestParam(value = "logout", required = false) String logout) {
         ModelAndView model = new ModelAndView();
         if (error != null) {
-            model.addObject("msg", "Usuario / contraseña invalidos");
+            model.addObject("msg", "Los datos introducidos son invalidos");
         }
         if (logout != null) {
             model.addObject("msg", "Se ha cerrado la sesión");
@@ -91,11 +91,28 @@ public class AccountController {
         } else if (this.userManager.doesUserExist(userNickname)) {
             result.assignResultCode(ResultCode.USER_NAME_ALREADY_EXISTS);
         } else {
-            BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(11);
-            theUser.setUserPassword(bCryptPasswordEncoder.encode(theUser.getUserPassword()));
+            validatePassword(theUser);
             validateAndCreateUser(theUser, result, userNickname);
         }
         return result;
+    }
+
+    @RequestMapping(value = "/accountDetails", method = RequestMethod.POST)
+    @ResponseBody
+    public TheUser accountDetails() {
+        String userNickname = this.userManager.getUserNickNameFromSession();
+        if (isEmpty(userNickname)) {
+            return new TheUser();
+        } else {
+            TheUser theUser = this.userManager.getUserFromNickname(userNickname);
+            theUser.setUserPassword("");
+            return theUser;
+        }
+    }
+
+    private void validatePassword(TheUser theUser) {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(11);
+        theUser.setUserPassword(bCryptPasswordEncoder.encode(theUser.getUserPassword()));
     }
 
     @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
@@ -110,6 +127,7 @@ public class AccountController {
             result.assignResultCode(ResultCode.USER_NAME_DOES_NOT_EXIST);
         } else {
             try {
+                validatePassword(theNewUser);
                 this.offerValidatorHelper.validateUser(theNewUser);
                 TheUser nuUser = this.userManager.updateUser(theNewUser);
                 if (nuUser == null) {

@@ -7,6 +7,8 @@ configManager.service('configService', [function () {
     var GET_OFFER_ENDPOINT = "getOffer";
     var CREATE_OFFER_ENDPOINT = "createOffer";
     var CREATE_ACCOUNT_ENDPOINT = "createUser";
+    var UPDATE_ACCOUNT_ENDPOINT = "updateUser";
+    var GET_ACCOUNT_DETAILS_ENDPOINT = "accountDetails";
     var GET_COMPANIES_ENDPOINT = "companyList";
     var GET_OFFER_CATEGORIES_ENDPOINT = "getOfferCategories";
     var POSITIVE_FEEDBACK_ENDPOINT = "votePositive";
@@ -22,12 +24,14 @@ configManager.service('configService', [function () {
         'get.offer': GET_OFFER_ENDPOINT,
         'create.offer': CREATE_OFFER_ENDPOINT,
         'create.account': CREATE_ACCOUNT_ENDPOINT,
+        'update.account': UPDATE_ACCOUNT_ENDPOINT,
+        'get.account.details': GET_ACCOUNT_DETAILS_ENDPOINT,
         'get.companies': GET_COMPANIES_ENDPOINT,
         'get.offer.categories': GET_OFFER_CATEGORIES_ENDPOINT,
         'positive.feedback': POSITIVE_FEEDBACK_ENDPOINT,
         'negative.feedback': NEGATIVE_FEEDBACK_ENDPOINT,
-        'create.comment':CREATE_COMMENT_ENDPOINT,
-        'quote.comment':QUOTE_COMMENT_ENDPOINT
+        'create.comment': CREATE_COMMENT_ENDPOINT,
+        'quote.comment': QUOTE_COMMENT_ENDPOINT
     };
     return configService;
 }]);
