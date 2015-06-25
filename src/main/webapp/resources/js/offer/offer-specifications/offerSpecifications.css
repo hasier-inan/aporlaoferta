@@ -1,0 +1,175 @@
+div.offerSpecificationsContainer {
+    font-size: 0.8em;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+div.containerSplitter {
+    display: inline-block;
+    max-width: 48%;
+    margin: 0 .5% 0 .5%;
+    vertical-align: top;
+}
+
+div.offerSpecificationsTitle > h1 > a:hover,
+div.offerSpecificationsLink > a:hover,
+a.quoteAction:hover {
+    color: #D76060;
+    text-decoration: none;
+}
+
+div.offerSpecificationsLink > a {
+    text-decoration: none;
+}
+
+div.offerSpecificationsTitle > h1 {
+    /*font-size: 3vw;*/
+    font-size: 36px;
+    margin-bottom: 0;
+}
+
+div.offerSpecificationsBox {
+    display: inline-block;
+    /*border: solid 1px;*/
+    padding: .2em 1em .2em 1em;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+div.offerSpecificationsOriginalPrice {
+    text-decoration: line-through;
+}
+
+div.offerSpecificationsSubtitle div {
+    display: inline-block;
+    margin-top: .5em;
+}
+
+div.offerSpecificationsDescription {
+    display: block;
+    margin-top: 1em;
+
+}
+
+div.offerSpecificationsImage {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    margin-left: 2%;
+}
+
+div.offerSpecificationsImage > img {
+    display: block;
+    vertical-align: middle;
+    background-color: #fbfbfb;
+    color: #999999;
+    border: 2px solid #fff;
+    border-radius: 20px;
+    width: 100%;
+}
+
+div.offerSpecificationsFeedback {
+    display: inline-block;
+    width: 100%;
+    margin-top: -1.5em;
+}
+
+div.feedbackButtons {
+    text-align: center;
+    margin-top: -1.4em;
+}
+
+div.loginFeedbackMessage,
+div.feedbackButtons div {
+    display: inline-block;
+}
+
+div.feedbackButtons div > button.small {
+    display: inline-block;
+    margin: 0 1em 0 1em;
+    border-radius: 100%;
+    width: 3em;
+    height: 3em;
+}
+
+div.feedbackButtons div > button.small:hover {
+    background-color: #51B1EC;
+}
+
+div.feedbackButtons div > button.small::before {
+    position: absolute;
+    top: .1em;
+    right: .71em;
+}
+
+div.offerSpecificationsFeedbackTotal {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 80%;
+    height: 5em;
+    margin-left: 10%;
+    text-align: center;
+}
+
+h1.feedbackSumatory {
+    margin: 0;
+    /*font-size: 3vw;*/
+    font-size: 24px;
+}
+
+div.offerSpecificationsFeedbackSmall {
+    display: inline-block;
+    width: 90%;
+    border-top: 1px solid #fff;
+}
+
+div.offerSpecificationsFeedbackSmall > div {
+    display: inline-block;
+    width: 4em;
+}
+
+div#offerNegativeFeedback {
+    text-align: right;
+}
+
+div#offerPositiveFeedback {
+    text-align: left;
+}
+
+div.offerSpecificationsComments {
+    width: 96%;
+    margin-left: 2%;
+}
+
+div.offerSpecificationsComments > div.commentsHeadTitle {
+    text-decoration: underline;
+    margin-bottom: 1em;
+}
+
+div.offerSpecificationsComments > div.commentsHeadTitle {
+    font-style: italic;
+}
+
+div.commentsTheComment {
+    border: solid 1px #fff;
+    border-radius: 1em;
+    background-color: rgba(0, 0, 0, 0.3);
+    min-height: 3em;
+    padding: .5em 0 .5em 1em;
+}
+
+div.commentQuoteCommentContent {
+    width: 98%;
+}
+
+div.commentQuoteCommentContent > textarea {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+a.quoteAction {
+    color: #97d779;
+    text-decoration: underline;
+}
+div.commentQuoteButtons{
+    text-align: right;
+}

@@ -24,6 +24,7 @@ aporlaofertaApp
                 $scope.voteNegative = function (id) {
                     requestManager.makePostCall({}, {'offerId': id}, configService.getEndpoint('negative.feedback'))
                         .success(function (data, status, headers, config) {
+                            $rootScope.$broadcast('serverResponse', data);
                         }).error(function (data, status, headers, config) {
                             var theResponse = {};
                             theResponse.description = data;

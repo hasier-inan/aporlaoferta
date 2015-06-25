@@ -165,7 +165,8 @@ ul.top_header {
 ul.top_header > button.small,
 ul.top_header li > button.small,
 div.profileForm > button.small,
-div.thumbnailButtons > button.small {
+div.thumbnailButtons > button.small,
+div.commentQuoteButtons >button.small{
     height: 2em;
     line-height: 2em;
     display: inline-block;
@@ -174,7 +175,8 @@ div.thumbnailButtons > button.small {
 ul.top_header > button.mini,
 ul.top_header li > button.mini,
 div.profileForm > button.mini,
-div.thumbnailButtons > button.mini {
+div.thumbnailButtons > button.mini,
+div.commentQuoteButtons >button.mini{
     width: 3em;
     border-radius: 100%;
     margin: 0;
@@ -198,12 +200,14 @@ div.thumbnailButtons > button{
     ul.top_header li > button.small,
     div button.overheadButton.small,
     div.profileForm > button.small,
-    div.thumbnailButtons > button.small {
+    div.thumbnailButtons > button.small,
+    div.commentQuoteButtons >button.small{
         display: none;
     }
 
     ul.top_header > button.mini,
-    ul.top_header li > button.mini {
+    ul.top_header li > button.mini,
+    div.commentQuoteButtons >button.mini{
         display: block;
     }
 

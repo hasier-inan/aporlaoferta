@@ -11,8 +11,20 @@ aporlaofertaApp
                 theComments: '=',
                 theOffer: '='
             },
-            controller: ['$rootScope','$scope', '$timeout', 'requestManager', 'configService', function ($rootScope,$scope, $timeout, requestManager, configService) {
-                $scope.writeComment=function(comment, id){
+            controller: ['$rootScope', '$scope', '$timeout', 'requestManager', 'configService', function ($rootScope, $scope, $timeout, requestManager, configService) {
+                $scope.quoteActionEnable = -1;
+                $scope.quoteAction = function (id) {
+                    if ($scope.quoteActionEnable == id) {
+                        $scope.quoteActionEnable = -1;
+                    }
+                    else {
+                        $scope.quoteActionEnable = id;
+                    }
+                }
+                $scope.isQuoteActionEnabled = function (id) {
+                    return $scope.quoteActionEnable == id;
+                }
+                $scope.writeComment = function (comment, id) {
                     requestManager.makePostCall(comment, {'offer': id}, configService.getEndpoint('create.comment'))
                         .success(function (data, status, headers, config) {
                             $rootScope.$broadcast('serverResponse', data);
@@ -23,10 +35,10 @@ aporlaofertaApp
                             $rootScope.$broadcast('serverResponse', theResponse);
                         });
                 };
-                $scope.quoteComment=function(comment, id){
+                $scope.quoteComment = function (comment, id) {
                     requestManager.makePostCall(comment, {'quotedComment': id}, configService.getEndpoint('quote.comment'))
                         .success(function (data, status, headers, config) {
-
+                            $rootScope.$broadcast('serverResponse', data);
                         }).error(function (data, status, headers, config) {
                             var theResponse = {};
                             theResponse.description = data;

@@ -5,13 +5,10 @@ import com.aporlaoferta.model.TheResponse;
 import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.service.OfferManager;
 import com.aporlaoferta.service.UserManager;
-import com.aporlaoferta.utils.OfferValidatorHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,9 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class FeedbackController {
 
     private final Logger LOG = LoggerFactory.getLogger(FeedbackController.class);
-
-    @Autowired
-    private OfferValidatorHelper offerValidatorHelper;
 
     @Autowired
     private UserManager userManager;

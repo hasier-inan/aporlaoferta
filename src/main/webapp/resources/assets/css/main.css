@@ -4082,6 +4082,7 @@ body.is-loading #header .image img {
     padding: 4.5em 0 2.5em 0;
     color: #b0b0b0;
     text-align: center;
+    background-image: url("images/background_head5.png"), url("images/pattern-size3.svg");
 }
 
 #footer input, #footer select, #footer textarea {

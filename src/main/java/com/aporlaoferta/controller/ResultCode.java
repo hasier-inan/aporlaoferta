@@ -32,7 +32,7 @@ public enum ResultCode {
     FEEDBACK_ALREADY_PERFORMED_ERROR(42, ResponseResult.VALIDATION_ERROR,
             "Feedback process was already performed by user and given offer", "Esta oferta ya ha sido valorada previamente"),
     FEEDBACK_FROM_OWNER_PERFORMED_ERROR(43, ResponseResult.VALIDATION_ERROR,
-            "Feedback process can't be performed by offer owner", "El propietario de la oferta no puede valorarse a sí mismo"),
+            "Feedback process can't be performed by offer owner", "El creador de la oferta no puede valorarse a sí mismo"),
     IMAGE_UPLOAD_ERROR(56, ResponseResult.INVALID_DATA_PROVIDED,
             "Could not perform image upload process", "No se ha podido cargar la imagen");
 
