@@ -6,12 +6,11 @@
     <div class="commentsHeadOwner">
         {{theComment.commentOwner.userNickname}} - {{theComment.commentCreationDate | date:'MM/dd/yyyy @ h:mma'}}
     </div>
-    <div>
-        <div ng-show="theComment.commentsQuotedComment">
-            show quoted comment for #{{theComment.commentsQuotedComment}}
-        </div>
-    </div>
     <div class="commentsTheComment">
+        <div ng-if="theComment.commentsQuotedComment">
+            <div ng-offer-comments-quotes="offerCommentsQuotes" the-comments="theComments"
+                 quoted-comment="theComment.commentsQuotedComment"></div>
+        </div>
         {{theComment.commentText}}
         <sec:authorize ifAllGranted="ROLE_USER">
             <div class="commentQuoteCommentAction">
@@ -39,11 +38,17 @@
     <hr/>
     <sec:authorize ifAllGranted="ROLE_USER">
 
-        <div>
+        <div class="commentContent">
             <textarea ng-model="comment.commentText"
                       class="overheadField ng-pristine ng-valid" rows="6">
             </textarea>
-            <button ng-click="writeComment(comment, theOffer)">add comment</button>
+            <div class="commentQuoteButtons">
+                <button class="button small icon fa-pencil-square whiteButton green-background"
+                        ng-click="writeComment(comment, theOffer)">a&ntilde;adir comentario
+                </button>
+                <button class="button mini icon fa-pencil-square whiteButton inline green-background"
+                        ng-click="writeComment(comment, theOffer)"></button>
+            </div>
         </div>
     </sec:authorize>
     <sec:authorize ifNotGranted="ROLE_USER">

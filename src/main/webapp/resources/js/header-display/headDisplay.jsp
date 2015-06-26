@@ -27,7 +27,7 @@
         </li>
     </ul>
 </div>
-<div id="overheadContainer" class="overhead_container " ng-show="overheadVisible"></div>
+<div id="overheadContainer" class="overhead_container " ng-show="overheadVisible" ng-click="closeOverheadDisplay()"></div>
 <ul class="actions top_header">
     <sec:authorize ifNotGranted="ROLE_USER">
         <li>

@@ -157,13 +157,17 @@ div.commentsTheComment {
     min-height: 3em;
     padding: .5em 0 .5em 1em;
 }
+div.commentsTheComment.quotedComment{
+    margin-right: 1em;
+}
 
 div.commentQuoteCommentContent {
     width: 98%;
 }
 
-div.commentQuoteCommentContent > textarea {
-    background-color: rgba(0, 0, 0, 0.2);
+div.commentQuoteCommentContent > textarea,
+div.commentContent > textarea {
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 a.quoteAction {
@@ -171,5 +175,6 @@ a.quoteAction {
     text-decoration: underline;
 }
 div.commentQuoteButtons{
+    margin-top: .5em;
     text-align: right;
 }
