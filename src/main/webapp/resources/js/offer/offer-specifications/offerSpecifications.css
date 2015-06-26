@@ -169,6 +169,9 @@ div.commentQuoteCommentContent > textarea,
 div.commentContent > textarea {
     background-color: rgba(0, 0, 0, 0.1);
 }
+div.quotedContent{
+    font-style: italic;
+}
 
 a.quoteAction {
     color: #97d779;

@@ -315,6 +315,15 @@ input[type="checkbox"]:checked + label.overheadLabel:before, input[type="radio"]
 ::-moz-selection {
     background: transparent;
 }
+textarea::selection,
+input::selection {
+    background: #D76060;
+}
+
+textarea::-moz-selection,
+input::-moz-selection{
+    background: #D76060;
+}
 
 body {
     overflow-x: hidden;

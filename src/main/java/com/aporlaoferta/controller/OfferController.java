@@ -203,6 +203,8 @@ public class OfferController {
         TheResponse result = new TheResponse();
         try {
             this.offerValidatorHelper.validateOffer(thatOffer);
+            thatOffer.setOfferPositiveVote(0L);
+            thatOffer.setOfferNegativeVote(0L);
             saveOfferAndUpdateResult(thatOffer, result);
         } catch (ValidationException e) {
             String resultDescription = ResultCode.CREATE_OFFER_VALIDATION_ERROR.getResultDescription();

@@ -11,8 +11,14 @@ aporlaofertaApp
                 theComments: '=',
                 theOffer: '='
             },
-            controller: ['$rootScope', '$scope', '$timeout', 'requestManager', 'configService', function ($rootScope, $scope, $timeout, requestManager, configService) {
+            controller: ['$filter', '$rootScope', '$scope', '$timeout', 'requestManager', 'configService', function ($filter, $rootScope, $scope, $timeout, requestManager, configService) {
                 $scope.quoteActionEnable = -1;
+
+                $scope.getQuotedComment = function (id, comments) {
+                    return $filter('filter')(comments, {id:id})[0];
+                }
+
+
                 $scope.quoteAction = function (id) {
                     if ($scope.quoteActionEnable == id) {
                         $scope.quoteActionEnable = -1;

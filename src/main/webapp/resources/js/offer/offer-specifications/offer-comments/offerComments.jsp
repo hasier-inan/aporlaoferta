@@ -7,9 +7,19 @@
         {{theComment.commentOwner.userNickname}} - {{theComment.commentCreationDate | date:'MM/dd/yyyy @ h:mma'}}
     </div>
     <div class="commentsTheComment">
-        <div ng-if="theComment.commentsQuotedComment">
-            <div ng-offer-comments-quotes="offerCommentsQuotes" the-comments="theComments"
-                 quoted-comment="theComment.commentsQuotedComment"></div>
+        <div ng-if="theComment.commentsQuotedComment" class="quotedContent">
+            <div style="display: none">
+                {{quotedComment=getQuotedComment(theComment.commentsQuotedComment, theComments)}}
+                </div>
+            <div class="commentsHeadOwner">
+                {{quotedComment.commentOwner.userNickname}} - {{quotedComment.commentCreationDate | date:'MM/dd/yyyy @ h:mma'}}
+            </div>
+            <div class="commentsTheComment quotedComment">
+                {{quotedComment.commentText}}
+
+            </div>
+            <!--<div ng-offer-comments-quotes="offerCommentsQuotes" the-comments="theComments"
+                 quoted-comment="theComment.commentsQuotedComment"></div>-->
         </div>
         {{theComment.commentText}}
         <sec:authorize ifAllGranted="ROLE_USER">
