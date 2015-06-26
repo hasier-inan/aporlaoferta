@@ -2771,8 +2771,6 @@ header.major:after {
 
 .spotlight .image {
     width: 30%;
-    border-radius: 100%;
-    margin: 0 3em 0 0;
     display: block;
 }
 
@@ -2798,11 +2796,12 @@ header.major:after {
 }
 
 .spotlight:nth-child(2n) .image {
-    margin: 0 0 0 3em;
+
 }
 
 .spotlight:nth-child(2n) .content {
     text-align: right;
+    margin: 0 3em 0 0;
 }
 
 @media screen and (max-width: 736px) and (orientation: landscape) {
@@ -2941,7 +2940,7 @@ table.alt tbody tr td {
 .wrapper > .inner {
     margin-left: auto;
     margin-right: auto;
-    width: 50em;
+    width: 60%
 }
 
 .wrapper > .inner.alt > * {
@@ -3154,6 +3153,7 @@ table.alt tbody tr td {
 
 .wrapper.style2 {
     background-color: #fbfbfb;
+    background-image: url("images/background_list_20_3.png"), url("images/pattern-size3.svg");
     color: #999999;
 }
 

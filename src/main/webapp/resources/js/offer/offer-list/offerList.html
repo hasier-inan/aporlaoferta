@@ -37,9 +37,11 @@
         <section ng-repeat="offer in offerList track by offer.id" class="spotlight">
             <div class="offerImageAndFeedback">
                 <div class="image offerImage"><img src="resources/images/pic01.jpg" alt=""/></div>
-                <div class="offerListFeedback feedbackSumatory">
-                    <h1 class="feedbackSumatory ng-binding">{{offer.offerPositiveVote - offer.offerNegativeVote |
-                        number:0}}</h1>
+                <div class="centeredForm" >
+                    <div class="offerListFeedback feedbackSumatory">
+                        <h1 class="feedbackSumatory ng-binding">{{offer.offerPositiveVote - offer.offerNegativeVote |
+                            number:0}}</h1>
+                    </div>
                 </div>
             </div>
 

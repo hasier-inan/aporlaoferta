@@ -247,23 +247,45 @@ div.offerCompanyInTitle{
 }
 
 .offerDescription{
-    text-align: justify;
+    /*text-align: justify;*/
 }
 .offerImageAndFeedback{
     width: 30%;
     margin: 0 3em 0 0;
-
 }
+
+@media screen and (max-width: 736px) and (orientation: landscape) {
+    .offerImageAndFeedback {
+        margin: 0 2em 0 0;
+    }
+}
+
+@media screen and (max-width: 736px) and (orientation: portrait) {
+    .offerImageAndFeedback {
+        width: 100%;
+        max-width: 60%;
+        margin: 0 0 2em 0 !important;
+    }
+    .spotlight .image {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
 .image.offerImage{
     width: 100%;
+    display: inline;
 }
 
 .feedbackSumatory.offerListFeedback {
+    display: inline-block;
     width: 6em;
     background-color: rgba(0, 0, 0, .2);
     text-align: center;
-    position: absolute;
     font-size: 1em;
+}
+div.content>h3{
+    margin-top: 0;
 }
 
 /*/offerlist*/
@@ -359,5 +381,4 @@ input::-moz-selection {
 
 body {
     overflow-x: hidden;
-
 }
