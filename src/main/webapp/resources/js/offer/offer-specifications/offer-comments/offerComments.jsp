@@ -2,7 +2,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <div class="commentsHeadTitle">comentarios:</div>
-<div ng-repeat="theComment in theComments track by theComment.id">
+<div ng-repeat="theComment in theComments track by theComment.id" class="commentBlock">
     <div class="commentsHeadOwner">
         {{theComment.commentOwner.userNickname}} - {{theComment.commentCreationDate | date:'MM/dd/yyyy @ h:mma'}}
     </div>

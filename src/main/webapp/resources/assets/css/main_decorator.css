@@ -32,17 +32,17 @@ div.overhead_subcontainer {
     background-position: top left, center center;
     background-attachment: fixed, fixed;
     background-size: auto, cover;
-    overflow-y:auto;
+    overflow-y: auto;
     opacity: 1;
     -webkit-opacity: 1;
     -moz-opacity: 1;
 }
 
-div.overhead_subcontainer.userRelated{
+div.overhead_subcontainer.userRelated {
     background-image: url("images/background_usr5.png"), url("images/pattern-size1.svg");
 }
 
-div.overhead_subcontainer.offerRelated{
+div.overhead_subcontainer.offerRelated {
     background-image: url("images/background_offer5.png"), url("images/pattern-size1.svg");
 }
 
@@ -108,7 +108,7 @@ textarea#createOfferDescription:focus {
 button.close_button {
     color: #ffffff !important;
     position: absolute;
-    top: 0;
+    top: 1em;
     right: 0;
     margin: -2.5em 1em 0 0 !important;
 }
@@ -142,20 +142,19 @@ input.overheadField::-moz-selection {
 /*/overhead*/
 
 /*top_header*/
-div#overheadSubContainer ul.top_header {
-    left: 0;
-    margin-top: 2em;
-}
 
 ul#overheadSubContainerContent {
+    top: 0;
+    left: 0;
     position: relative !important;
+    margin-top: 2em;
 }
 
 button.whiteButton {
     color: #ffffff !important;
 }
 
-ul.top_header {
+ul.actions.top_header {
     position: absolute;
     top: 1em;
     left: 1em;
@@ -166,7 +165,7 @@ ul.top_header > button.small,
 ul.top_header li > button.small,
 div.profileForm > button.small,
 div.thumbnailButtons > button.small,
-div.commentQuoteButtons >button.small{
+div.commentQuoteButtons > button.small {
     height: 2em;
     line-height: 2em;
     display: inline-block;
@@ -176,7 +175,7 @@ ul.top_header > button.mini,
 ul.top_header li > button.mini,
 div.profileForm > button.mini,
 div.thumbnailButtons > button.mini,
-div.commentQuoteButtons >button.mini{
+div.commentQuoteButtons > button.mini {
     width: 3em;
     border-radius: 100%;
     margin: 0;
@@ -184,11 +183,11 @@ div.commentQuoteButtons >button.mini{
     display: none;
 }
 
-button.right-aligned:before{
+button.right-aligned:before {
     margin-right: 0.7em !important;
 }
 
-div.thumbnailButtons > button{
+div.thumbnailButtons > button {
     -moz-transition: 0s;
     -webkit-transition: 0s;
     -ms-transition: 0s;
@@ -201,13 +200,13 @@ div.thumbnailButtons > button{
     div button.overheadButton.small,
     div.profileForm > button.small,
     div.thumbnailButtons > button.small,
-    div.commentQuoteButtons >button.small{
+    div.commentQuoteButtons > button.small {
         display: none;
     }
 
     ul.top_header > button.mini,
     ul.top_header li > button.mini,
-    div.commentQuoteButtons >button.mini{
+    div.commentQuoteButtons > button.mini {
         display: block;
     }
 
@@ -239,14 +238,45 @@ div.profileForm {
 
 /*/top_header*/
 
+/**offerlist*/
+
+div.offerCompanyInTitle{
+    display: inline-block;
+    font-size: .5em;
+    margin-left: .75em;
+}
+
+.offerDescription{
+    text-align: justify;
+}
+.offerImageAndFeedback{
+    width: 30%;
+    margin: 0 3em 0 0;
+
+}
+.image.offerImage{
+    width: 100%;
+}
+
+.feedbackSumatory.offerListFeedback {
+    width: 6em;
+    background-color: rgba(0, 0, 0, .2);
+    text-align: center;
+    position: absolute;
+    font-size: 1em;
+}
+
+/*/offerlist*/
+
 /*
 server response
 */
-div.responseDescription{
-    color:#fff;
+div.responseDescription {
+    color: #fff;
     font-size: 1em;
     text-align: center;
 }
+
 /*
 /server response
 */
@@ -290,7 +320,7 @@ input[type="checkbox"]:checked + label.overheadLabel:before, input[type="radio"]
     color: #51B1EC;
 }
 
-.mainLogo{
+.mainLogo {
     background: url("images/logoright200.png"), url("images/pattern-size1.svg") center;
     background-size: 90%;
     width: 2em;
@@ -299,7 +329,8 @@ input[type="checkbox"]:checked + label.overheadLabel:before, input[type="radio"]
     position: absolute;
     display: inline-block;
 }
-@media screen and (max-width: 980px) and (orientation: portrait){
+
+@media screen and (max-width: 980px) and (orientation: portrait) {
     .mainLogo {
         background-size: 80%;
     }
@@ -315,13 +346,14 @@ input[type="checkbox"]:checked + label.overheadLabel:before, input[type="radio"]
 ::-moz-selection {
     background: transparent;
 }
+
 textarea::selection,
 input::selection {
     background: #D76060;
 }
 
 textarea::-moz-selection,
-input::-moz-selection{
+input::-moz-selection {
     background: #D76060;
 }
 

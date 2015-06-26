@@ -143,7 +143,6 @@ div.offerSpecificationsComments {
 
 div.offerSpecificationsComments > div.commentsHeadTitle {
     text-decoration: underline;
-    margin-bottom: 1em;
 }
 
 div.offerSpecificationsComments > div.commentsHeadTitle {
@@ -157,7 +156,8 @@ div.commentsTheComment {
     min-height: 3em;
     padding: .5em 0 .5em 1em;
 }
-div.commentsTheComment.quotedComment{
+
+div.commentsTheComment.quotedComment {
     margin-right: 1em;
 }
 
@@ -169,15 +169,27 @@ div.commentQuoteCommentContent > textarea,
 div.commentContent > textarea {
     background-color: rgba(0, 0, 0, 0.1);
 }
-div.quotedContent{
+
+div.quotedContent {
     font-style: italic;
+}
+
+div.commentBlock {
+    margin-top: 1em;
+}
+
+div.quotedContent div.commentsHeadOwner {
+    font-size: .8em;
+    text-align: right;
+    margin-right: 2em;
 }
 
 a.quoteAction {
     color: #97d779;
     text-decoration: underline;
 }
-div.commentQuoteButtons{
+
+div.commentQuoteButtons {
     margin-top: .5em;
     text-align: right;
 }

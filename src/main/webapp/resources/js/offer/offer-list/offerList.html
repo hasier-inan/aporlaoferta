@@ -35,12 +35,20 @@
 <section id="promotion_list" class="wrapper style2">
     <div class="inner alt">
         <section ng-repeat="offer in offerList track by offer.id" class="spotlight">
-            <div class="image"><img src="resources/images/pic01.jpg" alt=""/></div>
-            <div class="content">
-                <h3>{{offer.offerTitle}} - {{offer.finalPrice}}eur [+{{offer.offerPositiveVote}} |
-                    +{{offer.offerNegativeVote}}]</h3>
+            <div class="offerImageAndFeedback">
+                <div class="image offerImage"><img src="resources/images/pic01.jpg" alt=""/></div>
+                <div class="offerListFeedback feedbackSumatory">
+                    <h1 class="feedbackSumatory ng-binding">{{offer.offerPositiveVote - offer.offerNegativeVote |
+                        number:0}}</h1>
+                </div>
+            </div>
 
-                <p>{{offer.offerDescription}}</p>
+            <div class="content">
+                <h3>{{offer.offerTitle}} - {{offer.finalPrice}}€
+                    <div class="offerCompanyInTitle">{{offer.offerCompany.companyName}}</div>
+                </h3>
+
+                <p class="offerDescription">{{offer.offerDescription}}</p>
                 <a href="http://{{offer.offerLink}}">obtener oferta</a>
                 <button ng-click="showSpecifications(offer.id)">m&aacute;s detalle</button>
             </div>

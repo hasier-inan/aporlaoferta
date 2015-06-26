@@ -60,7 +60,7 @@
                     <div class="offerCreatedDate">el {{offer.offerCreatedDate | date:'MM/dd/yyyy @h:mma'}}
                     </div>
                 </div>
-                <div class="offerSpecificationsDescription">
+                <div class="offerSpecificationsDescription offerDescription">
                     {{offer.offerDescription}}
                 </div>
                 <div class="offerSpecificationsLink">
