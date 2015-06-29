@@ -6,22 +6,29 @@
     <div class="commentsHeadOwner">
         {{theComment.commentOwner.userNickname}} - {{theComment.commentCreationDate | date:'MM/dd/yyyy @ h:mma'}}
     </div>
+    <div class="theCommentAvatar commentAvatar" ng-if="theComment.commentOwner.userAvatar">
+        <img ng-src="{{theComment.commentOwner.userAvatar}}"/>
+    </div>
     <div class="commentsTheComment">
         <div ng-if="theComment.commentsQuotedComment" class="quotedContent">
             <div style="display: none">
                 {{quotedComment=getQuotedComment(theComment.commentsQuotedComment, theComments)}}
-                </div>
+            </div>
             <div class="commentsHeadOwner">
-                {{quotedComment.commentOwner.userNickname}} - {{quotedComment.commentCreationDate | date:'MM/dd/yyyy @ h:mma'}}
+                {{quotedComment.commentOwner.userNickname}} - {{quotedComment.commentCreationDate | date:'MM/dd/yyyy @
+                h:mma'}}
+            </div>
+            <div class="quotedCommentAvatar commentAvatar" ng-if="quotedComment.commentOwner.userAvatar">
+                <img ng-src="{{quotedComment.commentOwner.userAvatar}}"/>
             </div>
             <div class="commentsTheComment quotedComment">
-                {{quotedComment.commentText}}
+                <div class="commentText">{{quotedComment.commentText}}</div>
 
             </div>
             <!--<div ng-offer-comments-quotes="offerCommentsQuotes" the-comments="theComments"
                  quoted-comment="theComment.commentsQuotedComment"></div>-->
         </div>
-        {{theComment.commentText}}
+        <div class="commentText">{{theComment.commentText}}</div>
         <sec:authorize ifAllGranted="ROLE_USER">
             <div class="commentQuoteCommentAction">
                 <a href="#" class="quoteAction" ng-click="quoteAction(theComment.id)">quote:</a>
@@ -52,6 +59,7 @@
             <textarea ng-model="comment.commentText"
                       class="overheadField ng-pristine ng-valid" rows="6">
             </textarea>
+
             <div class="commentQuoteButtons">
                 <button class="button small icon fa-pencil-square whiteButton green-background"
                         ng-click="writeComment(comment, theOffer)">a&ntilde;adir comentario

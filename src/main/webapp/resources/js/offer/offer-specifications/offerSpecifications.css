@@ -150,15 +150,35 @@ div.offerSpecificationsComments > div.commentsHeadTitle {
 }
 
 div.commentsTheComment {
-    border: solid 1px #fff;
-    border-radius: 1em;
+    /*border: solid 1px #fff;
+    border-radius: 1em;*/
     background-color: rgba(0, 0, 0, 0.3);
     min-height: 3em;
     padding: .5em 0 .5em 1em;
+    margin-left: 3em;
+}
+
+div.theCommentAvatar {
+    width: 3em;
+    position: absolute;
+}
+
+div.quotedCommentAvatar {
+    width: 2em;
+    position: absolute;
+}
+
+div.commentAvatar > img {
+    width: 100%;
+}
+
+div.commentText {
+    margin-top: .5em;
 }
 
 div.commentsTheComment.quotedComment {
     margin-right: 1em;
+    margin-left: 2em;
 }
 
 div.commentQuoteCommentContent {
@@ -180,8 +200,7 @@ div.commentBlock {
 
 div.quotedContent div.commentsHeadOwner {
     font-size: .8em;
-    text-align: right;
-    margin-right: 2em;
+    margin-left: 1em;
 }
 
 a.quoteAction {
