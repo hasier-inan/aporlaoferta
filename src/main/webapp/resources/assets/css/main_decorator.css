@@ -240,16 +240,17 @@ div.profileForm {
 
 /**offerlist*/
 
-div.offerCompanyInTitle{
+div.offerCompanyInTitle {
     display: inline-block;
     font-size: .5em;
     margin-left: .75em;
 }
 
-.offerDescription{
+.offerDescription {
     /*text-align: justify;*/
 }
-.offerImageAndFeedback{
+
+.offerImageAndFeedback {
     width: 30%;
     margin: 0 3em 0 0;
 }
@@ -266,13 +267,14 @@ div.offerCompanyInTitle{
         max-width: 60%;
         margin: 0 0 2em 0 !important;
     }
+
     .spotlight .image {
         width: 100%;
         max-width: 100%;
     }
 }
 
-.image.offerImage{
+.image.offerImage {
     width: 100%;
     display: inline;
 }
@@ -284,7 +286,8 @@ div.offerCompanyInTitle{
     text-align: center;
     font-size: 1em;
 }
-div.content>h3{
+
+div.content > h3 {
     margin-top: 0;
 }
 
@@ -312,8 +315,31 @@ div.responseDescription {
     background-color: #97d779;
 }
 
+.get-offer {
+    background-color: #fff;
+}
+
+.get-offer:hover {
+    color: #d70000 !important;
+    background-color: #d0e4f8;
+    text-decoration: none;
+}
+
+.moreDetailButton {
+    color: #fff !important;
+    background-color: #86c9ec !important;
+}
+
+.moreDetailButton:hover {
+    background-color: #6dbcec !important;
+}
+
 .orange-background {
     background-color: #d7b554;
+}
+
+.moreDetailButtons {
+    background-color: #7aae76;
 }
 
 #header .button.hot-background:hover {

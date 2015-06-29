@@ -15,7 +15,7 @@ aporlaofertaApp
                 $scope.quoteActionEnable = -1;
 
                 $scope.getQuotedComment = function (id, comments) {
-                    return $filter('filter')(comments, {id:id})[0];
+                    return $filter('filter')(comments, {id: id})[0];
                 }
 
 
@@ -34,22 +34,26 @@ aporlaofertaApp
                     requestManager.makePostCall(comment, {'offer': id}, configService.getEndpoint('create.comment'))
                         .success(function (data, status, headers, config) {
                             $rootScope.$broadcast('serverResponse', data);
+                            $scope.comment.commentText = "";
                         }).error(function (data, status, headers, config) {
                             var theResponse = {};
                             theResponse.description = data;
                             theResponse.responseResult = "error";
                             $rootScope.$broadcast('serverResponse', theResponse);
+                            $scope.comment.commentText = "";
                         });
                 };
                 $scope.quoteComment = function (comment, id) {
                     requestManager.makePostCall(comment, {'quotedComment': id}, configService.getEndpoint('quote.comment'))
                         .success(function (data, status, headers, config) {
                             $rootScope.$broadcast('serverResponse', data);
+                            $scope.qComment.commentText = "";
                         }).error(function (data, status, headers, config) {
                             var theResponse = {};
                             theResponse.description = data;
                             theResponse.responseResult = "error";
                             $rootScope.$broadcast('serverResponse', theResponse);
+                            $scope.qComment.commentText = "";
                         });
                 };
             }]

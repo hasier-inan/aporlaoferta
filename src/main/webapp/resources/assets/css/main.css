@@ -1980,7 +1980,8 @@ button:disabled,
     input[type="button"],
     button,
     .button {
-        padding: 0;
+        width: 100%;
+        margin-bottom: .2em;
     }
 
 }
@@ -3162,8 +3163,7 @@ table.alt tbody tr td {
 .wrapper.style2 input[type="button"],
 .wrapper.style2 button,
 .wrapper.style2 .button {
-    background-color: transparent;
-    color: #828282 !important;
+
     box-shadow: inset 0 0 0 2px #e6e6e6;
 }
 
@@ -3932,7 +3932,7 @@ table.alt tbody tr td {
         display: block;
         width: 100%;
         text-align: center;
-        margin: 0 2em 2em 0;
+        margin: 0 0 2em 0;
     }
 
     #header .image {

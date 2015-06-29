@@ -37,7 +37,7 @@
         <section ng-repeat="offer in offerList track by offer.id" class="spotlight">
             <div class="offerImageAndFeedback">
                 <div class="image offerImage"><img src="resources/images/pic01.jpg" alt=""/></div>
-                <div class="centeredForm" >
+                <div class="centeredForm">
                     <div class="offerListFeedback feedbackSumatory">
                         <h1 class="feedbackSumatory ng-binding">{{offer.offerPositiveVote - offer.offerNegativeVote |
                             number:0}}</h1>
@@ -51,8 +51,13 @@
                 </h3>
 
                 <p class="offerDescription">{{offer.offerDescription}}</p>
-                <a href="http://{{offer.offerLink}}">obtener oferta</a>
-                <button ng-click="showSpecifications(offer.id)">m&aacute;s detalle</button>
+
+                <div>
+                    <a class="button get-offer hot-background icon fa-fire whiteButton" href="http://{{offer.offerLink}}">obtener oferta</a>
+                    <button class="button icon fa-sign-in moreDetailButton" ng-click="showSpecifications(offer.id)">m&aacute;s
+                        detalle
+                    </button>
+                </div>
             </div>
         </section>
     </div>
