@@ -293,6 +293,32 @@ div.content > h3 {
 
 /*/offerlist*/
 
+/*offer filter*/
+section#contentFilter {
+    padding-bottom: 0;
+    padding-top: 1em;
+    background-color: rgba(0, 0, 0, .4);;
+}
+
+#filter-text-finder {
+    display: inline-block;
+}
+
+.inline-block {
+    display: inline-block !important;
+}
+
+.basic-margin {
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+input.filter-input {
+    width: 20em;
+}
+
+/*/offer filter*/
+
 /*
 server response
 */

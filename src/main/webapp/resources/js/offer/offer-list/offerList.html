@@ -23,14 +23,7 @@
 </header>
 
 <!--TODO: Separete into another view and directive and controller-->
-<section id="contentFilter" class="wrapper style2 special">
-    <header class="major">
-        <h2>Aqu&iacute; se añadir&aacute;n los filtros</h2>
-    </header>
-    <div class="inner">
-
-    </div>
-</section>
+<section id="contentFilter" class="wrapper style2 special" ng-offer-filter="offerFilter"></section>
 
 <section id="promotion_list" class="wrapper style2">
     <div class="inner alt">
@@ -53,7 +46,8 @@
                 <p class="offerDescription">{{offer.offerDescription}}</p>
 
                 <div>
-                    <a class="button get-offer hot-background icon fa-fire whiteButton" href="http://{{offer.offerLink}}">obtener oferta</a>
+                    <a class="button get-offer hot-background icon fa-fire whiteButton"
+                       href="http://{{offer.offerLink}}">obtener oferta</a>
                     <button class="button icon fa-sign-in moreDetailButton" ng-click="showSpecifications(offer.id)">m&aacute;s
                         detalle
                     </button>
