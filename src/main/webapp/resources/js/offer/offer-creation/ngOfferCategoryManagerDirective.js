@@ -10,7 +10,7 @@ aporlaofertaApp
                 reset: '=',
                 selectedcategory:'='
             },
-            controller: ['$rootScope', '$scope', 'requestManager', 'configService', 'offerCreationService', function ($rootScope, $scope, requestManager, configService, offerCreationService) {
+            controller: ['$rootScope', '$scope', 'requestManager', 'configService', function ($rootScope, $scope, requestManager, configService) {
                 $scope.offerCategories = {};
                 $scope.populateAllCategories = function () {
                     requestManager.makePostCall({}, {}, configService.getEndpoint('get.offer.categories'))
@@ -26,7 +26,6 @@ aporlaofertaApp
                 $scope.onCategoryChange = function (category) {
                     //todo: use selected category in scope {...} to get value into other/parent scope...?
                     $scope.selectedcategory=category;
-                    offerCreationService.setSelectedCategory(category);
                 }
                 $scope.populateAllCategories();
                 $scope.$watch('reset', function () {

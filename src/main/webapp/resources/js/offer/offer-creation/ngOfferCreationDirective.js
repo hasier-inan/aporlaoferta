@@ -9,10 +9,9 @@ aporlaofertaApp
             scope: {
                 overheadDisplay: '='
             },
-            controller: ['$rootScope', '$scope', 'requestManager', 'configService', 'offerCreationService', function ($rootScope, $scope, requestManager, configService, offerCreationService) {
+            controller: ['$rootScope', '$scope', 'requestManager', 'configService', function ($rootScope, $scope, requestManager, configService) {
                 $scope.offer = {};
                 $scope.resetCategory = true;
-                $scope.selectedcategory="puta";
                 $scope.createOffer = function () {
                     requestManager.makePostCall($scope.offer, {}, configService.getEndpoint('create.offer'))
                         .success(function (data, status, headers, config) {
@@ -28,13 +27,6 @@ aporlaofertaApp
 
                 };
                 $scope.bigDecimalsOnly = /^\-?\d+((\.|\,)\d+)?$/;
-                $scope.$on('selectedCompany', function (event, args) {
-                    var selectedCompany = args.company;
-                    $scope.offer.offerCompany = selectedCompany;
-                });
-                $scope.$on('selectedCategory', function (event, args) {
-                    $scope.offer.offerCategory = args.category;
-                });
                 $scope.resetValues = function () {
                     $scope.offer = {};
                     $scope.brandNewCompany = false;

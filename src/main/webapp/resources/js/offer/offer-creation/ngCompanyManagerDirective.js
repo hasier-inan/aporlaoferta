@@ -7,9 +7,10 @@ aporlaofertaApp
             restrict: 'A',
             templateUrl: 'resources/js/offer/offer-creation/companyManagement.html',
             scope: {
-                reset: '='
+                reset: '=',
+                selectedcompany:'='
             },
-            controller: ['$rootScope', '$scope', 'requestManager', 'configService', 'offerCreationService', function ($rootScope, $scope, requestManager, configService, offerCreationService) {
+            controller: ['$rootScope', '$scope', 'requestManager', 'configService', function ($rootScope, $scope, requestManager, configService) {
                 $scope.populateCompanyList = function () {
                     $scope.offerCompanies = {};
                     requestManager.makePostCall({}, {}, configService.getEndpoint('get.companies'))
@@ -23,14 +24,14 @@ aporlaofertaApp
                         });
                 }
                 $scope.onCompanyChange = function (company) {
-                    offerCreationService.setSelectedCompany(company);
+                    $scope.selectedcompany=company;
                 }
                 $scope.updateSelectedCompany = function (isSelected) {
                     if (!isSelected) {
                         $scope.onCompanyChange($scope.company);
                     }
                     else {
-                        offerCreationService.setSelectedCompany($scope.offerCompany);
+                        $scope.selectedcompany=$scope.offerCompany;
                     }
                 }
                 $scope.$watch('reset', function () {
@@ -40,10 +41,10 @@ aporlaofertaApp
                     $scope.reset = false;
                 });
                 $scope.$watch('offerCompany.companyName', function () {
-                    offerCreationService.setSelectedCompany($scope.offerCompany);
+                    $scope.selectedcompany=$scope.offerCompany;
                 });
                 $scope.$watch('offerCompany.companyUrl', function () {
-                    offerCreationService.setSelectedCompany($scope.offerCompany);
+                    $scope.selectedcompany=$scope.offerCompany;
                 });
                 $scope.populateCompanyList();
             }]

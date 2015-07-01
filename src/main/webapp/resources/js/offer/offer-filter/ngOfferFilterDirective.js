@@ -11,7 +11,6 @@ aporlaofertaApp
             },
             controller: ['$scope', '$rootScope', 'requestManager', 'configService', function ($scope, $rootScope, requestManager, configService) {
                 $scope.filter = {};
-                $scope.filter.selectedcategory = "puta";
                 $scope.requestFilterApply = function () {
                     console.log($scope.filter);
 //                    requestManager.makePostCall({}, {'filters': $scope.filter}, configService.getEndpoint('get.filtered.offers'))
