@@ -11,6 +11,8 @@ aporlaofertaApp
             },
             controller: ['$rootScope', '$scope', 'requestManager', 'configService', 'offerCreationService', function ($rootScope, $scope, requestManager, configService, offerCreationService) {
                 $scope.offer = {};
+                $scope.resetCategory = true;
+                $scope.selectedcategory="puta";
                 $scope.createOffer = function () {
                     requestManager.makePostCall($scope.offer, {}, configService.getEndpoint('create.offer'))
                         .success(function (data, status, headers, config) {
@@ -22,7 +24,7 @@ aporlaofertaApp
                             $rootScope.$broadcast('serverResponse', theResponse);
                         });
                     $scope.overheadDisplay = false;
-                    $scope.resetValues($scope.offer.offerCategory);
+                    $scope.resetValues();
 
                 };
                 $scope.bigDecimalsOnly = /^\-?\d+((\.|\,)\d+)?$/;
@@ -33,10 +35,11 @@ aporlaofertaApp
                 $scope.$on('selectedCategory', function (event, args) {
                     $scope.offer.offerCategory = args.category;
                 });
-                $scope.resetValues = function (defaultCategory) {
+                $scope.resetValues = function () {
                     $scope.offer = {};
                     $scope.brandNewCompany = false;
-                    $scope.offer.offerCategory = defaultCategory;
+                    $scope.resetCategory = true;
+                    $scope.resetCompany=true;
 
                 }
             }]

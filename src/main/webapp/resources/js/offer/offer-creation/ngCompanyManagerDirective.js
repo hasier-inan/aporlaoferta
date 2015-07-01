@@ -6,10 +6,12 @@ aporlaofertaApp
         return {
             restrict: 'A',
             templateUrl: 'resources/js/offer/offer-creation/companyManagement.html',
-            link: function (scope, elem, attrs) {
+            scope: {
+                reset: '='
             },
-            controller: ['$rootScope','$scope', 'requestManager', 'configService', 'offerCreationService', function ($rootScope, $scope, requestManager, configService, offerCreationService) {
+            controller: ['$rootScope', '$scope', 'requestManager', 'configService', 'offerCreationService', function ($rootScope, $scope, requestManager, configService, offerCreationService) {
                 $scope.populateCompanyList = function () {
+                    $scope.offerCompanies = {};
                     requestManager.makePostCall({}, {}, configService.getEndpoint('get.companies'))
                         .success(function (data, status, headers, config) {
                             $scope.offerCompanies = angular.copy(data);
@@ -31,6 +33,12 @@ aporlaofertaApp
                         offerCreationService.setSelectedCompany($scope.offerCompany);
                     }
                 }
+                $scope.$watch('reset', function () {
+                    if ($scope.reset) {
+                        console.log($scope.offerCompanies);
+                    }
+                    $scope.reset = false;
+                });
                 $scope.$watch('offerCompany.companyName', function () {
                     offerCreationService.setSelectedCompany($scope.offerCompany);
                 });

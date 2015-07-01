@@ -1,20 +1,29 @@
 <header class="major">
     <div class="filter-header">
-        <h3>Filtrar contenidos</h3>
+        <h3>Búsqueda detallada</h3>
     </div>
+
     <div class="filters-contents">
-        <div class="filterByCategoryContent inline-block basic-margin" ng-offer-category-manager="offerCategoryManager"></div>
-        <input type="text" ng-model="offerTextFilter" class="filter-input inline-block basic-margin" id="filter-text-finder"
-               value="" placeholder="Texto a buscar">
+        <div class="filterByCategoryContent inline-block basic-margin" ng-model="offerCategoryManager"
+             ng-offer-category-manager="offerCategoryManager" reset="resetCategory" selectedcategory="filter.selectedcategory"></div>
+        <div class="filter-parent inline-block basic-margin">
+            <label for="filter-by" id="label-for-filter-by"><i class="fa fa-search"></i></label>
+            <input id="filter-by" type="text" ng-model="filter.offerTextFilter"
+                   class="fa-search filter-input inline-block " id="filter-text-finder"
+                   value="" placeholder="Texto a buscar">
+        </div>
 
         <div class="filterWithExpiredContent inline-block basic-margin">
             <input type="checkbox" id="filterByExpiredCheckbox"
-                   name="filterByExpiredCheckbox" ng-model="filterWithExpired"/>
+                   name="filterByExpiredCheckbox" ng-model="filter.filterWithExpired"/>
             <label id="filterByExpiredLabel" for="filterByExpiredCheckbox" class="overheadLabel">Mostrar
                 caducados</label>
         </div>
-        <a href="#promotion_list" class="button icon fa-shopping-cart whiteButton inline-block basic-margin"
+        <a id="applyFilter" href="#promotion_list"
+           class="button icon fa-filter whiteButton inline-block basic-margin"
            ng-click="requestFilterApply()">Filtrar
             contenidos</a>
+        <a id="cleanFilter" href="#contentFilter" class="button icon fa-remove whiteButton inline-block basic-margin"
+           ng-click="cleanFilters()">Limpiar filtros</a>
     </div>
 </header>

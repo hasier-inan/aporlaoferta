@@ -298,6 +298,39 @@ section#contentFilter {
     padding-bottom: 0;
     padding-top: 1em;
     background-color: rgba(0, 0, 0, .4);;
+    background-image: url("images/background_list_20_3.png");
+    color: #fff;
+}
+
+div.filter-header > h3,
+div.filterByCategoryContent div.select-wrapper > *,
+a#applyFilter, a#cleanFilter {
+    color: #fff !important;
+}
+
+a#applyFilter, a#cleanFilter {
+    border: solid 1px #ffffff !important;
+    box-shadow: inset 0 0 0 0px #e6e6e6;
+}
+
+a#applyFilter:hover, a#cleanFilter:hover {
+    text-decoration: no-underline !important;
+    background-color: #7C7C7C;
+}
+
+div.filterByCategoryContent div.select-wrapper select > option {
+    background-color: rgba(0, 0, 0, .2);
+}
+
+label#label-for-filter-by {
+    position: absolute;
+    color: #fff;
+    margin-left: 1em;
+    margin-top: .8em;
+}
+
+input#filter-by {
+    padding-left: 2em;
 }
 
 #filter-text-finder {
@@ -309,8 +342,8 @@ section#contentFilter {
 }
 
 .basic-margin {
-    margin-left: 1em;
-    margin-right: 1em;
+    margin: .5em 1em;
+
 }
 
 input.filter-input {

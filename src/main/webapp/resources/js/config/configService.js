@@ -15,6 +15,7 @@ configManager.service('configService', [function () {
     var NEGATIVE_FEEDBACK_ENDPOINT = "voteNegative";
     var CREATE_COMMENT_ENDPOINT = "createComment";
     var QUOTE_COMMENT_ENDPOINT = "quoteComment";
+    var GET_FILTERED_ENDPOINT = "getFilteredOffers";
     configService.getEndpoint = function (key) {
         return configMap[key];
     };
@@ -31,7 +32,8 @@ configManager.service('configService', [function () {
         'positive.feedback': POSITIVE_FEEDBACK_ENDPOINT,
         'negative.feedback': NEGATIVE_FEEDBACK_ENDPOINT,
         'create.comment': CREATE_COMMENT_ENDPOINT,
-        'quote.comment': QUOTE_COMMENT_ENDPOINT
+        'quote.comment': QUOTE_COMMENT_ENDPOINT,
+        'get.filtered.offers': GET_FILTERED_ENDPOINT
     };
     return configService;
 }]);

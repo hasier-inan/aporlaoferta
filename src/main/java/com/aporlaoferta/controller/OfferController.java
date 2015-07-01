@@ -65,6 +65,15 @@ public class OfferController {
         return theOfferResponse;
     }
 
+//    @RequestMapping(value = "/getFilteredOffers", method = RequestMethod.POST)
+//    @ResponseBody
+//    public TheOfferResponse getFilteredOffers(
+//            @RequestParam(value = "filters", required = false) OfferFilters offerFilters) {
+//        TheOfferResponse theOfferResponse = new TheOfferResponse();
+//        //todo: TDD approach to include filter search
+//        return theOfferResponse;
+//    }
+
 
     @RequestMapping(value = "/getHottestOffers", method = RequestMethod.POST)
     @ResponseBody
