@@ -3,6 +3,7 @@ package com.aporlaoferta.controller;
 import com.aporlaoferta.data.CompanyBuilderManager;
 import com.aporlaoferta.data.OfferBuilderManager;
 import com.aporlaoferta.data.UserBuilderManager;
+import com.aporlaoferta.model.OfferFilters;
 import com.aporlaoferta.model.TheOffer;
 import com.aporlaoferta.model.TheOfferResponse;
 import com.aporlaoferta.model.TheResponse;
@@ -18,6 +19,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 
@@ -162,6 +164,14 @@ public class OfferControllerTest {
         for (TheOffer theOffer : receivedOffers) {
             Assert.assertTrue("Expected offers to be sorted by hotness", theOffer.getOfferPositiveVote() < hottest);
         }
+    }
+
+    @Test
+    public void FilterOffersAreReturnedInResponase() throws Exception {
+        List<TheOffer> sampleOfferList = createSampleOfferList();
+        when(this.offerManager.getFilteredNextHundredResults(Mockito.any(OfferFilters.class))).thenReturn(sampleOfferList);
+        TheOfferResponse result = this.offerController.getFilteredOffers(new OfferFilters());
+        assertOfferListIsInResponse(result, sampleOfferList);
     }
 
     @Test

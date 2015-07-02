@@ -11,18 +11,24 @@ import java.util.List;
  * Created by hasiermetal on 26/07/14.
  */
 public interface OfferDAO extends CrudRepository<TheOffer, Long> {
-    public final String OFFER_QUERY="SELECT * FROM thatoffer a order by a.TO_ID desc LIMIT :number, 100";
-    public final String OFFER_QUERY_HOTTEST="SELECT * FROM thatoffer a WHERE a.TO_EXPIRED=false order by a.TO_POSITIVE-a.TO_NEGATIVE desc LIMIT :number, 100";
-    public final String OFFER_QUERY_CATEGORY="SELECT * FROM thatoffer a WHERE a.TO_CATEGORY=:category order by a.TO_ID desc LIMIT :number, 100";
+    public final String OFFER_QUERY = "SELECT * FROM thatoffer a order by a.TO_ID desc LIMIT :number, 100";
+    public final String OFFER_QUERY_HOTTEST = "SELECT * FROM thatoffer a WHERE a.TO_EXPIRED=false order by a.TO_POSITIVE-a.TO_NEGATIVE desc LIMIT :number, 100";
+    public final String OFFER_QUERY_CATEGORY = "SELECT * FROM thatoffer a WHERE a.TO_CATEGORY=:category order by a.TO_ID desc LIMIT :number, 100";
+    public final String OFFER_QUERY_FILTER = "SELECT * FROM thatoffer a WHERE a.TO_CATEGORY =:category AND (a.TO_DESCRIPTION LIKE :text OR a.TO_TITLE LIKE :text) AND (a.TO_EXPIRED=false OR a.TO_EXPIRED=:expired) order by a.TO_ID desc LIMIT 0, 100";
 
     @Query(value = OFFER_QUERY, nativeQuery = true)
-    public List<TheOffer> getOneHundredOffersAfterId(@Param("number")Long number);
+    public List<TheOffer> getOneHundredOffersAfterId(@Param("number") Long number);
 
     @Query(value = OFFER_QUERY_CATEGORY, nativeQuery = true)
-    public List<TheOffer> getOneHundredOffersAfterIdWithCategory(@Param("number")Long lastShownNumber,
-                                                                 @Param("category")String offerCategory);
+    public List<TheOffer> getOneHundredOffersAfterIdWithCategory(@Param("number") Long lastShownNumber,
+                                                                 @Param("category") String offerCategory);
 
     @Query(value = OFFER_QUERY_HOTTEST, nativeQuery = true)
-    List<TheOffer> getOneHundredHottestOffers(@Param("number")Long number);
+    List<TheOffer> getOneHundredHottestOffers(@Param("number") Long number);
+
+    @Query(value = OFFER_QUERY_FILTER, nativeQuery = true)
+    List<TheOffer> getOneHundredFilteredOffers(@Param("category") String category,
+                                               @Param("text") String text,
+                                               @Param("expired") boolean expired);
 }
 

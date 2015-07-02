@@ -3,6 +3,7 @@ package com.aporlaoferta.controller;
 import com.aporlaoferta.model.OfferCategory;
 import com.aporlaoferta.model.OfferComment;
 import com.aporlaoferta.model.OfferCompany;
+import com.aporlaoferta.model.OfferFilters;
 import com.aporlaoferta.model.TheOffer;
 import com.aporlaoferta.model.TheOfferResponse;
 import com.aporlaoferta.model.TheResponse;
@@ -65,14 +66,18 @@ public class OfferController {
         return theOfferResponse;
     }
 
-//    @RequestMapping(value = "/getFilteredOffers", method = RequestMethod.POST)
-//    @ResponseBody
-//    public TheOfferResponse getFilteredOffers(
-//            @RequestParam(value = "filters", required = false) OfferFilters offerFilters) {
-//        TheOfferResponse theOfferResponse = new TheOfferResponse();
-//        //todo: TDD approach to include filter search
-//        return theOfferResponse;
-//    }
+    @RequestMapping(value = "/getFilteredOffers", method = RequestMethod.POST)
+    @ResponseBody
+    public TheOfferResponse getFilteredOffers(
+            @RequestParam(value = "filters", required = false) OfferFilters offerFilters) {
+        TheOfferResponse theOfferResponse = new TheOfferResponse();
+        List<TheOffer> hundredOffers = this.offerManager.getFilteredNextHundredResults(offerFilters);
+        //Temporary hack  because Lazy initialisation comments are empty.
+        createEmptyFields(hundredOffers);
+        theOfferResponse.setTheOffers(hundredOffers);
+        updateResponseWithSuccessCode(theOfferResponse);
+        return theOfferResponse;
+    }
 
 
     @RequestMapping(value = "/getHottestOffers", method = RequestMethod.POST)
@@ -80,7 +85,7 @@ public class OfferController {
     public TheOfferResponse getHottestOffers(@RequestParam(value = "number", required = false) Long number) {
         TheOfferResponse theOfferResponse = new TheOfferResponse();
         List<TheOffer> hundredOffers = this.offerManager.getNextHundredHottestOffers(number != null ? number : 0L);
-        //Temporary hack  because Lazy initialisation comments are empty...
+        //Temporary hack  because Lazy initialisation comments are empty.
         createEmptyFields(hundredOffers);
         theOfferResponse.setTheOffers(hundredOffers);
         updateResponseWithSuccessCode(theOfferResponse);

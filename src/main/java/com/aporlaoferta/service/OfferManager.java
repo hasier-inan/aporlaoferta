@@ -1,13 +1,12 @@
 package com.aporlaoferta.service;
 
 import com.aporlaoferta.model.OfferCategory;
+import com.aporlaoferta.model.OfferFilters;
 import com.aporlaoferta.model.TheOffer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -61,6 +60,15 @@ public class OfferManager {
 
     public List<TheOffer> getNextHundredHottestOffers(Long lastShownNumber) {
         return this.transactionalManager.getNextHottestHundredOffers(lastShownNumber);
+    }
+
+    public List<TheOffer> getFilteredNextHundredResults(OfferFilters offerFilters) {
+        return offerFilters.containsFilter() ?
+                this.transactionalManager.getNextHundredFilteredOffers(
+                        offerFilters.getCategory(),
+                        offerFilters.getText(),
+                        offerFilters.isExpired()
+                ) : this.transactionalManager.getNextHundredOffers(0L);
     }
 
     public Long countAllOffers() {

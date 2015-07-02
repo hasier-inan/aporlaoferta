@@ -103,6 +103,11 @@ public class TransactionalManager {
     }
 
     @Transactional(readOnly = true)
+    public List<TheOffer> getNextHundredFilteredOffers(String category, String text, boolean expired) {
+        return this.offerDAO.getOneHundredFilteredOffers(category, "%"+text+"%", expired);
+    }
+
+    @Transactional(readOnly = true)
     public Long countAllOffers() {
         return this.offerDAO.count();
     }
@@ -117,6 +122,7 @@ public class TransactionalManager {
     public TheUser saveUser(TheUser theUser) {
         return this.userDAO.save(theUser);
     }
+
     @Transactional(readOnly = true)
     public TheUser getUserFromNickname(String nickname) {
         return this.userDAO.findByUserNickname(nickname);
