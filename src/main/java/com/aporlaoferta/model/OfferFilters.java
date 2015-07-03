@@ -7,7 +7,6 @@ import static org.springframework.util.StringUtils.isEmpty;
  * User: HInan
  * Date: 01/07/15
  * Time: 17:56
- * Hitachi Capital (UK) PLC
  */
 public class OfferFilters {
 
