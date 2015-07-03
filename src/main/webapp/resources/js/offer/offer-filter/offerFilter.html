@@ -5,17 +5,17 @@
 
     <div class="filters-contents">
         <div class="filterByCategoryContent inline-block basic-margin" ng-model="offerCategoryManager"
-             ng-offer-category-manager="offerCategoryManager" reset="filter.resetCategory" selectedcategory="filter.selectedcategory"></div>
+             ng-offer-category-manager="offerCategoryManager" reset="resetCategory" selectedcategory="filter.selectedcategory"></div>
         <div class="filter-parent inline-block basic-margin">
             <label for="filter-by" id="label-for-filter-by"><i class="fa fa-search"></i></label>
-            <input id="filter-by" type="text" ng-model="filter.offerTextFilter"
+            <input id="filter-by" type="text" ng-model="filter.text"
                    class="fa-search filter-input inline-block " id="filter-text-finder"
                    value="" placeholder="Texto a buscar">
         </div>
 
         <div class="filterWithExpiredContent inline-block basic-margin">
             <input type="checkbox" id="filterByExpiredCheckbox"
-                   name="filterByExpiredCheckbox" ng-model="filter.filterWithExpired"/>
+                   name="filterByExpiredCheckbox" ng-model="filter.expired"/>
             <label id="filterByExpiredLabel" for="filterByExpiredCheckbox" class="overheadLabel">Mostrar
                 caducados</label>
         </div>

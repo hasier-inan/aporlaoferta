@@ -65,7 +65,7 @@ public class OfferManager {
     public List<TheOffer> getFilteredNextHundredResults(OfferFilters offerFilters) {
         return offerFilters.containsFilter() ?
                 this.transactionalManager.getNextHundredFilteredOffers(
-                        offerFilters.getCategory(),
+                        offerFilters.getSelectedcategory(),
                         offerFilters.getText(),
                         offerFilters.isExpired()
                 ) : this.transactionalManager.getNextHundredOffers(0L);

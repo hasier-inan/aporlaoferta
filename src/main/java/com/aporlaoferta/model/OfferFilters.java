@@ -11,16 +11,18 @@ import static org.springframework.util.StringUtils.isEmpty;
  */
 public class OfferFilters {
 
-    private OfferCategory category;
+    private OfferCategory selectedcategory;
     private String text;
     private boolean expired;
 
-    public String getCategory() {
-        return category != null ? category.name() : "";
+    public String getSelectedcategory() {
+        return selectedcategory != null ? selectedcategory.name() : "";
     }
 
-    public void setCategory(OfferCategory category) {
-        this.category = category;
+    public void setSelectedcategory(String category) {
+        if (!isEmpty(category)) {
+            this.selectedcategory = OfferCategory.fromValue(category);
+        }
     }
 
     public String getText() {
@@ -41,7 +43,7 @@ public class OfferFilters {
 
     public boolean containsFilter() {
         return (!isEmpty(getText())
-                && (!isEmpty(getCategory())))
+                && (!isEmpty(getSelectedcategory())))
                 || this.expired
                 ;
     }

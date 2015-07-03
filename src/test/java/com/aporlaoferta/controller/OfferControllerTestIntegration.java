@@ -1,6 +1,7 @@
 package com.aporlaoferta.controller;
 
 
+import com.aporlaoferta.data.FilterBuilderManager;
 import com.aporlaoferta.data.OfferBuilderManager;
 import com.aporlaoferta.model.OfferCategory;
 import com.aporlaoferta.model.TheOffer;
@@ -17,7 +18,6 @@ import java.util.Map;
 
 import static org.hamcrest.Matchers.startsWith;
 import static org.junit.Assert.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -136,6 +136,21 @@ public class OfferControllerTestIntegration extends ControllerTestIntegration {
                         .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
         )
                 .andExpect(status().is3xxRedirection());
+    }
+
+    @Test
+    public void testNonIdentifiedUsersCanRequestOfferFilter() throws Exception {
+        CsrfToken csrfToken = CsrfTokenBuilder.generateAToken();
+        String jsonRequest = RequestMap.getJsonFromMap(FilterBuilderManager.anAllElectronicsFilterWithText("asdf").build());
+        this.mockMvc.perform(post("/getFilteredOffers")
+                .sessionAttr("_csrf", csrfToken)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonRequest)
+                .param("_csrf", csrfToken.getToken())
+                .sessionAttrs(SessionAttributeBuilder
+                        .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
+        )
+                .andExpect(status().is2xxSuccessful());
     }
 
     @Test

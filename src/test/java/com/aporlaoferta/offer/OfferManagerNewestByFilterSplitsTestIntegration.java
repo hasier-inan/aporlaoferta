@@ -1,5 +1,6 @@
 package com.aporlaoferta.offer;
 
+import com.aporlaoferta.data.FilterBuilderManager;
 import com.aporlaoferta.data.OfferBuilderManager;
 import com.aporlaoferta.data.UserBuilderManager;
 import com.aporlaoferta.model.OfferCategory;
@@ -62,27 +63,23 @@ public class OfferManagerNewestByFilterSplitsTestIntegration {
         for (TheOffer theOffer : theFiltered100CategoryOffers) {
             assertThat("Expected offer to be same category",
                     theOffer.getOfferCategory().name(),
-                    is(offerFilters.getCategory()));
+                    is(offerFilters.getSelectedcategory()));
             assertThat("Expected offer to contain text like title or description",
                     theOffer.getOfferCategory().name(),
-                    is(offerFilters.getCategory()));
+                    is(offerFilters.getSelectedcategory()));
             int counter = theOffer.isOfferExpired() ? expiredCounter++ : nonExpiredCounter++;
         }
         if (offerFilters.isExpired()) {
             Assert.assertTrue("Expected offers to be expired and not expired",
                     expiredCounter > 0 && expiredCounter > 0);
-        }else{
+        } else {
 
         }
 
     }
 
     private OfferFilters createExampleFilter() {
-        OfferFilters offerFilters = new OfferFilters();
-        offerFilters.setExpired(true);
-        offerFilters.setCategory(OfferCategory.ELECTRONICS);
-        offerFilters.setText("tigre");
-        return offerFilters;
+        return FilterBuilderManager.anAllElectronicsFilterWithText("tigre").build();
     }
 
     private void addOneThousandDummyRandomCategoryOffers() {

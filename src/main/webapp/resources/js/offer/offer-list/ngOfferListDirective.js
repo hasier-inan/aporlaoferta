@@ -50,8 +50,6 @@ aporlaofertaApp
                         });
                 }
                 $scope.initialiseScrollyButtons();
-                //initialise with newest offers
-                $scope.requestNewestOffers();
 
             }]
         }

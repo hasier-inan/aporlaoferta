@@ -69,7 +69,7 @@ public class OfferController {
     @RequestMapping(value = "/getFilteredOffers", method = RequestMethod.POST)
     @ResponseBody
     public TheOfferResponse getFilteredOffers(
-            @RequestParam(value = "filters", required = false) OfferFilters offerFilters) {
+            @RequestBody OfferFilters offerFilters) {
         TheOfferResponse theOfferResponse = new TheOfferResponse();
         List<TheOffer> hundredOffers = this.offerManager.getFilteredNextHundredResults(offerFilters);
         //Temporary hack  because Lazy initialisation comments are empty.

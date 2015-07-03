@@ -12,7 +12,7 @@ aporlaofertaApp
             controller: ['$scope', '$rootScope', 'requestManager', 'configService', function ($scope, $rootScope, requestManager, configService) {
                 $scope.filter = {};
                 $scope.requestFilterApply = function () {
-                    requestManager.makePostCall({}, {'filters': $scope.filter}, configService.getEndpoint('get.filtered.offers'))
+                    requestManager.makePostCall($scope.filter, {}, configService.getEndpoint('get.filtered.offers'))
                         .success(function (data, status, headers, config) {
                             $scope.offerList = data.theOffers;
                         }).error(function (data, status, headers, config) {
@@ -23,10 +23,11 @@ aporlaofertaApp
                         });
                 };
                 $scope.cleanFilters = function () {
-                    $scope.filter.filterWithExpired = false;
-                    $scope.filter.offerTextFilter = "";
-                    $scope.filter.resetCategory = true;
+                    $scope.filter.expired = false;
+                    $scope.filter.text = "";
+                    $scope.resetCategory = true;
                     $scope.filter.selectedcategory = "";
+                    $scope.requestFilterApply();
                 };
                 $scope.cleanFilters();
             }]

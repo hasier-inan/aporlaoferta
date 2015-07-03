@@ -1,7 +1,7 @@
 package com.aporlaoferta.offer;
 
+import com.aporlaoferta.data.FilterBuilderManager;
 import com.aporlaoferta.data.OfferBuilderManager;
-import com.aporlaoferta.model.OfferCategory;
 import com.aporlaoferta.model.OfferFilters;
 import com.aporlaoferta.model.TheOffer;
 import com.aporlaoferta.service.OfferManager;
@@ -50,7 +50,7 @@ public class OfferManagerFilteredOffersTest {
         OfferFilters dummyFilters = createDummyOfferFilter();
         this.offerManager.getFilteredNextHundredResults(dummyFilters);
         verify(this.transactionalManager).getNextHundredFilteredOffers(
-                dummyFilters.getCategory(),
+                dummyFilters.getSelectedcategory(),
                 dummyFilters.getText(),
                 dummyFilters.isExpired());
     }
@@ -65,12 +65,7 @@ public class OfferManagerFilteredOffersTest {
     }
 
     private OfferFilters createDummyOfferFilter() {
-        OfferFilters offerFilters = new OfferFilters();
-        offerFilters.setCategory(OfferCategory.ELECTRONICS);
-        offerFilters.setText("intel");
-        offerFilters.setExpired(true);
-        return offerFilters;
-
+        return FilterBuilderManager.anAllElectronicsFilterWithText("intel").build();
     }
 
 }
