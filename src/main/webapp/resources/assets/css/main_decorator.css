@@ -24,7 +24,7 @@ div.overhead_subcontainer {
     min-height: 7em;
     border: .3em solid #FFFFFF;
     border-radius: 0em;
-    background-color: #51B1EC;
+    background-color: #f38630;
     z-index: 1002;
     left: 5%;
     top: 5%;
@@ -63,7 +63,7 @@ textarea#createOfferDescription {
     width: 12em !important;
     height: 2em;
     color: #ffffff;
-    background-color: #089eec;
+    background-color: #fa6900;
     display: inline-block;
     margin-bottom: 1em;
 }
@@ -248,6 +248,7 @@ div.offerCompanyInTitle {
 
 .offerDescription {
     /*text-align: justify;*/
+    color:#828282 !important;
 }
 
 .offerImageAndFeedback {
@@ -297,7 +298,7 @@ div.content > h3 {
 section#contentFilter {
     padding-bottom: 0;
     padding-top: 1em;
-    background-color: rgba(0, 0, 0, .4);;
+    background-color: #69d2e7;
     background-image: url("images/background_list_20_3.png");
     color: #fff;
 }
@@ -315,7 +316,7 @@ a#applyFilter, a#cleanFilter {
 
 a#applyFilter:hover, a#cleanFilter:hover {
     text-decoration: no-underline !important;
-    background-color: #7C7C7C;
+    background-color: #a7dbd8;
 }
 
 div.filterByCategoryContent div.select-wrapper select > option {
@@ -386,11 +387,11 @@ div.responseDescription {
 
 .moreDetailButton {
     color: #fff !important;
-    background-color: #86c9ec !important;
+    background-color: #69d2e7 !important;
 }
 
 .moreDetailButton:hover {
-    background-color: #6dbcec !important;
+    background-color: #a7dbd8 !important;
 }
 
 .orange-background {
@@ -408,7 +409,7 @@ div.responseDescription {
 #header .button.hot-background {
     box-shadow: none;
     background-color: #ffffff;
-    color: #51B1EC !important;
+    color: #f38630 !important;
 }
 
 #brandNewCompanyFormLabel {
@@ -417,14 +418,14 @@ div.responseDescription {
 }
 
 input[type="checkbox"] + label.overheadLabel:before, input[type="radio"] + label.overheadLabel:before {
-    background-color: #55B2EC;
+    background-color: #fa6900;
     border-color: #ffffff;
 }
 
 input[type="checkbox"]:checked + label.overheadLabel:before, input[type="radio"]:checked + label.overheadLabel:before {
     background-color: #ffffff;
     border-color: #ffffff;
-    color: #51B1EC;
+    color: #f38630;
 }
 
 .mainLogo {

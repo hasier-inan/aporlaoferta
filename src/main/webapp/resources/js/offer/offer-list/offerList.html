@@ -17,9 +17,6 @@
             </li>
         </ul>
     </div>
-    <div class="image phone">
-        <div class="inner"><img src="resources/images/screen.jpg" alt=""/></div>
-    </div>
 </header>
 
 <!--TODO: Separete into another view and directive and controller-->
@@ -29,7 +26,9 @@
     <div class="inner alt">
         <section ng-repeat="offer in offerList track by offer.id" class="spotlight">
             <div class="offerImageAndFeedback">
-                <div class="image offerImage"><img src="resources/images/pic01.jpg" alt=""/></div>
+                <div class="image offerImage">
+                    <img src="resources/images/pic01.jpg" alt="" ng-click="showSpecifications(offer.id)"/>
+                </div>
                 <div class="centeredForm">
                     <div class="offerListFeedback feedbackSumatory">
                         <h1 class="feedbackSumatory ng-binding">{{offer.offerPositiveVote - offer.offerNegativeVote |

@@ -63,8 +63,8 @@ div.offerSpecificationsImage {
 div.offerSpecificationsImage > img {
     display: block;
     vertical-align: middle;
-    background-color: #fbfbfb;
-    color: #999999;
+    background-color: #a7dbd8;
+    color: #e0e4cc;
     border: 2px solid #fff;
     border-radius: 20px;
     width: 100%;
@@ -95,7 +95,7 @@ div.feedbackButtons div > button.small {
 }
 
 div.feedbackButtons div > button.small:hover {
-    background-color: #51B1EC;
+    background-color: #f38630;
 }
 
 div.feedbackButtons div > button.small::before {
