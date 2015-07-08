@@ -34,7 +34,9 @@ public enum ResultCode {
     FEEDBACK_FROM_OWNER_PERFORMED_ERROR(43, ResponseResult.VALIDATION_ERROR,
             "Feedback process can't be performed by offer owner", "El creador de la oferta no puede valorarse a sí mismo"),
     IMAGE_UPLOAD_ERROR(56, ResponseResult.INVALID_DATA_PROVIDED,
-            "Could not perform image upload process", "No se ha podido cargar la imagen");
+            "Could not perform image upload process", "No se ha podido cargar la imagen"),
+    IMAGE_TOO_HEAVY_ERROR(57, ResponseResult.INVALID_DATA_PROVIDED,
+            "Image is too heavy", "La imagen es demasido pesada");
 
     private int code;
     private String resultDescription;

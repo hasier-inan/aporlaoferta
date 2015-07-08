@@ -2,7 +2,7 @@
           uri="http://www.springframework.org/security/tags" %>
 <div id="overheadSubContainer" class="overhead_subcontainer fadein"
      ng-class="(displayAccountLogin || displayAccountCreation)?'userRelated':
-     (displayOfferCreation?'offerRelated':'')"
+     (displayOfferCreation?'offerRelated':(displayOfferSpecifications)?'offer-specifications-background':'')"
      ng-show="overheadVisible">
     <ul id="overheadSubContainerContent" class="actions top_header">
         <div ng-show="displayOfferSpecifications" ng-offer-specifications="offerSpecifications"

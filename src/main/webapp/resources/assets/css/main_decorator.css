@@ -46,6 +46,10 @@ div.overhead_subcontainer.offerRelated {
     background-image: url("images/background_offer5.png"), url("images/pattern-size1.svg");
 }
 
+div.overhead_subcontainer.offer-specifications-background {
+    background-color:#51B1EC;
+}
+
 label.overheadLabel {
     color: #FFFFFF !important;
     font-weight: bold;
@@ -298,7 +302,7 @@ div.content > h3 {
 section#contentFilter {
     padding-bottom: 0;
     padding-top: 1em;
-    background-color: #69d2e7;
+    background-color: #A0A0A0;
     background-image: url("images/background_list_20_3.png");
     color: #fff;
 }

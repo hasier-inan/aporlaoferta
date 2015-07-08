@@ -21,26 +21,47 @@ import java.io.IOException;
 @Controller
 public class ImageController {
 
+    private static final long MAXIMUM_FILE_SIZE = 2000000L;
     private final Logger LOG = LoggerFactory.getLogger(ImageController.class);
-
-    @Autowired
-    private ImageUploadManager imageUploadManager;
 
     @RequestMapping(value = "/uploadImage", method = RequestMethod.POST)
     @ResponseBody
     public TheResponse uploadImage(@RequestParam("file") MultipartFile file) {
-        TheResponse result = new TheResponse();
+        Long size = file.getSize();
+        if (size > MAXIMUM_FILE_SIZE) {
+            return updateResultWithInvalidImageCode(
+                    ResultCode.IMAGE_TOO_HEAVY_ERROR,
+                    ResultCode.IMAGE_TOO_HEAVY_ERROR.getResultDescriptionEsp());
+        }
+        return performImageUploadProcess(file);
+    }
+
+    @Autowired
+    private ImageUploadManager imageUploadManager;
+
+    private TheResponse performImageUploadProcess(MultipartFile file) {
         try {
-            String finalUrl = this.imageUploadManager.copyUploadedFileIntoServer(file);
-            result.setCode(ResultCode.ALL_OK.getCode());
-            result.setResponseResult(ResponseResult.OK);
-            result.setDescription(finalUrl);
+            return updateResultWithSuccessUploadResult(file);
         } catch (InvalidUploadFolderException | IOException e) {
             LOG.error(e.getMessage());
-            result.setCode(ResultCode.IMAGE_UPLOAD_ERROR.getCode());
-            result.setResponseResult(ResponseResult.INVALID_DATA_PROVIDED);
-            result.setDescription(e.getMessage());
+            return updateResultWithInvalidImageCode(ResultCode.IMAGE_UPLOAD_ERROR, e.getMessage());
         }
+    }
+
+    private TheResponse updateResultWithSuccessUploadResult(MultipartFile file) throws IOException {
+        TheResponse result = new TheResponse();
+        String finalUrl = this.imageUploadManager.copyUploadedFileIntoServer(file);
+        result.setCode(ResultCode.ALL_OK.getCode());
+        result.setResponseResult(ResponseResult.OK);
+        result.setDescription(finalUrl);
+        return result;
+    }
+
+    private TheResponse updateResultWithInvalidImageCode(ResultCode resultCode, String description) {
+        TheResponse result = new TheResponse();
+        result.setCode(resultCode.getCode());
+        result.setResponseResult(resultCode.getResponseResult());
+        result.setDescription(description);
         return result;
     }
 
