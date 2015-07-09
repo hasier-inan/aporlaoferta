@@ -1,6 +1,6 @@
 <%@taglib prefix="sec"
           uri="http://www.springframework.org/security/tags" %>
-<div id="overheadSubContainer" class="overhead_subcontainer fadein"
+<div id="overheadSubContainer" class="overhead_subcontainer fadein hiddencontainer"
      ng-class="(displayAccountLogin || displayAccountCreation)?'userRelated':
      (displayOfferCreation?'offerRelated':(displayOfferSpecifications)?'offer-specifications-background':'')"
      ng-show="overheadVisible">

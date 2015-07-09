@@ -147,6 +147,9 @@ input.overheadField::-moz-selection {
 
 /*top_header*/
 
+#overheadSubContainer.hiddencontainer{
+    display: none;
+}
 ul#overheadSubContainerContent {
     top: 0;
     left: 0;

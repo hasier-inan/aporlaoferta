@@ -8,15 +8,10 @@ aporlaofertaApp
             templateUrl: 'resources/js/header-display/headDisplay.jsp',
             link: function (scope, elem, attrs) {
             },
-            controller: ['$scope', function ($scope) {
-                $scope.overheadVisible = false;
-                $scope.displayOfferCreation = false;
-                $scope.displayAccountLogin = false;
-                $scope.displayAccountCreation = false;
-                $scope.displayAccountUpdate = false;
-                $scope.displayOfferSpecifications = false;
-                $scope.displayResponseFromServer = false;
+            controller: ['$scope', '$timeout', function ($scope, $timeout) {
+
                 $scope.theResponse = {};
+
                 $scope.displayLogin = function () {
                     $scope.setDefaultVisibility();
                     $scope.displayAccountLogin = true;
@@ -83,6 +78,10 @@ aporlaofertaApp
                 }
                 $scope.setDefaultVisibility();
                 $scope.checkForErrors();
+
+                $timeout(function(){
+                    angular.element($('#overheadSubContainer')).removeClass('hiddencontainer');
+                }, 1000);
             }]
         }
     });
