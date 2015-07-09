@@ -2,32 +2,43 @@
      flow-name="uploader.flow"
      flow-file-added="fileAdded($file)"
      flow-file-success="filesIsUploaded($message)"
-     flow-file-error="handleProcessError($message)"
-     flow-error="handleProcessError($message)"
      class="imageUploaderContent">
 
-        <div class="thumbnail" ng-hide="$flow.files.length">
-            Solo im&aacute;genes PNG,GIF,JPG son aceptados (max 2MB)
-        </div>
-        <div class="thumbnail" ng-show="$flow.files.length">
-            <img flow-img="$flow.files[0]"/>
-        </div>
-        <div class="thumbnailButtons">
-            <button class="button small icon fa-upload whiteButton orange-background" ng-hide="$flow.files.length" flow-btn
-                    flow-attrs="{accept:'image/*'}">Seleccionar imagen
-            </button>
-            <button class="button mini icon fa-upload whiteButton orange-background" ng-hide="$flow.files.length" flow-btn></button>
-            <button class="button small icon fa-exchange whiteButton  orange-background" ng-show="$flow.files.length" flow-btn
-                    flow-attrs="{accept:'image/*'}">Cambiar
-            </button>
-            <button class="button mini icon fa-exchange whiteButton  orange-background" ng-show="$flow.files.length" flow-btn
-                    flow-attrs="{accept:'image/*'}">
-            </button>
-            <button class="button small icon fa-trash whiteButton red-background" ng-show="$flow.files.length"
-                    ng-click="$flow.cancel()">Borrar
-            </button>
-            <button class="button mini icon fa-trash whiteButton red-background" ng-show="$flow.files.length"
-                    ng-click="$flow.cancel()">
-            </button>
-        </div>
+    <div class="thumbnail" ng-show="isInvalidThumbnailShown()">
+        <p class="invalid-image" ng-class="invalidSize?'invalid-display':''">El tamaño de la imagen es demasido grande
+            (max {{maxImageSize}} x {{maxImageSize}} px)</p>
+
+        <p class="invalid-image" ng-class="invalidRatio?'invalid-display':''">La diferencia de altura/anchura es muy
+            grande (max ~{{maxAspectRatio}})</p>
+
+        <p class="invalid-image" ng-class="invalidImage?'invalid-display':''">La imagen no es v&aacute;lida</p>
+    </div>
+    <div class="thumbnail" ng-hide="(displayThumbnail && $flow.files.length) ||
+    isInvalidThumbnailShown()">
+        <p class="invalid-image"></p>
+    </div>
+    <div class="thumbnail" ng-show="displayThumbnail && $flow.files.length">
+        <img flow-img="$flow.files[0]"/>
+    </div>
+    <div class="thumbnailButtons">
+        <button class="button small icon fa-upload whiteButton orange-background" ng-hide="$flow.files.length" flow-btn
+                flow-attrs="{accept:'image/*'}">Seleccionar imagen
+        </button>
+        <button class="button mini icon fa-upload whiteButton orange-background" ng-hide="$flow.files.length"
+                flow-btn></button>
+        <button class="button small icon fa-exchange whiteButton  orange-background" ng-show="$flow.files.length"
+                flow-btn
+                flow-attrs="{accept:'image/*'}">Cambiar
+        </button>
+        <button class="button mini icon fa-exchange whiteButton  orange-background" ng-show="$flow.files.length"
+                flow-btn
+                flow-attrs="{accept:'image/*'}">
+        </button>
+        <button class="button small icon fa-trash whiteButton red-background" ng-show="$flow.files.length"
+                ng-click="$flow.cancel()">Borrar
+        </button>
+        <button class="button mini icon fa-trash whiteButton red-background" ng-show="$flow.files.length"
+                ng-click="$flow.cancel()">
+        </button>
+    </div>
 </div>

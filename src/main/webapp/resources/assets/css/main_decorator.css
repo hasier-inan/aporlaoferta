@@ -47,7 +47,7 @@ div.overhead_subcontainer.offerRelated {
 }
 
 div.overhead_subcontainer.offer-specifications-background {
-    background-color:#51B1EC;
+    background-color: #51B1EC;
 }
 
 label.overheadLabel {
@@ -252,7 +252,7 @@ div.offerCompanyInTitle {
 
 .offerDescription {
     /*text-align: justify;*/
-    color:#828282 !important;
+    color: #828282 !important;
 }
 
 .offerImageAndFeedback {
@@ -294,6 +294,21 @@ div.offerCompanyInTitle {
 
 div.content > h3 {
     margin-top: 0;
+}
+
+p.invalid-image {
+    -moz-transition: opacity 0.5s ease, -moz-transform 1s ease;
+    -webkit-transition: opacity 0.5s ease, -webkit-transform 1s ease;
+    -ms-transition: opacity 0.5s ease, -ms-transform 1s ease;
+    transition: opacity 0.5s ease, transform 1s ease;
+    opacity: 0;
+    font-size: .8em;
+    margin: 0;
+    color: #ff1f17;
+}
+
+p.invalid-image.invalid-display {
+    opacity: 1;
 }
 
 /*/offerlist*/

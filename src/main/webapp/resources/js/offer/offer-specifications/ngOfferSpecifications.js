@@ -9,7 +9,7 @@ aporlaofertaApp
             scope: {
                 theOffer: '='
             },
-            controller: ['$rootScope','$scope', '$timeout', 'requestManager', 'configService', function ($rootScope,$scope, $timeout, requestManager, configService) {
+            controller: ['$rootScope','$scope', 'requestManager', 'configService', function ($rootScope,$scope,requestManager, configService) {
                 $scope.votePositive = function (id) {
                     requestManager.makePostCall({}, {'offerId': id}, configService.getEndpoint('positive.feedback'))
                         .success(function (data, status, headers, config) {

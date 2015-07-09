@@ -11,22 +11,49 @@ aporlaofertaApp
             templateUrl: 'resources/js/uploader/imageUpload.html',
             link: function (scope, elem, attrs) {
             },
-            controller: ['$rootScope', '$scope', function ($rootScope, $scope) {
+            controller: ['$rootScope', '$scope', 'configService', '$timeout', function ($rootScope, $scope, configService, $timeout) {
                 $scope.uploader = {};
+                $scope.displayThumbnail = true;
+                $scope.invalidSize = false;
+                $scope.invalidImage = false;
+                $scope.invalidRatio = false;
+                $scope.maxImageSize = configService.getEndpoint('max.image.size');
+                $scope.maxAspectRatio = configService.getEndpoint('max.image.aspect');
                 $scope.fileAdded = function (file) {
-                        var fileReader = new FileReader();
-                        fileReader.onload = function (event) {
-                            var img = new Image();
-                            img.onload = function () {
-                                if (this.width == 1600) {
-                                    alert("in sinkronua metodua");
-                                    return false;
-                                }
-                                $scope.uploader.flow.upload()
-                            };
-                            img.src = event.target.result;
+                    var fileReader = new FileReader();
+                    fileReader.onload = function (event) {
+                        var img = new Image();
+                        img.onerror = function () {
+                            $scope.displayInvalidImageMessage();
+                            return false;
                         };
-                        fileReader.readAsDataURL(file.file);
+                        img.onload = function () {
+                            var aspectRatio = (this.width > this.height) ?
+                                this.width / this.height : this.height / this.width;
+                            if (this.width > $scope.maxImageSize ||
+                                this.height > $scope.maxImageSize
+                                ) {
+                                $scope.displayInvalidImageSizeMessage();
+                                return false;
+                            }
+                            else if (
+                                aspectRatio > $scope.maxAspectRatio) {
+                                $scope.displayInvalidImageAspectRatioMessage();
+                                return false;
+                            }
+                            $scope.uploader.flow.upload();
+                            $scope.defaultThumbnailView();
+                        };
+                        img.src = event.target.result;
+                    };
+                    fileReader.readAsDataURL(file.file);
+                };
+
+                $scope.defaultThumbnailView = function () {
+                    $scope.displayThumbnail = true;
+                    $scope.invalidRatio = false;
+                    $scope.invalidImage = false;
+                    $scope.invalidSize = false;
                 };
 
                 $scope.filesIsUploaded = function (message) {
@@ -46,9 +73,35 @@ aporlaofertaApp
                         $scope.uploader.flow.cancel();
                     }
                 });
-                $scope.handleProcessError = function () {
-                    alert("handle error while uploading image");
+
+                $scope.isInvalidThumbnailShown = function () {
+                    return $scope.invalidImage || $scope.invalidRatio || $scope.invalidSize;
                 };
+                $scope.displayInvalidImageAspectRatioMessage = function () {
+                    $scope.defaultThumbnailView();
+                    $scope.invalidRatio = true;
+                    $scope.displayThumbnail = false;
+                    $timeout(function () {
+                        $scope.uploader.flow.cancel();
+                    }, 1000);
+                };
+
+                $scope.displayInvalidImageSizeMessage = function () {
+                    $scope.defaultThumbnailView();
+                    $scope.invalidSize = true;
+                    $scope.displayThumbnail = false;
+                    $timeout(function () {
+                        $scope.uploader.flow.cancel();
+                    }, 1000);
+                };
+                $scope.displayInvalidImageMessage = function () {
+                    $scope.defaultThumbnailView();
+                    $scope.invalidImage = true;
+                    $scope.displayThumbnail = false;
+                    $timeout(function () {
+                        $scope.uploader.flow.cancel();
+                    }, 1000);
+                }
             }]
         }
     });
