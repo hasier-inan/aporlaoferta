@@ -17,10 +17,12 @@ public class ImageUploadManager {
     private final Logger LOG = LoggerFactory.getLogger(ImageUploadManager.class);
     private final String uploadFolder;
     private final int folderDepth;
+    private final ImageTransformer imageTransformer;
 
     public ImageUploadManager(String uploadFolder, int folderDepth) {
         this.uploadFolder = uploadFolder;
         this.folderDepth = folderDepth;
+        this.imageTransformer = new ImageTransformer();
         File uploadDir = new File(this.uploadFolder);
         if (!uploadDir.exists()) {
             LOG.warn("Upload folder not found on server side: {}", uploadDir.getAbsolutePath());
@@ -31,10 +33,12 @@ public class ImageUploadManager {
         }
     }
 
-    public String copyUploadedFileIntoServer(MultipartFile file) throws IOException {
+    public File copyUploadedFileIntoServer(MultipartFile file) throws IOException {
         String filePath = creteCustomFilePath(file.getOriginalFilename());
-        file.transferTo(new File(filePath));
-        return filePath.replace("\\", "/");
+        File finalFile = new File(filePath);
+        file.transferTo(finalFile);
+        //return filePath.replace("\\", "/");
+        return finalFile;
     }
 
     private String creteCustomFilePath(String fileName) {
@@ -49,6 +53,16 @@ public class ImageUploadManager {
                         OsHelper.osSeparator() +
                         UUID.randomUUID().toString() +
                         fileExtension(fileName);
+    }
+
+    public boolean transformImage(File imageFile, String fpath) {
+        try {
+            this.imageTransformer.createSquareImage(imageFile, fpath);
+            return true;
+        } catch (IOException e) {
+            LOG.error("Could not transform image: ", e);
+        }
+        return false;
     }
 
     private String fileExtension(String fullPath) {

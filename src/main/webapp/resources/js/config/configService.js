@@ -16,8 +16,7 @@ configManager.service('configService', [function () {
     var CREATE_COMMENT_ENDPOINT = "createComment";
     var QUOTE_COMMENT_ENDPOINT = "quoteComment";
     var GET_FILTERED_ENDPOINT = "getFilteredOffers";
-    var IMAGE_MAX_SIZE=1000;
-    var IMAGE_MAX_ASPECT= 1.4;
+    var IMAGE_MAX_SIZE = 2000;
     configService.getEndpoint = function (key) {
         return configMap[key];
     };
@@ -36,8 +35,7 @@ configManager.service('configService', [function () {
         'create.comment': CREATE_COMMENT_ENDPOINT,
         'quote.comment': QUOTE_COMMENT_ENDPOINT,
         'get.filtered.offers': GET_FILTERED_ENDPOINT,
-        'max.image.size':IMAGE_MAX_SIZE,
-        'max.image.aspect':IMAGE_MAX_ASPECT
+        'max.image.size': IMAGE_MAX_SIZE
     };
     return configService;
 }]);

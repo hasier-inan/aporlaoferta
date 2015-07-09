@@ -6,6 +6,7 @@ import com.aporlaoferta.service.InvalidUploadFolderException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.ConfigurableMimeFileTypeMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 
 /**
  * Created by hasiermetal on 2/02/14.
@@ -50,11 +54,42 @@ public class ImageController {
 
     private TheResponse updateResultWithSuccessUploadResult(MultipartFile file) throws IOException {
         TheResponse result = new TheResponse();
-        String finalUrl = this.imageUploadManager.copyUploadedFileIntoServer(file);
-        result.setCode(ResultCode.ALL_OK.getCode());
-        result.setResponseResult(ResponseResult.OK);
-        result.setDescription(finalUrl);
-        return result;
+        File finalFile = this.imageUploadManager.copyUploadedFileIntoServer(file);
+        if (invalidMimeType(finalFile)) {
+            removeFile(finalFile);
+            throw new IOException("Invalid file type");
+        }
+        if (transformAndUpdateImage(result, finalFile)) {
+            return result;
+        }
+        throw new IOException("Could not parse image");
+    }
+
+    private boolean transformAndUpdateImage(TheResponse result, File finalFile) throws IOException {
+        String theFinalPath = finalFile.getAbsolutePath() + "_.jpg";
+        if (this.imageUploadManager.transformImage(finalFile, theFinalPath)) {
+            File alteredImage = new File(theFinalPath);
+            Files.copy(alteredImage.toPath(), finalFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            alteredImage.delete();
+            result.setCode(ResultCode.ALL_OK.getCode());
+            result.setResponseResult(ResponseResult.OK);
+            result.setDescription(finalFile.getPath().replace("\\", "/"));
+            return true;
+        }
+        return false;
+    }
+
+    private boolean invalidMimeType(File f) {
+        ConfigurableMimeFileTypeMap configurableMimeFileTypeMap =
+                new ConfigurableMimeFileTypeMap();
+        String mimeType = configurableMimeFileTypeMap.getContentType(f);
+        return !mimeType.substring(0, 5).equalsIgnoreCase("image");
+    }
+
+    private void removeFile(File file) {
+        if (file.exists()) {
+            file.delete();
+        }
     }
 
     private TheResponse updateResultWithInvalidImageCode(ResultCode resultCode, String description) {

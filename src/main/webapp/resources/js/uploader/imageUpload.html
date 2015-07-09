@@ -7,10 +7,6 @@
     <div class="thumbnail" ng-show="isInvalidThumbnailShown()">
         <p class="invalid-image" ng-class="invalidSize?'invalid-display':''">El tamaño de la imagen es demasido grande
             (max {{maxImageSize}} x {{maxImageSize}} px)</p>
-
-        <p class="invalid-image" ng-class="invalidRatio?'invalid-display':''">La diferencia de altura/anchura es muy
-            grande (max ~{{maxAspectRatio}})</p>
-
         <p class="invalid-image" ng-class="invalidImage?'invalid-display':''">La imagen no es v&aacute;lida</p>
     </div>
     <div class="thumbnail" ng-hide="(displayThumbnail && $flow.files.length) ||

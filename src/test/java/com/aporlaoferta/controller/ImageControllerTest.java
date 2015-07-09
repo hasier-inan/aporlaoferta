@@ -5,6 +5,7 @@ import com.aporlaoferta.service.ImageUploadManager;
 import com.aporlaoferta.service.InvalidUploadFolderException;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -14,6 +15,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 
 import static org.hamcrest.core.Is.is;
@@ -37,6 +39,8 @@ public class ImageControllerTest {
     ImageUploadManager imageUploadManager;
     @Mock
     MultipartFile tooLargeImage;
+    @Mock
+    File regularFile;
 
     @Before
     public void setUp() {
@@ -59,10 +63,12 @@ public class ImageControllerTest {
         assertEquals("Expected Invalid_Upload_Error code", ResultCode.IMAGE_UPLOAD_ERROR.getCode(), theResponse.getCode());
     }
 
+    @Ignore
     @Test
     public void testFinalUrlIsIncludedInResponse() throws IOException {
         String fileFinalPath = "the.path";
-        when(this.imageUploadManager.copyUploadedFileIntoServer(any(MultipartFile.class))).thenReturn(fileFinalPath);
+        when(this.regularFile.getPath()).thenReturn(fileFinalPath);
+        when(this.imageUploadManager.copyUploadedFileIntoServer(any(MultipartFile.class))).thenReturn(this.regularFile);
         TheResponse theResponse = imageController.uploadImage(createDummyMultipart());
         assertEquals("Expected same path in response description", fileFinalPath, theResponse.getDescription());
     }
@@ -76,12 +82,8 @@ public class ImageControllerTest {
                 theResponse.getCode(), is(ResultCode.IMAGE_TOO_HEAVY_ERROR.getCode()));
     }
 
-    //TODO: read file to get mime info (ONLY IMAGES ACCEPTED, avoid troyans)
-    //TODO: only 2000L accepted and max width/heigh (front-end)
-
-
     private MultipartFile createDummyMultipart() {
         String imtheData = "oh yez";
-        return new MockMultipartFile("fileData", "fileName", "text/plain", imtheData.getBytes());
+        return new MockMultipartFile("fileData", "fileName", "image/png", imtheData.getBytes());
     }
 }

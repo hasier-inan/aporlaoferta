@@ -16,9 +16,7 @@ aporlaofertaApp
                 $scope.displayThumbnail = true;
                 $scope.invalidSize = false;
                 $scope.invalidImage = false;
-                $scope.invalidRatio = false;
                 $scope.maxImageSize = configService.getEndpoint('max.image.size');
-                $scope.maxAspectRatio = configService.getEndpoint('max.image.aspect');
                 $scope.fileAdded = function (file) {
                     var fileReader = new FileReader();
                     fileReader.onload = function (event) {
@@ -28,17 +26,10 @@ aporlaofertaApp
                             return false;
                         };
                         img.onload = function () {
-                            var aspectRatio = (this.width > this.height) ?
-                                this.width / this.height : this.height / this.width;
                             if (this.width > $scope.maxImageSize ||
                                 this.height > $scope.maxImageSize
                                 ) {
                                 $scope.displayInvalidImageSizeMessage();
-                                return false;
-                            }
-                            else if (
-                                aspectRatio > $scope.maxAspectRatio) {
-                                $scope.displayInvalidImageAspectRatioMessage();
                                 return false;
                             }
                             $scope.uploader.flow.upload();
@@ -51,7 +42,6 @@ aporlaofertaApp
 
                 $scope.defaultThumbnailView = function () {
                     $scope.displayThumbnail = true;
-                    $scope.invalidRatio = false;
                     $scope.invalidImage = false;
                     $scope.invalidSize = false;
                 };
@@ -75,15 +65,7 @@ aporlaofertaApp
                 });
 
                 $scope.isInvalidThumbnailShown = function () {
-                    return $scope.invalidImage || $scope.invalidRatio || $scope.invalidSize;
-                };
-                $scope.displayInvalidImageAspectRatioMessage = function () {
-                    $scope.defaultThumbnailView();
-                    $scope.invalidRatio = true;
-                    $scope.displayThumbnail = false;
-                    $timeout(function () {
-                        $scope.uploader.flow.cancel();
-                    }, 1000);
+                    return $scope.invalidImage || $scope.invalidSize;
                 };
 
                 $scope.displayInvalidImageSizeMessage = function () {

@@ -38,7 +38,7 @@ public class ImageUploadManagerTest {
     @Test
     public void testMultipartFileIsCopiedToUploadFolderAndSubfolder() throws Exception {
         ImageUploadManager imageUploadManager = new ImageUploadManager("validFolder", 0);
-        File file = new File(imageUploadManager.copyUploadedFileIntoServer(createDummyMultipart()));
+        File file =imageUploadManager.copyUploadedFileIntoServer(createDummyMultipart());
         if (!file.exists()) {
             fail("Expected file to be copied to target folder/subfolder");
         }
@@ -49,7 +49,7 @@ public class ImageUploadManagerTest {
 
     private MultipartFile createDummyMultipart() {
         String imtheData = "oh yez";
-        return new MockMultipartFile("fileData", "fileName", "text/plain", imtheData.getBytes());
+        return new MockMultipartFile("fileData", "fileName", "image/png", imtheData.getBytes());
     }
 
     private void deleteTemporaryFolders() {
