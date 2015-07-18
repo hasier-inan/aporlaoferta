@@ -8,4 +8,6 @@
         <constructor-arg name="uploadFolder" value="${upload.folder}"/>
         <constructor-arg name="folderDepth" value="50"/>
     </bean>
+
+    <bean id="urlParser" class="com.aporlaoferta.utils.UrlParser"/>
 </beans>

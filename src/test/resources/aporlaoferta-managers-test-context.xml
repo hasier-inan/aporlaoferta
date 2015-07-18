@@ -12,6 +12,7 @@
     </bean>
     <bean id="companyManagerTest" class="com.aporlaoferta.service.CompanyManager">
         <property name="transactionalManager" ref="transactionalManagerTest"/>
+        <property name="urlParser" ref="urlManagerTest"/>
     </bean>
     <bean id="commentManagerTest" class="com.aporlaoferta.service.CommentManager">
         <property name="transactionalManager" ref="transactionalManagerTest"/>
@@ -22,4 +23,6 @@
     </bean>
 
     <bean id="transactionalManagerTest" class="com.aporlaoferta.service.TransactionalManager"/>
+
+    <bean id="urlManagerTest" class="com.aporlaoferta.utils.UrlParser"/>
 </beans>

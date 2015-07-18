@@ -4,7 +4,9 @@ import com.aporlaoferta.data.CompanyBuilderManager;
 import com.aporlaoferta.model.OfferCompany;
 import com.aporlaoferta.service.CompanyManager;
 import com.aporlaoferta.service.TransactionalManager;
+import com.aporlaoferta.utils.UrlParser;
 import org.hamcrest.Matchers;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,15 +32,18 @@ import static org.junit.Assert.assertThat;
 @Transactional
 public class CompanyManagerTestIntegration {
 
-    private static final String COMPANY_NAME = "This is the duck factory";
+    protected static final String COMPANY_NAME = "This is the duck factory";
 
     @Autowired
-    TransactionalManager transactionalManager;
+    protected TransactionalManager transactionalManager;
 
     @Autowired
-    private CompanyManager companyManager;
+    protected CompanyManager companyManager;
 
-    private OfferCompany offerCompany;
+    @Autowired
+    private UrlParser urlParser;
+
+    protected OfferCompany offerCompany;
 
     @Before
     public void setUp() {
@@ -95,5 +100,11 @@ public class CompanyManagerTestIntegration {
         assertNull(this.companyManager.createAffiliationLink(this.offerCompany, ""));
     }
 
+    @Test
+    public void testFinalRawLinkIsObtainedFromShortenerUrl() throws Exception {
+        String theHiddenLink = "http://www.amazon.es/gp/product/B00VIA4N6S?&th=1";
+        String theShortenerUrl = "http://goo.gl/MnQf11";
+        Assert.assertEquals(theHiddenLink, this.urlParser.obtainFinalEndpoint(theShortenerUrl));
+    }
 }
 

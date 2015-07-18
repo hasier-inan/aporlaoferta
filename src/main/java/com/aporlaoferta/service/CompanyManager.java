@@ -2,6 +2,7 @@ package com.aporlaoferta.service;
 
 import com.aporlaoferta.affiliations.GenericAffiliation;
 import com.aporlaoferta.model.OfferCompany;
+import com.aporlaoferta.utils.UrlParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ public class CompanyManager {
     private final Logger LOG = LoggerFactory.getLogger(CompanyManager.class);
 
     private TransactionalManager transactionalManager;
+
+    private UrlParser urlParser;
 
     public OfferCompany getCompanyFromId(Long id) {
         try {
@@ -57,5 +60,10 @@ public class CompanyManager {
     @Autowired
     public void setTransactionalManager(TransactionalManager transactionalManager) {
         this.transactionalManager = transactionalManager;
+    }
+
+    @Autowired
+    public void setUrlParser(UrlParser urlParser) {
+        this.urlParser = urlParser;
     }
 }
