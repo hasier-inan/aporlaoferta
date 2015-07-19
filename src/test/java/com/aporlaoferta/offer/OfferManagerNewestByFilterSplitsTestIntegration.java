@@ -71,9 +71,10 @@ public class OfferManagerNewestByFilterSplitsTestIntegration {
         }
         if (offerFilters.isExpired()) {
             Assert.assertTrue("Expected offers to be expired and not expired",
-                    expiredCounter > 0 && expiredCounter > 0);
+                    expiredCounter > 0 && nonExpiredCounter > 0);
         } else {
-
+            Assert.assertTrue("Expected offers to be expired and not expired",
+                    expiredCounter == 0 && nonExpiredCounter > 0);
         }
 
     }

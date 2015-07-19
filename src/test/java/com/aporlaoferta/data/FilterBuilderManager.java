@@ -17,4 +17,25 @@ public class FilterBuilderManager {
                 .isExpired(true)
                 ;
     }
+
+    public static FilterBuilder anAmazonFilter(String companyName) {
+        return FilterBuilder.aFilter()
+                .withText(companyName)
+                ;
+    }
+
+    public static FilterBuilder anCategoryOnlyFilter(OfferCategory category) {
+        return FilterBuilder.aFilter()
+                .withCategory(category)
+                ;
+    }
+
+    public static FilterBuilder aTextOnlyFilter(String text) {
+        return FilterBuilder.aFilter()
+                .withText(text);
+    }
+
+    public static FilterBuilder anExpiredOnlyFilter(boolean expired) {
+        return FilterBuilder.aFilter().isExpired(expired);
+    }
 }

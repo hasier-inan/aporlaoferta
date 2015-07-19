@@ -40,10 +40,24 @@ public class OfferFilters {
         this.expired = expired;
     }
 
+    public boolean containsCategoryOnlyFilter() {
+        return (isEmpty(getText())
+                && (!isEmpty(getSelectedcategory())));
+    }
+
+    public boolean containsTextOnlyFilter() {
+        return (!isEmpty(getText())
+                && (isEmpty(getSelectedcategory())));
+    }
+
+    public boolean containsExpiredOnlyFilter() {
+        return (isEmpty(getText())
+                && (isEmpty(getSelectedcategory())))
+                && this.expired;
+    }
+
     public boolean containsFilter() {
         return (!isEmpty(getText())
-                && (!isEmpty(getSelectedcategory())))
-                || this.expired
-                ;
+                && (!isEmpty(getSelectedcategory())));
     }
 }

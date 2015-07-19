@@ -104,7 +104,22 @@ public class TransactionalManager {
 
     @Transactional(readOnly = true)
     public List<TheOffer> getNextHundredFilteredOffers(String category, String text, boolean expired) {
-        return this.offerDAO.getOneHundredFilteredOffers(category, "%"+text+"%", expired);
+        return this.offerDAO.getOneHundredFilteredOffers(category, "%" + text + "%", expired);
+    }
+
+    @Transactional(readOnly = true)
+    public List<TheOffer> getNextHundredCategoryFilteredOffers(String selectedcategory, boolean expired) {
+        return this.offerDAO.getOneHundredCategoryFilteredOffers(selectedcategory, expired);
+    }
+
+    @Transactional(readOnly = true)
+    public List<TheOffer> getNextHundredTextFilteredOffers(String text, boolean expired) {
+        return this.offerDAO.getOneHundredTextFilteredOffers("%" + text + "%", expired);
+    }
+
+    @Transactional(readOnly = true)
+    public List<TheOffer> getNextHundredExpiredFilteredOffers(boolean expired) {
+        return this.offerDAO.getOneHundredExpiredFilteredOffers(expired);
     }
 
     @Transactional(readOnly = true)

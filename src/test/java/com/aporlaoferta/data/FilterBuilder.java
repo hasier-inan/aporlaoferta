@@ -40,7 +40,9 @@ public class FilterBuilder {
 
     public OfferFilters build() {
         OfferFilters offerFilters = new OfferFilters();
-        offerFilters.setSelectedcategory(this.category.name());
+        if (this.category != null) {
+            offerFilters.setSelectedcategory(this.category.name());
+        }
         offerFilters.setText(this.text);
         offerFilters.setExpired(this.expired);
         return offerFilters;

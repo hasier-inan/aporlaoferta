@@ -63,12 +63,27 @@ public class OfferManager {
     }
 
     public List<TheOffer> getFilteredNextHundredResults(OfferFilters offerFilters) {
-        return offerFilters.containsFilter() ?
-                this.transactionalManager.getNextHundredFilteredOffers(
-                        offerFilters.getSelectedcategory(),
-                        offerFilters.getText(),
-                        offerFilters.isExpired()
-                ) : this.transactionalManager.getNextHundredOffers(0L);
+        if (offerFilters.containsCategoryOnlyFilter()) {
+            return this.transactionalManager.getNextHundredCategoryFilteredOffers(
+                    offerFilters.getSelectedcategory(),
+                    offerFilters.isExpired()
+            );
+        } else if (offerFilters.containsTextOnlyFilter()) {
+            return this.transactionalManager.getNextHundredTextFilteredOffers(
+                    offerFilters.getText(),
+                    offerFilters.isExpired()
+            );
+        } else if (offerFilters.containsExpiredOnlyFilter()) {
+            return this.transactionalManager.getNextHundredExpiredFilteredOffers(
+                    offerFilters.isExpired());
+        } else {
+            return offerFilters.containsFilter() ? this.transactionalManager.getNextHundredFilteredOffers(
+                    offerFilters.getSelectedcategory(),
+                    offerFilters.getText(),
+                    offerFilters.isExpired()
+            )
+                    : this.transactionalManager.getNextHundredOffers(0L);
+        }
     }
 
     public Long countAllOffers() {

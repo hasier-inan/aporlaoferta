@@ -19,6 +19,7 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
@@ -104,7 +105,7 @@ public class CompanyManagerTestIntegration {
     public void testFinalRawLinkIsObtainedFromShortenerUrl() throws Exception {
         String theHiddenLink = "http://www.amazon.es/gp/product/B00VIA4N6S?&th=1";
         String theShortenerUrl = "http://goo.gl/MnQf11";
-        Assert.assertEquals(theHiddenLink, this.urlParser.obtainFinalEndpoint(theShortenerUrl));
+        assertEquals(theHiddenLink, this.urlParser.obtainFinalEndpoint(theShortenerUrl));
     }
 }
 

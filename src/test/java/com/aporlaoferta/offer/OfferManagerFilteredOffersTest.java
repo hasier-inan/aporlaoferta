@@ -2,6 +2,7 @@ package com.aporlaoferta.offer;
 
 import com.aporlaoferta.data.FilterBuilderManager;
 import com.aporlaoferta.data.OfferBuilderManager;
+import com.aporlaoferta.model.OfferCategory;
 import com.aporlaoferta.model.OfferFilters;
 import com.aporlaoferta.model.TheOffer;
 import com.aporlaoferta.service.OfferManager;
@@ -61,7 +62,42 @@ public class OfferManagerFilteredOffersTest {
         when(this.transactionalManager.getNextHundredOffers(0L)).thenReturn(newestOffersOnly);
         List<TheOffer> filteredResults = this.offerManager.getFilteredNextHundredResults(new OfferFilters());
         assertEquals(newestOffersOnly, filteredResults);
+    }
 
+    @Test
+    public void testCategoryOnlyFilterReturnsAllOffersNoMatterWhatTitleTheyHave() throws Exception {
+        OfferFilters categoryOnlyFilter = createCategoryOfferFilter();
+        this.offerManager.getFilteredNextHundredResults(categoryOnlyFilter);
+        verify(this.transactionalManager).getNextHundredCategoryFilteredOffers(
+                categoryOnlyFilter.getSelectedcategory(), categoryOnlyFilter.isExpired());
+    }
+
+    @Test
+    public void testTitleOnlyFilterReturnsAllOffersNoMatterTheirCategory() throws Exception {
+        OfferFilters categoryOnlyFilter = createTextOfferFilter();
+        this.offerManager.getFilteredNextHundredResults(categoryOnlyFilter);
+        verify(this.transactionalManager).getNextHundredTextFilteredOffers(
+                categoryOnlyFilter.getText(), categoryOnlyFilter.isExpired());
+    }
+
+    @Test
+    public void testExpiredOnlyFilterReturnsAllOffers() throws Exception {
+        OfferFilters expiredOnlyFilter = createExpiredOfferFilter();
+        this.offerManager.getFilteredNextHundredResults(expiredOnlyFilter);
+        verify(this.transactionalManager).getNextHundredExpiredFilteredOffers(
+                expiredOnlyFilter.isExpired());
+    }
+
+    private OfferFilters createExpiredOfferFilter() {
+        return FilterBuilderManager.anExpiredOnlyFilter(true).build();
+    }
+
+    private OfferFilters createTextOfferFilter() {
+        return FilterBuilderManager.aTextOnlyFilter("intel").build();
+    }
+
+    private OfferFilters createCategoryOfferFilter() {
+        return FilterBuilderManager.anCategoryOnlyFilter(OfferCategory.ELECTRONICS).build();
     }
 
     private OfferFilters createDummyOfferFilter() {
