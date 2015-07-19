@@ -3,7 +3,7 @@ package com.aporlaoferta.affiliations;
 /**
  * Created by hasiermetal on 22/01/15.
  */
-public class GenericAffiliation extends AffiliateManager {
+public class GenericAffiliation extends DefaultAffiliation {
 
     public GenericAffiliation(String affiliateId, String ending, String preAffiliatePattern, String splitterPattern) {
         super();

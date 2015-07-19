@@ -13,6 +13,7 @@ import com.aporlaoferta.service.CompanyManager;
 import com.aporlaoferta.service.OfferManager;
 import com.aporlaoferta.service.UserManager;
 import com.aporlaoferta.utils.OfferValidatorHelper;
+import com.aporlaoferta.utils.UnhealthyException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -118,7 +121,22 @@ public class OfferController {
         includeOfferInUser(thatOffer);
         thatOffer.setOfferCreatedDate(new Date());
         updateCompany(thatOffer);
-        return validateAndPersistOffer(thatOffer);
+        try {
+            includeAffiliationLink(thatOffer);
+            return validateAndPersistOffer(thatOffer);
+        } catch (MalformedURLException e) {
+            LOG.error("Could not add custom affiliation id to offer url because url is invalid: ", e);
+        } catch (UnsupportedEncodingException e) {
+            LOG.error("Could not add custom affiliation id to offer url because url is wrongly encoded: ", e);
+        } catch (UnhealthyException e) {
+            LOG.error("Could not add custom affiliation id to offer url because url is unhealthy: ", e);
+        }
+        return null;//invalidUrlResponse(thatOffer);
+    }
+
+    private void includeAffiliationLink(TheOffer thatOffer) throws MalformedURLException, UnsupportedEncodingException,UnhealthyException {
+        thatOffer.setOfferLink(this.companyManager.createAffiliationLink(
+                thatOffer.getOfferCompany(), thatOffer.getOfferLink()));
     }
 
     private void updateCompany(TheOffer thatOffer) {

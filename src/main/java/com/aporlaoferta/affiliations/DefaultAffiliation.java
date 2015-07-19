@@ -8,9 +8,9 @@ import static org.springframework.util.StringUtils.isEmpty;
 /**
  * Created by hasiermetal on 22/01/15.
  */
-public abstract class AffiliateManager implements AffiliationBase {
+public abstract class DefaultAffiliation implements AffiliationBase {
 
-    private final Logger LOG = LoggerFactory.getLogger(AffiliateManager.class);
+    private final Logger LOG = LoggerFactory.getLogger(DefaultAffiliation.class);
 
     private String splitterPatternToRight = "";
     private String endingAdder = "";

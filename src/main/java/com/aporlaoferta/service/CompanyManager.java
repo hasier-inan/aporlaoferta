@@ -1,13 +1,16 @@
 package com.aporlaoferta.service;
 
-import com.aporlaoferta.affiliations.GenericAffiliation;
+import com.aporlaoferta.affiliations.AffiliationManager;
+import com.aporlaoferta.affiliations.InvalidAffiliatedCompany;
 import com.aporlaoferta.model.OfferCompany;
-import com.aporlaoferta.utils.UrlParser;
+import com.aporlaoferta.utils.UnhealthyException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import java.util.List;
 
 import static org.springframework.util.StringUtils.isEmpty;
@@ -21,7 +24,7 @@ public class CompanyManager {
 
     private TransactionalManager transactionalManager;
 
-    private UrlParser urlParser;
+    private AffiliationManager affiliationManager;
 
     public OfferCompany getCompanyFromId(Long id) {
         try {
@@ -37,16 +40,19 @@ public class CompanyManager {
         return this.transactionalManager.getCompanyFromName(companyName);
     }
 
-    public String createAffiliationLink(OfferCompany offerCompany, String rawLink) {
+    public String createAffiliationLink(OfferCompany offerCompany, String rawLink) throws MalformedURLException, UnsupportedEncodingException, UnhealthyException {
+        int urlAlive = this.affiliationManager.isUrlAlive(rawLink);
+
         if (offerCompany == null || isEmpty(offerCompany.getCompanyAffiliateId()) || isEmpty(rawLink)) {
             LOG.info("No affiliation found for the given company");
-            return null;
+            return rawLink;
         }
-        //Need to parse company to know which affiliate manager we should use.
-        //TODO: meanwhile use the main affiliation manager
-        GenericAffiliation genericAffiliation = new GenericAffiliation("&affiliate=" +
-                offerCompany.getCompanyAffiliateId());
-        return genericAffiliation.addAffiliationIdToLink(rawLink);
+        try {
+            return this.affiliationManager.constructAffiliatedLink(offerCompany, rawLink);
+        } catch (InvalidAffiliatedCompany e) {
+            LOG.error("Could not add custom affiliation id to offer url: ", e);
+        }
+        return rawLink;
     }
 
     public List<OfferCompany> getAllCompanies() {
@@ -63,7 +69,7 @@ public class CompanyManager {
     }
 
     @Autowired
-    public void setUrlParser(UrlParser urlParser) {
-        this.urlParser = urlParser;
+    public void setAffiliationManager(AffiliationManager affiliationManager) {
+        this.affiliationManager = affiliationManager;
     }
 }

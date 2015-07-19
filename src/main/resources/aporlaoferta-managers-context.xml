@@ -10,4 +10,6 @@
     </bean>
 
     <bean id="urlParser" class="com.aporlaoferta.utils.UrlParser"/>
+
+    <bean id="affiliationManager" class="com.aporlaoferta.affiliations.AffiliationManager"/>
 </beans>
