@@ -66,9 +66,15 @@ select.overheadField,
 textarea#createOfferDescription {
     height: 2em;
     color: #ffffff;
-    background-color: #fa6900;
     display: inline-block;
     margin-bottom: 1em;
+}
+select.overheadField{
+    background-color: #e7771f;
+}
+input.overheadField,
+select.overheadField{
+    width: 12em;
 }
 
 textarea#createOfferDescription {
@@ -120,6 +126,7 @@ div.overheadField.select-wrapper::before {
 
 input.overheadField:focus,
 textarea#createOfferDescription:focus {
+    width: 12em;
     height: 2em;
     color: #000000;
     background-color: #ffffff;
@@ -461,7 +468,6 @@ div.responseDescription {
 }
 
 input[type="checkbox"] + label.overheadLabel:before, input[type="radio"] + label.overheadLabel:before {
-    background-color: #fa6900;
     border-color: #ffffff;
 }
 
