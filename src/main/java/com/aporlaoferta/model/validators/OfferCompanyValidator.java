@@ -18,6 +18,5 @@ public class OfferCompanyValidator implements Validator {
     public void validate(Object o, Errors errors) {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "companyName",
                 ValidationError.ERROR_FIELD_REQUIRED.getCode());
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "companyUrl", ValidationError.ERROR_FIELD_REQUIRED.getCode());
     }
 }

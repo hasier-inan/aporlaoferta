@@ -2,51 +2,63 @@
     <form id="offerCreationForm" name="createOfferForm" class="centeredForm">
         <ul>
             <li>
-                <input type="text" id="createOfferTitle" name="createOfferTitle"
-                       ng-model="offer.offerTitle" class="overheadField"
-                       placeholder="T&iacute;tulo"/>
-            </li>
-            <li>
-                <div ng-offer-category-manager="offerCategoryManager" reset="resetCategory" selectedcategory="offer.offerCategory"></div>
+                <div ng-offer-category-manager="offerCategoryManager" reset="resetCategory"
+                     selectedcategory="offer.offerCategory"></div>
             </li>
         </ul>
         <ul>
-            <li>
+            <li class="regular-100 regular-margin-1">
+                <input type="text" id="createOfferTitle" name="createOfferTitle"
+                       ng-model="offer.offerTitle" class="overheadField regular-60"
+                       placeholder="T&iacute;tulo"/>
+            </li>
+        </ul>
+        <ul class="regular-margin-1">
+            <li class="regular-50 ">
                 <input type="text" id="createOfferOriginalPrice"
                        name="createOfferOriginalPrice"
                        ng-model="offer.originalPrice"
-                       ng-pattern="bigDecimalsOnly" class="overheadField"
+                       ng-pattern="bigDecimalsOnly" class="overheadField regular-40"
                        placeholder="Precio original"/>
                 <!--<span ng-show="createOfferForm.createOfferOriginalPrice.$error.pattern">Precio invalido</span>-->
             </li>
-            <li>
+            <li class="regular-50">
                 <input type="text" id="createOfferFinalPrice"
                        name="createOfferFinalPrice"
                        ng-model="offer.finalPrice"
-                       ng-pattern="bigDecimalsOnly" class="overheadField"
+                       ng-pattern="bigDecimalsOnly" class="overheadField regular-40"
                        placeholder="Precio final"/>
                 <!--<span ng-show="createOfferForm.createOfferFinalPrice.$error.pattern">Precio invalido</span>-->
             </li>
         </ul>
         <ul>
-            <li>
-                <input type="text" id="createOfferLink" ng-model="offer.offerLink" class="overheadField"
+            <li class="regular-100 regular-margin-1">
+                <input type="text" id="createOfferLink" ng-model="offer.offerLink" class="overheadField regular-60"
                        placeholder="Link"/>
             </li>
+        </ul>
+        <ul class="regular-100 regular-margin-1">
             <li>
-                <div ng-company-manager="companyManager" reset="resetCompany" selectedcompany="offer.offerCompany"></div>
+                <div ng-company-manager="companyManager" reset="resetCompany"
+                     selectedcompany="offer.offerCompany"></div>
+            </li>
+        </ul>
+        <ul>
+            <li class="regular-80">
+                <textarea id="createOfferDescription" ng-model="offer.offerDescription"
+                          class="overheadField ng-pristine ng-valid regular-100" placeholder="A&ntilde;adir descripci&oacute;n"
+                          rows="6"></textarea>
             </li>
         </ul>
         <ul>
             <li>
                 <label id="offerImageUploadLabel" for="offerImageUploadContent" class="overheadLabel">Imagen</label>
-                <div id="offerImageUploadContent" ng-image-uploader="createOfferImageUploader" final-url="offer.offerImage"></div>
+
+                <div id="offerImageUploadContent" ng-image-uploader="createOfferImageUploader"
+                     final-url="offer.offerImage"></div>
                 <input type="hidden" id="createOfferImage"
                        ng-model="offer.offerImage" class="overheadField"
                        placeholder="Imagen" required/>
-            </li>
-            <li>
-                <textarea id="createOfferDescription" ng-model="offer.offerDescription" class="overheadField ng-pristine ng-valid" placeholder="A&ntilde;adir descripci&oacute;n" rows="6"></textarea>
             </li>
         </ul>
 

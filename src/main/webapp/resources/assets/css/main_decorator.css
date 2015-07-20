@@ -64,7 +64,6 @@ div.profileForm > label.overheadLabel {
 input.overheadField,
 select.overheadField,
 textarea#createOfferDescription {
-    width: 12em !important;
     height: 2em;
     color: #ffffff;
     background-color: #fa6900;
@@ -74,6 +73,28 @@ textarea#createOfferDescription {
 
 textarea#createOfferDescription {
     height: 10em;
+}
+
+li.regular-100,textarea.regular-100{
+    width: 100%;
+}
+
+li.regular-80{
+    width: 80%;
+}
+
+li.regular-40{
+    width: 40%;
+}
+li.regular-margin-1,ul.regular-margin-1{
+    margin-top: 1em !important;
+}
+
+input.regular-60{
+    width: 60% !important;
+}
+input.regular-40{
+    width: 40% !important;
 }
 
 div.overheadField {
@@ -99,7 +120,6 @@ div.overheadField.select-wrapper::before {
 
 input.overheadField:focus,
 textarea#createOfferDescription:focus {
-    width: 12em;
     height: 2em;
     color: #000000;
     background-color: #ffffff;
@@ -437,6 +457,7 @@ div.responseDescription {
 #brandNewCompanyFormLabel {
     margin-top: 1em;
     margin-bottom: 1em;
+    margin-left: 1em;
 }
 
 input[type="checkbox"] + label.overheadLabel:before, input[type="radio"] + label.overheadLabel:before {
