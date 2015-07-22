@@ -32,6 +32,7 @@ public class OfferControllerTestIntegration extends ControllerTestIntegration {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonRequest)
                 .param("_csrf", csrfToken.getToken())
+                .param("recaptcha","recaptcha")
                 .sessionAttrs(SessionAttributeBuilder
                         .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
         )

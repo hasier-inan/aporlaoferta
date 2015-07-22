@@ -9,6 +9,7 @@ import com.aporlaoferta.model.TheOfferResponse;
 import com.aporlaoferta.model.TheResponse;
 import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.model.validators.ValidationException;
+import com.aporlaoferta.service.CaptchaHTTPManager;
 import com.aporlaoferta.service.CompanyManager;
 import com.aporlaoferta.service.OfferManager;
 import com.aporlaoferta.service.UserManager;
@@ -56,6 +57,9 @@ public class OfferController {
 
     @Autowired
     private CompanyManager companyManager;
+
+    @Autowired
+    private CaptchaHTTPManager captchaHttpManager;
 
     @RequestMapping(value = "/getOffers", method = RequestMethod.POST)
     @ResponseBody
@@ -117,7 +121,17 @@ public class OfferController {
 
     @RequestMapping(value = "/createOffer", method = RequestMethod.POST)
     @ResponseBody
-    public TheResponse createOffer(@RequestBody TheOffer thatOffer) {
+    public TheResponse createOffer(@RequestBody TheOffer thatOffer,
+                                   @RequestParam(value = "recaptcha", required = true) String reCaptcha) {
+
+        if (this.captchaHttpManager.validHuman(reCaptcha)) {
+            return processOfferCreation(thatOffer);
+        } else {
+            return CaptchaHTTPManager.createInvalidCaptchaResponse();
+        }
+    }
+
+    private TheResponse processOfferCreation(TheOffer thatOffer) {
         includeOfferInUser(thatOffer);
         thatOffer.setOfferCreatedDate(new Date());
         updateCompany(thatOffer);
@@ -131,10 +145,10 @@ public class OfferController {
         } catch (UnhealthyException e) {
             LOG.error("Could not add custom affiliation id to offer url because url is unhealthy: ", e);
         }
-        return null;//invalidUrlResponse(thatOffer);
+        return null;
     }
 
-    private void includeAffiliationLink(TheOffer thatOffer) throws MalformedURLException, UnsupportedEncodingException,UnhealthyException {
+    private void includeAffiliationLink(TheOffer thatOffer) throws MalformedURLException, UnsupportedEncodingException, UnhealthyException {
         thatOffer.setOfferLink(this.companyManager.createAffiliationLink(
                 thatOffer.getOfferCompany(), thatOffer.getOfferLink()));
     }
@@ -199,7 +213,7 @@ public class OfferController {
 
     private void updateResponseWithSuccessCode(TheOfferResponse theOfferResponse) {
         theOfferResponse.setCode(ResultCode.ALL_OK.getCode());
-        theOfferResponse.setDescription(ResultCode.ALL_OK.getResultDescription());
+        theOfferResponse.setDescription(ResultCode.ALL_OK.getResultDescriptionEsp());
         theOfferResponse.setResponseResult(ResultCode.ALL_OK.getResponseResult());
     }
 

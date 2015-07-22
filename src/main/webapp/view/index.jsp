@@ -41,6 +41,8 @@
     <!--core-->
     <script src="resources/js/lib/angular.js"></script>
     <script src="resources/js/lib/angular-animate.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit" async defer></script>
+    <script src="resources/js/lib/angular-recaptcha.min.js"></script>
     <script src="resources/js/lib/ng-flow-standalone.js"></script>
     <script src="resources/assets/js/main.js"></script>
     <script src="resources/js/main-controller/mainController.js"></script>
@@ -62,6 +64,7 @@
     <script src="resources/js/header-display/ngHeadDisplayDirective.js"></script>
     <script src="resources/js/uploader/ngImageUploadDirective.js"></script>
     <script src="resources/js/response/ngResponseFromServer.js"></script>
+    <script src="resources/js/response/alertService.js"></script>
     <link rel="stylesheet" href="resources/js/uploader/imageUpload.css"/>
 </head>
 <body id="top" data-ng-controller="APorLaOfertaController" flow-prevent-drop>

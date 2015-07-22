@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:int="http://www.springframework.org/schema/integration"
+       xmlns:int-http="http://www.springframework.org/schema/integration/http"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/integration
+    http://www.springframework.org/schema/integration/spring-integration.xsd
+    http://www.springframework.org/schema/integration/http
+    http://www.springframework.org/schema/integration/http/spring-integration-http.xsd">
+
+    <int:gateway id="requestGateway"
+                 service-interface="com.aporlaoferta.service.RequestGateway"
+                 default-request-channel="requestChannel">
+    </int:gateway>
+
+    <int:channel id='requestChannel'/>
+
+    <int-http:outbound-gateway id="channelGateway"
+                               request-channel="requestChannel"
+                               url="https://www.google.com/recaptcha/api/siteverify"
+                               http-method="POST"
+                               reply-timeout="5000"
+                               expected-response-type="java.lang.String"
+                               >
+    </int-http:outbound-gateway>
+
+    <bean id="httpManagerTest" class="com.aporlaoferta.service.CaptchaHTTPManager">
+        <property name="requestGateway" ref="requestGateway"/>
+    </bean>
+</beans>

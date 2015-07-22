@@ -36,7 +36,8 @@ public enum ResultCode {
     IMAGE_UPLOAD_ERROR(56, ResponseResult.INVALID_DATA_PROVIDED,
             "Could not perform image upload process", "No se ha podido cargar la imagen"),
     IMAGE_TOO_HEAVY_ERROR(57, ResponseResult.INVALID_DATA_PROVIDED,
-            "Image is too heavy", "La imagen es demasido pesada");
+            "Image is too heavy", "La imagen es demasido pesada"),
+    INVALID_CAPTCHA(75, ResponseResult.INVALID_DATA_PROVIDED, "Invalid Captcha", "Captcha inválido");
 
     private int code;
     private String resultDescription;

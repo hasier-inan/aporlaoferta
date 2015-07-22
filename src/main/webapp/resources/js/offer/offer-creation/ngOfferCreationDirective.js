@@ -9,31 +9,36 @@ aporlaofertaApp
             scope: {
                 overheadDisplay: '='
             },
-            controller: ['$rootScope', '$scope', 'requestManager', 'configService', function ($rootScope, $scope, requestManager, configService) {
-                $scope.offer = {};
-                $scope.resetCategory = true;
-                $scope.createOffer = function () {
-                    requestManager.makePostCall($scope.offer, {}, configService.getEndpoint('create.offer'))
-                        .success(function (data, status, headers, config) {
-                            $rootScope.$broadcast('serverResponse', data);
-                        }).error(function (data, status, headers, config) {
-                            var theResponse = {};
-                            theResponse.description = data;
-                            theResponse.responseResult = "error";
-                            $rootScope.$broadcast('serverResponse', theResponse);
-                        });
-                    $scope.overheadDisplay = false;
-                    $scope.resetValues();
-
-                };
-                $scope.bigDecimalsOnly = /^\-?\d+((\.|\,)\d+)?$/;
-                $scope.resetValues = function () {
+            controller: ['$scope', 'requestManager', 'configService', 'alertService', 'vcRecaptchaService',
+                function ($scope, requestManager, configService, alertService, vcRecaptchaService) {
                     $scope.offer = {};
-                    $scope.brandNewCompany = false;
+                    $scope.publicKey = "6LdqHQoTAAAAAAht2VhkrLGU26eBOjL-nK9zXxcn";
                     $scope.resetCategory = true;
-                    $scope.resetCompany=true;
+                    $scope.createOffer = function () {
+                        if (vcRecaptchaService.getResponse() === "") {
+                            alertService.sendErrorMessage("Por favor, haga click en el captcha para demostrar que no es un robot");
+                        }
+                        else {
+                            requestManager.makePostCall($scope.offer, {recaptcha:vcRecaptchaService.getResponse()}, configService.getEndpoint('create.offer'))
+                                .success(function (data, status, headers, config) {
+                                    alertService.sendErrorMessage(data);
+                                }).error(function (data, status, headers, config) {
+                                    alertService.sendDefaultErrorMessage();
+                                });
+                            $scope.overheadDisplay = false;
+                            $scope.resetValues();
+                        }
 
-                }
-            }]
+                    };
+                    $scope.bigDecimalsOnly = /^\-?\d+((\.|\,)\d+)?$/;
+                    $scope.resetValues = function () {
+                        vcRecaptchaService.reset();
+                        $scope.offer = {};
+                        $scope.brandNewCompany = false;
+                        $scope.resetCategory = true;
+                        $scope.resetCompany = true;
+
+                    }
+                }]
         }
     });

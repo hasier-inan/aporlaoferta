@@ -37,9 +37,9 @@ public class AccountControllerHandlerTestIntegration {
         Object handler = this.handlerMapping.getHandler(httpRequest).getHandler();
         ModelAndView modelAndView = handlerAdapter.handle(httpRequest, response, handler);
         assertTrue(modelAndView.getModel().size() == 1);
-        assertTrue(modelAndView.getViewName().equals("login"));
-        String error = (String) modelAndView.getModel().get("error");
-        assertTrue(error.equals("Invalid username and password!"));
+        assertTrue(modelAndView.getViewName().equals("index"));
+        String error = (String) modelAndView.getModel().get("msg");
+        assertTrue(error.equals("Los datos introducidos son invalidos"));
     }
 
     @Test
@@ -50,9 +50,9 @@ public class AccountControllerHandlerTestIntegration {
         Object handler = this.handlerMapping.getHandler(httpRequest).getHandler();
         ModelAndView modelAndView = handlerAdapter.handle(httpRequest, response, handler);
         assertTrue(modelAndView.getModel().size() == 1);
-        assertTrue(modelAndView.getViewName().equals("login"));
+        assertTrue(modelAndView.getViewName().equals("index"));
         String error = (String) modelAndView.getModel().get("msg");
-        assertTrue(error.equals("You've been logged out successfully."));
+        assertTrue(error.equals("Se ha cerrado la sesión"));
     }
 
 }

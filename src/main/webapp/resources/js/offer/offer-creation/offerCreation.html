@@ -46,7 +46,8 @@
         <ul>
             <li class="regular-80">
                 <textarea id="createOfferDescription" ng-model="offer.offerDescription"
-                          class="overheadField ng-pristine ng-valid regular-100" placeholder="A&ntilde;adir descripci&oacute;n"
+                          class="overheadField ng-pristine ng-valid regular-100"
+                          placeholder="A&ntilde;adir descripci&oacute;n"
                           rows="6"></textarea>
             </li>
         </ul>
@@ -59,6 +60,14 @@
                 <input type="hidden" id="createOfferImage"
                        ng-model="offer.offerImage" class="overheadField"
                        placeholder="Imagen" required/>
+            </li>
+        </ul>
+        <ul>
+            <li><label for="createAccountCaptcha">Demuestra que no eres un robot: </label></li>
+        </ul>
+        <ul class="regular-bottom">
+            <li>
+                <div id="createAccountCaptcha" vc-recaptcha key="publicKey"></div>
             </li>
         </ul>
 

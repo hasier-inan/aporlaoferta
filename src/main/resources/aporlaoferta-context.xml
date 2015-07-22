@@ -12,6 +12,7 @@
     <import resource="aporlaoferta-validators-context.xml"/>
     <import resource="aporlaoferta-security-context.xml"/>
     <import resource="aporlaoferta-managers-context.xml"/>
+    <import resource="aporlaoferta-http-service-context.xml"/>
     <context:property-placeholder location="classpath:oferta_config.properties"/>
 
 </beans>

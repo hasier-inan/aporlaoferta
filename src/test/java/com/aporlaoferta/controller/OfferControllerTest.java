@@ -9,6 +9,7 @@ import com.aporlaoferta.model.TheOfferResponse;
 import com.aporlaoferta.model.TheResponse;
 import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.model.validators.ValidationException;
+import com.aporlaoferta.service.CaptchaHTTPManager;
 import com.aporlaoferta.service.CompanyManager;
 import com.aporlaoferta.service.OfferManager;
 import com.aporlaoferta.service.UserManager;
@@ -28,6 +29,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static org.hamcrest.Matchers.any;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -53,19 +55,22 @@ public class OfferControllerTest {
     OfferManager offerManager;
     @Mock
     CompanyManager companyManager;
+    @Mock
+    private CaptchaHTTPManager captchaHttpManager;
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         when(this.userManager.getUserFromNickname(anyString())).thenReturn(UserBuilderManager.aRegularUserWithNickname("dsf").build());
         when(this.companyManager.getCompanyFromName(anyString())).thenReturn(CompanyBuilderManager.aRegularCompanyWithId(1L).build());
+        when(this.captchaHttpManager.validHuman(anyString())).thenReturn(true);
     }
 
     @Test
     public void testReceivedResultContainsValidationErrorCodeIfValidationExceptionOccurs() {
         doThrow(new ValidationException("error")).when(this.offerValidatorHelper)
                 .validateOffer((TheOffer) anyObject());
-        TheResponse result = this.offerController.createOffer(new TheOffer());
+        TheResponse result = this.offerController.createOffer(new TheOffer(), "recaptcha");
         assertTrue(result.getResponseResult() == ResultCode.COMMENT_VALIDATION_ERROR.getResponseResult());
         assertEquals(result.getDescription(), "Validation process failed while creating offer");
     }
@@ -75,7 +80,7 @@ public class OfferControllerTest {
         when(this.userManager.getUserFromNickname(anyString())).thenReturn(null);
         doThrow(new ValidationException("error")).when(this.offerValidatorHelper)
                 .validateOffer((TheOffer) anyObject());
-        TheResponse result = this.offerController.createOffer(new TheOffer());
+        TheResponse result = this.offerController.createOffer(new TheOffer(), "recaptcha");
         assertTrue(result.getResponseResult() == ResultCode.COMMENT_VALIDATION_ERROR.getResponseResult());
         assertEquals(result.getDescription(), "Validation process failed while creating offer");
     }
@@ -86,7 +91,7 @@ public class OfferControllerTest {
         when(this.userManager.getUserFromNickname(anyString())).thenReturn(user);
         when(this.userManager.saveUser(user)).thenReturn(user);
         TheOffer theOffer = OfferBuilderManager.aBasicOfferWithoutUserOrId().build();
-        TheResponse result = this.offerController.createOffer(theOffer);
+        TheResponse result = this.offerController.createOffer(theOffer, "recaptcha");
         verify(this.userManager).saveUser(user);
         assertTrue(result.getResponseResult() == ResultCode.ALL_OK.getResponseResult());
     }
@@ -97,7 +102,7 @@ public class OfferControllerTest {
         when(this.userManager.getUserFromNickname(anyString())).thenReturn(user);
         when(this.userManager.saveUser(user)).thenReturn(UserBuilderManager.aRegularUserWithNickname("john").build());
         TheOffer theOffer = OfferBuilderManager.aBasicOfferWithoutUserOrId().build();
-        TheResponse result = this.offerController.createOffer(theOffer);
+        TheResponse result = this.offerController.createOffer(theOffer, "recaptcha");
         assertTrue(result.getResponseResult() == ResultCode.DATABASE_RETURNED_EMPTY_OBJECT.getResponseResult());
     }
 
@@ -117,7 +122,7 @@ public class OfferControllerTest {
         when(this.userManager.getUserFromNickname(anyString())).thenReturn(null);
         doThrow(new ValidationException("error")).when(this.offerValidatorHelper)
                 .validateOffer((TheOffer) anyObject());
-        TheResponse result = this.offerController.createOffer(new TheOffer());
+        TheResponse result = this.offerController.createOffer(new TheOffer(), "recaptcha");
         assertTrue(result.getResponseResult() == ResultCode.COMMENT_VALIDATION_ERROR.getResponseResult());
         assertEquals(result.getDescription(), "Validation process failed while creating offer");
     }
@@ -179,6 +184,14 @@ public class OfferControllerTest {
         when(this.offerManager.getNextHundredOffers(0L)).thenReturn(new ArrayList<TheOffer>());
         TheOfferResponse result = this.offerController.getOffers(null);
         Assert.assertEquals(result.getTheOffers().size(), 0);
+    }
+
+    @Test
+    public void testInvalidCaptchaProcessReturnsSpecificCode() throws Exception {
+        when(this.captchaHttpManager.validHuman(anyString())).thenReturn(false);
+        TheResponse result = this.offerController.createOffer(null, "");
+        Assert.assertEquals(result.getCode(), 75);
+
     }
 
     private void assertOfferListIsInResponse(TheOfferResponse result, List<TheOffer> expectedOffers) {

@@ -3,6 +3,7 @@ package com.aporlaoferta.model.validators;
 import com.aporlaoferta.data.CompanyBuilderManager;
 import com.aporlaoferta.model.OfferCompany;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
@@ -28,6 +29,7 @@ public class OfferCompanyValidatorTest {
         assertTrue(ValidatorHelper.getValidationErrors(this.offerCompany, this.offerCompanyValidator).hasErrors());
     }
 
+    @Ignore //no longer mandatory
     @Test
     public void testCompanyUrlIsMandatory() {
         this.offerCompany.setCompanyUrl(null);

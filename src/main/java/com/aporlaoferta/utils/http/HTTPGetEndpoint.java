@@ -22,6 +22,9 @@ import java.io.IOException;
 public class HTTPGetEndpoint extends HTTPRequestEndpoint implements HTTPEndpoint {
     private final Logger LOG = LoggerFactory.getLogger(HTTPGetEndpoint.class);
 
+    public HTTPGetEndpoint() {
+    }
+
     public HTTPGetEndpoint(String url, int timeout) {
         super();
         setUrl(url);

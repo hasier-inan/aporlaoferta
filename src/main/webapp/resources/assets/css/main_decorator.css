@@ -1,3 +1,8 @@
+label {
+    font-size: 1.2em;
+    color: #fff;
+}
+
 /*overhead*/
 form.centeredForm, div.centeredForm {
     text-align: center;
@@ -79,6 +84,10 @@ select.overheadField{
 
 textarea#createOfferDescription {
     height: 10em;
+}
+
+ul.regular-bottom{
+    margin-bottom: 1em;
 }
 
 li.regular-100,textarea.regular-100{

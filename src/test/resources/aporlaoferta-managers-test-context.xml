@@ -29,4 +29,6 @@
     </bean>
 
     <bean id="urlManagerTest" class="com.aporlaoferta.utils.UrlParser"/>
+
+    <bean id="httpManagerTest" class="com.aporlaoferta.offer.CaptchaHTTPManagerMock"/>
 </beans>

@@ -2,6 +2,7 @@ package com.aporlaoferta.utils;
 
 import com.aporlaoferta.utils.http.HTTPEndpoint;
 import com.aporlaoferta.utils.http.HTTPGetEndpoint;
+import org.springframework.stereotype.Component;
 
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
@@ -20,6 +21,7 @@ import static org.springframework.util.StringUtils.isEmpty;
  * Date: 17/07/15
  * Time: 16:07
  */
+@Component
 public class UrlParser {
 
     private static final int TIMEOUT = 5000;

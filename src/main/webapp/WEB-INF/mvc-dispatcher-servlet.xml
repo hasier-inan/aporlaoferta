@@ -12,6 +12,7 @@
 
     <context:component-scan base-package="com.aporlaoferta.controller" />
     <context:component-scan base-package="com.aporlaoferta.service" />
+    <context:component-scan base-package="com.aporlaoferta.utils" />
     <context:annotation-config />
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
