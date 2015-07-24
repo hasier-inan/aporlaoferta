@@ -10,6 +10,7 @@ accountControllerModule.factory('accountController', ['$http', 'requestManager',
                     vcRecaptchaService.reload();
                 }).error(function (data, status, headers, config) {
                     alertService.sendDefaultErrorMessage();
+                    vcRecaptchaService.reload();
                 });
         };
         createAccountService.updateAccount = function (theUser) {
@@ -19,6 +20,7 @@ accountControllerModule.factory('accountController', ['$http', 'requestManager',
                     vcRecaptchaService.reload();
                 }).error(function (data, status, headers, config) {
                     alertService.sendDefaultErrorMessage();
+                    vcRecaptchaService.reload();
                 });
         };
         return createAccountService;

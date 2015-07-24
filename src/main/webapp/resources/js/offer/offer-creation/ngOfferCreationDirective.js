@@ -25,6 +25,7 @@ aporlaofertaApp
                                     $scope.resetValues();
                                 }).error(function (data, status, headers, config) {
                                     alertService.sendDefaultErrorMessage();
+                                    vcRecaptchaService.reload();
                                 });
                             $scope.overheadDisplay = false;
                         }
