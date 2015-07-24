@@ -65,6 +65,7 @@
     <script src="resources/js/uploader/ngImageUploadDirective.js"></script>
     <script src="resources/js/response/ngResponseFromServer.js"></script>
     <script src="resources/js/response/alertService.js"></script>
+    <script src="resources/js/offer/offer-list/offerManagerService.js"></script>
     <link rel="stylesheet" href="resources/js/uploader/imageUpload.css"/>
 </head>
 <body id="top" data-ng-controller="APorLaOfertaController" flow-prevent-drop>

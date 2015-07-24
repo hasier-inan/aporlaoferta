@@ -8,33 +8,18 @@ aporlaofertaApp
             templateUrl: 'resources/js/offer/offer-list/offerList.html',
             link: function (scope, elem, attrs) {
             },
-            controller: ['$scope', '$rootScope', 'alertService', 'requestManager', 'configService',
-                function ($scope, $rootScope, alertService, requestManager, configService) {
+            controller: ['$scope','offerManager',
+                function ($scope,offerManager) {
                     $scope.requestNewestOffers = function () {
-                        requestManager.makePostCall({}, {'number': 0}, configService.getEndpoint('get.offers'))
-                            .success(function (data, status, headers, config) {
-                                $scope.offerList = data.theOffers;
-                            }).error(function (data, status, headers, config) {
-                                alertService.sendDefaultErrorMessage();
-                            });
+                        offerManager.requestNewestOffers($scope.offerList);
                     }
 
                     $scope.requestHottestOffers = function () {
-                        requestManager.makePostCall({}, {'number': 0}, configService.getEndpoint('get.hottest.offers'))
-                            .success(function (data, status, headers, config) {
-                                $scope.offerList = data.theOffers;
-                            }).error(function (data, status, headers, config) {
-                                alertService.sendDefaultErrorMessage();
-                            });
+                        offerManager.requestHottestOffers($scope.offerList);
                     }
 
                     $scope.showSpecifications = function (id) {
-                        requestManager.makePostCall({}, {'id': id}, configService.getEndpoint('get.offer'))
-                            .success(function (data, status, headers, config) {
-                                $rootScope.$broadcast('offerSpecifications', data.theOffers);
-                            }).error(function (data, status, headers, config) {
-                                alertService.sendDefaultErrorMessage();
-                            });
+                        offerManager.showSpecifications(id);
                     }
                     $scope.initialiseScrollyButtons = function () {
                         $('.scrolly')

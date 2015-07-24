@@ -9,9 +9,8 @@ aporlaofertaApp
             link: function (scope, elem, attrs) {
             },
             controller: ['$scope', '$timeout', function ($scope, $timeout) {
-
+                $scope.customCloseCallback={};
                 $scope.theResponse = {};
-
                 $scope.displayLogin = function () {
                     $scope.setDefaultVisibility();
                     $scope.displayAccountLogin = true;
@@ -51,8 +50,12 @@ aporlaofertaApp
                     $scope.displayOfferSpecifications = false;
                     $scope.displayResponseFromServer = false;
                 };
-                $scope.closeOverheadDisplay = function () {
+                $scope.closeOverheadDisplay = function (customCloseCallback) {
                     $scope.overheadVisible = false;
+                    if (typeof customCloseCallback == "function") {
+                        customCloseCallback();
+                        $scope.customCloseCallback={};
+                    }
                 };
                 $scope.$on('offerSpecifications', function (event, args) {
                     $scope.offerSpecifications = args;
@@ -79,7 +82,7 @@ aporlaofertaApp
                 $scope.setDefaultVisibility();
                 $scope.checkForErrors();
 
-                $timeout(function(){
+                $timeout(function () {
                     angular.element($('#overheadSubContainer')).removeClass('hiddencontainer');
                 }, 1000);
             }]

@@ -7,29 +7,30 @@ aporlaofertaApp
             restrict: 'A',
             templateUrl: 'resources/js/offer/offer-specifications/offerSpecifications.jsp',
             scope: {
-                theOffer: '='
+                theOffer: '=',
+                customCloseCallback: '='
             },
-            controller: ['$rootScope','$scope', 'requestManager', 'configService', function ($rootScope,$scope,requestManager, configService) {
+            controller: ['offerManager', 'alertService', '$scope', 'requestManager', 'configService', function (offerManager, alertService, $scope, requestManager, configService) {
                 $scope.votePositive = function (id) {
                     requestManager.makePostCall({}, {'offerId': id}, configService.getEndpoint('positive.feedback'))
                         .success(function (data, status, headers, config) {
-                            $rootScope.$broadcast('serverResponse', data);
+                            alertService.sendErrorMessage(data.descriptionEsp);
+                            $scope.customCloseCallback = function () {
+                                offerManager.showSpecifications(id);
+                            }
                         }).error(function (data, status, headers, config) {
-                            var theResponse = {};
-                            theResponse.description = data;
-                            theResponse.responseResult = "error";
-                            $rootScope.$broadcast('serverResponse', theResponse);
+                            alertService.sendDefaultErrorMessage();
+                            offerManager.showSpecifications(id);
                         });
                 }
                 $scope.voteNegative = function (id) {
                     requestManager.makePostCall({}, {'offerId': id}, configService.getEndpoint('negative.feedback'))
                         .success(function (data, status, headers, config) {
-                            $rootScope.$broadcast('serverResponse', data);
+                            alertService.sendErrorMessage(data.descriptionEsp);
+                            offerManager.showSpecifications(id);
                         }).error(function (data, status, headers, config) {
-                            var theResponse = {};
-                            theResponse.description = data;
-                            theResponse.responseResult = "error";
-                            $rootScope.$broadcast('serverResponse', theResponse);
+                            alertService.sendDefaultErrorMessage();
+                            offerManager.showSpecifications(id);
                         });
                 }
             }]
