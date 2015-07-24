@@ -11,13 +11,19 @@ aporlaofertaApp
             },
             link: function (scope, elem, attrs) {
             },
-            controller: ['$scope', 'accountController', function ($scope, accountController) {
+            controller: ['$scope', 'accountController', 'vcRecaptchaService','alertService', function ($scope, accountController, vcRecaptchaService,alertService) {
                 $scope.theUser = {};
-                $scope.disableNickname=false;
+                $scope.publicKey = "6LdqHQoTAAAAAAht2VhkrLGU26eBOjL-nK9zXxcn";
+                $scope.disableNickname = false;
                 $scope.createAccount = function (theUser) {
-                    accountController.createAccount(theUser);
-                    $scope.theUser = {};
-                    $scope.overheadDisplay = false;
+                    if (vcRecaptchaService.getResponse() === "") {
+                        alertService.sendErrorMessage("Por favor, haga click en el captcha para demostrar que no es un robot");
+                    }
+                    else {
+                        accountController.createAccount(theUser, vcRecaptchaService.getResponse());
+                        $scope.theUser = {};
+                        $scope.overheadDisplay = false;
+                    }
                 }
             }]
         }

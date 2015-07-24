@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
  * User: hasiermetal
  * Date: 01/05/15
  * Time: 15:09
- *
  */
 public class ResponseResultHelper {
 
@@ -32,5 +31,25 @@ public class ResponseResultHelper {
         String okMessage = String.format("Comment successfully created. Id: %s", comment.getId());
         LOG.info(okMessage);
         result.assignResultCode(ResultCode.ALL_OK, okMessage, "Comentario añadido");
+    }
+
+    public static TheResponse createInvalidCaptchaResponse() {
+        return updateWithCode(ResultCode.INVALID_CAPTCHA);
+    }
+
+    public static TheResponse createUnhealthyResponse() {
+        return updateWithCode(ResultCode.UNHEALTHY_ENDPOINT);
+    }
+
+    public static TheResponse createDefaultResponse() {
+        return updateWithCode(ResultCode.DEFAULT_ERROR);
+    }
+
+    private static TheResponse updateWithCode(ResultCode resultCode) {
+        TheResponse theResponse = new TheResponse();
+        theResponse.setCode(resultCode.getCode());
+        theResponse.setDescriptionEsp(resultCode.getResultDescriptionEsp());
+        theResponse.setResponseResult(resultCode.getResponseResult());
+        return theResponse;
     }
 }

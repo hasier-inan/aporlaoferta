@@ -171,6 +171,7 @@ public class ControllerTestIntegration {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonRequest)
                 .param("_csrf", csrfToken.getToken())
+                .param("recaptcha", "recaptcha")
                 .sessionAttrs(SessionAttributeBuilder
                         .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
         ).andExpect(status().is2xxSuccessful());

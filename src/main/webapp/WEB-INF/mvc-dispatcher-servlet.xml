@@ -11,6 +11,7 @@
         http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
     <context:component-scan base-package="com.aporlaoferta.controller" />
+    <context:component-scan base-package="com.aporlaoferta.affiliations" />
     <context:component-scan base-package="com.aporlaoferta.service" />
     <context:component-scan base-package="com.aporlaoferta.utils" />
     <context:annotation-config />

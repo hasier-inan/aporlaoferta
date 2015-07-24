@@ -1,19 +1,27 @@
-<div>
-    <form class="centeredForm">
-        <input type="text" id="createUserNickname" ng-model="theUser.userNickname" class="overheadField"
-               placeholder="Nickname" ng-hide="disableNickname"/>
-        <input type="password" id="createUserPassword" ng-model="theUser.userPassword" class="overheadField"
-               placeholder="Contrase&ntilde;a"/>
-        <input type="text" id="createUserEmail" ng-model="theUser.userEmail" class="overheadField"
-               placeholder="Email"/>
+<div id="accountCreationContainer">
+    <div>
+        <form class="centeredForm">
+            <input type="text" id="createUserNickname" ng-model="theUser.userNickname" class="overheadField"
+                   placeholder="Nickname" ng-hide="disableNickname"/>
+            <input type="password" id="createUserPassword" ng-model="theUser.userPassword" class="overheadField"
+                   placeholder="Contrase&ntilde;a"/>
+            <input type="text" id="createUserEmail" ng-model="theUser.userEmail" class="overheadField"
+                   placeholder="Email"/>
 
-        <label id="imageUploadLabel" for="imageUploadContent" class="overheadLabel">Avatar</label>
-        <div id="imageUploadContent" ng-image-uploader="createAccountImageUploader" final-url="theUser.userAvatar"></div>
+            <label id="imageUploadLabel" for="imageUploadContent" class="overheadLabel">Avatar</label>
 
-        <input type="hidden" id="createUserAvatar" ng-model="theUser.userAvatar" class="overheadField"/>
-    </form>
-</div>
-<div class="centeredForm">
+            <div id="imageUploadContent" ng-image-uploader="createAccountImageUploader"
+                 final-url="theUser.userAvatar"></div>
+
+            <input type="hidden" id="createUserAvatar" ng-model="theUser.userAvatar" class="overheadField"/>
+        </form>
+    </div>
+
+    <ul class="regular-bottom">
+        <li>
+            <div id="createAccountCaptcha" vc-recaptcha key="publicKey"></div>
+        </li>
+    </ul>
     <button class="button small icon fa-user overheadButton" ng-click="createAccount(theUser)" class="overheadButton">
         crear perfil
     </button>

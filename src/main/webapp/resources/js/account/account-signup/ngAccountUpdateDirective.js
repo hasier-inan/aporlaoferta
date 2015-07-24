@@ -11,13 +11,19 @@ aporlaofertaApp
             },
             link: function (scope, elem, attrs) {
             },
-            controller: ['$rootScope','$scope', 'accountController', 'requestManager', 'configService', function ($rootScope,$scope, accountController, requestManager, configService) {
+            controller: ['$scope', 'vcRecaptchaService', 'alertService', 'accountController', 'requestManager', 'configService', function ($scope, vcRecaptchaService, alertService, accountController, requestManager, configService) {
                 $scope.disableNickname = true;
                 $scope.theUser = {};
+                $scope.publicKey = "6LdqHQoTAAAAAAht2VhkrLGU26eBOjL-nK9zXxcn";
                 $scope.createAccount = function (theUser) {
-                    accountController.updateAccount(theUser);
-                    //$scope.theUser = {};
-                    $scope.overheadDisplay = false;
+                    if (vcRecaptchaService.getResponse() === "") {
+                        alertService.sendErrorMessage("Por favor, haga click en el captcha para demostrar que no es un robot");
+                    }
+                    else {
+                        accountController.updateAccount(theUser);
+                        //$scope.theUser = {};
+                        $scope.overheadDisplay = false;
+                    }
                 }
                 $scope.getUserDetails = function () {
                     //$scope.theUser=accountController.getUserDetails();
@@ -25,10 +31,7 @@ aporlaofertaApp
                         .success(function (data, status, headers, config) {
                             $scope.theUser = data;
                         }).error(function (data, status, headers, config) {
-                            var theResponse = {};
-                            theResponse.description = data;
-                            theResponse.responseResult = "error";
-                            $rootScope.$broadcast('serverResponse', theResponse);
+                            alertService.sendErrorMessage("No se ha podido obtener la información del usuario");
                         });
                 }
                 $scope.getUserDetails();

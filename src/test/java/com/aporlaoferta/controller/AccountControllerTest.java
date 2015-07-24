@@ -3,6 +3,7 @@ package com.aporlaoferta.controller;
 import com.aporlaoferta.data.UserBuilderManager;
 import com.aporlaoferta.model.TheResponse;
 import com.aporlaoferta.model.TheUser;
+import com.aporlaoferta.service.CaptchaHTTPManager;
 import com.aporlaoferta.service.UserManager;
 import com.aporlaoferta.utils.OfferValidatorHelper;
 import org.hamcrest.Matchers;
@@ -32,18 +33,22 @@ public class AccountControllerTest {
     OfferValidatorHelper offerValidatorHelper;
     @Mock
     UserManager userManager;
+    @Mock
+    CaptchaHTTPManager captchaHTTPManager;
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         when(this.userManager.doesUserExist(anyString())).thenReturn(false);
+        when(this.captchaHTTPManager.validHuman(anyString())).thenReturn(true);
     }
 
     @Test
     public void testCreateUserCantAddUserToDBReturnsMessage() {
         when(this.userManager.createUser(any(TheUser.class))).thenReturn(null);
+        TheUser user = UserBuilderManager.aRegularUserWithNickname("fu1").build();
         TheResponse result = this.accountController.createUser(
-                UserBuilderManager.aRegularUserWithNickname("fu1").build());
+                user,"recaptcha");
         Assert.assertThat("Expected empty object message", result.getResponseResult(),
                 Matchers.is(ResultCode.DATABASE_RETURNED_EMPTY_OBJECT.getResponseResult()));
     }

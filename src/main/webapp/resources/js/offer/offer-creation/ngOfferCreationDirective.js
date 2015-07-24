@@ -21,18 +21,17 @@ aporlaofertaApp
                         else {
                             requestManager.makePostCall($scope.offer, {recaptcha:vcRecaptchaService.getResponse()}, configService.getEndpoint('create.offer'))
                                 .success(function (data, status, headers, config) {
-                                    alertService.sendErrorMessage(data);
+                                    alertService.sendErrorMessage(data.descriptionEsp);
+                                    $scope.resetValues();
                                 }).error(function (data, status, headers, config) {
                                     alertService.sendDefaultErrorMessage();
                                 });
                             $scope.overheadDisplay = false;
-                            $scope.resetValues();
                         }
-
                     };
                     $scope.bigDecimalsOnly = /^\-?\d+((\.|\,)\d+)?$/;
                     $scope.resetValues = function () {
-                        vcRecaptchaService.reset();
+                        vcRecaptchaService.reload();
                         $scope.offer = {};
                         $scope.brandNewCompany = false;
                         $scope.resetCategory = true;

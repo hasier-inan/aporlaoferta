@@ -1,28 +1,24 @@
 var accountControllerModule = angular.module('accountController', []);
 
-accountControllerModule.factory('accountController', ['$rootScope','$http','requestManager','configService',
-    function ($rootScope, $http,requestManager,configService) {
+accountControllerModule.factory('accountController', ['$http', 'requestManager', 'configService', 'alertService', 'vcRecaptchaService',
+    function ($http, requestManager, configService, alertService, vcRecaptchaService) {
         var createAccountService = {};
         createAccountService.createAccount = function (theUser) {
-            requestManager.makePostCall(theUser, {}, configService.getEndpoint('create.account'))
+            requestManager.makePostCall(theUser, {recaptcha: vcRecaptchaService.getResponse()}, configService.getEndpoint('create.account'))
                 .success(function (data, status, headers, config) {
-                    $rootScope.$broadcast('serverResponse', data);
+                    alertService.sendErrorMessage(data.descriptionEsp);
+                    vcRecaptchaService.reload();
                 }).error(function (data, status, headers, config) {
-                    var theResponse={};
-                    theResponse.description=data;
-                    theResponse.responseResult="error";
-                    $rootScope.$broadcast('serverResponse', theResponse);
+                    alertService.sendDefaultErrorMessage();
                 });
         };
         createAccountService.updateAccount = function (theUser) {
-            requestManager.makePostCall(theUser, {}, configService.getEndpoint('update.account'))
+            requestManager.makePostCall(theUser, {recaptcha: vcRecaptchaService.getResponse()}, configService.getEndpoint('update.account'))
                 .success(function (data, status, headers, config) {
-                    $rootScope.$broadcast('serverResponse', data);
+                    alertService.sendErrorMessage(data.descriptionEsp);
+                    vcRecaptchaService.reload();
                 }).error(function (data, status, headers, config) {
-                    var theResponse={};
-                    theResponse.description=data;
-                    theResponse.responseResult="error";
-                    $rootScope.$broadcast('serverResponse', theResponse);
+                    alertService.sendDefaultErrorMessage();
                 });
         };
         return createAccountService;

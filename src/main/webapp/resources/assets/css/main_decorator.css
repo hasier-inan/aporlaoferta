@@ -74,11 +74,13 @@ textarea#createOfferDescription {
     display: inline-block;
     margin-bottom: 1em;
 }
-select.overheadField{
+
+select.overheadField {
     background-color: #e7771f;
 }
+
 input.overheadField,
-select.overheadField{
+select.overheadField {
     width: 12em;
 }
 
@@ -86,29 +88,31 @@ textarea#createOfferDescription {
     height: 10em;
 }
 
-ul.regular-bottom{
+ul.regular-bottom {
     margin-bottom: 1em;
 }
 
-li.regular-100,textarea.regular-100{
+li.regular-100, textarea.regular-100 {
     width: 100%;
 }
 
-li.regular-80{
+li.regular-80 {
     width: 80%;
 }
 
-li.regular-40{
+li.regular-40 {
     width: 40%;
 }
-li.regular-margin-1,ul.regular-margin-1{
+
+li.regular-margin-1, ul.regular-margin-1 {
     margin-top: 1em !important;
 }
 
-input.regular-60{
+input.regular-60 {
     width: 60% !important;
 }
-input.regular-40{
+
+input.regular-40 {
     width: 40% !important;
 }
 
@@ -133,9 +137,12 @@ div.overheadField.select-wrapper::before {
     width: 2.5em;
 }
 
+input.overheadField:focus {
+    width: 12em;
+}
+
 input.overheadField:focus,
 textarea#createOfferDescription:focus {
-    width: 12em;
     height: 2em;
     color: #000000;
     background-color: #ffffff;
@@ -143,6 +150,10 @@ textarea#createOfferDescription:focus {
 
 textarea#createOfferDescription:focus {
     height: 10em;
+}
+
+div#accountCreationContainer{
+    text-align: center;
 }
 
 button.close_button {
@@ -183,9 +194,10 @@ input.overheadField::-moz-selection {
 
 /*top_header*/
 
-#overheadSubContainer.hiddencontainer{
+#overheadSubContainer.hiddencontainer {
     display: none;
 }
+
 ul#overheadSubContainerContent {
     top: 0;
     left: 0;
@@ -384,8 +396,8 @@ div.filterByCategoryContent div.select-wrapper select > option {
 label#label-for-filter-by {
     position: absolute;
     color: #fff;
-    margin-left: 1em;
-    margin-top: .8em;
+    margin-left: .5em;
+    margin-top: .4em;
 }
 
 input#filter-by {

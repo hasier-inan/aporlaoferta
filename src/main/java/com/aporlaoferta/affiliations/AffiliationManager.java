@@ -21,7 +21,6 @@ import static org.springframework.util.StringUtils.isEmpty;
  * Date: 19/07/15
  * Time: 17:13
  */
-@Service
 public class AffiliationManager {
 
     private UrlParser urlParser;

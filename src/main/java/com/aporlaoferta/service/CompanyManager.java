@@ -41,7 +41,7 @@ public class CompanyManager {
     }
 
     public String createAffiliationLink(OfferCompany offerCompany, String rawLink) throws MalformedURLException, UnsupportedEncodingException, UnhealthyException {
-        int urlAlive = this.affiliationManager.isUrlAlive(rawLink);
+        this.affiliationManager.isUrlAlive(rawLink);
 
         if (offerCompany == null || isEmpty(offerCompany.getCompanyAffiliateId()) || isEmpty(rawLink)) {
             LOG.info("No affiliation found for the given company");

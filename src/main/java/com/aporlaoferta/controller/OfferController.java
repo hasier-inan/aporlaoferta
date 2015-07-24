@@ -123,11 +123,10 @@ public class OfferController {
     @ResponseBody
     public TheResponse createOffer(@RequestBody TheOffer thatOffer,
                                    @RequestParam(value = "recaptcha", required = true) String reCaptcha) {
-
         if (this.captchaHttpManager.validHuman(reCaptcha)) {
             return processOfferCreation(thatOffer);
         } else {
-            return CaptchaHTTPManager.createInvalidCaptchaResponse();
+            return ResponseResultHelper.createInvalidCaptchaResponse();
         }
     }
 
@@ -144,8 +143,9 @@ public class OfferController {
             LOG.error("Could not add custom affiliation id to offer url because url is wrongly encoded: ", e);
         } catch (UnhealthyException e) {
             LOG.error("Could not add custom affiliation id to offer url because url is unhealthy: ", e);
+            return ResponseResultHelper.createUnhealthyResponse();
         }
-        return null;
+        return ResponseResultHelper.createDefaultResponse();
     }
 
     private void includeAffiliationLink(TheOffer thatOffer) throws MalformedURLException, UnsupportedEncodingException, UnhealthyException {

@@ -3,6 +3,7 @@ package com.aporlaoferta.controller;
 import com.aporlaoferta.model.TheResponse;
 import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.model.validators.ValidationException;
+import com.aporlaoferta.service.CaptchaHTTPManager;
 import com.aporlaoferta.service.UserManager;
 import com.aporlaoferta.utils.OfferValidatorHelper;
 import org.slf4j.Logger;
@@ -36,6 +37,9 @@ public class AccountController {
 
     @Autowired
     private OfferValidatorHelper offerValidatorHelper;
+
+    @Autowired
+    private CaptchaHTTPManager captchaHttpManager;
 
     @RequestMapping(value = {"/", "/start**", "/index**"}, method = RequestMethod.GET)
     public ModelAndView start() {
@@ -83,7 +87,61 @@ public class AccountController {
 
     @RequestMapping(value = "/createUser", method = RequestMethod.POST)
     @ResponseBody
-    public TheResponse createUser(@RequestBody TheUser theUser) {
+    public TheResponse createUser(@RequestBody TheUser theUser,
+                                  @RequestParam(value = "recaptcha", required = true) String reCaptcha) {
+        if (this.captchaHttpManager.validHuman(reCaptcha)) {
+            return processUserCreation(theUser);
+        } else {
+            return ResponseResultHelper.createInvalidCaptchaResponse();
+        }
+
+    }
+
+    @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
+    @ResponseBody
+    public TheResponse updateUser(@RequestBody TheUser theNewUser,
+                                  @RequestParam(value = "recaptcha", required = true) String reCaptcha) {
+        if (this.captchaHttpManager.validHuman(reCaptcha)) {
+            return processUserUpdate(theNewUser);
+        } else {
+            return ResponseResultHelper.createInvalidCaptchaResponse();
+        }
+    }
+
+    private TheResponse processUserUpdate(TheUser theNewUser) {
+        TheResponse result = new TheResponse();
+        String userNickname = this.userManager.getUserNickNameFromSession();
+        theNewUser.setUserNickname(userNickname);
+        if (isEmpty(userNickname)) {
+            result.assignResultCode(ResultCode.USER_NAME_IS_INVALID);
+        } else if (!this.userManager.doesUserExist(userNickname)) {
+            result.assignResultCode(ResultCode.USER_NAME_DOES_NOT_EXIST);
+        } else {
+            validateAndUpdateUser(theNewUser, result, userNickname);
+        }
+        return result;
+    }
+
+    private void validateAndUpdateUser(TheUser theNewUser, TheResponse result, String userNickname) {
+        try {
+            validatePassword(theNewUser);
+            this.offerValidatorHelper.validateUser(theNewUser);
+            TheUser nuUser = this.userManager.updateUser(theNewUser);
+            if (nuUser == null) {
+                ControllerHelper.addEmptyDatabaseObjectMessage(result, ". Nickname: " + userNickname, LOG);
+            } else {
+                String okMessage = String.format("User successfully updated. Id: %s", nuUser.getId());
+                LOG.info(okMessage);
+                result.assignResultCode(ResultCode.ALL_OK, okMessage, "Usuario actualizado satisfactoriamente");
+            }
+        } catch (ValidationException e) {
+            String resultDescription = ResultCode.UPDATE_USER_VALIDATION_ERROR.getResultDescription();
+            LOG.warn(resultDescription, e);
+            result.assignResultCode(ResultCode.UPDATE_USER_VALIDATION_ERROR);
+        }
+    }
+
+    private TheResponse processUserCreation(TheUser theUser) {
         TheResponse result = new TheResponse();
         String userNickname = theUser.getUserNickname();
         if (isEmpty(userNickname)) {
@@ -113,37 +171,6 @@ public class AccountController {
     private void validatePassword(TheUser theUser) {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(11);
         theUser.setUserPassword(bCryptPasswordEncoder.encode(theUser.getUserPassword()));
-    }
-
-    @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
-    @ResponseBody
-    public TheResponse updateUser(@RequestBody TheUser theNewUser) {
-        TheResponse result = new TheResponse();
-        String userNickname = this.userManager.getUserNickNameFromSession();
-        theNewUser.setUserNickname(userNickname);
-        if (isEmpty(userNickname)) {
-            result.assignResultCode(ResultCode.USER_NAME_IS_INVALID);
-        } else if (!this.userManager.doesUserExist(userNickname)) {
-            result.assignResultCode(ResultCode.USER_NAME_DOES_NOT_EXIST);
-        } else {
-            try {
-                validatePassword(theNewUser);
-                this.offerValidatorHelper.validateUser(theNewUser);
-                TheUser nuUser = this.userManager.updateUser(theNewUser);
-                if (nuUser == null) {
-                    ControllerHelper.addEmptyDatabaseObjectMessage(result, ". Nickname: " + userNickname, LOG);
-                } else {
-                    String okMessage = String.format("User successfully updated. Id: %s", nuUser.getId());
-                    LOG.info(okMessage);
-                    result.assignResultCode(ResultCode.ALL_OK, okMessage, "Usuario actualizado satisfactoriamente");
-                }
-            } catch (ValidationException e) {
-                String resultDescription = ResultCode.UPDATE_USER_VALIDATION_ERROR.getResultDescription();
-                LOG.warn(resultDescription, e);
-                result.assignResultCode(ResultCode.UPDATE_USER_VALIDATION_ERROR);
-            }
-        }
-        return result;
     }
 
     private void validateAndCreateUser(TheUser theUser, TheResponse result, String userNickname) {

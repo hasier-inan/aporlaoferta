@@ -32,10 +32,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @ContextConfiguration(
-        loader = WebContextLoader.class,        value = {
-                "classpath:mvc-dispatcher-test-servlet.xml",
-                "classpath:aporlaoferta-controller-test-context.xml"
-        })
+        loader = WebContextLoader.class, value = {
+        "classpath:mvc-dispatcher-test-servlet.xml",
+        "classpath:aporlaoferta-controller-test-context.xml"
+})
 @RunWith(SpringJUnit4ClassRunner.class)
 public class AccountControllerTestIntegration {
 
@@ -118,6 +118,7 @@ public class AccountControllerTestIntegration {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonRequest)
                 .param("_csrf", csrfToken.getToken())
+                .param("recaptcha", "recaptcha")
                 .sessionAttrs(SessionAttributeBuilder
                         .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
         )
@@ -136,6 +137,7 @@ public class AccountControllerTestIntegration {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonRequest)
                 .param("_csrf", csrfToken.getToken())
+                .param("recaptcha", "recaptcha")
                 .sessionAttrs(SessionAttributeBuilder
                         .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
         )
@@ -152,6 +154,7 @@ public class AccountControllerTestIntegration {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonRequest)
                 .param("_csrf", csrfToken.getToken())
+                .param("recaptcha", "recaptcha")
                 .sessionAttrs(SessionAttributeBuilder
                         .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
         )

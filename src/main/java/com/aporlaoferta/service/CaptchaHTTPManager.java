@@ -47,14 +47,6 @@ public class CaptchaHTTPManager {
         return payload;
     }
 
-    public static TheResponse createInvalidCaptchaResponse(){
-        TheResponse theResponse=new TheResponse();
-        theResponse.setCode(ResultCode.INVALID_CAPTCHA.getCode());
-        theResponse.setDescription(ResultCode.INVALID_CAPTCHA.getResultDescriptionEsp());
-        theResponse.setResponseResult(ResultCode.INVALID_CAPTCHA.getResponseResult());
-        return theResponse;
-    }
-
     public void setRequestGateway(RequestGateway requestGateway) {
         this.requestGateway = requestGateway;
     }

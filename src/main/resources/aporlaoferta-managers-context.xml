@@ -11,5 +11,7 @@
 
     <bean id="urlParser" class="com.aporlaoferta.utils.UrlParser"/>
 
-    <bean id="affiliationManager" class="com.aporlaoferta.affiliations.AffiliationManager"/>
+    <bean id="affiliationManager" class="com.aporlaoferta.affiliations.AffiliationManager">
+        <property name="urlParser" ref="urlParser"/>
+    </bean>
 </beans>
