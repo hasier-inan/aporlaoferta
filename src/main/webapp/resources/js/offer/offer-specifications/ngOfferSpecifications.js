@@ -14,24 +14,30 @@ aporlaofertaApp
                 $scope.votePositive = function (id) {
                     requestManager.makePostCall({}, {'offerId': id}, configService.getEndpoint('positive.feedback'))
                         .success(function (data, status, headers, config) {
-                            alertService.sendErrorMessage(data.descriptionEsp);
-                            $scope.customCloseCallback = function () {
-                                offerManager.showSpecifications(id);
-                            }
+                            $scope.sendMessageAndShowSpecifications(data.descriptionEsp, id);
                         }).error(function (data, status, headers, config) {
-                            alertService.sendDefaultErrorMessage();
-                            offerManager.showSpecifications(id);
+                            $scope.sendDefaultErrorMessageAndShowSpecifications(id);
                         });
                 }
                 $scope.voteNegative = function (id) {
                     requestManager.makePostCall({}, {'offerId': id}, configService.getEndpoint('negative.feedback'))
                         .success(function (data, status, headers, config) {
-                            alertService.sendErrorMessage(data.descriptionEsp);
-                            offerManager.showSpecifications(id);
+                            $scope.sendMessageAndShowSpecifications(data.descriptionEsp, id);
                         }).error(function (data, status, headers, config) {
-                            alertService.sendDefaultErrorMessage();
-                            offerManager.showSpecifications(id);
+                            $scope.sendDefaultErrorMessageAndShowSpecifications(id);
                         });
+                }
+                $scope.sendMessageAndShowSpecifications = function (message, id) {
+                    alertService.sendErrorMessage(message);
+                    $scope.customCloseCallback = function () {
+                        offerManager.showSpecifications(id);
+                    }
+                }
+                $scope.sendDefaultErrorMessageAndShowSpecifications = function (id) {
+                    alertService.sendDefaultErrorMessage();
+                    $scope.customCloseCallback = function () {
+                        offerManager.showSpecifications(id);
+                    }
                 }
             }]
         }

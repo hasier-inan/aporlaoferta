@@ -18,6 +18,7 @@ aporlaofertaApp
                 $scope.createAccount = function (theUser) {
                     if (vcRecaptchaService.getResponse() === "") {
                         alertService.sendErrorMessage("Por favor, haga click en el captcha para demostrar que no es un robot");
+                        vcRecaptchaService.reload();
                     }
                     else {
                         accountController.createAccount(theUser, vcRecaptchaService.getResponse());

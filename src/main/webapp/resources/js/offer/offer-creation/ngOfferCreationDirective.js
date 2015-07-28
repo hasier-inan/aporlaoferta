@@ -19,6 +19,7 @@ aporlaofertaApp
                     $scope.createOffer = function () {
                         if (vcRecaptchaService.getResponse() === "") {
                             $scope.offerCreationError("Por favor, haga click en el captcha para demostrar que no es un robot");
+                            vcRecaptchaService.reload();
                         }
                         else {
                             requestManager.makePostCall($scope.offer, {recaptcha: vcRecaptchaService.getResponse()}, configService.getEndpoint('create.offer'))
