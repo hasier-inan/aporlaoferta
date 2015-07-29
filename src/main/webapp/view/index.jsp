@@ -51,7 +51,6 @@
     <script src="resources/js/account/account-signup/ngAccountUpdateDirective.js"></script>
     <script src="resources/js/account/account-login/ngAccountLoginDirective.js"></script>
     <script src="resources/js/account/account-logout/ngAccountLogoutDirective.js"></script>
-    <script src="resources/js/account/accountController.js"></script>
     <script src="resources/js/config/configService.js"></script>
     <script src="resources/js/offer/offer-list/ngOfferListDirective.js"></script>
     <script src="resources/js/offer/offer-specifications/ngOfferSpecifications.js"></script>

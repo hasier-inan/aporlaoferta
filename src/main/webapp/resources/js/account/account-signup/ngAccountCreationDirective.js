@@ -7,25 +7,59 @@ aporlaofertaApp
             restrict: 'A',
             templateUrl: 'resources/js/account/account-signup/createAccount.html',
             scope: {
-                overheadDisplay: '='
+                overheadDisplay: '=',
+                customCloseCallback: '=',
+                displayCallback: '='
             },
             link: function (scope, elem, attrs) {
             },
-            controller: ['$scope', 'accountController', 'vcRecaptchaService','alertService', function ($scope, accountController, vcRecaptchaService,alertService) {
-                $scope.theUser = {};
-                $scope.publicKey = "6LdqHQoTAAAAAAht2VhkrLGU26eBOjL-nK9zXxcn";
-                $scope.disableNickname = false;
-                $scope.createAccount = function (theUser) {
-                    if (vcRecaptchaService.getResponse() === "") {
+            controller: ['$scope', '$http', 'requestManager', 'configService', 'vcRecaptchaService', 'alertService',
+                function ($scope, http, requestManager, configService, vcRecaptchaService, alertService) {
+                    $scope.theUser = {};
+                    $scope.publicKey = "6LdqHQoTAAAAAAht2VhkrLGU26eBOjL-nK9zXxcn";
+                    $scope.disableNickname = false;
+                    $scope.createAccount = function (theUser) {
+                        if (vcRecaptchaService.getResponse() === "") {
+                            $scope.displayErrorMessageAndDisplayAccount();
+                        }
+                        else {
+                            requestManager.makePostCall(theUser, {recaptcha: vcRecaptchaService.getResponse()}, configService.getEndpoint('create.account'))
+                                .success(function (data, status, headers, config) {
+                                    $scope.processAccountResponse(data);
+                                }).error(function (data, status, headers, config) {
+                                    $scope.accountDefaultError();
+                                });
+                            $scope.theUser = {};
+                            $scope.overheadDisplay = false;
+                        }
+                    }
+                    $scope.displayErrorMessageAndDisplayAccount = function () {
                         alertService.sendErrorMessage("Por favor, haga click en el captcha para demostrar que no es un robot");
                         vcRecaptchaService.reload();
+                        $scope.customCloseCallback = $scope.displayCallback;
                     }
-                    else {
-                        accountController.createAccount(theUser, vcRecaptchaService.getResponse());
-                        $scope.theUser = {};
-                        $scope.overheadDisplay = false;
+                    $scope.processAccountResponse = function (data) {
+                        if (!alertService.isAllOk(data)) {
+                            $scope.accountError(data.descriptionEsp);
+                        }
+                        else {
+                            alertService.sendErrorMessage(data.descriptionEsp);
+                            $scope.customCloseCallback=false;
+                        }
+                        vcRecaptchaService.reload();
                     }
-                }
-            }]
+
+                    $scope.accountDefaultError = function () {
+                        alertService.sendDefaultErrorMessage();
+                        vcRecaptchaService.reload();
+                        $scope.customCloseCallback = $scope.displayCallback;
+                    }
+
+                    $scope.accountError = function (customMessage) {
+                        alertService.sendErrorMessage(customMessage);
+                        vcRecaptchaService.reload();
+                        $scope.customCloseCallback = $scope.displayCallback;
+                    }
+                }]
         }
     });

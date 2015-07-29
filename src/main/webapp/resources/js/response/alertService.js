@@ -4,7 +4,7 @@ alertManager.service('alertService', ['$rootScope', function ($rootScope) {
     var alertService = {};
     var defaultMessage = "No se ha podido ejecutar la operación";
     alertService.isAllOk = function (data) {
-        return data.code == 'OK';
+        return data.code == 0;
     }
     alertService.sendErrorMessage = function (data) {
         var theResponse = {};

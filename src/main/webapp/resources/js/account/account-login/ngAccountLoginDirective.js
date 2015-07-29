@@ -7,7 +7,7 @@ aporlaofertaApp
             restrict: 'A',
             templateUrl: 'view/login.jsp',
             link: function (scope, elem, attrs) {},
-            controller:['$scope', 'accountController', function ($scope, accountController) {
+            controller:['$scope', function ($scope) {
 
             }]
         }

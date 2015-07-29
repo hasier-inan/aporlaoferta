@@ -13,12 +13,12 @@
             <div ng-offer-creation="offerCreation" ng-show="displayOfferCreation"
                  overhead-display="overheadVisible" custom-close-callback="customCloseCallback" display-callback="displayOfferCreate"></div>
             <div ng-account-update="accountUpdate" ng-show="displayAccountUpdate"
-                 overhead-display="overheadVisible"></div>
+                 overhead-display="overheadVisible" custom-close-callback="customCloseCallback" display-callback="displayAccountUpdateForm"></div>
         </sec:authorize>
         <sec:authorize ifNotGranted="ROLE_USER">
             <div ng-account-login="accountLogin" ng-show="displayAccountLogin"></div>
             <div ng-account-creation="accountCreation" ng-show="displayAccountCreation"
-                 overhead-display="overheadVisible"></div>
+                 overhead-display="overheadVisible" custom-close-callback="customCloseCallback" display-callback="displaySignup"></div>
         </sec:authorize>
         <li>
             <button class="button small icon fa-times close_button" ng-click="closeOverheadDisplay(customCloseCallback)">Cerrar
