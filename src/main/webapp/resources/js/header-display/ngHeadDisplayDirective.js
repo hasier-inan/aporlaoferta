@@ -67,6 +67,13 @@ aporlaofertaApp
                     $scope.displayServerResponse();
 
                 });
+                $scope.$on('keydownControl', function (event, args) {
+                    var keyDownCode = args;
+                    if(keyDownCode==27){
+                        $scope.closeOverheadDisplay();
+                    }
+
+                });
                 $scope.checkForErrors = function () {
                     if (document.getElementById("errorMessage")) {
                         var errorMessage = document.getElementById("errorMessage").value;
@@ -78,9 +85,11 @@ aporlaofertaApp
                             $scope.displayServerResponse();
                         }
                     }
-                }
+                };
+
                 $scope.setDefaultVisibility();
                 $scope.checkForErrors();
+
 
                 $timeout(function () {
                     angular.element($('#overheadSubContainer')).removeClass('hiddencontainer');

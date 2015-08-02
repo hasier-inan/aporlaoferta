@@ -6,7 +6,7 @@ offerManager.service('offerManager', ['$rootScope', 'alertService', 'requestMana
         offerManagerController.requestNewestOffers = function (offerList) {
             requestManager.makePostCall({}, {'number': 0}, configService.getEndpoint('get.offers'))
                 .success(function (data, status, headers, config) {
-                    offerList = data.theOffers;
+                    $rootScope.$broadcast('offerList', data.theOffers);
                 }).error(function (data, status, headers, config) {
                     alertService.sendDefaultErrorMessage();
                 });
@@ -15,7 +15,7 @@ offerManager.service('offerManager', ['$rootScope', 'alertService', 'requestMana
         offerManagerController.requestHottestOffers = function (offerList) {
             requestManager.makePostCall({}, {'number': 0}, configService.getEndpoint('get.hottest.offers'))
                 .success(function (data, status, headers, config) {
-                    offerList = data.theOffers;
+                    $rootScope.$broadcast('offerList', data.theOffers);
                 }).error(function (data, status, headers, config) {
                     alertService.sendDefaultErrorMessage();
                 });

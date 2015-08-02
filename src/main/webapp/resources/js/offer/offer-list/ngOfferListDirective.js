@@ -8,15 +8,18 @@ aporlaofertaApp
             templateUrl: 'resources/js/offer/offer-list/offerList.html',
             link: function (scope, elem, attrs) {
             },
-            controller: ['$scope','offerManager',
-                function ($scope,offerManager) {
+            controller: ['$scope', 'offerManager',
+                function ($scope, offerManager) {
                     $scope.requestNewestOffers = function () {
-                        offerManager.requestNewestOffers($scope.offerList);
+                        offerManager.requestNewestOffers();
                     }
 
                     $scope.requestHottestOffers = function () {
-                        offerManager.requestHottestOffers($scope.offerList);
+                        offerManager.requestHottestOffers();
                     }
+                    $scope.$on('offerList', function (event, args) {
+                        $scope.offerList = args;
+                    })
 
                     $scope.showSpecifications = function (id) {
                         offerManager.showSpecifications(id);

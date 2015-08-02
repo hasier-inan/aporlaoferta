@@ -4,8 +4,10 @@
 aporlaofertaApp = angular.module('aPorLaOferta', ['requestManager', 'alertService','configService', 'flow', 'ngAnimate','vcRecaptcha','offerManager']);
 
 //main controller
-aporlaofertaApp.controller('APorLaOfertaController', function ($scope) {
-
+aporlaofertaApp.controller('APorLaOfertaController', function ($scope, $rootScope) {
+    $scope.keyHandler=function($event){
+        $rootScope.$broadcast('keydownControl', $event.keyCode);
+    };
 });
 aporlaofertaApp.config(['flowFactoryProvider', function (flowFactoryProvider) {
     flowFactoryProvider.defaults = {

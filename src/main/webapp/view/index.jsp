@@ -67,7 +67,7 @@
     <script src="resources/js/offer/offer-list/offerManagerService.js"></script>
     <link rel="stylesheet" href="resources/js/uploader/imageUpload.css"/>
 </head>
-<body id="top" data-ng-controller="APorLaOfertaController" flow-prevent-drop>
+<body id="top" data-ng-controller="APorLaOfertaController" flow-prevent-drop ng-keydown="keyHandler($event)">
 
 <c:if test="${not empty msg}">
     <input type="text" id="errorMessage" style="display:none" value="${msg}"/>
