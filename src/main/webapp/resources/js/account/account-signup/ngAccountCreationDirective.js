@@ -59,7 +59,7 @@ aporlaofertaApp
                         alertService.sendErrorMessage(customMessage);
                         vcRecaptchaService.reload();
                         $scope.customCloseCallback = $scope.displayCallback;
-                    }
+                    };
                 }]
         }
     });

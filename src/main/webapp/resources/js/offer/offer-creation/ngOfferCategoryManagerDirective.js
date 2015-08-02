@@ -24,7 +24,6 @@ aporlaofertaApp
                         });
                 }
                 $scope.onCategoryChange = function (category) {
-                    //todo: use selected category in scope {...} to get value into other/parent scope...?
                     $scope.selectedcategory=category;
                 }
                 $scope.populateAllCategories();
@@ -34,6 +33,11 @@ aporlaofertaApp
                     }
                     $scope.reset = false;
                 });
+                $scope.isCategorySelected=function(){
+                    return $scope.category!=""
+                        && $scope.category!=null
+                        && $scope.category!=undefined;
+                }
 
             }]
         }

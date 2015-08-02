@@ -36,7 +36,7 @@ aporlaofertaApp
                 }
                 $scope.$watch('reset', function () {
                     if ($scope.reset) {
-                        $scope.offerCompanies="";
+                        $scope.company="";
                     }
                     $scope.reset = false;
                 });
@@ -46,6 +46,12 @@ aporlaofertaApp
                 $scope.$watch('offerCompany.companyUrl', function () {
                     $scope.selectedcompany=$scope.offerCompany;
                 });
+                $scope.isCompanySelected=function(){
+                    return !$scope.brandNewCompany
+                        && $scope.company!=""
+                        && $scope.company!=null
+                        && $scope.company!=undefined;
+                }
                 $scope.populateCompanyList();
             }]
         }

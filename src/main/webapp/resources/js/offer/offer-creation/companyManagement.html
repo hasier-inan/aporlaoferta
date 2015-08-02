@@ -3,7 +3,7 @@
             id="offerCompaniesSelect"
             ng-options="company as company.companyName for company in offerCompanies"
             ng-model="company" ng-change="onCompanyChange(company)"
-            class="overheadField">
+            class="overheadField" ng-class="isCompanySelected()?'ng-valid':'ng-invalid'">
         <option value selected="selected">- EMPRESA -</option>
     </select>
 </div>
@@ -16,7 +16,7 @@
     <form>
         <input type="text" id="createCompanyName"
                ng-model="offerCompany.companyName"
-               class="overheadField"
-               placeholder="Nombre"/>
+               class="overheadField content-validation"
+               placeholder="Nombre" ng-required="brandNewCompany"/>
     </form>
 </div>

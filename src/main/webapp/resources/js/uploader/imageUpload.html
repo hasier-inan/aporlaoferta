@@ -2,7 +2,8 @@
      flow-name="uploader.flow"
      flow-file-added="fileAdded($file)"
      flow-file-success="filesIsUploaded($message)"
-     class="imageUploaderContent">
+     class="imageUploaderContent content-validation"
+        ng-class="(displayThumbnail && $flow.files.length)?'ng-valid':'ng-invalid'">
 
     <div class="thumbnail" ng-show="isInvalidThumbnailShown()">
         <p class="invalid-image" ng-class="invalidSize?'invalid-display':''">El tamaño de la imagen es demasido grande

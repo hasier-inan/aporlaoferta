@@ -54,8 +54,7 @@ aporlaofertaApp
                         $scope.brandNewCompany = false;
                         $scope.resetCategory = true;
                         $scope.resetCompany = true;
-
-                    }
+                    };
                 }]
         }
     });

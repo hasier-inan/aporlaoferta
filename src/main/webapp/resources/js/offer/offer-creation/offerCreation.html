@@ -3,52 +3,58 @@
         <ul>
             <li>
                 <div ng-offer-category-manager="offerCategoryManager" reset="resetCategory"
-                     selectedcategory="offer.offerCategory"></div>
+                     selectedcategory="offer.offerCategory" class="select-validation"></div>
             </li>
         </ul>
         <ul>
             <li class="regular-100 regular-margin-1">
                 <input type="text" id="createOfferTitle" name="createOfferTitle"
-                       ng-model="offer.offerTitle" class="overheadField regular-60"
+                       ng-model="offer.offerTitle" class="overheadField regular-60 content-validation"
                        placeholder="T&iacute;tulo" required/>
             </li>
         </ul>
         <ul class="regular-margin-1">
             <li class="regular-50 ">
+                <label for="createOfferOriginalPrice" class="overheadLabel">
+                    Precio antiguo
+                </label>
                 <input type="text" id="createOfferOriginalPrice"
                        name="createOfferOriginalPrice"
                        ng-model="offer.originalPrice"
-                       ng-pattern="bigDecimalsOnly" class="overheadField regular-40"
-                       placeholder="Precio original"/>
+                       ng-pattern="bigDecimalsOnly" class="overheadField regular-40 content-validation"
+                       placeholder="0.00" required/>
                 <!--<span ng-show="createOfferForm.createOfferOriginalPrice.$error.pattern">Precio invalido</span>-->
             </li>
             <li class="regular-50">
+                <label for="createOfferFinalPrice" class="overheadLabel">
+                    Precio oferta
+                </label>
                 <input type="text" id="createOfferFinalPrice"
                        name="createOfferFinalPrice"
                        ng-model="offer.finalPrice"
-                       ng-pattern="bigDecimalsOnly" class="overheadField regular-40"
-                       placeholder="Precio final"/>
+                       ng-pattern="bigDecimalsOnly" class="overheadField regular-40 content-validation"
+                       placeholder="0.00" required/>
                 <!--<span ng-show="createOfferForm.createOfferFinalPrice.$error.pattern">Precio invalido</span>-->
             </li>
         </ul>
         <ul>
             <li class="regular-100 regular-margin-1">
-                <input type="text" id="createOfferLink" ng-model="offer.offerLink" class="overheadField regular-60"
-                       placeholder="Link"/>
+                <input type="text" id="createOfferLink" ng-model="offer.offerLink" class="overheadField regular-60 content-validation"
+                       placeholder="Link" required/>
             </li>
         </ul>
         <ul class="regular-100 regular-margin-1">
             <li>
                 <div ng-company-manager="companyManager" reset="resetCompany"
-                     selectedcompany="offer.offerCompany"></div>
+                     selectedcompany="offer.offerCompany" class="select-validation"></div>
             </li>
         </ul>
         <ul>
             <li class="regular-80">
                 <textarea id="createOfferDescription" ng-model="offer.offerDescription"
-                          class="overheadField ng-pristine ng-valid regular-100"
+                          class="overheadField ng-pristine ng-valid regular-100 content-validation"
                           placeholder="A&ntilde;adir descripci&oacute;n"
-                          rows="6"></textarea>
+                          rows="6" required></textarea>
             </li>
         </ul>
         <ul>
@@ -58,25 +64,23 @@
                 <div id="offerImageUploadContent" ng-image-uploader="createOfferImageUploader"
                      final-url="offer.offerImage"></div>
                 <input type="hidden" id="createOfferImage"
-                       ng-model="offer.offerImage" class="overheadField"
+                       ng-model="offer.offerImage" class="overheadField content-validation"
                        placeholder="Imagen" required/>
             </li>
         </ul>
         <ul class="regular-bottom">
             <li>
-                <div id="creatOfferCaptcha" vc-recaptcha key="publicKey"></div>
+                <div id="createOfferCaptcha" vc-recaptcha key="publicKey"></div>
             </li>
         </ul>
 
         <button
-                ng-disabled="createOfferForm.createOfferOriginalPrice.$error.pattern
-               || createOfferForm.createOfferFinalPrice.$error.pattern"
+                ng-disabled="!createOfferForm.$valid"
                 ng-click="createOffer()"
                 class="button small icon fa-shopping-cart overheadButton">Crear oferta
         </button>
         <button type="submit"
-                ng-disabled="createOfferForm.createOfferOriginalPrice.$error.pattern
-               || createOfferForm.createOfferFinalPrice.$error.pattern"
+                ng-disabled="!createOfferForm.$valid"
                 ng-click="createOffer()"
                 class="button mini icon fa-shopping-cart overheadButton"></button>
     </form>
