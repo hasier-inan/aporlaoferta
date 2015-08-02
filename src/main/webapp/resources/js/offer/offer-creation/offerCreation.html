@@ -10,7 +10,7 @@
             <li class="regular-100 regular-margin-1">
                 <input type="text" id="createOfferTitle" name="createOfferTitle"
                        ng-model="offer.offerTitle" class="overheadField regular-60 content-validation"
-                       placeholder="T&iacute;tulo" required/>
+                       placeholder="T&iacute;tulo" ng-maxlength="250" required/>
             </li>
         </ul>
         <ul class="regular-margin-1">
@@ -21,8 +21,8 @@
                 <input type="text" id="createOfferOriginalPrice"
                        name="createOfferOriginalPrice"
                        ng-model="offer.originalPrice"
-                       ng-pattern="bigDecimalsOnly" class="overheadField regular-40 content-validation"
-                       placeholder="0.00" required/>
+                       ng-pattern="bigDecimalsOnly" class="overheadField regular-40"
+                       placeholder="0.00" min="0" max="999999"/>
                 <!--<span ng-show="createOfferForm.createOfferOriginalPrice.$error.pattern">Precio invalido</span>-->
             </li>
             <li class="regular-50">
@@ -33,14 +33,14 @@
                        name="createOfferFinalPrice"
                        ng-model="offer.finalPrice"
                        ng-pattern="bigDecimalsOnly" class="overheadField regular-40 content-validation"
-                       placeholder="0.00" required/>
+                       placeholder="0.00"  min="0" max="999999" required/>
                 <!--<span ng-show="createOfferForm.createOfferFinalPrice.$error.pattern">Precio invalido</span>-->
             </li>
         </ul>
         <ul>
             <li class="regular-100 regular-margin-1">
                 <input type="text" id="createOfferLink" ng-model="offer.offerLink" class="overheadField regular-60 content-validation"
-                       placeholder="Link" required/>
+                       placeholder="Link" ng-maxlength="2000" required/>
             </li>
         </ul>
         <ul class="regular-100 regular-margin-1">
@@ -54,7 +54,7 @@
                 <textarea id="createOfferDescription" ng-model="offer.offerDescription"
                           class="overheadField ng-pristine ng-valid regular-100 content-validation"
                           placeholder="A&ntilde;adir descripci&oacute;n"
-                          rows="6" required></textarea>
+                          rows="6" ng-maxlength="2000" required></textarea>
             </li>
         </ul>
         <ul>

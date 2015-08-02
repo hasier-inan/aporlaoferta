@@ -57,10 +57,10 @@ public class TheOffer implements Serializable {
     @Column(name = "TO_IMAGE", nullable = false)
     private String offerImage;
 
-    @Column(name = "TO_DESCRIPTION", nullable = false, length = 1000)
+    @Column(name = "TO_DESCRIPTION", nullable = false, length = 2000)
     private String offerDescription;
 
-    @Column(name = "TO_LINK", nullable = false)
+    @Column(name = "TO_LINK", nullable = false,length = 2000)
     private String offerLink;
 
     @Column(name = "TO_EXPIRED", nullable = false)
