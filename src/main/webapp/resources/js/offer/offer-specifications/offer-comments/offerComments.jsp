@@ -22,13 +22,13 @@
                 <img ng-src="{{quotedComment.commentOwner.userAvatar}}"/>
             </div>
             <div class="commentsTheComment quotedComment">
-                <div class="commentText">{{quotedComment.commentText}}</div>
+                <div class="commentText"><pre class="parsed-text">{{quotedComment.commentText}}</pre></div>
 
             </div>
             <!--<div ng-offer-comments-quotes="offerCommentsQuotes" the-comments="theComments"
                  quoted-comment="theComment.commentsQuotedComment"></div>-->
         </div>
-        <div class="commentText">{{theComment.commentText}}</div>
+        <div class="commentText"><pre class="parsed-text">{{theComment.commentText}}</pre></div>
         <sec:authorize ifAllGranted="ROLE_USER">
             <div class="commentQuoteCommentAction">
                 <a href="#" class="quoteAction" ng-click="quoteAction(theComment.id)">quote:</a>

@@ -61,7 +61,7 @@
                     </div>
                 </div>
                 <div class="offerSpecificationsDescription offerDescription">
-                    {{offer.offerDescription}}
+                    <pre class="parsed-text">{{offer.offerDescription}}</pre>
                 </div>
                 <div class="offerSpecificationsLink">
                     <a href="http://{{offer.offerLink}}" target="_blank">ir a la oferta</a>

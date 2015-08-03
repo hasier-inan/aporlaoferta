@@ -56,7 +56,7 @@ public class OfferComment implements Serializable {
     @Column(name = "TCM_QUOTED_COMMENT", nullable = true)
     private Long commentsQuotedComment;
 
-    @Column(name = "TCM_TEXT", nullable = false)
+    @Column(name = "TCM_TEXT", nullable = false, length = 2000)
     private String commentText;
 
     public String getCommentText() {

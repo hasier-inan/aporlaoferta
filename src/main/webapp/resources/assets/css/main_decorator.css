@@ -481,6 +481,20 @@ form.ng-valid-recaptcha ul li div#createOfferCaptcha{
 }
 
 /*general values*/
+pre.parsed-text{
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    color: #FFFFFF;
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: transparent;
+    border: 0;
+    font: inherit;
+}
+pre.parsed-text.list{
+    color: #828282;
+}
 .red-background {
     background-color: #D76060;
 }

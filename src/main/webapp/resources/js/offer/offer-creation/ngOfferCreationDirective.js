@@ -47,7 +47,7 @@ aporlaofertaApp
                         $scope.customCloseCallback = $scope.displayCallback;
                     }
 
-                    $scope.validateLink=function(){
+                    $scope.validateLink = function () {
 
                     }
 
