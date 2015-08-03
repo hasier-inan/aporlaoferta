@@ -69,7 +69,7 @@
 
             </div>
             <div ng-offer-comments="offerComments" the-comments="offer.offerComments" the-offer="offer.id"
-                 class="offerSpecificationsComments"></div>
+                 class="offerSpecificationsComments" comments-custom-close-callback="commentsCustomCloseCallback"></div>
 
         </div>
     </div>

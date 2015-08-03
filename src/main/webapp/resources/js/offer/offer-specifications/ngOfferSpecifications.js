@@ -11,6 +11,7 @@ aporlaofertaApp
                 customCloseCallback: '='
             },
             controller: ['offerManager', 'alertService', '$scope', 'requestManager', 'configService', function (offerManager, alertService, $scope, requestManager, configService) {
+                $scope.commentsCustomCloseCallback={};
                 $scope.votePositive = function (id) {
                     requestManager.makePostCall({}, {'offerId': id}, configService.getEndpoint('positive.feedback'))
                         .success(function (data, status, headers, config) {
@@ -39,6 +40,11 @@ aporlaofertaApp
                         offerManager.showSpecifications(id);
                     }
                 }
+                $scope.$on('commentsCustomCloseCallback', function (event, args) {
+                    var customCallback = args;
+                    $scope.customCloseCallback=customCallback;
+                });
+
             }]
         }
     });

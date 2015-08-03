@@ -72,7 +72,6 @@ aporlaofertaApp
                     if(keyDownCode==27){
                         $scope.closeOverheadDisplay();
                     }
-
                 });
                 $scope.checkForErrors = function () {
                     if (document.getElementById("errorMessage")) {
