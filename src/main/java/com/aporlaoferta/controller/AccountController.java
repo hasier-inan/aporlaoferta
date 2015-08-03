@@ -1,5 +1,6 @@
 package com.aporlaoferta.controller;
 
+import com.aporlaoferta.model.TheDefaultOffer;
 import com.aporlaoferta.model.TheResponse;
 import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.model.validators.ValidationException;
@@ -111,6 +112,7 @@ public class AccountController {
     private TheResponse processUserUpdate(TheUser theNewUser) {
         TheResponse result = new TheResponse();
         String userNickname = this.userManager.getUserNickNameFromSession();
+        updateNewestAvatar(theNewUser, userNickname);
         theNewUser.setUserNickname(userNickname);
         if (isEmpty(userNickname)) {
             result.assignResultCode(ResultCode.USER_NAME_IS_INVALID);
@@ -120,6 +122,13 @@ public class AccountController {
             validateAndUpdateUser(theNewUser, result, userNickname);
         }
         return result;
+    }
+
+    private void updateNewestAvatar(TheUser theNewUser, String userNickname) {
+        TheUser theOldUser = this.userManager.getUserFromNickname(userNickname);
+        if (isEmpty(theNewUser.getUserAvatar())) {
+            theNewUser.setUserAvatar(theOldUser.getUserAvatar());
+        }
     }
 
     private void validateAndUpdateUser(TheUser theNewUser, TheResponse result, String userNickname) {
@@ -144,6 +153,7 @@ public class AccountController {
     private TheResponse processUserCreation(TheUser theUser) {
         TheResponse result = new TheResponse();
         String userNickname = theUser.getUserNickname();
+        addDefaultAvatar(theUser);
         if (isEmpty(userNickname)) {
             result.assignResultCode(ResultCode.USER_NAME_IS_INVALID);
         } else if (this.userManager.doesUserExist(userNickname)) {
@@ -153,6 +163,12 @@ public class AccountController {
             validateAndCreateUser(theUser, result, userNickname);
         }
         return result;
+    }
+
+    private void addDefaultAvatar(TheUser theUser) {
+        if (isEmpty(theUser.getUserAvatar())) {
+            theUser.setUserAvatar(TheDefaultOffer.AVATAR_IMAGE_URL.getCode());
+        }
     }
 
     @RequestMapping(value = "/accountDetails", method = RequestMethod.POST)

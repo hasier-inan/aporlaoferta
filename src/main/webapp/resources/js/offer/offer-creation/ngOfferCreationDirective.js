@@ -41,15 +41,19 @@ aporlaofertaApp
                         }
                     };
 
+                    $scope.restartRecaptcha = function () {
+                        vcRecaptchaService.reload();
+                    }
+
                     $scope.offerCreationError = function (customMessage) {
                         alertService.sendErrorMessage(customMessage);
-                        vcRecaptchaService.reload();
+                        $scope.restartRecaptcha();
                         $scope.customCloseCallback = $scope.displayCallback;
                     }
 
                     $scope.bigDecimalsOnly = /^\-?\d+((\.|\,)\d+)?$/;
                     $scope.resetValues = function () {
-                        vcRecaptchaService.reload();
+                        $scope.restartRecaptcha();
                         $scope.offer = {};
                         $scope.brandNewCompany = false;
                         $scope.resetCategory = true;

@@ -4,6 +4,7 @@ import com.aporlaoferta.model.OfferCategory;
 import com.aporlaoferta.model.OfferComment;
 import com.aporlaoferta.model.OfferCompany;
 import com.aporlaoferta.model.OfferFilters;
+import com.aporlaoferta.model.TheDefaultOffer;
 import com.aporlaoferta.model.TheOffer;
 import com.aporlaoferta.model.TheOfferResponse;
 import com.aporlaoferta.model.TheResponse;
@@ -35,6 +36,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static org.springframework.util.StringUtils.isEmpty;
 
 /**
  * Created by hasiermetal on 2/02/14.
@@ -131,6 +134,7 @@ public class OfferController {
     }
 
     private TheResponse processOfferCreation(TheOffer thatOffer) {
+        includeDefaultImage(thatOffer);
         includeOfferInUser(thatOffer);
         thatOffer.setOfferCreatedDate(new Date());
         updateCompany(thatOffer);
@@ -146,6 +150,12 @@ public class OfferController {
             return ResponseResultHelper.createUnhealthyResponse();
         }
         return ResponseResultHelper.createDefaultResponse();
+    }
+
+    private void includeDefaultImage(TheOffer thatOffer) {
+        if (isEmpty(thatOffer.getOfferImage())) {
+            thatOffer.setOfferImage(TheDefaultOffer.OFFER_IMAGE_URL.getCode());
+        }
     }
 
     private void includeAffiliationLink(TheOffer thatOffer) throws MalformedURLException, UnsupportedEncodingException, UnhealthyException {

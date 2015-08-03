@@ -31,7 +31,9 @@
                 </div>
                 <div class="centeredForm">
                     <div class="offerListFeedback feedbackSumatory">
-                        <h1 class="feedbackSumatory ng-binding">{{offer.offerPositiveVote - offer.offerNegativeVote |
+                        <h1 class="feedbackSumatory ng-binding" ng-class="(offer.offerPositiveVote - offer.offerNegativeVote |
+                            number:0)>0?'hotFeedback':((offer.offerPositiveVote - offer.offerNegativeVote |
+                            number:0)<0?'coldFeedback':'neutralFeedback')">{{offer.offerPositiveVote - offer.offerNegativeVote |
                             number:0}}</h1>
                     </div>
                 </div>

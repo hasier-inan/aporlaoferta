@@ -36,7 +36,7 @@ aporlaofertaApp
                     }
                     $scope.displayErrorMessageAndDisplayAccount = function () {
                         alertService.sendErrorMessage("Por favor, haga click en el captcha para demostrar que no es un robot");
-                        vcRecaptchaService.reload();
+                        $scope.restartRecaptcha();
                         $scope.customCloseCallback = $scope.displayCallback;
                     }
                     $scope.processAccountResponse = function (data) {
@@ -47,6 +47,9 @@ aporlaofertaApp
                             alertService.sendErrorMessage(data.descriptionEsp);
                             $scope.customCloseCallback=false;
                         }
+                        $scope.restartRecaptcha();
+                    }
+                    $scope.restartRecaptcha = function () {
                         vcRecaptchaService.reload();
                     }
 
@@ -58,7 +61,7 @@ aporlaofertaApp
 
                     $scope.accountError = function (customMessage) {
                         alertService.sendErrorMessage(customMessage);
-                        vcRecaptchaService.reload();
+                        $scope.restartRecaptcha();
                         $scope.customCloseCallback = $scope.displayCallback;
                     };
                 }]

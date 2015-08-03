@@ -85,8 +85,9 @@ input.overheadField,
 select.overheadField {
     width: 12em;
 }
+
 select option {
-    background:#e7771f;
+    background: #e7771f;
 }
 
 textarea#createOfferDescription {
@@ -157,7 +158,7 @@ textarea#createOfferDescription:focus {
     height: 10em;
 }
 
-div#accountCreationContainer{
+div#accountCreationContainer {
     text-align: center;
 }
 
@@ -232,6 +233,10 @@ div.commentQuoteButtons > button.small {
     display: inline-block;
 }
 
+button.recaptcha {
+    background-color: #4e8cf5 !important;
+}
+
 ul.top_header > button.mini,
 ul.top_header li > button.mini,
 div.profileForm > button.mini,
@@ -283,6 +288,18 @@ div.thumbnailButtons > button {
 
     button.mini.inline {
         padding-left: .7em !important;
+    }
+
+    div.offerCaptcha,
+    table.gc-bubbleDefault.pls-container {
+        border: 0 !important;
+        background-color: transparent !important;
+        transform: scale(0.77);
+        transform-origin: 0;
+        -webkit-transform: scale(0.77);
+        transform: scale(0.77);
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
     }
 
 }
@@ -345,8 +362,137 @@ div.offerCompanyInTitle {
     display: inline-block;
     width: 6em;
     background-color: rgba(0, 0, 0, .2);
+    border: solid 1px #222222;
     text-align: center;
     font-size: 1em;
+    text-shadow: -1px 0px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000;
+}
+
+.feedbackSumatory.hotFeedback {
+    color: #57D735 !important;
+    background-color: rgba(87, 215, 53, 0.50);
+    -webkit-animation: hotty 10s infinite;
+    animation: hotty 10s infinite;
+}
+
+.feedbackSumatory.coldFeedback {
+    color: #d75330 !important;
+    background-color: rgba(215, 83, 48, 0.50);
+    -webkit-animation: coldy 10s infinite;
+    animation: coldy 10s infinite;
+}
+
+.feedbackSumatory.neutralFeedback {
+    -webkit-animation: neutraly 10s infinite;
+    animation: neutraly 10s infinite;
+}
+
+@-webkit-keyframes hotty {
+    0% {
+        background-color: rgba(87, 215, 53, 0.50);
+    }
+    25% {
+        background-color: rgba(87, 215, 53, 0.80);
+    }
+    25% {
+        background-color: rgba(87, 215, 53);
+    }
+    75% {
+        background-color: rgba(87, 215, 53, 0.80);
+    }
+    100% {
+        background-color: rgba(87, 215, 53, 0.50);
+    }
+}
+
+@keyframes hotty {
+    0% {
+        background-color: rgba(87, 215, 53, 0.50);
+    }
+    25% {
+        background-color: rgba(87, 215, 53, 0.80);
+    }
+    25% {
+        background-color: rgba(87, 215, 53);
+    }
+    75% {
+        background-color: rgba(87, 215, 53, 0.80);
+    }
+    100% {
+        background-color: rgba(87, 215, 53, 0.50);
+    }
+}
+
+@-webkit-keyframes coldy {
+    0% {
+        background-color: rgba(215, 83, 48, 0.50);
+    }
+    25% {
+        background-color: rgba(215, 83, 48, 0.80);
+    }
+    25% {
+        background-color: rgba(215, 83, 48);
+    }
+    75% {
+        background-color: rgba(215, 83, 48, 0.80);
+    }
+    100% {
+        background-color: rgba(215, 83, 48, 0.50);
+    }
+}
+
+@keyframes coldy {
+    0% {
+        background-color: rgba(215, 83, 48, 0.50);
+    }
+    25% {
+        background-color: rgba(215, 83, 48, 0.80);
+    }
+    25% {
+        background-color: rgba(215, 83, 48);
+    }
+    75% {
+        background-color: rgba(215, 83, 48, 0.80);
+    }
+    100% {
+        background-color: rgba(215, 83, 48, 0.50);
+    }
+}
+
+@-webkit-keyframes neutraly {
+    0% {
+        background-color: rgba(0, 0, 0, .2);
+    }
+    25% {
+        background-color: rgba(0, 0, 0, .3);
+    }
+    25% {
+        background-color: rgba(0, 0, 0, .4);
+    }
+    75% {
+        background-color: rgba(0, 0, 0, .3);
+    }
+    100% {
+        background-color: rgba(0, 0, 0, .2);
+    }
+}
+
+@keyframes neutraly {
+    0% {
+        background-color: rgba(0, 0, 0, .2);
+    }
+    25% {
+        background-color: rgba(0, 0, 0, .3);
+    }
+    25% {
+        background-color: rgba(0, 0, 0, .4);
+    }
+    75% {
+        background-color: rgba(0, 0, 0, .3);
+    }
+    100% {
+        background-color: rgba(0, 0, 0, .2);
+    }
 }
 
 div.content > h3 {
@@ -445,49 +591,53 @@ div.responseDescription {
 /*
 validation
 */
-.content-validation.ng-valid
-{
+.content-validation.ng-valid {
     background: rgba(105, 210, 231, .15) url(images/valid.png) no-repeat scroll right;
     background-size: 20px;
     border-color: #69d2e7 !important;
     padding-right: 25px;
 }
-.content-validation.ng-invalid{
+
+.content-validation.ng-invalid {
     background: rgba(230, 41, 41, .15) url(images/invalid.png) no-repeat scroll right;
     background-size: 20px;
     border-color: #e62929 !important;
     padding-right: 25px;
 }
-.content-validation.ng-invalid.comment-textarea{
+
+.content-validation.ng-invalid.comment-textarea {
     padding-right: 0px;
     background: rgba(144, 144, 144, 0.075);
     border-color: #e6e6e6 !important;
 }
+
 div.select-validation div > select.ng-invalid,
 div.content-validation.ng-invalid,
-div.select-validation div > select.ng-invalid.ng-valid{
+div.select-validation div > select.ng-invalid.ng-valid {
     background: rgba(230, 41, 41, .15) scroll right;
     padding-right: 0px;
     border-color: #e62929 !important;
 }
+
 div.content-validation.ng-valid,
-div.select-validation div > select.ng-valid{
+div.select-validation div > select.ng-valid {
     background: rgba(105, 210, 231, .15) scroll right;
     padding-right: 0px;
     border-color: #69d2e7 !important;
 }
-form.ng-invalid-recaptcha ul li div.offerCaptcha
-{
+
+form.ng-invalid-recaptcha ul li div.offerCaptcha {
     background: rgba(230, 41, 41, .15) scroll right;
     border-color: #e62929 !important;
 }
-form.ng-valid-recaptcha ul li div.offerCaptcha{
+
+form.ng-valid-recaptcha ul li div.offerCaptcha {
     background: rgba(105, 210, 231, .15) scroll right;
     border-color: #69d2e7 !important;
 }
 
 /*general values*/
-pre.parsed-text{
+pre.parsed-text {
     padding: 0;
     margin: 0;
     font-size: 100%;
@@ -498,9 +648,11 @@ pre.parsed-text{
     border: 0;
     font: inherit;
 }
-pre.parsed-text.list{
+
+pre.parsed-text.list {
     color: #828282;
 }
+
 .red-background {
     background-color: #D76060;
 }
@@ -578,7 +730,7 @@ input[type="checkbox"]:checked + label.overheadLabel:before, input[type="radio"]
     }
 }
 
-div.offerCaptcha{
+div.offerCaptcha {
     border: solid 1px #c5caca;
     padding: .5em;
     border-radius: 6px;
