@@ -17,6 +17,7 @@ aporlaofertaApp
                 function ($scope, vcRecaptchaService, alertService, http, requestManager, configService) {
                     $scope.disableNickname = true;
                     $scope.theUser = {};
+                    $scope.validMail=/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
                     $scope.publicKey = "6LdqHQoTAAAAAAht2VhkrLGU26eBOjL-nK9zXxcn";
                     $scope.createAccount = function (theUser) {
                         if (vcRecaptchaService.getResponse() === "") {

@@ -1,6 +1,6 @@
-<div id="accountCreationContainer" name="accountCreationContainer">
+<div id="accountCreationContainer">
     <div>
-        <form class="centeredForm">
+        <form name="accountCreationContainer" class="centeredForm">
             <input type="text" id="createUserNickname" ng-model="theUser.userNickname" class="overheadField content-validation"
                    placeholder="Nickname" ng-hide="disableNickname" required ng-maxlength="250"/>
             <input type="password" id="createUserPassword" ng-model="theUser.userPassword" class="overheadField content-validation"
@@ -22,9 +22,9 @@
         </form>
     </div>
 
-    <button class="button small icon fa-user overheadButton" ng-click="createAccount(theUser)" class="overheadButton">
+    <button ng-disabled="!accountCreationContainer.$valid" class="button small icon fa-user overheadButton" ng-click="createAccount(theUser)" class="overheadButton">
         crear perfil
     </button>
-    <button class="button mini icon fa-user overheadButton" ng-click="createAccount(theUser)"></button>
+    <button ng-disabled="!accountCreationContainer.$valid" class="button mini icon fa-user overheadButton" ng-click="createAccount(theUser)"></button>
 </div>
 
