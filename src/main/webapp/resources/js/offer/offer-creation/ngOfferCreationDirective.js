@@ -47,10 +47,6 @@ aporlaofertaApp
                         $scope.customCloseCallback = $scope.displayCallback;
                     }
 
-                    $scope.validateLink = function () {
-
-                    }
-
                     $scope.bigDecimalsOnly = /^\-?\d+((\.|\,)\d+)?$/;
                     $scope.resetValues = function () {
                         vcRecaptchaService.reload();
