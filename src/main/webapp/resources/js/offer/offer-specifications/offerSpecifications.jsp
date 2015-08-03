@@ -64,7 +64,7 @@
                     <pre class="parsed-text">{{offer.offerDescription}}</pre>
                 </div>
                 <div class="offerSpecificationsLink">
-                    <a href="http://{{offer.offerLink}}" target="_blank">ir a la oferta</a>
+                    <a href="http://{{offer.offerLink}}" target="_blank">ir a la oferta <i class="fa fa-cart-arrow-down"></i></a>
                 </div>
 
             </div>

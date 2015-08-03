@@ -19,9 +19,11 @@ a.quoteAction:hover {
     text-decoration: none;
 }
 
-div.offerSpecificationsLink > a {
+div.offerSpecificationsLink > a
+{
     text-decoration: none;
     color: #d70000;
+    font-size: 2em;
 }
 
 div.offerSpecificationsTitle > h1 {
