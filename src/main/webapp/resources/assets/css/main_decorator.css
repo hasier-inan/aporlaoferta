@@ -458,6 +458,11 @@ validation
     border-color: #e62929 !important;
     padding-right: 25px;
 }
+.content-validation.ng-invalid.comment-textarea{
+    padding-right: 0px;
+    background: rgba(144, 144, 144, 0.075);
+    border-color: #e6e6e6 !important;
+}
 div.select-validation div > select.ng-invalid,
 div.content-validation.ng-invalid,
 div.select-validation div > select.ng-invalid.ng-valid{

@@ -13,6 +13,7 @@ aporlaofertaApp
             },
             controller: ['$filter', 'alertService', '$scope', '$timeout', 'requestManager', 'configService', function ($filter, alertService, $scope, $timeout, requestManager, configService) {
                 $scope.quoteActionEnable = -1;
+                $scope.qComment={};
                 $scope.getQuotedComment = function (id, comments) {
                     return $filter('filter')(comments, {id: id})[0];
                 }

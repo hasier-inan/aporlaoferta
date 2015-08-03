@@ -22,29 +22,36 @@
                 <img ng-src="{{quotedComment.commentOwner.userAvatar}}"/>
             </div>
             <div class="commentsTheComment quotedComment">
-                <div class="commentText"><pre class="parsed-text">{{quotedComment.commentText}}</pre></div>
+                <div class="commentText">
+                    <pre class="parsed-text">{{quotedComment.commentText}}</pre>
+                </div>
 
             </div>
             <!--<div ng-offer-comments-quotes="offerCommentsQuotes" the-comments="theComments"
                  quoted-comment="theComment.commentsQuotedComment"></div>-->
         </div>
-        <div class="commentText"><pre class="parsed-text">{{theComment.commentText}}</pre></div>
+        <div class="commentText">
+            <pre class="parsed-text">{{theComment.commentText}}</pre>
+        </div>
         <sec:authorize ifAllGranted="ROLE_USER">
             <div class="commentQuoteCommentAction">
                 <a href="#" class="quoteAction" ng-click="quoteAction(theComment.id)">quote:</a>
 
                 <div class="commentQuoteCommentContent" ng-show="isQuoteActionEnabled(theComment.id)">
-                    <textarea ng-model="qComment.commentText"
-                              class="overheadField ng-pristine ng-valid" rows="6">
-                    </textarea>
+                    <form name="quoteCommentForm">
+                        <textarea ng-model="qComment.commentText"
+                                  class="overheadField ng-pristine ng-valid content-validation comment-textarea" ng-maxlength="2000"
+                                  rows="6" required>
+                        </textarea>
 
-                    <div class="commentQuoteButtons">
-                        <button class="button small icon fa-pencil-square whiteButton green-background"
-                                ng-click="quoteComment(qComment, theComment.id)">quote
-                        </button>
-                        <button class="button mini icon fa-pencil-square whiteButton inline green-background"
-                                ng-click="quoteComment(qComment, theComment.id)"></button>
-                    </div>
+                        <div class="commentQuoteButtons">
+                            <button ng-disabled="!quoteCommentForm.$valid" class="button small icon fa-pencil-square whiteButton green-background"
+                                    ng-click="quoteComment(qComment, theComment.id)">quote
+                            </button>
+                            <button ng-disabled="!quoteCommentForm.$valid" class="button mini icon fa-pencil-square whiteButton inline green-background"
+                                    ng-click="quoteComment(qComment, theComment.id)"></button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </sec:authorize>
@@ -56,17 +63,20 @@
     <sec:authorize ifAllGranted="ROLE_USER">
 
         <div class="commentContent">
-            <textarea ng-model="comment.commentText"
-                      class="overheadField ng-pristine ng-valid" rows="6">
-            </textarea>
+            <form name="commentContentForm">
+                <textarea ng-model="comment.commentText"
+                          class="overheadField ng-pristine ng-valid content-validation comment-textarea" ng-maxlength="2000" rows="6"
+                          required>
+                </textarea>
 
-            <div class="commentQuoteButtons">
-                <button class="button small icon fa-pencil-square whiteButton green-background"
-                        ng-click="writeComment(comment, theOffer)">a&ntilde;adir comentario
-                </button>
-                <button class="button mini icon fa-pencil-square whiteButton inline green-background"
-                        ng-click="writeComment(comment, theOffer)"></button>
-            </div>
+                <div class="commentQuoteButtons">
+                    <button ng-disabled="!commentContentForm.$valid" class="button small icon fa-pencil-square whiteButton green-background"
+                            ng-click="writeComment(comment, theOffer)">a&ntilde;adir comentario
+                    </button>
+                    <button ng-disabled="!commentContentForm.$valid" class="button mini icon fa-pencil-square whiteButton inline green-background"
+                            ng-click="writeComment(comment, theOffer)"></button>
+                </div>
+            </form>
         </div>
     </sec:authorize>
     <sec:authorize ifNotGranted="ROLE_USER">
