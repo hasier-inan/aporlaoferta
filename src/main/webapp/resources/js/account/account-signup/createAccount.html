@@ -1,12 +1,12 @@
-<div id="accountCreationContainer">
+<div id="accountCreationContainer" name="accountCreationContainer">
     <div>
         <form class="centeredForm">
-            <input type="text" id="createUserNickname" ng-model="theUser.userNickname" class="overheadField"
-                   placeholder="Nickname" ng-hide="disableNickname"/>
-            <input type="password" id="createUserPassword" ng-model="theUser.userPassword" class="overheadField"
-                   placeholder="Contrase&ntilde;a"/>
-            <input type="text" id="createUserEmail" ng-model="theUser.userEmail" class="overheadField"
-                   placeholder="Email"/>
+            <input type="text" id="createUserNickname" ng-model="theUser.userNickname" class="overheadField content-validation"
+                   placeholder="Nickname" ng-hide="disableNickname" required ng-maxlength="250"/>
+            <input type="password" id="createUserPassword" ng-model="theUser.userPassword" class="overheadField content-validation"
+                   placeholder="Contrase&ntilde;a" required ng-maxlength="250"/>
+            <input type="text" id="createUserEmail" ng-model="theUser.userEmail" class="overheadField content-validation"
+                   placeholder="Email" required ng-pattern="validMail" ng-maxlength="250"/>
 
             <label id="imageUploadLabel" for="imageUploadContent" class="overheadLabel">Avatar</label>
 
@@ -14,14 +14,14 @@
                  final-url="theUser.userAvatar"></div>
 
             <input type="hidden" id="createUserAvatar" ng-model="theUser.userAvatar" class="overheadField"/>
+            <ul class="regular-bottom">
+                <li>
+                    <div id="createAccountCaptcha" vc-recaptcha key="publicKey" class="offerCaptcha"></div>
+                </li>
+            </ul>
         </form>
     </div>
 
-    <ul class="regular-bottom">
-        <li>
-            <div id="createAccountCaptcha" vc-recaptcha key="publicKey"></div>
-        </li>
-    </ul>
     <button class="button small icon fa-user overheadButton" ng-click="createAccount(theUser)" class="overheadButton">
         crear perfil
     </button>

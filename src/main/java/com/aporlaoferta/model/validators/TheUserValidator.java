@@ -21,6 +21,19 @@ public class TheUserValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userPassword",
                 ValidationError.ERROR_FIELD_REQUIRED.getCode());
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userEmail", ValidationError.ERROR_FIELD_REQUIRED.getCode());
-        //TODO: Validate user password length and user email regexp
+
+        validateInputLength((TheUser) o, errors);
+    }
+
+    private void validateInputLength(TheUser theUser, Errors errors) {
+        if (theUser.getUserNickname().length() > 250) {
+            errors.rejectValue("userNickname", "error.fieldFormat", ValidationError.ERROR_FIELD_LENGTH_EXCEED.getCode());
+        }
+        if (theUser.getUserPassword().length() > 250) {
+            errors.rejectValue("userNickname", "error.fieldFormat", ValidationError.ERROR_FIELD_LENGTH_EXCEED.getCode());
+        }
+        if (theUser.getUserEmail().length() > 250) {
+            errors.rejectValue("userNickname", "error.fieldFormat", ValidationError.ERROR_FIELD_LENGTH_EXCEED.getCode());
+        }
     }
 }

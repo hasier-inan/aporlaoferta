@@ -471,11 +471,12 @@ div.select-validation div > select.ng-valid{
     padding-right: 0px;
     border-color: #69d2e7 !important;
 }
-form.ng-invalid-recaptcha ul li div#createOfferCaptcha{
+form.ng-invalid-recaptcha ul li div.offerCaptcha
+{
     background: rgba(230, 41, 41, .15) scroll right;
     border-color: #e62929 !important;
 }
-form.ng-valid-recaptcha ul li div#createOfferCaptcha{
+form.ng-valid-recaptcha ul li div.offerCaptcha{
     background: rgba(105, 210, 231, .15) scroll right;
     border-color: #69d2e7 !important;
 }
@@ -572,7 +573,7 @@ input[type="checkbox"]:checked + label.overheadLabel:before, input[type="radio"]
     }
 }
 
-div#createOfferCaptcha{
+div.offerCaptcha{
     border: solid 1px #c5caca;
     padding: .5em;
     border-radius: 6px;
