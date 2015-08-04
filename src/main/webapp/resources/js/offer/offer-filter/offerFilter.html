@@ -2,8 +2,8 @@
     <div class="filter-header">
         <h3>Búsqueda detallada</h3>
     </div>
-
-    <div class="filters-contents">
+    <button id="displayFilterContents" class="button mini icon fa-chevron-down whiteButton" ng-class="displayFilterContent" ng-click="displayFilterContents()"></button>
+    <div class="filters-contents" ng-class="displayFilterContent">
         <div class="filterByCategoryContent inline-block basic-margin" ng-model="offerCategoryManager"
              ng-offer-category-manager="offerCategoryManager" reset="resetCategory" selectedcategory="filter.selectedcategory"></div>
         <div class="filter-parent inline-block basic-margin">

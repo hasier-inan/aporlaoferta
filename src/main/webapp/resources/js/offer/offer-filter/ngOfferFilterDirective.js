@@ -11,6 +11,7 @@ aporlaofertaApp
             },
             controller: ['$scope', '$rootScope', 'requestManager', 'configService', function ($scope, $rootScope, requestManager, configService) {
                 $scope.filter = {};
+                $scope.displayFilterContent = "";
                 $scope.requestFilterApply = function () {
                     requestManager.makePostCall($scope.filter, {}, configService.getEndpoint('get.filtered.offers'))
                         .success(function (data, status, headers, config) {
@@ -28,6 +29,10 @@ aporlaofertaApp
                     $scope.resetCategory = true;
                     $scope.filter.selectedcategory = "";
                     $scope.requestFilterApply();
+                };
+                $scope.displayFilterContents = function () {
+                    $scope.displayFilterContent = ($scope.displayFilterContent == 'filters-displayed') ?
+                        'filters-hidden' : 'filters-displayed';
                 };
                 $scope.cleanFilters();
             }]

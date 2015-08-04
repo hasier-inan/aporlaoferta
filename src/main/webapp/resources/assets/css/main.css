@@ -2674,6 +2674,19 @@ ul.actions.fit.small li {
 
 }
 
+@media screen and (max-width: 480px) and (orientation: portrait){
+    .spotlight:nth-child(2n) .content {
+        text-align: right;
+        margin: 0 0em 0 0;
+    }
+}
+@media screen and (max-width: 736px) and (orientation: portrait){
+    .spotlight:nth-child(2n) .content {
+        text-align: right;
+        margin: 0 0em 0 0;
+    }
+}
+
 dl {
     margin: 0 0 2em 0;
 }
@@ -2809,11 +2822,11 @@ header.major:after {
 @media screen and (max-width: 736px) and (orientation: landscape) {
 
     .spotlight .image {
-        margin: 0 2em 0 0;
+        margin: 0 0em 0 0;
     }
 
     .spotlight:nth-child(2n) .image {
-        margin: 0 0 0 2em;
+        margin: 0 0 0 0em;
     }
 
 }

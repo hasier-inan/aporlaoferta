@@ -304,6 +304,12 @@ div.thumbnailButtons > button {
 
 }
 
+@media screen and (max-width: 480px) {
+    .basic-margin {
+        margin: .5em 0em !important;
+    }
+}
+
 .profileHiddenForm {
     display: none;
 }
@@ -566,11 +572,115 @@ input#filter-by {
 
 .basic-margin {
     margin: .5em 1em;
-
 }
 
 input.filter-input {
     width: 20em;
+}
+
+@media screen and (max-width: 480px) and (orientation: portrait) {
+    div.filters-contents {
+        display: none;
+    }
+
+    button#displayFilterContents {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 480px) and (orientation: landscape) {
+    div.filters-contents {
+        display: none;
+    }
+
+    button#displayFilterContents {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 736px) and (orientation: portrait) {
+    div.filters-contents {
+        display: none;
+    }
+
+    button#displayFilterContents {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 736px) and (orientation: landscape) {
+    div.filters-contents {
+        display: none;
+    }
+
+    button#displayFilterContents {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 737px) and (orientation: portrait) {
+    div.filters-contents {
+        display: block;
+    }
+
+    button#displayFilterContents {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 737px) and (orientation: landscape) {
+    div.filters-contents {
+        display: block;
+    }
+
+    button#displayFilterContents {
+        display: none;
+    }
+}
+
+div.filters-displayed {
+    display: block !important;
+    -webkit-animation: verticalShow .5s linear;
+}
+
+div.filters-hidden {
+    display: none !important;
+    -webkit-animation: verticalHide .5s linear;
+}
+
+button.filters-displayed {
+    -ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+    moz-transform: rotate(180deg);
+}
+
+button.filters-hidden {
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    moz-transform: rotate(0deg);
+}
+
+button.filters-hidden,
+button.filters-displayed {
+    -moz-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    transition: all .3s linear;
+}
+
+button#displayFilterContents {
+    border: solid 1px #fff;
+    box-shadow: none;
+    border-radius: 100%;
+    width: 3em;
+    height: 3em;
+    padding: 0 0 0 .5em;
+    background-color: rgba(255, 255, 255, .15);
+    display: inline;
 }
 
 /*/offer filter*/
