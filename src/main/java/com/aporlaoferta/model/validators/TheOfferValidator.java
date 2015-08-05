@@ -34,13 +34,13 @@ public class TheOfferValidator implements Validator {
     }
 
     private void validateLength(TheOffer theOffer, Errors errors) {
-        if (theOffer.getOfferTitle().length() > 250) {
+        if (!isEmpty(theOffer.getOfferTitle()) && theOffer.getOfferTitle().length() > 250) {
             errors.rejectValue("offerTitle", "error.fieldFormat", ValidationError.ERROR_FIELD_LENGTH_EXCEED.getCode());
         }
-        if (theOffer.getOfferDescription().length() > 2000) {
+        if (!isEmpty(theOffer.getOfferDescription()) && theOffer.getOfferDescription().length() > 2000) {
             errors.rejectValue("offerDescription", "error.fieldFormat", ValidationError.ERROR_FIELD_LENGTH_EXCEED.getCode());
         }
-        if (theOffer.getOfferLink().length() > 2000) {
+        if (!isEmpty(theOffer.getOfferLink()) && theOffer.getOfferLink().length() > 2000) {
             errors.rejectValue("offerLink", "error.fieldFormat", ValidationError.ERROR_FIELD_LENGTH_EXCEED.getCode());
         }
         if (!isEmpty(theOffer.getOriginalPrice())) {
@@ -51,10 +51,10 @@ public class TheOfferValidator implements Validator {
                 errors.rejectValue("originalPrice", "error.fieldFormat", ValidationError.ERROR_FIELD_LENGTH_EXCEED.getCode());
             }
         }
-        if (theOffer.getFinalPrice().compareTo(new BigDecimal(999999)) > 0) {
+        if (!isEmpty(theOffer.getFinalPrice()) && theOffer.getFinalPrice().compareTo(new BigDecimal(999999)) > 0) {
             errors.rejectValue("finalPrice", "error.fieldFormat", ValidationError.ERROR_FIELD_LENGTH_EXCEED.getCode());
         }
-        if (theOffer.getFinalPrice().compareTo(new BigDecimal(0)) < 0) {
+        if (!isEmpty(theOffer.getFinalPrice()) && theOffer.getFinalPrice().compareTo(new BigDecimal(0)) < 0) {
             errors.rejectValue("finalPrice", "error.fieldFormat", ValidationError.ERROR_FIELD_LENGTH_EXCEED.getCode());
         }
     }

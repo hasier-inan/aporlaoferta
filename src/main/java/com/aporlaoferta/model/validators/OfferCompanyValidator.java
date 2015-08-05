@@ -5,6 +5,8 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+import static org.springframework.util.StringUtils.isEmpty;
+
 /**
  * Created by hasiermetal on 15/01/15.
  */
@@ -18,8 +20,8 @@ public class OfferCompanyValidator implements Validator {
     public void validate(Object o, Errors errors) {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "companyName",
                 ValidationError.ERROR_FIELD_REQUIRED.getCode());
-        OfferCompany offerCompany=(OfferCompany)o;
-        if (offerCompany.getCompanyName().length() > 250) {
+        OfferCompany offerCompany = (OfferCompany) o;
+        if (!isEmpty(offerCompany.getCompanyName()) && offerCompany.getCompanyName().length() > 250) {
             errors.rejectValue("companyName", "error.fieldFormat", ValidationError.ERROR_FIELD_LENGTH_EXCEED.getCode());
         }
     }

@@ -19,6 +19,8 @@
     <meta name="keywords"
           content="ofertas p4p rebajas tiendas promociones online"/>
     <sec:csrfMetaTags/>
+    <link rel="shortcut icon"
+          href="resources/images/favicon.ico" />
     <!--template-->
     <!--[if lte IE 8]>
     <script src="resources/assets/js/ie/html5shiv.js"></script><![endif]-->

@@ -42,6 +42,11 @@ public class AccountController {
     @Autowired
     private CaptchaHTTPManager captchaHttpManager;
 
+    @RequestMapping("favicon.ico")
+    String favicon() {
+        return "forward:/resources/images/favicon.ico";
+    }
+
     @RequestMapping(value = {"/", "/start**", "/index**"}, method = RequestMethod.GET)
     public ModelAndView start() {
         ModelAndView model = new ModelAndView();

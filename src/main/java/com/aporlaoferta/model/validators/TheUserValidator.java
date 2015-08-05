@@ -5,6 +5,8 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+import static org.springframework.util.StringUtils.isEmpty;
+
 /**
  * Created by hasiermetal on 15/01/15.
  */
@@ -26,13 +28,13 @@ public class TheUserValidator implements Validator {
     }
 
     private void validateInputLength(TheUser theUser, Errors errors) {
-        if (theUser.getUserNickname().length() > 250) {
+        if (!isEmpty(theUser.getUserNickname()) && theUser.getUserNickname().length() > 250) {
             errors.rejectValue("userNickname", "error.fieldFormat", ValidationError.ERROR_FIELD_LENGTH_EXCEED.getCode());
         }
-        if (theUser.getUserPassword().length() > 250) {
+        if (!isEmpty(theUser.getUserPassword()) && theUser.getUserPassword().length() > 250) {
             errors.rejectValue("userNickname", "error.fieldFormat", ValidationError.ERROR_FIELD_LENGTH_EXCEED.getCode());
         }
-        if (theUser.getUserEmail().length() > 250) {
+        if (!isEmpty(theUser.getUserEmail()) && theUser.getUserEmail().length() > 250) {
             errors.rejectValue("userNickname", "error.fieldFormat", ValidationError.ERROR_FIELD_LENGTH_EXCEED.getCode());
         }
     }
