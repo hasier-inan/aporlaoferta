@@ -10,6 +10,8 @@
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
+    <context:property-placeholder location="classpath:oferta_config.properties"/>
+
     <context:component-scan base-package="com.aporlaoferta.controller" />
     <context:component-scan base-package="com.aporlaoferta.affiliations" />
     <context:component-scan base-package="com.aporlaoferta.service" />
@@ -27,6 +29,7 @@
 
 
     <mvc:resources mapping="/resources/**" location="/resources/" />
+    <mvc:resources mapping="/1_1p04dz/**" location="${upload.folder.dispatcher}"/>
     <mvc:annotation-driven />
 
     <bean id="multipartResolver"

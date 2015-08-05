@@ -20,6 +20,7 @@
     <bean id="imageManagerTest" class="com.aporlaoferta.service.ImageUploadManager">
         <constructor-arg name="folderDepth" value="2"/>
         <constructor-arg name="uploadFolder" value="aaa"/>
+        <constructor-arg name="uploadFolderMap" value="aa"/>
     </bean>
 
     <bean id="transactionalManagerTest" class="com.aporlaoferta.service.TransactionalManager"/>

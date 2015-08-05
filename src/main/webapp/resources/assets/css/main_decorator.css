@@ -302,11 +302,21 @@ div.thumbnailButtons > button {
         transform-origin: 0 0;
     }
 
+    div#userProfileLogout{
+        display: inline !important;
+    }
+    div#userProfileLogout>label{
+        display: none !important;
+    }
+
 }
 
 @media screen and (max-width: 480px) {
     .basic-margin {
         margin: .5em 0em !important;
+    }
+    #header h1 {
+        font-size: 2em;
     }
 }
 
@@ -644,8 +654,7 @@ div.filters-displayed {
 }
 
 div.filters-hidden {
-    display: none !important;
-    -webkit-animation: verticalHide .5s linear;
+    display: none;
 }
 
 button.filters-displayed {
@@ -746,6 +755,26 @@ form.ng-valid-recaptcha ul li div.offerCaptcha {
     border-color: #69d2e7 !important;
 }
 
+/**
+logout*/
+div#userProfileLogout {
+    display: block;
+    text-align: right;
+}
+
+div#userProfileLogout > label {
+    display: inline;
+    text-align: right;
+}
+
+div#userProfileLogout > img {
+    display: inline;
+    border-radius: 2px;
+    border: 0;
+    width: 40px;
+    height: 40px;
+}
+
 /*general values*/
 pre.parsed-text {
     padding: 0;
@@ -813,7 +842,8 @@ pre.parsed-text.list {
     margin-bottom: 1em;
     margin-left: 1em;
 }
-label.overhead-hint-label{
+
+label.overhead-hint-label {
     text-align: center;
     font-style: italic;
     font-weight: normal;

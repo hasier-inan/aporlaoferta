@@ -7,6 +7,7 @@
     <bean id="imageUploadManager" class="com.aporlaoferta.service.ImageUploadManager">
         <constructor-arg name="uploadFolder" value="${upload.folder}"/>
         <constructor-arg name="folderDepth" value="50"/>
+        <constructor-arg name="uploadFolderMap" value="${upload.folder.mapping}"/>
     </bean>
 
     <bean id="urlParser" class="com.aporlaoferta.utils.UrlParser"/>

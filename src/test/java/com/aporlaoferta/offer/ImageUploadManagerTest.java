@@ -22,7 +22,7 @@ public class ImageUploadManagerTest {
 
     @Test
     public void testUploadDirectoryIsCreatedIfDoesNotExist() throws Exception {
-        new ImageUploadManager("validFolder", 1);
+        new ImageUploadManager("validFolder", "/",1);
         File validFolder = new File("validFolder");
         if (!validFolder.exists()) {
             fail("Expected folder to exist");
@@ -32,12 +32,12 @@ public class ImageUploadManagerTest {
 
     @Test(expected = InvalidUploadFolderException.class)
     public void testUploadDirectoryIsNotCreatedIfItIsInvalid() throws Exception {
-        new ImageUploadManager("invalid\\/folder", 1);
+        new ImageUploadManager("invalid\\/folder","/", 1);
     }
 
     @Test
     public void testMultipartFileIsCopiedToUploadFolderAndSubfolder() throws Exception {
-        ImageUploadManager imageUploadManager = new ImageUploadManager("validFolder", 0);
+        ImageUploadManager imageUploadManager = new ImageUploadManager("validFolder","/", 0);
         File file =imageUploadManager.copyUploadedFileIntoServer(createDummyMultipart());
         if (!file.exists()) {
             fail("Expected file to be copied to target folder/subfolder");

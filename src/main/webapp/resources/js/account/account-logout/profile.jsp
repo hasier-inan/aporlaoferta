@@ -12,7 +12,12 @@
     }
 </script>
 <c:if test="${pageContext.request.userPrincipal.name != null}">
+    <div id="userProfileLogout">
+        <img ng-src="{{userAvatar}}"/>
         <label class="overheadLabel">Usuario : ${pageContext.request.userPrincipal.name}</label>
-        <button class="button small icon fa-sign-out whiteButton red-background" onclick="formSubmit()">Cerrar sesi&oacute;n</button>
-        <button class="button mini icon fa-sign-out whiteButton inline red-background" onclick="formSubmit()"></button>
+    </div>
+    <button class="button small icon fa-sign-out whiteButton red-background" onclick="formSubmit()">Cerrar
+        sesi&oacute;n
+    </button>
+    <button class="button mini icon fa-sign-out whiteButton inline red-background" onclick="formSubmit()"></button>
 </c:if>

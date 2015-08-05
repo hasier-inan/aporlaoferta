@@ -27,7 +27,7 @@
         <section ng-repeat="offer in offerList track by offer.id" class="spotlight">
             <div class="offerImageAndFeedback">
                 <div class="image offerImage">
-                    <img src="resources/images/pic01.jpg" alt="" ng-click="showSpecifications(offer.id)"/>
+                    <img ng-src="{{offer.offerImage}}" alt="" ng-click="showSpecifications(offer.id)"/>
                 </div>
                 <div class="centeredForm">
                     <div class="offerListFeedback feedbackSumatory">

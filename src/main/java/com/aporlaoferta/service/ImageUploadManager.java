@@ -16,12 +16,14 @@ public class ImageUploadManager {
 
     private final Logger LOG = LoggerFactory.getLogger(ImageUploadManager.class);
     private final String uploadFolder;
+    private final String uploadFolderMap;
     private final int folderDepth;
     private final ImageTransformer imageTransformer;
 
-    public ImageUploadManager(String uploadFolder, int folderDepth) {
+    public ImageUploadManager(String uploadFolder, String uploadFolderMap, int folderDepth) {
         this.uploadFolder = uploadFolder;
         this.folderDepth = folderDepth;
+        this.uploadFolderMap = uploadFolderMap;
         this.imageTransformer = new ImageTransformer();
         File uploadDir = new File(this.uploadFolder);
         if (!uploadDir.exists()) {
@@ -31,6 +33,10 @@ public class ImageUploadManager {
                 throw new InvalidUploadFolderException(message);
             }
         }
+    }
+
+    public String obtainServerPathForImage(File file){
+         return this.uploadFolderMap+file.getParentFile().getName()+"/"+file.getName();
     }
 
     public File copyUploadedFileIntoServer(MultipartFile file) throws IOException {

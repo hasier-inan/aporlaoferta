@@ -73,7 +73,7 @@ public class ImageController {
             alteredImage.delete();
             result.setCode(ResultCode.ALL_OK.getCode());
             result.setResponseResult(ResponseResult.OK);
-            result.setDescription(finalFile.getPath().replace("\\", "/"));
+            result.setDescription(this.imageUploadManager.obtainServerPathForImage(finalFile));
             return true;
         }
         return false;
