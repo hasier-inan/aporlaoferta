@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page session="true" %>
-<form name='loginForm'
+<label for="loginForm" class="overhead-hint-label">Identif&iacute;cate con tus datos personales</label>
+<form id="loginForm" name='loginForm'
       action="<c:url value='/j_spring_security_check' />" method='POST' class="centeredForm">
     <input ng-model="login.username" type="text" id="loginUsername" name="username" class="overheadField content-validation"
            placeholder="Usuario" ng-maxlength="250" required>

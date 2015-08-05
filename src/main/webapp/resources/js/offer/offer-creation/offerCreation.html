@@ -2,18 +2,22 @@
     <form id="offerCreationForm" name="createOfferForm" class="centeredForm">
         <ul>
             <li>
-                <div ng-offer-category-manager="offerCategoryManager" reset="resetCategory"
+                <label for="offerCategoryManagerSection" class="overhead-hint-label">Selecciona la categor&iacute;a del art&iacute;culo</label>
+                <div id="offerCategoryManagerSection" ng-offer-category-manager="offerCategoryManager" reset="resetCategory"
                      selectedcategory="offer.offerCategory" class="select-validation"></div>
             </li>
         </ul>
         <ul>
             <li class="regular-100 regular-margin-1">
+                <label class="overhead-hint-label">Escribe el t&iacute;tulo que mejor describe la oferta</label>
+                <br/>
                 <input type="text" id="createOfferTitle" name="createOfferTitle"
                        ng-model="offer.offerTitle" class="overheadField regular-60 content-validation"
                        placeholder="T&iacute;tulo" ng-maxlength="250" required/>
             </li>
         </ul>
-        <ul class="regular-margin-1">
+        <ul id="createOfferPriceSection" class="regular-margin-1">
+            <label class="overhead-hint-label">Añade el precio del art&iacute;culo (y opcionalmente el precio antes de la oferta)</label>
             <li class="regular-50 ">
                 <label for="createOfferOriginalPrice" class="overheadLabel">
                     Precio antiguo
@@ -39,18 +43,22 @@
         </ul>
         <ul>
             <li class="regular-100 regular-margin-1">
+                <label class="overhead-hint-label">Copia y pega la direcci&oacute;n URL directa donde se puede comprar el art&iacute;culo</label>
+                <br/>
                 <input type="text" id="createOfferLink" ng-model="offer.offerLink" class="overheadField regular-60 content-validation"
                        placeholder="Link" ng-maxlength="2000" required/>
             </li>
         </ul>
         <ul class="regular-100 regular-margin-1">
             <li>
-                <div ng-company-manager="companyManager" reset="resetCompany"
+                <label for="createOfferCompanySection" class="overhead-hint-label">Selecciona la tienda donde se encuentra la oferta o a&nacute;ade su nombre</label>
+                <div id="createOfferCompanySection" ng-company-manager="companyManager" reset="resetCompany"
                      selectedcompany="offer.offerCompany" class="select-validation"></div>
             </li>
         </ul>
         <ul>
             <li class="regular-80">
+                <label for="createOfferDescription" class="overhead-hint-label">Incluye una descripci&oacute;n detallada para mostrar el por qu&eacute; de esta gran oferta!</label>
                 <textarea id="createOfferDescription" ng-model="offer.offerDescription"
                           class="overheadField ng-pristine ng-valid regular-100 content-validation"
                           placeholder="A&ntilde;adir descripci&oacute;n"
@@ -59,8 +67,7 @@
         </ul>
         <ul>
             <li>
-                <label id="offerImageUploadLabel" for="offerImageUploadContent" class="overheadLabel">Imagen</label>
-
+                <label for="offerImageUploadContent" class="overhead-hint-label">Puedes a&nacute;adir opcionalmente una imagen del art&iacute;culo</label>
                 <div id="offerImageUploadContent" ng-image-uploader="createOfferImageUploader"
                      final-url="offer.offerImage"></div>
                 <input type="hidden" id="createOfferImage"
@@ -70,6 +77,7 @@
         </ul>
         <ul class="regular-bottom">
             <li>
+                <label for="createOfferCaptcha" class="overhead-hint-label">Antes de continuar soluciona el captcha para probar que no eres un robot</label>
                 <div id="createOfferCaptcha" vc-recaptcha key="publicKey" class="offerCaptcha"></div>
                 <button ng-click="restartRecaptcha()" class="button small icon fa-refresh overheadButton recaptcha">refrescar reCaptcha</button>
                 <button ng-click="restartRecaptcha()" class="button mini icon fa-refresh overheadButton recaptcha"></button>

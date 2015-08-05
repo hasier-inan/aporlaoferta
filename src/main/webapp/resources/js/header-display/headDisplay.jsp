@@ -5,6 +5,7 @@
      (displayOfferCreation?'offerRelated':(displayOfferSpecifications)?'offer-specifications-background':'')"
      ng-show="overheadVisible">
     <ul id="overheadSubContainerContent" class="actions top_header">
+        <br/>
         <div ng-show="displayOfferSpecifications" ng-offer-specifications="offerSpecifications"
              the-offer="offerSpecifications" custom-close-callback="customCloseCallback"></div>
         <div ng-show="displayResponseFromServer" ng-response-from-server="responseFromServer"

@@ -630,11 +630,11 @@ input.filter-input {
 
 @media screen and (min-width: 737px) and (orientation: landscape) {
     div.filters-contents {
-        display: block;
+        display: inline !important;
     }
 
     button#displayFilterContents {
-        display: none;
+        display: none !important;
     }
 }
 
@@ -812,6 +812,13 @@ pre.parsed-text.list {
     margin-top: 1em;
     margin-bottom: 1em;
     margin-left: 1em;
+}
+label.overhead-hint-label{
+    text-align: center;
+    font-style: italic;
+    font-weight: normal;
+    display: inherit;
+    font-size: .7em;
 }
 
 input[type="checkbox"] + label.overheadLabel:before, input[type="radio"] + label.overheadLabel:before {
