@@ -227,7 +227,7 @@ ul.top_header > button.small,
 ul.top_header li > button.small,
 div.profileForm > button.small,
 div.thumbnailButtons > button.small,
-div.commentQuoteButtons > button.small{
+div.commentQuoteButtons > button.small {
     height: 2em;
     line-height: 2em;
     display: inline-block;
@@ -241,7 +241,7 @@ ul.top_header > button.mini,
 ul.top_header li > button.mini,
 div.profileForm > button.mini,
 div.thumbnailButtons > button.mini,
-div.commentQuoteButtons > button.mini{
+div.commentQuoteButtons > button.mini {
     width: 3em;
     border-radius: 100%;
     margin: 0;
@@ -302,10 +302,11 @@ div.thumbnailButtons > button {
         transform-origin: 0 0;
     }
 
-    div#userProfileLogout{
+    div#userProfileLogout {
         display: inline !important;
     }
-    div#userProfileLogout>label{
+
+    div#userProfileLogout > label {
         display: none !important;
     }
 
@@ -315,9 +316,11 @@ div.thumbnailButtons > button {
     .basic-margin {
         margin: .5em 0em !important;
     }
+
     #header h1 {
         font-size: 2em;
     }
+
 }
 
 .profileHiddenForm {
@@ -334,19 +337,32 @@ div.profileForm {
 
 /**offerlist*/
 
-div.more-offers-button{
+div.more-offers-button {
     display: block;
     text-align: center;
 }
-a.more-offers-button{
-    height: 3em;
+
+button.more-offers-button {
+    text-align: center;
+    display: inline;
+    font-size: 1em;
+    height: 3.5em;
+    color: #828282 !important;
 }
-button.loading{
-    width: 3em;
-    border-radius: 100%;
-    padding: 0.1em 0em 0em .5em;
-    color:#828282 !important;
-    background-color: #fff !important;
+
+.hideLoading {
+    display: none !important;
+}
+
+i.loading {
+    font-family: FontAwesome;
+    font-size: 2em !important;
+    color: #828282 !important;
+    box-shadow: none !important;
+}
+
+div.loading-dialogue {
+    text-align: center;
 }
 
 div.offerCompanyInTitle {
@@ -493,6 +509,13 @@ input#filter-by {
 
 input.filter-input {
     width: 20em;
+}
+
+div.filters-contents div div.select-wrapper,
+div.filters-contents div div.select-wrapper select,
+div.filters-contents div div.select-wrapper:before {
+    height: 2.75em !important;
+    line-height: 2.75em !important;
 }
 
 @media screen and (max-width: 480px) and (orientation: portrait) {

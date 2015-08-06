@@ -2,28 +2,35 @@
     <div class="filter-header">
         <h3>Búsqueda detallada</h3>
     </div>
-    <button id="displayFilterContents" class="button mini icon fa-chevron-down whiteButton" ng-class="displayFilterContent" ng-click="displayFilterContents()"></button>
+    <button id="displayFilterContents" class="button mini icon fa-chevron-down whiteButton"
+            ng-class="displayFilterContent" ng-click="displayFilterContents()"></button>
     <div class="filters-contents" ng-class="displayFilterContent">
-        <div class="filterByCategoryContent inline-block basic-margin" ng-model="offerCategoryManager"
-             ng-offer-category-manager="offerCategoryManager" reset="resetCategory" selectedcategory="filter.selectedcategory"></div>
-        <div class="filter-parent inline-block basic-margin">
-            <label for="filter-by" id="label-for-filter-by"><i class="fa fa-search"></i></label>
-            <input id="filter-by" type="text" ng-model="filter.text"
-                   class="fa-search filter-input inline-block " id="filter-text-finder"
-                   value="" placeholder="Texto a buscar">
-        </div>
+        <ul>
+            <div class="filterByCategoryContent inline-block basic-margin" ng-model="offerCategoryManager"
+                 ng-offer-category-manager="offerCategoryManager" reset="resetCategory"
+                 selectedcategory="filter.selectedcategory"></div>
+            <div class="filter-parent inline-block basic-margin">
+                <label for="filter-by" id="label-for-filter-by"><i class="fa fa-search"></i></label>
+                <input id="filter-by" type="text" ng-model="filter.text"
+                       class="fa-search filter-input inline-block " id="filter-text-finder"
+                       value="" placeholder="Texto a buscar">
+            </div>
 
-        <div class="filterWithExpiredContent inline-block basic-margin">
-            <input type="checkbox" id="filterByExpiredCheckbox"
-                   name="filterByExpiredCheckbox" ng-model="filter.expired"/>
-            <label id="filterByExpiredLabel" for="filterByExpiredCheckbox" class="overheadLabel">Mostrar
-                caducados</label>
-        </div>
-        <a id="applyFilter" href="#promotion_list"
-           class="button icon fa-filter whiteButton inline-block basic-margin"
-           ng-click="requestFilterApply()">Filtrar
-            contenidos</a>
-        <a id="cleanFilter" href="#contentFilter" class="button icon fa-remove whiteButton inline-block basic-margin"
-           ng-click="cleanFilters()">Limpiar filtros</a>
+            <div class="filterWithExpiredContent inline-block basic-margin">
+                <input type="checkbox" id="filterByExpiredCheckbox"
+                       name="filterByExpiredCheckbox" ng-model="filter.expired"/>
+                <label id="filterByExpiredLabel" for="filterByExpiredCheckbox" class="overheadLabel">Mostrar
+                    caducados</label>
+            </div>
+        </ul>
+        <ul>
+            <a id="applyFilter" href="#promotion_list"
+               class="button icon fa-filter whiteButton inline-block basic-margin"
+               ng-click="requestFilterApply()">Filtrar
+                contenidos</a>
+            <a id="cleanFilter" href="#contentFilter"
+               class="button icon fa-remove whiteButton inline-block basic-margin"
+               ng-click="cleanFilters()">Limpiar filtros</a>
+        </ul>
     </div>
 </header>

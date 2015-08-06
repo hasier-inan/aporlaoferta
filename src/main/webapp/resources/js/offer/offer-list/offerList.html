@@ -62,12 +62,14 @@
                 </div>
             </section>
             <div ng-if="$last" class="more-offers-button">
-                <a class="button small icon fa-cart-plus whiteButton more-offers-button get-offer"
-                   ng-click="showMoreOffers($index)" ng-hide="moreOffersLoading">M&aacute;s ofertas
-                </a>
-                <button class="mini loading icon fa-refresh" ng-show="moreOffersLoading"></button>
+                <button class="button small icon fa-cart-plus whiteButton get-offer more-offers-button"
+                        ng-class="!moreOffersLoading?'':'hideLoading'"
+                        ng-click="showMoreOffers($index)">M&aacute;s ofertas
+                </button>
             </div>
         </div>
     </div>
-
+    <div class="loading-dialogue">
+        <i class="fa fa-refresh loading" ng-class="!moreOffersLoading?'hideLoading':''"></i>
+    </div>
 </section>

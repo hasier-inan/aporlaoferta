@@ -1,6 +1,7 @@
 package com.aporlaoferta.data;
 
 import com.aporlaoferta.model.OfferCategory;
+import com.aporlaoferta.model.TheDefaultOffer;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -37,7 +38,7 @@ public class OfferBuilderManager {
                 .createdOn(new Date())
                 .isExpired(false)
                 .withCompany(CompanyBuilderManager.aRegularCompanyWithName("tututu").build())
-                .withImage("product.image.url.jpg")
+                .withImage(TheDefaultOffer.OFFER_IMAGE_URL.getCode())
                 .withDescription("the amazing product we have here this is a ducking deal")
                 .withLink("http://www.amazon.es/gp/product/B00K690INE/?tag=aporlaoferta-21")
                 .withFinalPrice(new BigDecimal(200))

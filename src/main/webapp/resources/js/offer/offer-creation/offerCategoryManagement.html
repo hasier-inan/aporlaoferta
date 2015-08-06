@@ -1,5 +1,5 @@
 <div class="select-wrapper overheadField">
-    <select id="createOfferCategories" name="createOfferCategories"
+    <select name="createOfferCategories"
             ng-options="k as k for (k,v) in offerCategories" ng-model="category" ng-change="onCategoryChange(category)"
             class="overheadField" ng-class="isCategorySelected()?'ng-valid':'ng-invalid'">
         <option value selected="selected">- CATEGORIA -</option>

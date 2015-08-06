@@ -14,7 +14,7 @@
             {{theComment.commentText}}
             <sec:authorize ifAllGranted="ROLE_USER">
                 <div class="commentQuoteCommentAction">
-                    <a href="#" class="quoteAction" ng-click="quoteAction(theComment.id)">quote:</a>
+                    <a href="#" class="quoteAction" ng-click="quoteAction(theComment.id)">citar:</a>
 
                     <div class="commentQuoteCommentContent" ng-show="isQuoteActionEnabled(theComment.id)">
                         <textarea ng-model="qComment.commentText"

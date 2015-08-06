@@ -6,8 +6,7 @@
 
             <div class="offerSpecificationsLeftContainer containerSplitter">
                 <div class="offerSpecificationsImage">
-                    <!--<img ng-src="{{offer.offerImage}}"/>-->
-                    <img src="resources/images/pic01.jpg"/>
+                    <img ng-src="{{offer.offerImage}}"/>
 
                     <div class="offerSpecificationsFeedback">
                         <div class="offerSpecificationsFeedbackTotal">
