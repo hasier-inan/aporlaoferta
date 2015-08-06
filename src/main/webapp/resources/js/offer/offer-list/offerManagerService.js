@@ -10,7 +10,7 @@ offerManager.service('offerManager', ['$rootScope', 'alertService', 'requestMana
         offerManagerController.requestHottestOffers = function () {
             offerManagerController.makeRequest(configService.getEndpoint('get.hottest.offers'));
         }
-        offerManagerController.makeRequest=function(endpoint){
+        offerManagerController.makeRequest = function (endpoint) {
             requestManager.makePostCall({}, {'number': 0}, endpoint)
                 .success(function (data, status, headers, config) {
                     $rootScope.$broadcast('offerList', data.theOffers);
@@ -19,16 +19,17 @@ offerManager.service('offerManager', ['$rootScope', 'alertService', 'requestMana
                 });
         }
 
-        offerManagerController.requestMoreOffers=function(listType, lastOffer, callback){
-            var endpoint=(listType=='hottestOffers')
-                ?configService.getEndpoint('get.hottest.offers')
-                :configService.getEndpoint('get.offers');
+        offerManagerController.requestMoreOffers = function (listType, lastOffer, callback, errorCallback) {
+            var endpoint = (listType == 'hottestOffers')
+                ? configService.getEndpoint('get.hottest.offers')
+                : configService.getEndpoint('get.offers');
             requestManager.makePostCall({}, {'number': lastOffer}, endpoint)
                 .success(function (data, status, headers, config) {
                     callback(data.theOffers);
                     //$rootScope.$broadcast('offerList', data.theOffers);
                 }).error(function (data, status, headers, config) {
                     alertService.sendDefaultErrorMessage();
+                    errorCallback();
                 });
         }
         offerManagerController.showSpecifications = function (id) {

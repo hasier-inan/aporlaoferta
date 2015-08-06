@@ -227,8 +227,7 @@ ul.top_header > button.small,
 ul.top_header li > button.small,
 div.profileForm > button.small,
 div.thumbnailButtons > button.small,
-div.commentQuoteButtons > button.small,
-div.more-offers-button>button.small{
+div.commentQuoteButtons > button.small{
     height: 2em;
     line-height: 2em;
     display: inline-block;
@@ -242,8 +241,7 @@ ul.top_header > button.mini,
 ul.top_header li > button.mini,
 div.profileForm > button.mini,
 div.thumbnailButtons > button.mini,
-div.commentQuoteButtons > button.mini,
-div.more-offers-button > button.mini{
+div.commentQuoteButtons > button.mini{
     width: 3em;
     border-radius: 100%;
     margin: 0;
@@ -343,6 +341,13 @@ div.more-offers-button{
 a.more-offers-button{
     height: 3em;
 }
+button.loading{
+    width: 3em;
+    border-radius: 100%;
+    padding: 0.1em 0em 0em .5em;
+    color:#828282 !important;
+    background-color: #fff !important;
+}
 
 div.offerCompanyInTitle {
     display: inline-block;
@@ -411,114 +416,6 @@ div.offerCompanyInTitle {
 .feedbackSumatory.neutralFeedback {
     -webkit-animation: neutraly 10s infinite;
     animation: neutraly 10s infinite;
-}
-
-@-webkit-keyframes hotty {
-    0% {
-        background-color: rgba(87, 215, 53, 0.50);
-    }
-    25% {
-        background-color: rgba(87, 215, 53, 0.80);
-    }
-    25% {
-        background-color: rgba(87, 215, 53);
-    }
-    75% {
-        background-color: rgba(87, 215, 53, 0.80);
-    }
-    100% {
-        background-color: rgba(87, 215, 53, 0.50);
-    }
-}
-
-@keyframes hotty {
-    0% {
-        background-color: rgba(87, 215, 53, 0.50);
-    }
-    25% {
-        background-color: rgba(87, 215, 53, 0.80);
-    }
-    25% {
-        background-color: rgba(87, 215, 53);
-    }
-    75% {
-        background-color: rgba(87, 215, 53, 0.80);
-    }
-    100% {
-        background-color: rgba(87, 215, 53, 0.50);
-    }
-}
-
-@-webkit-keyframes coldy {
-    0% {
-        background-color: rgba(215, 83, 48, 0.50);
-    }
-    25% {
-        background-color: rgba(215, 83, 48, 0.80);
-    }
-    25% {
-        background-color: rgba(215, 83, 48);
-    }
-    75% {
-        background-color: rgba(215, 83, 48, 0.80);
-    }
-    100% {
-        background-color: rgba(215, 83, 48, 0.50);
-    }
-}
-
-@keyframes coldy {
-    0% {
-        background-color: rgba(215, 83, 48, 0.50);
-    }
-    25% {
-        background-color: rgba(215, 83, 48, 0.80);
-    }
-    25% {
-        background-color: rgba(215, 83, 48);
-    }
-    75% {
-        background-color: rgba(215, 83, 48, 0.80);
-    }
-    100% {
-        background-color: rgba(215, 83, 48, 0.50);
-    }
-}
-
-@-webkit-keyframes neutraly {
-    0% {
-        background-color: rgba(0, 0, 0, .2);
-    }
-    25% {
-        background-color: rgba(0, 0, 0, .3);
-    }
-    25% {
-        background-color: rgba(0, 0, 0, .4);
-    }
-    75% {
-        background-color: rgba(0, 0, 0, .3);
-    }
-    100% {
-        background-color: rgba(0, 0, 0, .2);
-    }
-}
-
-@keyframes neutraly {
-    0% {
-        background-color: rgba(0, 0, 0, .2);
-    }
-    25% {
-        background-color: rgba(0, 0, 0, .3);
-    }
-    25% {
-        background-color: rgba(0, 0, 0, .4);
-    }
-    75% {
-        background-color: rgba(0, 0, 0, .3);
-    }
-    100% {
-        background-color: rgba(0, 0, 0, .2);
-    }
 }
 
 div.content > h3 {

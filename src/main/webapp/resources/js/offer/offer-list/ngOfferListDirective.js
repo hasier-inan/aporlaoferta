@@ -11,6 +11,7 @@ aporlaofertaApp
             controller: ['$scope', 'offerManager',
                 function ($scope, offerManager) {
                     $scope.defaultList = "";
+                    $scope.moreOffersLoading = false;
                     $scope.requestNewestOffers = function () {
                         offerManager.requestNewestOffers();
                         $scope.defaultList = 'newestOffers';
@@ -22,9 +23,14 @@ aporlaofertaApp
                     }
 
                     $scope.showMoreOffers = function (lastOffer) {
-                        offerManager.requestMoreOffers($scope.defaultList, lastOffer, function (data) {
-                            $scope.offerList = $scope.offerList.concat(data);
-                        });
+                        $scope.moreOffersLoading = true;
+                        offerManager.requestMoreOffers($scope.defaultList, lastOffer,
+                            function (data) {
+                                $scope.offerList = $scope.offerList.concat(data);
+                                $scope.moreOffersLoading = false;
+                            }, function () {
+                                $scope.moreOffersLoading = false;
+                            });
                     }
                     $scope.$on('offerList', function (event, args) {
                         $scope.offerList = args;

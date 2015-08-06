@@ -20,45 +20,52 @@
 </header>
 
 <!--TODO: Separete into another view and directive and controller-->
-<section id="contentFilter" class="wrapper style2 special" ng-offer-filter="offerFilter" offer-list="offerList"></section>
+<section id="contentFilter" class="wrapper style2 special" ng-offer-filter="offerFilter"
+         offer-list="offerList"></section>
 
 <section id="promotion_list" class="wrapper style2">
     <div class="inner alt">
-        <div  ng-repeat="offer in offerList | unique: 'offer.id'">
-        <section class="spotlight">
-            <div class="offerImageAndFeedback">
-                <div class="image offerImage">
-                    <img ng-src="{{offer.offerImage}}" alt="" ng-click="showSpecifications(offer.id)"/>
-                </div>
-                <div class="centeredForm">
-                    <div class="offerListFeedback feedbackSumatory">
-                        <h1 class="feedbackSumatory ng-binding" ng-class="(offer.offerPositiveVote - offer.offerNegativeVote |
+        <div ng-repeat="offer in offerList | unique: 'offer.id'">
+            <section class="spotlight">
+                <div class="offerImageAndFeedback">
+                    <div class="image offerImage">
+                        <img ng-src="{{offer.offerImage}}" alt="" ng-click="showSpecifications(offer.id)"/>
+                    </div>
+                    <div class="centeredForm">
+                        <div class="offerListFeedback feedbackSumatory">
+                            <h1 class="feedbackSumatory ng-binding" ng-class="(offer.offerPositiveVote - offer.offerNegativeVote |
                             number:0)>0?'hotFeedback':((offer.offerPositiveVote - offer.offerNegativeVote |
-                            number:0)<0?'coldFeedback':'neutralFeedback')">{{offer.offerPositiveVote - offer.offerNegativeVote |
-                            number:0}}</h1>
+                            number:0)<0?'coldFeedback':'neutralFeedback')">{{offer.offerPositiveVote -
+                                offer.offerNegativeVote |
+                                number:0}}</h1>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="content">
-                <h3>{{offer.offerTitle}} - {{offer.finalPrice}}€
-                    <div class="offerCompanyInTitle">{{offer.offerCompany.companyName}}</div>
-                </h3>
+                <div class="content">
+                    <h3>{{offer.offerTitle}} - {{offer.finalPrice}}€
+                        <div class="offerCompanyInTitle">{{offer.offerCompany.companyName}}</div>
+                    </h3>
 
-                <p class="offerDescription"><pre class="parsed-text list">{{offer.offerDescription}}</pre></p>
+                    <p class="offerDescription">
+                    <pre class="parsed-text list">{{offer.offerDescription}}</pre>
+                    </p>
 
-                <div>
-                    <a class="button get-offer hot-background icon fa-fire whiteButton"
-                       href="http://{{offer.offerLink}}" target="_blank">obtener oferta</a>
-                    <button class="button icon fa-sign-in moreDetailButton" ng-click="showSpecifications(offer.id)">m&aacute;s
-                        detalle
-                    </button>
+                    <div>
+                        <a class="button get-offer hot-background icon fa-fire whiteButton"
+                           href="http://{{offer.offerLink}}" target="_blank">obtener oferta</a>
+                        <button class="button icon fa-sign-in moreDetailButton" ng-click="showSpecifications(offer.id)">
+                            m&aacute;s
+                            detalle
+                        </button>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
             <div ng-if="$last" class="more-offers-button">
-                <a class="button small icon fa-cart-plus whiteButton more-offers-button get-offer" ng-click="showMoreOffers($index)">M&aacute;s ofertas
+                <a class="button small icon fa-cart-plus whiteButton more-offers-button get-offer"
+                   ng-click="showMoreOffers($index)" ng-hide="moreOffersLoading">M&aacute;s ofertas
                 </a>
+                <button class="mini loading icon fa-refresh" ng-show="moreOffersLoading"></button>
             </div>
         </div>
     </div>
