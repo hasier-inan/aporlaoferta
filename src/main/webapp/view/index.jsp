@@ -45,6 +45,7 @@
     <script src="resources/js/lib/angular-animate.js"></script>
     <script src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit&hl=es" async defer></script>
     <script src="resources/js/lib/angular-recaptcha.min.js"></script>
+    <script src="resources/js/lib/angular-filter.min.js"></script>
     <script src="resources/js/lib/ng-flow-standalone.js"></script>
     <script src="resources/assets/js/main.js"></script>
     <script src="resources/js/main-controller/mainController.js"></script>

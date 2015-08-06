@@ -24,7 +24,8 @@
 
 <section id="promotion_list" class="wrapper style2">
     <div class="inner alt">
-        <section ng-repeat="offer in offerList track by offer.id" class="spotlight">
+        <div  ng-repeat="offer in offerList | unique: 'offer.id'">
+        <section class="spotlight">
             <div class="offerImageAndFeedback">
                 <div class="image offerImage">
                     <img ng-src="{{offer.offerImage}}" alt="" ng-click="showSpecifications(offer.id)"/>
@@ -55,6 +56,11 @@
                 </div>
             </div>
         </section>
+            <div ng-if="$last" class="more-offers-button">
+                <a class="button small icon fa-cart-plus whiteButton more-offers-button get-offer" ng-click="showMoreOffers($index)">M&aacute;s ofertas
+                </a>
+            </div>
+        </div>
     </div>
 
 </section>

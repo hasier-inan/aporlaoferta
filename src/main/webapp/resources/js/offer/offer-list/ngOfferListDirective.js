@@ -10,12 +10,21 @@ aporlaofertaApp
             },
             controller: ['$scope', 'offerManager',
                 function ($scope, offerManager) {
+                    $scope.defaultList = "";
                     $scope.requestNewestOffers = function () {
                         offerManager.requestNewestOffers();
+                        $scope.defaultList = 'newestOffers';
                     }
 
                     $scope.requestHottestOffers = function () {
                         offerManager.requestHottestOffers();
+                        $scope.defaultList = 'hottestOffers';
+                    }
+
+                    $scope.showMoreOffers = function (lastOffer) {
+                        offerManager.requestMoreOffers($scope.defaultList, lastOffer, function (data) {
+                            $scope.offerList = $scope.offerList.concat(data);
+                        });
                     }
                     $scope.$on('offerList', function (event, args) {
                         $scope.offerList = args;

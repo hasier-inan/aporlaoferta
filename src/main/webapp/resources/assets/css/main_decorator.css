@@ -227,7 +227,8 @@ ul.top_header > button.small,
 ul.top_header li > button.small,
 div.profileForm > button.small,
 div.thumbnailButtons > button.small,
-div.commentQuoteButtons > button.small {
+div.commentQuoteButtons > button.small,
+div.more-offers-button>button.small{
     height: 2em;
     line-height: 2em;
     display: inline-block;
@@ -241,7 +242,8 @@ ul.top_header > button.mini,
 ul.top_header li > button.mini,
 div.profileForm > button.mini,
 div.thumbnailButtons > button.mini,
-div.commentQuoteButtons > button.mini {
+div.commentQuoteButtons > button.mini,
+div.more-offers-button > button.mini{
     width: 3em;
     border-radius: 100%;
     margin: 0;
@@ -333,6 +335,14 @@ div.profileForm {
 /*/top_header*/
 
 /**offerlist*/
+
+div.more-offers-button{
+    display: block;
+    text-align: center;
+}
+a.more-offers-button{
+    height: 3em;
+}
 
 div.offerCompanyInTitle {
     display: inline-block;
