@@ -1,15 +1,36 @@
 <div id="accountCreationContainer">
     <div>
         <form name="accountCreationContainer" class="centeredForm">
-            <label for="createUserNickname" class="overhead-hint-label">Elige un nombre de usuario, crea una contrase&nacute;a y a&nacute;ade tu correo electr&oacute;nico</label>
-            <input type="text" id="createUserNickname" ng-model="theUser.userNickname" class="overheadField content-validation"
-                   placeholder="Nickname" ng-hide="disableNickname" required ng-maxlength="250"/>
-            <input type="password" id="createUserPassword" ng-model="theUser.userPassword" class="overheadField content-validation"
-                   placeholder="Contrase&ntilde;a" required ng-maxlength="250"/>
-            <input type="text" id="createUserEmail" ng-model="theUser.userEmail" class="overheadField content-validation"
-                   placeholder="Email" required ng-pattern="validMail" ng-maxlength="250"/>
-
-            <label id="imageUploadLabel" for="imageUploadContent" class="overhead-hint-label">Puedes a&nacute;adir opcionalmente un avatar</label>
+            <ul>
+                <label for="createUserNickname" class="overhead-hint-label" ng-hide="disableNickname">Elige un nombre de
+                    usuario, crea una contrase&nacute;a y a&nacute;ade tu correo electr&oacute;nico</label>
+                <label for="createUserNickname" class="overhead-hint-label" ng-show="disableNickname">Añade tu antigua y
+                    nueva contrase&nacute;a. Tambi&eacute;n puedes cambiar tu correo electr&oacute;nico y avatar</label>
+                <input type="text" id="createUserNickname" ng-model="theUser.userNickname"
+                       class="overheadField content-validation"
+                       placeholder="usuario" ng-disabled="disableNickname" required ng-maxlength="250"/>
+            </ul>
+            <ul>
+                <input type="password" id="oldUserPassword" ng-model="theUser.oldPassword"
+                       class="overheadField content-validation"
+                       placeholder="Contrase&ntilde;a antigua" required ng-maxlength="250" ng-show="disableNickname"/>
+            </ul>
+            <ul>
+                <input type="password" id="createUserPassword" ng-model="theUser.userPassword"
+                       class="overheadField content-validation"
+                       placeholder="Contrase&ntilde;a" required ng-maxlength="250"/>
+                <input type="password" id="createUserPassword2" ng-model="userPassword2"
+                       class="overheadField content-validation"
+                       placeholder="Repita la Contrase&ntilde;a" required ng-maxlength="250"
+                       pw-check="createUserPassword" ng-show="disableNickname"/>
+            </ul>
+            <ul>
+                <input type="text" id="createUserEmail" ng-model="theUser.userEmail"
+                       class="overheadField content-validation"
+                       placeholder="Email" required ng-pattern="validMail" ng-maxlength="250"/>
+            </ul>
+            <label id="imageUploadLabel" for="imageUploadContent" class="overhead-hint-label" ng-hide="disableNickname">Puedes a&nacute;adir
+                opcionalmente un avatar</label>
 
             <div id="imageUploadContent" ng-image-uploader="createAccountImageUploader"
                  final-url="theUser.userAvatar"></div>
@@ -17,18 +38,29 @@
             <input type="hidden" id="createUserAvatar" ng-model="theUser.userAvatar" class="overheadField"/>
             <ul class="regular-bottom">
                 <li>
-                    <label for="createAccountCaptcha" class="overhead-hint-label">Antes de continuar soluciona el captcha para probar que no eres un robot</label>
+                    <label for="createAccountCaptcha" class="overhead-hint-label">Antes de continuar soluciona el
+                        captcha para probar que no eres un robot</label>
+
                     <div id="createAccountCaptcha" vc-recaptcha key="publicKey" class="offerCaptcha"></div>
-                    <button ng-click="restartRecaptcha()" class="button small icon fa-refresh overheadButton recaptcha">refrescar reCaptcha</button>
-                    <button ng-click="restartRecaptcha()" class="button mini icon fa-refresh overheadButton recaptcha"></button>
+                    <button ng-click="restartRecaptcha()" class="button small icon fa-refresh overheadButton recaptcha">
+                        refrescar reCaptcha
+                    </button>
+                    <button ng-click="restartRecaptcha()"
+                            class="button mini icon fa-refresh overheadButton recaptcha"></button>
                 </li>
             </ul>
         </form>
     </div>
 
-    <button ng-disabled="!accountCreationContainer.$valid" class="button small icon fa-user overheadButton" ng-click="createAccount(theUser)" class="overheadButton">
+    <button ng-disabled="!accountCreationContainer.$valid" class="button small icon fa-user overheadButton"
+            ng-click="createAccount(theUser)" class="overheadButton" ng-hide="disableNickname">
         crear perfil
     </button>
-    <button ng-disabled="!accountCreationContainer.$valid" class="button mini icon fa-user overheadButton" ng-click="createAccount(theUser)"></button>
+    <button ng-disabled="!accountCreationContainer.$valid" class="button small icon fa-user overheadButton"
+            ng-click="createAccount(theUser)" class="overheadButton" ng-show="disableNickname">
+        actualizar perfil
+    </button>
+    <button ng-disabled="!accountCreationContainer.$valid" class="button mini icon fa-user overheadButton"
+            ng-click="createAccount(theUser)"></button>
 </div>
 

@@ -2,6 +2,8 @@ package com.aporlaoferta.controller;
 
 
 import com.aporlaoferta.data.UserBuilderManager;
+import com.aporlaoferta.model.TheNewUser;
+import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.rawmap.RequestMap;
 import com.aporlaoferta.service.UserManager;
 import org.junit.Before;
@@ -41,6 +43,7 @@ public class AccountControllerTestIntegration {
 
     private static final String REGULAR_USER = "regularUser";
     private static final String ADMIN_USER = "imtheboss";
+    private static final String REGULAR_ENCODED_USER = "TYO";
 
     @Autowired
     UserManager userManagerTest;
@@ -53,10 +56,13 @@ public class AccountControllerTestIntegration {
 
     private MockMvc mockMvc;
 
+    private String uncodedPassword = "123456789";
+
     @Before
     public void setup() {
         if (!this.userManagerTest.doesUserExist(REGULAR_USER)) {
-            this.userManagerTest.createUser(UserBuilderManager.aRegularUserWithNickname(REGULAR_USER).build());
+            this.userManagerTest.createUser(UserBuilderManager.aRegularUserWithNickname(REGULAR_USER)
+                    .withPassword(uncodedPassword).build());
         }
         if (!this.userManagerTest.doesUserExist(ADMIN_USER)) {
             this.userManagerTest.createAdminUser(UserBuilderManager.aRegularUserWithNickname(ADMIN_USER).build());
@@ -112,7 +118,14 @@ public class AccountControllerTestIntegration {
     public void testCreateUserIsNotRestrictedToAnonymousUsers() throws Exception {
         CsrfToken csrfToken = CsrfTokenBuilder.generateAToken();
         String jsonRequest = RequestMap.getJsonFromMap(UserBuilderManager.aRegularUserWithNickname("moko").build());
-        ResultActions result = this.mockMvc.perform(post("/createUser")
+        ResultActions result = getResultActionsForCreateUser(csrfToken, jsonRequest);
+        String mvcResult = result.andReturn().getResponse().getContentAsString();
+        Map<String, String> jsonResult = RequestMap.getMapFromJsonString(mvcResult);
+        assertThat("Expected result to be ok", jsonResult.get("description"), startsWith("User successfully created"));
+    }
+
+    private ResultActions getResultActionsForCreateUser(CsrfToken csrfToken, String jsonRequest) throws Exception {
+        return this.mockMvc.perform(post("/createUser")
                 //.with(userDeatilsService(REGULAR_USER))
                 .sessionAttr("_csrf", csrfToken)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -123,10 +136,19 @@ public class AccountControllerTestIntegration {
                         .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
         )
                 .andExpect(status().is2xxSuccessful());
+    }
+
+    @Test
+    public void testUpdateUserWithIncorrectOldPasswordReturnsExpectedCode() throws Exception {
+        CsrfToken csrfToken = CsrfTokenBuilder.generateAToken();
+        TheNewUser theUser = createDummyNewUserWithInvalidOldPassword();
+        String jsonRequest = RequestMap.getJsonFromMap(theUser);
+        ResultActions result = getResultActions(csrfToken, jsonRequest, REGULAR_USER);
         String mvcResult = result.andReturn().getResponse().getContentAsString();
         Map<String, String> jsonResult = RequestMap.getMapFromJsonString(mvcResult);
-        assertThat("Expected result to be ok", jsonResult.get("description"), startsWith("User successfully created"));
+        assertThat("Expected result to be USER_NAME_PASSWORD_INVALID", jsonResult.get("description"), startsWith("Provided user password is invalid"));
     }
+
 
     @Test
     public void testUpdateUserIsRestrictedToIdentifiedUsers() throws Exception {
@@ -147,9 +169,22 @@ public class AccountControllerTestIntegration {
     @Test
     public void testUpdateUserIsCorrectlyPerformedForRegularUser() throws Exception {
         CsrfToken csrfToken = CsrfTokenBuilder.generateAToken();
-        String jsonRequest = RequestMap.getJsonFromMap(UserBuilderManager.aRegularUserWithNickname(REGULAR_USER).build());
-        ResultActions result = this.mockMvc.perform(post("/updateUser")
-                .with(userDeatilsService(REGULAR_USER))
+        String jsonRequestCreate = RequestMap.getJsonFromMap(createUserWithUnencodedPassword());
+        getResultActionsForCreateUser(csrfToken, jsonRequestCreate);
+        String jsonRequest = RequestMap.getJsonFromMap(createDummyNewUserWithValidOldPassword());
+        ResultActions result = getResultActions(csrfToken, jsonRequest, REGULAR_ENCODED_USER);
+        String mvcResult = result.andReturn().getResponse().getContentAsString();
+        Map<String, String> jsonResult = RequestMap.getMapFromJsonString(mvcResult);
+        assertThat("Expected result to be ok", jsonResult.get("description"), startsWith("User successfully updated"));
+    }
+
+    private TheUser createUserWithUnencodedPassword() {
+        return UserBuilderManager.aRegularUserWithNickname(REGULAR_ENCODED_USER).withPassword(uncodedPassword).build();
+    }
+
+    private ResultActions getResultActions(CsrfToken csrfToken, String jsonRequest, String user) throws Exception {
+        return this.mockMvc.perform(post("/updateUser")
+                .with(userDeatilsService(user))
                 .sessionAttr("_csrf", csrfToken)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonRequest)
@@ -159,9 +194,26 @@ public class AccountControllerTestIntegration {
                         .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
         )
                 .andExpect(status().is2xxSuccessful());
-        String mvcResult = result.andReturn().getResponse().getContentAsString();
-        Map<String, String> jsonResult = RequestMap.getMapFromJsonString(mvcResult);
-        assertThat("Expected result to be ok", jsonResult.get("description"), startsWith("User successfully updated"));
+    }
+
+    private TheNewUser createDummyNewUserWithValidOldPassword() {
+        TheNewUser theNewUser = new TheNewUser();
+        theNewUser.setOldPassword(uncodedPassword);
+        theNewUser.setUserEmail("sdfasd");
+        theNewUser.setUserAvatar("sdfasd");
+        theNewUser.setUserPassword("sdfasd");
+        theNewUser.setUserNickname(REGULAR_ENCODED_USER);
+        return theNewUser;
+    }
+
+    private TheNewUser createDummyNewUserWithInvalidOldPassword() {
+        TheNewUser theNewUser = new TheNewUser();
+        theNewUser.setOldPassword(uncodedPassword + "wrong");
+        theNewUser.setUserEmail("sdfasd");
+        theNewUser.setUserAvatar("sdfasd");
+        theNewUser.setUserPassword("sdfasd");
+        theNewUser.setUserNickname("sdfasd");
+        return theNewUser;
     }
 
 }

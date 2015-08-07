@@ -66,7 +66,5 @@ public class AccountControllerTest {
         when(this.userManager.getUserNickNameFromSession()).thenReturn(null);
         TheUser theUserResult = this.accountController.accountDetails();
         Assert.assertTrue("Expected user details to be empty", isEmpty(theUserResult.getUserNickname()));
-
-
     }
 }

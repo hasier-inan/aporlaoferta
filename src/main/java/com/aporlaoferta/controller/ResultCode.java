@@ -12,6 +12,7 @@ public enum ResultCode {
     USER_NAME_IS_INVALID(1, ResponseResult.INVALID_DATA_PROVIDED, "Provided user nickname is incorrect", "El nombre de usuario facilitado es inválido"),
     USER_NAME_DOES_NOT_EXIST(2, ResponseResult.INVALID_DATA_PROVIDED, "Provided user nickname does not exist", "El nombre de usuario no existe"),
     USER_NAME_ALREADY_EXISTS(3, ResponseResult.INVALID_DATA_PROVIDED, "Provided user nickname already exists", "El nombre de usuario ya existe"),
+    USER_NAME_PASSWORD_INVALID(4, ResponseResult.INVALID_DATA_PROVIDED, "Provided user password is invalid", "La contraseña facilitada es inválida"),
     UPDATE_USER_VALIDATION_ERROR(10, ResponseResult.VALIDATION_ERROR, "Validation process failed while updating user", "El proceso de validación ha fallado mientras se procedía a actualizar el usuario"),
     CREATE_USER_VALIDATION_ERROR(11, ResponseResult.VALIDATION_ERROR, "Validation process failed while creating user", "El proceso de validación ha fallado mientras se procedía a crear el usuario"),
     COMMENT_VALIDATION_ERROR(12, ResponseResult.VALIDATION_ERROR, "Validation process failed while creating comment", "El proceso de validación ha fallado mientras se procedía a comentar la oferta"),

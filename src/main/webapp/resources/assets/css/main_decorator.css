@@ -85,6 +85,10 @@ input.overheadField,
 select.overheadField {
     width: 12em;
 }
+input.overheadField:disabled{
+    background-color: rgba(0, 0, 0, .2) !important;
+    border-color: rgba(0, 0, 0, .2) !important;
+}
 
 select option {
     background: #e7771f;

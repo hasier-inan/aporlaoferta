@@ -1,6 +1,7 @@
 package com.aporlaoferta.controller;
 
 import com.aporlaoferta.model.TheDefaultOffer;
+import com.aporlaoferta.model.TheNewUser;
 import com.aporlaoferta.model.TheResponse;
 import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.model.validators.ValidationException;
@@ -105,7 +106,7 @@ public class AccountController {
 
     @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
     @ResponseBody
-    public TheResponse updateUser(@RequestBody TheUser theNewUser,
+    public TheResponse updateUser(@RequestBody TheNewUser theNewUser,
                                   @RequestParam(value = "recaptcha", required = true) String reCaptcha) {
         if (this.captchaHttpManager.validHuman(reCaptcha)) {
             return processUserUpdate(theNewUser);
@@ -114,11 +115,14 @@ public class AccountController {
         }
     }
 
-    private TheResponse processUserUpdate(TheUser theNewUser) {
+    private TheResponse processUserUpdate(TheNewUser theNewUser) {
         TheResponse result = new TheResponse();
         String userNickname = this.userManager.getUserNickNameFromSession();
-        updateNewestAvatar(theNewUser, userNickname);
         theNewUser.setUserNickname(userNickname);
+        if (!verifyOldPasswordAndUpdateNewestAvatar(theNewUser, userNickname)) {
+            result.assignResultCode(ResultCode.USER_NAME_PASSWORD_INVALID);
+            return result;
+        }
         if (isEmpty(userNickname)) {
             result.assignResultCode(ResultCode.USER_NAME_IS_INVALID);
         } else if (!this.userManager.doesUserExist(userNickname)) {
@@ -129,11 +133,18 @@ public class AccountController {
         return result;
     }
 
-    private void updateNewestAvatar(TheUser theNewUser, String userNickname) {
+    private boolean verifyOldPasswordAndUpdateNewestAvatar(TheNewUser theNewUser, String userNickname) {
         TheUser theOldUser = this.userManager.getUserFromNickname(userNickname);
         if (isEmpty(theNewUser.getUserAvatar())) {
             theNewUser.setUserAvatar(theOldUser.getUserAvatar());
         }
+        return isSamePersistedPassword(theNewUser, theOldUser);
+    }
+
+    private boolean isSamePersistedPassword(TheNewUser theNewUser, TheUser theOldUser) {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(11);
+        String oldPassword = theNewUser.getOldPassword();
+        return !isEmpty(oldPassword) && bCryptPasswordEncoder.matches(oldPassword, theOldUser.getUserPassword());
     }
 
     private void validateAndUpdateUser(TheUser theNewUser, TheResponse result, String userNickname) {
@@ -190,8 +201,12 @@ public class AccountController {
     }
 
     private void validatePassword(TheUser theUser) {
+        theUser.setUserPassword(encryptPassword(theUser.getUserPassword()));
+    }
+
+    private String encryptPassword(String original) {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(11);
-        theUser.setUserPassword(bCryptPasswordEncoder.encode(theUser.getUserPassword()));
+        return bCryptPasswordEncoder.encode(original);
     }
 
     private void validateAndCreateUser(TheUser theUser, TheResponse result, String userNickname) {
