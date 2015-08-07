@@ -29,10 +29,10 @@ aporlaofertaApp
                         });
                 }
                 $scope.sendMessageAndShowSpecifications = function (message, id) {
-                    alertService.sendErrorMessage(message);
-                    $scope.customCloseCallback = function () {
+                    //alertService.sendErrorMessage(message);
+                    //$scope.customCloseCallback = function () {
                         offerManager.showSpecifications(id);
-                    }
+                    //}
                 }
                 $scope.sendDefaultErrorMessageAndShowSpecifications = function (id) {
                     alertService.sendDefaultErrorMessage();

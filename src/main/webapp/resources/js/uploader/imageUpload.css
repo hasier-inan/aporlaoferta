@@ -1,7 +1,14 @@
-div.thumbnail > * {
+div.thumbnail > img {
     width: 100%;
     max-height: 100%;
     display: inline-block;
+    vertical-align: middle;
+    padding-right: 5px;
+}
+span.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
 }
 
 div.imageUploaderContent {
@@ -20,6 +27,8 @@ div.imageUploaderContent div.thumbnail {
     border-style: dashed;
     margin:.5em;
     background-color: rgba(255, 255, 255, 0.5);
+    vertical-align: middle;
+    white-space: nowrap;
 }
 
 div.thumbnailButtons > button.small {

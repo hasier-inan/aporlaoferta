@@ -49,8 +49,10 @@ aporlaofertaApp
                     }
 
                     $scope.sendMessageAndShowSpecifications = function (message) {
-                        alertService.sendErrorMessage(message);
-                        $scope.updateViewAndCloseCallback();
+                        //alertService.sendErrorMessage(message);
+                        //$scope.updateViewAndCloseCallback();
+                        $scope.restartCommentTexts();
+                        offerManager.showSpecifications($scope.theOffer);
                     }
                     $scope.sendDefaultErrorMessageAndShowSpecifications = function () {
                         alertService.sendDefaultErrorMessage();

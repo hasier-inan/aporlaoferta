@@ -55,7 +55,7 @@
                     </div>
                 </div>
                 <div class="offerSpecificationsSubtitle">
-                    <div class="offerOwner">Creado por: <i>{{offer.offerUser.userNickname}}</i> el</div>
+                    <div class="offerOwner">Creado por: <i>{{offer.offerUser.userNickname}}</i></div>
                     <div class="offerCreatedDate">el {{offer.offerCreatedDate | date:'MM/dd/yyyy @h:mma'}}
                     </div>
                 </div>
