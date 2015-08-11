@@ -45,6 +45,16 @@ public class ResponseResultHelper {
         return updateWithCode(ResultCode.DEFAULT_ERROR);
     }
 
+    public static TheResponse createInvalidUUIDResponse() {
+        return updateWithCode(ResultCode.INVALID_CONFIRMATION_ID);
+    }
+
+    public static TheResponse createUserConfirmationResponse() {
+        TheResponse theResponse = new TheResponse();
+        theResponse.assignResultCode(ResultCode.ALL_OK, "User has been confirmed", "Usuario confirmado, ya puede identificarse");
+        return theResponse;
+    }
+
     private static TheResponse updateWithCode(ResultCode resultCode) {
         TheResponse theResponse = new TheResponse();
         theResponse.setCode(resultCode.getCode());

@@ -151,7 +151,7 @@ public class TheOfferValidatorTest {
         TheOffer offer = new TheOffer();
         offer.setOfferCompany(CompanyBuilderManager.aRegularCompanyWithName("d").build());
         offer.setOfferUser(UserBuilderManager.aRegularUserWithNickname("ds").build());
-        offer.setOfferCategory(OfferCategory.ELECTRONICS);
+        offer.setOfferCategory(OfferCategory.ELECTRONICA);
         offer.setOfferTitle("sdfjl");
         offer.setOfferImage("linkdsd");
         offer.setOfferLink("dsfgad");

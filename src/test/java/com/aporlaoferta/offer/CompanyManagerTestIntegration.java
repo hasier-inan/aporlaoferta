@@ -4,7 +4,7 @@ import com.aporlaoferta.data.CompanyBuilderManager;
 import com.aporlaoferta.model.OfferCompany;
 import com.aporlaoferta.service.CompanyManager;
 import com.aporlaoferta.service.TransactionalManager;
-import com.aporlaoferta.utils.UrlParser;
+import com.aporlaoferta.utils.UnhealthyException;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Before;
@@ -15,16 +15,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
 import java.util.List;
 
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
-import static org.springframework.util.StringUtils.isEmpty;
 
 /**
  * Created by hasiermetal on 22/01/15.
@@ -36,7 +32,7 @@ import static org.springframework.util.StringUtils.isEmpty;
 public class CompanyManagerTestIntegration {
 
     protected static final String COMPANY_NAME = "This is the duck factory";
-    public static final String RAW_LINK = "http://www.amazon.es/kaka/?moco=2";
+    public static final String RAW_LINK = "http://www.amazon.es/gp/product/B00VIA4N6S";
 
     @Autowired
     protected TransactionalManager transactionalManager;
@@ -75,7 +71,7 @@ public class CompanyManagerTestIntegration {
     }
 
     @Test
-    public void testAffiliationLinkIsCreatedForTheCompany() throws Exception{
+    public void testAffiliationLinkIsCreatedForTheCompany() throws Exception {
         this.offerCompany.setCompanyAffiliateId("3333");
         this.offerCompany.setCompanyName("Amazon");
         String theParsedLink = this.companyManager.createAffiliationLink(this.offerCompany, RAW_LINK);
@@ -85,7 +81,7 @@ public class CompanyManagerTestIntegration {
     }
 
     @Test
-    public void testNoAffiliationLinkIsCreatedIfNullOfferIsProvided() throws Exception{
+    public void testNoAffiliationLinkIsCreatedIfNullOfferIsProvided() throws Exception {
         Assert.assertTrue(RAW_LINK.equals(this.companyManager.createAffiliationLink(null, RAW_LINK)));
     }
 
@@ -95,10 +91,10 @@ public class CompanyManagerTestIntegration {
         Assert.assertTrue(RAW_LINK.equals(this.companyManager.createAffiliationLink(this.offerCompany, RAW_LINK)));
     }
 
-    @Test
-    public void testNoAffiliationLinkIsCreatedIfNoRawLinkIsProvided() throws Exception{
+    @Test(expected = UnhealthyException.class)
+    public void testNoAffiliationLinkIsCreatedIfNoRawLinkIsProvided() throws Exception {
         this.offerCompany.setCompanyAffiliateId("323232");
-        Assert.assertTrue(isEmpty(this.companyManager.createAffiliationLink(this.offerCompany, "")));
+        this.companyManager.createAffiliationLink(this.offerCompany, "");
     }
 
 }

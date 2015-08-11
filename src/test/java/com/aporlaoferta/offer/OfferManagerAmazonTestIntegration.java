@@ -82,7 +82,7 @@ public class OfferManagerAmazonTestIntegration {
         OfferCompany amazonCompany = createAmazonCompany();
         TheOffer anotherOffer = OfferBuilderManager.aBasicOfferWithoutId()
                 .withCompany(amazonCompany)
-                .withLink(this.companyManager.createAffiliationLink(amazonCompany, "http://kjhsdfjksad.ksdf/"))
+                .withLink(this.companyManager.createAffiliationLink(amazonCompany, "http://www.amazon.es/gp/product/B00VIA4N6S"))
                 .build();
         this.theUser.addOffer(anotherOffer);
         this.offerManager.createOffer(anotherOffer);

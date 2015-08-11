@@ -17,7 +17,7 @@ public class OfferBuilderManager {
     public static OfferBuilder aBasicOfferWithId(Long id) {
         return OfferBuilder.anOffer()
                 .withId(id)
-                .withCategory(OfferCategory.ELECTRONICS)
+                .withCategory(OfferCategory.ELECTRONICA)
                 .createdOn(new Date())
                 .isExpired(false)
                 .withCompany(CompanyBuilderManager.aRegularCompanyWithName("tututu").build())
@@ -34,7 +34,7 @@ public class OfferBuilderManager {
 
     public static OfferBuilder aBasicOfferWithoutId() {
         return OfferBuilder.anOffer()
-                .withCategory(OfferCategory.ELECTRONICS)
+                .withCategory(OfferCategory.ELECTRONICA)
                 .createdOn(new Date())
                 .isExpired(false)
                 .withCompany(CompanyBuilderManager.aRegularCompanyWithName("tututu").build())
@@ -49,7 +49,7 @@ public class OfferBuilderManager {
 
     public static OfferBuilder aBasicOfferWithoutUserOrId(){
         return OfferBuilder.anOffer()
-                .withCategory(OfferCategory.ELECTRONICS)
+                .withCategory(OfferCategory.ELECTRONICA)
                 .createdOn(new Date())
                 .isExpired(false)
                 .withCompany(CompanyBuilderManager.aRegularCompanyWithName("tututu").build())

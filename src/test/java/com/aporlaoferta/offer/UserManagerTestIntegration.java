@@ -9,6 +9,7 @@ import com.aporlaoferta.model.TheUserRoles;
 import com.aporlaoferta.model.UserRoles;
 import com.aporlaoferta.service.UserManager;
 import org.hamcrest.Matchers;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,7 +22,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by hasiermetal on 22/01/15.
@@ -81,7 +86,7 @@ public class UserManagerTestIntegration {
         TheUser theUser = UserBuilderManager.aRegularUserWithNickname(nickName).build();
         this.userManager.createUser(theUser);
         assertThat("Expected two results after this creation", this.userDAO.count(), is(2L));
-        assertThat("Expected two results after this creation", this.userRolesDAO.count(), is( 2L));
+        assertThat("Expected two results after this creation", this.userRolesDAO.count(), is(2L));
         List<TheUserRoles> theUserRoles = this.userRolesDAO.findByUserNickname(nickName);
         assertThat(theUserRoles.get(0).getUserRole(), is(UserRoles.ROLE_USER));
         TheUser sameUser = this.userManager.getUserFromNickname(nickName);

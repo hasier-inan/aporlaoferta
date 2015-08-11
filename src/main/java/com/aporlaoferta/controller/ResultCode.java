@@ -43,7 +43,8 @@ public enum ResultCode {
 
     DEFAULT_ERROR(66, ResponseResult.INVALID_DATA_PROVIDED,
             "Could not perform operation", "No se ha podido ejecutar la operación"),
-    INVALID_CAPTCHA(75, ResponseResult.INVALID_DATA_PROVIDED, "Invalid Captcha", "Captcha inválido");
+    INVALID_CAPTCHA(75, ResponseResult.INVALID_DATA_PROVIDED, "Invalid Captcha", "Captcha inválido"),
+    INVALID_CONFIRMATION_ID(78, ResponseResult.INVALID_DATA_PROVIDED, "Invalid confirmation id", "Id de confirmación inválido");
 
     private int code;
     private String resultDescription;

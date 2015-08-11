@@ -24,6 +24,7 @@ import org.springframework.web.context.WebApplicationContext;
 import java.util.Map;
 
 import static com.aporlaoferta.controller.SecurityRequestPostProcessors.userDeatilsService;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -59,10 +60,14 @@ public class ControllerTestIntegration {
         if (!this.userManagerTest.doesUserExist(REGULAR_USER)) {
             TheUser theUser = UserBuilderManager.aRegularUserWithNickname(REGULAR_USER).build();
             createUserFromController(theUser);
+            TheUser userDetails = this.userManagerTest.getUserFromNickname(theUser.getUserNickname());
+            confirmUserFromController(userDetails);
         }
         if (!this.userManagerTest.doesUserExist(ANOTHER_USER)) {
             TheUser theUser = UserBuilderManager.aRegularUserWithNickname(ANOTHER_USER).build();
             createUserFromController(theUser);
+            TheUser userDetails = this.userManagerTest.getUserFromNickname(theUser.getUserNickname());
+            confirmUserFromController(userDetails);
         }
         createOfferForTheUser();
     }
@@ -114,7 +119,7 @@ public class ControllerTestIntegration {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonRequest)
                 .param("_csrf", csrfToken.getToken())
-                .param("recaptcha","recaptcha")
+                .param("recaptcha", "recaptcha")
                 .sessionAttrs(SessionAttributeBuilder
                         .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
         );
@@ -157,7 +162,7 @@ public class ControllerTestIntegration {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonRequest)
                 .param("_csrf", csrfToken.getToken())
-                .param("recaptcha","recaptcha")
+                .param("recaptcha", "recaptcha")
                 .sessionAttrs(SessionAttributeBuilder
                         .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
         ).andExpect(status().is2xxSuccessful());
@@ -174,6 +179,14 @@ public class ControllerTestIntegration {
                 .param("recaptcha", "recaptcha")
                 .sessionAttrs(SessionAttributeBuilder
                         .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
+        ).andExpect(status().is2xxSuccessful());
+    }
+
+    protected void confirmUserFromController(TheUser theUser) throws Exception {
+        this.mockMvc.perform(get("/confirmUser")
+                .contentType(MediaType.APPLICATION_JSON)
+                .param("user", theUser.getUserNickname())
+                .param("confirmationID", theUser.getUuid())
         ).andExpect(status().is2xxSuccessful());
     }
 

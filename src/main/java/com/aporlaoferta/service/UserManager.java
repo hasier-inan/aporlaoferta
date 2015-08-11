@@ -1,5 +1,7 @@
 package com.aporlaoferta.service;
 
+import com.aporlaoferta.controller.ResponseResultHelper;
+import com.aporlaoferta.model.TheResponse;
 import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.model.TheUserRoles;
 import com.aporlaoferta.model.UserRoles;
@@ -11,6 +13,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
+
+import static org.springframework.util.StringUtils.isEmpty;
 
 /**
  * Created by hasiermetal on 15/01/15.
@@ -90,6 +94,18 @@ public class UserManager {
             return saveUser(theUser);
         }
         return theUser;
+    }
+
+    public TheResponse confirmUser(String uuid, String nickname) {
+        TheUser theUser = getUserFromNickname(nickname);
+        if(isEmpty(theUser) || !uuid.equals(theUser.getUuid())){
+            return ResponseResultHelper.createInvalidUUIDResponse();
+        }
+        else{
+            theUser.setPending(false);
+            saveUser(theUser);
+            return ResponseResultHelper.createUserConfirmationResponse();
+        }
     }
 
     public boolean doesUserExist(String nickname) {

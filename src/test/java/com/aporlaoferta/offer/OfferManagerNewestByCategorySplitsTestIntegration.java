@@ -46,7 +46,7 @@ public class OfferManagerNewestByCategorySplitsTestIntegration {
 
     @Test
     public void testHundredOffersFromSelectedCategoryAreReturned() {
-        OfferCategory offerCategory = OfferCategory.ELECTRONICS;
+        OfferCategory offerCategory = OfferCategory.ELECTRONICA;
         addOneThousandDummyRandomCategoryOffers();
         assertThat("Expected 1000 offers persisted in the db", this.offerManager.countAllOffers(), is(1000L));
         List<TheOffer> theNewest100CategoryOffers = this.offerManager.getNextHundredOffersByCategory(0L, offerCategory);
@@ -75,12 +75,12 @@ public class OfferManagerNewestByCategorySplitsTestIntegration {
 
     private OfferCategory selectRandomCategory() {
         List<OfferCategory> offerCategory = Arrays.asList(
-                OfferCategory.ELECTRONICS,
-                OfferCategory.FASHION,
-                OfferCategory.HOME,
-                OfferCategory.RESTAURANTS,
-                OfferCategory.TRAVEL,
-                OfferCategory.OTHER
+                OfferCategory.ELECTRONICA,
+                OfferCategory.MODA,
+                OfferCategory.HOGAR,
+                OfferCategory.RESTAURANTES,
+                OfferCategory.VIAJES,
+                OfferCategory.OTROS
         );
         return offerCategory.get((int)(Math.random()*offerCategory.size()));
     }

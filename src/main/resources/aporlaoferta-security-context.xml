@@ -40,7 +40,7 @@
             <security:jdbc-user-service data-source-ref="dataSource"
                                         users-by-username-query=
                                                 "select TU_NICKNAME,TU_PWD_LOCKED,TU_ENABLED from thatuser where
-                                                TU_NICKNAME=?"
+                                                TU_NICKNAME=? and TU_ENABLED=TRUE and TU_PENDING=FALSE"
                                         authorities-by-username-query=
                                                 "select TUR_NICKNAME, TUR_ROLE from thatuserroles where
                                                 TUR_NICKNAME =?  "/>

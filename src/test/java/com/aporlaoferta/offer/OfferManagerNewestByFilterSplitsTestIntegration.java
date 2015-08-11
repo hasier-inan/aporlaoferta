@@ -118,12 +118,12 @@ public class OfferManagerNewestByFilterSplitsTestIntegration {
 
     private OfferCategory selectRandomCategory() {
         List<OfferCategory> offerCategory = Arrays.asList(
-                OfferCategory.ELECTRONICS,
-                OfferCategory.FASHION,
-                OfferCategory.HOME,
-                OfferCategory.RESTAURANTS,
-                OfferCategory.TRAVEL,
-                OfferCategory.OTHER
+                OfferCategory.ELECTRONICA,
+                OfferCategory.MODA,
+                OfferCategory.HOGAR,
+                OfferCategory.RESTAURANTES,
+                OfferCategory.VIAJES,
+                OfferCategory.OTROS
         );
         return (OfferCategory) getRandomFromArray(offerCategory);
     }

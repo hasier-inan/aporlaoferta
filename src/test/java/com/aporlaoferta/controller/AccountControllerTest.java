@@ -15,7 +15,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.web.servlet.ModelAndView;
 
+import static org.hamcrest.CoreMatchers.startsWith;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
@@ -48,7 +50,7 @@ public class AccountControllerTest {
         when(this.userManager.createUser(any(TheUser.class))).thenReturn(null);
         TheUser user = UserBuilderManager.aRegularUserWithNickname("fu1").build();
         TheResponse result = this.accountController.createUser(
-                user,"recaptcha");
+                user, "recaptcha");
         Assert.assertThat("Expected empty object message", result.getResponseResult(),
                 Matchers.is(ResultCode.DATABASE_RETURNED_EMPTY_OBJECT.getResponseResult()));
     }
@@ -66,5 +68,20 @@ public class AccountControllerTest {
         when(this.userManager.getUserNickNameFromSession()).thenReturn(null);
         TheUser theUserResult = this.accountController.accountDetails();
         Assert.assertTrue("Expected user details to be empty", isEmpty(theUserResult.getUserNickname()));
+    }
+
+    @Test
+    public void testUserConfirmationWithEmptyValuesReturnsInvalidUUIDResponse() throws Exception {
+        ModelAndView modelAndViewNoUUID = this.accountController.confirmUser("", "uuid");
+        Assert.assertThat("Expected the message to contain the invalid uuid log", (String) modelAndViewNoUUID.getModel().get("msg"), startsWith("Id de confirmación inválido"));
+        ModelAndView modelAndViewNoNickname = this.accountController.confirmUser("sdsd", "");
+        Assert.assertThat("Expected the message to contain the invalid uuid log", (String) modelAndViewNoNickname.getModel().get("msg"), startsWith("Id de confirmación inválido"));
+    }
+
+    @Test
+    public void testUserConfirmationWithCorrectDataReturnsValidConfirmationResponse() throws Exception {
+        when(this.userManager.confirmUser("nick", "uuuuid")).thenReturn(ResponseResultHelper.createUserConfirmationResponse());
+        ModelAndView modelAndViewNoUUID = this.accountController.confirmUser("uuuuid", "nick");
+        Assert.assertThat("Expected the message to contain the confirmation uuid log", (String) modelAndViewNoUUID.getModel().get("msg"), startsWith("Usuario confirmado"));
     }
 }

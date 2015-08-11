@@ -14,6 +14,18 @@ public class UserBuilderManager {
                 .withEmail("duckU@duckermuther.com")
                 .withNickName(nickname)
                 .withPassword("thisistheencodedPassword")
+                .isPending(false)
+                .isEnabled(true)
+                .withUUID("LKADJSFLKSADF")
+                ;
+    }
+
+    public static UserBuilder aPendingUserWithNickname(String nickname) {
+        return UserBuilder.aUser()
+                .withAvatar("http://this.is.my.avatar.jpg")
+                .withEmail("duckU@duckermuther.com")
+                .withNickName(nickname)
+                .withPassword("thisistheencodedPassword")
                 ;
     }
 }

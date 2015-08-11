@@ -6,11 +6,13 @@ import com.aporlaoferta.model.TheNewUser;
 import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.rawmap.RequestMap;
 import com.aporlaoferta.service.UserManager;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.FilterChainProxy;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.test.context.ContextConfiguration;
@@ -31,6 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrlPattern;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.util.StringUtils.isEmpty;
 
 
 @ContextConfiguration(
@@ -124,6 +127,51 @@ public class AccountControllerTestIntegration {
         assertThat("Expected result to be ok", jsonResult.get("description"), startsWith("User successfully created"));
     }
 
+    @Test(expected = UsernameNotFoundException.class)
+    public void testCreateUserInitialisesThePendingAccountToTrue() throws Exception {
+        String nickname = "moko";
+        TheUser userMoko = UserBuilderManager.aPendingUserWithNickname(nickname).build();
+        CsrfToken csrfToken = CsrfTokenBuilder.generateAToken();
+        String jsonRequest = RequestMap.getJsonFromMap(userMoko);
+        getResultActionsForCreateUser(csrfToken, jsonRequest);
+        getResultActionsForUserDetails(csrfToken, nickname).andReturn().getResponse().getContentAsString();
+    }
+
+    @Test
+    public void testCreateUserShowsNoUUID() throws Exception {
+        String nickname = "moko";
+        TheUser userMoko = UserBuilderManager.aPendingUserWithNickname(nickname).build();
+        CsrfToken csrfToken = CsrfTokenBuilder.generateAToken();
+        String jsonRequest = RequestMap.getJsonFromMap(userMoko);
+        ResultActions resultActionsForCreateUser = getResultActionsForCreateUser(csrfToken, jsonRequest);
+        String createdUser = resultActionsForCreateUser.andReturn().getResponse().getContentAsString();
+        Map<String, String> createdUserMap = RequestMap.getMapFromJsonString(createdUser);
+        Assert.assertTrue("Expected no uuid value", (isEmpty(createdUserMap.get("uuid"))));
+    }
+
+    @Test
+    public void testCreateUserIsUpdatedToPendingFalse() throws Exception {
+        String nickname = "moko";
+        TheUser userMoko = UserBuilderManager.aPendingUserWithNickname(nickname).build();
+        CsrfToken csrfToken = CsrfTokenBuilder.generateAToken();
+        String jsonRequest = RequestMap.getJsonFromMap(userMoko);
+        getResultActionsForCreateUser(csrfToken, jsonRequest);
+        TheUser theUser = this.userManagerTest.getUserFromNickname(nickname);
+        getResultActionsForUserConfirmed(theUser.getUuid(), theUser.getUserNickname()).andReturn().getResponse().getContentAsString();
+        String result = getResultActionsForUserDetails(csrfToken, nickname).andReturn().getResponse().getContentAsString();
+        Map<String, String> jsonResult = RequestMap.getMapFromJsonString(result);
+        Assert.assertTrue("Expected pending flag to be false", "false".equals(jsonResult.get("pending")));
+    }
+
+    private ResultActions getResultActionsForUserConfirmed(String uuid, String nickname) throws Exception {
+        return this.mockMvc.perform(get("/confirmUser")
+                .contentType(MediaType.APPLICATION_JSON)
+                .param("confirmationID", uuid)
+                .param("user", nickname)
+        )
+                .andExpect(status().is2xxSuccessful());
+    }
+
     private ResultActions getResultActionsForCreateUser(CsrfToken csrfToken, String jsonRequest) throws Exception {
         return this.mockMvc.perform(post("/createUser")
                 //.with(userDeatilsService(REGULAR_USER))
@@ -132,6 +180,18 @@ public class AccountControllerTestIntegration {
                 .content(jsonRequest)
                 .param("_csrf", csrfToken.getToken())
                 .param("recaptcha", "recaptcha")
+                .sessionAttrs(SessionAttributeBuilder
+                        .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
+        )
+                .andExpect(status().is2xxSuccessful());
+    }
+
+    private ResultActions getResultActionsForUserDetails(CsrfToken csrfToken, String sessionNickname) throws Exception {
+        return this.mockMvc.perform(post("/accountDetails")
+                .with(userDeatilsService(sessionNickname))
+                .sessionAttr("_csrf", csrfToken)
+                .contentType(MediaType.APPLICATION_JSON)
+                .param("_csrf", csrfToken.getToken())
                 .sessionAttrs(SessionAttributeBuilder
                         .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
         )

@@ -12,7 +12,7 @@ public class FilterBuilderManager {
 
     public static FilterBuilder anAllElectronicsFilterWithText(String text) {
         return FilterBuilder.aFilter()
-                .withCategory(OfferCategory.ELECTRONICS)
+                .withCategory(OfferCategory.ELECTRONICA)
                 .withText(text)
                 .isExpired(true)
                 ;

@@ -54,7 +54,8 @@ public class CommentController {
         includeCommentInOffer(thatComment, offerId);
         includeCommentInUser(thatComment);
         thatComment.setCommentCreationDate(new Date());
-        return validateAndPersistComment(thatComment, ResultCode.COMMENT_VALIDATION_ERROR);
+        TheResponse theResponse = validateAndPersistComment(thatComment, ResultCode.COMMENT_VALIDATION_ERROR);
+        return theResponse;
     }
 
     @RequestMapping(value = "/quoteComment", method = RequestMethod.POST)

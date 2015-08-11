@@ -24,7 +24,7 @@ aporlaofertaApp
                             $scope.displayErrorMessageAndDisplayAccount();
                         }
                         else {
-                            $scope.theUser.oldPassword = {};
+                            delete $scope.theUser.oldPassword;
                             requestManager.makePostCall(theUser, {recaptcha: vcRecaptchaService.getResponse()}, configService.getEndpoint('create.account'))
                                 .success(function (data, status, headers, config) {
                                     $scope.processAccountResponse(data);

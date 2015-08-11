@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.UUID;
+
 import static org.springframework.util.StringUtils.isEmpty;
 
 /**
@@ -76,7 +78,6 @@ public class AccountController {
         }
         model.setViewName("index");
         return model;
-
     }
 
     @RequestMapping(value = "/403", method = RequestMethod.GET)
@@ -170,6 +171,7 @@ public class AccountController {
         TheResponse result = new TheResponse();
         String userNickname = theUser.getUserNickname();
         addDefaultAvatar(theUser);
+        addPendingFlag(theUser);
         if (isEmpty(userNickname)) {
             result.assignResultCode(ResultCode.USER_NAME_IS_INVALID);
         } else if (this.userManager.doesUserExist(userNickname)) {
@@ -179,6 +181,11 @@ public class AccountController {
             validateAndCreateUser(theUser, result, userNickname);
         }
         return result;
+    }
+
+    private void addPendingFlag(TheUser theUser) {
+        theUser.setPending(true);
+        theUser.setUuid(UUID.randomUUID().toString());
     }
 
     private void addDefaultAvatar(TheUser theUser) {
@@ -196,8 +203,25 @@ public class AccountController {
         } else {
             TheUser theUser = this.userManager.getUserFromNickname(userNickname);
             theUser.setUserPassword("");
+            theUser.setUuid("");
             return theUser;
         }
+    }
+
+    @RequestMapping(value = "/confirmUser", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView confirmUser(@RequestParam(value = "user", required = true) String nickname,
+                                    @RequestParam(value = "confirmationID", required = true) String uuid) {
+        TheResponse theResponse;
+        if (!isEmpty(uuid) && !isEmpty(nickname)) {
+            theResponse = this.userManager.confirmUser(uuid, nickname);
+        } else {
+            theResponse = ResponseResultHelper.createInvalidUUIDResponse();
+        }
+        ModelAndView model = new ModelAndView();
+        model.addObject("msg", theResponse.getDescriptionEsp());
+        model.setViewName("index");
+        return model;
     }
 
     private void validatePassword(TheUser theUser) {

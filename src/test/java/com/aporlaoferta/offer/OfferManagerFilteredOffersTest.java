@@ -97,7 +97,7 @@ public class OfferManagerFilteredOffersTest {
     }
 
     private OfferFilters createCategoryOfferFilter() {
-        return FilterBuilderManager.anCategoryOnlyFilter(OfferCategory.ELECTRONICS).build();
+        return FilterBuilderManager.anCategoryOnlyFilter(OfferCategory.ELECTRONICA).build();
     }
 
     private OfferFilters createDummyOfferFilter() {

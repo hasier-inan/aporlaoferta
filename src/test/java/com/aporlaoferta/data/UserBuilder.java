@@ -17,8 +17,10 @@ public class UserBuilder {
     private String nickname;
     private String password;
     private boolean enabled;
+    private boolean pending;
     private String mail;
     private String avatar;
+    private String uuid;
     private Set<TheOffer> offers;
     private Set<OfferComment> comments;
 
@@ -45,6 +47,11 @@ public class UserBuilder {
         return this;
     }
 
+    public UserBuilder isPending(boolean pending) {
+        this.pending = pending;
+        return this;
+    }
+
     public UserBuilder withEmail(String mail) {
         this.mail = mail;
         return this;
@@ -65,15 +72,23 @@ public class UserBuilder {
         return this;
     }
 
+    public UserBuilder withUUID(String uuid) {
+        this.uuid = uuid;
+        return this;
+
+    }
+
     public TheUser build() {
         TheUser theUser = new TheUser();
         theUser.setEnabled(this.enabled);
         theUser.setUserAvatar(this.avatar);
         theUser.setUserComments(this.comments);
+        theUser.setPending(this.pending);
         theUser.setUserEmail(this.mail);
         theUser.setUserNickname(this.nickname);
         theUser.setUserOffers(this.offers);
         theUser.setUserPassword(this.password);
+        theUser.setUuid(this.uuid);
         return theUser;
     }
 }

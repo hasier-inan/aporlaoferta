@@ -57,6 +57,12 @@ public class TheUser implements Serializable {
     @Column(name = "TU_ENABLED", nullable = false)
     private Boolean enabled;
 
+    @Column(name = "TU_PENDING", nullable = false)
+    private Boolean pending;
+
+    @Column(name = "TU_UUID", nullable = false)
+    private String uuid;
+
     @Column(name = "TU_EMAIL", nullable = false)
     private String userEmail;
 
@@ -81,6 +87,22 @@ public class TheUser implements Serializable {
 
     public Long getId() {
         return id;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public Boolean getPending() {
+        return pending;
+    }
+
+    public void setPending(Boolean pending) {
+        this.pending = pending;
     }
 
     public Boolean getEnabled() {
