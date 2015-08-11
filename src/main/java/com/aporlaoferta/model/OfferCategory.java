@@ -4,12 +4,14 @@ package com.aporlaoferta.model;
  * Created by hasiermetal on 15/01/15.
  */
 public enum OfferCategory {
-    ELECTRONICS("E"),
-    HOME("H"),
-    FASHION("F"),
-    TRAVEL("T"),
-    RESTAURANTS("R"),
-    OTHER("O");
+    ELECTRONICA("E"),
+    GAMING("G"),
+    AUDIOVISUALES("A"),
+    HOGAR("H"),
+    MODA("F"),
+    VIAJES("T"),
+    RESTAURANTES("R"),
+    OTROS("O");
     /* Keep this code less than 3 chars. */
     private String code;
 

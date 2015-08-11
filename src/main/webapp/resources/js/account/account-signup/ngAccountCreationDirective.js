@@ -18,12 +18,13 @@ aporlaofertaApp
                     $scope.theUser = {};
                     $scope.publicKey = "6LdqHQoTAAAAAAht2VhkrLGU26eBOjL-nK9zXxcn";
                     $scope.disableNickname = false;
-                    $scope.validMail=/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
+                    $scope.validMail = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
                     $scope.createAccount = function (theUser) {
                         if (vcRecaptchaService.getResponse() === "") {
                             $scope.displayErrorMessageAndDisplayAccount();
                         }
                         else {
+                            $scope.theUser.oldPassword = {};
                             requestManager.makePostCall(theUser, {recaptcha: vcRecaptchaService.getResponse()}, configService.getEndpoint('create.account'))
                                 .success(function (data, status, headers, config) {
                                     $scope.processAccountResponse(data);
@@ -45,7 +46,7 @@ aporlaofertaApp
                         }
                         else {
                             alertService.sendErrorMessage(data.descriptionEsp);
-                            $scope.customCloseCallback=false;
+                            $scope.customCloseCallback = false;
                         }
                         $scope.restartRecaptcha();
                     }

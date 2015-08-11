@@ -13,7 +13,8 @@
             <ul>
                 <input type="password" id="oldUserPassword" ng-model="theUser.oldPassword"
                        class="overheadField content-validation"
-                       placeholder="Contrase&ntilde;a antigua" required ng-maxlength="250" ng-show="disableNickname"/>
+                       placeholder="Contrase&ntilde;a antigua" ng-required="disableNickname" ng-maxlength="250"
+                       ng-show="disableNickname"/>
             </ul>
             <ul>
                 <input type="password" id="createUserPassword" ng-model="theUser.userPassword"
@@ -21,15 +22,16 @@
                        placeholder="Contrase&ntilde;a" required ng-maxlength="250"/>
                 <input type="password" id="createUserPassword2" ng-model="userPassword2"
                        class="overheadField content-validation"
-                       placeholder="Repita la Contrase&ntilde;a" required ng-maxlength="250"
-                       pw-check="createUserPassword" ng-show="disableNickname"/>
+                       placeholder="Repita la Contrase&ntilde;a" ng-maxlength="250"
+                       pw-check="createUserPassword" required/>
             </ul>
             <ul>
                 <input type="text" id="createUserEmail" ng-model="theUser.userEmail"
                        class="overheadField content-validation"
                        placeholder="Email" required ng-pattern="validMail" ng-maxlength="250"/>
             </ul>
-            <label id="imageUploadLabel" for="imageUploadContent" class="overhead-hint-label" ng-hide="disableNickname">Puedes a&nacute;adir
+            <label id="imageUploadLabel" for="imageUploadContent" class="overhead-hint-label"
+                   ng-hide="disableNickname">Puedes a&nacute;adir
                 opcionalmente un avatar</label>
 
             <div id="imageUploadContent" ng-image-uploader="createAccountImageUploader"
