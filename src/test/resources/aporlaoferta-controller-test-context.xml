@@ -7,6 +7,7 @@
     <import resource="aporlaoferta-inmemory-test-context.xml"/>
     <import resource="aporlaoferta-validators-test-context.xml"/>
     <import resource="aporlaoferta-managers-test-context.xml"/>
+    <import resource="aporlaoferta-email-test-context.xml"/>
     <import resource="aporlaoferta-security-context.xml"/>
 
 </beans>

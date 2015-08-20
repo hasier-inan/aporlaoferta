@@ -13,6 +13,7 @@
     <import resource="aporlaoferta-security-context.xml"/>
     <import resource="aporlaoferta-managers-context.xml"/>
     <import resource="aporlaoferta-http-service-context.xml"/>
+    <import resource="aporlaoferta-email-context.xml"/>
     <context:property-placeholder location="classpath:oferta_config.properties"/>
 
 </beans>

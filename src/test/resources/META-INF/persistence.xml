@@ -9,6 +9,7 @@
         <class>com.aporlaoferta.model.TheOffer</class>
         <class>com.aporlaoferta.model.TheUser</class>
         <class>com.aporlaoferta.model.TheUserRoles</class>
+        <class>com.aporlaoferta.model.EmailTemplate</class>
         <exclude-unlisted-classes/>
     </persistence-unit>
 
