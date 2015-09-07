@@ -34,7 +34,7 @@ public class EmailTemplate implements Serializable {
     @Column(name = "EMT_SUBJECT", nullable = false)
     private String subject;
 
-    @Column(name = "EMT_CONTENT", columnDefinition = "CLOB")
+    @Column(name = "EMT_CONTENT")
     @Lob
     private String content;
 

@@ -6,6 +6,7 @@ import com.aporlaoferta.model.TheNewUser;
 import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.rawmap.RequestMap;
 import com.aporlaoferta.service.UserManager;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -165,35 +166,35 @@ public class AccountControllerTestIntegration {
 
     private ResultActions getResultActionsForUserConfirmed(String uuid, String nickname) throws Exception {
         return this.mockMvc.perform(get("/confirmUser")
-                .contentType(MediaType.APPLICATION_JSON)
-                .param("confirmationID", uuid)
-                .param("user", nickname)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .param("confirmationID", uuid)
+                        .param("user", nickname)
         )
                 .andExpect(status().is2xxSuccessful());
     }
 
     private ResultActions getResultActionsForCreateUser(CsrfToken csrfToken, String jsonRequest) throws Exception {
         return this.mockMvc.perform(post("/createUser")
-                //.with(userDeatilsService(REGULAR_USER))
-                .sessionAttr("_csrf", csrfToken)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonRequest)
-                .param("_csrf", csrfToken.getToken())
-                .param("recaptcha", "recaptcha")
-                .sessionAttrs(SessionAttributeBuilder
-                        .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
+                        //.with(userDeatilsService(REGULAR_USER))
+                        .sessionAttr("_csrf", csrfToken)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonRequest)
+                        .param("_csrf", csrfToken.getToken())
+                        .param("recaptcha", "recaptcha")
+                        .sessionAttrs(SessionAttributeBuilder
+                                .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
         )
                 .andExpect(status().is2xxSuccessful());
     }
 
     private ResultActions getResultActionsForUserDetails(CsrfToken csrfToken, String sessionNickname) throws Exception {
         return this.mockMvc.perform(post("/accountDetails")
-                .with(userDeatilsService(sessionNickname))
-                .sessionAttr("_csrf", csrfToken)
-                .contentType(MediaType.APPLICATION_JSON)
-                .param("_csrf", csrfToken.getToken())
-                .sessionAttrs(SessionAttributeBuilder
-                        .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
+                        .with(userDeatilsService(sessionNickname))
+                        .sessionAttr("_csrf", csrfToken)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .param("_csrf", csrfToken.getToken())
+                        .sessionAttrs(SessionAttributeBuilder
+                                .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
         )
                 .andExpect(status().is2xxSuccessful());
     }
@@ -215,13 +216,13 @@ public class AccountControllerTestIntegration {
         CsrfToken csrfToken = CsrfTokenBuilder.generateAToken();
         String jsonRequest = RequestMap.getJsonFromMap(UserBuilderManager.aRegularUserWithNickname("moko").build());
         this.mockMvc.perform(post("/updateUser")
-                .sessionAttr("_csrf", csrfToken)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonRequest)
-                .param("_csrf", csrfToken.getToken())
-                .param("recaptcha", "recaptcha")
-                .sessionAttrs(SessionAttributeBuilder
-                        .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
+                        .sessionAttr("_csrf", csrfToken)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonRequest)
+                        .param("_csrf", csrfToken.getToken())
+                        .param("recaptcha", "recaptcha")
+                        .sessionAttrs(SessionAttributeBuilder
+                                .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
         )
                 .andExpect(status().is3xxRedirection());
     }
@@ -244,14 +245,14 @@ public class AccountControllerTestIntegration {
 
     private ResultActions getResultActions(CsrfToken csrfToken, String jsonRequest, String user) throws Exception {
         return this.mockMvc.perform(post("/updateUser")
-                .with(userDeatilsService(user))
-                .sessionAttr("_csrf", csrfToken)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonRequest)
-                .param("_csrf", csrfToken.getToken())
-                .param("recaptcha", "recaptcha")
-                .sessionAttrs(SessionAttributeBuilder
-                        .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
+                        .with(userDeatilsService(user))
+                        .sessionAttr("_csrf", csrfToken)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonRequest)
+                        .param("_csrf", csrfToken.getToken())
+                        .param("recaptcha", "recaptcha")
+                        .sessionAttrs(SessionAttributeBuilder
+                                .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
         )
                 .andExpect(status().is2xxSuccessful());
     }

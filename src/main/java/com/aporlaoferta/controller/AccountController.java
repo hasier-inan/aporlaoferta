@@ -1,5 +1,7 @@
 package com.aporlaoferta.controller;
 
+import com.aporlaoferta.email.EmailSendingException;
+import com.aporlaoferta.email.EmailService;
 import com.aporlaoferta.model.TheDefaultOffer;
 import com.aporlaoferta.model.TheNewUser;
 import com.aporlaoferta.model.TheResponse;
@@ -17,11 +19,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.UUID;
@@ -44,6 +42,9 @@ public class AccountController {
 
     @Autowired
     private CaptchaHTTPManager captchaHttpManager;
+
+    @Autowired
+    private EmailService emailService;
 
     @RequestMapping("favicon.ico")
     String favicon() {
@@ -243,8 +244,9 @@ public class AccountController {
                 String okMessage = String.format("User successfully created. Id: %s", user.getId());
                 LOG.info(okMessage);
                 result.assignResultCode(ResultCode.ALL_OK, okMessage, "Usuario creado satisfactoriamente");
+                this.emailService.sendAccountConfirmationEmail(user);
             }
-        } catch (ValidationException e) {
+        } catch (EmailSendingException | ValidationException e) {
             String resultDescription = ResultCode.CREATE_USER_VALIDATION_ERROR.getResultDescription();
             LOG.warn(resultDescription, e);
             result.assignResultCode(ResultCode.CREATE_USER_VALIDATION_ERROR);

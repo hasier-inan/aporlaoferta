@@ -1,6 +1,8 @@
 package com.aporlaoferta.controller;
 
 import com.aporlaoferta.data.UserBuilderManager;
+import com.aporlaoferta.email.EmailSendingException;
+import com.aporlaoferta.email.EmailService;
 import com.aporlaoferta.model.TheResponse;
 import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.service.CaptchaHTTPManager;
@@ -20,6 +22,8 @@ import org.springframework.web.servlet.ModelAndView;
 import static org.hamcrest.CoreMatchers.startsWith;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.util.StringUtils.isEmpty;
 
@@ -37,6 +41,8 @@ public class AccountControllerTest {
     UserManager userManager;
     @Mock
     CaptchaHTTPManager captchaHTTPManager;
+    @Mock
+    EmailService emailService;
 
     @Before
     public void setUp() {
@@ -83,5 +89,13 @@ public class AccountControllerTest {
         when(this.userManager.confirmUser("nick", "uuuuid")).thenReturn(ResponseResultHelper.createUserConfirmationResponse());
         ModelAndView modelAndViewNoUUID = this.accountController.confirmUser("uuuuid", "nick");
         Assert.assertThat("Expected the message to contain the confirmation uuid log", (String) modelAndViewNoUUID.getModel().get("msg"), startsWith("Usuario confirmado"));
+    }
+
+    @Test
+    public void testSuccessfulUserCreationTriggersEmail() throws Exception, EmailSendingException {
+        TheUser theUser = UserBuilderManager.aPendingUserWithNickname("theUser").build();
+        when(this.userManager.createUser(theUser)).thenReturn(theUser);
+        this.accountController.createUser(theUser, "recaptcha");
+        verify(this.emailService, times(1)).sendAccountConfirmationEmail(any(TheUser.class));
     }
 }
