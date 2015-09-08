@@ -117,6 +117,22 @@ public class AccountController {
         }
     }
 
+    public TheResponse passwordUpdate(@RequestParam(value = "user", required = true) String username,
+                                      @RequestParam(value = "firstPassword", required = true) String first,
+                                      @RequestParam(value = "secondPassword", required = true) String second,
+                                      @RequestParam(value = "track", required = true) String uuid
+    ) {
+        TheUser theUser = this.userManager.getUserFromNickname(username);
+        if (!first.equals(second)) {
+            return ResponseResultHelper.updateWithCode(ResultCode.USER_NAME_PASSWORD_INVALID);
+        }
+        if (theUser == null || !uuid.equals(theUser.getUuid())) {
+            return ResponseResultHelper.updateWithCode(ResultCode.INVALID_PASSWORD_VERIFICATION);
+        }
+        theUser.setUserPassword(first);
+        return validateAndUpdateUser(theUser, new TheResponse(), username);
+    }
+
     private TheResponse processUserUpdate(TheNewUser theNewUser) {
         TheResponse result = new TheResponse();
         String userNickname = this.userManager.getUserNickNameFromSession();
@@ -149,7 +165,7 @@ public class AccountController {
         return !isEmpty(oldPassword) && bCryptPasswordEncoder.matches(oldPassword, theOldUser.getUserPassword());
     }
 
-    private void validateAndUpdateUser(TheUser theNewUser, TheResponse result, String userNickname) {
+    private TheResponse validateAndUpdateUser(TheUser theNewUser, TheResponse result, String userNickname) {
         try {
             validatePassword(theNewUser);
             this.offerValidatorHelper.validateUser(theNewUser);
@@ -166,6 +182,7 @@ public class AccountController {
             LOG.warn(resultDescription, e);
             result.assignResultCode(ResultCode.UPDATE_USER_VALIDATION_ERROR);
         }
+        return result;
     }
 
     private TheResponse processUserCreation(TheUser theUser) {

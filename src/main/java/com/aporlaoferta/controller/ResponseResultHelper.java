@@ -55,7 +55,7 @@ public class ResponseResultHelper {
         return theResponse;
     }
 
-    private static TheResponse updateWithCode(ResultCode resultCode) {
+    public static TheResponse updateWithCode(ResultCode resultCode) {
         TheResponse theResponse = new TheResponse();
         theResponse.setCode(resultCode.getCode());
         theResponse.setDescriptionEsp(resultCode.getResultDescriptionEsp());

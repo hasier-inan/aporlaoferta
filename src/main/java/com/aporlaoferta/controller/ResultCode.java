@@ -13,6 +13,7 @@ public enum ResultCode {
     USER_NAME_DOES_NOT_EXIST(2, ResponseResult.INVALID_DATA_PROVIDED, "Provided user nickname does not exist", "El nombre de usuario no existe"),
     USER_NAME_ALREADY_EXISTS(3, ResponseResult.INVALID_DATA_PROVIDED, "Provided user nickname already exists", "El nombre de usuario ya existe"),
     USER_NAME_PASSWORD_INVALID(4, ResponseResult.INVALID_DATA_PROVIDED, "Provided user password is invalid", "La contraseña facilitada es inválida"),
+    INVALID_PASSWORD_VERIFICATION(5, ResponseResult.INVALID_DATA_PROVIDED, "Provided user data is invalid", "Los datos de usuario facilitados son inválidos"),
     UPDATE_USER_VALIDATION_ERROR(10, ResponseResult.VALIDATION_ERROR, "Validation process failed while updating user", "El proceso de validación ha fallado mientras se procedía a actualizar el usuario"),
     CREATE_USER_VALIDATION_ERROR(11, ResponseResult.VALIDATION_ERROR, "Validation process failed while creating user", "El proceso de validación ha fallado mientras se procedía a crear el usuario"),
     COMMENT_VALIDATION_ERROR(12, ResponseResult.VALIDATION_ERROR, "Validation process failed while creating comment", "El proceso de validación ha fallado mientras se procedía a comentar la oferta"),
@@ -38,11 +39,10 @@ public enum ResultCode {
             "Could not perform image upload process", "No se ha podido cargar la imagen"),
     IMAGE_TOO_HEAVY_ERROR(57, ResponseResult.INVALID_DATA_PROVIDED,
             "Image is too heavy", "La imagen es demasido pesada"),
-    UNHEALTHY_ENDPOINT(70, ResponseResult.INVALID_DATA_PROVIDED,
-            "Provided url is not healthy", "La dirección url de la oferta no es correcta"),
-
     DEFAULT_ERROR(66, ResponseResult.INVALID_DATA_PROVIDED,
             "Could not perform operation", "No se ha podido ejecutar la operación"),
+    UNHEALTHY_ENDPOINT(70, ResponseResult.INVALID_DATA_PROVIDED,
+            "Provided url is not healthy", "La dirección url de la oferta no es correcta"),
     INVALID_CAPTCHA(75, ResponseResult.INVALID_DATA_PROVIDED, "Invalid Captcha", "Captcha inválido"),
     INVALID_CONFIRMATION_ID(78, ResponseResult.INVALID_DATA_PROVIDED, "Invalid confirmation id", "Id de confirmación inválido");
 
