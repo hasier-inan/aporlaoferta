@@ -28,4 +28,5 @@ public class UserBuilderManager {
                 .withPassword("thisistheencodedPassword")
                 ;
     }
+
 }

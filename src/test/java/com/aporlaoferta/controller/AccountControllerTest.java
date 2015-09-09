@@ -1,8 +1,10 @@
 package com.aporlaoferta.controller;
 
+import com.aporlaoferta.data.ForgettableUserBuilderManager;
 import com.aporlaoferta.data.UserBuilderManager;
 import com.aporlaoferta.email.EmailSendingException;
 import com.aporlaoferta.email.EmailService;
+import com.aporlaoferta.model.TheForgettableUser;
 import com.aporlaoferta.model.TheResponse;
 import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.service.CaptchaHTTPManager;
@@ -15,11 +17,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.*;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.servlet.ModelAndView;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.CoreMatchers.startsWith;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
@@ -115,11 +115,6 @@ public class AccountControllerTest {
                 not("pass1"));
     }
 
-    private String encryptPassword(String original) {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(11);
-        return bCryptPasswordEncoder.encode(original);
-    }
-
     @Test
     public void testUserPasswordUpdateIsNotPerformedIfPasswordDontMatch() throws Exception {
         TheResponse theResponse = performPasswordUpdateWithInvalidPasswords();
@@ -144,7 +139,9 @@ public class AccountControllerTest {
         TheUser theUser = createDummyPasswordUpdateUser(nickname, security_code);
         when(this.userManager.getUserFromNickname(nickname)).thenReturn(theUser);
         when(this.userManager.updateUser(any(TheUser.class))).thenReturn(theUser);
-        return this.accountController.passwordUpdate(nickname, "pass1", "pass1", security_code);
+        TheForgettableUser forgettableUser = ForgettableUserBuilderManager
+                .aForgettableUserWithNicknameAndCode(nickname, security_code).build();
+        return this.accountController.passwordUpdate(forgettableUser);
     }
 
     private TheResponse performPasswordUpdateWithInvalidPasswords() {
@@ -152,14 +149,18 @@ public class AccountControllerTest {
         String security_code = "security";
         TheUser theUser = createDummyPasswordUpdateUser(nickname, security_code);
         when(this.userManager.getUserFromNickname(nickname)).thenReturn(theUser);
-        return this.accountController.passwordUpdate(nickname, "pass1", "pass2", security_code);
+        TheForgettableUser forgettableUser = ForgettableUserBuilderManager
+                .aForgettableUserWithDifferentPass(nickname, security_code).build();
+        return this.accountController.passwordUpdate(forgettableUser);
     }
 
     private TheResponse performPasswordUpdateWithUnknownUser() {
         String nickname = "the_user_nickname";
         String security_code = "security";
         when(this.userManager.getUserFromNickname(nickname)).thenReturn(null);
-        return this.accountController.passwordUpdate(nickname, "pass1", "pass1", security_code);
+        TheForgettableUser forgettableUser = ForgettableUserBuilderManager
+                .aForgettableUserWithNicknameAndCode(nickname, security_code).build();
+        return this.accountController.passwordUpdate(forgettableUser);
     }
 
     private TheResponse performPasswordUpdateWithInvalidUser() {
@@ -168,7 +169,9 @@ public class AccountControllerTest {
         String security_code = "security";
         TheUser theUser = createDummyPasswordUpdateUser(nickname2, "another_security_code");
         when(this.userManager.getUserFromNickname(nickname1)).thenReturn(theUser);
-        return this.accountController.passwordUpdate(nickname1, "pass1", "pass1", security_code);
+        TheForgettableUser forgettableUser = ForgettableUserBuilderManager
+                .aForgettableUserWithNicknameAndCode(nickname1, security_code).build();
+        return this.accountController.passwordUpdate(forgettableUser);
     }
 
     private TheUser createDummyPasswordUpdateUser(String nickname, String security_code) {

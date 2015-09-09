@@ -7,6 +7,7 @@ import com.aporlaoferta.model.EmailTemplate;
 import com.aporlaoferta.model.TheUser;
 import org.apache.velocity.app.VelocityEngine;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
@@ -23,7 +24,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(
         value = {
                 "classpath:mvc-dispatcher-test-servlet.xml",
-                "classpath:aporlaoferta-controller-test-context.xml"
+                "classpath:aporlaoferta-controller-test-context.xml",
+                "classpath:aporlaoferta-email-real-test-context.xml"
         })
 @RunWith(SpringJUnit4ClassRunner.class)
 public class DefaultEmailSendingServiceTestIntegration {
@@ -45,6 +47,7 @@ public class DefaultEmailSendingServiceTestIntegration {
         addDefaultTemplate(TEMPLATE_NAME);
     }
 
+    @Ignore
     @Test
     public void testEmailIsSent() throws Exception, EmailSendingException {
         TheUser user = createDummyUser();

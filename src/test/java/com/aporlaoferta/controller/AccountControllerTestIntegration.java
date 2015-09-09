@@ -1,13 +1,13 @@
 package com.aporlaoferta.controller;
 
 
+import com.aporlaoferta.data.ForgettableUserBuilderManager;
 import com.aporlaoferta.data.UserBuilderManager;
+import com.aporlaoferta.model.TheForgettableUser;
 import com.aporlaoferta.model.TheNewUser;
 import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.rawmap.RequestMap;
 import com.aporlaoferta.service.UserManager;
-import jdk.nashorn.internal.ir.annotations.Ignore;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,14 +26,12 @@ import org.springframework.web.context.WebApplicationContext;
 import java.util.Map;
 
 import static com.aporlaoferta.controller.SecurityRequestPostProcessors.userDeatilsService;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.Matchers.startsWith;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrlPattern;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.util.StringUtils.isEmpty;
 
 
@@ -147,7 +145,7 @@ public class AccountControllerTestIntegration {
         ResultActions resultActionsForCreateUser = getResultActionsForCreateUser(csrfToken, jsonRequest);
         String createdUser = resultActionsForCreateUser.andReturn().getResponse().getContentAsString();
         Map<String, String> createdUserMap = RequestMap.getMapFromJsonString(createdUser);
-        Assert.assertTrue("Expected no uuid value", (isEmpty(createdUserMap.get("uuid"))));
+        assertTrue("Expected no uuid value", (isEmpty(createdUserMap.get("uuid"))));
     }
 
     @Test
@@ -161,7 +159,7 @@ public class AccountControllerTestIntegration {
         getResultActionsForUserConfirmed(theUser.getUuid(), theUser.getUserNickname()).andReturn().getResponse().getContentAsString();
         String result = getResultActionsForUserDetails(csrfToken, nickname).andReturn().getResponse().getContentAsString();
         Map<String, String> jsonResult = RequestMap.getMapFromJsonString(result);
-        Assert.assertTrue("Expected pending flag to be false", "false".equals(jsonResult.get("pending")));
+        assertTrue("Expected pending flag to be false", "false".equals(jsonResult.get("pending")));
     }
 
     private ResultActions getResultActionsForUserConfirmed(String uuid, String nickname) throws Exception {
@@ -199,6 +197,30 @@ public class AccountControllerTestIntegration {
                 .andExpect(status().is2xxSuccessful());
     }
 
+    private ResultActions getResultActionsForForgottenPassword(CsrfToken csrfToken,
+                                                               String jsonRequest) throws Exception {
+        return this.mockMvc.perform(post("/forgottenPassword")
+                        .sessionAttr("_csrf", csrfToken)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .param("_csrf", csrfToken.getToken())
+                        .content(jsonRequest)
+                        .sessionAttrs(SessionAttributeBuilder
+                                .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
+        )
+                .andExpect(status().is2xxSuccessful());
+    }
+
+    @Test
+    public void testAccessIsAllowedForAnonymousUserIfForgottenPassword() throws Exception {
+        CsrfToken csrfToken = CsrfTokenBuilder.generateAToken();
+        TheForgettableUser theUser = ForgettableUserBuilderManager.aForgettableUserWithNicknameAndCode(
+                "moo", "moo"
+        ).build();
+        String jsonRequest = RequestMap.getJsonFromMap(theUser);
+        getResultActionsForForgottenPassword(csrfToken, jsonRequest);
+    }
+
+
     @Test
     public void testUpdateUserWithIncorrectOldPasswordReturnsExpectedCode() throws Exception {
         CsrfToken csrfToken = CsrfTokenBuilder.generateAToken();
@@ -209,7 +231,6 @@ public class AccountControllerTestIntegration {
         Map<String, String> jsonResult = RequestMap.getMapFromJsonString(mvcResult);
         assertThat("Expected result to be USER_NAME_PASSWORD_INVALID", jsonResult.get("description"), startsWith("Provided user password is invalid"));
     }
-
 
     @Test
     public void testUpdateUserIsRestrictedToIdentifiedUsers() throws Exception {
@@ -237,6 +258,87 @@ public class AccountControllerTestIntegration {
         String mvcResult = result.andReturn().getResponse().getContentAsString();
         Map<String, String> jsonResult = RequestMap.getMapFromJsonString(mvcResult);
         assertThat("Expected result to be ok", jsonResult.get("description"), startsWith("User successfully updated"));
+    }
+
+    //forgotten password
+    @Test
+    public void testForgottenPasswordIsPerformedWithRequiredValidData() throws Exception {
+        String dasNickName = "dasNickName";
+        CsrfToken csrfToken = CsrfTokenBuilder.generateAToken();
+        TheUser oldUser = createUserBeforeHeForgetsThePassword(dasNickName, csrfToken);
+        String passOld = oldUser.getUserPassword();
+        String theUUID = oldUser.getUuid();
+        //forgot pass
+        TheForgettableUser theForgettableUser = ForgettableUserBuilderManager
+                .aForgettableUserWithNicknameAndCode(dasNickName, theUUID).build();
+        assertUserPerformsPasswordUpdateCorrectly(csrfToken, oldUser, passOld, theForgettableUser);
+    }
+
+    @Test
+    public void testForgottenPasswordReceivesInvalidCodeIfUUIDMismatch() throws Exception {
+        String dasNickName = "dasNickName";
+        CsrfToken csrfToken = CsrfTokenBuilder.generateAToken();
+        createUserBeforeHeForgetsThePassword(dasNickName, csrfToken);
+        String theUUID = "anotherUUID";
+        assertIncorrectValuesReturnsInvalidResult(dasNickName, csrfToken, theUUID);
+    }
+
+    @Test
+    public void testForgottenPasswordReceivesInvalidCodeIfUserNicknameMismatch() throws Exception {
+        String dasNickName = "dasNickName";
+        CsrfToken csrfToken = CsrfTokenBuilder.generateAToken();
+        TheUser oldUser = createUserBeforeHeForgetsThePassword(dasNickName, csrfToken);
+        String theUUID = oldUser.getUuid();
+        assertIncorrectValuesReturnsInvalidResult("differentNickname", csrfToken, theUUID);
+    }
+    @Test
+    public void testForgottenPasswordReceivesInvalidCodeIfPasswordsMismatch() throws Exception {
+        String dasNickName = "dasNickName";
+        CsrfToken csrfToken = CsrfTokenBuilder.generateAToken();
+        TheUser oldUser = createUserBeforeHeForgetsThePassword(dasNickName, csrfToken);
+        String theUUID = oldUser.getUuid();
+        assertDifferentPasswordsTriggerCorrectInvalidCode(dasNickName, csrfToken, theUUID);
+    }
+
+    private void assertDifferentPasswordsTriggerCorrectInvalidCode(String dasNickName, CsrfToken csrfToken, String theUUID) throws Exception {
+        TheForgettableUser theForgettableUser = ForgettableUserBuilderManager
+                .aForgettableUserWithNicknameAndCode(dasNickName, theUUID)
+                .withPass1("pa1")
+                .withPass2("pa2")
+                .build();
+        Map<String, String> jsonResult = obtainResult(csrfToken, theForgettableUser);
+        assertEquals("Expected result to be \'username password invalid\'", jsonResult.get("code"), "4");
+    }
+
+    private Map<String, String> obtainResult(CsrfToken csrfToken, TheForgettableUser theForgettableUser) throws Exception {
+        ResultActions resultActions = getResultActionsForForgottenPassword(csrfToken,
+                RequestMap.getJsonFromMap(theForgettableUser));
+        String mvcResult = resultActions.andReturn().getResponse().getContentAsString();
+        return RequestMap.getMapFromJsonString(mvcResult);
+    }
+
+    private void assertIncorrectValuesReturnsInvalidResult(String dasNickName, CsrfToken csrfToken, String theUUID) throws Exception {
+        TheForgettableUser theForgettableUser = ForgettableUserBuilderManager
+                .aForgettableUserWithNicknameAndCode(dasNickName, theUUID).build();
+        Map<String, String> jsonResult = obtainResult(csrfToken, theForgettableUser);
+        assertEquals("Expected result to be \'invalid password verification\'", jsonResult.get("code"), "5");
+    }
+
+    private void assertUserPerformsPasswordUpdateCorrectly(CsrfToken csrfToken, TheUser oldUser, String passOld, TheForgettableUser theForgettableUser) throws Exception {
+        Map<String, String> jsonResult = obtainResult(csrfToken, theForgettableUser);
+        assertThat("Expected result to be ok", jsonResult.get("description"), startsWith("User successfully updated"));
+        String passNew = this.userManagerTest.getUserFromNickname(oldUser.getUserNickname()).getUserPassword();
+        assertThat("Excected password to be updated", passOld, not(passNew));
+    }
+
+    private TheUser createUserBeforeHeForgetsThePassword(String dasNickName, CsrfToken csrfToken) throws Exception {
+        TheUser theUser = UserBuilderManager
+                .aRegularUserWithNickname(dasNickName)
+                .build();
+        String jsonRequest = RequestMap.getJsonFromMap(theUser);
+        getResultActionsForCreateUser(csrfToken, jsonRequest);
+        return this.userManagerTest.getUserFromNickname(
+                theUser.getUserNickname());
     }
 
     private TheUser createUserWithUnencodedPassword() {

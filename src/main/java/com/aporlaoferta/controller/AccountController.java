@@ -2,10 +2,7 @@ package com.aporlaoferta.controller;
 
 import com.aporlaoferta.email.EmailSendingException;
 import com.aporlaoferta.email.EmailService;
-import com.aporlaoferta.model.TheDefaultOffer;
-import com.aporlaoferta.model.TheNewUser;
-import com.aporlaoferta.model.TheResponse;
-import com.aporlaoferta.model.TheUser;
+import com.aporlaoferta.model.*;
 import com.aporlaoferta.model.validators.ValidationException;
 import com.aporlaoferta.service.CaptchaHTTPManager;
 import com.aporlaoferta.service.UserManager;
@@ -117,20 +114,18 @@ public class AccountController {
         }
     }
 
-    public TheResponse passwordUpdate(@RequestParam(value = "user", required = true) String username,
-                                      @RequestParam(value = "firstPassword", required = true) String first,
-                                      @RequestParam(value = "secondPassword", required = true) String second,
-                                      @RequestParam(value = "track", required = true) String uuid
-    ) {
-        TheUser theUser = this.userManager.getUserFromNickname(username);
-        if (!first.equals(second)) {
+    @RequestMapping(value = "/forgottenPassword", method = RequestMethod.POST)
+    @ResponseBody
+    public TheResponse passwordUpdate(@RequestBody TheForgettableUser theForgettableUser) {
+        TheUser theUser = this.userManager.getUserFromNickname(theForgettableUser.getUserNickname());
+        if (!theForgettableUser.passMatches()) {
             return ResponseResultHelper.updateWithCode(ResultCode.USER_NAME_PASSWORD_INVALID);
         }
-        if (theUser == null || !uuid.equals(theUser.getUuid())) {
+        if (theUser == null || !theForgettableUser.getUuid().equals(theUser.getUuid())) {
             return ResponseResultHelper.updateWithCode(ResultCode.INVALID_PASSWORD_VERIFICATION);
         }
-        theUser.setUserPassword(first);
-        return validateAndUpdateUser(theUser, new TheResponse(), username);
+        theUser.setUserPassword(theForgettableUser.getFirstPassword());
+        return validateAndUpdateUser(theUser, new TheResponse(), theForgettableUser.getSecondPassword());
     }
 
     private TheResponse processUserUpdate(TheNewUser theNewUser) {

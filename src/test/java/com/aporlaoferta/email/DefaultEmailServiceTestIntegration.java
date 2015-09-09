@@ -9,6 +9,7 @@ import com.aporlaoferta.model.TheUser;
 import org.apache.velocity.app.VelocityEngine;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -31,7 +32,8 @@ import static org.hamcrest.Matchers.is;
 @ContextConfiguration(
         value = {
                 "classpath:mvc-dispatcher-test-servlet.xml",
-                "classpath:aporlaoferta-controller-test-context.xml"
+                "classpath:aporlaoferta-controller-test-context.xml",
+                "classpath:aporlaoferta-email-real-test-context.xml"
         })
 @RunWith(SpringJUnit4ClassRunner.class)
 public class DefaultEmailServiceTestIntegration {
