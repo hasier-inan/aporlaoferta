@@ -29,31 +29,43 @@ import java.util.Map;
 public class DefaultEmailService implements EmailService {
 
     private static final String ACCOUNT_CONFIRMATION_EMAIL = "AccountConfirmation";
+    private static final String PASSWORD_RESET_EMAIL = "PasswordReset";
 
     private static final String USER_NICKNAME_FIELD = "nickname";
     private static final String USER_AVATAR_IMG_FIELD = "avatarsrc";
     private static final String USER_UUID_FIELD = "userid";
-    private static final String SERVER="server";
+    private static final String SERVER = "server";
 
-    private final EmailSendingService mailSenderService;
-    private final VelocityEngine velocity;
-    private final String serverValue;
+    private EmailSendingService mailSenderService;
+    private VelocityEngine velocity;
+    private String serverValue;
 
 
+    @Autowired
     private EmailTemplateDAO emailTemplateDAO;
 
-    public DefaultEmailService(EmailSendingService mailSenderService,
-                               VelocityEngine velocity, String serverValue) {
-        this.mailSenderService = mailSenderService;
-        this.velocity = velocity;
-        this.serverValue=serverValue;
+    public DefaultEmailService() {
     }
 
     @Override
     public void sendAccountConfirmationEmail(TheUser theUser) throws EmailSendingException {
+        sendEmailBasedOnTemplate(theUser, ACCOUNT_CONFIRMATION_EMAIL);
+    }
+
+    @Override
+    public void sendPasswordForgotten(TheUser theUser) throws EmailSendingException {
+        sendEmailBasedOnTemplate(theUser, PASSWORD_RESET_EMAIL);
+    }
+
+    public void sendEmailBasedOnTemplate(TheUser theUser, String template) throws EmailSendingException {
+        Map<String, String> model = buildEmailModelMap(theUser);
+        populateTemplateAndSend(template, model, theUser.getUserEmail());
+    }
+
+    private Map<String, String> buildEmailModelMap(TheUser theUser) {
         Map<String, String> model = new HashMap<>();
         populateModelWithEmailContent(theUser, model);
-        populateTemplateAndSend(ACCOUNT_CONFIRMATION_EMAIL, model, theUser.getUserEmail());
+        return model;
     }
 
     private void populateModelWithEmailContent(TheUser theUser, Map<String, String> model) {
@@ -73,7 +85,8 @@ public class DefaultEmailService implements EmailService {
             EmailTemplate template = this.emailTemplateDAO.findByName(templateName);
             Assert.notNull(template, "templateName: " + templateName);
             return createEmailFromVelocityTemplate(model, toAddress, template);
-        } catch (IllegalArgumentException | ParseErrorException | MethodInvocationException | ResourceNotFoundException e) {
+        }
+        catch (IllegalArgumentException | ParseErrorException | MethodInvocationException | ResourceNotFoundException e) {
             String message = String.format("Could not populate mail template with templateName %s. Email address: %s",
                     templateName, toAddress);
             throw new EmailSendingException(message, e);
@@ -91,7 +104,18 @@ public class DefaultEmailService implements EmailService {
         return new Email(toAddress, subject, content);
     }
 
-    @Autowired
+    public void setMailSenderService(EmailSendingService mailSenderService) {
+        this.mailSenderService = mailSenderService;
+    }
+
+    public void setVelocity(VelocityEngine velocity) {
+        this.velocity = velocity;
+    }
+
+    public void setServerValue(String server) {
+        this.serverValue = server;
+    }
+
     public void setEmailTemplateDAO(EmailTemplateDAO emailTemplateDAO) {
         this.emailTemplateDAO = emailTemplateDAO;
     }

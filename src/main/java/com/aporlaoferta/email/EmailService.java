@@ -9,5 +9,6 @@ import com.aporlaoferta.model.TheUser;
  * Time: 15:44
  */
 public interface EmailService {
-    public void sendAccountConfirmationEmail(TheUser theUser) throws EmailSendingException;
+    void sendAccountConfirmationEmail(TheUser theUser) throws EmailSendingException;
+    void sendPasswordForgotten(TheUser theUser) throws EmailSendingException;
 }
