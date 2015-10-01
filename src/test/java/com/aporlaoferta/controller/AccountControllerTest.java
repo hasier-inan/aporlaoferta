@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.CoreMatchers.startsWith;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.*;
@@ -56,7 +57,7 @@ public class AccountControllerTest {
         TheUser user = UserBuilderManager.aRegularUserWithNickname("fu1").build();
         TheResponse result = this.accountController.createUser(
                 user, "recaptcha");
-        Assert.assertThat("Expected empty object message", result.getResponseResult(),
+        assertThat("Expected empty object message", result.getResponseResult(),
                 Matchers.is(ResultCode.DATABASE_RETURNED_EMPTY_OBJECT.getResponseResult()));
     }
 
@@ -78,16 +79,24 @@ public class AccountControllerTest {
     @Test
     public void testUserConfirmationWithEmptyValuesReturnsInvalidUUIDResponse() throws Exception {
         ModelAndView modelAndViewNoUUID = this.accountController.confirmUser("", "uuid");
-        Assert.assertThat("Expected the message to contain the invalid uuid log", (String) modelAndViewNoUUID.getModel().get("msg"), startsWith("Id de confirmación inválido"));
+        assertThat("Expected the message to contain the invalid uuid log", (String) modelAndViewNoUUID.getModel().get("msg"), startsWith("Id de confirmación inválido"));
         ModelAndView modelAndViewNoNickname = this.accountController.confirmUser("sdsd", "");
-        Assert.assertThat("Expected the message to contain the invalid uuid log", (String) modelAndViewNoNickname.getModel().get("msg"), startsWith("Id de confirmación inválido"));
+        assertThat("Expected the message to contain the invalid uuid log", (String) modelAndViewNoNickname.getModel().get("msg"), startsWith("Id de confirmación inválido"));
     }
 
     @Test
     public void testUserConfirmationWithCorrectDataReturnsValidConfirmationResponse() throws Exception {
         when(this.userManager.confirmUser("nick", "uuuuid")).thenReturn(ResponseResultHelper.createUserConfirmationResponse());
         ModelAndView modelAndViewNoUUID = this.accountController.confirmUser("uuuuid", "nick");
-        Assert.assertThat("Expected the message to contain the confirmation uuid log", (String) modelAndViewNoUUID.getModel().get("msg"), startsWith("Usuario confirmado"));
+        assertThat("Expected the message to contain the confirmation uuid log", (String) modelAndViewNoUUID.getModel().get("msg"), startsWith("Usuario confirmado"));
+    }
+
+    @Test
+    public void testPasswordForgottenDisplaysView() throws Exception {
+        ModelAndView passwordForgotten = this.accountController.passwordForgotten("name","uuid");
+        assertThat("Expected the passwordForgotten view", passwordForgotten.getViewName(), is("passwordForgotten"));
+        assertThat("Expected the passwordForgotten view", (String) passwordForgotten.getModel().get("nick"), is("name"));
+        assertThat("Expected the passwordForgotten view", (String) passwordForgotten.getModel().get("uuid"), is("uuid"));
     }
 
     @Test
@@ -101,7 +110,7 @@ public class AccountControllerTest {
     @Test
     public void testUserPasswordUpdateIsPerformedWithValidData() throws Exception {
         TheResponse theResponse = performPasswordUpdate();
-        Assert.assertThat("Expected an ok result", theResponse.getCode(), is(0));
+        assertThat("Expected an ok result", theResponse.getCode(), is(0));
     }
 
     @Test
@@ -110,7 +119,7 @@ public class AccountControllerTest {
         ArgumentCaptor<TheUser> theUserArgumentCaptor = ArgumentCaptor.forClass(TheUser.class);
         Mockito.verify(this.userManager).updateUser(theUserArgumentCaptor.capture());
         TheUser theUser = theUserArgumentCaptor.getValue();
-        Assert.assertThat("Expected theUser password to be updated",
+        assertThat("Expected theUser password to be updated",
                 theUser.getUserPassword(),
                 not("pass1"));
     }
@@ -118,19 +127,52 @@ public class AccountControllerTest {
     @Test
     public void testUserPasswordUpdateIsNotPerformedIfPasswordDontMatch() throws Exception {
         TheResponse theResponse = performPasswordUpdateWithInvalidPasswords();
-        Assert.assertThat("Expected an invalid password result", theResponse.getCode(), is(4));
+        assertThat("Expected an invalid password result", theResponse.getCode(), is(4));
     }
 
     @Test
     public void testPasswordUpdateReturnsExpectedCodeIfUserDoesNotExist() throws Exception {
         TheResponse theResponse = performPasswordUpdateWithUnknownUser();
-        Assert.assertThat("Expected an invalid data result", theResponse.getCode(), is(5));
+        assertThat("Expected an invalid data result", theResponse.getCode(), is(5));
     }
 
     @Test
     public void testPasswordUpdateReturnsExpectedCodeIfInvalidUserIsProvided() throws Exception {
         TheResponse theResponse = performPasswordUpdateWithInvalidUser();
-        Assert.assertThat("Expected an invalid data result", theResponse.getCode(), is(5));
+        assertThat("Expected an invalid data result", theResponse.getCode(), is(5));
+    }
+
+    @Test
+    public void testForgottenPasswordRequestTriggersEmailIfUserExists() throws Exception, EmailSendingException {
+        String nickname = "nickname";
+        TheUser user = UserBuilderManager.aRegularUserWithNickname(nickname).build();
+        when(this.userManager.getUserFromNickname(nickname))
+                .thenReturn(user);
+        TheResponse theResponse = this.accountController.requestForgottenPassword(nickname);
+        verify(this.emailService).sendPasswordForgotten(user);
+        assertThat("Expected an ok response", theResponse.getCode(), is(0));
+    }
+
+    @Test
+    public void testForgottenPasswordReturnsInvalidUserIfDoesNotExist() throws Exception, EmailSendingException {
+        String nickname = "nickname";
+        when(this.userManager.getUserFromNickname(nickname))
+                .thenReturn(null);
+        TheResponse theResponse = this.accountController.requestForgottenPassword(nickname);
+        assertThat("Expected invalid user data code", theResponse.getCode(), is(1));
+    }
+
+    @Test
+    public void testForgottenPasswordReturnsGenericErrorIfEmailFails() throws Exception, EmailSendingException {
+        String nickname = "nickname";
+        TheUser user = UserBuilderManager.aRegularUserWithNickname(nickname).build();
+        when(this.userManager.getUserFromNickname(nickname))
+                .thenReturn(user);
+
+        doThrow(new EmailSendingException("", new Throwable())).when(this.emailService)
+                .sendPasswordForgotten(user);
+        TheResponse theResponse = this.accountController.requestForgottenPassword(nickname);
+        assertThat("Expected an ok response", theResponse.getCode(), is(66));
     }
 
     private TheResponse performPasswordUpdate() {

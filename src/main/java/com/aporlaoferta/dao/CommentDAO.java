@@ -11,7 +11,7 @@ import java.util.List;
  * Created by hasiermetal on 26/07/14.
  */
 public interface CommentDAO extends CrudRepository<OfferComment, Long> {
-    public final String COMMENT_QUERY = "SELECT * FROM thatoffer a, thatcomment b WHERE a.TO_ID=:offerId ORDER BY " +
+    String COMMENT_QUERY = "SELECT * FROM thatoffer a, thatcomment b WHERE a.TO_ID=:offerId ORDER BY " +
             "b.TCM_CREATION_DATE desc LIMIT :commentId, 100";
 
     @Query(value = COMMENT_QUERY, nativeQuery = true)

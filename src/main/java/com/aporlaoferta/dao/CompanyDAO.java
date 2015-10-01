@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface CompanyDAO extends CrudRepository<OfferCompany, Long> {
     @Query(value = "SELECT * FROM thatcompany order by TC_NAME desc", nativeQuery = true)
-    public List<OfferCompany> getListOfPersistedCompanies();
+    List<OfferCompany> getListOfPersistedCompanies();
 
     OfferCompany findByCompanyName(String companyName);
 }

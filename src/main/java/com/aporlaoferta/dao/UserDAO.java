@@ -7,5 +7,5 @@ import org.springframework.data.repository.CrudRepository;
  * Created by hasiermetal on 26/07/14.
  */
 public interface UserDAO extends CrudRepository<TheUser, String> {
-    public TheUser findByUserNickname(String userNickname);
+    TheUser findByUserNickname(String userNickname);
 }

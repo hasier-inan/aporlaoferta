@@ -67,6 +67,7 @@ public class UrlParserTest {
         urlParser.isAlive(this.nonExistingUrl);
     }
 
+    @Ignore //Integration Test
     @Test
     public void testHealthyURLReturnsCorrectResponse() throws Exception {
         UrlParser urlParser = new UrlParser();

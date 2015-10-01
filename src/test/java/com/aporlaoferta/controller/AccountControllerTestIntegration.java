@@ -291,6 +291,7 @@ public class AccountControllerTestIntegration {
         String theUUID = oldUser.getUuid();
         assertIncorrectValuesReturnsInvalidResult("differentNickname", csrfToken, theUUID);
     }
+
     @Test
     public void testForgottenPasswordReceivesInvalidCodeIfPasswordsMismatch() throws Exception {
         String dasNickName = "dasNickName";

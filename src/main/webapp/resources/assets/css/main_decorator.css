@@ -8,6 +8,16 @@ form.centeredForm, div.centeredForm {
     text-align: center;
     margin: 0 auto;
 }
+div.overheadDisplayLight{
+    position: absolute;
+    top: 0;
+}
+
+div#password-forgotten-submit button.mini {
+    box-shadow: inset 0 0 0 2px #e6e6e6;
+    text-align: center;
+    padding-left: 0.7em;
+}
 
 div.overhead_container {
     position: fixed;
@@ -85,7 +95,8 @@ input.overheadField,
 select.overheadField {
     width: 12em;
 }
-input.overheadField:disabled{
+
+input.overheadField:disabled {
     background-color: rgba(0, 0, 0, .2) !important;
     border-color: rgba(0, 0, 0, .2) !important;
 }
@@ -178,6 +189,9 @@ button.close_button.mini {
     margin: -2.5em 1em 0 0 !important;
 }
 
+button.overheadButton.blue{
+    background-color: #43638e !important;
+}
 div button.overheadButton {
     background-color: #F35E1E;
     color: #ffffff !important;
@@ -646,6 +660,25 @@ div.responseDescription {
 */
 
 /*
+/password-forgotten
+*/
+form.password-forgotten-container > ul {
+    padding: 0;
+}
+
+form.password-forgotten-container ul > input {
+    color: #FFFFFF;
+}
+
+button.passwordForgottenContainer {
+    background-color: rgba(231, 0, 21, 1) !important;
+}
+label#forgottePasswordRequestLabel{
+    padding-top: 0.15em;
+    margin-top: 1em;
+}
+
+/*
 validation
 */
 .content-validation.ng-valid {
@@ -822,6 +855,51 @@ div.offerCaptcha {
     border-radius: 6px;
 }
 
+/*password-forgotten*/
+.mainLogo.only-page {
+    font-size: 3.25em;
+    font-weight: bold;
+    margin-top: .5em;
+}
+header.password-forgotten{
+    height: auto !important;
+    min-height: 0 !important;
+}
+@media screen and (min-width: 1280px){
+    header.password-forgotten{
+        margin: 4em 0 2em 0;
+    }
+}
+@media screen and (min-width: 980px){
+    header.password-forgotten{
+        margin: 4em 0 2em 0;
+    }
+}
+@media screen and (max-width: 480px){
+    .mainLogo.only-page {
+        width: 1.1em;
+    }
+}
+@media screen and (min-width: 480px){
+    .mainLogo.only-page {
+        width: 2em;
+    }
+}
+
+body.password-forgotten {
+    background-image: url("images/background_head5.png"), url("images/pattern-size2.svg");
+    background-color: #f38630;
+}
+
+div.content.only-page{
+    width: 100% !important;
+    text-align: center !important;
+}
+
+.only-page {
+    display: inline-block;
+}
+
 /*/general values*/
 
 /*default values*/
@@ -846,3 +924,4 @@ input::-moz-selection {
 body {
     overflow-x: hidden;
 }
+

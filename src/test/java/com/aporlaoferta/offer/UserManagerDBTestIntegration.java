@@ -19,7 +19,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(locations = {"classpath:aporlaoferta-hibernate-context.xml", "classpath:aporlaoferta-managers-test-context.xml"})
 public class UserManagerDBTestIntegration {
 
-    private static final String TEMPLATE_NAME = "AccountConfirmation";
+    private static final String ACCOUNT_CONFIRMATION = "AccountConfirmation";
+    private static final String PASSWORD_FORGOTTEN = "PasswordReset";
 
     @Autowired
     private UserManager userManager;
@@ -37,15 +38,16 @@ public class UserManagerDBTestIntegration {
     @Ignore
     @Test
     public void testTemplateIsCreated() throws Exception {
-        addDefaultTemplate(TEMPLATE_NAME);
+        this.emailTemplateDAO.save(getAccountConfirmationTemplate());
+        this.emailTemplateDAO.save(getPasswordForgottenTemplate());
     }
 
-    private void addDefaultTemplate(String templateName) {
-        this.emailTemplateDAO.save(createDummyTemplate(templateName));
+    private EmailTemplate getPasswordForgottenTemplate() {
+        return EmailTemplateBuilderManager.aRealPassowrdForgottenEmailTemplate(PASSWORD_FORGOTTEN).build();
     }
 
-    private EmailTemplate createDummyTemplate(String templateName) {
-        return EmailTemplateBuilderManager.aBasicEmailTemplate(templateName).build();
+    private EmailTemplate getAccountConfirmationTemplate() {
+        return EmailTemplateBuilderManager.aRealConfirmationEmailTemplate(ACCOUNT_CONFIRMATION).build();
     }
 
 }

@@ -9,7 +9,6 @@ import com.aporlaoferta.model.TheUser;
 import org.apache.velocity.app.VelocityEngine;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -17,6 +16,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -42,6 +42,7 @@ public class DefaultEmailServiceTestIntegration {
     private static final String NICKNAME = "DAnICKNAME";
     private static final String UUIDURL = "129108231827381273812";
     private static final String AVATARSRC = "http://www.dsaimage.com/kaka.png";
+
     @Autowired
     EmailTemplateDAO emailTemplateDAO;
     @Autowired
@@ -49,14 +50,14 @@ public class DefaultEmailServiceTestIntegration {
     @Mock
     DefaultEmailSendingService mailSenderServiceMock;
 
-    DefaultEmailService defaultEmailService;
+    @Autowired
+    @Qualifier("emailServiceTest")
+    EmailService defaultEmailService;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         addDefaultTemplate(TEMPLATE_NAME);
-        this.defaultEmailService = new DefaultEmailService(mailSenderServiceMock, velocity, "httpblah");
-        this.defaultEmailService.setEmailTemplateDAO(this.emailTemplateDAO);
     }
 
     @Test

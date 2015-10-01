@@ -2,10 +2,10 @@
  * Created by hasiermetal on 16/03/14.
  */
 aporlaofertaApp
-    .directive('ngOverheadDisplay', function () {
+    .directive('ngOverheadDisplayLight', function () {
         return {
             restrict: 'A',
-            templateUrl: 'resources/js/header-display/headDisplay.jsp',
+            templateUrl: 'resources/js/header-display/headDisplayLight.jsp',
             link: function (scope, elem, attrs) {
             },
             controller: ['$scope', '$timeout', function ($scope, $timeout) {

@@ -14,6 +14,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 import static org.springframework.util.StringUtils.isEmpty;
 
 /**
@@ -91,6 +93,7 @@ public class UserManager {
             theUser.setUserAvatar(theNewUser.getUserAvatar());
             theUser.setUserEmail(theNewUser.getUserEmail());
             theUser.setUserPassword(theNewUser.getUserPassword());
+            theUser.setUuid(UUID.randomUUID().toString());
             return saveUser(theUser);
         }
         return theUser;
@@ -103,6 +106,7 @@ public class UserManager {
         }
         else{
             theUser.setPending(false);
+            theUser.setUuid(UUID.randomUUID().toString());
             saveUser(theUser);
             return ResponseResultHelper.createUserConfirmationResponse();
         }

@@ -13,8 +13,8 @@ aporlaofertaApp
             },
             link: function (scope, elem, attrs) {
             },
-            controller: ['$scope', '$http', 'requestManager', 'configService', 'vcRecaptchaService', 'alertService',
-                function ($scope, http, requestManager, configService, vcRecaptchaService, alertService) {
+            controller: ['$scope', 'requestManager', 'configService', 'vcRecaptchaService', 'alertService',
+                function ($scope, requestManager, configService, vcRecaptchaService, alertService) {
                     $scope.theUser = {};
                     $scope.publicKey = "6LdqHQoTAAAAAAht2VhkrLGU26eBOjL-nK9zXxcn";
                     $scope.disableNickname = false;
@@ -32,6 +32,7 @@ aporlaofertaApp
                                     $scope.accountDefaultError();
                                 });
                             $scope.theUser = {};
+                            $scope.userPassword2={}
                             $scope.overheadDisplay = false;
                         }
                     }

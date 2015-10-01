@@ -8,7 +8,6 @@
 <!-- p4p spanish offer and deals -->
 <!-- Fractal template by HTML5 UP html5up.net -->
 <!-- icons and logos by font awesome http://fortawesome.github.io/ -->
-<!-- file upload base by ng-flow -->
 <html data-ng-app="aPorLaOferta" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>aporlaoferta ~ ofertas y promociones online </title>
@@ -20,7 +19,7 @@
           content="ofertas p4p rebajas tiendas promociones online"/>
     <sec:csrfMetaTags/>
     <link rel="shortcut icon"
-          href="resources/images/favicon.ico" />
+          href="resources/images/favicon.ico"/>
     <!--template-->
     <!--[if lte IE 8]>
     <script src="resources/assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -43,7 +42,6 @@
     <!--core-->
     <script src="resources/js/lib/angular.js"></script>
     <script src="resources/js/lib/angular-animate.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit&hl=es" async defer></script>
     <script src="resources/js/lib/angular-recaptcha.js"></script>
     <script src="resources/js/lib/angular-filter.min.js"></script>
     <script src="resources/js/lib/ng-flow-standalone.js"></script>
@@ -64,31 +62,37 @@
     <script src="resources/js/offer/offer-creation/ngCompanyManagerDirective.js"></script>
     <script src="resources/js/offer/offer-creation/ngOfferCategoryManagerDirective.js"></script>
     <script src="resources/js/offer/offer-filter/ngOfferFilterDirective.js"></script>
-    <script src="resources/js/header-display/ngHeadDisplayDirective.js"></script>
+    <script src="resources/js/header-display/ngHeadDisplayLightDirective.js"></script>
     <script src="resources/js/uploader/ngImageUploadDirective.js"></script>
     <script src="resources/js/response/ngResponseFromServer.js"></script>
     <script src="resources/js/response/alertService.js"></script>
     <script src="resources/js/offer/offer-list/offerManagerService.js"></script>
-    <link rel="stylesheet" href="resources/js/uploader/imageUpload.css"/>
+    <script src="resources/js/account/password-forgotten/ngPasswordForgottenDirective.js"></script>
 </head>
-<body id="top" data-ng-controller="APorLaOfertaController" flow-prevent-drop ng-keydown="keyHandler($event)">
+<body id="top" data-ng-controller="APorLaOfertaController" class="password-forgotten">
 
-<c:if test="${not empty msg}">
-    <input type="text" id="errorMessage" style="display:none" value="${msg}"/>
-</c:if>
+<div ng-overhead-display-light="overheadDisplayLight" class="overheadDisplayLight"></div>
 
-<div ng-overhead-display="overheadDisplay"></div>
+<header id="header" class="password-forgotten">
+    <div class="content only-page">
+        <h1 class="only-page">
+            <em>aporlaoferta</em>
+        </h1>
 
-<div ng-offer-list="offerList"></div>
-
-<!-- Footer -->
-<footer id="footer">
+        <div class="mainLogo only-page">
+        </div>
+        <p>Ofertas y promociones online</p>
+    </div>
+</header>
+<div ng-password-forgotten="ngPasswordForgotten" nick="'${nick}'" uuid="'${uuid}'" custom-close-callback="customCloseCallback"></div>
+<footer id="footer" class="forgotten_footer">
     <ul class="icons">
-        <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-        <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-        <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+        <li><a href="#" class="icon fa-facebook forgotten_footer"><span class="label">Facebook</span></a></li>
+        <li><a href="#" class="icon fa-twitter forgotten_footer"><span class="label">Twitter</span></a></li>
+        <li><a href="#" class="icon fa-instagram forgotten_footer"><span class="label">Instagram</span></a></li>
     </ul>
     <p class="copyright">&copy; aporlaoferta, thatsoftwarecompany 2015</p>
 </footer>
+
 </body>
 </html>

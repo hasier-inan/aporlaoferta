@@ -1,5 +1,5 @@
 /**
- * Created by hasiermetal on 16/03/14.
+ * Created by hasiermetal on 16/03/15.
  */
 aporlaofertaApp = angular.module('aPorLaOferta', ['angular.filter','requestManager', 'alertService','configService', 'flow', 'ngAnimate','vcRecaptcha','offerManager','pwCheckModule']);
 

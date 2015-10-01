@@ -3,9 +3,9 @@
         <form name="accountCreationContainer" class="centeredForm">
             <ul>
                 <label for="createUserNickname" class="overhead-hint-label" ng-hide="disableNickname">Elige un nombre de
-                    usuario, crea una contrase&nacute;a y a&nacute;ade tu correo electr&oacute;nico</label>
+                    usuario, crea una contrase&ntilde;a y a&ntilde;ade tu correo electr&oacute;nico</label>
                 <label for="createUserNickname" class="overhead-hint-label" ng-show="disableNickname">Añade tu antigua y
-                    nueva contrase&nacute;a. Tambi&eacute;n puedes cambiar tu correo electr&oacute;nico y avatar</label>
+                    nueva contrase&ntilde;a. Tambi&eacute;n puedes cambiar tu correo electr&oacute;nico y avatar</label>
                 <input type="text" id="createUserNickname" ng-model="theUser.userNickname"
                        class="overheadField content-validation"
                        placeholder="usuario" ng-disabled="disableNickname" required ng-maxlength="250"/>
@@ -31,7 +31,7 @@
                        placeholder="Email" required ng-pattern="validMail" ng-maxlength="250"/>
             </ul>
             <label id="imageUploadLabel" for="imageUploadContent" class="overhead-hint-label"
-                   ng-hide="disableNickname">Puedes a&nacute;adir
+                   ng-hide="disableNickname">Puedes a&ntilde;adir
                 opcionalmente un avatar</label>
 
             <div id="imageUploadContent" ng-image-uploader="createAccountImageUploader"

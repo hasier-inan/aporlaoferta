@@ -11,4 +11,9 @@ public class DummyEmailService implements EmailService {
     public void sendAccountConfirmationEmail(TheUser theUser) throws EmailSendingException {
         //do nothing
     }
+
+    @Override
+    public void sendPasswordForgotten(TheUser theUser) throws EmailSendingException {
+        //do nothing
+    }
 }

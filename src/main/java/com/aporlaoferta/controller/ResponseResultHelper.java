@@ -49,6 +49,12 @@ public class ResponseResultHelper {
         return updateWithCode(ResultCode.INVALID_CONFIRMATION_ID);
     }
 
+    public static TheResponse createForgottenPasswordResponse() {
+        TheResponse theResponse = new TheResponse();
+        theResponse.assignResultCode(ResultCode.ALL_OK, "Password reset email request has been sent", "Recibirá un correo electrónico donde podrá reiniciar su contraseña");
+        return theResponse;
+    }
+
     public static TheResponse createUserConfirmationResponse() {
         TheResponse theResponse = new TheResponse();
         theResponse.assignResultCode(ResultCode.ALL_OK, "User has been confirmed", "Usuario confirmado, ya puede identificarse");

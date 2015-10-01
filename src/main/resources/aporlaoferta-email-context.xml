@@ -4,11 +4,15 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="emailService" class="com.aporlaoferta.email.DefaultEmailService">
-        <constructor-arg name="mailSenderService" ref="mailSender"/>
-        <constructor-arg name="velocity" ref="velocityEngine"/>
-        <constructor-arg name="serverValue" value="${email.service.serverValue}"/>
+    <!--<bean id="emailService" class="com.aporlaoferta.email.DefaultEmailService">-->
+        <!--<property name="mailSenderService" ref="mailSender"/>-->
+        <!--<property name="velocity" ref="velocityEngine"/>-->
+        <!--<property name="serverValue" value="${email.service.server}"/>-->
+    <!--</bean>-->
+    <bean id="serverValue" class="com.aporlaoferta.model.ServerValue">
+        <constructor-arg name="value" value="${email.service.server}"/>
     </bean>
+
     <bean id="mailSender" class="com.aporlaoferta.email.DefaultEmailSendingService">
         <constructor-arg name="mailSender" ref="javaMailSender"/>
         <constructor-arg name="fromAddress" value="${email.service.username}"/>

@@ -4,17 +4,20 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="emailService" class="com.aporlaoferta.email.DefaultEmailService">
-        <constructor-arg name="mailSenderService" ref="mailSender"/>
-        <constructor-arg name="velocity" ref="velocityEngine"/>
-        <constructor-arg name="serverValue" value="http://localhost:8080/aporlaoferta"/>
+    <bean id="emailServiceTest" class="com.aporlaoferta.email.DefaultEmailService">
+        <property name="mailSenderService" ref="mailSenderTest"/>
+        <property name="velocity" ref="velocityEngineTest"/>
+        <property name="serverValue" ref="serverValueTest"/>
     </bean>
-    <bean id="mailSender" class="com.aporlaoferta.email.DefaultEmailSendingService">
-        <constructor-arg name="mailSender" ref="javaMailSender"/>
+    <bean id="serverValueTest" class="com.aporlaoferta.model.ServerValue">
+        <constructor-arg name="value" value="http://localhost:8080/aporlaoferta"/>
+    </bean>
+    <bean id="mailSenderTest" class="com.aporlaoferta.email.DefaultEmailSendingService">
+        <constructor-arg name="mailSender" ref="javaMailSenderTest"/>
         <constructor-arg name="fromAddress" value="admin@aporlaoferta.com"/>
     </bean>
 
-    <bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    <bean id="javaMailSenderTest" class="org.springframework.mail.javamail.JavaMailSenderImpl">
         <property name="host" value="smtp.1and1.com" />
         <property name="port" value="587" />
         <property name="username" value="admin@aporlaoferta.com" />
@@ -27,7 +30,7 @@
             </props>
         </property>
     </bean>
-    <bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+    <bean id="velocityEngineTest" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
         <property name="velocityProperties">
             <value>
                 resource.loader=class

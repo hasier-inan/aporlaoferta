@@ -3,6 +3,7 @@ package com.aporlaoferta.email;
 import com.aporlaoferta.dao.EmailTemplateDAO;
 import com.aporlaoferta.model.Email;
 import com.aporlaoferta.model.EmailTemplate;
+import com.aporlaoferta.model.ServerValue;
 import com.aporlaoferta.model.TheUser;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
@@ -36,10 +37,14 @@ public class DefaultEmailService implements EmailService {
     private static final String USER_UUID_FIELD = "userid";
     private static final String SERVER = "server";
 
+    @Autowired
     private EmailSendingService mailSenderService;
-    private VelocityEngine velocity;
-    private String serverValue;
 
+    @Autowired
+    private VelocityEngine velocity;
+
+    @Autowired
+    private ServerValue serverValue;
 
     @Autowired
     private EmailTemplateDAO emailTemplateDAO;
@@ -72,7 +77,7 @@ public class DefaultEmailService implements EmailService {
         model.put(USER_NICKNAME_FIELD, theUser.getUserNickname());
         model.put(USER_AVATAR_IMG_FIELD, theUser.getUserAvatar());
         model.put(USER_UUID_FIELD, theUser.getUuid());
-        model.put(SERVER, serverValue);
+        model.put(SERVER, this.serverValue.getValue());
     }
 
     private void populateTemplateAndSend(String templateName, Map<String, String> model, String toAddress) throws EmailSendingException {
@@ -112,7 +117,7 @@ public class DefaultEmailService implements EmailService {
         this.velocity = velocity;
     }
 
-    public void setServerValue(String server) {
+    public void setServerValue(ServerValue server) {
         this.serverValue = server;
     }
 

@@ -30,7 +30,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class DefaultEmailSendingServiceTestIntegration {
 
-    private static final String TEMPLATE_NAME = "AccountConfirmation";
+    private static final String USER_CONFIRMATION = "AccountConfirmation";
+    private static final String PASSWORD_RESET_EMAIL = "PasswordReset";
     private static final String NICKNAME = "DAnICKNAME";
     private static final String UUIDURL = "129108231827381273812";
     private static final String AVATARSRC = "http://www.dsaimage.com/kaka.png";
@@ -44,7 +45,8 @@ public class DefaultEmailSendingServiceTestIntegration {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        addDefaultTemplate(TEMPLATE_NAME);
+        addUserConfirmationTemplate(USER_CONFIRMATION);
+        addPasswordForgottenTemplate(PASSWORD_RESET_EMAIL);
     }
 
     @Ignore
@@ -62,11 +64,19 @@ public class DefaultEmailSendingServiceTestIntegration {
                 .build();
     }
 
-    private void addDefaultTemplate(String templateName) {
+    private void addUserConfirmationTemplate(String templateName) {
         this.emailTemplateDAO.save(createRealEmailConfirmationTemplate(templateName));
+    }
+
+    private void addPasswordForgottenTemplate(String templateName) {
+        this.emailTemplateDAO.save(createRealPasswordForgottenTemplate(templateName));
     }
 
     private EmailTemplate createRealEmailConfirmationTemplate(String templateName) {
         return EmailTemplateBuilderManager.aRealConfirmationEmailTemplate(templateName).build();
+    }
+
+    private EmailTemplate createRealPasswordForgottenTemplate(String templateName) {
+        return EmailTemplateBuilderManager.aRealPassowrdForgottenEmailTemplate(templateName).build();
     }
 }

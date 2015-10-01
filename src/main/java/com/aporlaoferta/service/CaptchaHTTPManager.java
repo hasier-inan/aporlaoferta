@@ -1,12 +1,8 @@
 package com.aporlaoferta.service;
 
-import com.aporlaoferta.controller.ResultCode;
-import com.aporlaoferta.model.TheResponse;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.HashMap;

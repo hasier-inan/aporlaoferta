@@ -1,5 +1,7 @@
 package com.aporlaoferta.controller;
 
+import com.aporlaoferta.dao.EmailTemplateDAO;
+import com.aporlaoferta.email.DefaultEmailService;
 import com.aporlaoferta.email.EmailSendingException;
 import com.aporlaoferta.email.EmailService;
 import com.aporlaoferta.model.*;
@@ -10,6 +12,7 @@ import com.aporlaoferta.utils.OfferValidatorHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -114,6 +117,24 @@ public class AccountController {
         }
     }
 
+    @RequestMapping(value = "/requestForgottenPassword", method = RequestMethod.POST)
+    @ResponseBody
+    public TheResponse requestForgottenPassword(@RequestParam(value = "nickname", required = true) String nickname) {
+        TheUser theUser = this.userManager.getUserFromNickname(nickname);
+        TheResponse theResponse = new TheResponse();
+        if (theUser == null) {
+            return ResponseResultHelper.responseResultWithResultCodeError(
+                    ResultCode.USER_NAME_IS_INVALID, theResponse);
+        }
+        try {
+            this.emailService.sendPasswordForgotten(theUser);
+        } catch (EmailSendingException e) {
+            LOG.warn("Could not send password forgotten email: ", e.getMessage());
+            return ResponseResultHelper.createDefaultResponse();
+        }
+        return ResponseResultHelper.createForgottenPasswordResponse();
+    }
+
     @RequestMapping(value = "/forgottenPassword", method = RequestMethod.POST)
     @ResponseBody
     public TheResponse passwordUpdate(@RequestBody TheForgettableUser theForgettableUser) {
@@ -126,6 +147,18 @@ public class AccountController {
         }
         theUser.setUserPassword(theForgettableUser.getFirstPassword());
         return validateAndUpdateUser(theUser, new TheResponse(), theForgettableUser.getSecondPassword());
+    }
+
+    @RequestMapping(value = {"/passwordForgotten**"}, method = RequestMethod.GET)
+    public ModelAndView passwordForgotten(@RequestParam(value = "user", required = false) String user,
+                                          @RequestParam(value = "track", required = false) String uuid) {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("passwordForgotten");
+        if (!isEmpty(user) && !isEmpty(uuid)) {
+            model.addObject("nick", user);
+            model.addObject("uuid", uuid);
+        }
+        return model;
     }
 
     private TheResponse processUserUpdate(TheNewUser theNewUser) {
@@ -255,7 +288,7 @@ public class AccountController {
             } else {
                 String okMessage = String.format("User successfully created. Id: %s", user.getId());
                 LOG.info(okMessage);
-                result.assignResultCode(ResultCode.ALL_OK, okMessage, "Usuario creado satisfactoriamente");
+                result.assignResultCode(ResultCode.ALL_OK, okMessage, "Usuario creado satisfactoriamente, se ha enviado un correo electrónico para verificar la cuenta");
                 this.emailService.sendAccountConfirmationEmail(user);
             }
         } catch (EmailSendingException | ValidationException e) {
