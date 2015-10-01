@@ -13,6 +13,7 @@ aporlaofertaApp
                 $scope.filter = {};
                 $scope.displayFilterContent = "";
                 $scope.requestFilterApply = function () {
+                    $scope.processing=true;
                     requestManager.makePostCall($scope.filter, {}, configService.getEndpoint('get.filtered.offers'))
                         .success(function (data, status, headers, config) {
                             $scope.offerList = data.theOffers;
@@ -21,6 +22,8 @@ aporlaofertaApp
                             theResponse.description = data;
                             theResponse.responseResult = "error";
                             $rootScope.$broadcast('serverResponse', theResponse);
+                        }).finally(function(){
+                            $scope.processing=false;
                         });
                 };
                 $scope.cleanFilters = function () {

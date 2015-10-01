@@ -19,13 +19,13 @@
         </form>
     </div>
 
-    <div id="password-forgotten-submit" class="centeredForm">
+    <div id="password-forgotten-submit || processing" class="centeredForm">
         <button ng-disabled="!passwordForgottenContainer.$valid"
                 class="button small icon fa-key overheadButton passwordForgottenContainer"
                 ng-click="updatePassword(theUser)" class="overheadButton">
             Actualizar contrase&ntilde;a
         </button>
-        <button ng-disabled="!passwordForgottenContainer.$valid"
+        <button ng-disabled="!passwordForgottenContainer.$valid || processing"
                 class="button mini icon fa-key overheadButton passwordForgottenContainer"
                 ng-click="updatePassword(theUser)"></button>
     </div>

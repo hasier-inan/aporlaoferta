@@ -17,11 +17,11 @@
            value="${_csrf.token}"/>
 
     <div class="centeredForm" ng-hide="isPasswordForgotten">
-        <button ng-disabled="!loginForm.$valid" class="button small icon fa-sign-in overheadButton" name="loginSubmit"
+        <button ng-disabled="!loginForm.$valid || processing" class="button small icon fa-sign-in overheadButton" name="loginSubmit"
                 ng-click="loginForm.submit()">
             Identificarse
         </button>
-        <button ng-disabled="!loginForm.$valid" class="button mini icon fa-sign-in overheadButton"
+        <button ng-disabled="!loginForm.$valid || processing" class="button mini icon fa-sign-in overheadButton"
                 ng-click="loginForm.submit()"></button>
     </div>
 
@@ -29,11 +29,11 @@
 
 <form id="forgottenPasswordForm" name="forgottenPasswordForm" class="centeredForm">
     <div class="centeredForm" ng-show="isPasswordForgotten">
-        <button ng-disabled="!loginForm.$valid" class="button small icon fa-sign-in overheadButton blue"
+        <button ng-disabled="!loginForm.$valid || processing" class="button small icon fa-sign-in overheadButton blue"
                 name="forgottenPasswordSubmit" ng-click="requestPassword(login.username)">
             Solicitar nueva contrase&ntilde;a
         </button>
-        <button ng-disabled="!loginForm.$valid" class="button mini icon fa-sign-in overheadButton blue"
+        <button ng-disabled="!loginForm.$valid || processing" class="button mini icon fa-sign-in overheadButton blue"
                 ng-click="requestPassword(login.username)"></button>
     </div>
 

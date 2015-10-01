@@ -17,21 +17,25 @@ aporlaofertaApp
                 function ($scope, vcRecaptchaService, alertService, http, requestManager, configService) {
                     $scope.disableNickname = true;
                     $scope.theUser = {};
-                    $scope.validMail=/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
+                    $scope.validMail = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
                     $scope.publicKey = "6LdqHQoTAAAAAAht2VhkrLGU26eBOjL-nK9zXxcn";
                     $scope.createAccount = function (theUser) {
                         if (vcRecaptchaService.getResponse() === "") {
                             $scope.displayErrorMessageAndDisplayAccount();
                         }
                         else {
+                            $scope.processing = true;
                             requestManager.makePostCall(theUser, {recaptcha: vcRecaptchaService.getResponse()}, configService.getEndpoint('update.account'))
                                 .success(function (data, status, headers, config) {
                                     $scope.processAccountResponse(data);
                                 }).error(function (data, status, headers, config) {
                                     $scope.accountDefaultError();
+                                })
+                                .finally(function () {
+                                    $scope.processing = false;
                                 });
                             //$scope.theUser = {};
-                            $scope.overheadDisplay = false;
+                            //$scope.overheadDisplay = false;
                         }
                     }
                     $scope.getUserDetails = function () {
@@ -40,7 +44,7 @@ aporlaofertaApp
                                 $scope.theUser = data;
                             }).error(function (data, status, headers, config) {
                                 alertService.sendErrorMessage("No se ha podido obtener la información del usuario");
-                                $scope.customCloseCallback=false;
+                                $scope.customCloseCallback = false;
                             });
                     }
                     $scope.getUserDetails();

@@ -25,15 +25,18 @@ aporlaofertaApp
                         }
                         else {
                             delete $scope.theUser.oldPassword;
+                            $scope.processing = true;
                             requestManager.makePostCall(theUser, {recaptcha: vcRecaptchaService.getResponse()}, configService.getEndpoint('create.account'))
                                 .success(function (data, status, headers, config) {
                                     $scope.processAccountResponse(data);
                                 }).error(function (data, status, headers, config) {
                                     $scope.accountDefaultError();
+                                }).finally(function () {
+                                    $scope.processing = false;
                                 });
                             $scope.theUser = {};
-                            $scope.userPassword2={}
-                            $scope.overheadDisplay = false;
+                            $scope.userPassword2 = {}
+                            //$scope.overheadDisplay = false;
                         }
                     }
                     $scope.displayErrorMessageAndDisplayAccount = function () {

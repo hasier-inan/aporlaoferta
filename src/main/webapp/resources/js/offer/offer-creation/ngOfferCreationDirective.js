@@ -22,6 +22,7 @@ aporlaofertaApp
                             vcRecaptchaService.reload();
                         }
                         else {
+                            $scope.processing=true;
                             requestManager.makePostCall($scope.offer, {recaptcha: vcRecaptchaService.getResponse()}, configService.getEndpoint('create.offer'))
                                 .success(function (data, status, headers, config) {
                                     if (!alertService.isAllOk(data)) {
@@ -36,8 +37,10 @@ aporlaofertaApp
                                     }
                                 }).error(function (data, status, headers, config) {
                                     $scope.offerCreationError(alertService.getDefaultMessage());
+                                }).finally(function(){
+                                    $scope.processing=false;
                                 });
-                            $scope.overheadDisplay = false;
+                            //$scope.overheadDisplay = false;
                         }
                     };
 

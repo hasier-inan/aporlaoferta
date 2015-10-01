@@ -85,12 +85,12 @@
         </ul>
 
         <button
-                ng-disabled="!createOfferForm.$valid"
+                ng-disabled="!createOfferForm.$valid || processing"
                 ng-click="createOffer()"
                 class="button small icon fa-shopping-cart overheadButton">Crear oferta
         </button>
         <button type="submit"
-                ng-disabled="!createOfferForm.$valid"
+                ng-disabled="!createOfferForm.$valid || processing"
                 ng-click="createOffer()"
                 class="button mini icon fa-shopping-cart overheadButton"></button>
     </form>

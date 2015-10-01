@@ -6,7 +6,7 @@ aporlaofertaApp
         return {
             restrict: 'A',
             templateUrl: 'resources/js/offer/offer-specifications/offer-comments/' +
-                'offerComments.jsp',
+            'offerComments.jsp',
             scope: {
                 theComments: '=',
                 theOffer: '=',
@@ -32,19 +32,25 @@ aporlaofertaApp
                         return $scope.quoteActionEnable == id;
                     }
                     $scope.writeComment = function (comment, id) {
+                        $scope.processing = true;
                         requestManager.makePostCall(comment, {'offer': id}, configService.getEndpoint('create.comment'))
                             .success(function (data, status, headers, config) {
                                 $scope.sendMessageAndShowSpecifications(data.descriptionEsp);
                             }).error(function (data, status, headers, config) {
                                 $scope.sendDefaultErrorMessageAndShowSpecifications();
+                            }).finally(function () {
+                                $scope.processing = false;
                             });
                     };
                     $scope.quoteComment = function (comment, id) {
+                        $scope.processing = true;
                         requestManager.makePostCall(comment, {'quotedComment': id}, configService.getEndpoint('quote.comment'))
                             .success(function (data, status, headers, config) {
                                 $scope.sendMessageAndShowSpecifications(data.descriptionEsp);
                             }).error(function (data, status, headers, config) {
                                 $scope.sendDefaultErrorMessageAndShowSpecifications();
+                            }).finally(function () {
+                                $scope.processing = false;
                             });
                     }
 

@@ -17,11 +17,14 @@ aporlaofertaApp
                 function ($scope, http, requestManager, configService, alertService) {
                     $scope.theUser = {userNickname: $scope.nick, uuid: $scope.uuid};
                     $scope.updatePassword = function (theUser) {
+                        $scope.processing=true;
                         requestManager.makePostCall(theUser, {}, configService.getEndpoint('password.forgotten'))
                             .success(function (data, status, headers, config) {
                                 $scope.processPasswordResponse(data)
                             }).error(function (data, status, headers, config) {
                                 alertService.sendDefaultErrorMessage();
+                            }).finally(function(){
+                                $scope.processing=false;
                             });
                         $scope.theUser = {userNickname: $scope.nick, uuid: $scope.uuid};
                     }
@@ -32,7 +35,6 @@ aporlaofertaApp
                             };
                         }
                         alertService.sendErrorMessage(data.descriptionEsp);
-
                     }
                 }]
         }

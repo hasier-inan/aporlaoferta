@@ -26,10 +26,10 @@
         <ul>
             <a id="applyFilter" href="#promotion_list"
                class="button icon fa-filter whiteButton inline-block basic-margin"
-               ng-click="requestFilterApply()">Aplicar filtros</a>
+               ng-click="requestFilterApply()" ng-disabled="processing">Aplicar filtros</a>
             <a id="cleanFilter" href="#contentFilter"
                class="button icon fa-remove whiteButton inline-block basic-margin"
-               ng-click="cleanFilters()">Limpiar filtros</a>
+               ng-click="cleanFilters()" ng-disabled="processing">Limpiar filtros</a>
         </ul>
     </div>
 </header>
