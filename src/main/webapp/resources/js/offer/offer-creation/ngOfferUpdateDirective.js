@@ -2,20 +2,19 @@
  * Created by hasiermetal on 16/03/14.
  */
 aporlaofertaApp
-    .directive('ngOfferCreation', function () {
+    .directive('ngOfferUpdate', function () {
         return {
             restrict: 'A',
             templateUrl: 'resources/js/offer/offer-creation/offerCreation.html',
             scope: {
                 overheadDisplay: '=',
                 customCloseCallback: '=',
-                displayCallback: '='
+                displayCallback: '=',
+                offer: "="
             },
             controller: ['$scope', 'offerManager', 'requestManager', 'configService', 'alertService', 'vcRecaptchaService',
                 function ($scope, offerManager, requestManager, configService, alertService, vcRecaptchaService) {
-                    $scope.offer = {};
                     $scope.publicKey = "6LdqHQoTAAAAAAht2VhkrLGU26eBOjL-nK9zXxcn";
-                    $scope.resetCategory = true;
                     $scope.createOffer = function () {
                         if (vcRecaptchaService.getResponse() === "") {
                             $scope.offerCreationError("Por favor, haga click en el captcha para demostrar que no es un robot");

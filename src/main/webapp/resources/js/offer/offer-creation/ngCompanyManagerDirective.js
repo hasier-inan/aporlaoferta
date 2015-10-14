@@ -8,7 +8,7 @@ aporlaofertaApp
             templateUrl: 'resources/js/offer/offer-creation/companyManagement.html',
             scope: {
                 reset: '=',
-                selectedcompany:'='
+                selectedcompany: '='
             },
             controller: ['$rootScope', '$scope', 'requestManager', 'configService', function ($rootScope, $scope, requestManager, configService) {
                 $scope.populateCompanyList = function () {
@@ -24,33 +24,40 @@ aporlaofertaApp
                         });
                 }
                 $scope.onCompanyChange = function (company) {
-                    $scope.selectedcompany=company;
+                    $scope.selectedcompany = company;
                 }
                 $scope.updateSelectedCompany = function (isSelected) {
                     if (!isSelected) {
                         $scope.onCompanyChange($scope.company);
                     }
                     else {
-                        $scope.selectedcompany=$scope.offerCompany;
+                        $scope.selectedcompany = $scope.offerCompany;
                     }
                 }
                 $scope.$watch('reset', function () {
                     if ($scope.reset) {
-                        $scope.company="";
+                        $scope.company = "";
                     }
                     $scope.reset = false;
                 });
                 $scope.$watch('offerCompany.companyName', function () {
-                    $scope.selectedcompany=$scope.offerCompany;
+                    $scope.selectedcompany = $scope.offerCompany;
                 });
                 $scope.$watch('offerCompany.companyUrl', function () {
-                    $scope.selectedcompany=$scope.offerCompany;
+                    $scope.selectedcompany = $scope.offerCompany;
                 });
-                $scope.isCompanySelected=function(){
+
+                $scope.$watch('selectedcompany', function () {
+                    if ($scope.selectedcompany != undefined) {
+                        $scope.company = $scope.selectedcompany;
+                    }
+                });
+
+                $scope.isCompanySelected = function () {
                     return !$scope.brandNewCompany
-                        && $scope.company!=""
-                        && $scope.company!=null
-                        && $scope.company!=undefined;
+                        && $scope.company != ""
+                        && $scope.company != null
+                        && $scope.company != undefined;
                 }
                 $scope.populateCompanyList();
             }]

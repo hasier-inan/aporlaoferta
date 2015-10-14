@@ -43,9 +43,19 @@
             </div>
             <div class="offerSpecificationsRightContainer containerSplitter">
                 <div class="offerSpecificationsTitle">
-                    <h1><a href="http://{{offer.offerLink}}" target="_blank">{{offer.offerTitle}}:
-                        {{offer.finalPrice}}€</a></h1>
-
+                    <h1>
+                        <sec:authorize ifAllGranted="ROLE_USER">
+                            <sec:authentication var="nickname" property="principal.username"/>
+                            <div class="offer-specifications edit-offer"
+                                 ng-show="offer.offerUser.userNickname == '${nickname}'">
+                                <button class="button small icon fa-pencil whiteButton green-background" ng-click="updateOffer(offer)">
+                                    Editar oferta
+                                </button>
+                            </div>
+                        </sec:authorize>
+                        <a href="http://{{offer.offerLink}}" target="_blank">{{offer.offerTitle}}:
+                            {{offer.finalPrice}}€</a>
+                    </h1>
                     <div class="offerCompany offerSpecificationsBox">Compañía: {{offer.offerCompany.companyName}}</div>
                     <div class="offerSpecificationsOriginalPrice offerSpecificationsBox" ng-show="offer.originalPrice">
                         Precio original: {{offer.originalPrice}}€
@@ -63,7 +73,8 @@
                     <pre class="parsed-text">{{offer.offerDescription}}</pre>
                 </div>
                 <div class="offerSpecificationsLink">
-                    <a href="http://{{offer.offerLink}}" target="_blank">ir a la oferta <i class="fa fa-cart-arrow-down"></i></a>
+                    <a href="http://{{offer.offerLink}}" target="_blank">ir a la oferta <i
+                            class="fa fa-cart-arrow-down"></i></a>
                 </div>
 
             </div>

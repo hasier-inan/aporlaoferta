@@ -8,7 +8,7 @@ aporlaofertaApp
             templateUrl: 'resources/js/offer/offer-creation/offerCategoryManagement.html',
             scope: {
                 reset: '=',
-                selectedcategory:'='
+                selectedcategory: '='
             },
             controller: ['$rootScope', '$scope', 'requestManager', 'configService', function ($rootScope, $scope, requestManager, configService) {
                 $scope.offerCategories = {};
@@ -24,7 +24,7 @@ aporlaofertaApp
                         });
                 }
                 $scope.onCategoryChange = function (category) {
-                    $scope.selectedcategory=category;
+                    $scope.selectedcategory = category;
                 }
                 $scope.populateAllCategories();
                 $scope.$watch('reset', function () {
@@ -33,10 +33,13 @@ aporlaofertaApp
                     }
                     $scope.reset = false;
                 });
-                $scope.isCategorySelected=function(){
-                    return $scope.category!=""
-                        && $scope.category!=null
-                        && $scope.category!=undefined;
+                $scope.$watch('selectedcategory', function () {
+                    $scope.category = $scope.selectedcategory;
+                });
+                $scope.isCategorySelected = function () {
+                    return $scope.category != ""
+                        && $scope.category != null
+                        && $scope.category != undefined;
                 }
 
             }]

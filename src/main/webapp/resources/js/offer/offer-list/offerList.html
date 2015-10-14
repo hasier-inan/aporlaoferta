@@ -19,7 +19,6 @@
     </div>
 </header>
 
-<!--TODO: Separete into another view and directive and controller-->
 <section id="contentFilter" class="wrapper style2 special" ng-offer-filter="offerFilter"
          offer-list="offerList"></section>
 
@@ -54,10 +53,10 @@
                     <div>
                         <a class="button get-offer hot-background icon fa-fire whiteButton"
                            href="http://{{offer.offerLink}}" target="_blank">obtener oferta</a>
-                        <button class="button icon fa-sign-in moreDetailButton" ng-click="showSpecifications(offer.id)">
+                        <a class="button icon fa-sign-in moreDetailButton" ng-click="showSpecifications(offer.id)">
                             m&aacute;s
                             detalle
-                        </button>
+                        </a>
                     </div>
                 </div>
             </section>
@@ -70,6 +69,6 @@
         </div>
     </div>
     <div class="loading-dialogue">
-        <i class="fa fa-refresh loading" ng-class="!moreOffersLoading?'hideLoading':''"></i>
+        <i class="fa fa-refresh loadingdialogue" ng-class="!moreOffersLoading?'hideLoading':''"></i>
     </div>
 </section>

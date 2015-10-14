@@ -1,7 +1,7 @@
 <div class="select-wrapper overheadField" ng-show="!brandNewCompany">
     <select name="offerCompanies"
             id="offerCompaniesSelect"
-            ng-options="company as company.companyName for company in offerCompanies"
+            ng-options="comp as comp.companyName for comp in offerCompanies track by comp.companyName"
             ng-model="company" ng-change="onCompanyChange(company)"
             class="overheadField" ng-class="isCompanySelected()?'ng-valid':'ng-invalid'">
         <option value selected="selected">- EMPRESA -</option>

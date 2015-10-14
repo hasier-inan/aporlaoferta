@@ -12,8 +12,6 @@ div.containerSplitter {
     vertical-align: top;
 }
 
-div.offerSpecificationsTitle > h1 > a:hover,
-div.offerSpecificationsLink > a:hover,
 a.quoteAction:hover {
     background-color: rgba(0, 0, 0, 0.3);
     text-decoration: none;
@@ -21,9 +19,20 @@ a.quoteAction:hover {
 
 div.offerSpecificationsLink > a
 {
+    color: #FFFFFF;
     text-decoration: none;
     background-color: rgba(0, 0, 0, 0.3);
     font-size: 2em;
+}
+div.offerSpecificationsLink > a:hover,
+div.offerSpecificationsTitle > h1 > a:hover{
+    text-decoration: none;
+    color: #f38630;
+}
+div.offer-specifications.edit-offer,
+div.offer-specifications.edit-offer >*{
+    font-size: .6em;
+    margin: .3em 0 .5em 0;
 }
 
 div.offerSpecificationsTitle > h1 {

@@ -59,6 +59,7 @@
     <script src="resources/js/offer/offer-specifications/offer-comments/ngOfferComments.js"></script>
     <script src="resources/js/offer/offer-specifications/offer-comments/ngOfferCommentsQuotes.js"></script>
     <script src="resources/js/offer/offer-creation/ngOfferCreationDirective.js"></script>
+    <script src="resources/js/offer/offer-creation/ngOfferUpdateDirective.js"></script>
     <script src="resources/js/offer/offer-creation/ngCompanyManagerDirective.js"></script>
     <script src="resources/js/offer/offer-creation/ngOfferCategoryManagerDirective.js"></script>
     <script src="resources/js/offer/offer-filter/ngOfferFilterDirective.js"></script>

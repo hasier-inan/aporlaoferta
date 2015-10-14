@@ -13,6 +13,8 @@
         <sec:authorize ifAllGranted="ROLE_USER">
             <div ng-offer-creation="offerCreation" ng-show="displayOfferCreation"
                  overhead-display="overheadVisible" custom-close-callback="customCloseCallback" display-callback="displayOfferCreate"></div>
+            <div ng-offer-update="offerUpdate" ng-show="displayOfferToBeUpdate" offer="offerSpecifications[0]"
+                 overhead-display="overheadVisible" custom-close-callback="customCloseCallback" display-callback="displayOfferUpdate"></div>
             <div ng-account-update="accountUpdate" ng-show="displayAccountUpdate"
                  overhead-display="overheadVisible" custom-close-callback="customCloseCallback" display-callback="displayAccountUpdateForm"></div>
         </sec:authorize>
@@ -28,7 +30,7 @@
         </li>
     </ul>
 </div>
-<div id="overheadContainer" class="overhead_container " ng-show="overheadVisible" ng-keypress="keyHandler($event)" ng-click="closeOverheadDisplay()"></div>
+<div id="overheadContainer" class="overhead_container " ng-show="overheadVisible" ng-keypress="keyHandler($event)" ng-click="justCloseOverheadDisplay()"></div>
 <ul class="actions top_header">
     <sec:authorize ifNotGranted="ROLE_USER">
         <li>

@@ -372,7 +372,7 @@ button.more-offers-button {
     display: none !important;
 }
 
-i.loading {
+i.loadingdialogue {
     font-family: FontAwesome;
     font-size: 2em !important;
     color: #828282 !important;
@@ -498,7 +498,7 @@ a#applyFilter, a#cleanFilter {
 }
 
 a#applyFilter:hover, a#cleanFilter:hover {
-    text-decoration: no-underline !important;
+    text-decoration: none !important;
     background-color: #a7dbd8;
 }
 
@@ -788,6 +788,7 @@ pre.parsed-text.list {
 }
 
 .moreDetailButton:hover {
+    text-decoration: none;
     background-color: #a7dbd8 !important;
 }
 

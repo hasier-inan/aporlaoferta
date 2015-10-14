@@ -9,7 +9,7 @@ aporlaofertaApp
             link: function (scope, elem, attrs) {
             },
             controller: ['$scope', '$timeout', function ($scope, $timeout) {
-                $scope.customCloseCallback={};
+                $scope.customCloseCallback = {};
                 $scope.theResponse = {};
                 $scope.displayLogin = function () {
                     $scope.setDefaultVisibility();
@@ -31,6 +31,11 @@ aporlaofertaApp
                     $scope.displayOfferCreation = true;
                     $scope.overheadVisible = true;
                 };
+                $scope.displayOfferUpdate = function () {
+                    $scope.setDefaultVisibility();
+                    $scope.displayOfferToBeUpdate = true;
+                    $scope.overheadVisible = true;
+                };
                 $scope.displayOfferDetails = function () {
                     $scope.setDefaultVisibility();
                     $scope.displayOfferSpecifications = true;
@@ -44,6 +49,7 @@ aporlaofertaApp
                 $scope.setDefaultVisibility = function () {
                     $scope.overheadVisible = false;
                     $scope.displayOfferCreation = false;
+                    $scope.displayOfferToBeUpdate = false;
                     $scope.displayAccountLogin = false;
                     $scope.displayAccountCreation = false;
                     $scope.displayAccountUpdate = false;
@@ -54,12 +60,20 @@ aporlaofertaApp
                     $scope.overheadVisible = false;
                     if (typeof customCloseCallback == "function") {
                         customCloseCallback();
-                        $scope.customCloseCallback={};
+                        $scope.customCloseCallback = {};
                     }
                 };
                 $scope.$on('offerSpecifications', function (event, args) {
                     $scope.offerSpecifications = args;
                     $scope.displayOfferDetails();
+
+                });
+                $scope.$on('updateTheOffer', function (event, args) {
+                    $scope.offerSpecifications = [args];
+                    $scope.customCloseCallback=function(){
+                        $scope.displayOfferDetails();
+                    }
+                    $scope.displayOfferUpdate();
 
                 });
                 $scope.$on('serverResponse', function (event, args) {
@@ -69,10 +83,16 @@ aporlaofertaApp
                 });
                 $scope.$on('keydownControl', function (event, args) {
                     var keyDownCode = args;
-                    if(keyDownCode==27){
-                        $scope.closeOverheadDisplay();
+                    if (keyDownCode == 27) {
+                        $scope.justCloseOverheadDisplay();
                     }
                 });
+
+                $scope.justCloseOverheadDisplay=function(){
+                    $scope.customCloseCallback={};
+                    $scope.closeOverheadDisplay();
+                }
+
                 $scope.checkForErrors = function () {
                     if (document.getElementById("errorMessage")) {
                         var errorMessage = document.getElementById("errorMessage").value;
