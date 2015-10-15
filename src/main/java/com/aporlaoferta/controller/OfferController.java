@@ -192,7 +192,15 @@ public class OfferController {
         } catch (ValidationException | NumberFormatException e) {
             return ResponseResultHelper.
                     responseResultWithResultCodeError(ResultCode.UPDATE_OFFER_VALIDATION_ERROR, new TheResponse());
+        } catch (MalformedURLException e) {
+            LOG.error("Could not add custom affiliation id to offer url because url is invalid: ", e);
+        } catch (UnsupportedEncodingException e) {
+            LOG.error("Could not add custom affiliation id to offer url because url is wrongly encoded: ", e);
+        } catch (UnhealthyException e) {
+            LOG.error("Could not add custom affiliation id to offer url because url is unhealthy: ", e);
+            return ResponseResultHelper.createUnhealthyResponse();
         }
+        return ResponseResultHelper.createDefaultResponse();
     }
 
     @RequestMapping(value = "/getOfferCategories", method = RequestMethod.POST)
@@ -233,17 +241,19 @@ public class OfferController {
         theOfferResponse.setResponseResult(ResultCode.ALL_OK.getResponseResult());
     }
 
-    private TheResponse updateOfferFromOriginal(TheOffer theOffer, TheOffer originalOffer) {
+    private TheResponse updateOfferFromOriginal(TheOffer theOffer, TheOffer originalOffer) throws UnsupportedEncodingException, UnhealthyException, MalformedURLException {
         String nickName = this.userManager.getUserNickNameFromSession();
         TheResponse result = new TheResponse();
         if (!originalOffer.getOfferUser().getUserNickname().equals(nickName)) {
             return ResponseResultHelper.
                     responseResultWithResultCodeError(ResultCode.INVALID_OWNER_ERROR, result);
         }
-        return validateAndPersistOffer(updateOfferWithLastDetails(theOffer, originalOffer));
+        TheOffer updatedOffer = updateOfferWithLastDetails(theOffer, originalOffer);
+        includeAffiliationLink(updatedOffer);
+        return validateAndPersistOffer(updatedOffer);
     }
 
-    private TheOffer updateOfferWithLastDetails(TheOffer theUpdatedOffer, TheOffer originalOffer) {
+    private TheOffer updateOfferWithLastDetails(TheOffer theUpdatedOffer, TheOffer originalOffer) throws UnsupportedEncodingException, UnhealthyException, MalformedURLException {
         originalOffer.setFinalPrice(theUpdatedOffer.getFinalPrice());
         originalOffer.setOfferTitle(theUpdatedOffer.getOfferTitle());
         if (!originalOffer.getOfferCompany().getCompanyName().equals(
