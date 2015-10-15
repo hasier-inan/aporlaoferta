@@ -40,6 +40,7 @@ public class ControllerTestIntegration {
 
     protected static final String REGULAR_USER = "regularUser";
     protected static final String ANOTHER_USER = "anotherUser";
+    protected static final String ANONYMOUS="anonymous";
 
     @Autowired
     protected UserManager userManagerTest;

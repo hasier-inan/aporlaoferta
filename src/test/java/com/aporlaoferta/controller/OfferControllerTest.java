@@ -110,9 +110,6 @@ public class OfferControllerTest {
     public void testUpdateOfferHackedForDifferentUserOfferReturnsCorrespondingError() {
         String offerId = "1";
         when(this.offerManager.getOfferFromId(Long.parseLong(offerId))).thenReturn(OfferBuilderManager.aBasicOfferWithoutId().build());
-        doThrow(new ValidationException("error")).when(this.offerValidatorHelper)
-                .validateOffer((TheOffer) anyObject());
-
         TheResponse result = this.offerController.updateOffer(new TheOffer(), offerId);
         assertTrue(result.getResponseResult() == ResultCode.INVALID_OWNER_ERROR.getResponseResult());
     }

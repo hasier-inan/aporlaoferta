@@ -25,17 +25,8 @@ public class OfferControllerTestIntegration extends ControllerTestIntegration {
 
     @Test
     public void testOfferCreationIsOnlyAllowedIfIdentified() throws Exception {
-        CsrfToken csrfToken = CsrfTokenBuilder.generateAToken();
         String jsonRequest = RequestMap.getJsonFromMap(OfferBuilderManager.aBasicOfferWithoutId().build());
-        this.mockMvc.perform(post("/createOffer")
-                .sessionAttr("_csrf", csrfToken)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonRequest)
-                .param("_csrf", csrfToken.getToken())
-                .param("recaptcha","recaptcha")
-                .sessionAttrs(SessionAttributeBuilder
-                        .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
-        )
+        performPostRequestToCreateOffer(jsonRequest, ANONYMOUS)
                 .andExpect(status().is3xxRedirection());
     }
 

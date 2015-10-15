@@ -134,9 +134,7 @@ public class OfferController {
     }
 
     private TheResponse processOfferCreation(TheOffer thatOffer) {
-        includeDefaultImage(thatOffer);
-        includeOfferInUser(thatOffer);
-        thatOffer.setOfferCreatedDate(new Date());
+        includeInitialValues(thatOffer);
         updateCompany(thatOffer);
         try {
             includeAffiliationLink(thatOffer);
@@ -150,6 +148,14 @@ public class OfferController {
             return ResponseResultHelper.createUnhealthyResponse();
         }
         return ResponseResultHelper.createDefaultResponse();
+    }
+
+    private void includeInitialValues(TheOffer thatOffer) {
+        includeDefaultImage(thatOffer);
+        includeOfferInUser(thatOffer);
+        thatOffer.setOfferPositiveVote(0L);
+        thatOffer.setOfferNegativeVote(0L);
+        thatOffer.setOfferCreatedDate(new Date());
     }
 
     private void includeDefaultImage(TheOffer thatOffer) {
@@ -176,17 +182,17 @@ public class OfferController {
     @ResponseBody
     public TheResponse updateOffer(@RequestBody TheOffer theOffer,
                                    @RequestParam(value = "offerId", required = true) String offerId) {
-        TheOffer originalOffer = null;
         try {
-            originalOffer = this.offerManager.getOfferFromId(Long.parseLong(offerId));
-        } catch (NumberFormatException e) {
-            LOG.error("Could not parse invalid offer id: ", e);
-        }
-        if (originalOffer == null) {
+            TheOffer originalOffer = this.offerManager.getOfferFromId(Long.parseLong(offerId));
+            if (originalOffer == null) {
+                throw new ValidationException("Invalid offer id");
+            }
+            this.offerValidatorHelper.validateOffer(theOffer);
+            return updateOfferFromOriginal(theOffer, originalOffer);
+        } catch (ValidationException | NumberFormatException e) {
             return ResponseResultHelper.
                     responseResultWithResultCodeError(ResultCode.UPDATE_OFFER_VALIDATION_ERROR, new TheResponse());
         }
-        return updateOfferFromOriginal(theOffer, originalOffer);
     }
 
     @RequestMapping(value = "/getOfferCategories", method = RequestMethod.POST)
@@ -259,8 +265,7 @@ public class OfferController {
         TheResponse result = new TheResponse();
         try {
             this.offerValidatorHelper.validateOffer(thatOffer);
-            thatOffer.setOfferPositiveVote(0L);
-            thatOffer.setOfferNegativeVote(0L);
+
             saveOfferAndUpdateResult(thatOffer, result);
         } catch (ValidationException e) {
             String resultDescription = ResultCode.CREATE_OFFER_VALIDATION_ERROR.getResultDescription();
