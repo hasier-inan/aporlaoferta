@@ -6,6 +6,7 @@ configManager.service('configService', [function () {
     var GET_HOTTEST_OFFERS_ENDPOINT = "getHottestOffers";
     var GET_OFFER_ENDPOINT = "getOffer";
     var CREATE_OFFER_ENDPOINT = "createOffer";
+    var UPDATE_OFFER_ENDPOINT = "updateOffer";
     var CREATE_ACCOUNT_ENDPOINT = "createUser";
     var UPDATE_ACCOUNT_ENDPOINT = "updateUser";
     var GET_ACCOUNT_DETAILS_ENDPOINT = "accountDetails";
@@ -27,6 +28,7 @@ configManager.service('configService', [function () {
         'get.hottest.offers': GET_HOTTEST_OFFERS_ENDPOINT,
         'get.offer': GET_OFFER_ENDPOINT,
         'create.offer': CREATE_OFFER_ENDPOINT,
+        'update.offer': UPDATE_OFFER_ENDPOINT,
         'create.account': CREATE_ACCOUNT_ENDPOINT,
         'update.account': UPDATE_ACCOUNT_ENDPOINT,
         'get.account.details': GET_ACCOUNT_DETAILS_ENDPOINT,

@@ -181,9 +181,18 @@ public class OfferController {
     @RequestMapping(value = "/updateOffer", method = RequestMethod.POST)
     @ResponseBody
     public TheResponse updateOffer(@RequestBody TheOffer theOffer,
-                                   @RequestParam(value = "offerId", required = true) String offerId) {
+                                   @RequestParam(value = "recaptcha", required = true) String reCaptcha) {
+        if (this.captchaHttpManager.validHuman(reCaptcha)) {
+            return processOfferUpdate(theOffer);
+        } else {
+            return ResponseResultHelper.createInvalidCaptchaResponse();
+        }
+    }
+
+    private TheResponse processOfferUpdate(TheOffer theOffer) {
         try {
-            TheOffer originalOffer = this.offerManager.getOfferFromId(Long.parseLong(offerId));
+            Long offerId = isEmpty(theOffer.getId()) ? -1L : theOffer.getId();
+            TheOffer originalOffer = this.offerManager.getOfferFromId(offerId);
             if (originalOffer == null) {
                 throw new ValidationException("Invalid offer id");
             }

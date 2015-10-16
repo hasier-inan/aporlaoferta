@@ -3,11 +3,7 @@ package com.aporlaoferta.controller;
 import com.aporlaoferta.data.CompanyBuilderManager;
 import com.aporlaoferta.data.OfferBuilderManager;
 import com.aporlaoferta.data.UserBuilderManager;
-import com.aporlaoferta.model.OfferFilters;
-import com.aporlaoferta.model.TheOffer;
-import com.aporlaoferta.model.TheOfferResponse;
-import com.aporlaoferta.model.TheResponse;
-import com.aporlaoferta.model.TheUser;
+import com.aporlaoferta.model.*;
 import com.aporlaoferta.model.validators.ValidationException;
 import com.aporlaoferta.service.CaptchaHTTPManager;
 import com.aporlaoferta.service.CompanyManager;
@@ -29,15 +25,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static org.hamcrest.Matchers.any;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.anyObject;
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 /**
  * Created by hasiermetal on 29/01/15.
@@ -108,9 +101,11 @@ public class OfferControllerTest {
 
     @Test
     public void testUpdateOfferHackedForDifferentUserOfferReturnsCorrespondingError() {
-        String offerId = "1";
-        when(this.offerManager.getOfferFromId(Long.parseLong(offerId))).thenReturn(OfferBuilderManager.aBasicOfferWithoutId().build());
-        TheResponse result = this.offerController.updateOffer(new TheOffer(), offerId);
+        Long offerId = 1L;
+        when(this.offerManager.getOfferFromId(offerId)).thenReturn(OfferBuilderManager.aBasicOfferWithoutId().build());
+        TheOffer theOffer = new TheOffer();
+        theOffer.setId(offerId);
+        TheResponse result = this.offerController.updateOffer(theOffer, "captcha");
         assertTrue(result.getResponseResult() == ResultCode.INVALID_OWNER_ERROR.getResponseResult());
     }
 
@@ -126,16 +121,18 @@ public class OfferControllerTest {
 
     @Test
     public void testSuccessCodeIsReturnedWhenUpdateProcessRunsCorrectly() throws Exception {
-        String offerId = "1";
+        Long offerId = 1L;
         String nickname = "JohnWick";
         TheOffer offerFromUser = OfferBuilderManager
                 .aBasicOfferWithoutId().withUser(UserBuilderManager.aRegularUserWithNickname(nickname).build())
                 .build();
-        when(this.offerManager.getOfferFromId(Long.parseLong(offerId))).thenReturn(offerFromUser);
+        when(this.offerManager.getOfferFromId(offerId)).thenReturn(offerFromUser);
         when(this.userManager.getUserNickNameFromSession()).thenReturn(nickname);
         when(this.userManager.saveUser(offerFromUser.getOfferUser())).thenReturn(makeAProperUserWithLastOffer());
+        TheOffer offerToBeUpdated = OfferBuilderManager.aBasicOfferWithId(offerId).build();
+        String captcha = "cappp";
         TheResponse result = this.offerController.updateOffer(
-                OfferBuilderManager.aBasicOfferWithoutId().build(), offerId);
+                offerToBeUpdated, captcha);
         assertTrue(result.getResponseResult() == ResultCode.ALL_OK.getResponseResult());
     }
 
