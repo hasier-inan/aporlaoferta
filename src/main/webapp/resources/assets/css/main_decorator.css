@@ -13,7 +13,7 @@ div.overheadDisplayLight{
     top: 0;
 }
 
-div#password-forgotten-submit button.mini {
+div#password-forgotten-submit .mini {
     box-shadow: inset 0 0 0 2px #e6e6e6;
     text-align: center;
     padding-left: 0.7em;
@@ -185,20 +185,21 @@ button.close_button {
     margin: -2.5em 1em 0 0 !important;
 }
 
-button.close_button.mini {
+button.close_button.mini,
+a.close_button.mini {
     margin: -2.5em 1em 0 0 !important;
 }
 
-button.overheadButton.blue{
+.overheadButton.blue{
     background-color: #43638e !important;
 }
-div button.overheadButton {
+div .overheadButton {
     background-color: #F35E1E;
     color: #ffffff !important;
     display: inline-block;
 }
 
-div button.overheadButton.mini {
+div .overheadButton.mini {
     width: 3em;
     border-radius: 100%;
     margin: 0 !important;
@@ -255,11 +256,11 @@ button.recaptcha {
     background-color: #4e8cf5 !important;
 }
 
-ul.top_header > button.mini,
-ul.top_header li > button.mini,
-div.profileForm > button.mini,
-div.thumbnailButtons > button.mini,
-div.commentQuoteButtons > button.mini {
+ul.top_header > .mini,
+ul.top_header li > .mini,
+div.profileForm > .mini,
+div.thumbnailButtons > .mini,
+div.commentQuoteButtons > .mini {
     width: 3em;
     border-radius: 100%;
     margin: 0;
@@ -281,30 +282,32 @@ div.thumbnailButtons > button {
 @media screen and (max-width: 480px) and (orientation: portrait) {
     ul.top_header > button.small,
     ul.top_header li > button.small,
-    div button.overheadButton.small,
+    div .overheadButton.small,
     div.profileForm > button.small,
     div.thumbnailButtons > button.small,
     div.commentQuoteButtons > button.small {
         display: none;
     }
 
-    ul.top_header > button.mini,
-    ul.top_header li > button.mini,
-    div.commentQuoteButtons > button.mini {
+    ul.top_header > .mini,
+    ul.top_header li > .mini,
+    div.commentQuoteButtons > .mini {
         display: block;
     }
 
-    div button.overheadButton.mini,
-    div.profileForm > button.mini,
-    button.mini.inline {
+    div .overheadButton.mini,
+    div.profileForm > .mini,
+    button.mini.inline,
+    a.mini.inline {
         display: inline-block !important;
     }
 
-    div.thumbnailButtons > button.mini {
+    div.thumbnailButtons > .mini {
         display: inline-block;
     }
 
-    button.mini.inline {
+    button.mini.inline,
+    a.mini.inline {
         padding-left: .7em !important;
     }
 
@@ -770,6 +773,10 @@ pre.parsed-text.list {
 
 .green-background {
     background-color: #97d779;
+}
+
+.dark-green-background {
+    background-color: #b7d77a;
 }
 
 .get-offer {

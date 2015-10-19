@@ -2293,6 +2293,7 @@ input[type="submit"].icon,
 input[type="reset"].icon,
 input[type="button"].icon,
 button.icon,
+a.icon,
 .button.icon {
     padding-left: 1.35em;
 }
@@ -2301,6 +2302,7 @@ input[type="submit"].icon:before,
 input[type="reset"].icon:before,
 input[type="button"].icon:before,
 button.icon:before,
+a.icon:before,
 .button.icon:before {
     margin-right: 0.5em;
 }

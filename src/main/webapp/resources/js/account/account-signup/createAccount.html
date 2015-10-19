@@ -43,13 +43,8 @@
                     <label for="createAccountCaptcha" class="overhead-hint-label">Antes de continuar soluciona el
                         captcha para probar que no eres un robot</label>
 
-                    <div id="createAccountCaptcha" vc-recaptcha key="publicKey" class="offerCaptcha"></div>
+                    <div id="createAccountCaptcha" on-create="setWidgetId(widgetId)" vc-recaptcha key="publicKey" class="offerCaptcha"></div>
 
-                    <button ng-click="restartRecaptcha()" class="button small icon fa-refresh overheadButton recaptcha">
-                        refrescar reCaptcha
-                    </button>
-                    <button ng-click="restartRecaptcha()"
-                            class="button mini icon fa-refresh overheadButton recaptcha"></button>
                 </li>
             </ul>
         </form>

@@ -17,15 +17,16 @@ aporlaofertaApp
                 function ($scope, vcRecaptchaService, alertService, http, requestManager, configService) {
                     $scope.disableNickname = true;
                     $scope.theUser = {};
+                    $scope.widgetId = null;
                     $scope.validMail = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
                     $scope.publicKey = "6LdqHQoTAAAAAAht2VhkrLGU26eBOjL-nK9zXxcn";
                     $scope.createAccount = function (theUser) {
-                        if (vcRecaptchaService.getResponse() === "") {
+                        if (vcRecaptchaService.getResponse($scope.widgetId) === "") {
                             $scope.displayErrorMessageAndDisplayAccount();
                         }
                         else {
                             $scope.processing = true;
-                            requestManager.makePostCall(theUser, {recaptcha: vcRecaptchaService.getResponse()}, configService.getEndpoint('update.account'))
+                            requestManager.makePostCall(theUser, {recaptcha: vcRecaptchaService.getResponse($scope.widgetId)}, configService.getEndpoint('update.account'))
                                 .success(function (data, status, headers, config) {
                                     $scope.processAccountResponse(data);
                                 }).error(function (data, status, headers, config) {
@@ -51,7 +52,7 @@ aporlaofertaApp
 
                     $scope.displayErrorMessageAndDisplayAccount = function () {
                         alertService.sendErrorMessage("Por favor, haga click en el captcha para demostrar que no es un robot");
-                        vcRecaptchaService.reload();
+                        $scope.restartRecaptcha();
                         $scope.customCloseCallback = $scope.displayCallback;
                     }
                     $scope.processAccountResponse = function (data) {
@@ -61,19 +62,26 @@ aporlaofertaApp
                         else {
                             alertService.sendErrorMessage(data.descriptionEsp);
                         }
-                        vcRecaptchaService.reload();
+                        $scope.restartRecaptcha();
                     }
 
                     $scope.accountDefaultError = function () {
                         alertService.sendDefaultErrorMessage();
-                        vcRecaptchaService.reload();
+                        $scope.restartRecaptcha();
                         $scope.customCloseCallback = $scope.displayCallback;
                     }
 
                     $scope.accountError = function (customMessage) {
                         alertService.sendErrorMessage(customMessage);
-                        vcRecaptchaService.reload();
+                        $scope.restartRecaptcha();
                         $scope.customCloseCallback = $scope.displayCallback;
+                    }
+                    $scope.setWidgetId = function (widgetId) {
+                        console.info('Created widget ID: %s', widgetId);
+                        $scope.widgetId = widgetId;
+                    };
+                    $scope.restartRecaptcha = function () {
+                        vcRecaptchaService.reload($scope.widgetId);
                     }
                 }]
         }

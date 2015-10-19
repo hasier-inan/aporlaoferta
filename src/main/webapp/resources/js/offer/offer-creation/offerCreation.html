@@ -78,9 +78,7 @@
         <ul class="regular-bottom">
             <li>
                 <label for="createOfferCaptcha" class="overhead-hint-label">Antes de continuar soluciona el captcha para probar que no eres un robot</label>
-                <div id="createOfferCaptcha" vc-recaptcha key="publicKey" class="offerCaptcha"></div>
-                <button ng-click="restartRecaptcha()" class="button small icon fa-refresh overheadButton recaptcha">refrescar reCaptcha</button>
-                <button ng-click="restartRecaptcha()" class="button mini icon fa-refresh overheadButton recaptcha"></button>
+                <div id="createOfferCaptcha" on-create="setWidgetId(widgetId)" vc-recaptcha key="publicKey" class="offerCaptcha"></div>
             </li>
         </ul>
 
@@ -89,7 +87,7 @@
                 ng-click="createOffer()"
                 class="button small icon fa-shopping-cart overheadButton">Crear oferta
         </button>
-        <button type="submit"
+        <button
                 ng-disabled="!createOfferForm.$valid || processing"
                 ng-click="createOffer()"
                 class="button mini icon fa-shopping-cart overheadButton"></button>

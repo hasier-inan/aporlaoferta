@@ -16,17 +16,18 @@ aporlaofertaApp
             controller: ['$scope', 'requestManager', 'configService', 'vcRecaptchaService', 'alertService',
                 function ($scope, requestManager, configService, vcRecaptchaService, alertService) {
                     $scope.theUser = {};
+                    $scope.widgetId = null;
                     $scope.publicKey = "6LdqHQoTAAAAAAht2VhkrLGU26eBOjL-nK9zXxcn";
                     $scope.disableNickname = false;
                     $scope.validMail = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
                     $scope.createAccount = function (theUser) {
-                        if (vcRecaptchaService.getResponse() === "") {
+                        if (vcRecaptchaService.getResponse($scope.widgetId) === "") {
                             $scope.displayErrorMessageAndDisplayAccount();
                         }
                         else {
                             delete $scope.theUser.oldPassword;
                             $scope.processing = true;
-                            requestManager.makePostCall(theUser, {recaptcha: vcRecaptchaService.getResponse()}, configService.getEndpoint('create.account'))
+                            requestManager.makePostCall(theUser, {recaptcha: vcRecaptchaService.getResponse($scope.widgetId)}, configService.getEndpoint('create.account'))
                                 .success(function (data, status, headers, config) {
                                     $scope.processAccountResponse(data);
                                 }).error(function (data, status, headers, config) {
@@ -55,12 +56,12 @@ aporlaofertaApp
                         $scope.restartRecaptcha();
                     }
                     $scope.restartRecaptcha = function () {
-                        vcRecaptchaService.reload();
+                        vcRecaptchaService.reload($scope.widgetId);
                     }
 
                     $scope.accountDefaultError = function () {
                         alertService.sendDefaultErrorMessage();
-                        vcRecaptchaService.reload();
+                        vcRecaptchaService.reload($scope.widgetId);
                         $scope.customCloseCallback = $scope.displayCallback;
                     }
 
@@ -68,6 +69,11 @@ aporlaofertaApp
                         alertService.sendErrorMessage(customMessage);
                         $scope.restartRecaptcha();
                         $scope.customCloseCallback = $scope.displayCallback;
+                    };
+
+                    $scope.setWidgetId = function (widgetId) {
+                        console.info('Created widget ID: %s', widgetId);
+                        $scope.widgetId = widgetId;
                     };
                 }]
         }

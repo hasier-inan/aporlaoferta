@@ -31,12 +31,12 @@ div.imageUploaderContent div.thumbnail {
     white-space: nowrap;
 }
 
-div.thumbnailButtons > button.small {
+div.thumbnailButtons > .small {
     height: 2em;
     line-height: 2em;
     margin: .5em
 }
-div.thumbnailButtons > button.mini {
+div.thumbnailButtons > .mini {
     padding-left: .6em;
     line-height: 2em;
     margin-bottom: .5em;

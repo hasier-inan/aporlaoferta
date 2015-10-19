@@ -14,15 +14,16 @@ aporlaofertaApp
             },
             controller: ['$scope', 'offerManager', 'requestManager', 'configService', 'alertService', 'vcRecaptchaService',
                 function ($scope, offerManager, requestManager, configService, alertService, vcRecaptchaService) {
+                    $scope.widgetId = null;
                     $scope.publicKey = "6LdqHQoTAAAAAAht2VhkrLGU26eBOjL-nK9zXxcn";
                     $scope.createOffer = function () {
-                        if (vcRecaptchaService.getResponse() === "") {
+                        if (vcRecaptchaService.getResponse($scope.widgetId) === "") {
                             $scope.offerCreationError("Por favor, haga click en el captcha para demostrar que no es un robot");
-                            vcRecaptchaService.reload();
+                            vcRecaptchaService.restartRecaptcha();
                         }
                         else {
                             $scope.processing=true;
-                            requestManager.makePostCall($scope.offer, {recaptcha: vcRecaptchaService.getResponse(), offerId: $scope.offer.id}, configService.getEndpoint('update.offer'))
+                            requestManager.makePostCall($scope.offer, {recaptcha: vcRecaptchaService.getResponse($scope.widgetId), offerId: $scope.offer.id}, configService.getEndpoint('update.offer'))
                                 .success(function (data, status, headers, config) {
                                     if (!alertService.isAllOk(data)) {
                                         $scope.offerCreationError(data.descriptionEsp);
@@ -44,7 +45,7 @@ aporlaofertaApp
                     };
 
                     $scope.restartRecaptcha = function () {
-                        vcRecaptchaService.reload();
+                        vcRecaptchaService.reload($scope.widgetId);
                     }
 
                     $scope.offerCreationError = function (customMessage) {
@@ -60,6 +61,10 @@ aporlaofertaApp
                         $scope.brandNewCompany = false;
                         $scope.resetCategory = true;
                         $scope.resetCompany = true;
+                    };
+                    $scope.setWidgetId = function (widgetId) {
+                        console.info('Created widget ID: %s', widgetId);
+                        $scope.widgetId = widgetId;
                     };
                 }]
         }
