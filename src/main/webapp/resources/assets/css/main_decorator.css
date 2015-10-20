@@ -230,8 +230,10 @@ ul#overheadSubContainerContent {
     margin-top: 2em;
 }
 
-button.whiteButton {
-    color: #ffffff !important;
+button.whiteButton,
+a.whiteButton{
+    color: #ffffff;
+    text-decoration: none;
 }
 
 ul.actions.top_header {
@@ -543,12 +545,16 @@ div.filters-contents div div.select-wrapper:before {
     line-height: 2.75em !important;
 }
 
+.no-decoration {
+    text-decoration: none;
+}
+
 @media screen and (max-width: 480px) and (orientation: portrait) {
     div.filters-contents {
         display: none;
     }
 
-    button#displayFilterContents {
+    #displayFilterContents {
         display: block;
     }
 }
@@ -558,7 +564,7 @@ div.filters-contents div div.select-wrapper:before {
         display: none;
     }
 
-    button#displayFilterContents {
+    #displayFilterContents {
         display: block;
     }
 }
@@ -568,7 +574,7 @@ div.filters-contents div div.select-wrapper:before {
         display: none;
     }
 
-    button#displayFilterContents {
+    #displayFilterContents {
         display: block;
     }
 }
@@ -578,7 +584,7 @@ div.filters-contents div div.select-wrapper:before {
         display: none;
     }
 
-    button#displayFilterContents {
+    #displayFilterContents {
         display: block;
     }
 }
@@ -588,7 +594,7 @@ div.filters-contents div div.select-wrapper:before {
         display: block;
     }
 
-    button#displayFilterContents {
+    #displayFilterContents {
         display: none;
     }
 }
@@ -598,7 +604,7 @@ div.filters-contents div div.select-wrapper:before {
         display: inline !important;
     }
 
-    button#displayFilterContents {
+    #displayFilterContents {
         display: none !important;
     }
 }
@@ -636,8 +642,8 @@ button.filters-displayed {
     transition: all .3s linear;
 }
 
-button#displayFilterContents {
-    border: solid 1px #fff;
+#displayFilterContents {
+    /*border: solid 1px #fff;*/
     box-shadow: none;
     border-radius: 100%;
     width: 3em;
@@ -771,6 +777,10 @@ pre.parsed-text.list {
     background-color: #D76060;
 }
 
+.blueish-background{
+    background-color: #69d2e7;
+}
+
 .green-background {
     background-color: #97d779;
 }
@@ -805,6 +815,9 @@ pre.parsed-text.list {
 
 .moreDetailButtons {
     background-color: #7aae76;
+}
+.button.fa-fire.whiteButton.blue-text{
+    color: #69d2e7;
 }
 
 #header .button.hot-background:hover {

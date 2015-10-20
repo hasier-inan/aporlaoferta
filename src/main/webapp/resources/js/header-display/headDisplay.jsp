@@ -24,9 +24,9 @@
                  overhead-display="overheadVisible" custom-close-callback="customCloseCallback" display-callback="displaySignup"></div>
         </sec:authorize>
         <li>
-            <button class="button small icon fa-times close_button" ng-click="closeOverheadDisplay(customCloseCallback)">Cerrar
+            <button class="button small icon fa-times close_button red-background" ng-click="closeOverheadDisplay(customCloseCallback)">Cerrar
             </button>
-            <button class="button mini icon fa-times close_button" ng-click="closeOverheadDisplay(customCloseCallback)"></button>
+            <button class="button mini icon fa-times close_button red-background" ng-click="closeOverheadDisplay(customCloseCallback)"></button>
         </li>
     </ul>
 </div>
@@ -40,24 +40,24 @@
             <button class="button mini icon fa-sign-in whiteButton green-background" ng-click="displayLogin()"></button>
         </li>
         <li>
-            <button class="button small icon fa-user whiteButton" ng-click="displaySignup()">Registrarse</button>
-            <button class="button mini icon fa-user whiteButton" ng-click="displaySignup()"></button>
+            <button class="button small icon fa-user whiteButton blueish-background" ng-click="displaySignup()">Registrarse</button>
+            <button class="button mini icon fa-user whiteButton blueish-background" ng-click="displaySignup()"></button>
         </li>
     </sec:authorize>
 
     <sec:authorize ifAllGranted="ROLE_USER">
-        <button class="button small icon fa-pencil-square whiteButton" ng-click="displayOfferCreate()">Crear
+        <button class="button small icon fa-pencil-square whiteButton green-background" ng-click="displayOfferCreate()">Crear
             Oferta
         </button>
-        <button class="button mini icon fa-pencil-square whiteButton inline right-aligned" ng-click="displayOfferCreate()"></button>
+        <button class="button mini icon fa-pencil-square whiteButton inline right-aligned green-background" ng-click="displayOfferCreate()"></button>
     </sec:authorize>
 
     <sec:authorize ifAnyGranted="ROLE_USER, ROLE_ADMIN">
         <div ng-account-logout="accountLogout" class="profileForm"></div>
-        <button class="button small icon fa-pencil-square whiteButton" ng-click="displayAccountUpdateForm()">Actualizar
+        <button class="button small icon fa-pencil-square whiteButton blueish-background" ng-click="displayAccountUpdateForm()">Actualizar
             Perfil
         </button>
-        <button class="button mini icon fa-user whiteButton inline right-aligned" ng-click="displayAccountUpdateForm()"></button>
+        <button class="button mini icon fa-user whiteButton inline right-aligned blueish-background" ng-click="displayAccountUpdateForm()"></button>
     </sec:authorize>
 </ul>
 
