@@ -43,22 +43,28 @@
                     <label for="createAccountCaptcha" class="overhead-hint-label">Antes de continuar soluciona el
                         captcha para probar que no eres un robot</label>
 
-                    <div id="createAccountCaptcha" on-create="setWidgetId(widgetId)" vc-recaptcha key="publicKey" class="offerCaptcha"></div>
+                    <div id="createAccountCaptcha" on-create="setWidgetId(widgetId)" vc-recaptcha key="publicKey"
+                         class="offerCaptcha"></div>
 
                 </li>
             </ul>
         </form>
     </div>
 
-    <button ng-disabled="!accountCreationContainer.$valid || processing" class="button small icon fa-user overheadButton"
+    <button ng-disabled="!accountCreationContainer.$valid || processing"
+            class="button small icon fa-user overheadButton"
             ng-click="createAccount(theUser)" class="overheadButton" ng-hide="disableNickname">
         crear perfil
     </button>
-    <button ng-disabled="!accountCreationContainer.$valid || processing" class="button small icon fa-user overheadButton"
+    <button ng-disabled="!accountCreationContainer.$valid || processing"
+            class="button small icon fa-user overheadButton"
             ng-click="createAccount(theUser)" class="overheadButton" ng-show="disableNickname">
         actualizar perfil
     </button>
     <button ng-disabled="!accountCreationContainer.$valid || processing" class="button mini icon fa-user overheadButton"
             ng-click="createAccount(theUser)"></button>
+    <div class="loading-dialogue ">
+        <i class="fa fa-refresh loadingdialogue white popup-loading" ng-class="!processing?'hideLoading':''"></i>
+    </div>
 </div>
 

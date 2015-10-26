@@ -380,8 +380,17 @@ button.more-offers-button {
 i.loadingdialogue {
     font-family: FontAwesome;
     font-size: 2em !important;
-    color: #828282 !important;
     box-shadow: none !important;
+}
+i.loadingdialogue.white {
+    color: #FFFFFF !important;
+}
+i.loadingdialogue.grey {
+    color: #828282 !important;
+}
+i.loadingdialogue.popup-loading{
+    position: absolute;
+    margin: -1em 0 0 -.4em;
 }
 
 div.loading-dialogue {
@@ -946,3 +955,9 @@ body {
     overflow-x: hidden;
 }
 
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}

@@ -28,6 +28,9 @@
         <button ng-disabled="!passwordForgottenContainer.$valid || processing"
                 class="button mini icon fa-key overheadButton passwordForgottenContainer"
                 ng-click="updatePassword(theUser)"></button>
+        <div class="loading-dialogue ">
+            <i class="fa fa-refresh loadingdialogue white popup-loading" ng-class="!processing?'hideLoading':''"></i>
+        </div>
     </div>
 </div>
 

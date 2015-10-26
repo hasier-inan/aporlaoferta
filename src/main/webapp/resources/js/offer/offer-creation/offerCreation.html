@@ -91,5 +91,8 @@
                 ng-disabled="!createOfferForm.$valid || processing"
                 ng-click="createOffer()"
                 class="button mini icon fa-shopping-cart overheadButton"></button>
+        <div class="loading-dialogue ">
+            <i class="fa fa-refresh loadingdialogue white popup-loading" ng-class="!processing?'hideLoading':''"></i>
+        </div>
     </form>
 </div>
