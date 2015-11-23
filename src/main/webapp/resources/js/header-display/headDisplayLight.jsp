@@ -7,9 +7,9 @@
         <div ng-show="displayResponseFromServer" ng-response-from-server="responseFromServer"
              the-response="theResponse"></div>
         <li>
-            <button class="button small icon fa-times close_button" ng-click="closeOverheadDisplay(customCloseCallback)">Cerrar
+            <button class="button small icon fa-times close_button red-background" ng-click="closeOverheadDisplay(customCloseCallback)">Cerrar
             </button>
-            <button class="button mini icon fa-times close_button" ng-click="closeOverheadDisplay(customCloseCallback)"></button>
+            <button class="button mini icon fa-times close_button red-background" ng-click="closeOverheadDisplay(customCloseCallback)"></button>
         </li>
     </ul>
 </div>

@@ -5,7 +5,7 @@ import com.aporlaoferta.data.EmailTemplateBuilderManager;
 import com.aporlaoferta.model.EmailTemplate;
 import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.service.UserManager;
-import jdk.nashorn.internal.ir.annotations.Ignore;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
