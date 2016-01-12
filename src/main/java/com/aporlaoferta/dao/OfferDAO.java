@@ -11,29 +11,29 @@ import java.util.List;
  * Created by hasiermetal on 26/07/14.
  */
 public interface OfferDAO extends CrudRepository<TheOffer, Long> {
-    String OFFER_QUERY = "SELECT * FROM thatoffer a order by a.TO_ID desc LIMIT :number, 50";
-    String OFFER_QUERY_HOTTEST = "SELECT * FROM thatoffer a WHERE a.TO_EXPIRED=false order by a.TO_POSITIVE-a.TO_NEGATIVE desc LIMIT :number, 50";
-    String OFFER_QUERY_CATEGORY = "SELECT * FROM thatoffer a WHERE a.TO_CATEGORY=:category order by a.TO_ID desc LIMIT :number, 50";
+    String OFFER_QUERY = "SELECT * FROM thatoffer a order by a.TO_ID desc LIMIT 50 OFFSET :number";
+    String OFFER_QUERY_HOTTEST = "SELECT * FROM thatoffer a WHERE a.TO_EXPIRED=false order by a.TO_POSITIVE-a.TO_NEGATIVE desc LIMIT 50 OFFSET :number";
+    String OFFER_QUERY_CATEGORY = "SELECT * FROM thatoffer a WHERE a.TO_CATEGORY=:category order by a.TO_ID desc LIMIT 50 OFFSET :number";
 
     String OFFER_QUERY_FILTER = "SELECT * " +
             "FROM thatoffer a LEFT JOIN thatcompany c on a.TO_COMPANY=c.TC_ID " +
             "WHERE a.TO_CATEGORY =:category " +
             "AND (lower(a.TO_DESCRIPTION) LIKE lower(:text) OR lower(a.TO_TITLE) LIKE lower(:text) OR lower(c.TC_NAME) LIKE lower(:text)) " +
             "AND (a.TO_EXPIRED=false OR a.TO_EXPIRED=:expired) " +
-            "order by a.TO_ID desc LIMIT 0, 100";
+            "order by a.TO_ID desc LIMIT 100 OFFSET 0";
     String OFFER_QUERY_FILTER_CATEGORY = "SELECT * " +
             "FROM thatoffer a " +
             "WHERE a.TO_CATEGORY =:category AND (a.TO_EXPIRED=false OR a.TO_EXPIRED=:expired) " +
-            "order by a.TO_ID desc LIMIT 0, 100";
+            "order by a.TO_ID desc LIMIT 100 OFFSET 0";
     String OFFER_QUERY_FILTER_EXPIRED = "SELECT * " +
             "FROM thatoffer a " +
             "WHERE (a.TO_EXPIRED=false OR a.TO_EXPIRED=:expired) " +
-            "order by a.TO_ID desc LIMIT 0, 100";
+            "order by a.TO_ID desc LIMIT 100 OFFSET 0";
     String OFFER_QUERY_FILTER_TEXT = "SELECT * " +
             "FROM thatoffer a LEFT JOIN thatcompany c on a.TO_COMPANY=c.TC_ID " +
             "WHERE (lower(a.TO_DESCRIPTION) LIKE lower(:text) OR lower(a.TO_TITLE) LIKE lower(:text) OR lower(c.TC_NAME) LIKE lower(:text)) " +
             "AND (a.TO_EXPIRED=false OR a.TO_EXPIRED=:expired) " +
-            "order by a.TO_ID desc LIMIT 0, 100";
+            "order by a.TO_ID desc LIMIT 100 OFFSET 0";
 
     @Query(value = OFFER_QUERY, nativeQuery = true)
     List<TheOffer> getOneHundredOffersAfterId(@Param("number") Long number);

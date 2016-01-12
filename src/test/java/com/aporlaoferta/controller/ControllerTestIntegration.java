@@ -40,7 +40,6 @@ public class ControllerTestIntegration {
 
     protected static final String REGULAR_USER = "regularUser";
     protected static final String ANOTHER_USER = "anotherUser";
-    protected static final String ANONYMOUS="anonymous";
 
     @Autowired
     protected UserManager userManagerTest;
@@ -126,15 +125,28 @@ public class ControllerTestIntegration {
         );
     }
 
-    protected ResultActions performPostRequestToUpdateOffer(String jsonRequest, String offerId, String identifiedUser) throws Exception {
+    protected ResultActions performAnonymousPostRequestToCreateOffer(String jsonRequest) throws Exception {
+        CsrfToken csrfToken = CsrfTokenBuilder.generateAToken();
+        return this.mockMvc.perform(post("/createOffer")
+                .sessionAttr("_csrf", csrfToken)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonRequest)
+                .param("_csrf", csrfToken.getToken())
+                .param("recaptcha", "recaptcha")
+                .sessionAttrs(SessionAttributeBuilder
+                        .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
+        );
+    }
+
+    protected ResultActions performPostRequestToUpdateOffer(String jsonRequest, String identifiedUser) throws Exception {
         CsrfToken csrfToken = CsrfTokenBuilder.generateAToken();
         return this.mockMvc.perform(post("/updateOffer")
                 .with(userDeatilsService(identifiedUser))
                 .sessionAttr("_csrf", csrfToken)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonRequest)
-                .param("offerId", offerId)
                 .param("_csrf", csrfToken.getToken())
+                .param("recaptcha", "recaptcha")
                 .sessionAttrs(SessionAttributeBuilder
                         .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
         );

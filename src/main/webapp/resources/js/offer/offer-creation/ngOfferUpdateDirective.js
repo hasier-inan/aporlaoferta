@@ -23,7 +23,7 @@ aporlaofertaApp
                         }
                         else {
                             $scope.processing=true;
-                            requestManager.makePostCall($scope.offer, {recaptcha: vcRecaptchaService.getResponse($scope.widgetId), offerId: $scope.offer.id}, configService.getEndpoint('update.offer'))
+                            requestManager.makePostCall($scope.offer, {recaptcha: vcRecaptchaService.getResponse($scope.widgetId)}, configService.getEndpoint('update.offer'))
                                 .success(function (data, status, headers, config) {
                                     if (!alertService.isAllOk(data)) {
                                         $scope.offerCreationError(data.descriptionEsp);

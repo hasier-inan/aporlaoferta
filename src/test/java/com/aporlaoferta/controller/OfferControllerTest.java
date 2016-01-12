@@ -147,7 +147,7 @@ public class OfferControllerTest {
     @Test
     public void testNextNumberOfOffersAreReturnedInTheResponseWhenRequested() throws Exception {
         List<TheOffer> sampleOfferList = createSampleOfferList();
-        when(this.offerManager.getNextHundredOffers(78L)).thenReturn(sampleOfferList);
+        when(this.offerManager.getNextHundredOffers(79L)).thenReturn(sampleOfferList);
         TheOfferResponse result = this.offerController.getOffers(78L);
         assertOfferListIsInResponse(result, sampleOfferList);
     }
@@ -155,7 +155,7 @@ public class OfferControllerTest {
     @Test
     public void testHottestOffersAreReturnedInTheResponseWhenRequested() throws Exception {
         List<TheOffer> sampleOfferList = createSampleHotOfferList();
-        when(this.offerManager.getNextHundredHottestOffers(0L)).thenReturn(sampleOfferList);
+        when(this.offerManager.getNextHundredHottestOffers(1L)).thenReturn(sampleOfferList);
         TheOfferResponse result = this.offerController.getHottestOffers(0L);
         assertOfferListIsInResponse(result, sampleOfferList);
         List<TheOffer> receivedOffers = result.getTheOffers();

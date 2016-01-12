@@ -68,7 +68,7 @@ public class OfferController {
     @ResponseBody
     public TheOfferResponse getOffers(@RequestParam(value = "number", required = false) Long number) {
         TheOfferResponse theOfferResponse = new TheOfferResponse();
-        List<TheOffer> hundredOffers = this.offerManager.getNextHundredOffers(number != null ? number : 0L);
+        List<TheOffer> hundredOffers = this.offerManager.getNextHundredOffers(number != null ? number + 1 : 0L);
         //Temporary hack  because Lazy initialisation comments are empty...
         createEmptyFields(hundredOffers);
         theOfferResponse.setTheOffers(hundredOffers);
@@ -94,7 +94,7 @@ public class OfferController {
     @ResponseBody
     public TheOfferResponse getHottestOffers(@RequestParam(value = "number", required = false) Long number) {
         TheOfferResponse theOfferResponse = new TheOfferResponse();
-        List<TheOffer> hundredOffers = this.offerManager.getNextHundredHottestOffers(number != null ? number : 0L);
+        List<TheOffer> hundredOffers = this.offerManager.getNextHundredHottestOffers(number != null ? number + 1 : 0L);
         //Temporary hack  because Lazy initialisation comments are empty.
         createEmptyFields(hundredOffers);
         theOfferResponse.setTheOffers(hundredOffers);

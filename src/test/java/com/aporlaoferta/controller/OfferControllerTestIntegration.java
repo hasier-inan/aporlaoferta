@@ -26,7 +26,7 @@ public class OfferControllerTestIntegration extends ControllerTestIntegration {
     @Test
     public void testOfferCreationIsOnlyAllowedIfIdentified() throws Exception {
         String jsonRequest = RequestMap.getJsonFromMap(OfferBuilderManager.aBasicOfferWithoutId().build());
-        performPostRequestToCreateOffer(jsonRequest, ANONYMOUS)
+        performAnonymousPostRequestToCreateOffer(jsonRequest)
                 .andExpect(status().is3xxRedirection());
     }
 
@@ -55,10 +55,9 @@ public class OfferControllerTestIntegration extends ControllerTestIntegration {
 
     @Test
     public void testIdentifiedUserCanUpdateOwnOfferAndSuccessCodeIsReceived() throws Exception {
-        String jsonRequest = RequestMap.getJsonFromMap(OfferBuilderManager.aBasicOfferWithoutId().build());
+        String jsonRequest = RequestMap.getJsonFromMap(OfferBuilderManager.aBasicOfferWithId(this.theUser.obtainLatestOffer().getId()).build());
         this.theUser = this.userManagerTest.getUserFromNickname(REGULAR_USER);
-        String originalOfferId = String.valueOf(this.theUser.obtainLatestOffer().getId());
-        ResultActions result = performPostRequestToUpdateOffer(jsonRequest, originalOfferId, REGULAR_USER)
+        ResultActions result = performPostRequestToUpdateOffer(jsonRequest, REGULAR_USER)
                 .andExpect(status().is2xxSuccessful());
         String mvcResult = result.andReturn().getResponse().getContentAsString();
         Map<String, String> jsonResult = RequestMap.getMapFromJsonString(mvcResult);
@@ -67,10 +66,9 @@ public class OfferControllerTestIntegration extends ControllerTestIntegration {
 
     @Test
     public void testUpdateOfferThatHasDifferentOwnerReturnsErrorCode() throws Exception {
-        String jsonRequest = RequestMap.getJsonFromMap(OfferBuilderManager.aBasicOfferWithoutId().build());
+        String jsonRequest = RequestMap.getJsonFromMap(OfferBuilderManager.aBasicOfferWithId(this.theUser.obtainLatestOffer().getId()).build());
         this.theUser = this.userManagerTest.getUserFromNickname(REGULAR_USER);
-        String regularUserOfferId = String.valueOf(this.theUser.obtainLatestOffer().getId());
-        ResultActions result = performPostRequestToUpdateOffer(jsonRequest, regularUserOfferId, ANOTHER_USER)
+        ResultActions result = performPostRequestToUpdateOffer(jsonRequest, ANOTHER_USER)
                 .andExpect(status().is2xxSuccessful());
         String mvcResult = result.andReturn().getResponse().getContentAsString();
         Map<String, String> jsonResult = RequestMap.getMapFromJsonString(mvcResult);
@@ -79,24 +77,24 @@ public class OfferControllerTestIntegration extends ControllerTestIntegration {
 
     @Test
     public void testUpdateOfferWithMissingMandatoryDataReturnsValidationError() throws Exception {
-        TheOffer invalidOffer = OfferBuilderManager.aBasicOfferWithoutId().build();
+        TheOffer invalidOffer = OfferBuilderManager.aBasicOfferWithId(this.theUser.obtainLatestOffer().getId()).build();
         invalidOffer.setOfferTitle("");
         String jsonRequest = RequestMap.getJsonFromMap(invalidOffer);
         this.theUser = this.userManagerTest.getUserFromNickname(REGULAR_USER);
-        String originalOfferId = String.valueOf(this.theUser.obtainLatestOffer().getId());
-        ResultActions result = performPostRequestToUpdateOffer(jsonRequest, originalOfferId, REGULAR_USER)
+        ResultActions result = performPostRequestToUpdateOffer(jsonRequest, REGULAR_USER)
                 .andExpect(status().is2xxSuccessful());
         String mvcResult = result.andReturn().getResponse().getContentAsString();
         Map<String, String> jsonResult = RequestMap.getMapFromJsonString(mvcResult);
-        assertThat("Expected result to be validation error", jsonResult.get("description"), startsWith("Validation process failed while creating offer"));
+        assertThat("Expected result to be validation error", jsonResult.get("description"), startsWith("Validation process failed while updating offer"));
     }
 
     @Test
     public void testUpdateOfferWithNonexistingOfferIdReturnsValidationError() throws Exception {
         TheOffer invalidOffer = OfferBuilderManager.aBasicOfferWithoutId().build();
         invalidOffer.setOfferTitle("");
+        invalidOffer.setId(666L);
         String jsonRequest = RequestMap.getJsonFromMap(invalidOffer);
-        ResultActions result = performPostRequestToUpdateOffer(jsonRequest, "666", REGULAR_USER)
+        ResultActions result = performPostRequestToUpdateOffer(jsonRequest, REGULAR_USER)
                 .andExpect(status().is2xxSuccessful());
         String mvcResult = result.andReturn().getResponse().getContentAsString();
         Map<String, String> jsonResult = RequestMap.getMapFromJsonString(mvcResult);
@@ -105,8 +103,8 @@ public class OfferControllerTestIntegration extends ControllerTestIntegration {
 
     @Test
     public void testUpdateOfferWithInvalidOfferIdReturnsValidationError() throws Exception {
-        String jsonRequest = RequestMap.getJsonFromMap(OfferBuilderManager.aBasicOfferWithoutId().build());
-        ResultActions result = performPostRequestToUpdateOffer(jsonRequest, "6f66", REGULAR_USER)
+        String jsonRequest = RequestMap.getJsonFromMap(OfferBuilderManager.aBasicOfferWithId(748L).build());
+        ResultActions result = performPostRequestToUpdateOffer(jsonRequest, REGULAR_USER)
                 .andExpect(status().is2xxSuccessful());
         String mvcResult = result.andReturn().getResponse().getContentAsString();
         Map<String, String> jsonResult = RequestMap.getMapFromJsonString(mvcResult);
