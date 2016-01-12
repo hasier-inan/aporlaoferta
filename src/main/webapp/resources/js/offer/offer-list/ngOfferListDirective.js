@@ -11,6 +11,7 @@ aporlaofertaApp
             controller: ['$scope', 'offerManager',
                 function ($scope, offerManager) {
                     $scope.defaultList = "";
+                    $scope.offerList=[];
                     $scope.moreOffersLoading = false;
                     $scope.requestNewestOffers = function () {
                         offerManager.requestNewestOffers();

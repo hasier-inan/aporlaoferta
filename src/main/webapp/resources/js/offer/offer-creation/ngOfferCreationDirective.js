@@ -64,7 +64,6 @@ aporlaofertaApp
                         $scope.resetCompany = true;
                     };
                     $scope.setWidgetId = function (widgetId) {
-                        console.info('Created widget ID: %s', widgetId);
                         $scope.widgetId = widgetId;
                     };
                 }]

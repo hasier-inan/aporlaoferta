@@ -77,7 +77,6 @@ aporlaofertaApp
                         $scope.customCloseCallback = $scope.displayCallback;
                     }
                     $scope.setWidgetId = function (widgetId) {
-                        console.info('Created widget ID: %s', widgetId);
                         $scope.widgetId = widgetId;
                     };
                     $scope.restartRecaptcha = function () {
