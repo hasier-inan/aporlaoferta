@@ -11,7 +11,7 @@ offerManager.service('offerManager', ['$rootScope', 'alertService', 'requestMana
             offerManagerController.makeRequest(configService.getEndpoint('get.hottest.offers'));
         }
         offerManagerController.makeRequest = function (endpoint) {
-            requestManager.makePostCall({}, {'number': 0}, endpoint)
+            requestManager.makePostCall({}, {}, endpoint)
                 .success(function (data, status, headers, config) {
                     $rootScope.$broadcast('offerList', data.theOffers);
                 }).error(function (data, status, headers, config) {

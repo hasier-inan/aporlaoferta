@@ -439,6 +439,7 @@ div.offerCompanyInTitle {
 
 .image.offerImage > img {
     border: solid 3px #e0e4cc !important;
+    background-color: rgba(118, 118, 118, 0.3);
 }
 
 .feedbackSumatory.offerListFeedback {

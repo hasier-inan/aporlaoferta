@@ -74,7 +74,7 @@ div.offerSpecificationsImage {
 div.offerSpecificationsImage > img {
     display: block;
     vertical-align: middle;
-    background-color: #a7dbd8;
+    background-color: rgba(118, 118, 118, 0.3);
     color: #e0e4cc;
     border: 2px solid #fff;
     border-radius: 20px;
