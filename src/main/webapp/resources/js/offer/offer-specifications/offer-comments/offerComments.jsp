@@ -46,7 +46,7 @@
 
                         <div class="commentQuoteButtons">
                             <button ng-disabled="!quoteCommentForm.$valid || processing" class="button small icon fa-pencil-square whiteButton green-background"
-                                    ng-click="quoteComment(qComment, theComment.id)">quote
+                                    ng-click="quoteComment(qComment, theComment.id)">citar
                             </button>
                             <button ng-disabled="!quoteCommentForm.$valid || processing" class="button mini icon fa-pencil-square whiteButton inline green-background"
                                     ng-click="quoteComment(qComment, theComment.id)"></button>
