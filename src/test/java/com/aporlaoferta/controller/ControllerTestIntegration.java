@@ -151,6 +151,18 @@ public class ControllerTestIntegration {
                         .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
         );
     }
+    protected ResultActions performPostRequestToExpireOffer(String id, String identifiedUser) throws Exception {
+        CsrfToken csrfToken = CsrfTokenBuilder.generateAToken();
+        return this.mockMvc.perform(post("/expireOffer")
+                .with(userDeatilsService(identifiedUser))
+                .sessionAttr("_csrf", csrfToken)
+                .contentType(MediaType.APPLICATION_JSON)
+                .param("_csrf", csrfToken.getToken())
+                .param("id", id)
+                .sessionAttrs(SessionAttributeBuilder
+                        .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
+        );
+    }
 
     protected ResultActions performPostRequestToUpdateComment(String jsonRequest, String commentId, String identifiedUser) throws Exception {
         CsrfToken csrfToken = CsrfTokenBuilder.generateAToken();

@@ -62,8 +62,8 @@ public class OfferManagerTest {
 
     @Test
     public void testOfferExpireUpdatesDomainObject() {
-        TheOffer theOffer1 = this.offerManager.expireOffer(this.theOffer);
-        assertTrue("Expected offer to be expired: ", theOffer1.isOfferExpired());
+        TheOffer theOffer = this.offerManager.expireOffer(this.theOffer);
+        assertTrue("Expected offer to be expired: ", theOffer.isOfferExpired());
     }
 
     @Test

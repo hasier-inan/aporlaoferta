@@ -178,6 +178,30 @@ public class OfferController {
         }
     }
 
+    @RequestMapping(value = "/expireOffer", method = RequestMethod.POST)
+    @ResponseBody
+    public TheResponse expireOffer(@RequestParam(value = "id", required = true) Long offerId) {
+        try {
+            TheOffer originalOffer = this.offerManager.getOfferFromId(offerId);
+            if (originalOffer == null) {
+                throw new ValidationException("Invalid offer id");
+            }
+            String nickName = this.userManager.getUserNickNameFromSession();
+            TheResponse result = ResponseResultHelper.createDefaultResponse();;
+            if (!originalOffer.getOfferUser().getUserNickname().equals(nickName)) {
+                return ResponseResultHelper.
+                        responseResultWithResultCodeError(ResultCode.INVALID_OWNER_ERROR, result);
+            }
+            if(this.offerManager.expireOffer(originalOffer).isOfferExpired()){
+                result.assignResultCode(ResultCode.ALL_OK, ResponseResult.OK.value(), "La Oferta ha sido marcada como caducada");
+            }
+            return result;
+        } catch (ValidationException | NumberFormatException e) {
+            return ResponseResultHelper.
+                    responseResultWithResultCodeError(ResultCode.UPDATE_OFFER_VALIDATION_ERROR, new TheResponse());
+        }
+    }
+
     @RequestMapping(value = "/updateOffer", method = RequestMethod.POST)
     @ResponseBody
     public TheResponse updateOffer(@RequestBody TheOffer theOffer,
@@ -211,6 +235,8 @@ public class OfferController {
         }
         return ResponseResultHelper.createDefaultResponse();
     }
+
+
 
     @RequestMapping(value = "/getOfferCategories", method = RequestMethod.POST)
     @ResponseBody
@@ -284,7 +310,6 @@ public class OfferController {
         TheResponse result = new TheResponse();
         try {
             this.offerValidatorHelper.validateOffer(thatOffer);
-
             saveOfferAndUpdateResult(thatOffer, result);
         } catch (ValidationException e) {
             String resultDescription = ResultCode.CREATE_OFFER_VALIDATION_ERROR.getResultDescription();

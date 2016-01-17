@@ -12,7 +12,8 @@ div.containerSplitter {
     margin: 0 .5% 0 .5%;
     vertical-align: top;
 }
-div.offerSpecificationsRightContainer{
+
+div.offerSpecificationsRightContainer {
     width: 70%;
 }
 
@@ -21,7 +22,7 @@ a.quoteAction:hover {
     text-decoration: none;
 }
 
-div.offerSpecificationsLink{
+div.offerSpecificationsLink {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -29,8 +30,7 @@ div.offerSpecificationsLink{
     width: 100%;
 }
 
-div.offerSpecificationsLink > a
-{
+div.offerSpecificationsLink > a {
     color: #FFFFFF;
     text-decoration: none;
     background-color: rgba(0, 0, 0, 0.3);
@@ -38,20 +38,48 @@ div.offerSpecificationsLink > a
 }
 
 div.offerSpecificationsLink > a:hover,
-div.offerSpecificationsTitle > h1 > a:hover{
+div.offerSpecificationsTitle > h1 > a:hover {
     text-decoration: none;
     color: #f38630;
 }
-div.offer-specifications.edit-offer{
+
+div.offer-specifications.edit-offer {
     position: absolute;
     top: 0;
     margin-top: -15px;
     margin-left: 12px;
 }
-div.offer-specifications.edit-offer > button{
+
+div.offer-specifications.expire-offer {
+    margin-left: 12em;
+}
+
+@media screen and (max-width: 480px) {
+    div.offer-specifications.edit-offer > button.small {
+        display: none !important;
+    }
+
+    div.offer-specifications.edit-offer > button.mini {
+        display: block !important;
+    }
+    div.offer-specifications.expire-offer {
+        margin-left: 5em;
+    }
+}
+
+div.offer-specifications.edit-offer > button {
     height: 22px;
     line-height: 11px;
     font-size: 11px;
+}
+
+div.offer-specifications.edit-offer > button.mini {
+    display: none;
+    width: 3.5em;
+}
+
+div.offer-specifications.edit-offer > button.small {
+    display: block;
 }
 
 div.offerSpecificationsTitle > h1 {
@@ -244,24 +272,27 @@ div.commentQuoteButtons {
     text-align: right;
 }
 
-@media screen and (max-width: 737px)     {
+@media screen and (max-width: 737px) {
 
-    div.offerSpecificationsLink > a
-    {
+    div.offerSpecificationsLink > a {
         font-size: 2.5em;
     }
-    div.offerSpecificationsTitle >h1{
+
+    div.offerSpecificationsTitle > h1 {
         font-size: 20px;
     }
+
     div.containerSplitter {
         display: block;
         width: 60%;
         max-width: 500px;
         margin: 0 1em 0 1em;
     }
+
     div.offerSpecificationsImage {
         margin-left: 30%;
     }
+
     div.offerSpecificationsRightContainer {
         width: 96%;
         max-width: 96%;

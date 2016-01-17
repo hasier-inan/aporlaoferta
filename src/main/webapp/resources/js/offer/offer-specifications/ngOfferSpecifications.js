@@ -49,6 +49,23 @@ aporlaofertaApp
                     $scope.updateOffer = function (theOffer) {
                         $rootScope.$broadcast('updateTheOffer', angular.copy(theOffer));
                     }
+                    $scope.expireOffer = function (theOffer) {
+                        requestManager.makePostCall({}, {'id': theOffer.id}, configService.getEndpoint('expire.offer'))
+                            .success(function (data, status, headers, config) {
+                                if (!alertService.isAllOk(data)) {
+                                    $scope.offerCreationError(data.descriptionEsp);
+                                }
+                                else {
+                                    alertService.sendErrorMessage(data.descriptionEsp);
+                                    $scope.resetValues();
+                                    $scope.customCloseCallback = function () {
+                                        offerManager.requestNewestOffers();
+                                    }
+                                }
+                            }).error(function (data, status, headers, config) {
+                                $scope.offerCreationError(alertService.getDefaultMessage());
+                            });
+                    }
                     $scope.$on('commentsCustomCloseCallback', function (event, args) {
                         var customCallback = args;
                         $scope.customCloseCallback = customCallback;

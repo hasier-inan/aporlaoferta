@@ -11,7 +11,7 @@ import java.util.List;
  * Created by hasiermetal on 26/07/14.
  */
 public interface OfferDAO extends CrudRepository<TheOffer, Long> {
-    String OFFER_QUERY = "SELECT * FROM thatoffer a order by a.TO_ID desc LIMIT 50 OFFSET :number";
+    String OFFER_QUERY = "SELECT * FROM thatoffer a WHERE a.TO_EXPIRED=false order by a.TO_ID desc LIMIT 50 OFFSET :number";
     String OFFER_QUERY_HOTTEST = "SELECT * FROM thatoffer a WHERE a.TO_EXPIRED=false order by a.TO_POSITIVE-a.TO_NEGATIVE desc LIMIT 50 OFFSET :number";
     String OFFER_QUERY_CATEGORY = "SELECT * FROM thatoffer a WHERE a.TO_CATEGORY=:category order by a.TO_ID desc LIMIT 50 OFFSET :number";
 

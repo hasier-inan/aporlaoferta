@@ -56,7 +56,6 @@ public class OfferControllerTestIntegration extends ControllerTestIntegration {
     @Test
     public void testIdentifiedUserCanUpdateOwnOfferAndSuccessCodeIsReceived() throws Exception {
         String jsonRequest = RequestMap.getJsonFromMap(OfferBuilderManager.aBasicOfferWithId(this.theUser.obtainLatestOffer().getId()).build());
-        this.theUser = this.userManagerTest.getUserFromNickname(REGULAR_USER);
         ResultActions result = performPostRequestToUpdateOffer(jsonRequest, REGULAR_USER)
                 .andExpect(status().is2xxSuccessful());
         String mvcResult = result.andReturn().getResponse().getContentAsString();
@@ -67,7 +66,6 @@ public class OfferControllerTestIntegration extends ControllerTestIntegration {
     @Test
     public void testUpdateOfferThatHasDifferentOwnerReturnsErrorCode() throws Exception {
         String jsonRequest = RequestMap.getJsonFromMap(OfferBuilderManager.aBasicOfferWithId(this.theUser.obtainLatestOffer().getId()).build());
-        this.theUser = this.userManagerTest.getUserFromNickname(REGULAR_USER);
         ResultActions result = performPostRequestToUpdateOffer(jsonRequest, ANOTHER_USER)
                 .andExpect(status().is2xxSuccessful());
         String mvcResult = result.andReturn().getResponse().getContentAsString();
@@ -76,11 +74,47 @@ public class OfferControllerTestIntegration extends ControllerTestIntegration {
     }
 
     @Test
+    public void testExpireOfferWithUnknownIdReturnsErrorCode() throws Exception {
+        String idToBeExpired = "665";
+        ResultActions result = performPostRequestToExpireOffer(idToBeExpired, REGULAR_USER)
+                .andExpect(status().is2xxSuccessful());
+        String mvcResult = result.andReturn().getResponse().getContentAsString();
+        Map<String, String> jsonResult = RequestMap.getMapFromJsonString(mvcResult);
+        assertThat("Expected error to contain validation error", jsonResult.get("description"),
+                startsWith("Validation process failed while updating offer"));
+    }
+
+    @Test
+    public void testExpireOfferThatHasDifferentOwnerReturnsErrorCode() throws Exception {
+        this.theUser = this.userManagerTest.getUserFromNickname(REGULAR_USER);
+        String idToBeExpired = this.theUser.obtainLatestOffer().getId().toString();
+        ResultActions result = performPostRequestToExpireOffer(idToBeExpired, ANOTHER_USER)
+                .andExpect(status().is2xxSuccessful());
+        String mvcResult = result.andReturn().getResponse().getContentAsString();
+        Map<String, String> jsonResult = RequestMap.getMapFromJsonString(mvcResult);
+        assertThat("Expected error to contain invalid user", jsonResult.get("description"), startsWith("Invalid owner found"));
+    }
+
+    @Test
+    public void testExpireOfferIsCorrectlyPerformed() throws Exception {
+        this.theUser = this.userManagerTest.getUserFromNickname(REGULAR_USER);
+        TheOffer basicOffer = OfferBuilderManager.aBasicOfferWithoutId().build();
+        String jsonRequest = RequestMap.getJsonFromMap(basicOffer);
+        performPostRequestToCreateOffer(jsonRequest, REGULAR_USER)
+                .andExpect(status().is2xxSuccessful());
+        String idToBeExpired = this.theUser.obtainLatestOffer().getId().toString();
+        ResultActions result = performPostRequestToExpireOffer(idToBeExpired, REGULAR_USER)
+                .andExpect(status().is2xxSuccessful());
+        String mvcResult = result.andReturn().getResponse().getContentAsString();
+        Map<String, String> jsonResult = RequestMap.getMapFromJsonString(mvcResult);
+        assertThat("Expected OK response", jsonResult.get("descriptionEsp"), startsWith("La Oferta ha sido marcada como caducada"));
+    }
+
+    @Test
     public void testUpdateOfferWithMissingMandatoryDataReturnsValidationError() throws Exception {
         TheOffer invalidOffer = OfferBuilderManager.aBasicOfferWithId(this.theUser.obtainLatestOffer().getId()).build();
         invalidOffer.setOfferTitle("");
         String jsonRequest = RequestMap.getJsonFromMap(invalidOffer);
-        this.theUser = this.userManagerTest.getUserFromNickname(REGULAR_USER);
         ResultActions result = performPostRequestToUpdateOffer(jsonRequest, REGULAR_USER)
                 .andExpect(status().is2xxSuccessful());
         String mvcResult = result.andReturn().getResponse().getContentAsString();

@@ -8,7 +8,8 @@ form.centeredForm, div.centeredForm {
     text-align: center;
     margin: 0 auto;
 }
-div.overheadDisplayLight{
+
+div.overheadDisplayLight {
     position: absolute;
     top: 0;
 }
@@ -190,9 +191,10 @@ a.close_button.mini {
     margin: -2.5em 1em 0 0 !important;
 }
 
-.overheadButton.blue{
+.overheadButton.blue {
     background-color: #43638e !important;
 }
+
 div .overheadButton {
     background-color: #F35E1E;
     color: #ffffff !important;
@@ -231,7 +233,7 @@ ul#overheadSubContainerContent {
 }
 
 button.whiteButton,
-a.whiteButton{
+a.whiteButton {
     color: #ffffff;
     text-decoration: none;
 }
@@ -360,6 +362,10 @@ div.profileForm {
 
 /**offerlist*/
 
+section.offer-expired {
+    background-color: red;
+}
+
 div.more-offers-button {
     display: block;
     text-align: center;
@@ -382,13 +388,16 @@ i.loadingdialogue {
     font-size: 2em !important;
     box-shadow: none !important;
 }
+
 i.loadingdialogue.white {
     color: #FFFFFF !important;
 }
+
 i.loadingdialogue.grey {
     color: #828282 !important;
 }
-i.loadingdialogue.popup-loading{
+
+i.loadingdialogue.popup-loading {
     position: absolute;
     margin: -1em 0 0 -.4em;
 }
@@ -692,7 +701,8 @@ form.password-forgotten-container ul > input {
 button.passwordForgottenContainer {
     background-color: rgba(231, 0, 21, 1) !important;
 }
-label#forgottePasswordRequestLabel{
+
+label#forgottePasswordRequestLabel {
     padding-top: 0.15em;
     margin-top: 1em;
 }
@@ -787,7 +797,7 @@ pre.parsed-text.list {
     background-color: #D76060;
 }
 
-.blueish-background{
+.blueish-background {
     background-color: #69d2e7;
 }
 
@@ -826,7 +836,8 @@ pre.parsed-text.list {
 .moreDetailButtons {
     background-color: #7aae76;
 }
-.button.fa-fire.whiteButton.blue-text{
+
+.button.fa-fire.whiteButton.blue-text {
     color: #69d2e7;
 }
 
@@ -892,26 +903,31 @@ div.offerCaptcha {
     font-weight: bold;
     margin-top: .5em;
 }
-header.password-forgotten{
+
+header.password-forgotten {
     height: auto !important;
     min-height: 0 !important;
 }
-@media screen and (min-width: 1280px){
-    header.password-forgotten{
+
+@media screen and (min-width: 1280px) {
+    header.password-forgotten {
         margin: 4em 0 2em 0;
     }
 }
-@media screen and (min-width: 980px){
-    header.password-forgotten{
+
+@media screen and (min-width: 980px) {
+    header.password-forgotten {
         margin: 4em 0 2em 0;
     }
 }
-@media screen and (max-width: 480px){
+
+@media screen and (max-width: 480px) {
     .mainLogo.only-page {
         width: 1.1em;
     }
 }
-@media screen and (min-width: 480px){
+
+@media screen and (min-width: 480px) {
     .mainLogo.only-page {
         width: 2em;
     }
@@ -922,7 +938,7 @@ body.password-forgotten {
     background-color: #f38630;
 }
 
-div.content.only-page{
+div.content.only-page {
     width: 100% !important;
     text-align: center !important;
 }

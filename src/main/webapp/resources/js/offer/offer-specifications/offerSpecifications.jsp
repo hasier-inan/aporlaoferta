@@ -10,6 +10,16 @@
                     <button class="button small icon fa-pencil whiteButton green-background" ng-click="updateOffer(offer)">
                         Editar oferta
                     </button>
+                    <button class="button mini icon fa-pencil whiteButton green-background" ng-click="updateOffer(offer)">
+                    </button>
+                </div>
+                <div class="offer-specifications edit-offer expire-offer"
+                     ng-show="offer.offerUser.userNickname == '${nickname}'">
+                    <button ng-disabled="offer.offerExpired" class="button small icon fa-trash whiteButton red-background" ng-click="expireOffer(offer)">
+                        Oferta Caducada
+                    </button>
+                    <button ng-disabled="offer.offerExpired" class="button mini icon fa-trash whiteButton red-background" ng-click="expireOffer(offer)">
+                    </button>
                 </div>
             </sec:authorize>
             <div class="offerSpecificationsLeftContainer containerSplitter">
