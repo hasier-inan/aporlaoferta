@@ -13,6 +13,7 @@ public class OfferFilters {
     private OfferCategory selectedcategory;
     private String text;
     private boolean expired;
+    private boolean hot;
 
     public String getSelectedcategory() {
         return selectedcategory != null ? selectedcategory.name() : "";
@@ -38,6 +39,14 @@ public class OfferFilters {
 
     public void setExpired(boolean expired) {
         this.expired = expired;
+    }
+
+    public boolean isHot() {
+        return hot;
+    }
+
+    public void setHot(boolean hot) {
+        this.hot = hot;
     }
 
     public boolean containsCategoryOnlyFilter() {

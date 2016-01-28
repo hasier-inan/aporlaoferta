@@ -62,27 +62,36 @@ public class OfferManager {
         return this.transactionalManager.getNextHottestHundredOffers(lastShownNumber);
     }
 
-    public List<TheOffer> getFilteredNextHundredResults(OfferFilters offerFilters) {
+    public List<TheOffer> getFilteredNextHundredResults(OfferFilters offerFilters, Long lastShownNumber) {
         if (offerFilters.containsCategoryOnlyFilter()) {
             return this.transactionalManager.getNextHundredCategoryFilteredOffers(
                     offerFilters.getSelectedcategory(),
-                    offerFilters.isExpired()
+                    offerFilters.isExpired(),
+                    offerFilters.isHot(),
+                    lastShownNumber
             );
         } else if (offerFilters.containsTextOnlyFilter()) {
             return this.transactionalManager.getNextHundredTextFilteredOffers(
                     offerFilters.getText(),
-                    offerFilters.isExpired()
+                    offerFilters.isExpired(),
+                    offerFilters.isHot(),
+                    lastShownNumber
             );
         } else if (offerFilters.containsExpiredOnlyFilter()) {
             return this.transactionalManager.getNextHundredExpiredFilteredOffers(
-                    offerFilters.isExpired());
+                    offerFilters.isExpired(),
+                    offerFilters.isHot(),
+                    lastShownNumber);
         } else {
-            return offerFilters.containsFilter() ? this.transactionalManager.getNextHundredFilteredOffers(
-                    offerFilters.getSelectedcategory(),
-                    offerFilters.getText(),
-                    offerFilters.isExpired()
-            )
-                    : this.transactionalManager.getNextHundredOffers(0L);
+            if (offerFilters.containsFilter())
+                return this.transactionalManager.getNextHundredFilteredOffers(
+                        offerFilters.getSelectedcategory(),
+                        offerFilters.getText(),
+                        offerFilters.isExpired(),
+                        offerFilters.isHot(),
+                        lastShownNumber);
+            return (offerFilters.isHot()) ? this.transactionalManager.getNextHottestHundredOffers(lastShownNumber)
+                    : this.transactionalManager.getNextHundredOffers(lastShownNumber);
         }
     }
 

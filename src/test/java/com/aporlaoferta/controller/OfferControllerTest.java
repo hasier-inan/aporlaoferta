@@ -3,7 +3,11 @@ package com.aporlaoferta.controller;
 import com.aporlaoferta.data.CompanyBuilderManager;
 import com.aporlaoferta.data.OfferBuilderManager;
 import com.aporlaoferta.data.UserBuilderManager;
-import com.aporlaoferta.model.*;
+import com.aporlaoferta.model.OfferFilters;
+import com.aporlaoferta.model.TheOffer;
+import com.aporlaoferta.model.TheOfferResponse;
+import com.aporlaoferta.model.TheResponse;
+import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.model.validators.ValidationException;
 import com.aporlaoferta.service.CaptchaHTTPManager;
 import com.aporlaoferta.service.CompanyManager;
@@ -30,7 +34,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.anyObject;
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.anyLong;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by hasiermetal on 29/01/15.
@@ -168,8 +175,8 @@ public class OfferControllerTest {
     @Test
     public void FilterOffersAreReturnedInResponase() throws Exception {
         List<TheOffer> sampleOfferList = createSampleOfferList();
-        when(this.offerManager.getFilteredNextHundredResults(Mockito.any(OfferFilters.class))).thenReturn(sampleOfferList);
-        TheOfferResponse result = this.offerController.getFilteredOffers(new OfferFilters());
+        when(this.offerManager.getFilteredNextHundredResults(Mockito.any(OfferFilters.class), anyLong())).thenReturn(sampleOfferList);
+        TheOfferResponse result = this.offerController.getFilteredOffers(new OfferFilters(), 0L);
         assertOfferListIsInResponse(result, sampleOfferList);
     }
 

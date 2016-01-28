@@ -20,7 +20,7 @@
 </header>
 
 <section id="contentFilter" class="wrapper style2 special" ng-offer-filter="offerFilter"
-         offer-list="offerList"></section>
+         offer-list="offerList" selection="defaultList" offer-filter="offerFilter"></section>
 
 <section id="promotion_list" class="wrapper style2">
     <div class="inner alt">
@@ -67,6 +67,7 @@
                 </button>
             </div>
         </div>
+        <div ng-hide="offerList.length>0" class="no-offers">No hay ofertas que mostrar</div>
     </div>
     <div class="loading-dialogue">
         <i class="fa fa-refresh loadingdialogue grey" ng-class="!moreOffersLoading?'hideLoading':''"></i>

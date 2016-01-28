@@ -19,11 +19,8 @@ offerManager.service('offerManager', ['$rootScope', 'alertService', 'requestMana
                 });
         }
 
-        offerManagerController.requestMoreOffers = function (listType, lastOffer, callback, errorCallback) {
-            var endpoint = (listType == 'hottestOffers')
-                ? configService.getEndpoint('get.hottest.offers')
-                : configService.getEndpoint('get.offers');
-            requestManager.makePostCall({}, {'number': lastOffer}, endpoint)
+        offerManagerController.requestMoreOffers = function (offerFilter, lastOffer, callback, errorCallback) {
+            requestManager.makePostCall(offerFilter, {'number': lastOffer}, configService.getEndpoint('get.filtered.offers'))
                 .success(function (data, status, headers, config) {
                     callback(data.theOffers);
                     //$rootScope.$broadcast('offerList', data.theOffers);

@@ -79,9 +79,11 @@ public class OfferController {
     @RequestMapping(value = "/getFilteredOffers", method = RequestMethod.POST)
     @ResponseBody
     public TheOfferResponse getFilteredOffers(
-            @RequestBody OfferFilters offerFilters) {
+            @RequestBody OfferFilters offerFilters,
+            @RequestParam(value = "number", required = false) Long number) {
         TheOfferResponse theOfferResponse = new TheOfferResponse();
-        List<TheOffer> hundredOffers = this.offerManager.getFilteredNextHundredResults(offerFilters);
+        List<TheOffer> hundredOffers = this.offerManager.getFilteredNextHundredResults(offerFilters,
+                number != null ? number + 1 : 0L);
         //Temporary hack  because Lazy initialisation comments are empty.
         createEmptyFields(hundredOffers);
         theOfferResponse.setTheOffers(hundredOffers);
@@ -187,12 +189,13 @@ public class OfferController {
                 throw new ValidationException("Invalid offer id");
             }
             String nickName = this.userManager.getUserNickNameFromSession();
-            TheResponse result = ResponseResultHelper.createDefaultResponse();;
+            TheResponse result = ResponseResultHelper.createDefaultResponse();
+            ;
             if (!originalOffer.getOfferUser().getUserNickname().equals(nickName)) {
                 return ResponseResultHelper.
                         responseResultWithResultCodeError(ResultCode.INVALID_OWNER_ERROR, result);
             }
-            if(this.offerManager.expireOffer(originalOffer).isOfferExpired()){
+            if (this.offerManager.expireOffer(originalOffer).isOfferExpired()) {
                 result.assignResultCode(ResultCode.ALL_OK, ResponseResult.OK.value(), "La Oferta ha sido marcada como caducada");
             }
             return result;
@@ -235,7 +238,6 @@ public class OfferController {
         }
         return ResponseResultHelper.createDefaultResponse();
     }
-
 
 
     @RequestMapping(value = "/getOfferCategories", method = RequestMethod.POST)

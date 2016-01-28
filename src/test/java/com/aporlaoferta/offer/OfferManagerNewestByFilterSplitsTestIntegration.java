@@ -19,6 +19,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 import static org.hamcrest.Matchers.greaterThan;
@@ -29,10 +30,11 @@ import static org.junit.Assert.assertThat;
  * Created by hasiermetal on 22/01/15.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:aporlaoferta-inmemory-test-context.xml",
+@ContextConfiguration(locations = {"classpath:aporlaoferta-hibernate-context.xml",
         "classpath:aporlaoferta-managers-test-context.xml"})
 public class OfferManagerNewestByFilterSplitsTestIntegration {
 
+    private static Random RANDOM_GENERATOR = new Random();
     @Autowired
     private OfferManager offerManager;
 
@@ -40,6 +42,7 @@ public class OfferManagerNewestByFilterSplitsTestIntegration {
     private TransactionalManager transactionalManager;
 
     private TheUser theUser;
+
 
     @Before
     public void setUp() {
@@ -51,7 +54,7 @@ public class OfferManagerNewestByFilterSplitsTestIntegration {
     public void testHundredOffersWithGivenFiltersAreReturned() {
         addOneThousandDummyRandomCategoryOffers();
         OfferFilters offerFilters = createExampleFilter();
-        List<TheOffer> theFiltered100CategoryOffers = this.offerManager.getFilteredNextHundredResults(offerFilters);
+        List<TheOffer> theFiltered100CategoryOffers = this.offerManager.getFilteredNextHundredResults(offerFilters,0L);
         assertThat("Expected many offers as filter result", theFiltered100CategoryOffers.size(), greaterThan(0));
         assertAllSelectedOffersContainSameFilters(offerFilters, theFiltered100CategoryOffers);
     }
@@ -92,8 +95,10 @@ public class OfferManagerNewestByFilterSplitsTestIntegration {
     private void addRandomCategoryTextAndExpiredOffer() {
         TheOffer anotherOffer = OfferBuilderManager.aBasicOfferWithoutId()
                 .withCategory(selectRandomCategory())
-                .withTitle(selectRandomTitle())
+                .withTitle(String.format("%s", selectRandomTitle() + Math.random()))
                 .withDescription(selectRandomTitle())
+                .withPositives(Long.valueOf(RANDOM_GENERATOR.nextInt(1000)))
+                .withNegatives(Long.valueOf(RANDOM_GENERATOR.nextInt(1000)))
                 .isExpired(selectRandomExpired())
                 .build();
         this.theUser.addOffer(anotherOffer);

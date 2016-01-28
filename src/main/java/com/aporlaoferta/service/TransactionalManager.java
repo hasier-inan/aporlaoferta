@@ -103,23 +103,39 @@ public class TransactionalManager {
     }
 
     @Transactional(readOnly = true)
-    public List<TheOffer> getNextHundredFilteredOffers(String category, String text, boolean expired) {
-        return this.offerDAO.getOneHundredFilteredOffers(category, "%" + text + "%", expired);
+    public List<TheOffer> getNextHundredFilteredOffers(String category,
+                                                       String text,
+                                                       boolean expired,
+                                                       boolean hot,
+                                                       Long lastShownNumber) {
+        return (hot) ? this.offerDAO.getOneHundredFilteredHotOffers(category, "%" + text + "%", expired, lastShownNumber)
+                : this.offerDAO.getOneHundredFilteredOffers(category, "%" + text + "%", expired, lastShownNumber);
     }
 
     @Transactional(readOnly = true)
-    public List<TheOffer> getNextHundredCategoryFilteredOffers(String selectedcategory, boolean expired) {
-        return this.offerDAO.getOneHundredCategoryFilteredOffers(selectedcategory, expired);
+    public List<TheOffer> getNextHundredCategoryFilteredOffers(String selectedcategory,
+                                                               boolean expired,
+                                                               boolean hot,
+                                                               Long lastShownNumber) {
+        return (hot) ? this.offerDAO.getOneHundredCategoryFilteredHotOffers(selectedcategory, expired, lastShownNumber)
+                : this.offerDAO.getOneHundredCategoryFilteredOffers(selectedcategory, expired, lastShownNumber);
     }
 
     @Transactional(readOnly = true)
-    public List<TheOffer> getNextHundredTextFilteredOffers(String text, boolean expired) {
-        return this.offerDAO.getOneHundredTextFilteredOffers("%" + text + "%", expired);
+    public List<TheOffer> getNextHundredTextFilteredOffers(String text,
+                                                           boolean expired,
+                                                           boolean hot,
+                                                           Long lastShownNumber) {
+        return (hot) ? this.offerDAO.getOneHundredTextFilteredHotOffers("%" + text + "%", expired, lastShownNumber)
+                : this.offerDAO.getOneHundredTextFilteredOffers("%" + text + "%", expired, lastShownNumber);
     }
 
     @Transactional(readOnly = true)
-    public List<TheOffer> getNextHundredExpiredFilteredOffers(boolean expired) {
-        return this.offerDAO.getOneHundredExpiredFilteredOffers(expired);
+    public List<TheOffer> getNextHundredExpiredFilteredOffers(boolean expired,
+                                                              boolean hot,
+                                                              Long lastShownNumber) {
+        return (hot) ? this.offerDAO.getOneHundredExpiredFilteredHotOffers(expired, lastShownNumber)
+                : this.offerDAO.getOneHundredExpiredFilteredOffers(expired, lastShownNumber);
     }
 
     @Transactional(readOnly = true)

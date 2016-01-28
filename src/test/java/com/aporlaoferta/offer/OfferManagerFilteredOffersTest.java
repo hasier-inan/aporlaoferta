@@ -20,6 +20,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.anyBoolean;
+import static org.mockito.Matchers.anyLong;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -42,50 +43,50 @@ public class OfferManagerFilteredOffersTest {
         List<TheOffer> offerList = new ArrayList<>();
         offerList.add(OfferBuilderManager.aBasicOfferWithId(1L).build());
         when(this.transactionalManager.getNextHundredFilteredOffers(
-                anyString(), anyString(), anyBoolean())
+                anyString(), anyString(), anyBoolean(), anyBoolean(), anyLong())
         ).thenReturn(offerList);
     }
 
     @Test
     public void testTransactionalManagerReturnsFilteredResults() {
         OfferFilters dummyFilters = createDummyOfferFilter();
-        this.offerManager.getFilteredNextHundredResults(dummyFilters);
+        this.offerManager.getFilteredNextHundredResults(dummyFilters, 0L);
         verify(this.transactionalManager).getNextHundredFilteredOffers(
                 dummyFilters.getSelectedcategory(),
                 dummyFilters.getText(),
-                dummyFilters.isExpired());
+                dummyFilters.isExpired(), false, 0L);
     }
 
     @Test
     public void testIfNoFiltersAreIncludedNewestOffersAreReturned() throws Exception {
         ArrayList<TheOffer> newestOffersOnly = new ArrayList<>();
         when(this.transactionalManager.getNextHundredOffers(0L)).thenReturn(newestOffersOnly);
-        List<TheOffer> filteredResults = this.offerManager.getFilteredNextHundredResults(new OfferFilters());
+        List<TheOffer> filteredResults = this.offerManager.getFilteredNextHundredResults(new OfferFilters(), 0L);
         assertEquals(newestOffersOnly, filteredResults);
     }
 
     @Test
     public void testCategoryOnlyFilterReturnsAllOffersNoMatterWhatTitleTheyHave() throws Exception {
         OfferFilters categoryOnlyFilter = createCategoryOfferFilter();
-        this.offerManager.getFilteredNextHundredResults(categoryOnlyFilter);
+        this.offerManager.getFilteredNextHundredResults(categoryOnlyFilter, 0L);
         verify(this.transactionalManager).getNextHundredCategoryFilteredOffers(
-                categoryOnlyFilter.getSelectedcategory(), categoryOnlyFilter.isExpired());
+                categoryOnlyFilter.getSelectedcategory(), categoryOnlyFilter.isExpired(), false, 0L);
     }
 
     @Test
     public void testTitleOnlyFilterReturnsAllOffersNoMatterTheirCategory() throws Exception {
         OfferFilters categoryOnlyFilter = createTextOfferFilter();
-        this.offerManager.getFilteredNextHundredResults(categoryOnlyFilter);
+        this.offerManager.getFilteredNextHundredResults(categoryOnlyFilter, 0L);
         verify(this.transactionalManager).getNextHundredTextFilteredOffers(
-                categoryOnlyFilter.getText(), categoryOnlyFilter.isExpired());
+                categoryOnlyFilter.getText(), categoryOnlyFilter.isExpired(), false, 0L);
     }
 
     @Test
     public void testExpiredOnlyFilterReturnsAllOffers() throws Exception {
         OfferFilters expiredOnlyFilter = createExpiredOfferFilter();
-        this.offerManager.getFilteredNextHundredResults(expiredOnlyFilter);
+        this.offerManager.getFilteredNextHundredResults(expiredOnlyFilter, 0L);
         verify(this.transactionalManager).getNextHundredExpiredFilteredOffers(
-                expiredOnlyFilter.isExpired());
+                expiredOnlyFilter.isExpired(), false, 0L);
     }
 
     private OfferFilters createExpiredOfferFilter() {

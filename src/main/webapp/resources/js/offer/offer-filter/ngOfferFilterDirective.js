@@ -7,13 +7,17 @@ aporlaofertaApp
             restrict: 'A',
             templateUrl: 'resources/js/offer/offer-filter/offerFilter.html',
             scope: {
-                offerList: '='
+                offerList: '=',
+                selection: '=',
+                offerFilter: '='
             },
             controller: ['$scope', '$rootScope', 'requestManager', 'configService', function ($scope, $rootScope, requestManager, configService) {
                 $scope.filter = {};
                 $scope.displayFilterContent = "";
                 $scope.requestFilterApply = function () {
-                    $scope.processing=true;
+                    $scope.processing = true;
+                    $scope.filter.hot = $scope.selection === 'hottestOffers';
+                    $scope.offerFilter = $scope.filter;
                     requestManager.makePostCall($scope.filter, {}, configService.getEndpoint('get.filtered.offers'))
                         .success(function (data, status, headers, config) {
                             $scope.offerList = data.theOffers;
@@ -22,8 +26,8 @@ aporlaofertaApp
                             theResponse.description = data;
                             theResponse.responseResult = "error";
                             $rootScope.$broadcast('serverResponse', theResponse);
-                        }).finally(function(){
-                            $scope.processing=false;
+                        }).finally(function () {
+                            $scope.processing = false;
                         });
                 };
                 $scope.cleanFilters = function () {

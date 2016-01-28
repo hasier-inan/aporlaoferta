@@ -56,7 +56,7 @@ public class OfferManagerAmazonTestIntegration {
     @Test
     public void testAmazonOfferIsCreatedAndAffiliationIdIncludedInUrl() throws Exception{
         addAmazonOfferToDB();
-        List<TheOffer> amazonOffers = this.offerManager.getFilteredNextHundredResults(createAmazonFilter());
+        List<TheOffer> amazonOffers = this.offerManager.getFilteredNextHundredResults(createAmazonFilter(), 0L);
         TheOffer theAmazonOffer = amazonOffers.get(0);
         assertThat("Expected the amazon offer in the result set", theAmazonOffer.getOfferCompany().getCompanyName(), is("Amazon"));
         assertAffiliationIdIsIncludedInFinalUrl(theAmazonOffer);
