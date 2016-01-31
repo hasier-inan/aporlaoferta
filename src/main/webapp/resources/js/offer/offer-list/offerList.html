@@ -67,7 +67,11 @@
                 </button>
             </div>
         </div>
-        <div ng-hide="offerList.length>0" class="no-offers">No hay ofertas que mostrar</div>
+        <div ng-hide="offerList.length>0" class="no-offers">
+            <i class="fa no-offers">:</i><i class="fa fa-cart-plus no-offers">(</i>
+
+            <p>No hay ofertas que mostrar</p>
+        </div>
     </div>
     <div class="loading-dialogue">
         <i class="fa fa-refresh loadingdialogue grey" ng-class="!moreOffersLoading?'hideLoading':''"></i>

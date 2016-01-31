@@ -405,6 +405,11 @@ i.loadingdialogue.popup-loading {
 div.loading-dialogue {
     text-align: center;
 }
+div.no-offers,i.no-offers{
+    text-align: center !important;
+    color: #828282 !important;
+    font-size: 2em;
+}
 
 div.offerCompanyInTitle {
     display: inline-block;
