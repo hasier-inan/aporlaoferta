@@ -30,7 +30,7 @@ import static org.junit.Assert.assertThat;
  * Created by hasiermetal on 22/01/15.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:aporlaoferta-hibernate-context.xml",
+@ContextConfiguration(locations = {"classpath:aporlaoferta-inmemory-test-context.xml",
         "classpath:aporlaoferta-managers-test-context.xml"})
 public class OfferManagerNewestByFilterSplitsTestIntegration {
 

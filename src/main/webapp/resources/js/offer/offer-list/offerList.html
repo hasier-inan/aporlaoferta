@@ -28,7 +28,9 @@
             <section class="spotlight" ng-class="offer.offerExpired?'offer-expired':''">
                 <div class="offerImageAndFeedback">
                     <div class="image offerImage">
-                        <img ng-src="{{offer.offerImage}}" alt="" ng-click="showSpecifications(offer.id)"/>
+                        <div class="offer-image-expired" ng-show="offer.offerExpired">Oferta caducada</div>
+                        <img ng-src="{{offer.offerImage}}" alt="" ng-click="showSpecifications(offer.id)"
+                             ng-class="offer.offerExpired?'offer-expired':''"/>
                     </div>
                     <div class="centeredForm">
                         <div class="offerListFeedback feedbackSumatory">
@@ -42,7 +44,7 @@
                 </div>
 
                 <div class="content">
-                    <h3>{{offer.offerTitle}} - {{offer.finalPrice}}€
+                    <h3 ng-class="offer.offerExpired?'offer-expired':''">{{offer.offerTitle}} - {{offer.finalPrice}}€
                         <div class="offerCompanyInTitle">{{offer.offerCompany.companyName}}</div>
                     </h3>
 

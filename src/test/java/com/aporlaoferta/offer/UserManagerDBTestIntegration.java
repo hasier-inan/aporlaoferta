@@ -35,7 +35,6 @@ public class UserManagerDBTestIntegration {
         this.userManager.confirmUser(n.getUuid(), n.getUserNickname());
     }
 
-    @Ignore
     @Test
     public void testTemplateIsCreated() throws Exception {
         this.emailTemplateDAO.save(getAccountConfirmationTemplate());
