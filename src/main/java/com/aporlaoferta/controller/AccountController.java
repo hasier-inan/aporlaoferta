@@ -1,10 +1,12 @@
 package com.aporlaoferta.controller;
 
-import com.aporlaoferta.dao.EmailTemplateDAO;
-import com.aporlaoferta.email.DefaultEmailService;
 import com.aporlaoferta.email.EmailSendingException;
 import com.aporlaoferta.email.EmailService;
-import com.aporlaoferta.model.*;
+import com.aporlaoferta.model.TheDefaultOffer;
+import com.aporlaoferta.model.TheForgettableUser;
+import com.aporlaoferta.model.TheNewUser;
+import com.aporlaoferta.model.TheResponse;
+import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.model.validators.ValidationException;
 import com.aporlaoferta.service.CaptchaHTTPManager;
 import com.aporlaoferta.service.UserManager;
@@ -12,14 +14,17 @@ import com.aporlaoferta.utils.OfferValidatorHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.UUID;
