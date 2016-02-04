@@ -9,8 +9,6 @@ aporlaofertaApp
                 finalUrl: '='
             },
             templateUrl: 'resources/js/uploader/imageUpload.html',
-            link: function (scope, elem, attrs) {
-            },
             controller: ['$rootScope', '$scope', 'configService', '$timeout', function ($rootScope, $scope, configService, $timeout) {
                 $scope.uploader = {};
                 $scope.displayThumbnail = true;

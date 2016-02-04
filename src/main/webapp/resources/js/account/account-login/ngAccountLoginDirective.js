@@ -6,8 +6,6 @@ aporlaofertaApp
         return {
             restrict: 'A',
             templateUrl: 'view/login.jsp',
-            link: function (scope, elem, attrs) {
-            },
             controller: ['$scope', 'requestManager', 'configService', 'alertService',
                 function ($scope, requestManager, configService, alertService) {
                     $scope.requestPassword = function (nickname) {

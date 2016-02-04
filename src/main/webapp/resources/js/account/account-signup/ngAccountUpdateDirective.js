@@ -11,8 +11,6 @@ aporlaofertaApp
                 customCloseCallback: '=',
                 displayCallback: '='
             },
-            link: function (scope, elem, attrs) {
-            },
             controller: ['$scope', 'vcRecaptchaService', 'alertService', '$http', 'requestManager', 'configService',
                 function ($scope, vcRecaptchaService, alertService, http, requestManager, configService) {
                     $scope.disableNickname = true;

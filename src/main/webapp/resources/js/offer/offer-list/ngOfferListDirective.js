@@ -7,21 +7,12 @@ aporlaofertaApp
             restrict: 'A',
             templateUrl: 'resources/js/offer/offer-list/offerList.html',
             link: function (scope, elem, attrs) {
+                defaultList: '='
             },
             controller: ['$scope', 'offerManager',
                 function ($scope, offerManager) {
-                    $scope.defaultList = "";
                     $scope.offerList = [];
                     $scope.moreOffersLoading = false;
-                    $scope.requestNewestOffers = function () {
-                        offerManager.requestNewestOffers();
-                        $scope.defaultList = 'newestOffers';
-                    }
-
-                    $scope.requestHottestOffers = function () {
-                        offerManager.requestHottestOffers();
-                        $scope.defaultList = 'hottestOffers';
-                    }
 
                     $scope.showMoreOffers = function (lastOffer) {
                         $scope.moreOffersLoading = true;

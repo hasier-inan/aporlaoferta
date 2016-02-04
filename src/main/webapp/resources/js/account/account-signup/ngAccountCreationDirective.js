@@ -11,8 +11,6 @@ aporlaofertaApp
                 customCloseCallback: '=',
                 displayCallback: '='
             },
-            link: function (scope, elem, attrs) {
-            },
             controller: ['$scope', 'requestManager', 'configService', 'vcRecaptchaService', 'alertService',
                 function ($scope, requestManager, configService, vcRecaptchaService, alertService) {
                     $scope.theUser = {};

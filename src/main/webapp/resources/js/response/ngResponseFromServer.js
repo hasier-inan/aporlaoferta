@@ -8,11 +8,6 @@ aporlaofertaApp
             templateUrl: 'resources/js/response/serverResponse.html',
             scope: {
                 theResponse: '='
-            },
-            link: function (scope, elem, attrs) {
-            },
-            controller: ['$scope', function ($scope) {
-
-            }]
+            }
         }
     });

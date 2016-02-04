@@ -20,6 +20,7 @@
     <script src="resources/js/account/account-logout/ngAccountLogoutDirective.js"></script>
     <script src="resources/js/config/configService.js"></script>
     <script src="resources/js/offer/offer-list/ngOfferListDirective.js"></script>
+    <script src="resources/js/offer/offer-list/ngPromotionListDirective.js"></script>
     <script src="resources/js/offer/offer-specifications/ngOfferSpecifications.js"></script>
     <script src="resources/js/offer/offer-specifications/offer-comments/ngOfferComments.js"></script>
     <script src="resources/js/offer/offer-creation/ngOfferCreationDirective.js"></script>
@@ -28,7 +29,7 @@
 </head>
 <body>
 
-<div ng-offer-list="offerList"></div>
+<div ng-promotion-list="promotionList"></div>
 
 <hr/>
 <sec:authorize ifAllGranted="ROLE_USER">

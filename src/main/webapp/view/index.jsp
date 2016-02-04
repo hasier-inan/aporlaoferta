@@ -14,15 +14,12 @@
     <title>aporlaoferta ~ ofertas y promociones online </title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="author" content="thatsoftwarecompany"/>
-    <meta name="description" content="ofertas, promociones, rebajas y chollos en tiendas online"/>
-    <meta name="keywords"
-          content="oferta p4p rebaja chollo precio tienda promocion online"/>
-    <meta property="og:url"           content="http://www.aporlaoferta.com" />
-    <meta property="og:type"          content="gestor y buscador de ofertas online" />
-    <meta property="og:title"         content="aporlaoferta ~ ofertas y promociones online" />
-    <meta property="og:description"   content="Your description" />
-    <meta property="og:image"         content="http://www.aporlaoferta.com/images/aporlaoferta.jpg" />
+    <meta property="og:site_name" content="aporlaoferta">
+    <meta property="og:url" content="http://www.aporlaoferta.com" />
+    <meta property="og:type" content="gestor y buscador de ofertas online" />
+    <meta property="og:title" content="aporlaoferta ~ ofertas y promociones online" />
+    <meta property="og:description" content="ofertas, promociones, rebajas y chollos en tiendas online" />
+    <meta property="og:image" content="http://www.aporlaoferta.com/images/logo.jpg" />
     <sec:csrfMetaTags/>
     <link rel="shortcut icon"
           href="resources/images/favicon.ico" />
@@ -62,6 +59,7 @@
     <script src="resources/js/account/account-logout/ngAccountLogoutDirective.js"></script>
     <script src="resources/js/config/configService.js"></script>
     <script src="resources/js/offer/offer-list/ngOfferListDirective.js"></script>
+    <script src="resources/js/offer/offer-list/ngPromotionListDirective.js"></script>
     <script src="resources/js/offer/offer-specifications/ngOfferSpecifications.js"></script>
     <script src="resources/js/offer/offer-specifications/offer-comments/ngOfferComments.js"></script>
     <script src="resources/js/offer/offer-specifications/offer-comments/ngOfferCommentsQuotes.js"></script>
@@ -77,7 +75,7 @@
     <script src="resources/js/offer/offer-list/offerManagerService.js"></script>
     <link rel="stylesheet" href="resources/js/uploader/imageUpload.css"/>
     <!--social media-->
-    <script id="facebook-jssdk" src="//connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v2.5"></script>
+    <%--<script id="facebook-jssdk" src="//connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v2.5"></script>--%>
 </head>
 <body id="top" data-ng-controller="APorLaOfertaController" flow-prevent-drop ng-keydown="keyHandler($event)">
 
@@ -87,7 +85,7 @@
 
 <div ng-overhead-display="overheadDisplay"></div>
 
-<div ng-offer-list="offerList"></div>
+<div ng-promotion-list="promotionList"></div>
 
 <!-- Footer -->
 <footer id="footer">

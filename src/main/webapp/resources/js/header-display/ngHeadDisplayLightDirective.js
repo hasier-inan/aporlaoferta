@@ -6,8 +6,6 @@ aporlaofertaApp
         return {
             restrict: 'A',
             templateUrl: 'resources/js/header-display/headDisplayLight.jsp',
-            link: function (scope, elem, attrs) {
-            },
             controller: ['$scope', '$timeout', function ($scope, $timeout) {
                 $scope.customCloseCallback={};
                 $scope.theResponse = {};

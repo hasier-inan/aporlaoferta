@@ -11,8 +11,6 @@ aporlaofertaApp
                 nick: '=',
                 customCloseCallback: '='
             },
-            link: function (scope, elem, attrs) {
-            },
             controller: ['$scope', '$http', 'requestManager', 'configService', 'alertService',
                 function ($scope, http, requestManager, configService, alertService) {
                     $scope.theUser = {userNickname: $scope.nick, uuid: $scope.uuid};
