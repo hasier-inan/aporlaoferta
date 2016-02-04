@@ -6,7 +6,7 @@ aporlaofertaApp
         return {
             restrict: 'A',
             templateUrl: 'resources/js/offer/offer-list/offerList.html',
-            link: function (scope, elem, attrs) {
+            scope: {
                 defaultList: '='
             },
             controller: ['$scope', 'offerManager',

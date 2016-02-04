@@ -362,7 +362,7 @@ div.profileForm {
 
 /**offerlist*/
 
-h3.offer-expired,h1.offer-expired  {
+h3.offer-expired, h1.offer-expired {
     text-decoration: line-through;
 }
 
@@ -927,6 +927,38 @@ div.offerCaptcha {
     border-radius: 6px;
 }
 
+/*social-media*/
+div.social-media-shares {
+    margin-top: 2em;
+}
+a.social-share{
+    height: 2em;
+    line-height: 2em;
+    display: inline-block;
+    font-size: 0.8em;
+    padding-left: 1.35em;
+    color: #ffffff !important;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif !important;
+    padding: 0 1.75em;
+    font-weight: bold;
+    border-radius: 6px;
+    border: 0;
+    cursor: pointer;
+}
+
+a.social-share.fa-google-plus {
+    background-color: #D14836;
+}
+
+a.social-share.fa-twitter {
+    background-color: #00ACED;
+}
+
+a.social-share.fa-facebook {
+    background-color: #3B5998;
+}
+
 /*password-forgotten*/
 .mainLogo.only-page {
     font-size: 3.25em;
@@ -975,6 +1007,10 @@ div.content.only-page {
 
 .only-page {
     display: inline-block;
+}
+
+.social-media-link:hover, .actions li a:hover {
+    text-decoration: none;
 }
 
 /*/general values*/

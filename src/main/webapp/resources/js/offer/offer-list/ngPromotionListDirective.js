@@ -8,6 +8,8 @@ aporlaofertaApp
             templateUrl: 'resources/js/offer/offer-list/promotionList.html',
             controller: ['$scope','offerManager',
                 function ($scope,offerManager) {
+                    $scope.shareUrl="www.aporlaoferta.com";
+                    $scope.shareText=$("meta[property='og:description']").attr("content");
                     $scope.defaultList = "";
 
                     $scope.requestNewestOffers = function () {

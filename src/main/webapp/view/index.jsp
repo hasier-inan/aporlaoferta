@@ -18,7 +18,7 @@
     <meta property="og:url" content="http://www.aporlaoferta.com" />
     <meta property="og:type" content="gestor y buscador de ofertas online" />
     <meta property="og:title" content="aporlaoferta ~ ofertas y promociones online" />
-    <meta property="og:description" content="ofertas, promociones, rebajas y chollos en tiendas online" />
+    <meta property="og:description" content="aporlaoferta es un gestor de ofertas, promociones, rebajas y chollos online, creados por y para todos los usuarios españoles" />
     <meta property="og:image" content="http://www.aporlaoferta.com/images/logo.jpg" />
     <sec:csrfMetaTags/>
     <link rel="shortcut icon"
@@ -75,6 +75,7 @@
     <script src="resources/js/offer/offer-list/offerManagerService.js"></script>
     <link rel="stylesheet" href="resources/js/uploader/imageUpload.css"/>
     <!--social media-->
+    <script src="resources/js/social/ngSocialMediaDirective.js"></script>
     <%--<script id="facebook-jssdk" src="//connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v2.5"></script>--%>
 </head>
 <body id="top" data-ng-controller="APorLaOfertaController" flow-prevent-drop ng-keydown="keyHandler($event)">
@@ -90,9 +91,9 @@
 <!-- Footer -->
 <footer id="footer">
     <ul class="icons">
-        <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-        <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-        <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+        <li><a href="#" class="icon fa-facebook social-media-link"><span class="label">Facebook</span></a></li>
+        <li><a href="#" class="icon fa-twitter social-media-link"><span class="label">Twitter</span></a></li>
+        <li><a href="#" class="icon fa-google-plus social-media-link"><span class="label">Instagram</span></a></li>
     </ul>
     <p class="copyright">&copy; aporlaoferta, thatsoftwarecompany 2015</p>
 </footer>
