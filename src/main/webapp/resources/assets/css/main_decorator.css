@@ -355,6 +355,10 @@ div.thumbnailButtons > button {
         display: none !important;
     }
 
+    a.main-selection {
+        padding-left: 3em !important;
+    }
+
 }
 
 @media screen and (max-width: 480px) {
@@ -1030,7 +1034,8 @@ a.social-share.mini {
         margin-left: -3em;
         margin-top: 7em;
     }
-    a.social-share{
+
+    a.social-share {
         margin-top: .3em;
     }
 }
