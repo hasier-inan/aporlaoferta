@@ -23,10 +23,14 @@
                 </div>
 
                 <div class="content">
+                    <div class="offerSpecificationsSubtitle">
+                        <img ng-src="{{offer.offerUser.userAvatar}}"/>
+                        <div class="offerCreatedDate">{{offer.offerCreatedDate | date:'MM/dd/yyyy @h:mma'}}
+                        </div>
+                    </div>
                     <h3 ng-class="offer.offerExpired?'offer-expired':''">{{offer.offerTitle}} - {{offer.finalPrice}}€
                         <div class="offerCompanyInTitle">{{offer.offerCompany.companyName}}</div>
                     </h3>
-
                     <p class="offerDescription">
                     <pre class="parsed-text list">{{offer.offerDescription}}</pre>
                     </p>

@@ -12,7 +12,10 @@ aporlaofertaApp
             },
             controller: ['offerManager', 'alertService', '$scope', '$rootScope', 'requestManager', 'configService',
                 function (offerManager, alertService, $scope, $rootScope, requestManager, configService) {
+                    $scope.sharePrefix = "www.aporlaoferta.com/offer?sh=";
+                    $scope.sharePrice = "€: ";
                     $scope.commentsCustomCloseCallback = {};
+
                     $scope.votePositive = function (id) {
                         requestManager.makePostCall({}, {'offerId': id}, configService.getEndpoint('positive.feedback'))
                             .success(function (data, status, headers, config) {

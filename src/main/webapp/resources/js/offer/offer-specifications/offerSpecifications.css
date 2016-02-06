@@ -62,6 +62,7 @@ div.offer-specifications.expire-offer {
     div.offer-specifications.edit-offer > button.mini {
         display: block !important;
     }
+
     div.offer-specifications.expire-offer {
         margin-left: 5em;
     }
@@ -102,6 +103,15 @@ div.offerSpecificationsOriginalPrice {
 div.offerSpecificationsSubtitle div {
     display: inline-block;
     margin-top: .5em;
+}
+
+div.content div.offerSpecificationsSubtitle {
+    color: rgb(130, 130, 130);
+    font-size: .8em;
+}
+
+div.offerSpecificationsSubtitle img {
+    width: 15px;
 }
 
 div.offerSpecificationsDescription {
