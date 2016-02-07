@@ -15,14 +15,15 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta property="og:site_name" content="aporlaoferta">
-    <meta property="og:url" content="http://www.aporlaoferta.com" />
-    <meta property="og:type" content="gestor y buscador de ofertas online" />
-    <meta property="og:title" content="aporlaoferta ~ ofertas y promociones online" />
-    <meta property="og:description" content="aporlaoferta es un gestor de ofertas, promociones, rebajas y chollos online, creados por y para todos los usuarios españoles" />
-    <meta property="og:image" content="http://www.aporlaoferta.com/images/logo.jpg" />
+    <meta property="og:url" content="http://www.aporlaoferta.com"/>
+    <meta property="og:type" content="gestor y buscador de ofertas online"/>
+    <meta property="og:title" content="aporlaoferta ~ ofertas y promociones online"/>
+    <meta property="og:description"
+          content="aporlaoferta es un gestor de ofertas, promociones, rebajas y chollos online, creados por y para todos los usuarios españoles"/>
+    <meta property="og:image" content="http://www.aporlaoferta.com/images/logo.jpg"/>
     <sec:csrfMetaTags/>
     <link rel="shortcut icon"
-          href="resources/images/favicon.ico" />
+          href="resources/images/favicon.ico"/>
     <!--template-->
     <!--[if lte IE 8]>
     <script src="resources/assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -45,7 +46,8 @@
     <!--core-->
     <script src="resources/js/lib/angular.js"></script>
     <script src="resources/js/lib/angular-animate.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit&hl=es" async defer></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit&hl=es" async
+            defer></script>
     <script src="resources/js/lib/angular-recaptcha.js"></script>
     <script src="resources/js/lib/angular-filter.min.js"></script>
     <script src="resources/js/lib/ng-flow-standalone.js"></script>
@@ -78,13 +80,14 @@
     <script src="resources/js/social/ngSocialMediaDirective.js"></script>
     <%--<script id="facebook-jssdk" src="//connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v2.5"></script>--%>
 </head>
-<body id="top" data-ng-controller="APorLaOfertaController" flow-prevent-drop ng-keydown="keyHandler($event)">
+<body id="top" data-ng-controller="APorLaOfertaController" flow-prevent-drop ng-keydown="keyHandler($event)"
+      ng-class="{'no-overflow':overheadVisible}">
 
 <c:if test="${not empty msg}">
     <input type="text" id="errorMessage" style="display:none" value="${msg}"/>
 </c:if>
 
-<div ng-overhead-display="overheadDisplay" specific-offer="${specificOffer}"></div>
+<div ng-overhead-display="overheadDisplay" specific-offer="${specificOffer}" overhead-visible="overheadVisible"></div>
 
 <div ng-promotion-list="promotionList"></div>
 

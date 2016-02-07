@@ -8,12 +8,13 @@ aporlaofertaApp
             restrict: 'A',
             templateUrl: 'resources/js/header-display/headDisplay.jsp',
             scope: {
-                specificOffer: '@'
+                specificOffer: '@',
+                overheadVisible: '='
             },
             controller: ['$scope', 'offerManager', '$timeout', function ($scope, $offerManager, $timeout) {
                 $scope.customCloseCallback = {};
                 $scope.theResponse = {};
-                $scope.fullscreen=false;
+                $scope.fullscreen = false;
                 $scope.displayLogin = function () {
                     $scope.setDefaultVisibility();
                     $scope.displayAccountLogin = true;
@@ -68,9 +69,9 @@ aporlaofertaApp
                 };
                 $scope.$watch('specificOffer', function () {
                     if (/^\d+$/.exec($scope.specificOffer) != null) {
-                        $scope.fullscreen=true;
-                        $scope.customCloseCallback = function(){
-                            $scope.fullscreen=false;
+                        $scope.fullscreen = true;
+                        $scope.customCloseCallback = function () {
+                            $scope.fullscreen = false;
                         };
                         $offerManager.showSpecifications($scope.specificOffer);
                     }
