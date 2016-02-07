@@ -12,7 +12,7 @@ aporlaofertaApp
             },
             controller: ['offerManager', 'alertService', '$scope', '$rootScope', 'requestManager', 'configService',
                 function (offerManager, alertService, $scope, $rootScope, requestManager, configService) {
-                    $scope.sharePrefix = "www.aporlaoferta.com/offer?sh=";
+                    $scope.sharePrefix = "www.aporlaoferta.com/start?sh=";
                     $scope.sharePrice = "€: ";
                     $scope.commentsCustomCloseCallback = {};
 

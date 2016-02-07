@@ -2,13 +2,18 @@
  * Created by hasiermetal on 16/03/14.
  */
 aporlaofertaApp
+
     .directive('ngOverheadDisplay', function () {
         return {
             restrict: 'A',
             templateUrl: 'resources/js/header-display/headDisplay.jsp',
-            controller: ['$scope', '$timeout', function ($scope, $timeout) {
+            scope: {
+                specificOffer: '@'
+            },
+            controller: ['$scope', 'offerManager', '$timeout', function ($scope, $offerManager, $timeout) {
                 $scope.customCloseCallback = {};
                 $scope.theResponse = {};
+                $scope.fullscreen=false;
                 $scope.displayLogin = function () {
                     $scope.setDefaultVisibility();
                     $scope.displayAccountLogin = true;
@@ -61,6 +66,15 @@ aporlaofertaApp
                         $scope.customCloseCallback = {};
                     }
                 };
+                $scope.$watch('specificOffer', function () {
+                    if (/^\d+$/.exec($scope.specificOffer) != null) {
+                        $scope.fullscreen=true;
+                        $scope.customCloseCallback = function(){
+                            $scope.fullscreen=false;
+                        };
+                        $offerManager.showSpecifications($scope.specificOffer);
+                    }
+                });
                 $scope.$on('offerSpecifications', function (event, args) {
                     $scope.offerSpecifications = args;
                     $scope.displayOfferDetails();
@@ -68,7 +82,7 @@ aporlaofertaApp
                 });
                 $scope.$on('updateTheOffer', function (event, args) {
                     $scope.offerSpecifications = [args];
-                    $scope.customCloseCallback=function(){
+                    $scope.customCloseCallback = function () {
                         $scope.displayOfferDetails();
                     }
                     $scope.displayOfferUpdate();
@@ -86,8 +100,8 @@ aporlaofertaApp
                     }
                 });
 
-                $scope.justCloseOverheadDisplay=function(){
-                    $scope.customCloseCallback={};
+                $scope.justCloseOverheadDisplay = function () {
+                    $scope.customCloseCallback = {};
                     $scope.closeOverheadDisplay();
                 }
 

@@ -84,7 +84,7 @@
     <input type="text" id="errorMessage" style="display:none" value="${msg}"/>
 </c:if>
 
-<div ng-overhead-display="overheadDisplay"></div>
+<div ng-overhead-display="overheadDisplay" specific-offer="${specificOffer}"></div>
 
 <div ng-promotion-list="promotionList"></div>
 
