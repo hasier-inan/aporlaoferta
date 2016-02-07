@@ -46,7 +46,6 @@ div.overhead_subcontainer {
     top: 5%;
     background-image: url("images/background_head5.png"), url("images/pattern-size1.svg");
     background-position: top left, center center;
-    background-attachment: fixed, fixed;
     background-size: auto, cover;
     overflow-y: auto;
     opacity: 1;
@@ -66,7 +65,6 @@ div.overhead_subcontainer-fullscreen {
     top: 0%;
     background-image: url("images/background_head5.png"), url("images/pattern-size1.svg");
     background-position: top left, center center;
-    background-attachment: fixed, fixed;
     background-size: auto, cover;
     overflow-y: auto;
     opacity: 1;
