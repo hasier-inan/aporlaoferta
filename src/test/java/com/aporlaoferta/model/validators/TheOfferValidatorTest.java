@@ -7,6 +7,7 @@ import com.aporlaoferta.model.OfferCategory;
 import com.aporlaoferta.model.TheOffer;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -53,6 +54,12 @@ public class TheOfferValidatorTest {
     @Test
     public void testLinkIsMandatory() {
         this.theOffer.setOfferLink(null);
+        Assert.assertTrue(ValidatorHelper.getValidationErrors(this.theOffer, this.theOfferValidator).hasErrors());
+    }
+
+    @Test
+    public void testCompanyIsMandatory() {
+        this.theOffer.setOfferCompany(null);
         Assert.assertTrue(ValidatorHelper.getValidationErrors(this.theOffer, this.theOfferValidator).hasErrors());
     }
 
