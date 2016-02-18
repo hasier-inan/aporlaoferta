@@ -19,6 +19,7 @@ public class CompanyBuilder {
     private String affiliateId;
     private Set<TheOffer> offers;
     private Long id;
+    private String watermarks;
 
     public static CompanyBuilder aCompany() {
         return new CompanyBuilder();
@@ -58,6 +59,11 @@ public class CompanyBuilder {
         return this;
     }
 
+    public CompanyBuilder withWatermarks(String watermarks) {
+        this.watermarks = watermarks;
+        return this;
+    }
+
     public OfferCompany build() {
         OfferCompany offerCompany = new OfferCompany();
         offerCompany.setCompanyAffiliateId(this.affiliateId);
@@ -66,6 +72,7 @@ public class CompanyBuilder {
         offerCompany.setCompanyName(this.name);
         offerCompany.setId(this.id);
         offerCompany.setCompanyOffers(this.offers);
+        offerCompany.setCompanyWatermarks(this.watermarks);
         return offerCompany;
     }
 }

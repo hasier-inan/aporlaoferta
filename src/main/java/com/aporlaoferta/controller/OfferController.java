@@ -173,10 +173,23 @@ public class OfferController {
 
     private void updateCompany(TheOffer thatOffer) {
         if (thatOffer.getOfferCompany() != null) {
-            OfferCompany offerCompany = this.companyManager.getCompanyFromName(thatOffer.getOfferCompany().getCompanyName());
-            if (offerCompany != null) {
-                thatOffer.setOfferCompany(offerCompany);
+            String watermarkedCompany = this.companyManager.getWatermarkedCompany(thatOffer.getOfferLink());
+            if (!isEmpty(watermarkedCompany)) {
+                updateCompanyFromWatermark(thatOffer, watermarkedCompany);
+            } else {
+                updateCompanyFromName(thatOffer);
             }
+        }
+    }
+
+    private void updateCompanyFromWatermark(TheOffer thatOffer, String watermarkedCompany) {
+        thatOffer.setOfferCompany(this.companyManager.getCompanyFromName(watermarkedCompany));
+    }
+
+    private void updateCompanyFromName(TheOffer thatOffer) {
+        OfferCompany offerCompany = this.companyManager.getCompanyFromName(thatOffer.getOfferCompany().getCompanyName());
+        if (offerCompany != null) {
+            thatOffer.setOfferCompany(offerCompany);
         }
     }
 
@@ -190,7 +203,6 @@ public class OfferController {
             }
             String nickName = this.userManager.getUserNickNameFromSession();
             TheResponse result = ResponseResultHelper.createDefaultResponse();
-            ;
             if (!originalOffer.getOfferUser().getUserNickname().equals(nickName)) {
                 return ResponseResultHelper.
                         responseResultWithResultCodeError(ResultCode.INVALID_OWNER_ERROR, result);

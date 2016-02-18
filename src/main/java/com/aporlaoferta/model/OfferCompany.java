@@ -54,6 +54,10 @@ public class OfferCompany implements Serializable {
     @JsonIgnore
     private String companyAffiliateId;
 
+    @Column(name = "TC_WATERMARKS", nullable = true)
+    @JsonIgnore
+    private String companyWatermarks;
+
     @OneToMany(mappedBy = "offerCompany", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<TheOffer> companyOffers = new HashSet<TheOffer>();
@@ -115,4 +119,11 @@ public class OfferCompany implements Serializable {
         this.companyAffiliateId = companyAffiliateId;
     }
 
+    public String getCompanyWatermarks() {
+        return companyWatermarks;
+    }
+
+    public void setCompanyWatermarks(String companyWatermarks) {
+        this.companyWatermarks = companyWatermarks;
+    }
 }

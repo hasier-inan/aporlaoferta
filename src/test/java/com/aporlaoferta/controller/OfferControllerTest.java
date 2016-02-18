@@ -18,6 +18,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -87,9 +88,7 @@ public class OfferControllerTest {
 
     @Test
     public void testUserIsSavedWithNewCreatedOffer() throws Exception {
-        TheUser user = UserBuilderManager.aRegularUserWithNickname("john").build();
-        when(this.userManager.getUserFromNickname(anyString())).thenReturn(user);
-        when(this.userManager.saveUser(user)).thenReturn(user);
+        TheUser user = mockUserToCreateOffer();
         TheOffer theOffer = OfferBuilderManager.aBasicOfferWithoutUserOrId().build();
         TheResponse result = this.offerController.createOffer(theOffer, "recaptcha");
         verify(this.userManager).saveUser(user);
@@ -193,6 +192,34 @@ public class OfferControllerTest {
         TheResponse result = this.offerController.createOffer(null, "");
         Assert.assertEquals(result.getCode(), 75);
 
+    }
+
+    @Test
+    public void testCompanyIsReplacedWhenWatermarkFound() throws Exception {
+        String watermarked = "watermarked";
+        String fakecompany = "fakecompany";
+        mockUserToCreateOffer();
+        when(this.companyManager.getWatermarkedCompany(anyString())).thenReturn(watermarked);
+        when(this.companyManager.getCompanyFromName(watermarked)).thenReturn(
+                CompanyBuilderManager.aRegularCompanyWithName(watermarked).build());
+        TheOffer theOffer = OfferBuilderManager.aBasicOfferWithoutUserOrId()
+                .withCompany(CompanyBuilderManager.aRegularCompanyWithName(fakecompany).build())
+                .build();
+        this.offerController.createOffer(theOffer, "recaptcha");
+
+        ArgumentCaptor<TheOffer> theOfferArgumentCaptor = ArgumentCaptor.forClass(TheOffer.class);
+        Mockito.verify(this.offerValidatorHelper).validateOffer(theOfferArgumentCaptor.capture());
+        TheOffer updatedOffer = theOfferArgumentCaptor.getValue();
+        Assert.assertThat("Expected company to be updated",
+                updatedOffer.getOfferCompany().getCompanyName(), is(watermarked));
+    }
+
+
+    private TheUser mockUserToCreateOffer() {
+        TheUser user = UserBuilderManager.aRegularUserWithNickname("john").build();
+        when(this.userManager.getUserFromNickname(anyString())).thenReturn(user);
+        when(this.userManager.saveUser(user)).thenReturn(user);
+        return user;
     }
 
     private void assertOfferListIsInResponse(TheOfferResponse result, List<TheOffer> expectedOffers) {

@@ -55,6 +55,21 @@ public class CompanyManager {
         return rawLink;
     }
 
+    public String getWatermarkedCompany(String uri) {
+        List<OfferCompany> allCompanies = getAllCompanies();
+        for (OfferCompany offerCompany : allCompanies) {
+            if (isEmpty(offerCompany.getCompanyWatermarks())) {
+                continue;
+            }
+            for (String watermark : offerCompany.getCompanyWatermarks().split(" ")) {
+                if (uri.indexOf(watermark) >= 0) {
+                    return offerCompany.getCompanyName();
+                }
+            }
+        }
+        return "";
+    }
+
     public List<OfferCompany> getAllCompanies() {
         return this.transactionalManager.getAllCompanies();
     }

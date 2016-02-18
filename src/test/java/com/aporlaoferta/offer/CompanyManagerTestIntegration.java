@@ -1,5 +1,6 @@
 package com.aporlaoferta.offer;
 
+import com.aporlaoferta.data.CompanyBuilder;
 import com.aporlaoferta.data.CompanyBuilderManager;
 import com.aporlaoferta.model.OfferCompany;
 import com.aporlaoferta.service.CompanyManager;
