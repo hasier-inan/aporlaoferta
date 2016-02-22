@@ -9,6 +9,8 @@
 <!-- Fractal template by HTML5 UP html5up.net -->
 <!-- icons and logos by font awesome http://fortawesome.github.io/ -->
 <!-- file upload base by ng-flow -->
+<!-- angular material auto-complete from https://material.angularjs.org -->
+<!-- custom dropdown from https://github.com/jseppi/angular-dropdowns -->
 <html data-ng-app="aPorLaOferta" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>aporlaoferta ~ ofertas y promociones online </title>
@@ -56,6 +58,9 @@
     <script src="resources/js/lib/angular-messages.min.js"></script>
     <script src="resources/js/lib/angular-material.js"></script>
     <link rel="stylesheet" href="resources/assets/css/angular-material-custom.css">
+    <!-- angular dropdown-->
+    <script src="resources/js/lib/angular-dropdowns.js"></script>
+    <link rel="stylesheet" href="resources/assets/css/angular-dropdowns-custom.css">
     <!--modules-->
     <script src="resources/assets/js/main.js"></script>
     <script src="resources/js/main-controller/mainController.js"></script>

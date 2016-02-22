@@ -6,8 +6,11 @@
                     art&iacute;culo</label>
 
                 <div id="offerCategoryManagerSection" ng-offer-category-manager="offerCategoryManager"
+                     class="offer-creation-category"
                      reset="resetCategory"
-                     selectedcategory="offer.offerCategory" class="select-validation"></div>
+                     selectedcategory="offer.offerCategory"
+                     ng-class="isCategorySelected()?'ng-valid':'ng-invalid'"
+                     required></div>
             </li>
         </ul>
         <ul>
@@ -100,7 +103,7 @@
         </ul>
 
         <button
-                ng-disabled="!createOfferForm.$valid || processing || !selectionPerformed"
+                ng-disabled="!createOfferForm.$valid || processing || !selectionPerformed()"
                 ng-click="createOffer()"
                 class="button small icon fa-shopping-cart overheadButton">Crear oferta
         </button>

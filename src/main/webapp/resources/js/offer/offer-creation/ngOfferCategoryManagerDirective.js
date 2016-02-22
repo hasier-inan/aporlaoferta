@@ -12,6 +12,9 @@ aporlaofertaApp
             },
             controller: ['$rootScope', '$scope', 'requestManager', 'configService', function ($rootScope, $scope, requestManager, configService) {
                 $scope.offerCategories = {};
+                $scope.offerCategory = {
+                    text: "CATEGORÍA"
+                };
                 $scope.populateAllCategories = function () {
                     requestManager.makePostCall({}, {}, configService.getEndpoint('get.offer.categories'))
                         .success(function (data, status, headers, config) {
@@ -29,19 +32,20 @@ aporlaofertaApp
                 $scope.populateAllCategories();
                 $scope.$watch('reset', function () {
                     if ($scope.reset) {
-                        $scope.category = "";
+                        $scope.offerCategory = {
+                            text: "CATEGORÍA"
+                        };
                     }
                     $scope.reset = false;
                 });
-                $scope.$watch('selectedcategory', function () {
-                    $scope.category = $scope.selectedcategory;
+                $scope.$watch('offerCategory', function () {
+                    $scope.selectedcategory = $scope.offerCategory.text;
                 });
                 $scope.isCategorySelected = function () {
                     return $scope.category != ""
                         && $scope.category != null
                         && $scope.category != undefined;
-                }
-
+                };
             }]
         }
     });

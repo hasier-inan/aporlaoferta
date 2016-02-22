@@ -13,6 +13,13 @@
     padding: 10px
 }
 
+md-autocomplete,
+md-virtual-repeat-container,
+md-virtual-repeat-scroller {
+    background: rgba(243, 134, 48, .65) !important;
+    border: 1px solid #f38630;
+}
+
 button.md-no-style {
     font-weight: 400;
     background-color: inherit;
@@ -32,7 +39,7 @@ input[type=search]::-webkit-search-cancel-button, input[type=search]::-webkit-se
     -webkit-appearance: none
 }
 
-.md-autocomplete.md-default-theme, md-autocomplete{
+.md-autocomplete.md-default-theme, md-autocomplete {
 
 }
 
@@ -125,7 +132,7 @@ input[type=search]::-webkit-search-cancel-button, input[type=search]::-webkit-se
 .md-scroll-mask > .md-scroll-mask-bar {
     display: block;
     position: absolute;
-    background-color: #fafafa;
+    background-color: transparent;
     right: 0;
     top: 0;
     bottom: 0;
@@ -665,7 +672,7 @@ button, input, select, textarea {
     box-sizing: border-box
 }
 
-@media screen\0 {
+@media screen\0  {
     .flex {
         -webkit-flex: 1 1 0;
         -ms-flex: 1 1 0;
@@ -9835,9 +9842,9 @@ md-autocomplete button.ng-leave.ng-leave-active {
 
 .md-virtual-repeat-container.md-autocomplete-suggestions-container {
     position: absolute;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, .25);
+    /*box-shadow: 0 2px 5px rgba(0, 0, 0, .25);*/
     height: 225.5px;
-    max-height: 225.5px;
+    max-height: 500px;
     z-index: 1003
 }
 
@@ -14286,7 +14293,7 @@ md-slider .md-focus-thumb {
     border-radius: 48px;
     display: none;
     opacity: 0;
-    background-color: silver;
+    background-color: transparent;
     -webkit-animation: sliderFocusThumb .4s linear;
     animation: sliderFocusThumb .4s linear
 }
@@ -14319,7 +14326,7 @@ md-slider .md-disabled-thumb {
 }
 
 md-slider.md-min .md-thumb:after {
-    background-color: #fff
+    background-color: transparent;
 }
 
 md-slider.md-min .md-sign {
@@ -14659,15 +14666,15 @@ md-switch:not(.md-dragging) .md-bar, md-switch:not(.md-dragging) .md-thumb {
 
 @media screen and (-ms-high-contrast: active) {
     md-switch.md-default-theme .md-bar {
-        background-color: #666
+        background-color: transparent;
     }
 
     md-switch.md-default-theme.md-checked .md-bar {
-        background-color: #9E9E9E
+        background-color: transparent;
     }
 
     md-switch.md-default-theme .md-thumb {
-        background-color: #fff
+        background-color: transparent;
     }
 }
 

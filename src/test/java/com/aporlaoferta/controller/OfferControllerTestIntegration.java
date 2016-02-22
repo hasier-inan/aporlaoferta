@@ -246,10 +246,10 @@ public class OfferControllerTestIntegration extends ControllerTestIntegration {
 
     private void assertAllCategoriesAreReturned(ResultActions result) throws java.io.IOException {
         String mvcResult = result.andReturn().getResponse().getContentAsString();
-        Map<String, String> jsonResult = RequestMap.getMapFromJsonString(mvcResult);
-        OfferCategory[] categories = OfferCategory.values();
-        for (OfferCategory category : categories) {
-            Assert.assertTrue("Expected category to inside the map", jsonResult.containsKey(category.name()));
+        List<Map<String, String>> jsonResult = RequestMap.getMapFromJsonListString(mvcResult);
+        for (Map<String, String> category : jsonResult) {
+            Assert.assertNotNull(OfferCategory.fromValue(category.get("value")));
+
         }
     }
 

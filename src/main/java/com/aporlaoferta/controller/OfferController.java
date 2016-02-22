@@ -268,13 +268,20 @@ public class OfferController {
 
     @RequestMapping(value = "/getOfferCategories", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, String> getOfferCategories() {
-        Map<String, String> offerCategories = new HashMap<>();
+    public List<Map<String, String>> getOfferCategories() {
+        List<Map<String, String>> offerCategoriesList = new ArrayList<>();
         OfferCategory[] categoryValues = OfferCategory.values();
         for (OfferCategory offerCategory : categoryValues) {
-            offerCategories.put(offerCategory.name(), offerCategory.getCode());
+            addCategoryIntoList(offerCategoriesList, offerCategory);
         }
-        return offerCategories;
+        return offerCategoriesList;
+    }
+
+    private void addCategoryIntoList(List<Map<String, String>> offerCategoriesList, OfferCategory offerCategory) {
+        Map<String, String> offerCategories = new HashMap<>();
+        offerCategories.put("text", offerCategory.name());
+        offerCategories.put("value", offerCategory.getCode());
+        offerCategoriesList.add(offerCategories);
     }
 
     private void createEmptyFields(List<TheOffer> hundredOffers) {

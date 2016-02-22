@@ -98,7 +98,6 @@ div.profileForm > label.overheadLabel {
 }
 
 input.overheadField,
-select.overheadField,
 textarea#createOfferDescription {
     height: 40px;
     color: #ffffff;
@@ -106,24 +105,13 @@ textarea#createOfferDescription {
     margin-bottom: 1em;
 }
 
-select.overheadField {
-    background-color: #e7771f;
-}
-
-input.overheadField,
-select.overheadField {
+input.overheadField {
     width: 12em;
 }
 
 input.overheadField:disabled {
     background-color: rgba(0, 0, 0, .2) !important;
     border-color: rgba(0, 0, 0, .2) !important;
-}
-
-select option {
-    background: #e7771f;
-    height: 40px !important;
-    line-height: 40px !important;
 }
 
 textarea#createOfferDescription {
@@ -164,19 +152,6 @@ div.overheadField {
     color: #ffffff;
     display: inline-block;
     background-color: transparent;
-}
-
-div.overheadField.select-wrapper::before {
-    content: '\f078';
-    display: block;
-    height: 40px;
-    line-height: 40px;
-    pointer-events: none;
-    position: absolute;
-    right: 0;
-    text-align: center;
-    top: 0;
-    width: 2.5em;
 }
 
 input.overheadField:focus {
@@ -565,7 +540,6 @@ section#contentFilter {
 }
 
 div.filter-header > h3,
-div.filterByCategoryContent div.select-wrapper > *,
 a#applyFilter, a#cleanFilter {
     color: #fff !important;
 }
@@ -578,10 +552,6 @@ a#applyFilter, a#cleanFilter {
 a#applyFilter:hover, a#cleanFilter:hover {
     text-decoration: none !important;
     background-color: #a7dbd8;
-}
-
-div.filterByCategoryContent div.select-wrapper select > option {
-    background-color: rgba(0, 0, 0, .2);
 }
 
 label#label-for-filter-by {
@@ -609,13 +579,6 @@ input#filter-by {
 
 input.filter-input {
     width: 20em;
-}
-
-div.filters-contents div div.select-wrapper,
-div.filters-contents div div.select-wrapper select,
-div.filters-contents div div.select-wrapper:before {
-    height: 2.75em !important;
-    line-height: 2.75em !important;
 }
 
 .no-decoration {
@@ -773,10 +736,20 @@ validation
     background: none !important;
 }
 .md-autocomplete-suggestions{
-    background-color: #f38630 !important;
+    background: transparent !important;
+    border: 1px solid #f38630;
     color: #FFFFFF;
 }
+.md-autocomplete-suggestions li{
+    color: #FFFFFF !important;
+}
 
+.md-autocomplete-suggestions li:hover{
+    color: rgba(0, 0, 0, .8) !important;
+}
+
+
+div.offer-creation-category.ng-valid .category-dropdown,
 .content-validation.ng-valid {
     background: rgba(105, 210, 231, .15) url(images/valid.png) no-repeat scroll right;
     background-size: 20px;
@@ -784,6 +757,7 @@ validation
     padding-right: 25px;
 }
 
+div.offer-creation-category.ng-invalid .category-dropdown,
 .content-validation.ng-invalid {
     background: rgba(230, 41, 41, .15) url(images/invalid.png) no-repeat scroll right;
     background-size: 20px;
@@ -797,16 +771,13 @@ validation
     border-color: #e6e6e6 !important;
 }
 
-div.select-validation div > select.ng-invalid,
-div.content-validation.ng-invalid,
-div.select-validation div > select.ng-invalid.ng-valid {
+div.content-validation.ng-invalid{
     background: rgba(230, 41, 41, .15) scroll right;
     padding-right: 0px;
     border-color: #e62929 !important;
 }
 
-div.content-validation.ng-valid,
-div.select-validation div > select.ng-valid {
+div.content-validation.ng-valid{
     background: rgba(105, 210, 231, .15) scroll right;
     padding-right: 0px;
     border-color: #69d2e7 !important;

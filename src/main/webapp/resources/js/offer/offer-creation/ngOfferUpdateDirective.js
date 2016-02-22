@@ -22,7 +22,7 @@ aporlaofertaApp
                             vcRecaptchaService.restartRecaptcha();
                         }
                         else {
-                            $scope.processing=true;
+                            $scope.processing = true;
                             requestManager.makePostCall($scope.offer, {recaptcha: vcRecaptchaService.getResponse($scope.widgetId)}, configService.getEndpoint('update.offer'))
                                 .success(function (data, status, headers, config) {
                                     if (!alertService.isAllOk(data)) {
@@ -37,8 +37,8 @@ aporlaofertaApp
                                     }
                                 }).error(function (data, status, headers, config) {
                                     $scope.offerCreationError(alertService.getDefaultMessage());
-                                }).finally(function(){
-                                    $scope.processing=false;
+                                }).finally(function () {
+                                    $scope.processing = false;
                                 });
                             //$scope.overheadDisplay = false;
                         }
@@ -72,11 +72,13 @@ aporlaofertaApp
                         }
                     };
                     $scope.isCategorySelected = function () {
-                        return $scope.offer.offerCategory != ""
+                        return $scope.offer
+                            && $scope.offer.offerCategory != ""
                             && $scope.offer.offerCategory != null
-                            && $scope.offer.offerCategory != undefined;
+                            && $scope.offer.offerCategory != undefined
+                            && $scope.offer.offerCategory != "CATEGORÍA";
                     };
-                    $scope.selectionPerformed = function(){
+                    $scope.selectionPerformed = function () {
                         return $scope.isCompanyDefined() && $scope.isCategorySelected();
                     }
                 }]

@@ -17,6 +17,9 @@ aporlaofertaApp
                 $scope.requestFilterApply = function () {
                     $scope.processing = true;
                     $scope.filter.hot = $scope.selection === 'hottestOffers';
+                    if (!$scope.isCategorySelected()) {
+                        $scope.filter.selectedcategory = "";
+                    }
                     $scope.offerFilter = $scope.filter;
                     requestManager.makePostCall($scope.filter, {}, configService.getEndpoint('get.filtered.offers'))
                         .success(function (data, status, headers, config) {
@@ -40,6 +43,12 @@ aporlaofertaApp
                 $scope.displayFilterContents = function () {
                     $scope.displayFilterContent = ($scope.displayFilterContent == 'filters-displayed') ?
                         'filters-hidden' : 'filters-displayed';
+                };
+                $scope.isCategorySelected = function () {
+                    return $scope.filter.selectedcategory != ""
+                        && $scope.filter.selectedcategory != null
+                        && $scope.filter.selectedcategory != undefined
+                        && $scope.filter.selectedcategory != "CATEGORÍA";
                 };
                 $scope.cleanFilters();
             }]

@@ -37,6 +37,7 @@ aporlaofertaApp
                 $scope.$watch('reset', function () {
                     if ($scope.reset) {
                         $scope.selectedcompany = "";
+                        $scope.searchCompany = "";
                     }
                     $scope.reset = false;
                 });
