@@ -1,23 +1,14 @@
-<div class="select-wrapper overheadField" ng-show="!brandNewCompany">
-    <select name="offerCompanies"
-            id="offerCompaniesSelect"
-            ng-options="comp as comp.companyName for comp in offerCompanies track by comp.companyName"
-            ng-model="company" ng-change="onCompanyChange(company)"
-            class="overheadField" ng-class="isCompanySelected()?'ng-valid':'ng-invalid'">
-        <option value selected="selected">- EMPRESA -</option>
-    </select>
-</div>
-<input type="checkbox" id="brandNewCompanyForm"
-       name="brandNewCompanyForm" ng-model="brandNewCompany"
-       ng-change="updateSelectedCompany(brandNewCompany)"/>
-<label id="brandNewCompanyFormLabel" for="brandNewCompanyForm" class="overheadLabel">Otra empresa</label>
-
-<div ng-show="brandNewCompany">
-    <form>
-        <input type="text" id="createCompanyName"
-               ng-model="offerCompany.companyName"
-               class="overheadField content-validation"
-               placeholder="Nombre" ng-required="brandNewCompany"
-               ng-maxlength="250"/>
-    </form>
-</div>
+<md-autocomplete
+        md-no-cache="false"
+        md-selected-item="selectedcompany"
+        md-search-text="searchCompany"
+        md-search-text-change="searchCompanyChange(searchCompany)"
+        md-items="company in querySearch(searchCompany)"
+        md-selected-item-change="selectedItemChange(company)"
+        md-item-text="company.companyName"
+        md-min-length="0"
+        placeholder="Nombre de la compañía">
+    <md-item-template>
+        <span md-highlight-text="searchCompany" md-highlight-flags="^i">{{company.companyName}}</span>
+    </md-item-template>
+</md-autocomplete>

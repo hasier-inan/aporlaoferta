@@ -3,6 +3,7 @@ package com.aporlaoferta.controller;
 import com.aporlaoferta.data.CompanyBuilderManager;
 import com.aporlaoferta.data.OfferBuilderManager;
 import com.aporlaoferta.data.UserBuilderManager;
+import com.aporlaoferta.model.OfferCompany;
 import com.aporlaoferta.model.OfferFilters;
 import com.aporlaoferta.model.TheOffer;
 import com.aporlaoferta.model.TheOfferResponse;
@@ -26,6 +27,7 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -202,18 +204,38 @@ public class OfferControllerTest {
         when(this.companyManager.getWatermarkedCompany(anyString())).thenReturn(watermarked);
         when(this.companyManager.getCompanyFromName(watermarked)).thenReturn(
                 CompanyBuilderManager.aRegularCompanyWithName(watermarked).build());
-        TheOffer theOffer = OfferBuilderManager.aBasicOfferWithoutUserOrId()
-                .withCompany(CompanyBuilderManager.aRegularCompanyWithName(fakecompany).build())
-                .build();
-        this.offerController.createOffer(theOffer, "recaptcha");
+        mockAndCreateOfferForCompanyName(fakecompany);
 
+        verifyCompanyNameIsUpdated(watermarked);
+    }
+
+    @Test
+    public void testCompanyIsReplacedWhenNameHasTypo() throws Exception {
+        String original = "Amazon";
+        String typo = "Amaso";
+        mockUserToCreateOffer();
+        when(this.companyManager.getCompanyFromName(typo)).thenReturn(null);
+        when(this.companyManager.getAllCompanies()).thenReturn(
+                Arrays.asList(new OfferCompany[]{CompanyBuilderManager.aRegularCompanyWithName(original).build()}));
+        mockAndCreateOfferForCompanyName(typo);
+        verifyCompanyNameIsUpdated(original);
+
+    }
+
+    private void verifyCompanyNameIsUpdated(String original) {
         ArgumentCaptor<TheOffer> theOfferArgumentCaptor = ArgumentCaptor.forClass(TheOffer.class);
         Mockito.verify(this.offerValidatorHelper).validateOffer(theOfferArgumentCaptor.capture());
         TheOffer updatedOffer = theOfferArgumentCaptor.getValue();
         Assert.assertThat("Expected company to be updated",
-                updatedOffer.getOfferCompany().getCompanyName(), is(watermarked));
+                updatedOffer.getOfferCompany().getCompanyName(), is(original));
     }
 
+    private void mockAndCreateOfferForCompanyName(String fakecompany) {
+        TheOffer theOffer = OfferBuilderManager.aBasicOfferWithoutUserOrId()
+                .withCompany(CompanyBuilderManager.aRegularCompanyWithName(fakecompany).build())
+                .build();
+        this.offerController.createOffer(theOffer, "recaptcha");
+    }
 
     private TheUser mockUserToCreateOffer() {
         TheUser user = UserBuilderManager.aRegularUserWithNickname("john").build();

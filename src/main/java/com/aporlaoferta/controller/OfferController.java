@@ -14,6 +14,7 @@ import com.aporlaoferta.service.CaptchaHTTPManager;
 import com.aporlaoferta.service.CompanyManager;
 import com.aporlaoferta.service.OfferManager;
 import com.aporlaoferta.service.UserManager;
+import com.aporlaoferta.utils.LevenshteinDistance;
 import com.aporlaoferta.utils.OfferValidatorHelper;
 import com.aporlaoferta.utils.UnhealthyException;
 import org.slf4j.Logger;
@@ -187,9 +188,22 @@ public class OfferController {
     }
 
     private void updateCompanyFromName(TheOffer thatOffer) {
-        OfferCompany offerCompany = this.companyManager.getCompanyFromName(thatOffer.getOfferCompany().getCompanyName());
+        String usedName = thatOffer.getOfferCompany().getCompanyName();
+        OfferCompany offerCompany = this.companyManager.getCompanyFromName(usedName);
         if (offerCompany != null) {
             thatOffer.setOfferCompany(offerCompany);
+        } else {
+            updateCompanyFromLevenshtein(thatOffer, usedName);
+        }
+    }
+
+    private void updateCompanyFromLevenshtein(TheOffer thatOffer, String usedName) {
+        List<OfferCompany> allCompanies = this.companyManager.getAllCompanies();
+        for (OfferCompany company : allCompanies) {
+            if (LevenshteinDistance.process(usedName, company.getCompanyName(), 3)) {
+                thatOffer.setOfferCompany(company);
+                return;
+            }
         }
     }
 

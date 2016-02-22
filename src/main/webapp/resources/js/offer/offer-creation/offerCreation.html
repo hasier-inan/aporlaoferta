@@ -2,8 +2,11 @@
     <form id="offerCreationForm" name="createOfferForm" class="centeredForm">
         <ul>
             <li>
-                <label for="offerCategoryManagerSection" class="overhead-hint-label">Selecciona la categor&iacute;a del art&iacute;culo</label>
-                <div id="offerCategoryManagerSection" ng-offer-category-manager="offerCategoryManager" reset="resetCategory"
+                <label for="offerCategoryManagerSection" class="overhead-hint-label">Selecciona la categor&iacute;a del
+                    art&iacute;culo</label>
+
+                <div id="offerCategoryManagerSection" ng-offer-category-manager="offerCategoryManager"
+                     reset="resetCategory"
                      selectedcategory="offer.offerCategory" class="select-validation"></div>
             </li>
         </ul>
@@ -13,11 +16,13 @@
                 <br/>
                 <input type="text" id="createOfferTitle" name="createOfferTitle"
                        ng-model="offer.offerTitle" class="overheadField regular-60 content-validation"
-                       placeholder="Disco duro SSD Samsung 840 EVO 250GB amarillo 2.5pulgadas" ng-maxlength="250" required/>
+                       placeholder="Disco duro SSD Samsung 840 EVO 250GB amarillo 2.5pulgadas" ng-maxlength="250"
+                       required/>
             </li>
         </ul>
         <ul id="createOfferPriceSection" class="regular-margin-1">
-            <label class="overhead-hint-label">Añade el precio del art&iacute;culo (y opcionalmente el precio antes de la oferta)</label>
+            <label class="overhead-hint-label">Añade el precio del art&iacute;culo (y opcionalmente el precio antes de
+                la oferta)</label>
             <li class="regular-50 ">
                 <label for="createOfferOriginalPrice" class="overheadLabel">
                     Precio antiguo
@@ -37,28 +42,35 @@
                        name="createOfferFinalPrice"
                        ng-model="offer.finalPrice"
                        ng-pattern="bigDecimalsOnly" class="overheadField regular-40 content-validation"
-                       placeholder="0.00"  min="0" max="999999" required/>
+                       placeholder="0.00" min="0" max="999999" required/>
                 <!--<span ng-show="createOfferForm.createOfferFinalPrice.$error.pattern">Precio invalido</span>-->
             </li>
         </ul>
         <ul>
             <li class="regular-100 regular-margin-1">
-                <label class="overhead-hint-label">Copia y pega la direcci&oacute;n URL directa donde se puede comprar el art&iacute;culo</label>
+                <label class="overhead-hint-label">Copia y pega la direcci&oacute;n URL directa donde se puede comprar
+                    el art&iacute;culo</label>
                 <br/>
-                <input type="text" id="createOfferLink" ng-model="offer.offerLink" class="overheadField regular-60 content-validation"
-                       placeholder="http://www.amazon.es/Samsung-840-Evo-interno-plateado/dp/B00E3W1726" ng-maxlength="2000" required/>
+                <input type="text" id="createOfferLink" ng-model="offer.offerLink"
+                       class="overheadField regular-60 content-validation"
+                       placeholder="http://www.amazon.es/Samsung-840-Evo-interno-plateado/dp/B00E3W1726"
+                       ng-maxlength="2000" required/>
             </li>
         </ul>
         <ul class="regular-100 regular-margin-1">
             <li>
-                <label for="createOfferCompanySection" class="overhead-hint-label">Selecciona la tienda donde se encuentra la oferta o a&ntilde;ade su nombre</label>
+                <label for="createOfferCompanySection" class="overhead-hint-label">Selecciona la tienda donde se
+                    encuentra la oferta o a&ntilde;ade su nombre</label>
+
                 <div id="createOfferCompanySection" ng-company-manager="companyManager" reset="resetCompany"
-                     selectedcompany="offer.offerCompany" class="select-validation"></div>
+                     selectedcompany="offer.offerCompany" class="content-validation"
+                     ng-class="isCompanyDefined()?'ng-valid':'ng-invalid'" required></div>
             </li>
         </ul>
         <ul>
             <li class="regular-80">
-                <label for="createOfferDescription" class="overhead-hint-label">Incluye una descripci&oacute;n detallada para mostrar el por qu&eacute; de esta gran oferta!</label>
+                <label for="createOfferDescription" class="overhead-hint-label">Incluye una descripci&oacute;n detallada
+                    para mostrar el por qu&eacute; de esta gran oferta!</label>
                 <textarea id="createOfferDescription" ng-model="offer.offerDescription"
                           class="overheadField ng-pristine ng-valid regular-100 content-validation"
                           placeholder="A&ntilde;adir descripci&oacute;n, caracter&iacute;sticas del producto...etc."
@@ -67,7 +79,9 @@
         </ul>
         <ul>
             <li>
-                <label for="offerImageUploadContent" class="overhead-hint-label">Puedes a&ntilde;adir opcionalmente una imagen del art&iacute;culo</label>
+                <label for="offerImageUploadContent" class="overhead-hint-label">Puedes a&ntilde;adir opcionalmente una
+                    imagen del art&iacute;culo</label>
+
                 <div id="offerImageUploadContent" ng-image-uploader="createOfferImageUploader"
                      final-url="offer.offerImage"></div>
                 <input type="hidden" id="createOfferImage"
@@ -77,18 +91,21 @@
         </ul>
         <ul class="regular-bottom">
             <li>
-                <label for="createOfferCaptcha" class="overhead-hint-label">Antes de continuar soluciona el captcha para probar que no eres un robot</label>
-                <div id="createOfferCaptcha" on-create="setWidgetId(widgetId)" vc-recaptcha key="publicKey" class="offerCaptcha"></div>
+                <label for="createOfferCaptcha" class="overhead-hint-label">Antes de continuar soluciona el captcha para
+                    probar que no eres un robot</label>
+
+                <div id="createOfferCaptcha" on-create="setWidgetId(widgetId)" vc-recaptcha key="publicKey"
+                     class="offerCaptcha"></div>
             </li>
         </ul>
 
         <button
-                ng-disabled="!createOfferForm.$valid || processing"
+                ng-disabled="!createOfferForm.$valid || processing || !selectionPerformed"
                 ng-click="createOffer()"
                 class="button small icon fa-shopping-cart overheadButton">Crear oferta
         </button>
         <button
-                ng-disabled="!createOfferForm.$valid || processing"
+                ng-disabled="!createOfferForm.$valid || processing || !selectionPerformed()"
                 ng-click="createOffer()"
                 class="button mini icon fa-shopping-cart overheadButton"></button>
         <div class="loading-dialogue ">

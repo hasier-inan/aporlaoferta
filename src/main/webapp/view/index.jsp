@@ -44,13 +44,19 @@
     <script src="resources/assets/js/ie/respond.min.js"></script><![endif]-->
     <script src="resources/assets/js/main.js"></script>
     <!--core-->
-    <script src="resources/js/lib/angular.js"></script>
-    <script src="resources/js/lib/angular-animate.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit&hl=es" async
-            defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="resources/js/lib/angular-recaptcha.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit&hl=es" async defer></script>
     <script src="resources/js/lib/angular-filter.min.js"></script>
     <script src="resources/js/lib/ng-flow-standalone.js"></script>
+    <!--angular material dependencies-->
+    <script src="resources/js/lib/angular-animate.js"></script>
+    <script src="resources/js/lib/angular-route.min.js"></script>
+    <script src="resources/js/lib/angular-aria.min.js"></script>
+    <script src="resources/js/lib/angular-messages.min.js"></script>
+    <script src="resources/js/lib/angular-material.js"></script>
+    <link rel="stylesheet" href="resources/assets/css/angular-material-custom.css">
+    <!--modules-->
     <script src="resources/assets/js/main.js"></script>
     <script src="resources/js/main-controller/mainController.js"></script>
     <script src="resources/js/request-handler/requestManagerService.js"></script>

@@ -1,7 +1,19 @@
 /**
  * Created by hasiermetal on 16/03/15.
  */
-aporlaofertaApp = angular.module('aPorLaOferta', ['angular.filter', 'requestManager', 'alertService', 'configService', 'flow', 'ngAnimate', 'vcRecaptcha', 'offerManager', 'pwCheckModule']);
+aporlaofertaApp = angular.module('aPorLaOferta', [
+    'angular.filter',
+    'requestManager',
+    'alertService',
+    'configService',
+    'flow',
+    'ngAnimate',
+    'vcRecaptcha',
+    'offerManager',
+    'pwCheckModule',
+    'ngMaterial',
+    'ngMessages'
+]);
 
 //main controller
 aporlaofertaApp.controller('APorLaOfertaController', function ($scope, $rootScope) {

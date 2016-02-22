@@ -100,7 +100,7 @@ div.profileForm > label.overheadLabel {
 input.overheadField,
 select.overheadField,
 textarea#createOfferDescription {
-    height: 2em;
+    height: 40px;
     color: #ffffff;
     display: inline-block;
     margin-bottom: 1em;
@@ -122,6 +122,8 @@ input.overheadField:disabled {
 
 select option {
     background: #e7771f;
+    height: 40px !important;
+    line-height: 40px !important;
 }
 
 textarea#createOfferDescription {
@@ -167,8 +169,8 @@ div.overheadField {
 div.overheadField.select-wrapper::before {
     content: '\f078';
     display: block;
-    height: 2em;
-    line-height: 2em;
+    height: 40px;
+    line-height: 40px;
     pointer-events: none;
     position: absolute;
     right: 0;
@@ -183,7 +185,7 @@ input.overheadField:focus {
 
 input.overheadField:focus,
 textarea#createOfferDescription:focus {
-    height: 2em;
+    height: 40px;
     color: #000000;
     background-color: #ffffff;
 }
@@ -762,6 +764,19 @@ label#forgottePasswordRequestLabel {
 /*
 validation
 */
+#createOfferCompanySection{
+    border-radius: 6px;
+    border: solid 1px;
+    color: #FFFFFF;
+}
+#createOfferCompanySection md-autocomplete {
+    background: none !important;
+}
+.md-autocomplete-suggestions{
+    background-color: #f38630 !important;
+    color: #FFFFFF;
+}
+
 .content-validation.ng-valid {
     background: rgba(105, 210, 231, .15) url(images/valid.png) no-repeat scroll right;
     background-size: 20px;
@@ -1123,7 +1138,8 @@ input::-moz-selection {
 body {
     overflow-x: hidden;
 }
-body.no-overflow{
+
+body.no-overflow {
     overflow-y: hidden;
 }
 

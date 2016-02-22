@@ -11,8 +11,9 @@ aporlaofertaApp
                 selectedcompany: '='
             },
             controller: ['$rootScope', '$scope', 'requestManager', 'configService', function ($rootScope, $scope, requestManager, configService) {
+                $scope.offerCompanies = {};
+
                 $scope.populateCompanyList = function () {
-                    $scope.offerCompanies = {};
                     requestManager.makePostCall({}, {}, configService.getEndpoint('get.companies'))
                         .success(function (data, status, headers, config) {
                             $scope.offerCompanies = angular.copy(data);
@@ -22,43 +23,38 @@ aporlaofertaApp
                             theResponse.responseResult = "error";
                             $rootScope.$broadcast('serverResponse', theResponse);
                         });
-                }
-                $scope.onCompanyChange = function (company) {
-                    $scope.selectedcompany = company;
-                }
-                $scope.updateSelectedCompany = function (isSelected) {
-                    if (!isSelected) {
-                        $scope.onCompanyChange($scope.company);
-                    }
-                    else {
-                        $scope.selectedcompany = $scope.offerCompany;
+                };
+
+                $scope.searchCompanyChange = function (companyName) {
+                    if (companyName != "") {
+                        $scope.selectedcompany = {companyName: companyName}
                     }
                 }
+                $scope.selectedItemChange = function (company) {
+                    $scope.selectedcompany = company
+                }
+
                 $scope.$watch('reset', function () {
                     if ($scope.reset) {
-                        $scope.company = "";
+                        $scope.selectedcompany = "";
                     }
                     $scope.reset = false;
                 });
-                $scope.$watch('offerCompany.companyName', function () {
-                    $scope.selectedcompany = $scope.offerCompany;
-                });
-                $scope.$watch('offerCompany.companyUrl', function () {
-                    $scope.selectedcompany = $scope.offerCompany;
-                });
 
-                $scope.$watch('selectedcompany', function () {
-                    if ($scope.selectedcompany != undefined) {
-                        $scope.company = $scope.selectedcompany;
+                $scope.querySearch = function (company) {
+                    if ($scope.offerCompanies.length > 0) {
+                        return company ? $scope.offerCompanies.filter($scope.createFilterFor(company)) : $scope.offerCompanies;
                     }
-                });
+                };
 
-                $scope.isCompanySelected = function () {
-                    return !$scope.brandNewCompany
-                        && $scope.company != ""
-                        && $scope.company != null
-                        && $scope.company != undefined;
-                }
+                $scope.createFilterFor = function (companyName) {
+                    var lowercaseQuery = angular.lowercase(companyName);
+                    return function filterFn(company) {
+                        return (angular.lowercase(company.companyName)
+                            .indexOf(lowercaseQuery) === 0);
+                    };
+                };
+
                 $scope.populateCompanyList();
             }]
         }
