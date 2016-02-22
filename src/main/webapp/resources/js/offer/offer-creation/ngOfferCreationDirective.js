@@ -68,15 +68,17 @@ aporlaofertaApp
                     };
 
                     $scope.isCompanyDefined = function () {
-                        return $scope.offer.offerCompany != undefined && $scope.selectedcompany != "";
+                        if ($scope.offer) {
+                            return $scope.offer.offerCompany != undefined && $scope.selectedcompany != "";
+                        }
                     };
                     $scope.isCategorySelected = function () {
                         return $scope.offer.offerCategory != ""
                             && $scope.offer.offerCategory != null
                             && $scope.offer.offerCategory != undefined;
                     };
-                    $scope.selectionPerformed = function(){
-                       return $scope.isCompanyDefined() && $scope.isCategorySelected();
+                    $scope.selectionPerformed = function () {
+                        return $scope.isCompanyDefined() && $scope.isCategorySelected();
                     }
                 }]
         }
