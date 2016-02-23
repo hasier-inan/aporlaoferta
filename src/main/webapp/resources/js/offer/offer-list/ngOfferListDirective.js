@@ -17,6 +17,9 @@ aporlaofertaApp
                     $scope.showMoreOffers = function (lastOffer) {
                         $scope.moreOffersLoading = true;
                         $scope.offerFilter.hot = $scope.defaultList === 'hottestOffers';
+                        if (!$scope.isCategorySelected()) {
+                            $scope.offerFilter.selectedcategory = "";
+                        }
                         offerManager.requestMoreOffers($scope.offerFilter, lastOffer,
                             function (data) {
                                 $scope.offerList = $scope.offerList.concat(data);
@@ -38,6 +41,12 @@ aporlaofertaApp
                                 speed: 1500
                             });
                     }
+                    $scope.isCategorySelected = function () {
+                        return $scope.offerFilter.selectedcategory != ""
+                            && $scope.offerFilter.selectedcategory != null
+                            && $scope.offerFilter.selectedcategory != undefined
+                            && $scope.offerFilter.selectedcategory != "CATEGORÍA";
+                    };
                     $scope.initialiseScrollyButtons();
                 }]
         }
