@@ -40,14 +40,14 @@ public class ImageUploadManager {
     }
 
     public File copyUploadedFileIntoServer(MultipartFile file) throws IOException {
-        String filePath = creteCustomFilePath(file.getOriginalFilename());
+        String filePath = createCustomFilePath(file.getOriginalFilename());
         File finalFile = new File(filePath);
         file.transferTo(finalFile);
         //return filePath.replace("\\", "/");
         return finalFile;
     }
 
-    private String creteCustomFilePath(String fileName) {
+    private String createCustomFilePath(String fileName) {
         String imageSubfolder = this.uploadFolder +
                 OsHelper.osSeparator() + String.valueOf((int) (Math.random() * this.folderDepth));
         File subFolder = new File(imageSubfolder);
