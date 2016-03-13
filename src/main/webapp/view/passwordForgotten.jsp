@@ -13,10 +13,14 @@
     <title>aporlaoferta ~ ofertas y promociones online </title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="author" content="thatsoftwarecompany"/>
-    <meta name="description" content="Cover artwork library"/>
-    <meta name="keywords"
-          content="ofertas p4p rebajas tiendas promociones online"/>
+    <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'self'">
+    <meta property="og:site_name" content="aporlaoferta">
+    <meta property="og:url" content="http://www.aporlaoferta.com"/>
+    <meta property="og:type" content="gestor y buscador de ofertas online"/>
+    <meta property="og:title" content="aporlaoferta ~ ofertas y promociones online"/>
+    <meta property="og:description"
+          content="aporlaoferta es un gestor de ofertas, promociones, rebajas y chollos online, creados por y para todos los usuarios españoles"/>
+    <meta property="og:image" content="http://www.aporlaoferta.com/images/logo.jpg"/>
     <sec:csrfMetaTags/>
     <link rel="shortcut icon"
           href="resources/images/favicon.ico"/>

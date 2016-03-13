@@ -4,6 +4,7 @@
 <html ng-app="aPorLaOferta" xmlns="http://www.w3.org/1999/xhtml" ng-controller="APorLaOfertaController">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'self'">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>aporlaoferta</title>
     <meta name="description" content="Cover artwork library"/>

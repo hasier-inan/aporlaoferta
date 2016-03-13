@@ -17,10 +17,10 @@
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/thatOffer"/>
-        <property name="username" value="root"/>
-        <property name="password" value="toor"/>
-        <!--hasiermetal ta berdiña-->
+        <!--<property name="url" value="jdbc:mysql://localhost:3306/thatOffer"/>-->
+        <property name="url" value="jdbc:mysql://aporlaoferta-prod-cluster.cluster-c2b5fvpm7ysh.us-west-2.rds.amazonaws.com:3306/aporlaoferta"/>
+        <property name="username" value="aporlaoferta"/>
+        <property name="password" value="!aporlaoferta_A(_db?aurora)!"/>
     </bean>
 
     <bean id="jpaTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
