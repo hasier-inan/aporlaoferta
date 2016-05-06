@@ -6,8 +6,14 @@
 
     <bean id="imageUploadManager" class="com.aporlaoferta.service.ImageUploadManager">
         <constructor-arg name="uploadFolder" value="${upload.folder}"/>
+        <constructor-arg name="uploadFolderMap"
+                         value="${upload.s3.server}/${upload.s3.bucket}/${upload.s3.folder}"/>
         <constructor-arg name="folderDepth" value="50"/>
-        <constructor-arg name="uploadFolderMap" value="${upload.folder.mapping}"/>
+        <constructor-arg name="awss3Service" ref="awsS3Service"/>
+    </bean>
+
+    <bean id="awsS3Service" class="com.aporlaoferta.service.AWSS3Service">
+        <constructor-arg name="bucket" value="${upload.s3.bucket}"/>
     </bean>
 
     <bean id="urlParser" class="com.aporlaoferta.utils.UrlParser"/>
