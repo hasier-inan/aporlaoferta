@@ -27,9 +27,11 @@ public class AWSS3Service {
     public boolean uploadFile(File fileToBeUploaded, String path) {
         AmazonS3 s3client = new AmazonS3Client(new ProfileCredentialsProvider());
         try {
+            LOG.info(String.format("FULE WILL BE UPLOADED TO  %s bucket, path is %s, file is at %s ",
+                    this.bucket, path, fileToBeUploaded.getAbsolutePath()));
             s3client.putObject(
                     new PutObjectRequest(
-                            bucket, path, fileToBeUploaded)
+                            this.bucket, path, fileToBeUploaded)
                             .withCannedAcl(CannedAccessControlList.PublicRead));
             return true;
         } catch (AmazonClientException ase) {

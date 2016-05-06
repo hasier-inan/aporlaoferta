@@ -51,13 +51,17 @@ public class ImageController {
     }
 
     private TheResponse updateResultWithSuccessUploadResult(MultipartFile file) throws IOException {
+        File finalFile = null;
         try {
-            String filePath = this.imageUploadManager.createCustomFilePath(file.getOriginalFilename());
-            File finalFile = this.imageUploadManager.copyUploadedFileIntoServer(file, filePath);
-            return this.imageUploadManager.transformAndUploadFile(finalFile, filePath);
+            finalFile = this.imageUploadManager.copyUploadedFileIntoServer(file);
+            return this.imageUploadManager.transformAndUploadFile(finalFile);
         } catch (InvalidUploadFolderException | IOException e) {
             return ResponseResultHelper
                     .responseResultWithResultCodeError(ResultCode.IMAGE_UPLOAD_ERROR, new TheResponse());
+        } finally {
+            if (finalFile != null && finalFile.exists()) {
+                finalFile.delete();
+            }
         }
     }
 

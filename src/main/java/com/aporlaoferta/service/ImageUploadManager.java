@@ -3,10 +3,10 @@ package com.aporlaoferta.service;
 import com.aporlaoferta.controller.ResponseResult;
 import com.aporlaoferta.controller.ResultCode;
 import com.aporlaoferta.model.TheResponse;
+import com.aporlaoferta.utils.OsHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.mail.javamail.ConfigurableMimeFileTypeMap;
-import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -52,7 +52,8 @@ public class ImageUploadManager {
         }
     }
 
-    public File copyUploadedFileIntoServer(MultipartFile file, String filePath) throws IOException {
+    public File copyUploadedFileIntoServer(MultipartFile file) throws IOException {
+        String filePath = createCustomFilePath(file.getOriginalFilename());
         File finalFile = copyFileToServerSide(file, filePath);
         if (invalidMimeType(finalFile)) {
             removeFile(finalFile);
@@ -62,26 +63,24 @@ public class ImageUploadManager {
 
     }
 
-    public TheResponse transformAndUploadFile(File finalFile, String filePath) throws IOException{
-        TheResponse result = new TheResponse();
-        String serverPath = this.uploadFolder + "/" + filePath;
-        if (transformAndUpload(result, filePath, finalFile, serverPath)) {
-            return result;
+    public TheResponse transformAndUploadFile(File finalFile) throws IOException {
+        String serverPath = createCustomUploadPath(finalFile.getName());
+        LOG.info(">>>>>>>>>>>>> " + this.uploadFolderMap + "/" + serverPath);
+        if (transformAndUpload(finalFile, serverPath)) {
+            TheResponse result = new TheResponse();
+            result.setCode(ResultCode.ALL_OK.getCode());
+            result.setResponseResult(ResponseResult.OK);
+            result.setDescription(this.uploadFolderMap + "/" + serverPath);
         }
         throw new InvalidUploadFolderException("Could not upload file:");
     }
 
-    private boolean transformAndUpload(TheResponse result, String filePath, File finalFile, String serverPath) throws IOException {
-        if (transformAndUploadImage(finalFile) && this.awss3Service.uploadFile(finalFile, serverPath)) {
-            result.setCode(ResultCode.ALL_OK.getCode());
-            result.setResponseResult(ResponseResult.OK);
-            result.setDescription(this.uploadFolderMap + "/" + filePath);
-            return true;
-        }
-        return false;
+    private boolean transformAndUpload(File finalFile, String serverPath) throws IOException {
+        return transformImage(finalFile)
+                && this.awss3Service.uploadFile(finalFile, serverPath);
     }
 
-    private boolean transformAndUploadImage(File finalFile) throws IOException {
+    private boolean transformImage(File finalFile) throws IOException {
         String theFinalPath = finalFile.getAbsolutePath() + "_.jpg";
         if (transformImage(finalFile, theFinalPath)) {
             File alteredImage = new File(theFinalPath);
@@ -98,11 +97,14 @@ public class ImageUploadManager {
         return finalFile;
     }
 
-    public String createCustomFilePath(String fileName) {
+    public String createCustomUploadPath(String fileName) {
         String subFolder = String.valueOf((int) (Math.random() * this.folderDepth));
-        return subFolder +
-                UUID.randomUUID().toString() +
-                fileExtension(fileName);
+        return String.format("%s/%s%s", subFolder, UUID.randomUUID().toString(), fileExtension(fileName));
+    }
+
+    public String createCustomFilePath(String fileName) {
+        return this.uploadFolder +
+                fileName;
     }
 
 

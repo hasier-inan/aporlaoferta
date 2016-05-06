@@ -51,7 +51,7 @@ public class ImageControllerTest {
     @Test
     public void testInvalidFolderDefinedReturnsExpectedResultCode() throws IOException {
         doThrow(new InvalidUploadFolderException("error")).when(this.imageUploadManager)
-                .copyUploadedFileIntoServer((MultipartFile) anyObject(), anyString());
+                .copyUploadedFileIntoServer((MultipartFile) anyObject());
         TheResponse theResponse = imageController.uploadImage(createDummyMultipart());
         assertEquals("Expected Invalid_Upload_Error code", ResultCode.IMAGE_UPLOAD_ERROR.getCode(), theResponse.getCode());
     }
@@ -59,7 +59,7 @@ public class ImageControllerTest {
     @Test
     public void testIOExceptionCodeIsReturnedInTheResultCode() throws IOException {
         doThrow(new IOException("error")).when(this.imageUploadManager)
-                .copyUploadedFileIntoServer((MultipartFile) anyObject(), anyString());
+                .copyUploadedFileIntoServer((MultipartFile) anyObject());
         TheResponse theResponse = imageController.uploadImage(createDummyMultipart());
         assertEquals("Expected Invalid_Upload_Error code", ResultCode.IMAGE_UPLOAD_ERROR.getCode(), theResponse.getCode());
     }
@@ -69,7 +69,7 @@ public class ImageControllerTest {
     public void testFinalUrlIsIncludedInResponse() throws IOException {
         String fileFinalPath = "the.path";
         when(this.regularFile.getPath()).thenReturn(fileFinalPath);
-        when(this.imageUploadManager.copyUploadedFileIntoServer(any(MultipartFile.class), anyString())).thenReturn(this.regularFile);
+        when(this.imageUploadManager.copyUploadedFileIntoServer(any(MultipartFile.class))).thenReturn(this.regularFile);
         TheResponse theResponse = imageController.uploadImage(createDummyMultipart());
         assertEquals("Expected same path in response description", fileFinalPath, theResponse.getDescription());
     }
@@ -78,7 +78,7 @@ public class ImageControllerTest {
     public void testTooLargeImageIsNotSaved() throws IOException {
         when(this.tooLargeImage.getSize()).thenReturn(2000001L);
         TheResponse theResponse = imageController.uploadImage(tooLargeImage);
-        verify(this.imageUploadManager, never()).copyUploadedFileIntoServer(any(MultipartFile.class), anyString());
+        verify(this.imageUploadManager, never()).copyUploadedFileIntoServer(any(MultipartFile.class));
         Assert.assertThat("Expected the response to contain image too large code",
                 theResponse.getCode(), is(ResultCode.IMAGE_TOO_HEAVY_ERROR.getCode()));
     }
