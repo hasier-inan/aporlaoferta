@@ -20,7 +20,7 @@
     <meta property="og:title" content="aporlaoferta ~ ofertas y promociones online"/>
     <meta property="og:description"
           content="aporlaoferta es un gestor de ofertas, promociones, rebajas y chollos online, creados por y para todos los usuarios españoles"/>
-    <meta property="og:image" content="http://www.aporlaoferta.com/images/logo.jpg"/>
+    <meta property="og:image" content="https://s3-us-west-2.amazonaws.com/aporlaofertaimages/static/logo2.png"/>
     <sec:csrfMetaTags/>
     <link rel="shortcut icon"
           href="resources/images/favicon.ico"/>
