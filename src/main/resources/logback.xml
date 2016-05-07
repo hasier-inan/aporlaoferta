@@ -33,7 +33,7 @@
         <appender-ref ref="console"/>
     </logger>
 
-    <logger name="com.aporlaoferta" level="debug" additivity="false">
+    <logger name="com.aporlaoferta" level="info" additivity="false">
         <appender-ref ref="console"/>
     </logger>
 

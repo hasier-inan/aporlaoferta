@@ -14,6 +14,7 @@
 
     <bean id="awsS3Service" class="com.aporlaoferta.service.AWSS3Service">
         <constructor-arg name="bucket" value="${upload.s3.bucket}"/>
+        <constructor-arg name="bucketFolder" value="${upload.s3.folder}"/>
     </bean>
 
     <bean id="urlParser" class="com.aporlaoferta.utils.UrlParser"/>

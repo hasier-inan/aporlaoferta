@@ -5,7 +5,6 @@ import com.aporlaoferta.service.ImageUploadManager;
 import com.aporlaoferta.service.InvalidUploadFolderException;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -21,7 +20,6 @@ import java.io.IOException;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.anyObject;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.never;
@@ -64,12 +62,11 @@ public class ImageControllerTest {
         assertEquals("Expected Invalid_Upload_Error code", ResultCode.IMAGE_UPLOAD_ERROR.getCode(), theResponse.getCode());
     }
 
-    @Ignore
     @Test
     public void testFinalUrlIsIncludedInResponse() throws IOException {
         String fileFinalPath = "the.path";
-        when(this.regularFile.getPath()).thenReturn(fileFinalPath);
         when(this.imageUploadManager.copyUploadedFileIntoServer(any(MultipartFile.class))).thenReturn(this.regularFile);
+        when(this.imageUploadManager.transformAndUploadFile(this.regularFile)).thenReturn(fileFinalPath);
         TheResponse theResponse = imageController.uploadImage(createDummyMultipart());
         assertEquals("Expected same path in response description", fileFinalPath, theResponse.getDescription());
     }

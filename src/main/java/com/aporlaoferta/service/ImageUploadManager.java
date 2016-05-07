@@ -1,9 +1,5 @@
 package com.aporlaoferta.service;
 
-import com.aporlaoferta.controller.ResponseResult;
-import com.aporlaoferta.controller.ResultCode;
-import com.aporlaoferta.model.TheResponse;
-import com.aporlaoferta.utils.OsHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.mail.javamail.ConfigurableMimeFileTypeMap;
@@ -63,14 +59,11 @@ public class ImageUploadManager {
 
     }
 
-    public TheResponse transformAndUploadFile(File finalFile) throws IOException {
+    public String transformAndUploadFile(File finalFile) throws IOException {
         String serverPath = createCustomUploadPath(finalFile.getName());
-        LOG.info(">>>>>>>>>>>>> " + this.uploadFolderMap + "/" + serverPath);
+        LOG.info("trying to upload to >>>>>>>>>>>>> " + this.uploadFolderMap + "/" + serverPath);
         if (transformAndUpload(finalFile, serverPath)) {
-            TheResponse result = new TheResponse();
-            result.setCode(ResultCode.ALL_OK.getCode());
-            result.setResponseResult(ResponseResult.OK);
-            result.setDescription(this.uploadFolderMap + "/" + serverPath);
+            return this.uploadFolderMap + "/" + serverPath;
         }
         throw new InvalidUploadFolderException("Could not upload file:");
     }

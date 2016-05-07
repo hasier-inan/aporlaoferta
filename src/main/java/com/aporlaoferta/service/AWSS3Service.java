@@ -8,7 +8,6 @@ import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
 
 import java.io.File;
 
@@ -19,24 +18,27 @@ public class AWSS3Service {
     private final Logger LOG = LoggerFactory.getLogger(AWSS3Service.class);
 
     private final String bucket;
+    private final String bucketFolder;
 
-    public AWSS3Service(String bucket) {
+    public AWSS3Service(String bucket, String bucketFolder) {
         this.bucket = bucket;
+        this.bucketFolder = bucketFolder;
     }
 
     public boolean uploadFile(File fileToBeUploaded, String path) {
         AmazonS3 s3client = new AmazonS3Client(new ProfileCredentialsProvider());
         try {
-            LOG.info(String.format("FULE WILL BE UPLOADED TO  %s bucket, path is %s, file is at %s ",
-                    this.bucket, path, fileToBeUploaded.getAbsolutePath()));
-            s3client.putObject(
-                    new PutObjectRequest(
-                            this.bucket, path, fileToBeUploaded)
-                            .withCannedAcl(CannedAccessControlList.PublicRead));
+            s3client.putObject(createObjectPutRequest(fileToBeUploaded, path));
             return true;
         } catch (AmazonClientException ase) {
             LOG.error("Could not upload file to s3:", ase);
         }
         return false;
+    }
+
+    private PutObjectRequest createObjectPutRequest(File fileToBeUploaded, String path) {
+        return new PutObjectRequest(
+                this.bucket, String.format("%s/%s", this.bucketFolder, path), fileToBeUploaded)
+                .withCannedAcl(CannedAccessControlList.PublicRead);
     }
 }

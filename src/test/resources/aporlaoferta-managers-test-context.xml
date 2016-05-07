@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans.xsd">
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+    <context:property-placeholder location="classpath:oferta_config_develop.properties"/>
 
     <bean id="userManagerTest" class="com.aporlaoferta.service.UserManager">
         <property name="transactionalManager" ref="transactionalManagerTest"/>
@@ -17,10 +22,17 @@
     <bean id="commentManagerTest" class="com.aporlaoferta.service.CommentManager">
         <property name="transactionalManager" ref="transactionalManagerTest"/>
     </bean>
-    <bean id="imageManagerTest" class="com.aporlaoferta.service.ImageUploadManager">
-        <constructor-arg name="folderDepth" value="2"/>
-        <constructor-arg name="uploadFolder" value="aaa"/>
-        <constructor-arg name="uploadFolderMap" value="aa"/>
+    <bean id="imageUploadManager" class="com.aporlaoferta.service.ImageUploadManager">
+        <constructor-arg name="uploadFolder" value="${upload.folder}"/>
+        <constructor-arg name="uploadFolderMap"
+                         value="${upload.s3.server}/${upload.s3.bucket}/${upload.s3.folder}"/>
+        <constructor-arg name="folderDepth" value="50"/>
+        <constructor-arg name="awss3Service" ref="awsS3Service"/>
+    </bean>
+
+    <bean id="awsS3Service" class="com.aporlaoferta.service.AWSS3Service">
+        <constructor-arg name="bucket" value="${upload.s3.bucket}"/>
+        <constructor-arg name="bucketFolder" value="${upload.s3.folder}"/>
     </bean>
 
     <bean id="transactionalManagerTest" class="com.aporlaoferta.service.TransactionalManager"/>

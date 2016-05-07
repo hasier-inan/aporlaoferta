@@ -52,17 +52,26 @@ public class ImageController {
 
     private TheResponse updateResultWithSuccessUploadResult(MultipartFile file) throws IOException {
         File finalFile = null;
+        TheResponse result = new TheResponse();
         try {
             finalFile = this.imageUploadManager.copyUploadedFileIntoServer(file);
-            return this.imageUploadManager.transformAndUploadFile(finalFile);
+            String uploadPath = this.imageUploadManager.transformAndUploadFile(finalFile);
+            updateResultWithUploadPath(result, uploadPath);
         } catch (InvalidUploadFolderException | IOException e) {
             return ResponseResultHelper
-                    .responseResultWithResultCodeError(ResultCode.IMAGE_UPLOAD_ERROR, new TheResponse());
+                    .responseResultWithResultCodeError(ResultCode.IMAGE_UPLOAD_ERROR, result);
         } finally {
             if (finalFile != null && finalFile.exists()) {
                 finalFile.delete();
             }
         }
+        return result;
+    }
+
+    private void updateResultWithUploadPath(TheResponse result, String uploadPath) {
+        result.setCode(ResultCode.ALL_OK.getCode());
+        result.setResponseResult(ResponseResult.OK);
+        result.setDescription(uploadPath);
     }
 
 

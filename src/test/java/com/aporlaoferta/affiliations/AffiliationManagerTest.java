@@ -23,6 +23,7 @@ public class AffiliationManagerTest {
     protected AffiliationManager affiliationManager;
     private final String rawUrl = "http://www.amazon.es";
     private final String affiliateId = "aporlaoferta-21";
+    //aporlaoferta-21   amazon.es   Amazon  amazon.es amazon
     private final String longUrlWithMultipleValues = "http://www.amazon.es/gp/product/B00K690INE/" +
             "?aka=2&ref=s9_simh_gw_p23_d12_i4?pf_rd_m=A1AT7YVPFBWXBL&pf_rd_s=desktop-1" +
             "&pf_rd_r=0YP4M8XZTZQRA7VN6Y28&pf_rd_t=36701" +
