@@ -130,15 +130,14 @@ public class AccountController {
 
     @RequestMapping(value = "/requestForgottenPassword", method = RequestMethod.POST)
     @ResponseBody
-    public TheResponse requestForgottenPassword(@RequestParam(value = "nickname", required = true) String nickname) {
-        TheUser theUser = this.userManager.getUserFromNickname(nickname);
+    public TheResponse requestForgottenPassword(@RequestParam(value = "userEmail", required = true) String userEmail) {
         TheResponse theResponse = new TheResponse();
-        if (theUser == null) {
+        if (!this.userManager.doesUserEmailExist(userEmail)) {
             return ResponseResultHelper.responseResultWithResultCodeError(
-                    ResultCode.USER_NAME_IS_INVALID, theResponse);
+                    ResultCode.USER_EMAIL_IS_INVALID, theResponse);
         }
         try {
-            this.emailService.sendPasswordForgotten(theUser);
+            this.emailService.sendPasswordForgotten(this.userManager.getUserFromEmail(userEmail));
         } catch (EmailSendingException e) {
             LOG.warn("Could not send password forgotten email: ", e.getMessage());
             return ResponseResultHelper.createDefaultResponse();

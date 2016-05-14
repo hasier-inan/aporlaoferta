@@ -1,5 +1,7 @@
 package com.aporlaoferta.data;
 
+import java.util.UUID;
+
 /**
  * Created with IntelliJ IDEA.
  * User: hasiermetal
@@ -11,7 +13,7 @@ public class UserBuilderManager {
     public static UserBuilder aRegularUserWithNickname(String nickname) {
         return UserBuilder.aUser()
                 .withAvatar("http://this.is.my.avatar.jpg")
-                .withEmail("duckU@duckermuther.com")
+                .withEmail(String.format("%s@mail.com", UUID.randomUUID().toString()))
                 .withNickName(nickname)
                 .withPassword("thisistheencodedPassword")
                 .isPending(false)
@@ -23,7 +25,7 @@ public class UserBuilderManager {
     public static UserBuilder aPendingUserWithNickname(String nickname) {
         return UserBuilder.aUser()
                 .withAvatar("http://this.is.my.avatar.jpg")
-                .withEmail("duckU@duckermuther.com")
+                .withEmail(String.format("%s@mail.com", UUID.randomUUID().toString()))
                 .withNickName(nickname)
                 .withPassword("thisistheencodedPassword")
                 ;

@@ -8,15 +8,17 @@ aporlaofertaApp
             templateUrl: 'view/login.jsp',
             controller: ['$scope', 'requestManager', 'configService', 'alertService',
                 function ($scope, requestManager, configService, alertService) {
-                    $scope.requestPassword = function (nickname) {
-                        $scope.processing=true;
-                        requestManager.makePostCall(nickname, {nickname: nickname}, configService.getEndpoint('password.forgotten.request'))
+                    $scope.requestPassword = function (userEmail) {
+                        $scope.processing = true;
+                        $scope.validMail = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
+
+                        requestManager.makePostCall(userEmail, {userEmail: userEmail}, configService.getEndpoint('password.forgotten.request'))
                             .success(function (data, status, headers, config) {
                                 $scope.processAccountResponse(data);
                             }).error(function (data, status, headers, config) {
                                 $scope.accountDefaultError();
-                            }).finally(function(){
-                                $scope.processing=false;
+                            }).finally(function () {
+                                $scope.processing = false;
                             });
                     }
                     $scope.processAccountResponse = function (data) {

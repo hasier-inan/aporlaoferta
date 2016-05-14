@@ -32,8 +32,16 @@ public class UserManager {
         try {
             return this.transactionalManager.getUserFromNickname(nickname);
         } catch (IllegalArgumentException e) {
-            //null nickname
             LOG.error("Got a null nickname while looking for a user ", e);
+        }
+        return null;
+    }
+
+    public TheUser getUserFromEmail(String email) {
+        try {
+            return this.transactionalManager.getUserFromEmail(email);
+        } catch (IllegalArgumentException e) {
+            LOG.error("Got a null email while looking for a user ", e);
         }
         return null;
     }
@@ -112,12 +120,7 @@ public class UserManager {
     }
 
     public boolean doesUserEmailExist(String userEmail) {
-        try {
-            return this.transactionalManager.getUserFromEmail(userEmail) != null;
-        } catch (IllegalArgumentException e) {
-            LOG.error("Got a null email while looking for a user ", e);
-        }
-        return false;
+        return !isEmpty(getUserFromEmail(userEmail));
     }
 
     public boolean doesUserExist(String nickname) {

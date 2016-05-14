@@ -143,23 +143,40 @@ public class AccountControllerTest {
     }
 
     @Test
-    public void testForgottenPasswordRequestTriggersEmailIfUserExists() throws Exception, EmailSendingException {
-        String nickname = "nickname";
-        TheUser user = UserBuilderManager.aRegularUserWithNickname(nickname).build();
-        when(this.userManager.getUserFromNickname(nickname))
+    public void testForgottenPasswordRequestTriggersEmailIfEmailExists() throws Exception, EmailSendingException {
+        String email = "nickname@email.com";
+        TheUser user = UserBuilderManager.aRegularUserWithEmail(email).build();
+        when(this.userManager.doesUserEmailExist(email))
+                .thenReturn(true);
+        when(this.userManager.getUserFromEmail(email))
                 .thenReturn(user);
-        TheResponse theResponse = this.accountController.requestForgottenPassword(nickname);
+        TheResponse theResponse = this.accountController.requestForgottenPassword(email);
         verify(this.emailService).sendPasswordForgotten(user);
         assertThat("Expected an ok response", theResponse.getCode(), is(0));
     }
 
     @Test
     public void testForgottenPasswordReturnsInvalidUserIfDoesNotExist() throws Exception, EmailSendingException {
-        String nickname = "nickname";
-        when(this.userManager.getUserFromNickname(nickname))
-                .thenReturn(null);
-        TheResponse theResponse = this.accountController.requestForgottenPassword(nickname);
-        assertThat("Expected invalid user data code", theResponse.getCode(), is(1));
+        String email = "nickname@email.com";
+        when(this.userManager.doesUserEmailExist(email))
+                .thenReturn(false);
+        TheResponse theResponse = this.accountController.requestForgottenPassword(email);
+        assertThat("Expected invalid user email code", theResponse.getCode(), is(7));
+    }
+
+    @Test
+    public void testForgottenPasswordReturnsGenericErrorIfEmailFails() throws Exception, EmailSendingException {
+        String email = "nickname@email.com";
+        TheUser user = UserBuilderManager.aRegularUserWithEmail(email).build();
+        when(this.userManager.doesUserEmailExist(email))
+                .thenReturn(true);
+        when(this.userManager.getUserFromEmail(email))
+                .thenReturn(user);
+
+        doThrow(new EmailSendingException("", new Throwable())).when(this.emailService)
+                .sendPasswordForgotten(user);
+        TheResponse theResponse = this.accountController.requestForgottenPassword(email);
+        assertThat("Expected an ok response", theResponse.getCode(), is(66));
     }
 
     @Test
@@ -170,19 +187,6 @@ public class AccountControllerTest {
         TheUser theUser = UserBuilderManager.aRegularUserWithEmail(existingEmail).build();
         TheResponse theResponse = this.accountController.createUser(theUser, "captcha");
         assertThat("Expected invalid user email code", theResponse.getCode(), is(6));
-    }
-
-    @Test
-    public void testForgottenPasswordReturnsGenericErrorIfEmailFails() throws Exception, EmailSendingException {
-        String nickname = "nickname";
-        TheUser user = UserBuilderManager.aRegularUserWithNickname(nickname).build();
-        when(this.userManager.getUserFromNickname(nickname))
-                .thenReturn(user);
-
-        doThrow(new EmailSendingException("", new Throwable())).when(this.emailService)
-                .sendPasswordForgotten(user);
-        TheResponse theResponse = this.accountController.requestForgottenPassword(nickname);
-        assertThat("Expected an ok response", theResponse.getCode(), is(66));
     }
 
     private TheResponse performPasswordUpdate() {
