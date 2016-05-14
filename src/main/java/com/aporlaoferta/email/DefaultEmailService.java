@@ -4,6 +4,7 @@ import com.aporlaoferta.dao.EmailTemplateDAO;
 import com.aporlaoferta.model.Email;
 import com.aporlaoferta.model.EmailTemplate;
 import com.aporlaoferta.model.ServerValue;
+import com.aporlaoferta.model.TheDefaultOffer;
 import com.aporlaoferta.model.TheUser;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
@@ -75,9 +76,16 @@ public class DefaultEmailService implements EmailService {
 
     private void populateModelWithEmailContent(TheUser theUser, Map<String, String> model) {
         model.put(USER_NICKNAME_FIELD, theUser.getUserNickname());
-        model.put(USER_AVATAR_IMG_FIELD, theUser.getUserAvatar());
+        model.put(USER_AVATAR_IMG_FIELD, getUserAvatar(theUser));
         model.put(USER_UUID_FIELD, theUser.getUuid());
         model.put(SERVER, this.serverValue.getValue());
+    }
+
+    private String getUserAvatar(TheUser theUser) {
+        if(TheDefaultOffer.AVATAR_IMAGE_URL.getCode().equals(theUser.getUserAvatar())){
+            return TheDefaultOffer.AVATAR_EXTERNAL_IMAGE_URL.getCode();
+        }
+        return theUser.getUserAvatar();
     }
 
     private void populateTemplateAndSend(String templateName, Map<String, String> model, String toAddress) throws EmailSendingException {
