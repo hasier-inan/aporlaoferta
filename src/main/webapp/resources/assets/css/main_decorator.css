@@ -705,6 +705,37 @@ div.responseDescription {
 */
 
 /*
+/redirect-container
+*/
+div.redirect-container {
+    text-align: center;
+    color: #ffffff;
+    font-size: 1em;
+}
+
+div.redirect-container > i {
+    color: #ffffff !important;
+    font-size: 5em;
+}
+
+div.redirect-container div.redirect-container-actions > a {
+    font-size: 15px;
+    color: #ffffff;
+    border: solid 1px #ffffff !important;
+    box-shadow: inset 0 0 0 0px #e6e6e6;
+}
+
+div.redirect-container div.redirect-container-actions > a:hover {
+    color: #d70000;
+    text-decoration: none;
+    background-color: rgba(255, 255, 255, 0.075);
+}
+
+div.redirect-container div.redirect-container-actions > a.back:hover {
+    color: #eeeeee !important;
+}
+
+/*
 /password-forgotten
 */
 form.password-forgotten-container > ul {
@@ -727,27 +758,29 @@ label#forgottePasswordRequestLabel {
 /*
 validation
 */
-#createOfferCompanySection{
+#createOfferCompanySection {
     border-radius: 6px;
     border: solid 1px;
     color: #FFFFFF;
 }
+
 #createOfferCompanySection md-autocomplete {
     background: none !important;
 }
-.md-autocomplete-suggestions{
+
+.md-autocomplete-suggestions {
     background: transparent !important;
     border: 1px solid #f38630;
     color: #FFFFFF;
 }
-.md-autocomplete-suggestions li{
+
+.md-autocomplete-suggestions li {
     color: #FFFFFF !important;
 }
 
-.md-autocomplete-suggestions li:hover{
+.md-autocomplete-suggestions li:hover {
     color: rgba(0, 0, 0, .8) !important;
 }
-
 
 div.offer-creation-category.ng-valid .category-dropdown,
 .content-validation.ng-valid {
@@ -771,13 +804,13 @@ div.offer-creation-category.ng-invalid .category-dropdown,
     border-color: #e6e6e6 !important;
 }
 
-div.content-validation.ng-invalid{
+div.content-validation.ng-invalid {
     background: rgba(230, 41, 41, .15) scroll right;
     padding-right: 0px;
     border-color: #e62929 !important;
 }
 
-div.content-validation.ng-valid{
+div.content-validation.ng-valid {
     background: rgba(105, 210, 231, .15) scroll right;
     padding-right: 0px;
     border-color: #69d2e7 !important;
@@ -1038,19 +1071,19 @@ a.social-share.mini {
     margin-top: .5em;
 }
 
-header.password-forgotten {
+header.top-header {
     height: auto !important;
     min-height: 0 !important;
 }
 
 @media screen and (min-width: 1280px) {
-    header.password-forgotten {
+    header.top-header {
         margin: 4em 0 2em 0;
     }
 }
 
 @media screen and (min-width: 980px) {
-    header.password-forgotten {
+    header.top-header {
         margin: 4em 0 2em 0;
     }
 }
@@ -1067,7 +1100,7 @@ header.password-forgotten {
     }
 }
 
-body.password-forgotten {
+body.top-header {
     background-image: url("images/background_head5.png"), url("images/pattern-size2.svg");
     background-color: #f38630;
 }

@@ -45,11 +45,19 @@
     <script src="resources/assets/js/main.js"></script>
     <!--core-->
     <script src="resources/js/lib/angular.js"></script>
+    <!--angular material dependencies-->
     <script src="resources/js/lib/angular-animate.js"></script>
+    <script src="resources/js/lib/angular-route.min.js"></script>
+    <script src="resources/js/lib/angular-aria.min.js"></script>
+    <script src="resources/js/lib/angular-messages.min.js"></script>
+    <script src="resources/js/lib/angular-material.js"></script>
+    <link rel="stylesheet" href="resources/assets/css/angular-material-custom.css">
+    <!-- angular dropdown-->
+    <script src="resources/js/lib/angular-dropdowns.js"></script>
+    <link rel="stylesheet" href="resources/assets/css/angular-dropdowns-custom.css">
     <script src="resources/js/lib/angular-recaptcha.js"></script>
     <script src="resources/js/lib/angular-filter.min.js"></script>
     <script src="resources/js/lib/ng-flow-standalone.js"></script>
-    <script src="resources/assets/js/main.js"></script>
     <script src="resources/js/main-controller/mainController.js"></script>
     <script src="resources/js/request-handler/requestManagerService.js"></script>
     <script src="resources/js/account/account-signup/ngAccountCreationDirective.js"></script>
@@ -75,11 +83,11 @@
     <script src="resources/js/offer/offer-list/offerManagerService.js"></script>
     <script src="resources/js/account/password-forgotten/ngPasswordForgottenDirective.js"></script>
 </head>
-<body id="top" data-ng-controller="APorLaOfertaController" class="password-forgotten">
+<body id="top" data-ng-controller="APorLaOfertaController" class="top-header">
 
 <div ng-overhead-display-light="overheadDisplayLight" class="overheadDisplayLight"></div>
 
-<header id="header" class="password-forgotten">
+<header id="header" class="top-header">
     <div class="content only-page">
         <h1 class="only-page">
             <em>aporlaoferta</em>
