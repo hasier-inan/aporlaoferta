@@ -93,7 +93,7 @@ public class AccountControllerTest {
 
     @Test
     public void testPasswordForgottenDisplaysView() throws Exception {
-        ModelAndView passwordForgotten = this.accountController.passwordForgotten("name","uuid");
+        ModelAndView passwordForgotten = this.accountController.passwordForgotten("name", "uuid");
         assertThat("Expected the passwordForgotten view", passwordForgotten.getViewName(), is("passwordForgotten"));
         assertThat("Expected the passwordForgotten view", (String) passwordForgotten.getModel().get("nick"), is("name"));
         assertThat("Expected the passwordForgotten view", (String) passwordForgotten.getModel().get("uuid"), is("uuid"));
@@ -160,6 +160,16 @@ public class AccountControllerTest {
                 .thenReturn(null);
         TheResponse theResponse = this.accountController.requestForgottenPassword(nickname);
         assertThat("Expected invalid user data code", theResponse.getCode(), is(1));
+    }
+
+    @Test
+    public void testExistingEmailReturnsExpectedError() throws Exception {
+        String existingEmail = "nickname@existing.com";
+        when(this.userManager.doesUserEmailExist(existingEmail))
+                .thenReturn(true);
+        TheUser theUser = UserBuilderManager.aRegularUserWithEmail(existingEmail).build();
+        TheResponse theResponse = this.accountController.createUser(theUser, "captcha");
+        assertThat("Expected invalid user email code", theResponse.getCode(), is(6));
     }
 
     @Test

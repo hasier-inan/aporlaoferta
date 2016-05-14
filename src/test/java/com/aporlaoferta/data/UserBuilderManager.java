@@ -29,4 +29,12 @@ public class UserBuilderManager {
                 ;
     }
 
+    public static UserBuilder aRegularUserWithEmail(String existingEmail) {
+        return UserBuilder.aUser()
+                .withAvatar("http://this.is.my.avatar.jpg")
+                .withEmail(existingEmail)
+                .withNickName("duck")
+                .withPassword("thisistheencodedPassword")
+                ;
+    }
 }

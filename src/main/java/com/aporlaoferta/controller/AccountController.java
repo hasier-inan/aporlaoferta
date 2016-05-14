@@ -106,10 +106,13 @@ public class AccountController {
     @ResponseBody
     public TheResponse createUser(@RequestBody TheUser theUser,
                                   @RequestParam(value = "recaptcha", required = true) String reCaptcha) {
-        if (this.captchaHttpManager.validHuman(reCaptcha)) {
-            return processUserCreation(theUser);
-        } else {
+        if (!this.captchaHttpManager.validHuman(reCaptcha)) {
             return ResponseResultHelper.createInvalidCaptchaResponse();
+
+        } else if (this.userManager.doesUserEmailExist(theUser.getUserEmail())) {
+            return ResponseResultHelper.createExistingEmailResponse();
+        } else {
+            return processUserCreation(theUser);
         }
 
     }

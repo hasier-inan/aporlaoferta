@@ -101,15 +101,23 @@ public class UserManager {
 
     public TheResponse confirmUser(String uuid, String nickname) {
         TheUser theUser = getUserFromNickname(nickname);
-        if(isEmpty(theUser) || !uuid.equals(theUser.getUuid())){
+        if (isEmpty(theUser) || !uuid.equals(theUser.getUuid())) {
             return ResponseResultHelper.createInvalidUUIDResponse();
-        }
-        else{
+        } else {
             theUser.setPending(false);
             theUser.setUuid(UUID.randomUUID().toString());
             saveUser(theUser);
             return ResponseResultHelper.createUserConfirmationResponse();
         }
+    }
+
+    public boolean doesUserEmailExist(String userEmail) {
+        try {
+            return this.transactionalManager.getUserFromEmail(userEmail) != null;
+        } catch (IllegalArgumentException e) {
+            LOG.error("Got a null email while looking for a user ", e);
+        }
+        return false;
     }
 
     public boolean doesUserExist(String nickname) {
@@ -137,4 +145,5 @@ public class UserManager {
     public void setTransactionalManager(TransactionalManager transactionalManager) {
         this.transactionalManager = transactionalManager;
     }
+
 }

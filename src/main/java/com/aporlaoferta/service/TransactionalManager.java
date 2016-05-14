@@ -158,4 +158,9 @@ public class TransactionalManager {
     public TheUser getUserFromNickname(String nickname) {
         return this.userDAO.findByUserNickname(nickname);
     }
+
+    @Transactional(readOnly = true)
+    public TheUser getUserFromEmail(String email) {
+        return this.userDAO.findByUserEmail(email);
+    }
 }

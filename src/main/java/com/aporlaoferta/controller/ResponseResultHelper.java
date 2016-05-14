@@ -37,6 +37,10 @@ public class ResponseResultHelper {
         return updateWithCode(ResultCode.INVALID_CAPTCHA);
     }
 
+    public static TheResponse createExistingEmailResponse() {
+        return updateWithCode(ResultCode.USER_EMAIL_ALREADY_EXISTS);
+    }
+
     public static TheResponse createUnhealthyResponse() {
         return updateWithCode(ResultCode.UNHEALTHY_ENDPOINT);
     }

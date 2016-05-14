@@ -14,6 +14,7 @@ public enum ResultCode {
     USER_NAME_ALREADY_EXISTS(3, ResponseResult.INVALID_DATA_PROVIDED, "Provided user nickname already exists", "El nombre de usuario ya existe"),
     USER_NAME_PASSWORD_INVALID(4, ResponseResult.INVALID_DATA_PROVIDED, "Provided user password is invalid", "La contraseña facilitada es inválida"),
     INVALID_PASSWORD_VERIFICATION(5, ResponseResult.INVALID_DATA_PROVIDED, "Provided user data is invalid", "Los datos de usuario facilitados son inválidos"),
+    USER_EMAIL_ALREADY_EXISTS(6, ResponseResult.INVALID_DATA_PROVIDED, "Provided user email already exists", "Actualmente ya existe un usuario vinculado a ese correo electrónico"),
     UPDATE_USER_VALIDATION_ERROR(10, ResponseResult.VALIDATION_ERROR, "Validation process failed while updating user", "El proceso de validación ha fallado mientras se procedía a actualizar el usuario"),
     CREATE_USER_VALIDATION_ERROR(11, ResponseResult.VALIDATION_ERROR, "Validation process failed while creating user", "El proceso de validación ha fallado mientras se procedía a crear el usuario"),
     COMMENT_VALIDATION_ERROR(12, ResponseResult.VALIDATION_ERROR, "Validation process failed while creating comment", "El proceso de validación ha fallado mientras se procedía a comentar la oferta"),
