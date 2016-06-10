@@ -8,15 +8,23 @@
       action="<c:url value='/j_spring_security_check' />" method='POST' class="centeredForm">
     <input ng-model="login.email" type="text" id="loginUsername" name="email"
            class="overheadField content-validation"
-           placeholder="Correo electr&oacute;nico" ng-maxlength="250" ng-pattern="validMail" required>
+           placeholder="Correo electr&oacute;nico" ng-maxlength="250"
+           ng-pattern="validMail"
+           ng-show="isPasswordForgotten" ng-required="isPasswordForgotten">
+    <input ng-model="login.username" type="text" id="loginEmail" name="username"
+           class="overheadField content-validation"
+           placeholder="Usuario" ng-maxlength="250" required
+           ng-hide="isPasswordForgotten" ng-required="!isPasswordForgotten">
     <input ng-model="login.p455w012d" type="password" id="loginPassword" name="password"
            class="overheadField content-validation"
-           placeholder="Contrase&ntilde;a" ng-maxlength="250" ng-required="!isPasswordForgotten" ng-hide="isPasswordForgotten"/>
+           placeholder="Contrase&ntilde;a" ng-maxlength="250" ng-required="!isPasswordForgotten"
+           ng-hide="isPasswordForgotten"/>
     <input type="hidden" name="${_csrf.parameterName}"
            value="${_csrf.token}"/>
 
     <div class="centeredForm" ng-hide="isPasswordForgotten">
-        <button ng-disabled="!loginForm.$valid || processing" class="button small icon fa-sign-in overheadButton" name="loginSubmit"
+        <button ng-disabled="!loginForm.$valid || processing" class="button small icon fa-sign-in overheadButton"
+                name="loginSubmit"
                 ng-click="loginForm.submit()">
             Identificarse
         </button>
@@ -34,9 +42,13 @@
         </button>
         <button ng-disabled="!loginForm.$valid || processing" class="button mini icon fa-sign-in overheadButton blue"
                 ng-click="requestPassword(login.email)"></button>
+        <div class="loading-dialogue ">
+            <i class="fa fa-refresh loadingdialogue white popup-loading" ng-class="!processing?'hideLoading':''"></i>
+        </div>
     </div>
 
     <input type="checkbox" id="forgottenPasswordRequest"
            name="forgottenPasswordRequest" ng-model="isPasswordForgotten"/>
-    <label id="forgottePasswordRequestLabel" for="forgottenPasswordRequest" class="overheadLabel">He olvidado la contrase&ntilde;a</label>
+    <label id="forgottePasswordRequestLabel" for="forgottenPasswordRequest" class="overheadLabel">He olvidado la
+        contrase&ntilde;a</label>
 </form>

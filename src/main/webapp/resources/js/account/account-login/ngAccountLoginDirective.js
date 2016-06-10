@@ -23,7 +23,9 @@ aporlaofertaApp
                     }
                     $scope.processAccountResponse = function (data) {
                         alertService.sendErrorMessage(data.descriptionEsp);
-                        $scope.restartRecaptcha();
+                        if ($scope.restartRecaptcha) {
+                            $scope.restartRecaptcha();
+                        }
                     }
                     $scope.accountDefaultError = function () {
                         alertService.sendDefaultErrorMessage();
