@@ -250,7 +250,6 @@
             <version>${aws.sdk.version}</version>
         </dependency>
 
-
         <!--TESTING & LOGGING-->
         <dependency>
             <groupId>junit</groupId>
