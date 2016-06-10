@@ -33,11 +33,7 @@
         <appender-ref ref="console"/>
     </logger>
 
-    <logger name="com.aporlaoferta" level="info" additivity="false">
-        <appender-ref ref="console"/>
-    </logger>
-
-    <root level="error">
+    <root level="info">
         <appender-ref ref="fileAppender"/>
     </root>
 

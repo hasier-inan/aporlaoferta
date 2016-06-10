@@ -82,13 +82,16 @@ public class OfferController {
     public TheOfferResponse getFilteredOffers(
             @RequestBody OfferFilters offerFilters,
             @RequestParam(value = "number", required = false) Long number) {
+        LOG.info("filtering offers---");
         TheOfferResponse theOfferResponse = new TheOfferResponse();
         List<TheOffer> hundredOffers = this.offerManager.getFilteredNextHundredResults(offerFilters,
                 number != null ? number + 1 : 0L);
+        LOG.info("Offers received, "+hundredOffers.size());
         //Temporary hack  because Lazy initialisation comments are empty.
         createEmptyFields(hundredOffers);
         theOfferResponse.setTheOffers(hundredOffers);
         updateResponseWithSuccessCode(theOfferResponse);
+        LOG.info("Response will be returned with: "+theOfferResponse.getDescriptionEsp());
         return theOfferResponse;
     }
 
