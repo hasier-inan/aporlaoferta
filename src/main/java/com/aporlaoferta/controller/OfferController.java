@@ -82,7 +82,6 @@ public class OfferController {
     public TheOfferResponse getFilteredOffers(
             @RequestBody OfferFilters offerFilters,
             @RequestParam(value = "number", required = false) Long number) {
-        LOG.info("filtering offers---");
         TheOfferResponse theOfferResponse = new TheOfferResponse();
         List<TheOffer> hundredOffers = this.offerManager.getFilteredNextHundredResults(offerFilters,
                 number != null ? number + 1 : 0L);
