@@ -14,6 +14,6 @@
     <import resource="aporlaoferta-managers-context.xml"/>
     <import resource="aporlaoferta-http-service-context.xml"/>
     <import resource="aporlaoferta-email-context.xml"/>
-    <context:property-placeholder location="classpath:oferta_config_prod.properties"/>
+    <context:property-placeholder location="classpath:oferta_config_${APOR_CURRENT_ENV}.properties"/>
 
 </beans>
