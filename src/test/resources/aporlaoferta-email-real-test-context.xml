@@ -10,7 +10,7 @@
         <property name="serverValue" ref="serverValueTest"/>
     </bean>
     <bean id="serverValueTest" class="com.aporlaoferta.model.ServerValue">
-        <constructor-arg name="value" value="http://localhost:8080/aporlaoferta"/>
+        <constructor-arg name="value" value="http://localhost:8080"/>
     </bean>
     <bean id="mailSenderTest" class="com.aporlaoferta.email.DefaultEmailSendingService">
         <constructor-arg name="mailSender" ref="javaMailSenderTest"/>
