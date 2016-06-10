@@ -73,7 +73,12 @@ public class HTTPRequestEndpoint implements HTTPEndpoint {
     }
 
     protected String getUrl() {
-        return this.url;
+        String protocol = "http://";
+        String secureProtocol = "https://";
+        if (this.url.contains(protocol) || this.url.contains(secureProtocol)) {
+            return this.url;
+        }
+        return protocol + this.url;
     }
 
     ///Setter in case a custom post connection is launched

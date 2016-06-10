@@ -1,11 +1,9 @@
 package com.aporlaoferta.utils.http;
 
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.params.HttpParams;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -35,9 +33,10 @@ public class HTTPGetEndpoint extends HTTPRequestEndpoint implements HTTPEndpoint
     public Boolean executeConnection() {
         //initialize client
         try {
-            final HttpParams httpParams = new BasicHttpParams();
-            HttpConnectionParams.setConnectionTimeout(httpParams, getConnectionTimeout());
-            HttpClient client = new DefaultHttpClient(httpParams);
+            RequestConfig.Builder requestBuilder = RequestConfig.custom();
+            requestBuilder = requestBuilder.setConnectTimeout(getConnectionTimeout());
+            requestBuilder = requestBuilder.setConnectionRequestTimeout(getConnectionTimeout());
+            HttpClient client = HttpClientBuilder.create().setDefaultRequestConfig(requestBuilder.build()).build();
             setResponse(client.execute(new HttpGet(this.getUrl())));
             return isHealthyConnection();
         } catch (IOException e) {

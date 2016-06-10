@@ -2,7 +2,6 @@ package com.aporlaoferta.utils;
 
 import com.aporlaoferta.utils.http.HTTPEndpoint;
 import com.aporlaoferta.utils.http.HTTPGetEndpoint;
-import org.springframework.stereotype.Component;
 
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
@@ -26,7 +25,7 @@ public class UrlParser {
     private static final int TIMEOUT = 5000;
 
     public Map extractParameters(String initialUrl) throws MalformedURLException, UnsupportedEncodingException {
-        URL url = new URL(initialUrl);
+        URL url = new URL(UrlUtils.parseUrl(initialUrl));
         return splitQuery(url);
     }
 
@@ -48,20 +47,19 @@ public class UrlParser {
     }
 
     public String extractHost(String link) throws MalformedURLException {
-        URL url = new URL(link);
+        URL url = new URL(UrlUtils.parseUrl(link));
         return url.getProtocol() + "://" + url.getHost() + url.getPath();
     }
 
     public String createLinkWithParameters(String initialUrl, String parameters) throws MalformedURLException {
-        return extractHost(initialUrl) + parameters;
+        return extractHost(UrlUtils.parseUrl(initialUrl)) + parameters;
     }
 
     public int isAlive(String url) throws UnhealthyException {
-        HTTPEndpoint httpEndpoint = new HTTPGetEndpoint(url, TIMEOUT);
+        HTTPEndpoint httpEndpoint = new HTTPGetEndpoint(UrlUtils.parseUrl(url), TIMEOUT);
         if (!httpEndpoint.executeConnection()) {
             throw new UnhealthyException();
         }
         return httpEndpoint.getEndpointStatusCode();
-
     }
 }

@@ -4,6 +4,7 @@ import com.aporlaoferta.affiliations.AffiliationManager;
 import com.aporlaoferta.affiliations.InvalidAffiliatedCompany;
 import com.aporlaoferta.model.OfferCompany;
 import com.aporlaoferta.utils.UnhealthyException;
+import com.aporlaoferta.utils.UrlUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,14 +46,14 @@ public class CompanyManager {
 
         if (offerCompany == null || isEmpty(offerCompany.getCompanyAffiliateId()) || isEmpty(rawLink)) {
             LOG.info("No affiliation found for the given company");
-            return rawLink;
+            return UrlUtils.parseUrl(rawLink);
         }
         try {
-            return this.affiliationManager.constructAffiliatedLink(offerCompany, rawLink);
+            return this.affiliationManager.constructAffiliatedLink(offerCompany, UrlUtils.parseUrl(rawLink));
         } catch (InvalidAffiliatedCompany e) {
             LOG.error("Could not add custom affiliation id to offer url: ", e);
         }
-        return rawLink;
+        return UrlUtils.parseUrl(rawLink);
     }
 
     public String getWatermarkedCompany(String uri) {

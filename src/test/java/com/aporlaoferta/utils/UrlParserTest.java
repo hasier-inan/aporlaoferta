@@ -21,10 +21,9 @@ import static org.springframework.util.StringUtils.isEmpty;
  */
 public class UrlParserTest {
 
-    private final String correctUrl = "http://www.amazon.es/gp/product/B00K690INE/?aka=2";
+    private final String correctUrl = "www.amazon.es/gp/product/B00K690INE/?aka=2#";
     private final String correctEndpointUrl = "http://www.amazon.es/gp/product/B00K690INE/theEndpoint?aka=2";
     private final String nonExistingUrl = "http://amazon.ez/gp/product/B00K690INE/?aka=2";
-    private final String incorrectUrl = "wwdsw.amazon.ds.es/gp/product/B00K690INE/?aka=2";
     private final String incorrectEncodingUrl = "http://www.amazon.es/gp/product/B00K690INE/?aká~ñ=伊2";
 
     @Test
@@ -48,12 +47,6 @@ public class UrlParserTest {
         Assert.assertTrue(host.equals("http://www.amazon.es/gp/product/B00K690INE/theEndpoint"));
     }
 
-    @Test(expected = MalformedURLException.class)
-    public void testMalformedUrlThrowsExceptionWhileExtractingParameters() throws Exception {
-        UrlParser urlParser = new UrlParser();
-        urlParser.extractParameters(this.incorrectUrl);
-    }
-
     @Ignore
     @Test(expected = UnsupportedEncodingException.class)
     public void testUnsupportedEncodingUrlThrowsExceptionWhileExtractingParameters() throws Exception {
@@ -67,7 +60,6 @@ public class UrlParserTest {
         urlParser.isAlive(this.nonExistingUrl);
     }
 
-    @Ignore //Integration Test
     @Test
     public void testHealthyURLReturnsCorrectResponse() throws Exception {
         UrlParser urlParser = new UrlParser();
