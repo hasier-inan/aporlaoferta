@@ -32,7 +32,7 @@ public class ImageUploadManager {
         this.uploadFolder = uploadFolder;
         this.folderDepth = folderDepth;
         this.uploadFolderMap = uploadFolderMap;
-        this.imageTransformer = new ImageTransformer();
+        this.imageTransformer = null;//new ImageTransformer();
         this.awss3Service = awss3Service;
         createTemporaryUploadFolder();
     }
