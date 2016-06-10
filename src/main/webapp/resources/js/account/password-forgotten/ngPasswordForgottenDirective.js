@@ -29,7 +29,7 @@ aporlaofertaApp
                     $scope.processPasswordResponse = function (data) {
                         if(alertService.isAllOk(data)){
                             $scope.customCloseCallback = function(){
-                                window.location.replace("/aporlaoferta/");
+                                window.location.replace("/");
                             };
                         }
                         alertService.sendErrorMessage(data.descriptionEsp);
