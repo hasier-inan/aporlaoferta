@@ -1,6 +1,6 @@
 package com.aporlaoferta.model;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -28,6 +28,7 @@ import static org.springframework.util.Assert.notNull;
 @Entity
 @Table(name = "thatcompany")
 @SequenceGenerator(name = "GEN_THATCOMPANY", sequenceName = "SEQ_THATCOMPANY")
+@JsonIgnoreProperties({"companyWatermarks", "companyAffiliateId", "companyOffers"})
 public class OfferCompany implements Serializable {
 
     private static final long serialVersionUID = -1541978513479794276L;
@@ -51,15 +52,12 @@ public class OfferCompany implements Serializable {
     private String companyLogoUrl;
 
     @Column(name = "TC_AFFILIATE_ID", nullable = true)
-    @JsonIgnore
     private String companyAffiliateId;
 
     @Column(name = "TC_WATERMARKS", nullable = true)
-    @JsonIgnore
     private String companyWatermarks;
 
     @OneToMany(mappedBy = "offerCompany", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JsonIgnore
     private Set<TheOffer> companyOffers = new HashSet<TheOffer>();
 
     public void setCompanyOffers(Set<TheOffer> companyOffers) {

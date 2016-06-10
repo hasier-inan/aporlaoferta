@@ -1,5 +1,6 @@
 package com.aporlaoferta.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -25,6 +26,7 @@ import java.util.Date;
 @Entity
 @Table(name = "thatcomment")
 @SequenceGenerator(name = "GEN_THATCOMMENT", sequenceName = "SEQ_THATCOMMENT")
+@JsonIgnoreProperties({"commentsOffer"})
 public class OfferComment implements Serializable {
 
     private static final long serialVersionUID = 1035376396865210972L;
@@ -48,7 +50,6 @@ public class OfferComment implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "TCM_OFFER", nullable = false)
-    @JsonIgnore
     private TheOffer commentsOffer;
 
     @Column(name = "TCM_QUOTED_COMMENT", nullable = true)

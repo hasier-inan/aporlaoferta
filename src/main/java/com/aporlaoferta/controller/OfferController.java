@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -45,7 +46,6 @@ import static org.springframework.util.StringUtils.isEmpty;
  */
 @Controller
 @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-//TODO: Move @Transaction to a service
 public class OfferController {
 
     private final Logger LOG = LoggerFactory.getLogger(OfferController.class);

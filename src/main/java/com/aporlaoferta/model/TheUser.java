@@ -2,8 +2,6 @@ package com.aporlaoferta.model;
 
 import com.aporlaoferta.utils.CommentComparator;
 import com.aporlaoferta.utils.OfferComparator;
-import org.codehaus.jackson.annotate.JsonIgnore;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -35,6 +33,7 @@ import static org.springframework.util.Assert.notNull;
 @Entity
 @Table(name = "thatuser")
 @SequenceGenerator(name = "GEN_THATUSER", sequenceName = "SEQ_THATUSER")
+@com.fasterxml.jackson.annotation.JsonIgnoreProperties({"userOffers", "userComments", "negativeOffers", "positiveOffers"})
 public class TheUser implements Serializable {
 
     private static final long serialVersionUID = 3178810385898694540L;
@@ -51,7 +50,7 @@ public class TheUser implements Serializable {
     @Column(name = "TU_NICKNAME", nullable = false)
     private String userNickname;
 
-    @Column(name = "TU_PWD_LOCKED", nullable = false, length = 60 )
+    @Column(name = "TU_PWD_LOCKED", nullable = false, length = 60)
     private String userPassword;
 
     @Column(name = "TU_ENABLED", nullable = false)
@@ -70,19 +69,15 @@ public class TheUser implements Serializable {
     private String userAvatar;
 
     @OneToMany(mappedBy = "offerUser", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JsonIgnore
     private Set<TheOffer> userOffers = new HashSet<>();
 
     @OneToMany(mappedBy = "commentOwner", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JsonIgnore
     private Set<OfferComment> userComments = new HashSet<>();
 
     @ManyToMany(mappedBy = "offerPositives", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JsonIgnore
     private Set<TheOffer> positiveOffers = new HashSet<>();
 
     @ManyToMany(mappedBy = "offerNegatives", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JsonIgnore
     private Set<TheOffer> negativeOffers = new HashSet<>();
 
     public Long getId() {
