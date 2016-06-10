@@ -17,6 +17,7 @@ public class ImageTransformer {
     private final GraphicsConfiguration config;
 
     public ImageTransformer() {
+        System.setProperty("java.awt.headless", "true");
         this.config = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
     }
 
