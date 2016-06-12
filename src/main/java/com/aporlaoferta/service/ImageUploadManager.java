@@ -32,6 +32,7 @@ public class ImageUploadManager {
         this.uploadFolder = uploadFolder;
         this.folderDepth = folderDepth;
         this.uploadFolderMap = uploadFolderMap;
+        System.setProperty("java.awt.headless", "true");
         this.imageTransformer = new ImageTransformer();
         this.awss3Service = awss3Service;
         createTemporaryUploadFolder();
