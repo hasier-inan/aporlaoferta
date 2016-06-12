@@ -14,16 +14,13 @@ import java.io.IOException;
  */
 public class ImageTransformer {
 
-    private final GraphicsConfiguration config;
-
     public ImageTransformer() {
-        this.config = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
     }
 
     public void createSquareImage(final File originalFile, final String imagePath) throws IOException {
         BufferedImage originalImage = ImageIO.read(originalFile);
         final int squareSize = widthIsBiggerThanHeight(originalImage) ? originalImage.getWidth() : originalImage.getHeight();
-        BufferedImage alteredImage = this.config.createCompatibleImage(squareSize, squareSize);
+        BufferedImage alteredImage = new BufferedImage(squareSize, squareSize, BufferedImage.TYPE_INT_RGB);
         Graphics2D graphics2D = alteredImage.createGraphics();
         graphics2D.setColor(Color.WHITE);
         fillImageRects(originalImage, squareSize, graphics2D);
