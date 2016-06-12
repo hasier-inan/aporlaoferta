@@ -165,7 +165,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.24</version>
+            <version>5.1.39</version>
         </dependency>
 
         <dependency>
@@ -322,6 +322,26 @@
     </dependencies>
 
     <profiles>
+        <profile>
+            <id>migrate-dev</id>
+            <properties>
+                <env>develop</env>
+                <outOfOrder>true</outOfOrder>
+                <jdbc.url>jdbc:mysql://localhost:3306/that_aporlaoferta</jdbc.url>
+                <db.username>root</db.username>
+                <db.password>toor</db.password>
+            </properties>
+        </profile>
+        <profile>
+            <id>migrate-prod</id>
+            <properties>
+                <env>prod</env>
+                <outOfOrder>true</outOfOrder>
+                <jdbc.url>jdbc:mysql://${OPENSHIFT_MYSQL_DB_HOST}:${OPENSHIFT_MYSQL_DB_PORT}/prod</jdbc.url>
+                <db.username>adminr5q6exE</db.username>
+                <db.password>vfuIWYHhhmd6</db.password>
+            </properties>
+        </profile>
         <profile>
             <id>openshift</id>
             <build>
@@ -588,6 +608,28 @@
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>build-helper-maven-plugin</artifactId>
                     <version>1.9</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.flywaydb</groupId>
+                    <artifactId>flyway-maven-plugin</artifactId>
+                    <version>4.0.2</version>
+                    <configuration>
+                        <driver>com.mysql.jdbc.Driver</driver>
+                        <url>${jdbc.url}</url>
+                        <user>${db.username}</user>
+                        <password>${db.password}</password>
+                        <table>schema_history</table>
+                        <validateOnMigrate>false</validateOnMigrate>
+                        <placeholderPrefix>$#{</placeholderPrefix>
+                        <placeholderSuffix>}</placeholderSuffix>
+                        <validateOnMigrate>false</validateOnMigrate>
+                        <locations>
+                            <location>filesystem:flyway/src/deltas_all</location>
+                            <location>filesystem:flyway/src/deltas_${env}</location>
+                        </locations>
+                        <sqlMigrationSuffix>.sql</sqlMigrationSuffix>
+                        <outOfOrder>${outOfOrder}</outOfOrder>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
