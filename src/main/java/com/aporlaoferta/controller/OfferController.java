@@ -35,7 +35,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -85,12 +84,10 @@ public class OfferController {
         TheOfferResponse theOfferResponse = new TheOfferResponse();
         List<TheOffer> hundredOffers = this.offerManager.getFilteredNextHundredResults(offerFilters,
                 number != null ? number + 1 : 0L);
-        LOG.info("Offers received, "+hundredOffers.size());
         //Temporary hack  because Lazy initialisation comments are empty.
         createEmptyFields(hundredOffers);
         theOfferResponse.setTheOffers(hundredOffers);
         updateResponseWithSuccessCode(theOfferResponse);
-        LOG.info("Response will be returned with: "+theOfferResponse.getDescriptionEsp());
         return theOfferResponse;
     }
 
