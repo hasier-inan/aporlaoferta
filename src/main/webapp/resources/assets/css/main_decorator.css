@@ -788,6 +788,7 @@ div.offer-creation-category.ng-valid .category-dropdown,
     background-size: 20px;
     border-color: #69d2e7 !important;
     padding-right: 25px;
+
 }
 
 div.offer-creation-category.ng-invalid .category-dropdown,
@@ -931,9 +932,10 @@ pre.parsed-text.list {
 label.overhead-hint-label {
     text-align: center;
     font-style: italic;
-    font-weight: normal;
+    font-weight: 100;
     display: inherit;
-    font-size: .7em;
+    font-size: 1em;
+    margin-top: .5em;
 }
 
 input[type="checkbox"] + label.overheadLabel:before, input[type="radio"] + label.overheadLabel:before {

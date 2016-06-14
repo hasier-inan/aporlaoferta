@@ -94,6 +94,8 @@ div.offerSpecificationsBox {
     /*border: solid 1px;*/
     padding: .2em 1em .2em 1em;
     background-color: rgba(0, 0, 0, 0.3);
+    font-size: 14px;
+    font-weight: 100;
 }
 
 div.offerSpecificationsOriginalPrice {
@@ -117,7 +119,8 @@ div.offerSpecificationsSubtitle img {
 div.offerSpecificationsDescription {
     display: block;
     margin-top: 1em;
-
+    font-size: 14px;
+    font-weight: normal;
 }
 
 div.offerSpecificationsImage {
@@ -208,14 +211,13 @@ div#offerPositiveFeedback {
 div.offerSpecificationsComments {
     width: 96%;
     margin-left: 2%;
+    font-size: 14px;
+    font-weight: normal;
+    margin-top: .5em;
 }
 
 div.offerSpecificationsComments > div.commentsHeadTitle {
     text-decoration: underline;
-}
-
-div.offerSpecificationsComments > div.commentsHeadTitle {
-    font-style: italic;
 }
 
 div.commentsTheComment {
