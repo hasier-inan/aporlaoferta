@@ -117,7 +117,7 @@ public class AccountControllerTest {
     public void testUserPasswordIsUpdated() throws Exception {
         performPasswordUpdate();
         ArgumentCaptor<TheUser> theUserArgumentCaptor = ArgumentCaptor.forClass(TheUser.class);
-        Mockito.verify(this.userManager).updateUser(theUserArgumentCaptor.capture());
+        Mockito.verify(this.userManager).updateUser(theUserArgumentCaptor.capture(), anyBoolean());
         TheUser theUser = theUserArgumentCaptor.getValue();
         assertThat("Expected theUser password to be updated",
                 theUser.getUserPassword(),
@@ -194,7 +194,7 @@ public class AccountControllerTest {
         String security_code = "security";
         TheUser theUser = createDummyPasswordUpdateUser(nickname, security_code);
         when(this.userManager.getUserFromNickname(nickname)).thenReturn(theUser);
-        when(this.userManager.updateUser(any(TheUser.class))).thenReturn(theUser);
+        when(this.userManager.updateUser(any(TheUser.class), anyBoolean())).thenReturn(theUser);
         TheForgettableUser forgettableUser = ForgettableUserBuilderManager
                 .aForgettableUserWithNicknameAndCode(nickname, security_code).build();
         return this.accountController.passwordUpdate(forgettableUser);

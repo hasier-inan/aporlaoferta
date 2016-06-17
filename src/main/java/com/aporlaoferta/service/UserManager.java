@@ -95,12 +95,14 @@ public class UserManager {
      * @param theNewUser: User object with newest data
      * @return original User object with updated details
      */
-    public TheUser updateUser(TheUser theNewUser) {
+    public TheUser updateUser(TheUser theNewUser, Boolean passwordIsPopulated) {
         TheUser theUser = getUserFromNickname(theNewUser.getUserNickname());
         if (theUser != null) {
             theUser.setUserAvatar(theNewUser.getUserAvatar());
             theUser.setUserEmail(theNewUser.getUserEmail());
-            theUser.setUserPassword(theNewUser.getUserPassword());
+            if (!passwordIsPopulated) {
+                theUser.setUserPassword(theNewUser.getUserPassword());
+            }
             theUser.setUuid(UUID.randomUUID().toString());
             return saveUser(theUser);
         }

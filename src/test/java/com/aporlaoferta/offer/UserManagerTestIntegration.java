@@ -103,7 +103,7 @@ public class UserManagerTestIntegration {
         theUser.setUserPassword(theNewPass);
         theUser.setUserAvatar(theNewAvatar);
         theUser.setUserEmail(theNewEmail);
-        TheUser userUpdated = this.userManager.updateUser(theUser);
+        TheUser userUpdated = this.userManager.updateUser(theUser, false);
         assertThat("Expected the new email", userUpdated.getUserEmail(), is(theNewEmail));
         assertThat("Expected the new avatar", userUpdated.getUserAvatar(), is(theNewAvatar));
         assertFalse(oldPass.equals(userUpdated.getUserPassword()));
