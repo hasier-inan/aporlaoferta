@@ -41,14 +41,13 @@
                        placeholder="Email" required ng-pattern="validMail" ng-maxlength="250"/>
             </ul>
             <label id="imageUploadLabel" for="imageUploadContent" class="overhead-hint-label"
-                   ng-hide="disableNickname">Puedes a&ntilde;adir opcionalmente un avatar</label>
+                   ng-hide="disableNickname">Puedes a&ntilde;adir opcionalmente una imagen de perfil</label>
 
             <div id="imageUploadContent" ng-image-uploader="createAccountImageUploader"
                  final-url="theUser.userAvatar"></div>
 
             <input type="hidden" id="createUserAvatar" ng-model="theUser.userAvatar" class="overheadField"/>
-            <label for="createAccountCaptcha" class="overhead-hint-label">Antes de continuar soluciona el
-                captcha para probar que no eres un robot</label>
+            <label for="createAccountCaptcha" class="overhead-hint-label">Selecciona la casilla para probar que no eres un robot</label>
             <ul class="regular-bottom">
                 <li>
 
