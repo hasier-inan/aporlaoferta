@@ -93,13 +93,15 @@
                 <div class="offerSpecificationsDescription offerDescription">
                     <pre class="parsed-text">{{offer.offerDescription}}</pre>
                 </div>
-                <div class="offerSpecificationsLink">
-                    <a href="{{offer.offerLink}}" target="_blank">ir a la oferta <i
-                            class="fa fa-cart-arrow-down"></i></a>
-                </div>
                 <div ng-social-media="socialMedia" share-url="sharePrefix+offer.id"
                      share-text="offer.finalPrice + sharePrice + offer.offerTitle"></div>
             </div>
+
+            <div class="offerSpecificationsLink">
+                <a href="{{offer.offerLink}}" target="_blank">ir a la oferta <i
+                        class="fa fa-cart-arrow-down"></i></a>
+            </div>
+
             <div ng-offer-comments="offerComments" the-comments="offer.offerComments" the-offer="offer.id"
                  class="offerSpecificationsComments" comments-custom-close-callback="commentsCustomCloseCallback"></div>
 

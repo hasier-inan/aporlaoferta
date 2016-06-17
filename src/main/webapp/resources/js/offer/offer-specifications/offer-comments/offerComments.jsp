@@ -27,9 +27,9 @@
     <sec:authorize ifNotGranted="ROLE_USER">
         <div class="loginCommentMessage">Inicia sesión para añadir un comentario</div>
     </sec:authorize>
-    <hr/>
 </div>
 <div class="commentsHeadTitle">Comentarios:</div>
+<hr/>
 <div ng-repeat="theComment in theComments track by theComment.id" class="commentBlock">
     <div class="commentsHeadOwner">
         {{theComment.commentOwner.userNickname}} - {{theComment.commentCreationDate | date:'MM/dd/yyyy @ h:mma'}}
