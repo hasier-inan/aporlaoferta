@@ -16,6 +16,7 @@ aporlaofertaApp
                     $scope.disableNickname = true;
                     $scope.theUser = {};
                     $scope.widgetId = null;
+                    $scope.passwordUpdateRequired = false;
                     $scope.validMail = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
                     $scope.validPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!$%@#£€*?&]{8,}$/;
                     $scope.publicKey = "6LdqHQoTAAAAAAht2VhkrLGU26eBOjL-nK9zXxcn";
@@ -36,6 +37,7 @@ aporlaofertaApp
                                 .finally(function () {
                                     $scope.processing = false;
                                     $scope.getUserDetails();
+                                    $scope.passwordUpdateRequired = false;
                                 });
                             //$scope.theUser = {};
                             //$scope.overheadDisplay = false;
@@ -51,6 +53,12 @@ aporlaofertaApp
                             });
                     }
                     $scope.getUserDetails();
+
+                    $scope.resetPassword=function(){
+                        $scope.theUser.oldPassword=null;
+                        $scope.theUser.userPassword=null;
+                        $scope.userPassword2=null;
+                    }
 
                     $scope.displayErrorMessageAndDisplayAccount = function () {
                         alertService.sendErrorMessage("Por favor, haga click en el captcha para demostrar que no es un robot");

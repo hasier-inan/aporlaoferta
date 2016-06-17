@@ -156,7 +156,7 @@ public class AccountController {
             return ResponseResultHelper.updateWithCode(ResultCode.INVALID_PASSWORD_VERIFICATION);
         }
         theUser.setUserPassword(theForgettableUser.getFirstPassword());
-        return validateAndUpdateUser(theUser, new TheResponse(), theForgettableUser.getSecondPassword());
+        return validateAndUpdateUser(theUser, new TheResponse(), theForgettableUser.getSecondPassword(), false);
     }
 
     @RequestMapping(value = {"/passwordForgotten**"}, method = RequestMethod.GET)
@@ -175,6 +175,7 @@ public class AccountController {
         TheResponse result = new TheResponse();
         String userNickname = this.userManager.getUserNickNameFromSession();
         theNewUser.setUserNickname(userNickname);
+        Boolean passwordPopulated=passwordUpdateIsNotRequired(theNewUser);
         if (!verifyOldPasswordAndUpdateNewestAvatar(theNewUser, userNickname)) {
             result.assignResultCode(ResultCode.USER_NAME_PASSWORD_INVALID);
             return result;
@@ -184,7 +185,7 @@ public class AccountController {
         } else if (!this.userManager.doesUserExist(userNickname)) {
             result.assignResultCode(ResultCode.USER_NAME_DOES_NOT_EXIST);
         } else {
-            validateAndUpdateUser(theNewUser, result, userNickname);
+            validateAndUpdateUser(theNewUser, result, userNickname, passwordPopulated);
         }
         return result;
     }
@@ -194,11 +195,15 @@ public class AccountController {
         if (isEmpty(theNewUser.getUserAvatar())) {
             theNewUser.setUserAvatar(theOldUser.getUserAvatar());
         }
-        if (isEmpty(theNewUser.getOldPassword()) && isEmpty(theNewUser.getUserPassword())) {
+        if (passwordUpdateIsNotRequired(theNewUser)) {
             theNewUser.setUserPassword(theOldUser.getUserPassword());
             return true;
         }
         return isSamePersistedPassword(theNewUser, theOldUser);
+    }
+
+    private boolean passwordUpdateIsNotRequired(TheNewUser theNewUser) {
+        return isEmpty(theNewUser.getOldPassword()) && isEmpty(theNewUser.getUserPassword());
     }
 
     private boolean isSamePersistedPassword(TheNewUser theNewUser, TheUser theOldUser) {
@@ -207,11 +212,11 @@ public class AccountController {
         return !isEmpty(oldPassword) && bCryptPasswordEncoder.matches(oldPassword, theOldUser.getUserPassword());
     }
 
-    private TheResponse validateAndUpdateUser(TheUser theNewUser, TheResponse result, String userNickname) {
+    private TheResponse validateAndUpdateUser(TheUser theNewUser, TheResponse result, String userNickname, boolean passwordIsPopulated) {
         try {
             validatePassword(theNewUser);
             this.offerValidatorHelper.validateUser(theNewUser);
-            TheUser nuUser = this.userManager.updateUser(theNewUser);
+            TheUser nuUser = this.userManager.updateUser(theNewUser, passwordIsPopulated);
             if (nuUser == null) {
                 ControllerHelper.addEmptyDatabaseObjectMessage(result, ". Nickname: " + userNickname, LOG);
             } else {

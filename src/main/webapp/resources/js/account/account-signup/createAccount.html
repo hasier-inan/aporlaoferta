@@ -8,34 +8,45 @@
                        class="overheadField content-validation"
                        placeholder="usuario" ng-disabled="disableNickname" required ng-maxlength="250"/>
             </ul>
-            <ul>
-                <label for="oldUserPassword" class="overhead-hint-label" ng-show="disableNickname">Añade tu antigua y
-                    nueva contrase&ntilde;a</label>
+            <ul ng-show="disableNickname">
+                <input type="checkbox" id="updatePasswordIsRequired" name="updatePasswordIsRequired"
+                       ng-model="passwordUpdateRequired" ng-click="resetPassword()">
+                <label id="updatePasswordIsRequiredLabel" for="updatePasswordIsRequired" class="overheadLabel">Actualizar
+                    Contrase&ntilde;a</label>
+            </ul>
+            <ul ng-show="disableNickname && passwordUpdateRequired">
+                <label for="oldUserPassword" class="overhead-hint-label">
+                    Añade tu antigua y nueva contrase&ntilde;a</label>
                 <input type="password" id="oldUserPassword" ng-model="theUser.oldPassword"
                        class="overheadField content-validation"
-                       placeholder="Contrase&ntilde;a antigua" ng-required="disableNickname" ng-pattern="validPassword" ng-maxlength="250"
-                       ng-show="disableNickname"/>
+                       placeholder="Contrase&ntilde;a antigua" ng-required="disableNickname && passwordUpdateRequired"
+                       ng-pattern="validPassword" ng-maxlength="250"/>
             </ul>
-            <ul>
-                <label for="createUserPassword" class="overhead-hint-label" ng-hide="disableNickname">
+            <ul ng-show="passwordUpdateRequired">
+                <label for="createUserPassword" class="overhead-hint-label"
+                       ng-hide="disableNickname && passwordUpdateRequired">
                     La contraseña debe tener un m&iacute;nimo de 8 car&aacute;cteres, compuesto por lo menos por un n&uacute;mero
                     y una letra</label>
-                <label for="createUserPassword" class="overhead-hint-label" ng-show="disableNickname">
+                <label for="createUserPassword" class="overhead-hint-label"
+                       ng-show="disableNickname && passwordUpdateRequired">
                     Recuerda que la contraseña debe tener un m&iacute;nimo de 8 car&aacute;cteres, compuesto por lo
                     menos por un n&uacute;mero y una letra</label>
-                <input type="password" id="createUserPassword" ng-model="theUser.userPassword" ng-pattern="validPassword"
+                <input type="password" id="createUserPassword" ng-model="theUser.userPassword"
+                       ng-pattern="validPassword"
                        class="overheadField content-validation"
-                       placeholder="Contrase&ntilde;a" required ng-maxlength="250"/>
+                       placeholder="Contrase&ntilde;a" ng-maxlength="250"
+                       ng-required="passwordUpdateRequired"/>
                 <input type="password" id="createUserPassword2" ng-model="userPassword2" ng-pattern="validPassword"
                        class="overheadField content-validation"
                        placeholder="Repita la Contrase&ntilde;a" ng-maxlength="250"
-                       pw-check="createUserPassword" required/>
+                       pw-check="createUserPassword"
+                       ng-required="passwordUpdateRequired"/>
             </ul>
             <ul>
                 <label for="createUserEmail" class="overhead-hint-label" ng-hide="disableNickname">
                     Recibir&aacute;s un correo electr&oacute;nico para confirmar tu cuenta</label>
                 <label for="createUserEmail" class="overhead-hint-label" ng-show="disableNickname">
-                    Tambi&eacute;n puedes cambiar tu correo electr&oacute;nico y avatar</label>
+                    Puedes cambiar tu correo electr&oacute;nico y avatar</label>
                 <input type="text" id="createUserEmail" ng-model="theUser.userEmail"
                        class="overheadField content-validation"
                        placeholder="Email" required ng-pattern="validMail" ng-maxlength="250"/>
@@ -47,7 +58,8 @@
                  final-url="theUser.userAvatar"></div>
 
             <input type="hidden" id="createUserAvatar" ng-model="theUser.userAvatar" class="overheadField"/>
-            <label for="createAccountCaptcha" class="overhead-hint-label">Selecciona la casilla para probar que no eres un robot</label>
+            <label for="createAccountCaptcha" class="overhead-hint-label">Selecciona la casilla para probar que no eres
+                un robot</label>
             <ul class="regular-bottom">
                 <li>
 

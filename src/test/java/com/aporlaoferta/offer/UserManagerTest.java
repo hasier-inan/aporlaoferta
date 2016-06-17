@@ -78,7 +78,7 @@ public class UserManagerTest {
         TheUser theNewestUser = this.theUser;
         String theNewPass = "abrandnewduckingpassword";
         theNewestUser.setUserPassword(theNewPass);
-        this.userManager.updateUser(theNewestUser);
+        this.userManager.updateUser(theNewestUser, false);
         //this.theUser will be the user model that will be updated with new password etc.
         verify(this.transactionalManager).saveUser(this.theUser);
     }
