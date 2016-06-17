@@ -8,9 +8,9 @@ aporlaofertaApp
             templateUrl: 'view/login.jsp',
             controller: ['$scope', 'requestManager', 'configService', 'alertService',
                 function ($scope, requestManager, configService, alertService) {
+                    $scope.validMail = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
                     $scope.requestPassword = function (userEmail) {
                         $scope.processing = true;
-                        $scope.validMail = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
 
                         requestManager.makePostCall(userEmail, {userEmail: userEmail}, configService.getEndpoint('password.forgotten.request'))
                             .success(function (data, status, headers, config) {

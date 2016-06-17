@@ -6,12 +6,11 @@
 
 <form id="loginForm" name='loginForm'
       action="<c:url value='/j_spring_security_check' />" method='POST' class="centeredForm">
-    <input ng-model="login.email" type="text" id="loginUsername" name="email"
+    <input ng-model="login.email" type="text" id="loginEmail" name="email"
            class="overheadField content-validation"
            placeholder="Correo electr&oacute;nico" ng-maxlength="250"
-           ng-pattern="validMail"
-           ng-show="isPasswordForgotten" ng-required="isPasswordForgotten">
-    <input ng-model="login.username" type="text" id="loginEmail" name="username"
+           ng-pattern="validMail" ng-show="isPasswordForgotten" ng-required="isPasswordForgotten">
+    <input ng-model="login.username" type="text" id="loginUsername" name="username"
            class="overheadField content-validation"
            placeholder="Usuario" ng-maxlength="250" required
            ng-hide="isPasswordForgotten" ng-required="!isPasswordForgotten">
