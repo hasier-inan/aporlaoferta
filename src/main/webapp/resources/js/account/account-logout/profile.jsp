@@ -14,7 +14,7 @@
 <c:if test="${pageContext.request.userPrincipal.name != null}">
     <div id="userProfileLogout">
         <img ng-src="{{userAvatar}}"/>
-        <label class="overheadLabel">Usuario : ${pageContext.request.userPrincipal.name}</label>
+        <label class="overheadLabel">${pageContext.request.userPrincipal.name}</label>
     </div>
     <button class="button small icon fa-sign-out whiteButton red-background" onclick="formSubmit()">Cerrar
         sesi&oacute;n

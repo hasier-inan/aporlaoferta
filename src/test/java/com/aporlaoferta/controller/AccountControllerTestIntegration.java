@@ -27,6 +27,7 @@ import org.springframework.web.context.WebApplicationContext;
 import java.util.Map;
 
 import static com.aporlaoferta.controller.SecurityRequestPostProcessors.userDeatilsService;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.Matchers.startsWith;
 import static org.junit.Assert.assertEquals;
@@ -227,7 +228,6 @@ public class AccountControllerTestIntegration {
         getResultActionsForForgottenPassword(csrfToken, jsonRequest);
     }
 
-
     @Test
     public void testUpdateUserWithIncorrectOldPasswordReturnsExpectedCode() throws Exception {
         CsrfToken csrfToken = CsrfTokenBuilder.generateAToken();
@@ -237,6 +237,17 @@ public class AccountControllerTestIntegration {
         String mvcResult = result.andReturn().getResponse().getContentAsString();
         Map<String, String> jsonResult = RequestMap.getMapFromJsonString(mvcResult);
         assertThat("Expected result to be USER_NAME_PASSWORD_INVALID", jsonResult.get("description"), startsWith("Provided user password is invalid"));
+    }
+
+    @Test
+    public void testUpdateUserWithNoPasswordProvidedReturnsExpectedCode() throws Exception {
+        CsrfToken csrfToken = CsrfTokenBuilder.generateAToken();
+        TheNewUser theUser = createDummyNewUserWithNoPasswordUpdate();
+        String jsonRequest = RequestMap.getJsonFromMap(theUser);
+        ResultActions result = getResultActions(csrfToken, jsonRequest, REGULAR_USER);
+        String mvcResult = result.andReturn().getResponse().getContentAsString();
+        Map<String, String> jsonResult = RequestMap.getMapFromJsonString(mvcResult);
+        assertThat("Expected result to be success", jsonResult.get("responseResult"), is("OK"));
     }
 
     @Test
@@ -384,6 +395,14 @@ public class AccountControllerTestIntegration {
         theNewUser.setUserEmail("sdfasd");
         theNewUser.setUserAvatar("sdfasd");
         theNewUser.setUserPassword("sdfasd");
+        theNewUser.setUserNickname("sdfasd");
+        return theNewUser;
+    }
+
+    private TheNewUser createDummyNewUserWithNoPasswordUpdate() {
+        TheNewUser theNewUser = new TheNewUser();
+        theNewUser.setUserEmail("sdfasd");
+        theNewUser.setUserAvatar("sdfasd");
         theNewUser.setUserNickname("sdfasd");
         return theNewUser;
     }

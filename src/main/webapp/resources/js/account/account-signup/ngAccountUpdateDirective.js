@@ -11,13 +11,13 @@ aporlaofertaApp
                 customCloseCallback: '=',
                 displayCallback: '='
             },
-            controller: ['$scope', 'vcRecaptchaService', 'alertService', '$http', 'requestManager', 'configService',
-                function ($scope, vcRecaptchaService, alertService, http, requestManager, configService) {
+            controller: ['$scope', 'vcRecaptchaService', 'alertService', '$http', 'requestManager', 'configService', '$rootScope',
+                function ($scope, vcRecaptchaService, alertService, http, requestManager, configService, $rootScope) {
                     $scope.disableNickname = true;
                     $scope.theUser = {};
                     $scope.widgetId = null;
                     $scope.validMail = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
-                    $scope.validPassword= /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!$%@#£€*?&]{8,}$/;
+                    $scope.validPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!$%@#£€*?&]{8,}$/;
                     $scope.publicKey = "6LdqHQoTAAAAAAht2VhkrLGU26eBOjL-nK9zXxcn";
                     $scope.createAccount = function (theUser) {
                         if (vcRecaptchaService.getResponse($scope.widgetId) === "") {
@@ -27,12 +27,15 @@ aporlaofertaApp
                             $scope.processing = true;
                             requestManager.makePostCall(theUser, {recaptcha: vcRecaptchaService.getResponse($scope.widgetId)}, configService.getEndpoint('update.account'))
                                 .success(function (data, status, headers, config) {
-                                    $scope.processAccountResponse(data);
+                                    if ($scope.processAccountResponse(data)) {
+                                        $rootScope.$broadcast('userAvatar', angular.copy(theUser));
+                                    }
                                 }).error(function (data, status, headers, config) {
                                     $scope.accountDefaultError();
                                 })
                                 .finally(function () {
                                     $scope.processing = false;
+                                    $scope.getUserDetails();
                                 });
                             //$scope.theUser = {};
                             //$scope.overheadDisplay = false;
@@ -60,8 +63,10 @@ aporlaofertaApp
                         }
                         else {
                             alertService.sendErrorMessage(data.descriptionEsp);
+                            return true;
                         }
                         $scope.restartRecaptcha();
+                        return false;
                     }
 
                     $scope.accountDefaultError = function () {
