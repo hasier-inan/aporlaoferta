@@ -19,7 +19,7 @@ aporlaofertaApp
                     $scope.votePositive = function (id) {
                         requestManager.makePostCall({}, {'offerId': id}, configService.getEndpoint('positive.feedback'))
                             .success(function (data, status, headers, config) {
-                                $scope.sendMessageAndShowSpecifications(data, id);
+                                $scope.sendMessageAndShowSpecifications(data, id, 'offerPositiveVote');
                             }).error(function (data, status, headers, config) {
                                 $scope.sendDefaultErrorMessageAndShowSpecifications(id);
                             });
@@ -27,12 +27,12 @@ aporlaofertaApp
                     $scope.voteNegative = function (id) {
                         requestManager.makePostCall({}, {'offerId': id}, configService.getEndpoint('negative.feedback'))
                             .success(function (data, status, headers, config) {
-                                $scope.sendMessageAndShowSpecifications(data, id);
+                                $scope.sendMessageAndShowSpecifications(data, id, 'offerNegativeVote');
                             }).error(function (data, status, headers, config) {
                                 $scope.sendDefaultErrorMessageAndShowSpecifications(id);
                             });
                     }
-                    $scope.sendMessageAndShowSpecifications = function (data, id) {
+                    $scope.sendMessageAndShowSpecifications = function (data, id, feedback) {
                         if (!alertService.isAllOk(data)) {
                             alertService.sendErrorMessage(data.descriptionEsp);
                             $scope.customCloseCallback = function () {
@@ -40,7 +40,7 @@ aporlaofertaApp
                             }
                         }
                         else {
-                            offerManager.showSpecifications(id);
+                            $scope.theOffer[0][feedback] = $scope.theOffer[0][feedback] + 1;
                         }
                     }
                     $scope.sendDefaultErrorMessageAndShowSpecifications = function (id) {
