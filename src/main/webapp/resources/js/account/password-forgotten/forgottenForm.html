@@ -6,6 +6,7 @@
                     contrase&ntilde;a</label>
                 <input type="password" id="firstPassword" ng-model="theUser.firstPassword"
                        class="overheadField content-validation"
+                       ng-pattern="validPassword"
                        placeholder="Contrase&ntilde;a" ng-maxlength="250" required/>
             </ul>
             <ul>
@@ -13,6 +14,7 @@
                     contrase&ntilde;a</label>
                 <input type="password" id="secondPassword" ng-model="theUser.secondPassword"
                        class="overheadField content-validation"
+                       ng-pattern="validPassword"
                        placeholder="Repita la Contrase&ntilde;a" ng-maxlength="250"
                        pw-check="firstPassword" required/>
             </ul>
