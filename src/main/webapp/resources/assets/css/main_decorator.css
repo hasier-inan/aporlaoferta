@@ -859,6 +859,8 @@ pre.parsed-text {
     background-color: transparent;
     border: 0;
     font: inherit;
+    overflow: hidden;
+    white-space: pre-wrap;
 }
 
 pre.parsed-text.list {
