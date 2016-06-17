@@ -194,6 +194,10 @@ public class AccountController {
         if (isEmpty(theNewUser.getUserAvatar())) {
             theNewUser.setUserAvatar(theOldUser.getUserAvatar());
         }
+        if (isEmpty(theNewUser.getOldPassword()) && isEmpty(theNewUser.getUserPassword())) {
+            theNewUser.setUserPassword(theOldUser.getUserPassword());
+            return true;
+        }
         return isSamePersistedPassword(theNewUser, theOldUser);
     }
 

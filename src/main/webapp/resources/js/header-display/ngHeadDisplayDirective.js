@@ -79,6 +79,11 @@ aporlaofertaApp
                 $scope.$on('offerSpecifications', function (event, args) {
                     $scope.offerSpecifications = args;
                     $scope.displayOfferDetails();
+                    $scope.customCloseCallback = function () {
+                        $timeout(function () {
+                            $scope.offerSpecifications = [];
+                        }, 1000);
+                    }
 
                 });
                 $scope.$on('updateTheOffer', function (event, args) {

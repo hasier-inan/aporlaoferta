@@ -6,7 +6,7 @@ aporlaofertaApp
         return {
             restrict: 'A',
             templateUrl: 'resources/js/account/account-logout/profile.jsp',
-            controller: ['$scope', 'alertService','requestManager', 'configService', function ($scope, alertService, requestManager,configService) {
+            controller: ['$scope', 'alertService', 'requestManager', 'configService', function ($scope, alertService, requestManager, configService) {
 
                 $scope.getUserDetails = function () {
                     requestManager.makePostCall({}, {}, configService.getEndpoint('get.account.details'))
@@ -19,6 +19,10 @@ aporlaofertaApp
                 }
 
                 $scope.getUserDetails();
+
+                $scope.$on('userAvatar', function (event, args) {
+                    $scope.userAvatar = args.userAvatar;
+                });
             }]
         }
     })

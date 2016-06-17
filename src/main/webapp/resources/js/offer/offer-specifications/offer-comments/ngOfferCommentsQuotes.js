@@ -11,7 +11,7 @@ aporlaofertaApp
                 theComments: '=',
                 quotedComment: '='
             },
-            controller: ['$rootScope', '$scope', '$timeout', 'requestManager', 'configService', function ($rootScope, $scope, $timeout, requestManager, configService) {
+            controller: ['$rootScope', '$scope', 'requestManager', 'configService', function ($rootScope, $scope, requestManager, configService) {
                 $scope.quoteActionEnable = -1;
                 $scope.quoteAction = function (id) {
                     if ($scope.quoteActionEnable == id) {
