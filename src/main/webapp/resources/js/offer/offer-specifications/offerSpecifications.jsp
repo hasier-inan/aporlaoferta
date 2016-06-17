@@ -98,7 +98,7 @@
             </div>
 
             <div class="offerSpecificationsLink">
-                <a href="{{offer.offerLink}}" target="_blank">ir a la oferta <i
+                <a href="{{offer.offerLink}}" target="_blank">Ir a la oferta <i
                         class="fa fa-cart-arrow-down"></i></a>
             </div>
 
