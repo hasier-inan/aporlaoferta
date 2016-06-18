@@ -1,0 +1,1 @@
+INSERT INTO `that_aporlaoferta`.`thatcompany` (`TC_AFFILIATE_ID`, `TC_NAME`, `TC_WATERMARKS`) VALUES ('aporlaoferta21', 'Amazon', 'amazon amazon.es amazo amason');
