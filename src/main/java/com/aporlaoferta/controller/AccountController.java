@@ -136,8 +136,14 @@ public class AccountController {
             return ResponseResultHelper.responseResultWithResultCodeError(
                     ResultCode.USER_EMAIL_IS_INVALID, theResponse);
         }
+        TheUser userFromEmail = this.userManager.getUserFromEmail(userEmail);
+        if (this.userManager.isUserPending(userFromEmail)) {
+            sendConfirmationEmail(userFromEmail);
+            return ResponseResultHelper.responseResultWithResultCodeError(
+                    ResultCode.USER_EMAIL_NOT_CONFIRMED, theResponse);
+        }
         try {
-            this.emailService.sendPasswordForgotten(this.userManager.getUserFromEmail(userEmail));
+            this.emailService.sendPasswordForgotten(userFromEmail);
         } catch (EmailSendingException e) {
             LOG.warn("Could not send password forgotten email: ", e.getMessage());
             return ResponseResultHelper.createDefaultResponse();
@@ -175,7 +181,7 @@ public class AccountController {
         TheResponse result = new TheResponse();
         String userNickname = this.userManager.getUserNickNameFromSession();
         theNewUser.setUserNickname(userNickname);
-        Boolean passwordPopulated=passwordUpdateIsNotRequired(theNewUser);
+        Boolean passwordPopulated = passwordUpdateIsNotRequired(theNewUser);
         if (!verifyOldPasswordAndUpdateNewestAvatar(theNewUser, userNickname)) {
             result.assignResultCode(ResultCode.USER_NAME_PASSWORD_INVALID);
             return result;
@@ -314,6 +320,14 @@ public class AccountController {
             String resultDescription = ResultCode.CREATE_USER_VALIDATION_ERROR.getResultDescription();
             LOG.warn(resultDescription, e);
             result.assignResultCode(ResultCode.CREATE_USER_VALIDATION_ERROR);
+        }
+    }
+
+    private void sendConfirmationEmail(TheUser userFromEmail) {
+        try {
+            this.emailService.sendAccountConfirmationEmail(userFromEmail);
+        } catch (EmailSendingException e) {
+            LOG.error("Could not send confirmarion email: ", e.getMessage());
         }
     }
 }

@@ -135,6 +135,10 @@ public class UserManager {
         return false;
     }
 
+    public boolean isUserPending(TheUser theUser) {
+        return !isEmpty(theUser.getEnabled());
+    }
+
     /**
      * Get user name based on current spring - security user session
      *

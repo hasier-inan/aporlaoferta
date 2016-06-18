@@ -15,16 +15,25 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.*;
+import org.mockito.ArgumentCaptor;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.web.servlet.ModelAndView;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.startsWith;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.anyBoolean;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import static org.springframework.util.StringUtils.isEmpty;
 
 /**
@@ -48,6 +57,8 @@ public class AccountControllerTest {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         when(this.userManager.doesUserExist(anyString())).thenReturn(false);
+        when(this.userManager.isUserPending(any(TheUser.class)))
+                .thenReturn(false);
         when(this.captchaHTTPManager.validHuman(anyString())).thenReturn(true);
     }
 
@@ -162,6 +173,16 @@ public class AccountControllerTest {
                 .thenReturn(false);
         TheResponse theResponse = this.accountController.requestForgottenPassword(email);
         assertThat("Expected invalid user email code", theResponse.getCode(), is(7));
+    }
+
+    @Test
+    public void testForgottenPasswordReturnsUnconfirmedUserIfItIsPending() throws Exception, EmailSendingException {
+        when(this.userManager.doesUserEmailExist(anyString()))
+                .thenReturn(true);
+        when(this.userManager.isUserPending(any(TheUser.class)))
+                .thenReturn(true);
+        TheResponse theResponse = this.accountController.requestForgottenPassword("anunconfirmed@email.com");
+        assertThat("Expected unconfirmed email", theResponse.getCode(), is(8));
     }
 
     @Test
