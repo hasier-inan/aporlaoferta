@@ -173,7 +173,7 @@ public class OfferController {
 
     private void updateCompany(TheOffer thatOffer) {
         if (thatOffer.getOfferCompany() != null) {
-            String watermarkedCompany = this.companyManager.getWatermarkedCompany(thatOffer.getOfferLink());
+            String watermarkedCompany = this.companyManager.getWatermarkedCompany(thatOffer.getOfferLink().toLowerCase());
             if (!isEmpty(watermarkedCompany)) {
                 updateCompanyFromWatermark(thatOffer, watermarkedCompany);
             } else {
