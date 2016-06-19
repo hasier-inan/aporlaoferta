@@ -14,6 +14,10 @@
             </button>
             <button class="button mini icon fa-user whiteButton blueish-background" ng-click="displaySignup()"></button>
         </li>
+        <button ng-class="{hidden:scrollPosition}" class="button overflown overflown-left icon fa-sign-in whiteButton green-background"
+                ng-click="displayLogin()"></button>
+        <button ng-class="{hidden:scrollPosition}" class="button overflown overflown-left overflown-second icon fa-user whiteButton blueish-background"
+                ng-click="displaySignup()"></button>
     </sec:authorize>
 
     <sec:authorize ifAllGranted="ROLE_USER">
@@ -22,6 +26,8 @@
             Oferta
         </button>
         <button class="button mini icon fa-pencil-square whiteButton inline right-aligned green-background"
+                ng-click="displayOfferCreate()"></button>
+        <button ng-class="{hidden:scrollPosition}" class="button overflown overflown-left icon fa-pencil-square whiteButton inline right-aligned green-background"
                 ng-click="displayOfferCreate()"></button>
     </sec:authorize>
 
@@ -34,4 +40,7 @@
         <button class="button mini icon fa-user whiteButton inline right-aligned blueish-background"
                 ng-click="displayAccountUpdateForm()"></button>
     </sec:authorize>
+    <button class="button to-the-top overflown overflown-right icon fa-chevron-down whiteButton no-decoration filters-displayed"
+            ng-class="{hidden:scrollPosition}"
+            ng-click="toTheTop()"></button>
 </ul>
