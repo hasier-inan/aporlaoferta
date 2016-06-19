@@ -278,7 +278,7 @@ div.thumbnailButtons > button {
     transition: 0s;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 480px) and (orientation: portrait) {
     ul.top_header > button.small,
     ul.top_header li > button.small,
     div .overheadButton.small,
@@ -451,13 +451,13 @@ div.offerCompanyInTitle {
     margin: 0 3em 0 0;
 }
 
-@media screen and (max-width: 736px) {
+@media screen and (max-width: 736px) and (orientation: landscape) {
     .offerImageAndFeedback {
         margin: 0 2em 0 0;
     }
 }
 
-@media screen and (max-width: 736px) {
+@media screen and (max-width: 736px) and (orientation: portrait) {
     .offerImageAndFeedback {
         width: 100%;
         max-width: 52%;
@@ -585,7 +585,7 @@ input.filter-input {
     text-decoration: none;
 }
 
-@media screen and (max-width: 480px)  {
+@media screen and (max-width: 480px) and (orientation: portrait) {
     div.filters-contents {
         display: none;
     }
@@ -595,7 +595,7 @@ input.filter-input {
     }
 }
 
-@media screen and (max-width: 480px)  {
+@media screen and (max-width: 480px) and (orientation: landscape) {
     div.filters-contents {
         display: none;
     }
@@ -605,7 +605,7 @@ input.filter-input {
     }
 }
 
-@media screen and (max-width: 736px) {
+@media screen and (max-width: 736px) and (orientation: portrait) {
     div.filters-contents {
         display: none;
     }
@@ -615,7 +615,7 @@ input.filter-input {
     }
 }
 
-@media screen and (max-width: 736px) {
+@media screen and (max-width: 736px) and (orientation: landscape) {
     div.filters-contents {
         display: none;
     }
@@ -625,7 +625,7 @@ input.filter-input {
     }
 }
 
-@media screen and (min-width: 737px) {
+@media screen and (min-width: 737px) and (orientation: portrait) {
     div.filters-contents {
         display: block;
     }
@@ -635,7 +635,7 @@ input.filter-input {
     }
 }
 
-@media screen and (min-width: 737px) {
+@media screen and (min-width: 737px) and (orientation: landscape) {
     div.filters-contents {
         display: inline !important;
     }
@@ -960,7 +960,7 @@ input[type="checkbox"]:checked + label.overheadLabel:before, input[type="radio"]
     display: inline-block;
 }
 
-@media screen and (max-width: 980px) {
+@media screen and (max-width: 980px) and (orientation: portrait) {
     .mainLogo {
         background-size: 80%;
     }
