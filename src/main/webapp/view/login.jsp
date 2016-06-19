@@ -2,7 +2,7 @@
 <%@page session="true" %>
 <label for="loginForm" class="overhead-hint-label" ng-hide="isPasswordForgotten">Identif&iacute;cate con tus datos
     personales</label>
-<label for="loginForm" class="overhead-hint-label" ng-show="isPasswordForgotten">¿Cu&aacute;l es tu correo electr&oacute;nico?</label>
+<label for="loginForm" class="overhead-hint-label" ng-show="isPasswordForgotten">&iquest;Cu&aacute;l es tu correo electr&oacute;nico?</label>
 
 <form id="loginForm" name='loginForm'
       action="<c:url value='/j_spring_security_check' />" method='POST' class="centeredForm">
