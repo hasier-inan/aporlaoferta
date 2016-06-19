@@ -83,6 +83,7 @@
     <script src="resources/js/offer/offer-creation/ngOfferCategoryManagerDirective.js"></script>
     <script src="resources/js/offer/offer-filter/ngOfferFilterDirective.js"></script>
     <script src="resources/js/header-display/ngHeadDisplayDirective.js"></script>
+    <script src="resources/js/header-display/ngHeadAccountAndOfferManagementDirective.js"></script>
     <script src="resources/js/uploader/ngImageUploadDirective.js"></script>
     <script src="resources/js/response/ngResponseFromServer.js"></script>
     <script src="resources/js/response/alertService.js"></script>
