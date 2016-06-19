@@ -136,7 +136,7 @@ public class UserManager {
     }
 
     public boolean isUserPending(TheUser theUser) {
-        return !isEmpty(theUser.getEnabled());
+        return !isEmpty(theUser.getPending()) && theUser.getPending();
     }
 
     /**
