@@ -13,12 +13,15 @@
         <security:intercept-url method="GET" pattern="/admin**" access="hasRole('ROLE_ADMIN')"/>
         <security:intercept-url method="POST" pattern="/createCompany**" access="hasRole('ROLE_ADMIN')"/>
         <security:intercept-url method="POST" pattern="/updateUser**" access="hasRole('ROLE_USER')"/>
+        <security:intercept-url method="POST" pattern="/accountDetails**" access="hasRole('ROLE_USER')"/>
         <security:intercept-url method="POST" pattern="/createComment**" access="hasRole('ROLE_USER')"/>
         <security:intercept-url method="POST" pattern="/updateComment**" access="hasRole('ROLE_USER')"/>
         <security:intercept-url method="POST" pattern="/createOffer**" access="hasRole('ROLE_USER')"/>
         <security:intercept-url method="POST" pattern="/updateOffer**" access="hasRole('ROLE_USER')"/>
         <security:intercept-url method="POST" pattern="/votePositive**" access="hasRole('ROLE_USER')"/>
         <security:intercept-url method="POST" pattern="/voteNegative**" access="hasRole('ROLE_USER')"/>
+        <security:intercept-url method="GET" pattern="/passwordForgotten**" access="permitAll"/>
+        <security:intercept-url method="GET" pattern="/confirmUser**" access="permitAll"/>
         <security:intercept-url pattern="favicon.ico" access="permitAll" />
         <!-- access denied page -->
         <security:access-denied-handler error-page="/403"/>
