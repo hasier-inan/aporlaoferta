@@ -44,7 +44,7 @@ public class ImageController {
     private TheResponse performImageUploadProcess(MultipartFile file) {
         try {
             return updateResultWithSuccessUploadResult(file);
-        } catch (InvalidUploadFolderException | IOException e) {
+        } catch (InvalidUploadFolderException | IOException | IllegalArgumentException e) {
             LOG.error(e.getMessage());
             return updateResultWithInvalidImageCode(ResultCode.IMAGE_UPLOAD_ERROR, e.getMessage());
         }
@@ -82,6 +82,4 @@ public class ImageController {
         result.setDescription(description);
         return result;
     }
-
-
 }
