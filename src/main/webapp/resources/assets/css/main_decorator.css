@@ -268,10 +268,11 @@ div.commentQuoteButtons > .mini {
 }
 
 ul.top_header > .overflown {
+    top: 10px;
     width: 3em;
     border-radius: 100%;
     margin: 0;
-    padding: 0 0em 0em .85em;
+    padding: 0 0em 0em .80em;
     opacity: 1;
     position: fixed;
     transition: opacity 1s ease-in-out;
@@ -280,15 +281,15 @@ ul.top_header > .overflown {
 }
 
 ul.top_header > .overflown-second {
-    top: 5em;
+    top: 65px;
 }
 
 ul.top_header > .overflown-left {
-    left: 1em;
+    left: 10px;
 }
 
 ul.top_header > .overflown-right {
-    right: 1em;
+    right: 10px;
 }
 
 ul.top_header > .overflown.hidden {

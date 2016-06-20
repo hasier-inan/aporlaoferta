@@ -29,7 +29,6 @@ public class ResponseResultHelper {
 
     public static void updateResultWithSuccessCode(TheResponse result, OfferComment comment) {
         String okMessage = String.format("Comment successfully created. Id: %s", comment.getId());
-        LOG.info(okMessage);
         result.assignResultCode(ResultCode.ALL_OK, okMessage, "Comentario añadido");
     }
 
