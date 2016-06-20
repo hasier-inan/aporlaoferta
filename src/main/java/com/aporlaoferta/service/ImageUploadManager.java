@@ -62,7 +62,7 @@ public class ImageUploadManager {
 
     public String transformAndUploadFile(File finalFile) throws IOException {
         String serverPath = createCustomUploadPath(finalFile.getName());
-//        LOG.info("trying to upload to >>>>>>>>>>>>> " + this.uploadFolderMap + "/" + serverPath);
+        LOG.info("trying to upload to >>>>>>>>>>>>> " + this.uploadFolderMap + "/" + serverPath);
         if (transformAndUpload(finalFile, serverPath)) {
             return this.uploadFolderMap + "/" + serverPath;
         }
