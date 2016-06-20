@@ -1,7 +1,8 @@
 package com.aporlaoferta.service;
 
 import com.amazonaws.AmazonClientException;
-import com.amazonaws.auth.profile.ProfileCredentialsProvider;
+import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
@@ -19,14 +20,19 @@ public class AWSS3Service {
 
     private final String bucket;
     private final String bucketFolder;
+    private final String accessKey;
+    private final String secretKey;
 
-    public AWSS3Service(String bucket, String bucketFolder) {
+    public AWSS3Service(String bucket, String bucketFolder, String accessKey, String secretKey) {
         this.bucket = bucket;
         this.bucketFolder = bucketFolder;
+        this.accessKey = accessKey;
+        this.secretKey = secretKey;
     }
 
     public boolean uploadFile(File fileToBeUploaded, String path) {
-        AmazonS3 s3client = new AmazonS3Client(new ProfileCredentialsProvider());
+        AWSCredentials credentials = new BasicAWSCredentials(this.accessKey, this.secretKey);
+        AmazonS3 s3client = new AmazonS3Client(credentials);
         try {
             s3client.putObject(createObjectPutRequest(fileToBeUploaded, path));
             return true;

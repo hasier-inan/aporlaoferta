@@ -33,6 +33,8 @@
     <bean id="awsS3Service" class="com.aporlaoferta.service.AWSS3Service">
         <constructor-arg name="bucket" value="${upload.s3.bucket}"/>
         <constructor-arg name="bucketFolder" value="${upload.s3.folder}"/>
+        <constructor-arg name="accessKey" value="${aws.accessKeyId}"/>
+        <constructor-arg name="secretKey" value="${aws.secretKey}"/>
     </bean>
 
     <bean id="transactionalManagerTest" class="com.aporlaoferta.service.TransactionalManager"/>
