@@ -24,7 +24,7 @@ aporlaofertaApp
                         }
                         else {
                             $scope.processing = true;
-                            requestManager.makePostCall($scope.offer, {recaptcha: vcRecaptchaService.getResponse($scope.widgetId)}, configService.getEndpoint('create.offer'))
+                            requestManager.makePostCall($scope.parseOffer(), {recaptcha: vcRecaptchaService.getResponse($scope.widgetId)}, configService.getEndpoint('create.offer'))
                                 .success(function (data, status, headers, config) {
                                     if (!alertService.isAllOk(data)) {
                                         $scope.offerCreationError(data.descriptionEsp);
@@ -44,6 +44,17 @@ aporlaofertaApp
                             //$scope.overheadDisplay = false;
                         }
                     };
+
+                    $scope.parseOffer = function () {
+                        var theOffer = angular.copy($scope.offer);
+                        if (theOffer.originalPrice) {
+                            theOffer.originalPrice = parseFloat(theOffer.originalPrice);
+                        }
+                        if (theOffer.finalPrice) {
+                            theOffer.finalPrice = parseFloat(theOffer.finalPrice);
+                            return theOffer;
+                        }
+                    }
 
                     $scope.restartRecaptcha = function () {
                         vcRecaptchaService.reload($scope.widgetId);
