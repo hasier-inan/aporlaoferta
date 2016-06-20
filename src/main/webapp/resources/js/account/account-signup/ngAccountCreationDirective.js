@@ -36,7 +36,7 @@ aporlaofertaApp
                                     $scope.processing = false;
                                 });
                             $scope.theUser = {};
-                            $scope.userPassword2 = {}
+                            $scope.userPassword2 = "";
                             //$scope.overheadDisplay = false;
                         }
                     }
