@@ -100,12 +100,12 @@ public class TheOffer implements Serializable {
 
     //@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "OFFER_HAS_POSITIVE", joinColumns = {@JoinColumn(name = "TO_ID")}, inverseJoinColumns = {@JoinColumn(name = "TU_ID")})
+    @JoinTable(name = "offer_has_positive", joinColumns = {@JoinColumn(name = "TO_ID")}, inverseJoinColumns = {@JoinColumn(name = "TU_ID")})
     private Set<TheUser> offerPositives = new HashSet<>();
 
     //@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "OFFER_HAS_NEGATIVE", joinColumns = {@JoinColumn(name = "TO_ID")}, inverseJoinColumns = {@JoinColumn(name = "TU_ID")})
+    @JoinTable(name = "offer_has_negative", joinColumns = {@JoinColumn(name = "TO_ID")}, inverseJoinColumns = {@JoinColumn(name = "TU_ID")})
     private Set<TheUser> offerNegatives = new HashSet<>();
 
     public void incrementPositiveFeedback() {
