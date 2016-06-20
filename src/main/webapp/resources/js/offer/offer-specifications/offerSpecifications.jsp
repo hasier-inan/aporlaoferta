@@ -71,7 +71,7 @@
             <div class="offerSpecificationsRightContainer containerSplitter">
                 <div class="offerSpecificationsTitle">
                     <h1 ng-class="offer.offerExpired?'offer-expired':''">
-                        <a href="http://{{offer.offerLink}}" target="_blank">{{offer.offerTitle}}:
+                        <a href="{{offer.offerLink}}" target="_blank">{{offer.offerTitle}}:
                             {{offer.finalPrice}}€</a>
                     </h1>
 
