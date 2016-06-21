@@ -4,7 +4,7 @@
 <%@page session="true" %>
 <!DOCTYPE HTML>
 
-<!-- aporlaoferta, by thatsoftwarecompany -->
+<!-- aporlaoferta -->
 <!-- p4p spanish offer and deals -->
 <!-- Fractal template by HTML5 UP html5up.net -->
 <!-- icons and logos by font awesome http://fortawesome.github.io/ -->
@@ -16,7 +16,7 @@
     <title>aporlaoferta ~ ofertas y promociones online </title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'self'">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' ajax.googleapis.com www.google.com www.gstatic.com; style-src 'self' 'unsafe-inline' ajax.googleapis.com www.google.com www.gstatic.com">
     <meta property="og:site_name" content="aporlaoferta">
     <meta property="og:url" content="http://www.aporlaoferta.com"/>
     <meta property="og:type" content="gestor y buscador de ofertas online"/>
@@ -111,7 +111,7 @@
         <li><a href="#" class="icon fa-twitter social-media-link"><span class="label">Twitter</span></a></li>
         <li><a href="#" class="icon fa-google-plus social-media-link"><span class="label">Instagram</span></a></li>
     </ul>
-    <p class="copyright">&copy; aporlaoferta, thatsoftwarecompany 2015</p>
+    <p class="copyright">&copy; aporlaoferta, 2015</p>
 </footer>
 </body>
 </html>
