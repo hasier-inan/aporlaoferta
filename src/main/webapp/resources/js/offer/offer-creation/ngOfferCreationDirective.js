@@ -47,13 +47,15 @@ aporlaofertaApp
 
                     $scope.parseOffer = function () {
                         var theOffer = angular.copy($scope.offer);
-                        if (theOffer.originalPrice) {
-                            theOffer.originalPrice = parseFloat(theOffer.originalPrice);
+                        try {
+                            theOffer.originalPrice = parseFloat(theOffer.originalPrice.replace(/,/, '.'));
+                        } catch (e) {/*float already*/
                         }
-                        if (theOffer.finalPrice) {
-                            theOffer.finalPrice = parseFloat(theOffer.finalPrice);
-                            return theOffer;
+                        try {
+                            theOffer.finalPrice = parseFloat(theOffer.finalPrice.replace(/,/, '.'));
+                        } catch (e) {/*float already*/
                         }
+                        return theOffer;
                     }
 
                     $scope.restartRecaptcha = function () {
