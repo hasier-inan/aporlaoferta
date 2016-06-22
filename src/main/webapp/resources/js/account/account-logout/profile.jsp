@@ -6,18 +6,14 @@
     <input type="hidden" name="${_csrf.parameterName}"
            value="${_csrf.token}"/>
 </form>
-<script>
-    function formSubmit() {
-        document.getElementById("logoutForm").submit();
-    }
-</script>
+
 <c:if test="${pageContext.request.userPrincipal.name != null}">
     <div id="userProfileLogout">
         <img ng-src="{{userAvatar}}"/>
         <label class="overheadLabel">${pageContext.request.userPrincipal.name}</label>
     </div>
-    <button class="button small icon fa-sign-out whiteButton red-background" onclick="formSubmit()">Cerrar
+    <button class="button small icon fa-sign-out whiteButton red-background" ng-click="formSubmit()">Cerrar
         sesi&oacute;n
     </button>
-    <button class="button mini icon fa-sign-out whiteButton inline red-background" onclick="formSubmit()"></button>
+    <button class="button mini icon fa-sign-out whiteButton inline red-background" ng-click="formSubmit()"></button>
 </c:if>

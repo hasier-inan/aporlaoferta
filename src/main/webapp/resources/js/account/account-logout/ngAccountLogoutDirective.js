@@ -20,10 +20,17 @@ aporlaofertaApp
 
                 $scope.getUserDetails();
 
+                $scope.formSubmit=function(){
+                    $scope.logoutForm.submit();
+                }
+
                 $scope.$on('userAvatar', function (event, args) {
                     $scope.userAvatar = args.userAvatar;
                 });
+
+                $scope.formSubmit=function() {
+                    document.getElementById("logoutForm").submit();
+                }
             }]
         }
-    })
-;
+    });
