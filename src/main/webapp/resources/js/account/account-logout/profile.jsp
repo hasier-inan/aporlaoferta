@@ -12,8 +12,6 @@
         <img ng-src="{{userAvatar}}"/>
         <label class="overheadLabel">${pageContext.request.userPrincipal.name}</label>
     </div>
-    <%--<button class="button small icon fa fa-cogs whiteButton red-background" ng-click="formSubmit()">Opciones</button>--%>
-    <%--<button class="button mini icon fa fa-cogs whiteButton inline red-background" ng-click="formSubmit()"></button>--%>
     <div dropdown-select="profileOptions"
          dropdown-model="profileModel"
          dropdown-item-label="text" class="icon fa fa-cogs profile-options-dropdown">
