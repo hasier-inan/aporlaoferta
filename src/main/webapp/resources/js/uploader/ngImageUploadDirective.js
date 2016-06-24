@@ -6,7 +6,8 @@ aporlaofertaApp
         return {
             restrict: 'A',
             scope: {
-                finalUrl: '='
+                finalUrl: '=',
+                alreadyUploadedImage: '='
             },
             templateUrl: 'resources/js/uploader/imageUpload.html',
             controller: ['$rootScope', '$scope', 'configService', '$timeout', function ($rootScope, $scope, configService, $timeout) {
@@ -19,6 +20,7 @@ aporlaofertaApp
                     var fileReader = new FileReader();
                     fileReader.onload = function (event) {
                         var img = new Image();
+                        $scope.alreadyUploadedImage="";
                         img.onerror = function () {
                             $scope.displayInvalidImageMessage();
                             return false;
@@ -37,6 +39,19 @@ aporlaofertaApp
                     };
                     fileReader.readAsDataURL(file.file);
                 };
+
+                $scope.deleteImage=function(){
+                    $scope.alreadyUploadedImage = "";
+                    $scope.uploader.flow.cancel();
+                }
+
+                $scope.changeImage=function(){
+                    $scope.alreadyUploadedImage = "";
+                }
+
+                $scope.alreadyUploaded = function () {
+                    return $scope.alreadyUploadedImage !== "";
+                }
 
                 $scope.defaultThumbnailView = function () {
                     $scope.displayThumbnail = true;
