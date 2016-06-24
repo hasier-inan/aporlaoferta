@@ -5,7 +5,7 @@
 <label for="loginForm" class="overhead-hint-label" ng-show="isPasswordForgotten">&iquest;Cu&aacute;l es tu correo electr&oacute;nico?</label>
 
 <form id="loginForm" name='loginForm'
-      action="<c:url value='/j_spring_security_check' />" method='POST' class="centeredForm">
+      action="<c:url value='/process_login' />" method='POST' class="centeredForm">
     <input ng-model="login.email" type="text" id="loginEmail" name="email"
            class="overheadField content-validation"
            placeholder="Correo electr&oacute;nico" ng-maxlength="250"

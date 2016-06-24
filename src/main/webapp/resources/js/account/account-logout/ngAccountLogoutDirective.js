@@ -6,7 +6,25 @@ aporlaofertaApp
         return {
             restrict: 'A',
             templateUrl: 'resources/js/account/account-logout/profile.jsp',
+            scope: {
+                accountUpdate: '='
+            },
             controller: ['$scope', 'alertService', 'requestManager', 'configService', function ($scope, alertService, requestManager, configService) {
+                $scope.profileOptions = [
+                    {text: 'Actualizar perfil', value: 'accountUpdate'},
+                    {text: 'Cerrar sesión', value: 'formSubmit'}
+                ];
+                $scope.defaultProfileModel = {
+                    text: "Opciones"
+                };
+                $scope.profileModel = angular.copy($scope.defaultProfileModel);
+
+                $scope.$watch('profileModel', function () {
+                    if ($scope.profileModel.text !== "Opciones") {
+                        $scope[$scope.profileModel.value]();
+                        $scope.profileModel = angular.copy($scope.defaultProfileModel);
+                    }
+                });
 
                 $scope.getUserDetails = function () {
                     requestManager.makePostCall({}, {}, configService.getEndpoint('get.account.details'))
@@ -18,9 +36,10 @@ aporlaofertaApp
                         });
                 }
 
+
                 $scope.getUserDetails();
 
-                $scope.formSubmit=function(){
+                $scope.formSubmit = function () {
                     $scope.logoutForm.submit();
                 }
 
@@ -28,7 +47,7 @@ aporlaofertaApp
                     $scope.userAvatar = args.userAvatar;
                 });
 
-                $scope.formSubmit=function() {
+                $scope.formSubmit = function () {
                     document.getElementById("logoutForm").submit();
                 }
             }]

@@ -25,7 +25,7 @@
                             <button class="button small icon fa-pencil-square whiteButton green-background"
                                     ng-click="quoteComment(qComment, theComment.id)">quote
                             </button>
-                            <button class="button mini icon fa-pencil-square whiteButton inline green-background"
+                            <button class="button mini icon fa-pencil-square whiteButton inline green-background write-comment"
                                     ng-click="quoteComment(qComment, theComment.id)"></button>
                         </div>
                     </div>

@@ -25,20 +25,15 @@
             Crear
             Oferta
         </button>
-        <button class="button mini icon fa-pencil-square whiteButton inline right-aligned green-background"
+        <button class="button mini icon fa-pencil-square whiteButton inline right-aligned green-background fixed"
                 ng-click="displayOfferCreate()"></button>
-        <button ng-class="{hidden:scrollPosition}" class="button overflown overflown-left icon fa-pencil-square whiteButton inline right-aligned green-background"
+        <button ng-class="{hidden:scrollPosition}" class="button desktop overflown overflown-left icon fa-pencil-square whiteButton inline right-aligned green-background"
                 ng-click="displayOfferCreate()"></button>
     </sec:authorize>
 
     <sec:authorize ifAnyGranted="ROLE_USER, ROLE_ADMIN">
-        <div ng-account-logout="accountLogout" class="profileForm"></div>
-        <button class="button small icon fa-pencil-square whiteButton blueish-background"
-                ng-click="displayAccountUpdateForm()">Actualizar
-            Perfil
-        </button>
-        <button class="button mini icon fa-user whiteButton inline right-aligned blueish-background"
-                ng-click="displayAccountUpdateForm()"></button>
+        <div ng-account-logout="accountLogout" class="profileForm" account-update="displayAccountUpdateForm"></div>
+
     </sec:authorize>
     <button class="button to-the-top overflown overflown-right icon fa-chevron-down whiteButton no-decoration filters-displayed"
             ng-class="{hidden:scrollPosition}"
