@@ -1,0 +1,107 @@
+/*social-media*/
+div.social-media-shares {
+    top: 0;
+    margin-top: 1em;
+    position: absolute;
+    z-index: 1000;
+}
+
+div.offerSpecificationsRightContainer div > div.social-media-shares{
+    margin: 0;
+}
+
+a.social-share {
+    height: 2em;
+    line-height: 2em;
+    display: inline-block;
+    font-size: 0.8em;
+    color: #ffffff !important;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif !important;
+    padding: 0 1.75em;
+    font-weight: bold;
+    border-radius: 6px;
+    border: 0;
+    cursor: pointer;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    -moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+a.social-share:hover {
+    text-decoration: none;
+    background: none !important;
+}
+
+a.social-share.fa-google-plus {
+    background-color: #D14836;
+}
+
+a.social-share.fa-twitter {
+    background-color: #00ACED;
+}
+
+a.social-share.fa-facebook {
+    background-color: #3B5998;
+}
+
+a.social-share.small {
+    display: inline-block;
+}
+
+a.social-share.mini {
+    display: none;
+    font-size: 15px;
+    width: 2em;
+    height: 2em;
+    line-height: 2em;
+    border-radius: 100%;
+    padding: 0 .6em !important;
+}
+
+@media screen and (max-width: 1200px) {
+    a.social-share.small {
+        display: none;
+    }
+
+    a.social-share.mini {
+        display: inline-block;
+    }
+
+    div.social-media-shares {
+        left: 50%;
+    }
+}
+
+@media screen and (max-width: 736px) {
+    a.social-share {
+        margin-top: .3em;
+    }
+
+    div.social-media-shares {
+        width: 2em;
+        margin-top: 4em;
+        left: 20px;
+        z-index: 995;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    div.social-media-shares {
+        width: auto;
+        left: 37%;
+        margin-top: 1em;
+    }
+
+    div.offerSpecificationsRightContainer div > div.social-media-shares{
+        width: 2em;
+        left: 20px;
+        margin: 0;
+    }
+}
+

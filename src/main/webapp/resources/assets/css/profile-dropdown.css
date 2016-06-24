@@ -1,3 +1,32 @@
+@media screen and (max-width: 480px) {
+    #userProfileLogout {
+        position: absolute;
+        right: 50px;
+    }
+
+    div.profile-options-dropdown {
+        width: 40px !important;
+        height: 40px !important;
+        border-radius: 100%;
+    }
+
+    div.profile-options-dropdown::before {
+        font-size: 20px;
+        left: 9px !important;
+        top: 6px !important;
+    }
+
+    div.profile-options-dropdown span {
+        display: none;
+    }
+
+    div.profile-options-dropdown ul.dropdown{
+        width: 98px;
+        left: -58px;
+        border-top-left-radius: 7px;
+    }
+}
+
 div.profile-options-dropdown {
     position: absolute;
     right: 0;
@@ -38,9 +67,10 @@ div.profile-options-dropdown ul.dropdown li a {
     padding: 0;
     text-align: center;
 }
+
 div.profile-options-dropdown ul.dropdown,
 div.profile-options-dropdown ul.dropdown li:last-child,
-div.profile-options-dropdown ul.dropdown li:last-child a{
+div.profile-options-dropdown ul.dropdown li:last-child a {
     border-bottom-right-radius: 7px;
     border-bottom-left-radius: 7px;
 }

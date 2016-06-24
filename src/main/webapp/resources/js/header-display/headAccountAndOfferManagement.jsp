@@ -6,17 +6,17 @@
             <button class="button small icon fa-sign-in whiteButton green-background" ng-click="displayLogin()">
                 Identificarse
             </button>
-            <button class="button mini icon fa-sign-in whiteButton green-background" ng-click="displayLogin()"></button>
+            <button class="button mini icon fa-sign-in whiteButton green-background account-management fixed" ng-click="displayLogin()"></button>
         </li>
         <li>
             <button class="button small icon fa-user whiteButton blueish-background" ng-click="displaySignup()">
                 Registrarse
             </button>
-            <button class="button mini icon fa-user whiteButton blueish-background" ng-click="displaySignup()"></button>
+            <button class="button mini icon fa-user whiteButton blueish-background account-management fixed nth" ng-click="displaySignup()"></button>
         </li>
-        <button ng-class="{hidden:scrollPosition}" class="button overflown overflown-left icon fa-sign-in whiteButton green-background"
+        <button ng-class="{hidden:scrollPosition}" class="button desktop overflown overflown-left icon fa-sign-in whiteButton green-background"
                 ng-click="displayLogin()"></button>
-        <button ng-class="{hidden:scrollPosition}" class="button overflown overflown-left overflown-second icon fa-user whiteButton blueish-background"
+        <button ng-class="{hidden:scrollPosition}" class="button desktop overflown overflown-left overflown-second icon fa-user whiteButton blueish-background"
                 ng-click="displaySignup()"></button>
     </sec:authorize>
 
