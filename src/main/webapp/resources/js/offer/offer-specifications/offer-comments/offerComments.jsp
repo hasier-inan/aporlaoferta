@@ -18,7 +18,7 @@
                             ng-click="writeComment(comment, theOffer)">a&ntilde;adir comentario
                     </button>
                     <button ng-disabled="!commentContentForm.$valid || processing"
-                            class="button mini icon fa-pencil-square whiteButton inline green-background"
+                            class="button mini icon fa-pencil-square whiteButton inline green-background write-comment"
                             ng-click="writeComment(comment, theOffer)"></button>
                 </div>
             </form>
@@ -79,7 +79,7 @@
                                     ng-click="quoteComment(qComment, theComment.id)">citar
                             </button>
                             <button ng-disabled="!quoteCommentForm.$valid || processing"
-                                    class="button mini icon fa-pencil-square whiteButton inline green-background"
+                                    class="button mini icon fa-pencil-square whiteButton inline green-background write-comment"
                                     ng-click="quoteComment(qComment, theComment.id)"></button>
                         </div>
                     </form>

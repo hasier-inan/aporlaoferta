@@ -32,6 +32,7 @@
     <!--[if lte IE 9]>
     <link rel="stylesheet" href="resources/assets/css/ie9.css"/><![endif]-->
     <link rel="stylesheet" href="resources/assets/css/main_decorator.css"/>
+    <link rel="stylesheet" href="resources/assets/css/profile-dropdown.css"/>
     <link rel="stylesheet" href="resources/assets/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="resources/assets/css/main_animator.css"/>
     <link rel="stylesheet" href="resources/js/offer/offer-specifications/offerSpecifications.css"/>

@@ -26,6 +26,7 @@
         <!-- Override default login and logout pages -->
         <security:form-login login-page="/login"
                              default-target-url="/"
+                             login-processing-url="/process_login"
                              authentication-failure-url="/login?error"
                              username-parameter="username"
                              password-parameter="password"/>

@@ -186,6 +186,16 @@ a.close_button.mini {
     margin: -2.5em 1em 0 0 !important;
 }
 
+button.close_button.mini::before,
+a.close_button.mini::before {
+    margin-right: -5px;
+}
+
+button.write-comment.mini::before,
+a.write-comment.mini::before {
+    margin-left: 3px;
+}
+
 .overheadButton.blue {
     background-color: #43638e !important;
 }
@@ -255,21 +265,35 @@ button.recaptcha {
     background-color: #4e8cf5 !important;
 }
 
+.mini.fixed {
+    position: fixed;
+}
+
 ul.top_header > .mini,
 ul.top_header li > .mini,
 div.profileForm > .mini,
 div.thumbnailButtons > .mini,
 div.commentQuoteButtons > .mini {
-    width: 3em;
+    width: 40px;
+    height: 40px;
     border-radius: 100%;
     margin: 0;
     padding: 0 0em 0em 2.5em;
     display: none;
 }
 
+ul.top_header > .mini::before,
+ul.top_header li > .mini::before,
+div.profileForm > .mini::before,
+div.thumbnailButtons > .mini::before,
+div.commentQuoteButtons > .mini::before {
+    font-size: 20px;
+}
+
 ul.top_header > .overflown {
     top: 10px;
-    width: 3em;
+    width: 40px;
+    height: 40px;
     border-radius: 100%;
     margin: 0;
     padding: 0 0em 0em .80em;
@@ -296,6 +320,12 @@ ul.top_header > .overflown.hidden {
     opacity: 0;
 }
 
+@media screen and (max-width: 480px) {
+    ul.top_header > .overflown.desktop {
+        display: none;
+    }
+}
+
 ul.top_header > .overflown:before {
     font-size: 1.5em;
 }
@@ -310,7 +340,7 @@ ul.top_header > .overflown:before {
 }
 
 button.right-aligned:before {
-    margin-right: 0.7em !important;
+    margin-right: 0.5em !important;
 }
 
 div.thumbnailButtons > button {
@@ -349,6 +379,10 @@ div.thumbnailButtons > button {
 
     button.mini.inline,
     a.mini.inline {
+        padding-left: .5em !important;
+    }
+
+    button.right-aligned.mini.inline {
         padding-left: .7em !important;
     }
 
