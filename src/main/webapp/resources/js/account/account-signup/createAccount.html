@@ -55,6 +55,7 @@
                    ng-hide="disableNickname">Puedes a&ntilde;adir opcionalmente una imagen de perfil</label>
 
             <div id="imageUploadContent" ng-image-uploader="createAccountImageUploader"
+                 already-uploaded-image="theUser.userAvatar"
                  final-url="theUser.userAvatar"></div>
 
             <input type="hidden" id="createUserAvatar" ng-model="theUser.userAvatar" class="overheadField"/>
