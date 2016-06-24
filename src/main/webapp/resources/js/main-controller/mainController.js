@@ -34,6 +34,21 @@ aporlaofertaApp.directive('ngConfirmClick', [
                         scope.$eval(clickAction)
                     }
                 });
+
+                scope.time = new Date().getTime();
+                angular.element(document.body).bind("mousemove keypress", function () {
+                    scope.time = new Date().getTime();
+                });
+
+                scope.minute=60000;
+                scope.refresh = function () {
+                    if (new Date().getTime() - scope.time >= 30*scope.minute)
+                        window.location.reload();
+                    else
+                        setTimeout(scope.refresh, 10*scope.minute);
+                }
+
+                setTimeout(scope.refresh, 10*scope.minute);
             }
         };
     }]);
