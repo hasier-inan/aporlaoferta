@@ -90,7 +90,7 @@ aporlaofertaApp
 
                 $timeout(function () {
                     angular.element($('#overheadSubContainer')).removeClass('hiddencontainer');
-                }, 1000);
+                }, 100);
             }]
         }
     });

@@ -82,7 +82,7 @@ aporlaofertaApp
                     $scope.customCloseCallback = function () {
                         $timeout(function () {
                             $scope.offerSpecifications = [];
-                        }, 1000);
+                        }, 100);
                     }
 
                 });
@@ -130,7 +130,7 @@ aporlaofertaApp
 
                 $timeout(function () {
                     angular.element($('#overheadSubContainer')).removeClass('hiddencontainer');
-                }, 1000);
+                }, 100);
             }]
         }
     });
