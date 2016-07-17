@@ -72,15 +72,15 @@
                 <div class="offerSpecificationsTitle">
                     <h1 ng-class="offer.offerExpired?'offer-expired':''">
                         <a href="{{offer.offerLink}}" target="_blank">{{offer.offerTitle}}:
-                            {{offer.finalPrice}}€</a>
+                            {{parsePrice(offer.finalPrice)}}€</a>
                     </h1>
 
                     <div class="offerCompany offerSpecificationsBox">Compañía: {{offer.offerCompany.companyName}}</div>
                     <div class="offerSpecificationsOriginalPrice offerSpecificationsBox" ng-show="offer.originalPrice">
-                        Precio original: {{offer.originalPrice}}€
+                        Precio original: {{parsePrice(offer.originalPrice)}}€
                     </div>
                     <div class="offerSpecificationsFinalPrice offerSpecificationsBox">
-                        Precio de oferta: {{offer.finalPrice}}€
+                        Precio de oferta: {{parsePrice(offer.finalPrice)}}€
                     </div>
                 </div>
                 <div class="offerSpecificationsSubtitle">

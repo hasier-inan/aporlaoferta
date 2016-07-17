@@ -16,6 +16,7 @@ aporlaofertaApp
                 $scope.invalidSize = false;
                 $scope.invalidImage = false;
                 $scope.maxImageSize = configService.getEndpoint('max.image.size');
+                $scope.alreadyUploadedImage="";
                 $scope.fileAdded = function (file) {
                     var fileReader = new FileReader();
                     fileReader.onload = function (event) {

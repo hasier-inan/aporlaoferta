@@ -34,7 +34,7 @@
                        name="createOfferOriginalPrice"
                        ng-model="offer.originalPrice"
                        ng-pattern="bigDecimalsOnly" class="overheadField regular-40 content-validation"
-                       placeholder="0.00" min="0" max="999999"/>
+                       placeholder="0,00" min="0" max="999999"/>
                 <!--<span ng-show="createOfferForm.createOfferOriginalPrice.$error.pattern">Precio invalido</span>-->
             </li>
             <li class="regular-50">
@@ -45,7 +45,7 @@
                        name="createOfferFinalPrice"
                        ng-model="offer.finalPrice"
                        ng-pattern="bigDecimalsOnly" class="overheadField regular-40 content-validation"
-                       placeholder="0.00" min="0" max="999999" required/>
+                       placeholder="0,00" min="0" max="999999" required/>
                 <!--<span ng-show="createOfferForm.createOfferFinalPrice.$error.pattern">Precio invalido</span>-->
             </li>
         </ul>

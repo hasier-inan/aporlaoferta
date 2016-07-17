@@ -41,6 +41,11 @@ aporlaofertaApp
                                 speed: 1500
                             });
                     }
+                    $scope.parsePrice = function (price) {
+                        if(price){
+                            return price.toString().replace(/\./, ',');
+                        }
+                    }
                     $scope.isCategorySelected = function () {
                         return $scope.offerFilter.selectedcategory != ""
                             && $scope.offerFilter.selectedcategory != null
