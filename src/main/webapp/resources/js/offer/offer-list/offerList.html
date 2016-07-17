@@ -28,7 +28,7 @@
                         <div class="offerCreatedDate">{{offer.offerCreatedDate | date:'MM/dd/yyyy @h:mma'}}
                         </div>
                     </div>
-                    <h3 ng-class="offer.offerExpired?'offer-expired':''">{{offer.offerTitle}} - {{offer.finalPrice}}€
+                    <h3 ng-class="offer.offerExpired?'offer-expired':''">{{offer.offerTitle}} - {{parsePrice(offer.finalPrice)}}€
                         <div class="offerCompanyInTitle">{{offer.offerCompany.companyName}}</div>
                     </h3>
                     <p class="offerDescription">

@@ -69,6 +69,13 @@ aporlaofertaApp
                                 $scope.offerCreationError(alertService.getDefaultMessage());
                             });
                     }
+
+                    $scope.parsePrice = function (price) {
+                        if(price){
+                        return price.toString().replace(/\./, ',');
+                        }
+                    }
+
                     $scope.$on('commentsCustomCloseCallback', function (event, args) {
                         var customCallback = args;
                         $scope.customCloseCallback = customCallback;
