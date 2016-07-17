@@ -88,7 +88,7 @@ aporlaofertaApp
                     $scope.displayThumbnail = false;
                     $timeout(function () {
                         $scope.uploader.flow.cancel();
-                    }, 1000);
+                    }, 500);
                 };
                 $scope.displayInvalidImageMessage = function () {
                     $scope.defaultThumbnailView();
@@ -96,7 +96,7 @@ aporlaofertaApp
                     $scope.displayThumbnail = false;
                     $timeout(function () {
                         $scope.uploader.flow.cancel();
-                    }, 1000);
+                    }, 500);
                 }
             }]
         }
