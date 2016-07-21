@@ -9,7 +9,8 @@ aporlaofertaApp
             templateUrl: 'resources/js/header-display/headDisplay.jsp',
             scope: {
                 specificOffer: '@',
-                overheadVisible: '='
+                overheadVisible: '=',
+                noAccounts: '='
             },
             controller: ['$scope', 'offerManager', '$timeout', function ($scope, $offerManager, $timeout) {
                 $scope.customCloseCallback = {};

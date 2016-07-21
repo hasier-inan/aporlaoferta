@@ -46,7 +46,11 @@
     <script src="resources/assets/js/ie/respond.min.js"></script><![endif]-->
     <script src="resources/assets/js/main.js"></script>
     <!--core-->
-    <script src="resources/js/lib/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="resources/js/lib/angular-recaptcha.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit&hl=es" async defer></script>
+    <script src="resources/js/lib/angular-filter.min.js"></script>
+    <script src="resources/js/lib/ng-flow-standalone.js"></script>
     <!--angular material dependencies-->
     <script src="resources/js/lib/angular-animate.js"></script>
     <script src="resources/js/lib/angular-route.min.js"></script>
@@ -57,9 +61,8 @@
     <!-- angular dropdown-->
     <script src="resources/js/lib/angular-dropdowns.js"></script>
     <link rel="stylesheet" href="resources/assets/css/angular-dropdowns-custom.css">
-    <script src="resources/js/lib/angular-recaptcha.js"></script>
-    <script src="resources/js/lib/angular-filter.min.js"></script>
-    <script src="resources/js/lib/ng-flow-standalone.js"></script>
+    <!--modules-->
+    <script src="resources/assets/js/main.js"></script>
     <script src="resources/js/main-controller/mainController.js"></script>
     <script src="resources/js/request-handler/requestManagerService.js"></script>
     <script src="resources/js/account/account-signup/ngAccountCreationDirective.js"></script>
@@ -78,16 +81,19 @@
     <script src="resources/js/offer/offer-creation/ngCompanyManagerDirective.js"></script>
     <script src="resources/js/offer/offer-creation/ngOfferCategoryManagerDirective.js"></script>
     <script src="resources/js/offer/offer-filter/ngOfferFilterDirective.js"></script>
-    <script src="resources/js/header-display/ngHeadDisplayLightDirective.js"></script>
+    <script src="resources/js/header-display/ngHeadDisplayDirective.js"></script>
+    <script src="resources/js/header-display/ngHeadAccountAndOfferManagementDirective.js"></script>
     <script src="resources/js/uploader/ngImageUploadDirective.js"></script>
     <script src="resources/js/response/ngResponseFromServer.js"></script>
     <script src="resources/js/response/alertService.js"></script>
     <script src="resources/js/offer/offer-list/offerManagerService.js"></script>
+    <link rel="stylesheet" href="resources/js/uploader/imageUpload.css"/>
+    <script src="resources/js/error/ngRedirectComponents.js"></script>
     <script src="resources/js/account/password-forgotten/ngPasswordForgottenDirective.js"></script>
 </head>
 <body id="top" data-ng-controller="APorLaOfertaController" class="top-header">
 
-<div ng-overhead-display-light="overheadDisplayLight" class="overheadDisplayLight"></div>
+<div ng-overhead-display="overheadDisplay" no-accounts="true" overhead-visible="overheadVisible"></div>
 
 <header id="header" class="top-header">
     <div class="content only-page">
