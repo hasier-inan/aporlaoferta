@@ -46,7 +46,8 @@
      display-login="displayLogin"
      display-signup="displaySignup"
      display-offer-create="displayOfferCreate"
-     display-account-update-form="displayAccountUpdateForm">
+     display-account-update-form="displayAccountUpdateForm"
+     ng-hide="noAccounts">
 </div>
 
 
