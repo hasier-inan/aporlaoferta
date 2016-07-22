@@ -13,7 +13,8 @@ aporlaofertaApp = angular.module('aPorLaOferta', [
     'pwCheckModule',
     'ngMaterial',
     'ngMessages',
-    'ngDropdowns'
+    'ngDropdowns',
+    'truncate'
 ]);
 
 //main controller

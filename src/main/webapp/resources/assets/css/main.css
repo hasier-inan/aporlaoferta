@@ -3325,7 +3325,7 @@ table.alt tbody tr td {
 /* Wrapper */
 
 .wrapper {
-    padding: 4.5em 0 2.5em 0;
+    padding: 2em 0 2.5em 0;
     background-color: #ffffff;
     border-bottom: solid 2px #e0e4cc;
 }
@@ -3333,14 +3333,12 @@ table.alt tbody tr td {
 .wrapper > .inner {
     margin-left: auto;
     margin-right: auto;
-    width: 60%
+    width: 80%
 }
 
 .wrapper > .inner.alt > * {
     border-top: solid 2px #e0e4cc;
-    margin-bottom: 0;
-    margin-top: 3em;
-    padding-top: 3em;
+    padding-top: 2em;
 }
 
 .wrapper > .inner.alt > *:first-child {
@@ -3546,7 +3544,7 @@ table.alt tbody tr td {
 
 .wrapper.style2 {
     background-color: #D7D7D7;
-    background-image: url("images/background_list_20_3.png"), url("images/pattern-size3.svg");
+    /*background-image: url("images/background_list_20_3.png"), url("images/pattern-size3.svg");*/
     color: #e0e4cc;
 }
 
@@ -3974,7 +3972,7 @@ table.alt tbody tr td {
 @media screen and (max-width: 980px) {
 
     .wrapper {
-        padding: 4em 4em 2em 4em;
+        padding: 2em 0em 2em 4em;
     }
 
     .wrapper > .inner {
@@ -3986,7 +3984,7 @@ table.alt tbody tr td {
 @media screen and (max-width: 736px) and (orientation: landscape) {
 
     .wrapper {
-        padding: 3em 3em 1em 3em;
+        padding: 2em 3em 1em 3em;
     }
 
 }
@@ -3994,7 +3992,7 @@ table.alt tbody tr td {
 @media screen and (max-width: 736px) and (orientation: portrait) {
 
     .wrapper {
-        padding: 3em 1.5em 1em 1.5em;
+        padding: 2em 1.5em 1em 1.5em;
     }
 
 }
