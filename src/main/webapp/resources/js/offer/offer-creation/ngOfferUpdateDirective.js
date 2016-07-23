@@ -32,7 +32,7 @@ aporlaofertaApp
                                         alertService.sendErrorMessage(data.descriptionEsp);
                                         $scope.resetValues();
                                         $scope.customCloseCallback = function () {
-                                            offerManager.requestNewestOffers();
+                                            offerManager.requestNewestOffers($scope.appliedOfferFilters);
                                         }
                                     }
                                 }).error(function (data, status, headers, config) {

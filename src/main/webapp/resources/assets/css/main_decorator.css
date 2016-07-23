@@ -620,6 +620,13 @@ p.invalid-image.invalid-display {
 /*/offerlist*/
 
 /*offer filter*/
+.filter-date-range-selection >label input{
+    -moz-appearance: checkbox ;
+     -webkit-appearance: checkbox ;
+    -ms-appearance: checkbox ;
+    appearance: checkbox ;
+    opacity: 1;
+}
 section#contentFilter {
     padding-bottom: 0;
     padding-top: 1em;

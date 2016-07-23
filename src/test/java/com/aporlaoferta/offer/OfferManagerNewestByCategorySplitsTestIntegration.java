@@ -2,6 +2,7 @@ package com.aporlaoferta.offer;
 
 import com.aporlaoferta.data.OfferBuilderManager;
 import com.aporlaoferta.data.UserBuilderManager;
+import com.aporlaoferta.model.DateRange;
 import com.aporlaoferta.model.OfferCategory;
 import com.aporlaoferta.model.TheOffer;
 import com.aporlaoferta.model.TheUser;
@@ -16,7 +17,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 import java.util.UUID;
 
 import static org.hamcrest.Matchers.is;
@@ -49,7 +49,7 @@ public class OfferManagerNewestByCategorySplitsTestIntegration {
         OfferCategory offerCategory = OfferCategory.ELECTRONICA;
         addOneThousandDummyRandomCategoryOffers();
         assertThat("Expected 1000 offers persisted in the db", this.offerManager.countAllOffers(), is(1000L));
-        List<TheOffer> theNewest100CategoryOffers = this.offerManager.getNextHundredOffersByCategory(0L, offerCategory);
+        List<TheOffer> theNewest100CategoryOffers = this.offerManager.getNextHundredOffersByCategory(0L, offerCategory, DateRange.ALL);
         assertAllSelectedOffersAreFromTheSameCategory(offerCategory, theNewest100CategoryOffers);
     }
 
@@ -82,7 +82,7 @@ public class OfferManagerNewestByCategorySplitsTestIntegration {
                 OfferCategory.VIAJES,
                 OfferCategory.OTROS
         );
-        return offerCategory.get((int)(Math.random()*offerCategory.size()));
+        return offerCategory.get((int) (Math.random() * offerCategory.size()));
     }
 
 }

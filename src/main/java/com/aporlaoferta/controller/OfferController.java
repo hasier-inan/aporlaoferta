@@ -1,5 +1,6 @@
 package com.aporlaoferta.controller;
 
+import com.aporlaoferta.model.DateRange;
 import com.aporlaoferta.model.OfferCategory;
 import com.aporlaoferta.model.OfferComment;
 import com.aporlaoferta.model.OfferCompany;
@@ -14,6 +15,7 @@ import com.aporlaoferta.service.CaptchaHTTPManager;
 import com.aporlaoferta.service.CompanyManager;
 import com.aporlaoferta.service.OfferManager;
 import com.aporlaoferta.service.UserManager;
+import com.aporlaoferta.utils.DateUtils;
 import com.aporlaoferta.utils.LevenshteinDistance;
 import com.aporlaoferta.utils.OfferValidatorHelper;
 import com.aporlaoferta.utils.UnhealthyException;
@@ -66,9 +68,11 @@ public class OfferController {
 
     @RequestMapping(value = "/getOffers", method = RequestMethod.POST)
     @ResponseBody
-    public TheOfferResponse getOffers(@RequestParam(value = "number", required = false) Long number) {
+    public TheOfferResponse getOffers(@RequestParam(value = "number", required = false) Long number,
+                                      @RequestParam(value = "dateRange", required = false) Integer dateRange) {
         TheOfferResponse theOfferResponse = new TheOfferResponse();
-        List<TheOffer> hundredOffers = this.offerManager.getNextHundredOffers(number != null ? number + 1 : 0L);
+        List<TheOffer> hundredOffers = this.offerManager.getNextHundredOffers(number != null ? number + 1 : 0L,
+                isEmpty(dateRange) ? DateRange.WEEK : DateUtils.getDateRange(dateRange));
         //Temporary hack  because Lazy initialisation comments are empty...
         createEmptyFields(hundredOffers);
         theOfferResponse.setTheOffers(hundredOffers);
@@ -94,9 +98,11 @@ public class OfferController {
 
     @RequestMapping(value = "/getHottestOffers", method = RequestMethod.POST)
     @ResponseBody
-    public TheOfferResponse getHottestOffers(@RequestParam(value = "number", required = false) Long number) {
+    public TheOfferResponse getHottestOffers(@RequestParam(value = "number", required = false) Long number,
+                                             @RequestParam(value = "dateRange", required = false) Integer dateRange) {
         TheOfferResponse theOfferResponse = new TheOfferResponse();
-        List<TheOffer> hundredOffers = this.offerManager.getNextHundredHottestOffers(number != null ? number + 1 : 0L);
+        List<TheOffer> hundredOffers = this.offerManager.getNextHundredHottestOffers(number != null ? number + 1 : 0L,
+                isEmpty(dateRange) ? DateRange.WEEK : DateUtils.getDateRange(dateRange));
         //Temporary hack  because Lazy initialisation comments are empty.
         createEmptyFields(hundredOffers);
         theOfferResponse.setTheOffers(hundredOffers);

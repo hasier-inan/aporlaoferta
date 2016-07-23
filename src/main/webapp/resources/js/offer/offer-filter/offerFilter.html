@@ -6,7 +6,7 @@
             ng-class="displayFilterContent" ng-click="displayFilterContents()"></button>
     <div class="filters-contents" ng-class="displayFilterContent">
         <ul>
-            <a id="cleanFilter" href="#contentFilter"
+            <a id="cleanFilter" href="#"
                class="button icon fa-remove whiteButton inline-block basic-margin"
                ng-click="cleanFilters()" ng-disabled="processing">Limpiar filtros</a>
         </ul>
@@ -30,6 +30,24 @@
                 <label id="filterByExpiredLabel" for="filterByExpiredCheckbox" class="overheadLabel">Mostrar
                     caducados</label>
             </div>
+        </ul>
+        <ul ng-init="filter.dateRange=1" class="filter-date-range-selection">
+            <label>
+                <input type="radio" ng-model="filter.dateRange" value="0">
+                Hoy
+            </label>
+            <label>
+                <input type="radio" ng-model="filter.dateRange" value="1">
+                Semana
+            </label>
+            <label>
+                <input type="radio" ng-model="filter.dateRange" value="2">
+                Mes
+            </label>
+            <label>
+                <input type="radio" ng-model="filter.dateRange" value="3">
+                Siempre
+            </label>
         </ul>
 
     </div>

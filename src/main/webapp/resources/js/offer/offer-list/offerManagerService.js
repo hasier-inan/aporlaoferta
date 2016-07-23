@@ -3,20 +3,22 @@ var offerManager = angular.module('offerManager', []);
 offerManager.service('offerManager', ['$rootScope', 'alertService', 'requestManager', 'configService',
     function ($rootScope, alertService, requestManager, configService) {
         var offerManagerController = {};
-        offerManagerController.requestNewestOffers = function () {
-            offerManagerController.makeRequest(configService.getEndpoint('get.offers'));
+        offerManagerController.requestNewestOffers = function (offerFilter) {
+            offerFilter.hot=false;
+            offerManagerController.requestMoreOffers(offerFilter, undefined, offerManagerController.broadcastOfferList,
+                function () {
+                });
         }
 
-        offerManagerController.requestHottestOffers = function () {
-            offerManagerController.makeRequest(configService.getEndpoint('get.hottest.offers'));
-        }
-        offerManagerController.makeRequest = function (endpoint) {
-            requestManager.makePostCall({}, {}, endpoint)
-                .success(function (data, status, headers, config) {
-                    $rootScope.$broadcast('offerList', data.theOffers);
-                }).error(function (data, status, headers, config) {
-                    alertService.sendDefaultErrorMessage();
+        offerManagerController.requestHottestOffers = function (offerFilter) {
+            offerFilter.hot=true;
+            offerManagerController.requestMoreOffers(offerFilter, undefined, offerManagerController.broadcastOfferList,
+                function () {
                 });
+        }
+
+        offerManagerController.broadcastOfferList = function (offerList) {
+            $rootScope.$broadcast('offerList', offerList);
         }
 
         offerManagerController.requestMoreOffers = function (offerFilter, lastOffer, callback, errorCallback) {

@@ -1,5 +1,6 @@
 package com.aporlaoferta.data;
 
+import com.aporlaoferta.model.DateRange;
 import com.aporlaoferta.model.OfferCategory;
 import com.aporlaoferta.model.OfferFilters;
 
@@ -14,6 +15,7 @@ public class FilterBuilder {
     private OfferCategory category;
     private String text;
     private boolean expired;
+    private DateRange dateRange;
 
     public static FilterBuilder aFilter() {
         return new FilterBuilder();
@@ -33,6 +35,11 @@ public class FilterBuilder {
         return this;
     }
 
+    public FilterBuilder withDateRange(DateRange dateRange) {
+        this.dateRange = dateRange;
+        return this;
+    }
+
     public FilterBuilder isExpired(boolean expired) {
         this.expired = expired;
         return this;
@@ -45,6 +52,7 @@ public class FilterBuilder {
         }
         offerFilters.setText(this.text);
         offerFilters.setExpired(this.expired);
+        offerFilters.setDateRange(this.dateRange);
         return offerFilters;
     }
 }

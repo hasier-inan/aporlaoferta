@@ -3,6 +3,7 @@ package com.aporlaoferta.offer;
 import com.aporlaoferta.data.FilterBuilderManager;
 import com.aporlaoferta.data.OfferBuilderManager;
 import com.aporlaoferta.data.UserBuilderManager;
+import com.aporlaoferta.model.DateRange;
 import com.aporlaoferta.model.OfferCategory;
 import com.aporlaoferta.model.OfferFilters;
 import com.aporlaoferta.model.TheOffer;
@@ -18,6 +19,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
@@ -54,7 +57,7 @@ public class OfferManagerNewestByFilterSplitsTestIntegration {
     public void testHundredOffersWithGivenFiltersAreReturned() {
         addOneThousandDummyRandomCategoryOffers();
         OfferFilters offerFilters = createExampleFilter();
-        List<TheOffer> theFiltered100CategoryOffers = this.offerManager.getFilteredNextHundredResults(offerFilters,0L);
+        List<TheOffer> theFiltered100CategoryOffers = this.offerManager.getFilteredNextHundredResults(offerFilters, 0L);
         assertThat("Expected many offers as filter result", theFiltered100CategoryOffers.size(), greaterThan(0));
         assertAllSelectedOffersContainSameFilters(offerFilters, theFiltered100CategoryOffers);
     }
@@ -70,6 +73,8 @@ public class OfferManagerNewestByFilterSplitsTestIntegration {
             assertThat("Expected offer to contain text like title or description",
                     theOffer.getOfferCategory().name(),
                     is(offerFilters.getSelectedcategory()));
+            Assert.assertTrue("Expected offer to have been created within the last week",
+                    theOffer.getOfferCreatedDate().compareTo(createOneWeekAgoDate()) == 1);
             int counter = theOffer.isOfferExpired() ? expiredCounter++ : nonExpiredCounter++;
         }
         if (offerFilters.isExpired()) {
@@ -79,11 +84,10 @@ public class OfferManagerNewestByFilterSplitsTestIntegration {
             Assert.assertTrue("Expected offers to be expired and not expired",
                     expiredCounter == 0 && nonExpiredCounter > 0);
         }
-
     }
 
     private OfferFilters createExampleFilter() {
-        return FilterBuilderManager.anAllElectronicsFilterWithText("tigre").build();
+        return FilterBuilderManager.anAllElectronicsFilterWithText("tigre").withDateRange(DateRange.WEEK).build();
     }
 
     private void addOneThousandDummyRandomCategoryOffers() {
@@ -99,10 +103,25 @@ public class OfferManagerNewestByFilterSplitsTestIntegration {
                 .withDescription(selectRandomTitle())
                 .withPositives(Long.valueOf(RANDOM_GENERATOR.nextInt(1000)))
                 .withNegatives(Long.valueOf(RANDOM_GENERATOR.nextInt(1000)))
+                .createdOn(createRandomDate())
                 .isExpired(selectRandomExpired())
                 .build();
         this.theUser.addOffer(anotherOffer);
         this.offerManager.createOffer(anotherOffer);
+    }
+
+    private Date createRandomDate() {
+        Calendar calendar = Calendar.getInstance();
+        Random rnd = new Random();
+        int days = rnd.nextInt(31);
+        calendar.add(Calendar.DATE, -days);
+        return calendar.getTime();
+    }
+
+    private Date createOneWeekAgoDate() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DATE, -7);
+        return calendar.getTime();
     }
 
     private String selectRandomTitle() {

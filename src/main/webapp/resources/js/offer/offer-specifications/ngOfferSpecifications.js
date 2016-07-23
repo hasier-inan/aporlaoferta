@@ -15,6 +15,7 @@ aporlaofertaApp
                     $scope.sharePrefix = "www.aporlaoferta.com/start?sh=";
                     $scope.sharePrice = "€: ";
                     $scope.commentsCustomCloseCallback = {};
+                    $scope.appliedOfferFilters = {};
 
                     $scope.votePositive = function (id) {
                         requestManager.makePostCall({}, {'offerId': id}, configService.getEndpoint('positive.feedback'))
@@ -62,7 +63,7 @@ aporlaofertaApp
                                     alertService.sendErrorMessage(data.descriptionEsp);
                                     $scope.resetValues();
                                     $scope.customCloseCallback = function () {
-                                        offerManager.requestNewestOffers();
+                                        offerManager.requestNewestOffers($scope.appliedOfferFilters);
                                     }
                                 }
                             }).error(function (data, status, headers, config) {
@@ -79,6 +80,10 @@ aporlaofertaApp
                     $scope.$on('commentsCustomCloseCallback', function (event, args) {
                         var customCallback = args;
                         $scope.customCloseCallback = customCallback;
+                    });
+
+                    $scope.$on('appliedOfferFilters', function (event, args) {
+                        $scope.appliedOfferFilters = args;
                     });
                 }]
         }
