@@ -15,6 +15,7 @@ aporlaofertaApp
                 $scope.filter = {};
                 $scope.displayFilterContent = "";
                 $scope.previousCategory = "all";
+
                 $scope.requestFilterApply = function () {
                     $scope.processing = true;
                     $scope.filter.hot = $scope.selection === 'hottestOffers';
@@ -36,6 +37,13 @@ aporlaofertaApp
                         }).finally(function () {
                             $scope.processing = false;
                         });
+                };
+
+                $scope.searchCriteriaChanged = function () {
+                    $scope.offerFilter = angular.copy($scope.filter);
+                    if ($scope.filter.text.length > 2) {
+                        $scope.requestFilterApply();
+                    }
                 };
 
                 $scope.$watch('filter.selectedcategory', function () {
