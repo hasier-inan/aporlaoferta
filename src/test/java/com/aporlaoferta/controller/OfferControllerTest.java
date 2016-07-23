@@ -3,6 +3,7 @@ package com.aporlaoferta.controller;
 import com.aporlaoferta.data.CompanyBuilderManager;
 import com.aporlaoferta.data.OfferBuilderManager;
 import com.aporlaoferta.data.UserBuilderManager;
+import com.aporlaoferta.model.DateRange;
 import com.aporlaoferta.model.OfferCompany;
 import com.aporlaoferta.model.OfferFilters;
 import com.aporlaoferta.model.TheOffer;
@@ -147,24 +148,24 @@ public class OfferControllerTest {
     @Test
     public void testNewestOffersAreReturnedInTheResponseWhenRequestedMadeWithNoNumber() throws Exception {
         List<TheOffer> sampleOfferList = createSampleOfferList();
-        when(this.offerManager.getNextHundredOffers(0L)).thenReturn(sampleOfferList);
-        TheOfferResponse result = this.offerController.getOffers(null);
+        when(this.offerManager.getNextHundredOffers(0L, DateRange.ALL)).thenReturn(sampleOfferList);
+        TheOfferResponse result = this.offerController.getOffers(null, 3);
         assertOfferListIsInResponse(result, sampleOfferList);
     }
 
     @Test
     public void testNextNumberOfOffersAreReturnedInTheResponseWhenRequested() throws Exception {
         List<TheOffer> sampleOfferList = createSampleOfferList();
-        when(this.offerManager.getNextHundredOffers(79L)).thenReturn(sampleOfferList);
-        TheOfferResponse result = this.offerController.getOffers(78L);
+        when(this.offerManager.getNextHundredOffers(79L, DateRange.ALL)).thenReturn(sampleOfferList);
+        TheOfferResponse result = this.offerController.getOffers(78L, 3);
         assertOfferListIsInResponse(result, sampleOfferList);
     }
 
     @Test
     public void testHottestOffersAreReturnedInTheResponseWhenRequested() throws Exception {
         List<TheOffer> sampleOfferList = createSampleHotOfferList();
-        when(this.offerManager.getNextHundredHottestOffers(1L)).thenReturn(sampleOfferList);
-        TheOfferResponse result = this.offerController.getHottestOffers(0L);
+        when(this.offerManager.getNextHundredHottestOffers(1L, DateRange.ALL)).thenReturn(sampleOfferList);
+        TheOfferResponse result = this.offerController.getHottestOffers(0L,3);
         assertOfferListIsInResponse(result, sampleOfferList);
         List<TheOffer> receivedOffers = result.getTheOffers();
         Long hottest = 1000L;
@@ -183,8 +184,8 @@ public class OfferControllerTest {
 
     @Test
     public void testEmptyListIsReturnedIfNoOffersAreCreated() throws Exception {
-        when(this.offerManager.getNextHundredOffers(0L)).thenReturn(new ArrayList<TheOffer>());
-        TheOfferResponse result = this.offerController.getOffers(null);
+        when(this.offerManager.getNextHundredOffers(0L, DateRange.ALL)).thenReturn(new ArrayList<TheOffer>());
+        TheOfferResponse result = this.offerController.getOffers(null,3);
         Assert.assertEquals(result.getTheOffers().size(), 0);
     }
 

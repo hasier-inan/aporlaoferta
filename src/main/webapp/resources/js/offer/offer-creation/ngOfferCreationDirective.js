@@ -17,6 +17,8 @@ aporlaofertaApp
                     $scope.widgetId = null;
                     $scope.publicKey = "6LdqHQoTAAAAAAht2VhkrLGU26eBOjL-nK9zXxcn";
                     $scope.resetCategory = true;
+                    $scope.appliedOfferFilters = {};
+
                     $scope.createOffer = function () {
                         if (vcRecaptchaService.getResponse($scope.widgetId) === "") {
                             $scope.offerCreationError("Por favor, haga click en el captcha para demostrar que no es un robot");
@@ -33,7 +35,7 @@ aporlaofertaApp
                                         alertService.sendErrorMessage(data.descriptionEsp);
                                         $scope.resetValues();
                                         $scope.customCloseCallback = function () {
-                                            offerManager.requestNewestOffers();
+                                            offerManager.requestNewestOffers($scope.appliedOfferFilters);
                                         }
                                     }
                                 }).error(function (data, status, headers, config) {
@@ -44,6 +46,10 @@ aporlaofertaApp
                             //$scope.overheadDisplay = false;
                         }
                     };
+
+                    $scope.$on('appliedOfferFilters', function (event, args) {
+                        $scope.appliedOfferFilters = args;
+                    });
 
                     $scope.parseOffer = function () {
                         var theOffer = angular.copy($scope.offer);

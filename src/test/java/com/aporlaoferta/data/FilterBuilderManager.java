@@ -1,5 +1,6 @@
 package com.aporlaoferta.data;
 
+import com.aporlaoferta.model.DateRange;
 import com.aporlaoferta.model.OfferCategory;
 
 /**
@@ -14,6 +15,7 @@ public class FilterBuilderManager {
         return FilterBuilder.aFilter()
                 .withCategory(OfferCategory.ELECTRONICA)
                 .withText(text)
+                .withDateRange(DateRange.WEEK)
                 .isExpired(true)
                 ;
     }

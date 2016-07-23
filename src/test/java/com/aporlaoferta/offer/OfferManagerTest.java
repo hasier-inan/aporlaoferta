@@ -1,6 +1,7 @@
 package com.aporlaoferta.offer;
 
 import com.aporlaoferta.data.OfferBuilderManager;
+import com.aporlaoferta.model.DateRange;
 import com.aporlaoferta.model.TheOffer;
 import com.aporlaoferta.service.OfferManager;
 import com.aporlaoferta.service.TransactionalManager;
@@ -12,6 +13,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import java.util.Date;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -68,8 +71,8 @@ public class OfferManagerTest {
 
     @Test
     public void testOneHundredOffersIsCalledInTheManager() {
-        this.offerManager.getNextHundredOffers(THE_ID);
-        verify(this.transactionalManager).getNextHundredOffers(THE_ID);
+        this.offerManager.getNextHundredOffers(THE_ID, DateRange.ALL);
+        verify(this.transactionalManager).getNextHundredOffers(THE_ID, new Date(0));
     }
 
 }

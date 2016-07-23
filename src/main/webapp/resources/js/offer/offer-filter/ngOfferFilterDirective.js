@@ -26,6 +26,7 @@ aporlaofertaApp
                     if ($scope.offerFilter.text.length < 3) {
                         $scope.offerFilter.text = "";
                     }
+                    $rootScope.$broadcast('appliedOfferFilters', angular.copy($scope.offerFilter));
                     requestManager.makePostCall($scope.offerFilter, {}, configService.getEndpoint('get.filtered.offers'))
                         .success(function (data, status, headers, config) {
                             $scope.offerList = data.theOffers;
@@ -39,9 +40,13 @@ aporlaofertaApp
                         });
                 };
 
+                $scope.$watch('filter.dateRange', function () {
+                    $scope.requestFilterApply();
+                });
+
                 $scope.searchCriteriaChanged = function () {
                     $scope.offerFilter = angular.copy($scope.filter);
-                    if ($scope.filter.text.length > 2) {
+                    if ($scope.filter.text.length > 2 || $scope.filter.text.length==0) {
                         $scope.requestFilterApply();
                     }
                 };
@@ -58,7 +63,10 @@ aporlaofertaApp
                     $scope.filter.text = "";
                     $scope.resetCategory = true;
                     $scope.filter.selectedcategory = "";
+                    $scope.filter.selectedcategory = "";
+                    $scope.filter.dateRange = 1;
 //                    $scope.requestFilterApply();
+                    $rootScope.$broadcast('appliedOfferFilters', angular.copy($scope.offerFilter));
                 };
 
                 $scope.displayFilterContents = function () {

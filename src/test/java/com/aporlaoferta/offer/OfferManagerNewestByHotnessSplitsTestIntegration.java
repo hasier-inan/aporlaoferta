@@ -2,6 +2,7 @@ package com.aporlaoferta.offer;
 
 import com.aporlaoferta.data.OfferBuilderManager;
 import com.aporlaoferta.data.UserBuilderManager;
+import com.aporlaoferta.model.DateRange;
 import com.aporlaoferta.model.TheOffer;
 import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.service.OfferManager;
@@ -46,7 +47,7 @@ public class OfferManagerNewestByHotnessSplitsTestIntegration {
     public void testHundredOffersAreReturnedSortedByHotness() {
         addOneThousandDummyRandomHotnessOffers();
         assertThat("Expected 1000 offers persisted in the db", this.offerManager.countAllOffers(), is(1000L));
-        List<TheOffer> theHottest100Offers = this.offerManager.getNextHundredHottestOffers(0L);
+        List<TheOffer> theHottest100Offers = this.offerManager.getNextHundredHottestOffers(0L, DateRange.ALL);
         assertAllSelectedOffersAreSortedByHotness(theHottest100Offers);
     }
 

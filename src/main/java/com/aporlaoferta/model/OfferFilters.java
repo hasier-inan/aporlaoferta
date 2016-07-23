@@ -14,6 +14,7 @@ public class OfferFilters {
     private String text;
     private boolean expired;
     private boolean hot;
+    private DateRange dateRange;
 
     public String getSelectedcategory() {
         return selectedcategory != null ? selectedcategory.name() : "";
@@ -68,5 +69,13 @@ public class OfferFilters {
     public boolean containsFilter() {
         return (!isEmpty(getText())
                 && (!isEmpty(getSelectedcategory())));
+    }
+
+    public void setDateRange(DateRange dateRange) {
+        this.dateRange = dateRange;
+    }
+
+    public DateRange getDateRange() {
+        return dateRange;
     }
 }

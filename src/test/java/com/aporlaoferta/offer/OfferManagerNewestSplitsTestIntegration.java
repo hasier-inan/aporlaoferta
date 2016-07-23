@@ -2,6 +2,7 @@ package com.aporlaoferta.offer;
 
 import com.aporlaoferta.data.OfferBuilderManager;
 import com.aporlaoferta.data.UserBuilderManager;
+import com.aporlaoferta.model.DateRange;
 import com.aporlaoferta.model.TheOffer;
 import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.service.OfferManager;
@@ -45,9 +46,9 @@ public class OfferManagerNewestSplitsTestIntegration {
     public void testHundredOfOffersAreReturned() {
         addOneThousandDummyOffers();
         assertThat("Expected 1000 offers persisted in the db", this.offerManager.countAllOffers(), is(1000L));
-        List<TheOffer> theNewest100Offers = this.offerManager.getNextHundredOffers(0L);
+        List<TheOffer> theNewest100Offers = this.offerManager.getNextHundredOffers(0L, DateRange.ALL);
         assertThat("Expected the newest offer id to be 1000", theNewest100Offers.get(0).getId(), is(1000L));
-        List<TheOffer> theNext100Offers = this.offerManager.getNextHundredOffers(125L);
+        List<TheOffer> theNext100Offers = this.offerManager.getNextHundredOffers(125L, DateRange.ALL);
         assertThat("Expected the after 125 offers, newest offer id to be 875", theNext100Offers.get(0).getId(), is(875L));
     }
 
