@@ -6,14 +6,10 @@
             ng-class="displayFilterContent" ng-click="displayFilterContents()"></button>
     <div class="filters-contents" ng-class="displayFilterContent">
         <ul>
-            <a id="cleanFilter" href="#"
-               class="button icon fa-remove whiteButton inline-block basic-margin"
-               ng-click="cleanFilters()" ng-disabled="processing">Limpiar filtros</a>
-        </ul>
-        <ul>
             <div class="filterByCategoryContent inline-block basic-margin" ng-model="offerCategoryManager"
                  ng-offer-category-manager="offerCategoryManager" reset="resetCategory"
                  selectedcategory="filter.selectedcategory"
+                 include-all="true"
                  changeevent="requestFilterApply"></div>
             <div class="filter-parent inline-block basic-margin">
                 <label for="filter-by" id="label-for-filter-by"><i class="fa fa-search"></i></label>
@@ -35,20 +31,27 @@
     </div>
     <div class="filter-tabs">
         <label ng-class="filter.dateRange==0?'selected':''">
+            <div class="calendar-label day"></div>
             <input type="radio" ng-model="filter.dateRange" value="0">
-            Hoy
+            <span>24h</span>
         </label>
+
         <label ng-class="filter.dateRange==1?'selected':''">
+            <div class="calendar-label week"></div>
             <input type="radio" ng-model="filter.dateRange" value="1">
-            Semana
+            <span>Semana</span>
         </label>
+
         <label ng-class="filter.dateRange==2?'selected':''">
+            <div class="calendar-label month"></div>
             <input type="radio" ng-model="filter.dateRange" value="2">
-            Mes
+            <span>Mes</span>
         </label>
+
         <label ng-class="filter.dateRange==3?'selected':''">
+            <div class="calendar-label all"></div>
             <input type="radio" ng-model="filter.dateRange" value="3">
-            Siempre
+            <span>Todos</span>
         </label>
     </div>
 </header>

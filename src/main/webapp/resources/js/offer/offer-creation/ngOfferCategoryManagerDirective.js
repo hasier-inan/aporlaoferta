@@ -8,7 +8,8 @@ aporlaofertaApp
             templateUrl: 'resources/js/offer/offer-creation/offerCategoryManagement.html',
             scope: {
                 reset: '=',
-                selectedcategory: '='
+                selectedcategory: '=',
+                includeAll: '='
             },
             controller: ['$rootScope', '$scope', 'requestManager', 'configService', function ($rootScope, $scope, requestManager, configService) {
                 $scope.offerCategories = {};
@@ -19,6 +20,9 @@ aporlaofertaApp
                     requestManager.makePostCall({}, {}, configService.getEndpoint('get.offer.categories'))
                         .success(function (data, status, headers, config) {
                             $scope.offerCategories = angular.copy(data);
+                            if ($scope.includeAll) {
+                                $scope.offerCategories.push({text: "QUALQUIERA", value: ""})
+                            }
                         }).error(function (data, status, headers, config) {
                             var theResponse = {};
                             theResponse.description = data;

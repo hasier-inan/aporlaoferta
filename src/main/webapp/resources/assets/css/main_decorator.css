@@ -303,9 +303,15 @@ ul.top_header > .overflown {
     padding: 0 0em 0em .80em;
     opacity: 1;
     position: fixed;
-    transition: opacity 1s ease-in-out;
-    -moz-transition: opacity 1s ease-in-out;
-    -webkit-transition: opacity 1s ease-in-out;
+
+    -moz-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    transition: all .3s linear;
+}
+
+button.to-the-top:hover {
+    background-color: transparent;
 }
 
 ul.top_header > .overflown-second {
@@ -621,28 +627,78 @@ p.invalid-image.invalid-display {
 
 /*offer filter*/
 .filter-tabs > label {
-    color:#8c8c8c;
-     height: 100%;
-     margin: 0;
-     bottom: -2px;
-     position: relative;
-     padding: .75em 2em;
-     border-top-left-radius: 15px;
-     border-top-right-radius: 15px;
-     border: 2px solid #828282;
-     background-color: #b9b9b9;
-     background-image: url("images/background_list_20_3.png"), url("images/pattern-size3.svg");
-    -moz-transition: all .3s linear;
-    -webkit-transition: all .3s linear;
-    -o-transition: all .3s linear;
-    transition: all .3s linear;
+    height: 45px;
+    width: 20%;
+    margin: 0;
+    bottom: -2px;
+    position: relative;
+    padding: .75em 2em;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border: 2px solid #828282;
+    background-color: #b9b9b9;
+    background-image: url("images/background_list_20_3.png"), url("images/pattern-size3.svg");
+    -moz-transition: background-color .3s linear;
+    -webkit-transition: background-color .3s linear;
+    -o-transition: background-color .3s linear;
+    transition: background-color .3s linear;
     cursor: pointer;
+    font-size: 1em;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+div.calendar-label {
+    position: absolute;
+    left: 10px;
+    top: 6px;
+    width: 30px;
+    height: 30px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+div.calendar-label.day{
+    background-image: url("images/calendar_1.png");
+}
+
+div.calendar-label.week{
+    background-image: url("images/calendar_7.png");
+}
+
+div.calendar-label.month{
+    background-image: url("images/calendar_31.png");
+}
+
+div.calendar-label.all{
+    background-image: url("images/calendar_all.png");
+}
+
+@media screen and (max-width: 760px) {
+    .filter-tabs > label {
+        font-size: 11px;
+        padding-top: 15px;
+        padding-right:0;
+    }
+}
+
+@media screen and (max-width: 545px) {
+    div.calendar-label{
+        left: 50%;
+        margin-left: -20px;
+        width: 40px;
+        height: 40px;
+        top: 0;
+    }
+    .filter-tabs > label span{
+        visibility: hidden;
+    }
+
 }
 
 .filter-tabs > label.selected {
     border-bottom: 2px solid #D7D7D7;
     background-color: #D7D7D7;
-    color:#828282;
+    color: #616161 !important;
 }
 
 .filter-tabs > label.selected:hover {
