@@ -526,10 +526,10 @@ div.offerCompanyInTitle {
     color: #828282 !important;
 }
 
-pre.parsed-text{
-    white-space: pre-wrap;       /* Since CSS 2.1 */
-    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-    white-space: -pre-wrap;      /* Opera 4-6 */
+pre.parsed-text {
+    white-space: pre-wrap; /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */
     white-space: -o-pre-wrap;
     word-break: break-word !important;
     text-align: justify;
@@ -620,19 +620,50 @@ p.invalid-image.invalid-display {
 /*/offerlist*/
 
 /*offer filter*/
-.filter-date-range-selection >label input{
-    -moz-appearance: checkbox ;
-     -webkit-appearance: checkbox ;
-    -ms-appearance: checkbox ;
-    appearance: checkbox ;
-    opacity: 1;
+.filter-tabs > label {
+    color:#8c8c8c;
+     height: 100%;
+     margin: 0;
+     bottom: -2px;
+     position: relative;
+     padding: .75em 2em;
+     border-top-left-radius: 15px;
+     border-top-right-radius: 15px;
+     border: 2px solid #828282;
+     background-color: #b9b9b9;
+     background-image: url("images/background_list_20_3.png"), url("images/pattern-size3.svg");
+    -moz-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    transition: all .3s linear;
+    cursor: pointer;
 }
+
+.filter-tabs > label.selected {
+    border-bottom: 2px solid #D7D7D7;
+    background-color: #D7D7D7;
+    color:#828282;
+}
+
+.filter-tabs > label.selected:hover {
+    background-color: #D7D7D7;
+}
+
+.filter-tabs > label:hover {
+    background-color: #c6c6c6;
+}
+
+.filter-tabs > label input {
+    display: none;
+}
+
 section#contentFilter {
     padding-bottom: 0;
     padding-top: 1em;
     background-color: #A0A0A0;
     background-image: url("images/background_list_20_3.png");
     color: #fff;
+    border-bottom: 0;
 }
 
 div.filter-header > h3,
@@ -884,7 +915,12 @@ div.offer-creation-category.ng-valid .category-dropdown,
     background-size: 20px;
     border-color: #69d2e7 !important;
     padding-right: 25px;
+}
 
+div.offer-creation-category.ng-valid .category-dropdown:hover,
+.content-validation.ng-valid:hover {
+    background: rgba(207, 231, 220, 0.15) url(images/valid.png) no-repeat scroll right;
+    background-size: 20px;
 }
 
 div.offer-creation-category.ng-invalid .category-dropdown,
@@ -893,6 +929,12 @@ div.offer-creation-category.ng-invalid .category-dropdown,
     background-size: 20px;
     border-color: #e62929 !important;
     padding-right: 25px;
+}
+
+div.offer-creation-category.ng-invalid .category-dropdown:hover,
+.content-validation.ng-invalid:hover {
+    background: rgba(207, 231, 220, 0.15) url(images/invalid.png) no-repeat scroll right;
+    background-size: 20px;
 }
 
 .content-validation.ng-invalid.comment-textarea {

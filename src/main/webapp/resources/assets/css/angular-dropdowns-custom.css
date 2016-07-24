@@ -14,6 +14,10 @@ div.filterByCategoryContent .category-dropdown {
     border: solid 1px #ffffff !important;
     box-shadow: inset 0 0 0 0px #e6e6e6;
     background: transparent !important;
+    -moz-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    transition: all .3s linear;
 }
 
 div.filterByCategoryContent .category-dropdown:hover {
@@ -68,18 +72,28 @@ div.filterByCategoryContent .wrap-dd-select .dropdown {
     color: #5B6A7D;
 }
 
-.wrap-dd-select:after {
+.profile-options-dropdown.wrap-dd-select:after{
     display: none;
-    content: "";
-    width: 0;
-    height: 0;
+}
+
+.profile-options-dropdown.wrap-dd-select:hover{
+    background-color: #c06060;
+}
+
+.wrap-dd-select:after {
     position: absolute;
     left: 15px;
-    top: 50%;
-    margin-top: -3px;
-    border-width: 6px 6px 0 6px;
-    border-style: solid;
-    border-color: #ffffff transparent;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-transform: none !important;
+    content: "\f078";
+}
+
+.wrap-dd-select:hover{
+    background: ;
 }
 
 .wrap-dd-select.disabled:after {

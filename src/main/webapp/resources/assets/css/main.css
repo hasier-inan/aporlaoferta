@@ -3123,26 +3123,26 @@ header h6 + p {
 }
 
 header.major {
-    margin: 0 0 2.5em 0;
-    text-align: center;
+    /*margin: 0 0 2.5em 0;*/
+    /*text-align: center;*/
 }
 
 header.major:after {
-    content: '';
-    border-bottom: solid 2px #e6e6e6;
-    display: block;
-    width: 4em;
-    margin: 2em auto 0 auto;
+    /*content: '';*/
+    /*border-bottom: solid 2px #e6e6e6;*/
+    /*display: block;*/
+    /*width: 4em;*/
+    /*margin: 2em auto 0 auto;*/
 }
 
 @media screen and (max-width: 736px) {
 
     header.major {
-        margin: 0 0 2em 0;
+        /*margin: 0 0 2em 0;*/
     }
 
     header.major p {
-        font-size: 1em;
+        /*font-size: 1em;*/
     }
 
 }
@@ -3543,6 +3543,7 @@ table.alt tbody tr td {
 }
 
 .wrapper.style2 {
+    border-top: 2px solid #828282;
     background-color: #D7D7D7;
     background-image: url("images/background_list_20_3.png"), url("images/pattern-size3.svg");
     color: #e0e4cc;
@@ -3634,6 +3635,16 @@ table.alt tbody tr td {
 .wrapper.style2 input[type="radio"] + label:before {
     background-color: rgba(144, 144, 144, 0.075);
     border-color: #e6e6e6;
+    -moz-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    transition: all .3s linear;
+}
+
+.wrapper.style2 input[type="checkbox"]:hover + label:before,
+.wrapper.style2 input[type="radio"]:hover + label:before {
+    background-color:#a7dbd8;
+    border-color: #e6e6e6;
 }
 
 .wrapper.style2 input[type="checkbox"]:checked + label:before,
@@ -3641,6 +3652,11 @@ table.alt tbody tr td {
     background-color: #f38630;
     border-color: #f38630;
     color: #ffffff;
+}
+
+.wrapper.style2 input[type="checkbox"]:checked:hover + label:before,
+.wrapper.style2 input[type="radio"]:checked:hover + label:before {
+    background-color: #de762f;
 }
 
 .wrapper.style2 input[type="checkbox"]:focus + label:before,

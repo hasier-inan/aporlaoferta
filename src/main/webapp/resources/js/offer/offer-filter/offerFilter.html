@@ -31,24 +31,24 @@
                     caducados</label>
             </div>
         </ul>
-        <ul ng-init="filter.dateRange=1" class="filter-date-range-selection">
-            <label>
-                <input type="radio" ng-model="filter.dateRange" value="0">
-                Hoy
-            </label>
-            <label>
-                <input type="radio" ng-model="filter.dateRange" value="1">
-                Semana
-            </label>
-            <label>
-                <input type="radio" ng-model="filter.dateRange" value="2">
-                Mes
-            </label>
-            <label>
-                <input type="radio" ng-model="filter.dateRange" value="3">
-                Siempre
-            </label>
-        </ul>
 
+    </div>
+    <div class="filter-tabs">
+        <label ng-class="filter.dateRange==0?'selected':''">
+            <input type="radio" ng-model="filter.dateRange" value="0">
+            Hoy
+        </label>
+        <label ng-class="filter.dateRange==1?'selected':''">
+            <input type="radio" ng-model="filter.dateRange" value="1">
+            Semana
+        </label>
+        <label ng-class="filter.dateRange==2?'selected':''">
+            <input type="radio" ng-model="filter.dateRange" value="2">
+            Mes
+        </label>
+        <label ng-class="filter.dateRange==3?'selected':''">
+            <input type="radio" ng-model="filter.dateRange" value="3">
+            Siempre
+        </label>
     </div>
 </header>

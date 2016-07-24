@@ -43,7 +43,7 @@ aporlaofertaApp.directive('ngConfirmClick', [
 
                 scope.minute=60000;
                 scope.refresh = function () {
-                    if (new Date().getTime() - scope.time >= 30*scope.minute)
+                    if (new Date().getTime() - scope.time >= 20*scope.minute)
                         window.location.reload();
                     else
                         setTimeout(scope.refresh, 10*scope.minute);
