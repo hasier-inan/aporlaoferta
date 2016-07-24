@@ -41,6 +41,7 @@ aporlaofertaApp
                 };
 
                 $scope.$watch('filter.dateRange', function () {
+                    console.log($scope.filter.dateRange);
                     $scope.requestFilterApply();
                 });
 
