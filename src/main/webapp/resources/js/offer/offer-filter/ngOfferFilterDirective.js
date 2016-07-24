@@ -41,7 +41,6 @@ aporlaofertaApp
                 };
 
                 $scope.$watch('filter.dateRange', function () {
-                    console.log($scope.filter.dateRange);
                     $scope.requestFilterApply();
                 });
 
@@ -78,7 +77,8 @@ aporlaofertaApp
                     return $scope.filter.selectedcategory != ""
                         && $scope.filter.selectedcategory != null
                         && $scope.filter.selectedcategory != undefined
-                        && $scope.filter.selectedcategory != "CATEGORÍA";
+                        && $scope.filter.selectedcategory != "CATEGORÍA"
+                        && $scope.filter.selectedcategory != "QUALQUIERA";
                 };
                 $scope.cleanFilters();
             }]
