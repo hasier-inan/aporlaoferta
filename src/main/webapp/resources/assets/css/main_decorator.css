@@ -979,6 +979,11 @@ div.offer-creation-category.ng-valid .category-dropdown:hover,
     background-size: 20px;
 }
 
+.content-validation.ng-valid:focus:hover {
+    background: rgba(255, 255, 255, 1) url(images/valid.png) no-repeat scroll right;
+    background-size: 20px;
+}
+
 div.offer-creation-category.ng-invalid .category-dropdown,
 .content-validation.ng-invalid {
     background: rgba(230, 41, 41, .15) url(images/invalid.png) no-repeat scroll right;
@@ -990,6 +995,11 @@ div.offer-creation-category.ng-invalid .category-dropdown,
 div.offer-creation-category.ng-invalid .category-dropdown:hover,
 .content-validation.ng-invalid:hover {
     background: rgba(207, 231, 220, 0.15) url(images/invalid.png) no-repeat scroll right;
+    background-size: 20px;
+}
+
+.content-validation.ng-invalid:focus:hover {
+    background: rgba(255, 255, 255, 1) url(images/invalid.png) no-repeat scroll right;
     background-size: 20px;
 }
 
