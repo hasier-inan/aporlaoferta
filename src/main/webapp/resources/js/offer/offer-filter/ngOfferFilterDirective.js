@@ -78,7 +78,7 @@ aporlaofertaApp
                         && $scope.filter.selectedcategory != null
                         && $scope.filter.selectedcategory != undefined
                         && $scope.filter.selectedcategory != "CATEGORÍA"
-                        && $scope.filter.selectedcategory != "QUALQUIERA";
+                        && $scope.filter.selectedcategory != "TODAS";
                 };
                 $scope.cleanFilters();
             }]

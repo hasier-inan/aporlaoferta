@@ -39,7 +39,7 @@ div.offerSpecificationsLink > a {
 div.offerSpecificationsLink > a:hover,
 div.offerSpecificationsTitle > h1 > a:hover {
     text-decoration: none;
-    color: #f38630;
+    color: rgba(0, 0, 0, 0.3);
 }
 
 div.offer-specifications.edit-offer {
