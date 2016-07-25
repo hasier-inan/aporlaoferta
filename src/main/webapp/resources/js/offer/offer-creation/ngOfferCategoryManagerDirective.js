@@ -21,7 +21,7 @@ aporlaofertaApp
                         .success(function (data, status, headers, config) {
                             $scope.offerCategories = angular.copy(data);
                             if ($scope.includeAll) {
-                                $scope.offerCategories.push({text: "QUALQUIERA", value: ""})
+                                $scope.offerCategories.push({text: "TODAS", value: ""})
                             }
                         }).error(function (data, status, headers, config) {
                             var theResponse = {};
