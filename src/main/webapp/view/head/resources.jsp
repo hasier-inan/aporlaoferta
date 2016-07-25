@@ -68,3 +68,4 @@
 <%--<script id="facebook-jssdk" src="//connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v2.5"></script>--%>
 <script src="resources/js/error/ngRedirectComponents.js"></script>
 <script src="resources/js/account/password-forgotten/ngPasswordForgottenDirective.js"></script>
+<script src="resources/js/analytics/loader.js"></script>
