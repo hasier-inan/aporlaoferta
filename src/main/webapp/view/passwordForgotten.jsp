@@ -33,13 +33,10 @@
     </div>
 </header>
 <div ng-password-forgotten="ngPasswordForgotten" nick="'${nick}'" uuid="'${uuid}'" custom-close-callback="customCloseCallback"></div>
+
 <footer id="footer" class="forgotten_footer">
-    <ul class="icons">
-        <li><a href="#" class="icon fa-facebook forgotten_footer"><span class="label">Facebook</span></a></li>
-        <li><a href="#" class="icon fa-twitter forgotten_footer"><span class="label">Twitter</span></a></li>
-        <li><a href="#" class="icon fa-instagram forgotten_footer"><span class="label">Instagram</span></a></li>
-    </ul>
-    <p class="copyright">&copy; aporlaoferta 2015</p>
+    <%@include file="footer/social.jsp" %>
+    <p class="copyright">&copy; aporlaoferta, 2016</p>
 </footer>
 
 </body>

@@ -56,6 +56,13 @@ public class AccountController {
         return "forward:/resources/images/favicon.ico";
     }
 
+    @RequestMapping(value = {"/tc**"}, method = RequestMethod.GET)
+    public ModelAndView termsAndConditions() {
+        ModelAndView tc = new ModelAndView();
+        tc.setViewName("termsAndConditions");
+        return tc;
+    }
+
     @RequestMapping(value = {"/", "/start**", "/index**"}, method = RequestMethod.GET)
     public ModelAndView start(@RequestParam(value = "sh", required = false) Long number) {
         ModelAndView model = new ModelAndView();

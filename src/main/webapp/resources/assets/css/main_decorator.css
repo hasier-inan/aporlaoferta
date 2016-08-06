@@ -1032,6 +1032,13 @@ form.ng-valid-recaptcha ul li div.offerCaptcha {
 }
 
 /**
+terms and conditions
+*/
+div.terms-and-conditions{
+    color: #ffffff;
+}
+
+/**
 logout*/
 div#userProfileLogout {
     display: block;
