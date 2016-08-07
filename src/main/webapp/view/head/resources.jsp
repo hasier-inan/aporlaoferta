@@ -30,6 +30,8 @@
 <script src="resources/js/lib/angular-route.min.js"></script>
 <script src="resources/js/lib/angular-aria.min.js"></script>
 <script src="resources/js/lib/angular-messages.min.js"></script>
+<script src="resources/js/lib/angular-cookie-law.js"></script>
+<link rel="stylesheet" href="resources/assets/css/angular-cookie-law.css">
 <script src="resources/js/lib/angular-material.js"></script>
 <script src="resources/js/lib/truncate.js"></script>
 <link rel="stylesheet" href="resources/assets/css/angular-material-custom.css">

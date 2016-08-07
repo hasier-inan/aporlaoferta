@@ -8,9 +8,6 @@
 <!-- p4p spanish offer and deals -->
 <!-- Fractal template by HTML5 UP html5up.net -->
 <!-- icons and logos by font awesome http://fortawesome.github.io/ -->
-<!-- file upload base by ng-flow -->
-<!-- angular material auto-complete from https://material.angularjs.org -->
-<!-- custom dropdown from https://github.com/jseppi/angular-dropdowns -->
 <html data-ng-app="aPorLaOferta" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>aporlaoferta ~ ofertas y promociones online </title>
@@ -20,23 +17,28 @@
           href="resources/images/favicon.ico"/>
     <%@include file="head/resources.jsp" %>
 </head>
-<body id="top" data-ng-controller="APorLaOfertaController" flow-prevent-drop ng-keydown="keyHandler($event)"
-      ng-class="{'no-overflow':overheadVisible}">
+<body id="top" data-ng-controller="APorLaOfertaController" class="top-header">
 
-<c:if test="${not empty msg}">
-    <input type="text" id="errorMessage" style="display:none" value="${msg}"/>
-</c:if>
+<div ng-overhead-display="overheadDisplay" no-accounts="true" overhead-visible="overheadVisible"></div>
 
-<div ng-overhead-display="overheadDisplay" specific-offer="${specificOffer}" overhead-visible="overheadVisible"></div>
+<header id="header" class="top-header">
+    <div class="content only-page">
+        <h1 class="only-page">
+            <em>aporlaoferta</em>
+        </h1>
 
-<div ng-promotion-list="promotionList"></div>
+        <div class="mainLogo only-page">
+        </div>
+        <p>Ofertas y promociones online</p>
+    </div>
+</header>
 
-<!-- Footer -->
-<footer id="footer" >
+<%@include file="terms/cookie-policy.jsp" %>
+
+<footer id="footer">
     <%@include file="footer/social.jsp" %>
-    <span class="copyright">&copy; aporlaoferta, 2016</span>
-    <span class="copyright"><a href="tc">condiciones legales</a></span>
+    <p class="copyright">&copy; aporlaoferta, 2016</p>
 </footer>
-<%@include file="footer/cookie.jsp" %>
+
 </body>
 </html>
