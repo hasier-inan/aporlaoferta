@@ -56,10 +56,17 @@ public class AccountController {
         return "forward:/resources/images/favicon.ico";
     }
 
-    @RequestMapping(value = {"/tc**"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/tc"}, method = RequestMethod.GET)
     public ModelAndView termsAndConditions() {
         ModelAndView tc = new ModelAndView();
         tc.setViewName("termsAndConditions");
+        return tc;
+    }
+
+    @RequestMapping(value = {"/cp"}, method = RequestMethod.GET)
+    public ModelAndView cookiePolicies() {
+        ModelAndView tc = new ModelAndView();
+        tc.setViewName("cookieTerms");
         return tc;
     }
 
