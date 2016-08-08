@@ -115,6 +115,26 @@ input[type="checkbox"]:checked + label.overheadLabel:before, input[type="radio"]
     display: inline-block;
 }
 
+.main-slogan{
+    font-size: 0.75em;
+    height: 100%;
+    margin-bottom: 2em;
+}
+
+.main-slogan p{
+    line-height: 0 !important;
+}
+.main-slogan p:last-child{
+    margin-top: -0.5em !important;
+}
+
+@media screen and (max-width: 738px) and (min-width: 481px){
+    .main-slogan{
+        font-size: 1em;
+        margin-left: 2em;
+    }
+}
+
 @media screen and (max-width: 980px) and (orientation: portrait) {
     .mainLogo {
         background-size: 80%;

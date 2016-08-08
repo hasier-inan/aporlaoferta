@@ -1,19 +1,20 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="terms-and-conditions">
     <h1>1. DATOS IDENTIFICATIVOS</h1>
 
-    <p>En cumplimiento con el deber de informaci&oacute;n recogido en art&iacute;culo 10 de la Ley 34/2002, de 11 de
+    <p>En cumplimiento con el deber de información recogido en artículo 10 de la Ley 34/2002, de 11 de
         julio, de
-        Servicios de la Sociedad de la Informaci&oacute;n y del Comercio Electr&oacute;nico, a continuaci&oacute;n se
+        Servicios de la Sociedad de la Información y del Comercio Electrónico, a continuación se
         reflejan los siguientes
-        datos: el titular de dominio web es aporlaoferta. Correo electr&oacute;nico de contacto: aporlaoferta@gmail.com del sitio web.
+        datos: el titular de dominio web es aporlaoferta. Correo electrónico de contacto: aporlaoferta@gmail.com del sitio web.
     </p>
 
     <h1>2. USUARIOS</h1>
 
-    <p>El acceso y/o uso de este portal de aporlaoferta atribuye la condici&oacute;n de USUARIO, que acepta, desde dicho acceso
+    <p>El acceso y/o uso de este portal de aporlaoferta atribuye la condición de USUARIO, que acepta, desde dicho acceso
         y/o
-        uso, las Condiciones Generales de Uso aqu&iacute; reflejadas. Las citadas Condiciones ser&aacute;n de aplicaci&oacute;n
-        independientemente de las Condiciones Generales de Contrataci&oacute;n que en su caso resulten de obligado
+        uso, las Condiciones Generales de Uso aquí reflejadas. Las citadas Condiciones serán de aplicación
+        independientemente de las Condiciones Generales de Contratación que en su caso resulten de obligado
         cumplimiento.
     </p>
 
@@ -23,128 +24,128 @@
         contenidos”) en Internet pertenecientes a aporlaoferta o a sus licenciantes a los que el USUARIO pueda tener acceso. El
         USUARIO asume la responsabilidad del uso del portal. Dicha responsabilidad se extiende al registro que fuese
         necesario para acceder a determinados servicios o contenidos.
-        En dicho registro el USUARIO ser&aacute; responsable de aportar informaci&oacute;n veraz y l&iacute;cita. Como
+        En dicho registro el USUARIO será responsable de aportar información veraz y lícita. Como
         consecuencia de este
-        registro, al USUARIO se le puede proporcionar una contrase&ntilde;a de la que ser&aacute; responsable,
-        comprometi&aacute;ndose a hacer un uso diligente y confidencial de la misma. El USUARIO se compromete a hacer un
+        registro, al USUARIO se le puede proporcionar una contraseña de la que será responsable,
+        comprometiándose a hacer un uso diligente y confidencial de la misma. El USUARIO se compromete a hacer un
         uso
-        adecuado de los contenidos y servicios (como por ejemplo servicios de chat, foros de discusi&oacute;n o grupos
+        adecuado de los contenidos y servicios (como por ejemplo servicios de chat, foros de discusión o grupos
         de
-        noticias) que Nombre de la empresa creadora del sitio web ofrece a trav&eacute;s de su portal y con car&aacute;cter
-        enunciativo pero no limitativo, a no emplearlos para (i) incurrir en actividades il&iacute;citas, ilegales o
+        noticias) que Nombre de la empresa creadora del sitio web ofrece a través de su portal y con carácter
+        enunciativo pero no limitativo, a no emplearlos para (i) incurrir en actividades ilícitas, ilegales o
         contrarias
-        a la buena fe y al orden p&uacute;blico; (ii) difundir contenidos o propaganda de car&aacute;cter racista, xen&oacute;fobo,
-        pornogr&aacute;fico-ilegal, de apolog&iacute;a del terrorismo o atentatorio contra los derechos humanos; (iii)
-        provocar da&ntilde;os
-        en los sistemas f&iacute;sicos y l&oacute;gicos de Nombre de la empresa creadora del sitio web , de sus
+        a la buena fe y al orden público; (ii) difundir contenidos o propaganda de carácter racista, xenófobo,
+        pornográfico-ilegal, de apología del terrorismo o atentatorio contra los derechos humanos; (iii)
+        provocar daños
+        en los sistemas físicos y lógicos de Nombre de la empresa creadora del sitio web , de sus
         proveedores o de
-        terceras personas, introducir o difundir en la red virus inform&aacute;ticos o cualesquiera otros sistemas f&iacute;sicos
+        terceras personas, introducir o difundir en la red virus informáticos o cualesquiera otros sistemas físicos
         o
-        l&oacute;gicos que sean susceptibles de provocar los da&ntilde;os anteriormente mencionados; (iv) intentar
+        lógicos que sean susceptibles de provocar los daños anteriormente mencionados; (iv) intentar
         acceder y, en su
-        caso, utilizar las cuentas de correo electr&oacute;nico de otros usuarios y modificaro manipular sus mensajes.
+        caso, utilizar las cuentas de correo electrónico de otros usuarios y modificaro manipular sus mensajes.
         Nombre
         de la empresa creadora del sitio web se reserva el derecho de retirar todos aquellos comentarios y aportaciones
-        que vulneren el respeto a la dignidad de la persona, que sean discriminatorios, xen&oacute;fobos, racistas,
-        pornogr&aacute;ficos, que atenten contra la juventud o la infancia, el orden o la seguridad p&uacute;blica o
+        que vulneren el respeto a la dignidad de la persona, que sean discriminatorios, xenófobos, racistas,
+        pornográficos, que atenten contra la juventud o la infancia, el orden o la seguridad pública o
         que, a su juicio,
-        no resultaran adecuados para su publicaci&oacute;n. En cualquier caso, aporlaoferta no ser&aacute; responsable de las
+        no resultaran adecuados para su publicación. En cualquier caso, aporlaoferta no será responsable de las
         opiniones
-        vertidas por los usuarios a trav&eacute;s de los foros, chats, u otras herramientas de participaci&oacute;n.
+        vertidas por los usuarios a través de los foros, chats, u otras herramientas de participación.
     </p>
 
-    <h1>4. PROTECCI&Oacute;N DE DATOS</h1>
+    <h1>4. PROTECCIóN DE DATOS</h1>
 
-    <p>aporlaoferta cumple con las directrices de la Ley Org&aacute;nica 15/1999 de 13 de diciembre de Protecci&oacute;n de
-        Datos de Car&aacute;cter
+    <p>aporlaoferta cumple con las directrices de la Ley Orgánica 15/1999 de 13 de diciembre de Protección de
+        Datos de Carácter
         Personal, el Real Decreto 1720/2007 de 21 de diciembre por el que se aprueba el Reglamento de desarrollo de la
-        Ley Org&aacute;nica y dem&aacute;s normativa vigente en cada momento, y vela por garantizar un correcto uso y
+        Ley Orgánica y demás normativa vigente en cada momento, y vela por garantizar un correcto uso y
         tratamiento de
-        los datos personales del usuario. Para ello, junto a cada formulario de recabo de datos de car&aacute;cter
+        los datos personales del usuario. Para ello, junto a cada formulario de recabo de datos de carácter
         personal, en
-        los servicios que el usuario pueda solicitar a admin@aporlaoferta.com, har&aacute; saber al usuario de la existencia y aceptaci&oacute;n
+        los servicios que el usuario pueda solicitar a admin@aporlaoferta.com, hará saber al usuario de la existencia y aceptación
         de las
-        condiciones particulares del tratamiento de sus datos en cada caso, inform&aacute;ndole de la responsabilidad
+        condiciones particulares del tratamiento de sus datos en cada caso, informándole de la responsabilidad
         del
-        fichero creado, la direcci&oacute;n del responsable, la posibilidad de ejercer sus derechos de acceso,
-        rectificaci&oacute;n,
-        cancelaci&oacute;n u oposici&oacute;n, la finalidad del tratamiento y las comunicaciones de datos a terceros en
+        fichero creado, la dirección del responsable, la posibilidad de ejercer sus derechos de acceso,
+        rectificación,
+        cancelación u oposición, la finalidad del tratamiento y las comunicaciones de datos a terceros en
         su caso.
     </p>
 
     <p>Asimismo, aporlaoferta informa que da cumplimiento a la Ley 34/2002 de 11 de julio, de Servicios de la Sociedad de la
-        Informaci&oacute;n y el Comercio Electr&oacute;nico y le solicitar&aacute; su consentimiento al tratamiento de
-        su correo electr&oacute;nico
+        Información y el Comercio Electrónico y le solicitará su consentimiento al tratamiento de
+        su correo electrónico
         con fines comerciales en cada momento.
     </p>
 
     <h1>5. PROPIEDAD INTELECTUAL E INDUSTRIAL</h1>
 
-    <p>aporlaoferta por s&iacute; o como cesionaria, es titular de todos los derechos de propiedad intelectual e industrial
+    <p>aporlaoferta por sí o como cesionaria, es titular de todos los derechos de propiedad intelectual e industrial
         desu
-        p&aacute;gina web, as&iacute; como de los elementos contenidos en la misma (a t&iacute;tulo enunciativo, im&aacute;genes,
+        página web, así como de los elementos contenidos en la misma (a título enunciativo, imágenes,
         sonido, audio,
-        v&iacute;deo, software o textos; marcas o logotipos, combinaciones de colores, estructura y dise&ntilde;o,
-        selecci&oacute;n de
+        vídeo, software o textos; marcas o logotipos, combinaciones de colores, estructura y diseño,
+        selección de
         materiales usados, programas de ordenador necesarios para su funcionamiento, acceso y uso, etc.), titularidad de
         aporlaoferta o bien de sus licenciantes.
     </p>
 
-    <p>Todos los derechos reservados. En virtud de lo dispuesto en los art&iacute;culos 8 y 32.1, p&aacute;rrafo
+    <p>Todos los derechos reservados. En virtud de lo dispuesto en los artículos 8 y 32.1, párrafo
         segundo, de la Ley de
-        Propiedad Intelectual, quedan expresamente prohibidas la reproducci&oacute;n, la distribuci&oacute;n y la
-        comunicaci&oacute;n
-        p&uacute;blica, incluida su modalidad de puesta a disposici&oacute;n, de la totalidad o parte de los contenidos
-        de esta p&aacute;gina
-        web, con fines comerciales, en cualquier soporte y por cualquier medio t&eacute;cnico, sin la autorizaci&oacute;n
+        Propiedad Intelectual, quedan expresamente prohibidas la reproducción, la distribución y la
+        comunicación
+        pública, incluida su modalidad de puesta a disposición, de la totalidad o parte de los contenidos
+        de esta página
+        web, con fines comerciales, en cualquier soporte y por cualquier medio técnico, sin la autorización
         de aporlaoferta. El
-        USUARIO se compromete a respetar los derechos de Propiedad Intelectual e Industrial titularidad de aporlaoferta. Podr&aacute;
+        USUARIO se compromete a respetar los derechos de Propiedad Intelectual e Industrial titularidad de aporlaoferta. Podrá
         visualizar los elementos del portal e incluso imprimirlos, copiarlos y almacenarlos en el disco duro de su
-        ordenador o en cualquier otro soporte f&iacute;sico siempre y cuando sea, &uacute;nica y exclusivamente, para su
+        ordenador o en cualquier otro soporte físico siempre y cuando sea, única y exclusivamente, para su
         uso personal
-        y privado. El USUARIO deber&aacute; abstenerse de suprimir, alterar, eludir o manipular cualquier dispositivo de
-        protecci&oacute;n o sistema de seguridad que estuviera instalado en el las p&aacute;ginas de aporlaoferta.
+        y privado. El USUARIO deberá abstenerse de suprimir, alterar, eludir o manipular cualquier dispositivo de
+        protección o sistema de seguridad que estuviera instalado en el las páginas de aporlaoferta.
     </p>
 
-    <h1>6. EXCLUSI&Oacute;N DE GARANT&Iacute;AS Y RESPONSABILIDAD</h1>
+    <h1>6. EXCLUSIóN DE GARANTíAS Y RESPONSABILIDAD</h1>
 
-    <p>aporlaoferta no se hace responsable, en ning&uacute;n caso, de los da&ntilde;os y perjuicios de cualquier naturaleza que
+    <p>aporlaoferta no se hace responsable, en ningún caso, de los daños y perjuicios de cualquier naturaleza que
         pudieran
-        ocasionar, a t&iacute;tulo enunciativo: errores u omisiones en los contenidos, falta de disponibilidad del
+        ocasionar, a título enunciativo: errores u omisiones en los contenidos, falta de disponibilidad del
         portal o la
-        transmisi&oacute;n de virus o programas maliciosos o lesivos en los contenidos, a pesar de haber adoptado todas
+        transmisión de virus o programas maliciosos o lesivos en los contenidos, a pesar de haber adoptado todas
         las
-        medidas tecnol&oacute;gicas necesarias para evitarlo.
+        medidas tecnológicas necesarias para evitarlo.
     </p>
 
     <h1>7. MODIFICACIONES</h1>
 
     <p>aporlaoferta se reserva el derecho de efectuar sin previo aviso las modificaciones que considere oportunas en su portal,
-        pudiendocambiar, suprimir o a&ntilde;adir tanto los contenidos y servicios que se presten a trav&eacute;s de la
+        pudiendocambiar, suprimir o añadir tanto los contenidos y servicios que se presten a través de la
         misma como la
-        forma en la que &eacute;stos aparezcan presentados o localizados en su portal.
+        forma en la que éstos aparezcan presentados o localizados en su portal.
     </p>
 
     <h1>8. ENLACES</h1>
 
-    <p>En el caso de que en www.aporlaoferta.com se dispusiesen enlaces o hiperv&iacute;nculos hac&iacute;a otros sitios de Internet,
+    <p>En el caso de que en www.aporlaoferta.com se dispusiesen enlaces o hipervínculos hacía otros sitios de Internet,
         aporlaoferta no
-        ejercer&aacute; ning&uacute;n tipo de control sobre dichos sitios y contenidos. En ning&uacute;n caso
-        aporlaoferta asumir&aacute; responsabilidad alguna por los contenidos de alg&uacute;n enlace perteneciente a un sitio
+        ejercerá ningún tipo de control sobre dichos sitios y contenidos. En ningún caso
+        aporlaoferta asumirá responsabilidad alguna por los contenidos de algún enlace perteneciente a un sitio
         web ajeno, ni
-        garantizar&aacute; la disponibilidad t&eacute;cnica, calidad, fiabilidad, exactitud, amplitud, veracidad,
+        garantizará la disponibilidad técnica, calidad, fiabilidad, exactitud, amplitud, veracidad,
         validez y
-        constitucionalidad de cualquier material o informaci&oacute;n contenida en ninguno de dichos hiperv&iacute;nculos
+        constitucionalidad de cualquier material o información contenida en ninguno de dichos hipervínculos
         u otros
         sitios de Internet.
     </p>
 
-    <p>Igualmente la inclusi&oacute;n de estas conexiones externas no implicar&aacute; ning&uacute;n tipo de asociaci&oacute;n,
-        fusi&oacute;n o
-        participaci&oacute;n con las entidades conectadas.
+    <p>Igualmente la inclusión de estas conexiones externas no implicará ningún tipo de asociación,
+        fusión o
+        participación con las entidades conectadas.
     </p>
 
-    <h1>9. DERECHO DE EXCLUSI&Oacute;N</h1>
+    <h1>9. DERECHO DE EXCLUSIóN</h1>
 
     <p>aporlaoferta se reserva el derecho a denegar o retirar el acceso a portal y/o los servicios ofrecidos sin necesidad de
         preaviso, a instancia propia o de un tercero, a aquellos usuarios que incumplan las presentes Condiciones
@@ -153,30 +154,30 @@
 
     <h1>10.GENERALIDADES</h1>
 
-    <p>aporlaoferta perseguir&aacute; el incumplimiento de las presentes condiciones as&iacute; como cualquier utilizaci&oacute;n
+    <p>aporlaoferta perseguirá el incumplimiento de las presentes condiciones así como cualquier utilización
         indebida de su
         portal ejerciendo todas las acciones civiles y penales que le puedan corresponder en derecho.
     </p>
 
-    <h1>11.MODIFICACI&Oacute;N DE LAS PRESENTES CONDICIONES Y DURACI&oacute;N</h1>
+    <h1>11.MODIFICACIóN DE LAS PRESENTES CONDICIONES Y DURACIóN</h1>
 
-    <p>aporlaoferta podr&aacute; modificar en cualquier momento las condiciones aqu&iacute; determinadas, siendo debidamente
+    <p>aporlaoferta podrá modificar en cualquier momento las condiciones aquí determinadas, siendo debidamente
         publicadas como
-        aqu&iacute; aparecen.
+        aquí aparecen.
     </p>
 
-    <p>La vigencia de las citadas condiciones ir&aacute; en funci&oacute;n de su exposici&oacute;n y estar&aacute;n
+    <p>La vigencia de las citadas condiciones irá en función de su exposición y estarán
         vigentes hasta debidamente
         publicadas. que sean modificadas por otras.
     </p>
 
-    <h1>12. LEGISLACI&Oacute;N APLICABLE Y JURIDISCCI&Oacute;N</h1>
+    <h1>12. LEGISLACIóN APLICABLE Y JURIDISCCIóN</h1>
 
-    <p>La relaci&oacute;n entre aporlaoferta y el USUARIO se regir&aacute; por la normativa espa&ntilde;ola vigente y cualquier
+    <p>La relación entre aporlaoferta y el USUARIO se regirá por la normativa española vigente y cualquier
         controversia se
-        someter&aacute; a los Juzgados y tribunales de la ciudad de San Sebasti&aacute;n.
+        someterá a los Juzgados y tribunales de la ciudad de San Sebastián.
     </p>
 
     <p>Aviso Legal redactado siguiendo el: <a href="http://onelifemanydreams.com/?p=154">Modelo de Aviso Legal web de
-        Espa&ntilde;a</a></p>
+        España</a></p>
 </div>

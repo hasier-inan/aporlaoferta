@@ -13,7 +13,6 @@
 <!-- custom dropdown from https://github.com/jseppi/angular-dropdowns -->
 <html data-ng-app="aPorLaOferta" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>aporlaoferta ~ ofertas y promociones online </title>
     <%@include file="head/meta.jsp" %>
     <sec:csrfMetaTags/>
     <link rel="shortcut icon"
