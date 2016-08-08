@@ -9,7 +9,6 @@
 <!-- icons and logos by font awesome http://fortawesome.github.io/ -->
 <html data-ng-app="aPorLaOferta" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>aporlaoferta ~ ofertas y promociones online </title>
     <%@include file="head/meta.jsp" %>
     <sec:csrfMetaTags/>
     <link rel="shortcut icon"
@@ -20,23 +19,13 @@
 
 <div ng-overhead-display="overheadDisplay" no-accounts="true" overhead-visible="overheadVisible"></div>
 
-<header id="header" class="top-header">
-    <div class="content only-page">
-        <h1 class="only-page">
-            <em>aporlaoferta</em>
-        </h1>
-
-        <div class="mainLogo only-page">
-        </div>
-        <p>Ofertas y promociones online</p>
-    </div>
-</header>
-
+<%@include file="head/logo.jsp" %>
 <div ng-redirect-components="ngRedirectComponents"></div>
 
 <footer id="footer" class="forgotten_footer">
     <%@include file="footer/social.jsp" %>
     <span class="copyright">&copy; aporlaoferta, 2016</span>
+    <span class="copyright"><a href="tc">condiciones legales</a></span>
 </footer>
 
 </body>
