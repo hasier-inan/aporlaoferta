@@ -6,8 +6,8 @@ aporlaofertaApp
         return {
             restrict: 'A',
             templateUrl: 'resources/js/offer/offer-list/promotionList.html',
-            controller: ['$scope', 'offerManager',
-                function ($scope, offerManager) {
+            controller: ['$scope', '$rootScope', 'offerManager',
+                function ($scope, $rootScope, offerManager) {
                     $scope.shareUrl = "www.aporlaoferta.com";
                     $scope.shareText = $("meta[property='og:description']").attr("content");
                     $scope.defaultList = "";
@@ -25,6 +25,10 @@ aporlaofertaApp
                     $scope.requestHottestOffers = function () {
                         offerManager.requestHottestOffers($scope.appliedOfferFilters);
                         $scope.defaultList = 'hottestOffers';
+                    }
+
+                    $scope.displayTutorial = function () {
+                        $rootScope.$broadcast('displayTutorial');
                     }
                 }]
         }
