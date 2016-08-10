@@ -76,6 +76,7 @@
 <script src="resources/js/response/ngResponseFromServer.js"></script>
 <script src="resources/js/response/alertService.js"></script>
 <script src="resources/js/offer/offer-list/offerManagerService.js"></script>
+<link rel="stylesheet" href="resources/assets/css/promotion-list.css">
 <link rel="stylesheet" href="resources/js/uploader/imageUpload.css"/>
 <!--social media-->
 <script src="resources/js/social/ngSocialMediaDirective.js"></script>

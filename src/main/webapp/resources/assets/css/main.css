@@ -3034,7 +3034,7 @@ ul.actions.fit.small li {
 
     ul.actions li > * {
         width: 100%;
-        margin: 0 !important;
+        margin: 0;
     }
 
     ul.actions li > *.icon:before {
@@ -3440,27 +3440,27 @@ table.alt tbody tr td {
 }
 
 .wrapper.style1 ::-webkit-input-placeholder {
-    color: #b5d5f4 !important;
+    color: #ffffff !important;
 }
 
 .wrapper.style1 :-moz-placeholder {
-    color: #b5d5f4 !important;
+    color: #ffffff !important;
 }
 
 .wrapper.style1 ::-moz-placeholder {
-    color: #b5d5f4 !important;
+    color: #ffffff !important;
 }
 
 .wrapper.style1 :-ms-input-placeholder {
-    color: #b5d5f4 !important;
+    color: #ffffff !important;
 }
 
 .wrapper.style1 .formerize-placeholder {
-    color: #b5d5f4 !important;
+    color: #ffffff !important;
 }
 
 .wrapper.style1 .icon {
-    color: #b5d5f4;
+    color: #ffffff;
 }
 
 .wrapper.style1 .image {
@@ -4061,7 +4061,7 @@ table.alt tbody tr td {
 #header button,
 #header .button {
     background-color: transparent;
-    color: #ffffff !important;
+    color: #ffffff;
     box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.25);
 }
 
@@ -4143,27 +4143,27 @@ table.alt tbody tr td {
 }
 
 #header ::-webkit-input-placeholder {
-    color: #b5d5f4 !important;
+    color: #ffffff !important;
 }
 
 #header :-moz-placeholder {
-    color: #b5d5f4 !important;
+    color: #ffffff !important;
 }
 
 #header ::-moz-placeholder {
-    color: #b5d5f4 !important;
+    color: #ffffff !important;
 }
 
 #header :-ms-input-placeholder {
-    color: #b5d5f4 !important;
+    color: #ffffff !important;
 }
 
 #header .formerize-placeholder {
-    color: #b5d5f4 !important;
+    color: #ffffff !important;
 }
 
 #header .icon {
-    color: #b5d5f4;
+    color: #ffffff;
 }
 
 #header .image {

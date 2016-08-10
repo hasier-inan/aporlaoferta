@@ -94,19 +94,25 @@ aporlaofertaApp
                         }
 
                     });
+
                     $scope.$on('updateTheOffer', function (event, args) {
                         $scope.offerSpecifications = [args];
                         $scope.customCloseCallback = function () {
                             $scope.displayOfferDetails();
                         }
                         $scope.displayOfferUpdate();
-
                     });
+
                     $scope.$on('serverResponse', function (event, args) {
                         $scope.theResponse = args;
                         $scope.displayServerResponse();
 
                     });
+
+                    $scope.$on('displayTutorial', function () {
+                        $scope.displayTutorialDiagram();
+                    });
+
                     $scope.$on('keydownControl', function (event, args) {
                         var keyDownCode = args;
                         if (keyDownCode == 27) {
@@ -133,19 +139,11 @@ aporlaofertaApp
                         }
                     };
 
-                    $scope.verifyTutorial=function(){
-                        console.log($cookies.getAll());
-                        if(!$cookies.get('aporlaoferta-tut')){
-                            $scope.displayTutorialDiagram();
-                        }
-                    }
-
                     $scope.setDefaultVisibility();
                     $scope.checkForErrors();
 
                     $timeout(function () {
                         angular.element($('#overheadSubContainer')).removeClass('hiddencontainer');
-//                        $scope.verifyTutorial();
                     }, 100);
                 }]
         }
