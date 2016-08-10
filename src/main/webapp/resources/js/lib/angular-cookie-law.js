@@ -6,7 +6,7 @@
 angular.module('angular-cookie-law', []);
 angular.module('angular-cookie-law')
 
-    .value('cookieLawName', '_cle')
+    .value('cookieLawName', 'aporlaoferta_cle')
     .value('cookieLawAccepted', 'accepted')
     .value('cookieLawDeclined', 'declined');
 angular.module('angular-cookie-law')

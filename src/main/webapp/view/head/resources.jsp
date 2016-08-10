@@ -40,6 +40,7 @@
 <script src="resources/js/lib/angular-aria.min.js"></script>
 <script src="resources/js/lib/angular-messages.min.js"></script>
 <script src="resources/js/lib/angular-cookie-law.js"></script>
+<script src="resources/js/lib/angular-cookies.js"></script>
 <link rel="stylesheet" href="resources/assets/css/angular-cookie-law.css">
 <script src="resources/js/lib/angular-material.js"></script>
 <script src="resources/js/lib/truncate.js"></script>
@@ -60,6 +61,7 @@
 <script src="resources/js/offer/offer-list/ngOfferListDirective.js"></script>
 <script src="resources/js/offer/offer-list/ngPromotionListDirective.js"></script>
 <script src="resources/js/offer/offer-specifications/ngOfferSpecifications.js"></script>
+<script src="resources/js/header-display/ngQuickTutorial.js"></script>
 <script src="resources/js/offer/offer-specifications/offer-comments/ngOfferComments.js"></script>
 <script src="resources/js/offer/offer-specifications/offer-comments/ngOfferCommentsQuotes.js"></script>
 <script src="resources/js/offer/offer-creation/ngOfferCreationDirective.js"></script>
@@ -69,6 +71,7 @@
 <script src="resources/js/offer/offer-filter/ngOfferFilterDirective.js"></script>
 <script src="resources/js/header-display/ngHeadDisplayDirective.js"></script>
 <script src="resources/js/header-display/ngHeadAccountAndOfferManagementDirective.js"></script>
+<script src="resources/js/header-display/ngMainSlogan.js"></script>
 <script src="resources/js/uploader/ngImageUploadDirective.js"></script>
 <script src="resources/js/response/ngResponseFromServer.js"></script>
 <script src="resources/js/response/alertService.js"></script>

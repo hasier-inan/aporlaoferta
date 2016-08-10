@@ -20,6 +20,8 @@ configManager.service('configService', [function () {
     var GET_FILTERED_ENDPOINT = "getFilteredOffers";
     var REQUEST_PASSWORD_UPDATE = "forgottenPassword";
     var REQUEST_PASSWORD = "requestForgottenPassword";
+    var TUTORIAL_COOKIE = "aporlaoferta-tut";
+    var LAW_COOKIE = "aporlaoferta-cle";
     var IMAGE_MAX_SIZE = 2000;
     configService.getEndpoint = function (key) {
         return configMap[key];
@@ -43,7 +45,9 @@ configManager.service('configService', [function () {
         'get.filtered.offers': GET_FILTERED_ENDPOINT,
         'password.forgotten': REQUEST_PASSWORD_UPDATE,
         'password.forgotten.request': REQUEST_PASSWORD,
-        'max.image.size': IMAGE_MAX_SIZE
+        'max.image.size': IMAGE_MAX_SIZE,
+        'tutorial.cookie':TUTORIAL_COOKIE,
+        'law.cookie':LAW_COOKIE
     };
     return configService;
 }]);
