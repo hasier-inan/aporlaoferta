@@ -103,6 +103,10 @@ aporlaofertaApp
                         $scope.displayOfferUpdate();
                     });
 
+                    $scope.$on('closeResponse', function () {
+                        $scope.setDefaultVisibility();
+                    });
+
                     $scope.$on('serverResponse', function (event, args) {
                         $scope.theResponse = args;
                         $scope.displayServerResponse();
@@ -144,6 +148,8 @@ aporlaofertaApp
 
                     $timeout(function () {
                         angular.element($('#overheadSubContainer')).removeClass('hiddencontainer');
+                        //TODO: remove
+                        $scope.displayTutorialDiagram();
                     }, 100);
                 }]
         }

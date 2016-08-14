@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="resources/assets/css/social-media.css"/>
 <link rel="stylesheet" href="resources/assets/css/bootstrap.min.css"/>
 <link rel="stylesheet" href="resources/assets/css/main_animator.css"/>
+<link rel="stylesheet" href="resources/assets/css/tutorial.css"/>
 <link rel="stylesheet" href="resources/js/offer/offer-specifications/offerSpecifications.css"/>
 <script src="resources/assets/js/jquery.min.js"></script>
 <script src="resources/assets/js/jquery.scrolly.min.js"></script>
@@ -48,6 +49,10 @@
 <!-- angular dropdown-->
 <script src="resources/js/lib/angular-dropdowns.js"></script>
 <link rel="stylesheet" href="resources/assets/css/angular-dropdowns-custom.css">
+<!-- angular slick-->
+<script src="resources/js/lib/slick.js"></script>
+<script src="resources/js/lib/angular-slick.js"></script>
+<link rel="stylesheet" href="resources/assets/css/slick.css">
 <!--modules-->
 <script src="resources/assets/js/main.js"></script>
 <script src="resources/js/main-controller/mainController.js"></script>
@@ -61,7 +66,7 @@
 <script src="resources/js/offer/offer-list/ngOfferListDirective.js"></script>
 <script src="resources/js/offer/offer-list/ngPromotionListDirective.js"></script>
 <script src="resources/js/offer/offer-specifications/ngOfferSpecifications.js"></script>
-<script src="resources/js/header-display/ngQuickTutorial.js"></script>
+<script src="resources/js/header-display/tutorial/ngQuickTutorial.js"></script>
 <script src="resources/js/footer/ngFooterDirective.js"></script>
 <script src="resources/js/offer/offer-specifications/offer-comments/ngOfferComments.js"></script>
 <script src="resources/js/offer/offer-specifications/offer-comments/ngOfferCommentsQuotes.js"></script>
