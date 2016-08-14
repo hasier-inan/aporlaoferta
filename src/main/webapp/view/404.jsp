@@ -23,9 +23,7 @@
 <div ng-redirect-components="ngRedirectComponents"></div>
 
 <footer id="footer" class="forgotten_footer">
-    <%@include file="footer/social.jsp" %>
-    <span class="copyright">&copy; aporlaoferta, 2016</span>
-    <span class="copyright"><a href="tc">condiciones legales</a></span>
+    <div ng-footer="footer"/>
 </footer>
 
 </body>

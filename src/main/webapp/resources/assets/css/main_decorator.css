@@ -105,6 +105,20 @@ input[type="checkbox"]:checked + label.overheadLabel:before, input[type="radio"]
     color: #f38630;
 }
 
+.only-page .main-slogan{
+    text-align: right;
+    font-size: 12px;
+    width: 200px;
+    top: 5em;
+    left: -17em;
+    position: absolute;
+}
+
+.only-page .main-slogan > p{
+    font-size: 100% !important;
+    line-height: 100% !important;
+}
+
 .mainLogo {
     background: url("images/logoright200.png"), url("images/pattern-size1.svg") center;
     background-size: 90%;
@@ -114,6 +128,8 @@ input[type="checkbox"]:checked + label.overheadLabel:before, input[type="radio"]
     position: absolute;
     display: inline-block;
 }
+
+
 
 .main-slogan{
     font-size: 0.75em;
@@ -142,11 +158,22 @@ input[type="checkbox"]:checked + label.overheadLabel:before, input[type="radio"]
         font-size: 1em;
         margin-left: 2em;
     }
+
+    .only-page .main-slogan{
+        left: -19em;
+    }
 }
 
-@media screen and (max-width: 980px) and (orientation: portrait) {
+@media screen and (max-width: 980px) {
     .mainLogo {
         background-size: 80%;
+    }
+    .only-page .main-slogan{
+        left: -17em;
+    }
+
+    .only-page .main-slogan > p:first-child{
+        margin-top: -2.5em !important;
     }
 }
 
