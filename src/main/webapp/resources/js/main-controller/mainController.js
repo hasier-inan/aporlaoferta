@@ -16,7 +16,8 @@ aporlaofertaApp = angular.module('aPorLaOferta', [
     'ngDropdowns',
     'truncate',
     'angular-cookie-law',
-    'ngCookies'
+    'ngCookies',
+    'slick'
 ]);
 
 //main controller
