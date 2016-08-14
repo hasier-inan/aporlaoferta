@@ -24,9 +24,7 @@
 <div ng-password-forgotten="ngPasswordForgotten" nick="'${nick}'" uuid="'${uuid}'" custom-close-callback="customCloseCallback"></div>
 
 <footer id="footer" class="forgotten_footer">
-    <%@include file="footer/social.jsp" %>
-    <p class="copyright">&copy; aporlaoferta, 2016</p>
-    <span class="copyright"><a href="tc">condiciones legales</a></span>
+    <div ng-footer="footer"/>
 </footer>
 
 </body>

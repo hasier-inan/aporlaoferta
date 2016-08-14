@@ -32,9 +32,7 @@
 
 <!-- Footer -->
 <footer id="footer" >
-    <%@include file="footer/social.jsp" %>
-    <span class="copyright">&copy; aporlaoferta, 2016</span>
-    <span class="copyright"><a href="tc">condiciones legales</a></span>
+    <div ng-footer="footer"/>
 </footer>
 <%@include file="footer/cookie.jsp" %>
 </body>

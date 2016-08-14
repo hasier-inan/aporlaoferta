@@ -24,8 +24,7 @@
 <%@include file="terms/cookie-policy.jsp" %>
 
 <footer id="footer">
-    <%@include file="footer/social.jsp" %>
-    <p class="copyright">&copy; aporlaoferta, 2016</p>
+    <div ng-footer="footer"/>
 </footer>
 
 </body>
