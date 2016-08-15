@@ -21,11 +21,11 @@ aporlaofertaApp = angular.module('aPorLaOferta', [
 ]);
 
 //main controller
-aporlaofertaApp.controller('APorLaOfertaController', function ($scope, $rootScope) {
+aporlaofertaApp.controller('APorLaOfertaController', ['$scope', '$rootScope', function ($scope, $rootScope) {
     $scope.keyHandler = function ($event) {
         $rootScope.$broadcast('keydownControl', $event.keyCode);
     };
-});
+}]);
 
 aporlaofertaApp.directive('ngConfirmClick', [
     function () {

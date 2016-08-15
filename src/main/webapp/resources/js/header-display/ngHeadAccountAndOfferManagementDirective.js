@@ -2,7 +2,7 @@
  * Created by hasiermetal on 19/06/16.
  */
 aporlaofertaApp
-    .directive('ngHeadAccountAndOfferManagement', function ($window,$anchorScroll) {
+    .directive('ngHeadAccountAndOfferManagement', ['$window', '$anchorScroll', function ($window, $anchorScroll) {
         return {
             restrict: 'A',
             templateUrl: 'resources/js/header-display/headAccountAndOfferManagement.jsp',
@@ -18,9 +18,9 @@ aporlaofertaApp
                     $scope.scrollPosition = this.pageYOffset <= 50;
                     $scope.$apply();
                 });
-                $scope.toTheTop=function(){
+                $scope.toTheTop = function () {
                     $anchorScroll();
                 }
             }
         }
-    });
+    }]);
