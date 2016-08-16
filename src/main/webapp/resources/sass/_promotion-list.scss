@@ -1,0 +1,20 @@
+button.tutorial-info {
+  padding: 0 !important;
+  width: 40px;
+}
+
+button.tutorial-info:hover {
+  color: #69d2e7 !important;
+}
+
+button.tutorial-info::before {
+  margin: 0 !important;
+  font-size: 2em;
+}
+
+@media screen and (max-width: 480px) and (orientation: portrait) {
+  button.tutorial-info {
+    width: 40px !important;
+    margin-top: 2em !important;
+  }
+}

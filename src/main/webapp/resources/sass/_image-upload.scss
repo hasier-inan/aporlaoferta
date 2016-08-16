@@ -1,0 +1,46 @@
+div.thumbnail > img {
+  display: inline-block;
+  max-height: 100%;
+  padding-right: 5px;
+  vertical-align: middle;
+  width: 100%;
+}
+
+span.helper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+div.imageUploaderContent {
+  border: 1px solid #e6e6e6;
+  border-radius: .5em;
+  color: #fff;
+  display: inline-block;
+  margin-bottom: 1em;
+  margin-left: 1em;
+}
+
+div.imageUploaderContent div.thumbnail {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: .50em solid #fa6900;
+  border-style: dashed;
+  display: inline-block;
+  height: 10em;
+  margin: .5em;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 10em;
+}
+
+div.thumbnailButtons > .small {
+  height: 2em;
+  line-height: 2em;
+  margin: .5em
+}
+
+div.thumbnailButtons > .mini {
+  line-height: 2em;
+  margin-bottom: .5em;
+  padding-left: .6em;
+}

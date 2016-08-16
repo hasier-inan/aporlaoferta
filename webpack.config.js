@@ -1,4 +1,6 @@
-var webpack = require('webpack');
+const webpack = require('webpack');
+const autoPrefixer = require('autoprefixer');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
     entry: [
@@ -32,11 +34,26 @@ module.exports = {
         './src/main/webapp/resources/js/social/ngSocialMediaDirective.js',
         './src/main/webapp/resources/js/error/ngRedirectComponents.js',
         './src/main/webapp/resources/js/account/password-forgotten/ngPasswordForgottenDirective.js',
-        './src/main/webapp/resources/js/analytics/loader.js'
+        './src/main/webapp/resources/sass/loader.js'
     ],
     output: {
         path: 'src/main/webapp/resources/assets/js',
         filename: "bundle.js"
+    },
+    devtool: 'source-map',
+    module: {
+        loaders: [
+            {
+                test: /\.scss$/,
+                exclude: /node_modules/,
+                loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader!sass-loader")
+            },
+            {
+                test: /\.(jpg|jpeg|gif|png|woff|woff2|eot|ttf|svg)$/,
+                exclude: /node_modules/,
+                loader: 'url-loader?limit=1024&name=../css/images/[name].[ext]'
+            }
+        ]
     },
     plugins: [
         new webpack.optimize.UglifyJsPlugin({
@@ -44,6 +61,18 @@ module.exports = {
             compress: true,
             output: {
                 comments: false
-            }})
-    ]
+            }}),
+        new ExtractTextPlugin('../css/styles.css', {
+            allChunks: true
+        })
+    ],
+    postcss: [autoPrefixer({browsers: ['last 10 versions']})],
+    stats: {
+        colors: true
+    },
+    sassLoader: {
+        outputStyle: 'compressed',
+        includePaths: ['node_modules']
+    }
+
 };

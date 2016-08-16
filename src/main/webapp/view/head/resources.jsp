@@ -6,28 +6,12 @@
 <link rel="stylesheet" href="resources/assets/css/ie8.css"/><![endif]-->
 <!--[if lte IE 9]>
 <link rel="stylesheet" href="resources/assets/css/ie9.css"/><![endif]-->
-<link rel="stylesheet" href="resources/assets/css/main_decorator.css"/>
-<link rel="stylesheet" href="resources/assets/css/overhead.css"/>
-<link rel="stylesheet" href="resources/assets/css/top-header.css"/>
-<link rel="stylesheet" href="resources/assets/css/offer-list.css"/>
-<link rel="stylesheet" href="resources/assets/css/offer-filter.css"/>
-<link rel="stylesheet" href="resources/assets/css/server-response.css"/>
-<link rel="stylesheet" href="resources/assets/css/password-forgotten.css"/>
-<link rel="stylesheet" href="resources/assets/css/validation.css"/>
-<link rel="stylesheet" href="resources/assets/css/terms.css"/>
-<link rel="stylesheet" href="resources/assets/css/logout.css"/>
-<link rel="stylesheet" href="resources/assets/css/profile-dropdown.css"/>
-<link rel="stylesheet" href="resources/assets/css/social-media.css"/>
 <link rel="stylesheet" href="resources/assets/css/bootstrap.min.css"/>
-<link rel="stylesheet" href="resources/assets/css/main_animator.css"/>
-<link rel="stylesheet" href="resources/assets/css/tutorial.css"/>
 <link rel="stylesheet" href="resources/assets/css/angular-cookie-law.css">
 <link rel="stylesheet" href="resources/assets/css/angular-material-custom.css">
 <link rel="stylesheet" href="resources/assets/css/angular-dropdowns-custom.css">
 <link rel="stylesheet" href="resources/assets/css/slick.css">
-<link rel="stylesheet" href="resources/assets/css/promotion-list.css">
-<link rel="stylesheet" href="resources/assets/css/offerSpecifications.css"/>
-<link rel="stylesheet" href="resources/js/uploader/imageUpload.css"/>
+<link rel="stylesheet" href="resources/assets/css/styles.css"/>
 <script src="resources/assets/js/jquery.min.js"></script>
 <script src="resources/assets/js/jquery.scrolly.min.js"></script>
 <script src="resources/assets/js/skel.min.js"></script>
@@ -55,5 +39,7 @@
 <!-- angular slick-->
 <script src="resources/assets/js/slick.js"></script>
 <script src="resources/assets/js/angular-slick.js"></script>
+<!-- analytics-->
+<script src="resources/assets/js/analytics-loader.js"></script>
 <!--modules-->
 <script src="resources/assets/js/bundle.js"></script>
