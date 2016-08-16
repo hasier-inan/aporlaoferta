@@ -1,0 +1,218 @@
+form.centeredForm, div.centeredForm {
+  text-align: center;
+  margin: 0 auto;
+}
+
+div#password-forgotten-submit .mini {
+  box-shadow: inset 0 0 0 2px #e6e6e6;
+  text-align: center;
+  padding-left: 0.7em;
+}
+
+div.overhead_container {
+  top: 0;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 1001;
+  background-color: #000000;
+  opacity: 0.4;
+  -webkit-opacity: 0.4;
+  -moz-opacity: 0.4;
+  overflow: hidden;
+}
+
+div.overhead_subcontainer {
+  position: fixed;
+  width: 90%;
+  height: auto;
+  max-height: 90%;
+  min-height: 7em;
+  border: .3em solid #FFFFFF;
+  border-radius: 0em;
+  background-color: #f38630;
+  z-index: 1002;
+  left: 5%;
+  top: 5%;
+  background-image: url("images/background_head5.png"), url("images/pattern-size1.svg");
+  background-position: top left, center center;
+  background-size: auto, cover;
+  overflow-y: auto !important;
+  opacity: 1;
+  -webkit-opacity: 1;
+  -moz-opacity: 1;
+}
+
+div.overhead_subcontainer-fullscreen {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  min-height: 7em;
+  background-color: #f38630;
+  z-index: 1002;
+  left: 0%;
+  top: 0%;
+  background-image: url("images/background_head5.png"), url("images/pattern-size1.svg");
+  background-position: top left, center center;
+  background-size: auto, cover;
+  overflow-y: auto !important;
+  opacity: 1;
+  -webkit-opacity: 1;
+  -moz-opacity: 1;
+}
+
+div.overhead_subcontainer.userRelated {
+  background-image: url("images/background_usr5.png"), url("images/pattern-size1.svg");
+}
+
+div.overhead_subcontainer.offerRelated {
+  background-image: url("images/background_offer5.png"), url("images/pattern-size1.svg");
+}
+
+div.overhead_subcontainer.offer-specifications-background {
+  /*background-color: #51B1EC;*/
+}
+
+label.overheadLabel {
+  color: #FFFFFF !important;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.1em;
+  font-weight: normal;
+  margin: 0;
+  display: block;
+}
+
+div.profileForm > label.overheadLabel {
+  display: inline-block;
+}
+
+input.overheadField,
+textarea#createOfferDescription {
+  height: 40px;
+  color: #ffffff;
+  display: inline-block;
+  margin-bottom: 1em;
+}
+
+input.overheadField {
+  width: 12em;
+}
+
+input.overheadField:disabled {
+  background-color: rgba(0, 0, 0, .2) !important;
+  border-color: rgba(0, 0, 0, .2) !important;
+}
+
+textarea#createOfferDescription {
+  height: 10em;
+}
+
+ul.regular-bottom {
+  margin-bottom: 1em;
+}
+
+li.regular-100, textarea.regular-100 {
+  width: 100%;
+}
+
+li.regular-80 {
+  width: 80%;
+}
+
+li.regular-40 {
+  width: 40%;
+}
+
+li.regular-margin-1, ul.regular-margin-1 {
+  margin-top: 1em !important;
+}
+
+input.regular-60 {
+  width: 60% !important;
+}
+
+input.regular-40 {
+  width: 40% !important;
+}
+
+div.overheadField {
+  width: 12em;
+  height: 2em;
+  color: #ffffff;
+  display: inline-block;
+  background-color: transparent;
+}
+
+input.overheadField:focus {
+  width: 12em;
+}
+
+input.overheadField:focus,
+textarea#createOfferDescription:focus {
+  height: 40px;
+  color: #000000;
+  background-color: #ffffff;
+}
+
+textarea#createOfferDescription:focus {
+  height: 10em;
+}
+
+div#accountCreationContainer {
+  text-align: center;
+}
+
+button.close_button {
+  color: #ffffff !important;
+  position: absolute;
+  top: 1em;
+  right: 0;
+  margin: -2.5em 1em 0 0 !important;
+}
+
+button.close_button.mini,
+a.close_button.mini {
+  margin: -2.5em 1em 0 0 !important;
+}
+
+button.close_button.mini::before,
+a.close_button.mini::before {
+  margin-right: -5px;
+}
+
+button.write-comment.mini::before,
+a.write-comment.mini::before {
+  margin-left: 3px;
+}
+
+button.account-management.mini::before,
+a.account-management.mini::before {
+  margin-left: -1.3em !important;
+}
+
+.overheadButton.blue {
+  background-color: #43638e !important;
+}
+
+div .overheadButton {
+  background-color: #F35E1E;
+  color: #ffffff !important;
+  display: inline-block;
+}
+
+div .overheadButton.mini {
+  width: 3em;
+  border-radius: 100%;
+  margin: 0 !important;
+  padding: 0 0 0 .5em;
+  display: none;
+}
+
+input.overheadField::selection {
+  background: #f3630a;
+}
+
+input.overheadField::-moz-selection {
+  background: #f3630a;
+}

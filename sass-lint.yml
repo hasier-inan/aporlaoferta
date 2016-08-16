@@ -1,0 +1,14 @@
+options:
+  merge-default-rules: true
+  formatter: stylish
+files:
+  include: 'src/main/webapp/resources/sass/**/*.scss'
+
+rules:
+  nesting-depth:
+    - 0
+  class-name-format:
+    - 1
+    - convention: hyphenatedbem
+  placeholder-in-extend:
+    - 0

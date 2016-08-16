@@ -1,0 +1,44 @@
+.tutorial-check {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 480px) {
+  .tutorial-check > .mini.icon {
+    display: inline-block;
+  }
+
+  ul.slick-dots {
+    display: none !important;
+  }
+}
+
+.slick-disabled, .slick-disabled:hover {
+  background: rgba(255, 255, 255, .15) !important;
+}
+
+.tutorial-carousel {
+  margin-left: 10%;
+  margin-bottom: 5em;
+  max-width: 80%;
+}
+
+.tutorial-slide {
+  color: #ffffff;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.tutorial-slide-content {
+  margin-left: 5%;
+  max-width: 90%;
+}
+
+.tutorial-slide-content > .mainLogo {
+  width: .8em;
+}
+
+ul.slick-dots a {
+  border-bottom: 0;
+}
