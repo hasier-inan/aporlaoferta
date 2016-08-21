@@ -40,8 +40,8 @@
         </li>
     </ul>
 </div>
-<div id="overheadContainer" class="overhead_container " ng-show="overheadVisible" ng-keypress="keyHandler($event)"
-     ng-click="justCloseOverheadDisplay()"></div>
+<div id="overheadContainer" class="overhead_container " ng-show="overheadVisible" ng-keypress="keyHandler($event)">
+</div>
 
 <div ng-head-account-and-offer-management
      display-login="displayLogin"

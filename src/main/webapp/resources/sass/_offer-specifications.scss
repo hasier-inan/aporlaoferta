@@ -220,8 +220,7 @@ div.offerSpecificationsComments > div.commentsHeadTitle {
 }
 
 div.commentsTheComment {
-  /*border: solid 1px #fff;
-  border-radius: 1em;*/
+  border-bottom-right-radius: 6px;
   background-color: rgba(0, 0, 0, 0.3);
   min-height: 3em;
   padding: .5em 1em .5em 1em;
