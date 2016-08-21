@@ -121,8 +121,8 @@
     outline: none;
 }
 
-.slick-prev.slick-disabled:before, .slick-next.slick-disabled:before {
-    opacity: 0.25;
+.slick-prev.slick-disabled, .slick-next.slick-disabled{
+    opacity: 0;
 }
 
 .slick-prev:before, .slick-next:before {
@@ -201,4 +201,5 @@
 
 .slick-dots li.slick-active a:before {
     opacity: 0.75;
+    color: #69d2e7;
 }
