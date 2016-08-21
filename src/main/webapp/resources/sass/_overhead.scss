@@ -22,9 +22,17 @@ div.overhead_container {
   overflow: hidden;
 }
 
+.overhead_subcontainer--fixed{
+  width: 650px;
+  left: 50%;
+  margin-left: -325px;
+}
+
 div.overhead_subcontainer {
-  position: fixed;
   width: 90%;
+  left: 5%;
+  margin-left: 0;
+  position: fixed;
   height: auto;
   max-height: 90%;
   min-height: 7em;
@@ -33,7 +41,6 @@ div.overhead_subcontainer {
   box-shadow: inset 0 0 0 5px rgba(255, 255, 255, 0.25);
   background-color: #f38630;
   z-index: 1002;
-  left: 5%;
   top: 5%;
   background-image: url("images/background_head5.png"), url("images/pattern-size1.svg");
   background-position: top left, center center;
@@ -42,37 +49,90 @@ div.overhead_subcontainer {
   opacity: 1;
   -webkit-opacity: 1;
   -moz-opacity: 1;
+
+
+
+  &.overhead_subcontainer-fullscreen {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+  }
+
+  &.overhead_subcontainer.userRelated {
+    background-image: url("images/background_usr5.png"), url("images/pattern-size1.svg");
+    @extend .overhead_subcontainer--fixed;
+  }
+
+  &.overhead_subcontainer.offerRelated {
+    background-image: url("images/background_offer5.png"), url("images/pattern-size1.svg");
+    width: 80%;
+    left: 10%;
+  }
+
+  &.overhead_subcontainer.offer-specifications-background {
+    width: 90%;
+    left: 5%;
+    margin-left: 0;
+  }
+
+  &.overhead_subcontainer.tutorialRelated {
+    @extend .overhead_subcontainer--fixed;
+  }
 }
 
-div.overhead_subcontainer-fullscreen {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  max-height: 100%;
-  min-height: 7em;
-  background-color: #f38630;
-  z-index: 1002;
-  left: 0%;
-  top: 0%;
-  background-image: url("images/background_head5.png"), url("images/pattern-size1.svg");
-  background-position: top left, center center;
-  background-size: auto, cover;
-  overflow-y: auto !important;
-  opacity: 1;
-  -webkit-opacity: 1;
-  -moz-opacity: 1;
+
+@media (max-width: 736px) {
+  div.overhead_subcontainer {
+    width: 90%;
+
+    &.overhead_subcontainer.userRelated {
+      width: 80%;
+      left: 10%;
+      margin-left: 0;
+    }
+
+    &.overhead_subcontainer.offerRelated {
+      width: 90%;
+      left: 5%;
+      margin-left: 0;
+    }
+
+    &.overhead_subcontainer.offer-specifications-background {
+      width: 90%;
+      left: 5%;
+      margin-left: 0;
+    }
+
+    &.overhead_subcontainer.tutorialRelated {
+      width: 80%;
+      left: 10%;
+      margin-left: 0;
+    }
+  }
 }
 
-div.overhead_subcontainer.userRelated {
-  background-image: url("images/background_usr5.png"), url("images/pattern-size1.svg");
-}
+@media (max-width: 480px) {
+  div.overhead_subcontainer {
+    &.overhead_subcontainer.userRelated {
+      width: 90%;
+      left: 5%;
+      margin-left: 0;
+    }
 
-div.overhead_subcontainer.offerRelated {
-  background-image: url("images/background_offer5.png"), url("images/pattern-size1.svg");
-}
+    &.overhead_subcontainer.offerRelated {
+      width: 90%;
+      left: 5%;
+      margin-left: 0;
+    }
 
-div.overhead_subcontainer.offer-specifications-background {
-  /*background-color: #51B1EC;*/
+    &.overhead_subcontainer.tutorialRelated {
+      width: 90%;
+      left: 5%;
+      margin-left: 0;
+    }
+  }
 }
 
 label.overheadLabel {
