@@ -8,7 +8,7 @@ aporlaofertaApp
             templateUrl: 'resources/js/footer/footer.jsp',
             controller: ['$scope', '$rootScope',
                 function ($scope, $rootScope) {
-                    $scope.displayTutorial = function () {
+                    $scope.displayTutorialModal = function () {
                         $rootScope.$broadcast('displayTutorial');
                     }
                 }]

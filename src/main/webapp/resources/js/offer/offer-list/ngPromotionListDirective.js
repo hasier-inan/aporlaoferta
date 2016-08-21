@@ -27,7 +27,7 @@ aporlaofertaApp
                         $scope.defaultList = 'hottestOffers';
                     }
 
-                    $scope.displayTutorial = function () {
+                    $scope.displayTutorialModal = function () {
                         $rootScope.$broadcast('displayTutorial');
                     }
                 }]
