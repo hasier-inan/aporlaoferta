@@ -6,8 +6,8 @@ aporlaofertaApp
         return {
             restrict: 'A',
             templateUrl: 'resources/js/header-display/tutorial/quickTutorial.jsp',
-            controller: ['$scope', '$rootScope', '$cookies', 'configService',
-                function ($scope, $rootScope, $cookies, configService) {
+            controller: ['$scope', '$element', '$rootScope', '$cookies', 'configService',
+                function ($scope, $element, $rootScope, $cookies, configService) {
 
                     $scope.hideTutorial = function () {
                         if ($cookies.get(configService.getEndpoint('aporlaoferta_cle')) === 'accepted') {
