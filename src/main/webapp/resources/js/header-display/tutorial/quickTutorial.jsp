@@ -1,4 +1,4 @@
-<div class="tutorial-carousel ">
+<div class="tutorial-carousel">
     <slick dots="true" infinite="false" speed="100" slides-to-show="1" touch-move="false" slides-to-scroll="1"
            slick-initialized slick-slider>
         <div class="tutorial-slide">

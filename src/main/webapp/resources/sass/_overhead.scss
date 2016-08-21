@@ -60,52 +60,52 @@ div.overhead_subcontainer {
     max-height: 100%;
   }
 
-  &.overhead_subcontainer.userRelated {
+  &.userRelated {
     background-image: url("images/background_usr5.png"), url("images/pattern-size1.svg");
     @extend .overhead_subcontainer--fixed;
   }
 
-  &.overhead_subcontainer.offerRelated {
+  &.offerRelated {
     background-image: url("images/background_offer5.png"), url("images/pattern-size1.svg");
     width: 80%;
     left: 10%;
   }
 
-  &.overhead_subcontainer.offer-specifications-background {
+  &.offer-specifications-background {
     width: 90%;
     left: 5%;
     margin-left: 0;
   }
 
-  &.overhead_subcontainer.tutorialRelated {
+  &.tutorialRelated {
     @extend .overhead_subcontainer--fixed;
   }
-}
 
+}
 
 @media (max-width: 736px) {
   div.overhead_subcontainer {
     width: 90%;
 
-    &.overhead_subcontainer.userRelated {
+    &.userRelated {
       width: 80%;
       left: 10%;
       margin-left: 0;
     }
 
-    &.overhead_subcontainer.offerRelated {
+    &.offerRelated {
       width: 90%;
       left: 5%;
       margin-left: 0;
     }
 
-    &.overhead_subcontainer.offer-specifications-background {
+    &.offer-specifications-background {
       width: 90%;
       left: 5%;
       margin-left: 0;
     }
 
-    &.overhead_subcontainer.tutorialRelated {
+    &.tutorialRelated {
       width: 80%;
       left: 10%;
       margin-left: 0;
@@ -115,19 +115,19 @@ div.overhead_subcontainer {
 
 @media (max-width: 480px) {
   div.overhead_subcontainer {
-    &.overhead_subcontainer.userRelated {
+    &.userRelated {
       width: 90%;
       left: 5%;
       margin-left: 0;
     }
 
-    &.overhead_subcontainer.offerRelated {
+    &.offerRelated {
       width: 90%;
       left: 5%;
       margin-left: 0;
     }
 
-    &.overhead_subcontainer.tutorialRelated {
+    &.tutorialRelated {
       width: 90%;
       left: 5%;
       margin-left: 0;
