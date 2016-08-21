@@ -148,8 +148,6 @@ aporlaofertaApp
 
                     $timeout(function () {
                         angular.element($('#overheadSubContainer')).removeClass('hiddencontainer');
-                        //TODO: remove
-                        $scope.displayTutorialDiagram();
                     }, 100);
                 }]
         }
