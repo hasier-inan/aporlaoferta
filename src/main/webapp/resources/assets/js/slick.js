@@ -379,7 +379,7 @@
             dotString = '<ul class="slick-dots">';
 
             for (i = 0; i <= _.getDotCount(); i += 1) {
-                dotString += '<li><a href="javascript:void(0)" tabIndex="-1">' + i +
+                dotString += '<li><a href="#" tabIndex="-1">' + i +
                     '</a></li>';
             }
 
