@@ -14,7 +14,7 @@
              the-offer="offerSpecifications" custom-close-callback="customCloseCallback"></div>
         <div ng-show="displayResponseFromServer" ng-response-from-server="responseFromServer"
              the-response="theResponse"></div>
-        <div ng-show="displayTutorial" ng-quick-tutorial="quickTutorial"></div>
+        <div ng-show="displayTutorial" ng-quick-tutorial="quickTutorial" is-displayed="tutorialIsDisplayed"></div>
         <sec:authorize ifAllGranted="ROLE_USER">
             <div ng-offer-creation="offerCreation" ng-show="displayOfferCreation"
                  overhead-display="overheadVisible" custom-close-callback="customCloseCallback"

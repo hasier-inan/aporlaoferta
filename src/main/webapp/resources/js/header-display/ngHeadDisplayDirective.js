@@ -16,6 +16,7 @@ aporlaofertaApp
                     $scope.customCloseCallback = {};
                     $scope.theResponse = {};
                     $scope.fullscreen = false;
+                    $scope.tutorialIsDisplayed=false;
                     $scope.displayLogin = function () {
                         $scope.setDefaultVisibility();
                         $scope.displayAccountLogin = true;
@@ -54,6 +55,7 @@ aporlaofertaApp
                     $scope.displayTutorialDiagram = function () {
                         $scope.setDefaultVisibility();
                         $scope.displayTutorial = true;
+                        $scope.tutorialIsDisplayed=true;
                         $scope.overheadVisible = true;
                     }
                     $scope.setDefaultVisibility = function () {
@@ -66,6 +68,7 @@ aporlaofertaApp
                         $scope.displayOfferSpecifications = false;
                         $scope.displayResponseFromServer = false;
                         $scope.displayTutorial = false;
+                        $scope.tutorialIsDisplayed=false;
                     };
                     $scope.closeOverheadDisplay = function (customCloseCallback) {
                         $scope.overheadVisible = false;
@@ -104,7 +107,7 @@ aporlaofertaApp
                     });
 
                     $scope.$on('closeResponse', function () {
-                        $scope.setDefaultVisibility();
+                        $scope.overheadVisible = false;
                     });
 
                     $scope.$on('serverResponse', function (event, args) {
