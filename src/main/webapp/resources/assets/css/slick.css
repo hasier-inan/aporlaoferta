@@ -117,6 +117,27 @@
     border: none;
 }
 
+.slick-next{
+    transition-property: transform;
+    transition-duration: 1s;
+    animation-name: slick-attention;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes slick-attention {
+    0% {
+        transform: scale(1, 1);
+    }
+    50% {
+        transform: scale(1.2, 1.2);
+    }
+    100% {
+        transform: scale(1, 1);
+    }
+}
+
 .slick-prev:focus, .slick-next:focus {
     outline: none;
 }

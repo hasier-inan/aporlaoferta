@@ -12,11 +12,13 @@
                 <p>¡Bienvenido!</p>
 
                 <p>aporlaoferta es un portal para buscar y compartir ofertas nacionales con el resto de usuarios.</p>
+                <br/>
+                <p>Pulsa el botón de la derecha para saber cómo funciona.</p>
             </div>
         </div>
         <div class="tutorial-slide">
             <div class="tutorial-slide-content">
-                <p>Puedes buscar las ofertas más populares del momento:</p>
+                <p>Puedes buscar las ofertas más populares del momento...!</p>
                 <br/>
                 <ul>
                     <li>Selecciona las <strong>Últimas promociones</strong> para ver las ofertas más recientes.</li>
@@ -28,30 +30,40 @@
         </div>
         <div class="tutorial-slide">
             <div class="tutorial-slide-content">
-                <p>También puedes filtrar las ofertas que más te interesen!</p>
+                <p>También puedes filtrar las ofertas que más te interesen.</p>
+                <br/>
+                <p>Para ello selecciona tu categoría preferia y/o haz una búsqueda por texto en la sección de
+                    <strong>Filtrar contenidos</strong></p>
             </div>
         </div>
         <div class="tutorial-slide">
             <div class="tutorial-slide-content">
-                <p>Y si encuentras una oferta que te parezca apetitosa... no dudes en compartirla!</p>
-            </div>
-        </div>
-        <div class="tutorial-slide">
-            <div class="tutorial-slide-content">
+                <p>Y si encuentras una oferta que te parezca apetitosa... ¡no dudes en compartirla!</p>
+                <br/>
                 <p>Si quieres crear ofertas y opinar sobre el resto de promociones, puedes crearte un perfil de
                     usuario</p>
+                <br/>
                 <p>¡...es totalmente gratuito!</p>
+            </div>
+        </div>
+        <div class="tutorial-slide">
+            <div class="tutorial-slide-content">
+                <p>Puedes encontrarnos en las redes sociales más populares.</p>
+
+                <div class="social-media-shares">
+                    <a class="icon mini fa-facebook social-share" target="_blank" href="#">
+                    </a>
+                    <a class="icon mini fa-twitter social-share" target="_blank" href="#" >
+                    </a>
+                    <a class="icon mini fa-google-plus social-share" target="_blank" href="#">
+                    </a>
+                </div>
+
+                <br/><br/>
+                <p>También puedes compartir las ofertas que más te gusten con tus amigos, encontrarás los botones de
+                    compartir dentro de las especificaciones de la oferta</p>
             </div>
         </div>
 
     </slick>
 </div>
-<ul class="top_header tutorial-check">
-    <button class="button small icon fa-check whiteButton green-background" ng-click="hideTutorial()"
-            tabindex="0">
-        Entendido!
-    </button>
-    <button class="button mini icon fa-check whiteButton green-background account-management"
-            ng-click="hideTutorial()" tabindex="0">
-    </button>
-</ul>

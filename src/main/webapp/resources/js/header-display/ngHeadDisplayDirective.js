@@ -11,12 +11,12 @@ aporlaofertaApp
                 overheadVisible: '=',
                 noAccounts: '='
             },
-            controller: ['$scope', 'offerManager', '$timeout', '$cookies',
-                function ($scope, $offerManager, $timeout, $cookies) {
+            controller: ['$scope', 'offerManager', '$timeout', '$cookies', 'configService',
+                function ($scope, $offerManager, $timeout, $cookies, configService) {
                     $scope.customCloseCallback = {};
                     $scope.theResponse = {};
                     $scope.fullscreen = false;
-                    $scope.tutorialIsDisplayed=false;
+                    $scope.tutorialIsDisplayed = false;
                     $scope.displayLogin = function () {
                         $scope.setDefaultVisibility();
                         $scope.displayAccountLogin = true;
@@ -53,9 +53,12 @@ aporlaofertaApp
                         $scope.overheadVisible = true;
                     }
                     $scope.displayTutorialDiagram = function () {
+                        $scope.customCloseCallback = function () {
+                            $scope.setTutorialCookie();
+                        }
                         $scope.setDefaultVisibility();
                         $scope.displayTutorial = true;
-                        $scope.tutorialIsDisplayed=true;
+                        $scope.tutorialIsDisplayed = true;
                         $scope.overheadVisible = true;
                     }
                     $scope.setDefaultVisibility = function () {
@@ -68,7 +71,7 @@ aporlaofertaApp
                         $scope.displayOfferSpecifications = false;
                         $scope.displayResponseFromServer = false;
                         $scope.displayTutorial = false;
-                        $scope.tutorialIsDisplayed=false;
+                        $scope.tutorialIsDisplayed = false;
                     };
                     $scope.closeOverheadDisplay = function (customCloseCallback) {
                         $scope.overheadVisible = false;
@@ -104,10 +107,6 @@ aporlaofertaApp
                             $scope.displayOfferDetails();
                         }
                         $scope.displayOfferUpdate();
-                    });
-
-                    $scope.$on('closeResponse', function () {
-                        $scope.overheadVisible = false;
                     });
 
                     $scope.$on('serverResponse', function (event, args) {
@@ -146,12 +145,22 @@ aporlaofertaApp
                         }
                     };
 
+                    $scope.setTutorialCookie = function () {
+                        $cookies.put(configService.getEndpoint('tutorial.cookie'), 'true');
+                    };
+
                     $scope.setDefaultVisibility();
                     $scope.checkForErrors();
 
                     $timeout(function () {
                         angular.element($('#overheadSubContainer')).removeClass('hiddencontainer');
                     }, 100);
+
+                    if ($cookies.get(configService.getEndpoint('tutorial.cookie')) != 'true') {
+                        $timeout(function () {
+                            $scope.displayTutorialDiagram();
+                        }, 1000);
+                    }
                 }]
         }
     });
