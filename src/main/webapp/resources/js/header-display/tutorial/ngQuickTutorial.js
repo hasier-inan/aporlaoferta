@@ -9,22 +9,20 @@ aporlaofertaApp
                 isDisplayed: '=',
             },
             templateUrl: 'resources/js/header-display/tutorial/quickTutorial.jsp',
-            controller: ['$scope', '$element', '$rootScope', '$cookies', 'configService',
-                function ($scope, $element, $rootScope, $cookies, configService) {
+            controller: ['$scope', '$element',
+                function ($scope, $element) {
+                    $scope.shareUrl = "www.aporlaoferta.com";
+                    $scope.shareText = $("meta[property='og:description']").attr("content");
+
                     $scope.$watch('isDisplayed', function () {
                         if ($scope.isDisplayed) {
                             $element.resize();
                             $element.find('.slick-dots li:first a').trigger('click');
-                            $scope.isDisplayed=0;
+                            $scope.isDisplayed = 0;
                         }
                     });
 
-                    $scope.hideTutorial = function () {
-                        if ($cookies.get(configService.getEndpoint('aporlaoferta_cle')) === 'accepted') {
-                            $cookies.put(configService.getEndpoint('aporlaoferta_tutorial'), true);
-                        }
-                        $rootScope.$broadcast('closeResponse');
-                    };
+
                 }]
         }
     });
