@@ -15,7 +15,7 @@ a.social-share {
   line-height: 2em;
   display: inline-block;
   font-size: 0.8em;
-  color: #ffffff !important;
+  color: $main-font-color !important;
   text-decoration: none;
   font-family: Arial, Helvetica, sans-serif !important;
   padding: 0 1.75em;
@@ -39,15 +39,15 @@ a.social-share:hover {
 }
 
 a.social-share.fa-google-plus {
-  background-color: #D14836;
+  background-color: $social-google-background-color;
 }
 
 a.social-share.fa-twitter {
-  background-color: #00ACED;
+  background-color: $social-twitter-background-color;
 }
 
 a.social-share.fa-facebook {
-  background-color: #3B5998;
+  background-color: $social-fb-background-color;
 }
 
 a.social-share.small {

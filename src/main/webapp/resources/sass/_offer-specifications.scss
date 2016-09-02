@@ -1,6 +1,6 @@
 div.offerSpecificationsContainer {
   font-size: 0.8em;
-  color: #fff;
+  color: $main-font-color;
   text-decoration: none;
   font-weight: bold;
 }
@@ -18,7 +18,7 @@ div.offerSpecificationsRightContainer {
 }
 
 a.quoteAction:hover {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: $offer-comment-quote-button-hover;
   text-decoration: none;
 }
 
@@ -30,16 +30,16 @@ div.offerSpecificationsLink {
 }
 
 div.offerSpecificationsLink > a {
-  color: #FFFFFF;
+  color: $main-font-color;
   text-decoration: none;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: $offer-specifications-title-color;
   font-size: 3em;
 }
 
 div.offerSpecificationsLink > a:hover,
 div.offerSpecificationsTitle > h1 > a:hover {
   text-decoration: none;
-  color: rgba(0, 0, 0, 0.3);
+  color: $offer-specifications-title-color;
 }
 
 div.offer-specifications.edit-offer {
@@ -92,7 +92,7 @@ div.offerSpecificationsBox {
   display: inline-block;
   /*border: solid 1px;*/
   padding: .2em 1em .2em 1em;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: $offer-specifications-background;
   font-size: 14px;
   font-weight: 100;
 }
@@ -107,7 +107,7 @@ div.offerSpecificationsSubtitle div {
 }
 
 div.content div.offerSpecificationsSubtitle {
-  color: rgb(130, 130, 130);
+  color: $offer-specifications-subtitle-color;
   font-size: .8em;
 }
 
@@ -133,9 +133,9 @@ div.offerSpecificationsImage {
 div.offerSpecificationsImage > img {
   display: block;
   vertical-align: middle;
-  background-color: rgba(118, 118, 118, 0.3);
-  color: #e0e4cc;
-  border: 2px solid #fff;
+  background-color: $offer-image-background-color;
+  color: $offer-color;
+  border: 2px solid $offer-specifications-borders-color;
   border-radius: 20px;
   width: 100%;
 }
@@ -165,7 +165,7 @@ div.feedbackButtons div > button.small {
 }
 
 div.feedbackButtons div > button.small:hover {
-  background-color: #f38630;
+  background-color: $main-background-color;
 }
 
 div.feedbackButtons div > button.small::before {
@@ -175,7 +175,7 @@ div.feedbackButtons div > button.small::before {
 }
 
 div.offerSpecificationsFeedbackTotal {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: $offer-total-feedback-background;
   width: 80%;
   height: 5em;
   margin-left: 10%;
@@ -191,7 +191,7 @@ h1.feedbackSumatory {
 div.offerSpecificationsFeedbackSmall {
   display: inline-block;
   width: 90%;
-  border-top: 1px solid #fff;
+  border-top: 1px solid $offer-specifications-borders-color;
 }
 
 div.offerSpecificationsFeedbackSmall > div {
@@ -221,7 +221,7 @@ div.offerSpecificationsComments > div.commentsHeadTitle {
 
 div.commentsTheComment {
   border-bottom-right-radius: 6px;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: $offer-comment-quote-background-color;
   min-height: 3em;
   padding: .5em 1em .5em 1em;
   margin-left: 3em;
@@ -256,7 +256,7 @@ div.commentQuoteCommentContent {
 
 div.commentQuoteCommentContent > textarea,
 div.commentContent > textarea {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: $offer-comment-background-color;
 }
 
 div.quotedContent {
@@ -273,7 +273,7 @@ div.quotedContent div.commentsHeadOwner {
 }
 
 a.quoteAction {
-  color: #97d779;
+  color: $offer-comment-quote-button;
   text-decoration: underline;
 }
 
@@ -307,4 +307,11 @@ div.commentQuoteButtons {
     width: 96%;
     max-width: 96%;
   }
+}
+
+md-autocomplete,
+md-virtual-repeat-container,
+md-virtual-repeat-scroller {
+  background: $offer-autocomplete-background !important;
+  border: 1px solid $offer-autocomplete-border;
 }

@@ -13,13 +13,6 @@
     padding: 10px
 }
 
-md-autocomplete,
-md-virtual-repeat-container,
-md-virtual-repeat-scroller {
-    background: rgba(243, 134, 48, .65) !important;
-    border: 1px solid #f38630;
-}
-
 button.md-no-style {
     font-weight: 400;
     background-color: inherit;

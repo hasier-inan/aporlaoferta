@@ -4,45 +4,11 @@ ul.dropdown li {
     padding: 0 !important;
 }
 
-.category-dropdown {
-    color: #FFFFFF !important;
-    font-weight: normal !important;
-    font-family: Arial, Helvetica, sans-serif !important;
-}
-
-div.filterByCategoryContent .category-dropdown {
-    border: solid 1px #ffffff !important;
-    box-shadow: inset 0 0 0 0px #e6e6e6;
-    background: transparent !important;
-    -moz-transition: all .3s linear;
-    -webkit-transition: all .3s linear;
-    -o-transition: all .3s linear;
-    transition: all .3s linear;
-}
-
-div.filterByCategoryContent .category-dropdown:hover {
-    text-decoration: none !important;
-    background-color: #a7dbd8 !important;
-}
-
-div.filterByCategoryContent .wrap-dd-select .dropdown li a {
-    background: rgba(160, 160, 160, 0.76);
-    border: 1px solid #a0a0a0;
-}
-div.filterByCategoryContent .wrap-dd-select .dropdown li a:hover{
-    background: #f3f8f8 !important;
-    color: rgba(0, 0, 0, .8);
-}
-
 .wrap-dd-select .dropdown li a {
     transition: background-color .15s linear;
     -moz-transition: background-color .15s linear;
     -webkit-transition: background-color .15s linear;
     -ms-transition: background-color .15s linear;
-}
-
-div.filterByCategoryContent .wrap-dd-select .dropdown {
-    border: 1px solid #868686;
 }
 
 /****** dropdown-select *******/
@@ -72,14 +38,6 @@ div.filterByCategoryContent .wrap-dd-select .dropdown {
     color: #5B6A7D;
 }
 
-.profile-options-dropdown.wrap-dd-select:after{
-    display: none;
-}
-
-.profile-options-dropdown.wrap-dd-select:hover{
-    background-color: #c06060;
-}
-
 .wrap-dd-select:after {
     position: absolute;
     left: 15px;
@@ -106,10 +64,10 @@ div.filterByCategoryContent .wrap-dd-select .dropdown {
     left: 0;
     right: 0;
     z-index: 10;
-    background: rgba(243, 134, 48, .25);
+    background: rgba(243, 91, 214, 0.25);
     padding: 0;
     border-radius: 0;
-    border: 1px solid #f38630;
+    border: 1px solid #f35bd6;
     font-weight: normal;
     list-style: none;
     visibility: hidden;
@@ -136,8 +94,8 @@ div.filterByCategoryContent .wrap-dd-select .dropdown {
     padding: 10px;
     text-decoration: none;
     cursor: pointer;
-    background: rgba(243, 134, 48, .65);
-    border: 1px solid #f38630;
+    background: rgba(243, 91, 214, 0.25);
+    border: 1px solid #f35bd6;
     border-bottom: none !important;
 }
 

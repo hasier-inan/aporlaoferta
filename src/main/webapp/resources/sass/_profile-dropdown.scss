@@ -31,12 +31,12 @@ div.profile-options-dropdown {
   position: absolute;
   right: 0;
   border: 0;
-  background-color: #D76060;
+  background-color: $profile-options-background-color;
   height: 2em;
   width: 7em;
   line-height: 2em;
   display: inline-block;
-  color: white;
+  color: $main-font-color;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
@@ -61,7 +61,7 @@ div.profile-options-dropdown span {
 div.profile-options-dropdown ul.dropdown,
 div.profile-options-dropdown ul.dropdown li a {
   border: 0;
-  background: rgba(215, 96, 96, 1);
+  background: $profile-options-background-color;
   font-size: 12px;
   font-weight: bold;
   padding: 0;
@@ -73,4 +73,19 @@ div.profile-options-dropdown ul.dropdown li:last-child,
 div.profile-options-dropdown ul.dropdown li:last-child a {
   border-bottom-right-radius: 7px;
   border-bottom-left-radius: 7px;
+}
+
+.profile-options-dropdown.wrap-dd-select:after{
+  display: none;
+}
+
+.profile-options-dropdown.wrap-dd-select:hover{
+  background-color: $profile-options-hover-background-color;
+}
+
+.wrap-dd-select .dropdown,
+.wrap-dd-select .dropdown li a{
+  background: $main-background-clear-color;
+  border: 1px solid $main-background-color;
+  color: $main-font-color !important;
 }

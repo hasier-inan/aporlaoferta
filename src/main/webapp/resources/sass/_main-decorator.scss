@@ -1,13 +1,13 @@
 label {
   font-size: 1.2em;
-  color: #fff;
+  color: $main-font-color;
 }
 
 pre.parsed-text {
   padding: 0;
   margin: 0;
   font-size: 100%;
-  color: #FFFFFF;
+  color: $main-font-color;
   word-break: break-all;
   word-wrap: break-word;
   background-color: transparent;
@@ -19,65 +19,65 @@ pre.parsed-text {
 }
 
 pre.parsed-text.list {
-  color: #828282;
+  color: $parsed-text-color;
 }
 
 .red-background {
-  background-color: #D76060;
+  background-color: $button-red-background-color;
 }
 
 .blueish-background {
-  background-color: #69d2e7;
+  background-color: $button-blueish-background-color;
 }
 
 .green-background {
-  background-color: #97d779;
+  background-color: $button-green-background-color;
 }
 
 .dark-green-background {
-  background-color: #b7d77a;
+  background-color: $button-dark-green-background-color;
 }
 
 .get-offer {
-  background-color: #fff;
+  background-color: $get-offer-background-color;
 }
 
 .get-offer:hover {
-  color: #d70000 !important;
-  background-color: #d0e4f8;
+  color: $get-offer-hot-color !important;
+  background-color: $get-offer-hover-background-color;
   text-decoration: none;
 }
 
 .moreDetailButton {
-  color: #fff !important;
-  background-color: #69d2e7 !important;
+  color: $main-font-color !important;
+  background-color: $more-detail-background-color !important;
 }
 
 .moreDetailButton:hover {
   text-decoration: none;
-  background-color: #a7dbd8 !important;
+  background-color: $more-detail-hover-background-color !important;
 }
 
 .orange-background {
-  background-color: #d7b554;
+  background-color: $button-orange-background-color;
 }
 
 .moreDetailButtons {
-  background-color: #7aae76;
+  background-color: $more-detail-buttons-background-color;
 }
 
 .button.fa-fire.whiteButton.blue-text {
-  color: #69d2e7;
+  color: $button-blueish-color;
 }
 
 #header .button.hot-background:hover {
-  color: #d70000 !important;
+  color: $get-offer-hot-color !important;
 }
 
 #header .button.hot-background {
   box-shadow: none;
-  background-color: #ffffff;
-  color: #f38630 !important;
+  background-color: $get-offer-hot-background;
+  color: $main-background-color !important;
 }
 
 #brandNewCompanyFormLabel {
@@ -93,16 +93,6 @@ label.overhead-hint-label {
   display: inherit;
   font-size: 1em;
   margin-top: .5em;
-}
-
-input[type="checkbox"] + label.overheadLabel:before, input[type="radio"] + label.overheadLabel:before {
-  border-color: #ffffff;
-}
-
-input[type="checkbox"]:checked + label.overheadLabel:before, input[type="radio"]:checked + label.overheadLabel:before {
-  background-color: #ffffff;
-  border-color: #ffffff;
-  color: #f38630;
 }
 
 .only-page .main-slogan {
@@ -177,7 +167,7 @@ input[type="checkbox"]:checked + label.overheadLabel:before, input[type="radio"]
 }
 
 div.offerCaptcha {
-  border: solid 1px #c5caca;
+  border: solid 1px $offer-captcha-border-color;
   padding: .5em;
   border-radius: 6px;
 }
@@ -197,12 +187,12 @@ div.offerCaptcha {
 
 textarea::selection,
 input::selection {
-  background: #D76060;
+  background: $button-red-background-color;
 }
 
 textarea::-moz-selection,
 input::-moz-selection {
-  background: #D76060;
+  background: $button-red-background-color;
 }
 
 body {
@@ -219,3 +209,4 @@ textarea:focus,
 button:focus {
   outline: none;
 }
+
