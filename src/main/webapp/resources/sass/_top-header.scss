@@ -123,12 +123,6 @@ button.right-aligned:before {
   margin-right: 0.5em !important;
 }
 
-div.thumbnailButtons > button {
-  -moz-transition: 0s;
-  -webkit-transition: 0s;
-  -ms-transition: 0s;
-  transition: 0s;
-}
 
 @media screen and (max-width: 480px) and (orientation: portrait) {
   ul.top_header > button.small,
