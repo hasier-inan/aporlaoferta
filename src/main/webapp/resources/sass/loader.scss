@@ -1,4 +1,110 @@
+$main-background-color: #f38630;
+$main-background-clear-color: rgba(243, 134, 48, .25);
+$offer-color: #e0e4cc;
+
+$more-detail-background-color: #69d2e7;
+$more-detail-buttons-background-color: #7aae76;
+$more-detail-hover-background-color: #a7dbd8;
+$button-blueish-background-color: #69d2e7;
+$button-red-background-color: #D76060;
+$button-green-background-color: #97d779;
+$button-dark-green-background-color: #b7d77a;
+$button-orange-background-color: #d7b554;
+$button-blueish-color: #69d2e7;
+
+$get-offer-background-color: #ffffff;
+$get-offer-hover-background-color: #d0e4f8;
+$get-offer-hot-color: #d70000;
+$get-offer-hot-background: #ffffff;
+$offer-captcha-border-color: #c5caca;
+
+$offer-list-font-color: #828282;
+$parsed-text-color: #828282;
+$main-font-color: #ffffff;
+
+$filter-tab-color: #828282;
+$filter-background-color: #A0A0A0;
+$filter-hover-background-color: #a7dbd8;
+$filter-category-background: rgba(160, 160, 160, 0.76);
+$filter-category-dropdown-border: #868686;
+$filter-category-content-background: rgba(255, 255, 255, .15);
+$filter-category-content-background-hover: #f3f8f8;
+$filter-category-content-color: rgba(0, 0, 0, .8);
+$filter-category-border: #a0a0a0;
+
+$offer-autocomplete-background: rgba(243, 134, 48, .65);
+$offer-autocomplete-border: #f38630;
+$offer-comment-quote-button: #97d779;
+$offer-comment-quote-button-hover: rgba(0, 0, 0, 0.3);
+$offer-comment-background-color: rgba(0, 0, 0, 0.1);
+$offer-comment-quote-background-color: rgba(0, 0, 0, 0.3);
+$offer-image-background-color: rgba(118, 118, 118, 0.3);
+$offer-specifications-borders-color: #ffffff;
+$offer-specifications-background: rgba(0, 0, 0, 0.3);
+$offer-specifications-title-color: rgba(0, 0, 0, 0.3);
+$offer-specifications-subtitle-color: rgb(130, 130, 130);
+$offer-total-feedback-background: rgba(0, 0, 0, 0.5);
+$offer-list-feedback-background: rgba(0, 0, 0, 0.2);
+$offer-expired-background-color: #825b49;
+$offer-expired-image-color: #ff1f17;
+
+$validation-focus-background-color: #ffffff;
+$validation-hover-background-color: rgba(207, 231, 220, 0.15);
+$validation-border-color: #69d2e7;
+$validation-background-color: rgba(105, 210, 231, .15);
+$validation-invalid-color: #e62929;
+$validation-invalid-background-color: rgba(230, 41, 41, .15);
+$validation-invalid-comment-background: rgba(144, 144, 144, 0.075);
+$validation-invalid-comment-border-color: #e6e6e6;
+$password-forgotten-background: rgba(231, 0, 21, 1);
+$input-focus-border-color: #f38630;
+$input-focus-box-shadow-color: 0 0 0 1px #f38630;
+$footer-font-color: #e0e4cc;
+$footer-font-hover-color: #a7dbd8;
+$input-border-color: #ffffff;
+$input-background-color: #ffffff;
+$autocomplete-suggestions-color: rgba(0, 0, 0, .8);
+
+$image-uploader-border: .50em solid #fa6900;
+$image-uploader-background-color: rgba(255, 255, 255, 0.5);
+$image-uploader-content-border: 1px solid #e6e6e6;
+
+$hotty-process-start-background-color: rgba(87, 215, 53, 0.50);
+$hotty-process-half-background-color: rgba(87, 215, 53, 0.80);
+$hotty-process-full-background-color: rgba(87, 215, 53, 1);
+$coldy-process-start-background-color: rgba(215, 83, 48, 0.50);
+$coldy-process-half-background-color: rgba(215, 83, 48, 0.80);
+$coldy-process-full-background-color: rgba(215, 83, 48, 1);
+$neutraly-process-start-background-color: rgba(0, 0, 0, .2);
+$neutraly-process-half-background-color: rgba(0, 0, 0, .3);
+$neutraly-process-full-background-color: rgba(0, 0, 0, .4);
+
+$overflown-background: rgba(255, 255, 255, .25);
+$overhead-container-background-color: #000000;
+$overhead-field-disabled-background: rgba(0, 0, 0, .2);
+$overhead-field-focus-background: #ffffff;
+$overhead-field-selection-background: #f3630a;
+$overhead-button-blue-color: #43638e;
+$overhead-button-background-color: #F35E1E;
+
+$profile-options-background-color: #D76060;
+$profile-options-hover-background-color: #c06060;
+
+$redirect-container-border-color: #ffffff;
+$redirect-container-hover-color: #d70000;
+$redirect-container-back-hover-color: #eeeeee;
+$redirect-container-hover-background: rgba(255, 255, 255, 0.075);
+
+$social-google-background-color: #D14836;
+$social-fb-background-color: #3B5998;
+$social-twitter-background-color: #00ACED;
+
+$slick-disabled-background: rgba(255, 255, 255, .15);
+
+/* change deltas for email templates */
+
 @charset "UTF-8";
+@import "main";
 @import "main-decorator";
 @import "overhead";
 @import "top-header";

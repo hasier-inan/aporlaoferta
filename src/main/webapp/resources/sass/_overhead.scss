@@ -15,7 +15,7 @@ div.overhead_container {
   width: 100%;
   height: 100%;
   z-index: 1001;
-  background-color: #000000;
+  background-color: $overhead-container-background-color;
   opacity: 0.4;
   -webkit-opacity: 0.4;
   -moz-opacity: 0.4;
@@ -39,7 +39,7 @@ div.overhead_subcontainer {
   border: 0;
   border-radius: 8px;
   box-shadow: inset 0 0 0 5px rgba(255, 255, 255, 0.25);
-  background-color: #f38630;
+  background-color: $main-background-color;
   z-index: 1002;
   top: 5%;
   background-image: url("images/background_head5.png"), url("images/pattern-size1.svg");
@@ -136,7 +136,7 @@ div.overhead_subcontainer {
 }
 
 label.overheadLabel {
-  color: #FFFFFF !important;
+  color: $main-font-color !important;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1.1em;
   font-weight: normal;
@@ -151,7 +151,7 @@ div.profileForm > label.overheadLabel {
 input.overheadField,
 textarea#createOfferDescription {
   height: 40px;
-  color: #ffffff;
+  color: $main-font-color;
   display: inline-block;
   margin-bottom: 1em;
 }
@@ -161,8 +161,8 @@ input.overheadField {
 }
 
 input.overheadField:disabled {
-  background-color: rgba(0, 0, 0, .2) !important;
-  border-color: rgba(0, 0, 0, .2) !important;
+  background-color: $overhead-field-disabled-background !important;
+  border-color: $overhead-field-disabled-background !important;
 }
 
 textarea#createOfferDescription {
@@ -200,7 +200,7 @@ input.regular-40 {
 div.overheadField {
   width: 12em;
   height: 2em;
-  color: #ffffff;
+  color: $main-font-color;
   display: inline-block;
   background-color: transparent;
 }
@@ -212,8 +212,8 @@ input.overheadField:focus {
 input.overheadField:focus,
 textarea#createOfferDescription:focus {
   height: 40px;
-  color: #000000;
-  background-color: #ffffff;
+  color: $overhead-container-background-color;
+  background-color: $overhead-field-focus-background;
 }
 
 textarea#createOfferDescription:focus {
@@ -225,7 +225,7 @@ div#accountCreationContainer {
 }
 
 button.close_button {
-  color: #ffffff !important;
+  color: $main-font-color !important;
   position: absolute;
   top: 1em;
   right: 0;
@@ -253,12 +253,12 @@ a.account-management.mini::before {
 }
 
 .overheadButton.blue {
-  background-color: #43638e !important;
+  background-color: $overhead-button-blue-color !important;
 }
 
 div .overheadButton {
-  background-color: #F35E1E;
-  color: #ffffff !important;
+  background-color: $overhead-button-background-color;
+  color: $main-font-color !important;
   display: inline-block;
 }
 
@@ -271,9 +271,9 @@ div .overheadButton.mini {
 }
 
 input.overheadField::selection {
-  background: #f3630a;
+  background: $overhead-field-selection-background;
 }
 
 input.overheadField::-moz-selection {
-  background: #f3630a;
+  background: $overhead-field-selection-background;
 }

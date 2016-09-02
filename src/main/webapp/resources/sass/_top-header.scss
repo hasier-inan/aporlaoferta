@@ -13,7 +13,7 @@ ul#overheadSubContainerContent {
 
 button.whiteButton,
 a.whiteButton {
-  color: #ffffff;
+  color: $main-font-color;
   text-decoration: none;
 }
 
@@ -33,10 +33,6 @@ div.commentQuoteButtons > button.small {
   height: 2em;
   line-height: 2em;
   display: inline-block;
-}
-
-button.recaptcha {
-  background-color: #4e8cf5 !important;
 }
 
 .mini.fixed {
@@ -115,7 +111,7 @@ ul.top_header > .overflown:before {
 }
 
 .overflown.to-the-top {
-  background-color: rgba(255, 255, 255, .25);
+  background-color: $overflown-background;
 }
 
 .overflown.to-the-top:before {
@@ -236,5 +232,5 @@ header.top-header {
 
 body.top-header {
   background-image: url("images/background_head5.png"), url("images/pattern-size2.svg");
-  background-color: #f38630;
+  background-color: $main-background-color;
 }

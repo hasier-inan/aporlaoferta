@@ -3,7 +3,7 @@ h3.offer-expired, h1.offer-expired {
 }
 
 img.offer-expired {
-  background-color: #825b49;
+  background-color: $offer-expired-background-color;
   opacity: 0.4;
   filter: alpha(opacity=40);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
@@ -12,7 +12,7 @@ img.offer-expired {
 }
 
 div.offer-image-expired {
-  color: #DC1212;
+  color: $offer-expired-image-color;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1.5em;
   font-weight: normal;
@@ -36,7 +36,7 @@ button.more-offers-button {
   display: inline;
   font-size: 1em;
   height: 3.5em;
-  color: #828282 !important;
+  color: $offer-list-font-color !important;
 }
 
 .hideLoading {
@@ -50,11 +50,11 @@ i.loadingdialogue {
 }
 
 i.loadingdialogue.white {
-  color: #FFFFFF !important;
+  color: $main-font-color !important;
 }
 
 i.loadingdialogue.grey {
-  color: #828282 !important;
+  color: $offer-list-font-color !important;
 }
 
 i.loadingdialogue.popup-loading {
@@ -68,7 +68,7 @@ div.loading-dialogue {
 
 div.no-offers, i.no-offers {
   text-align: center !important;
-  color: #828282 !important;
+  color: $offer-list-font-color !important;
   font-size: 2em;
 }
 
@@ -80,7 +80,7 @@ div.offerCompanyInTitle {
 
 .offerDescription {
   /*text-align: justify;*/
-  color: #828282 !important;
+  color: $offer-list-font-color !important;
 }
 
 pre.parsed-text {
@@ -122,30 +122,30 @@ pre.parsed-text {
 }
 
 .image.offerImage > img {
-  border: solid 3px #e0e4cc !important;
+  border: solid 3px $offer-color !important;
   background-color: rgba(118, 118, 118, 0.3);
 }
 
 .feedbackSumatory.offerListFeedback {
   display: inline-block;
   width: 6em;
-  background-color: rgba(0, 0, 0, .2);
-  box-shadow: inset 0 0 0 2px #e0e4cc;
+  background-color: $offer-list-feedback-background;
+  box-shadow: inset 0 0 0 2px $offer-color;
   text-align: center;
   font-size: 1em;
   text-shadow: -1px 0px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000;
 }
 
 .feedbackSumatory.hotFeedback {
-  color: #FFFFFF !important;
-  background-color: rgba(87, 215, 53, 0.50);
+  color: $main-font-color !important;
+  background-color: $hotty-process-start-background-color;
   -webkit-animation: hotty 10s infinite;
   animation: hotty 10s infinite;
 }
 
 .feedbackSumatory.coldFeedback {
-  color: #FFFFFF !important;
-  background-color: rgba(215, 83, 48, 0.50);
+  color: $main-font-color !important;
+  background-color: $coldy-process-start-background-color;
   -webkit-animation: coldy 10s infinite;
   animation: coldy 10s infinite;
 }
@@ -167,7 +167,7 @@ p.invalid-image {
   opacity: 0;
   font-size: .8em;
   margin: 0;
-  color: #ff1f17;
+  color: $validation-invalid-color;
 }
 
 p.invalid-image.invalid-display {

@@ -13,17 +13,17 @@ span.helper {
 }
 
 div.imageUploaderContent {
-  border: 1px solid #e6e6e6;
+  border: $image-uploader-content-border;
   border-radius: .5em;
-  color: #fff;
+  color: $main-font-color;
   display: inline-block;
   margin-bottom: 1em;
   margin-left: 1em;
 }
 
 div.imageUploaderContent div.thumbnail {
-  background-color: rgba(255, 255, 255, 0.5);
-  border: .50em solid #fa6900;
+  background-color: $image-uploader-background-color;
+  border: $image-uploader-border;
   border-style: dashed;
   display: inline-block;
   height: 10em;

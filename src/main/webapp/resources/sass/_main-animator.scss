@@ -106,163 +106,163 @@ scotch.io
 
 @-moz-keyframes hotty {
   0% {
-    background-color: rgba(87, 215, 53, 0.50);
+    background-color: $hotty-process-start-background-color;
   }
   25% {
-    background-color: rgba(87, 215, 53, 0.80);
+    background-color: $hotty-process-half-background-color;
   }
-  25% {
-    background-color: rgba(87, 215, 53, 1);
+  50% {
+    background-color: $hotty-process-full-background-color;
   }
   75% {
-    background-color: rgba(87, 215, 53, 0.80);
+    background-color: $hotty-process-half-background-color;
   }
   100% {
-    background-color: rgba(87, 215, 53, 0.50);
+    background-color: $hotty-process-start-background-color;
   }
 }
 
 @-webkit-keyframes hotty {
   0% {
-    background-color: rgba(87, 215, 53, 0.50);
+    background-color: $hotty-process-start-background-color;
   }
   25% {
-    background-color: rgba(87, 215, 53, 0.80);
+    background-color: $hotty-process-half-background-color;
   }
-  25% {
-    background-color: rgba(87, 215, 53, 1);
+  50% {
+    background-color: $hotty-process-full-background-color;
   }
   75% {
-    background-color: rgba(87, 215, 53, 0.80);
+    background-color: $hotty-process-half-background-color;
   }
   100% {
-    background-color: rgba(87, 215, 53, 0.50);
+    background-color: $hotty-process-start-background-color;
   }
 }
 
 @keyframes hotty {
   0% {
-    background-color: rgba(87, 215, 53, 0.50);
+    background-color: $hotty-process-start-background-color;
   }
   25% {
-    background-color: rgba(87, 215, 53, 0.80);
+    background-color: $hotty-process-half-background-color;
   }
-  25% {
-    background-color: rgba(87, 215, 53, 1);
+  50% {
+    background-color: $hotty-process-full-background-color;
   }
   75% {
-    background-color: rgba(87, 215, 53, 0.80);
+    background-color: $hotty-process-half-background-color;
   }
   100% {
-    background-color: rgba(87, 215, 53, 0.50);
+    background-color: $hotty-process-start-background-color;
   }
 }
 
 @-moz-keyframes coldy {
   0% {
-    background-color: rgba(215, 83, 48, 0.50);
+    background-color: $coldy-process-start-background-color;
   }
   25% {
-    background-color: rgba(215, 83, 48, 0.80);
+    background-color: $coldy-process-half-background-color;
   }
-  25% {
-    background-color: rgba(215, 83, 48, 1);
+  50% {
+    background-color: $coldy-process-full-background-color;
   }
   75% {
-    background-color: rgba(215, 83, 48, 0.80);
+    background-color: $coldy-process-half-background-color;
   }
   100% {
-    background-color: rgba(215, 83, 48, 0.50);
+    background-color: $coldy-process-start-background-color;
   }
 }
 
 @-webkit-keyframes coldy {
   0% {
-    background-color: rgba(215, 83, 48, 0.50);
+    background-color: $coldy-process-start-background-color;
   }
   25% {
-    background-color: rgba(215, 83, 48, 0.80);
+    background-color: $coldy-process-half-background-color;
   }
-  25% {
-    background-color: rgba(215, 83, 48, 1);
+  50% {
+    background-color: $coldy-process-full-background-color;
   }
   75% {
-    background-color: rgba(215, 83, 48, 0.80);
+    background-color: $coldy-process-half-background-color;
   }
   100% {
-    background-color: rgba(215, 83, 48, 0.50);
+    background-color: $coldy-process-start-background-color;
   }
 }
 
 @keyframes coldy {
   0% {
-    background-color: rgba(215, 83, 48, 0.50);
+    background-color: $coldy-process-start-background-color;
   }
   25% {
-    background-color: rgba(215, 83, 48, 0.80);
+    background-color: $coldy-process-half-background-color;
   }
-  25% {
-    background-color: rgba(215, 83, 48, 1);
+  50% {
+    background-color: $coldy-process-full-background-color;
   }
   75% {
-    background-color: rgba(215, 83, 48, 0.80);
+    background-color: $coldy-process-half-background-color;
   }
   100% {
-    background-color: rgba(215, 83, 48, 0.50);
+    background-color: $coldy-process-start-background-color;
   }
 }
 
 @-moz-keyframes neutraly {
   0% {
-    background-color: rgba(0, 0, 0, .2);
+    background-color: $neutraly-process-start-background-color;
   }
   25% {
-    background-color: rgba(0, 0, 0, .3);
+    background-color: $neutraly-process-half-background-color;
   }
-  25% {
-    background-color: rgba(0, 0, 0, .4);
+  50% {
+    background-color: $neutraly-process-full-background-color;
   }
   75% {
-    background-color: rgba(0, 0, 0, .3);
+    background-color: $neutraly-process-half-background-color;
   }
   100% {
-    background-color: rgba(0, 0, 0, .2);
+    background-color: $neutraly-process-start-background-color;
   }
 }
 
 @-webkit-keyframes neutraly {
   0% {
-    background-color: rgba(0, 0, 0, .2);
+    background-color: $neutraly-process-start-background-color;
   }
   25% {
-    background-color: rgba(0, 0, 0, .3);
+    background-color: $neutraly-process-half-background-color;
   }
-  25% {
-    background-color: rgba(0, 0, 0, .4);
+  50% {
+    background-color: $neutraly-process-full-background-color;
   }
   75% {
-    background-color: rgba(0, 0, 0, .3);
+    background-color: $neutraly-process-half-background-color;
   }
   100% {
-    background-color: rgba(0, 0, 0, .2);
+    background-color: $neutraly-process-start-background-color;
   }
 }
 
 @keyframes neutraly {
   0% {
-    background-color: rgba(0, 0, 0, .2);
+    background-color: $neutraly-process-start-background-color;
   }
   25% {
-    background-color: rgba(0, 0, 0, .3);
+    background-color: $neutraly-process-half-background-color;
   }
-  25% {
-    background-color: rgba(0, 0, 0, .4);
+  50% {
+    background-color: $neutraly-process-full-background-color;
   }
   75% {
-    background-color: rgba(0, 0, 0, .3);
+    background-color: $neutraly-process-half-background-color;
   }
   100% {
-    background-color: rgba(0, 0, 0, .2);
+    background-color: $neutraly-process-start-background-color;
   }
 }
 

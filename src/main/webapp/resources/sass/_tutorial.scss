@@ -5,7 +5,7 @@
 }
 
 .slick-disabled, .slick-disabled:hover {
-  background: rgba(255, 255, 255, .15) !important;
+  background: $slick-disabled-background !important;
 }
 
 .tutorial-carousel {
@@ -13,12 +13,12 @@
   margin-bottom: 5em;
   max-width: 80%;
   strong {
-    color: #ffffff;
+    color: $main-font-color;
   }
 }
 
 .tutorial-slide {
-  color: #ffffff;
+  color: $main-font-color;
   font-size: 1.2em;
   text-align: center;
 }
@@ -34,7 +34,7 @@
 
     .icon.mini{
       display: inline-block !important;
-      color: #ffffff !important;
+      color: $main-font-color !important;
       margin: 0 1em;
     }
   }

@@ -1,5 +1,5 @@
 div.responseDescription {
-  color: #fff;
+  color: $main-font-color;
   font-size: 1em;
   text-align: center;
 }
@@ -9,28 +9,28 @@ div.responseDescription {
 */
 div.redirect-container {
   text-align: center;
-  color: #ffffff;
+  color: $main-font-color;
   font-size: 1em;
 }
 
 div.redirect-container > i {
-  color: #ffffff !important;
+  color: $main-font-color !important;
   font-size: 5em;
 }
 
 div.redirect-container div.redirect-container-actions > a {
   font-size: 15px;
-  color: #ffffff;
-  border: solid 1px #ffffff !important;
+  color: $main-font-color;
+  border: solid 1px $redirect-container-border-color !important;
   box-shadow: inset 0 0 0 0px #e6e6e6;
 }
 
 div.redirect-container div.redirect-container-actions > a:hover {
-  color: #d70000;
+  color: $redirect-container-hover-color;
   text-decoration: none;
-  background-color: rgba(255, 255, 255, 0.075);
+  background-color: $redirect-container-hover-background;
 }
 
 div.redirect-container div.redirect-container-actions > a.back:hover {
-  color: #eeeeee !important;
+  color: $redirect-container-back-hover-color !important;
 }
