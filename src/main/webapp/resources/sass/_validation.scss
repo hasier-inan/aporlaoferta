@@ -22,6 +22,11 @@
   color: $autocomplete-suggestions-color !important;
 }
 
+.category-dropdown {
+  color: $main-font-color;
+  font-weight: normal;
+}
+
 div.offer-creation-category.ng-valid .category-dropdown,
 .content-validation.ng-valid {
   background: $validation-background-color url(images/valid.png) no-repeat scroll right;
@@ -30,7 +35,7 @@ div.offer-creation-category.ng-valid .category-dropdown,
   padding-right: 25px;
 }
 
-div.offer-creation-category.ng-valid .category-dropdown:hover,
+div.offer-creation-category.ng-valid .category-droangulpdown:hover,
 .content-validation.ng-valid:hover {
   background: $validation-hover-background-color url(images/valid.png) no-repeat scroll right;
   background-size: 20px;

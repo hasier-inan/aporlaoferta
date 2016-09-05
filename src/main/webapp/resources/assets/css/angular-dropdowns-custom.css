@@ -50,8 +50,8 @@ ul.dropdown li {
     content: "\f078";
 }
 
-.wrap-dd-select:hover{
-    background: ;
+.wrap-dd-select:hover {
+    background:;
 }
 
 .wrap-dd-select.disabled:after {
@@ -73,7 +73,7 @@ ul.dropdown li {
     visibility: hidden;
     max-height: 500px;
     overflow-y: auto; /*Provide an auto overflow to display scroll*/
-    color: #FFFFFF !important;
+    color: #FFFFFF;
 }
 
 .wrap-dd-select .dropdown li.divider {
@@ -97,6 +97,10 @@ ul.dropdown li {
     background: rgba(243, 91, 214, 0.25);
     border: 1px solid #f35bd6;
     border-bottom: none !important;
+}
+
+.wrap-dd-select .dropdown li a:hover {
+    color: rgba(0, 0, 0, .8) !important;
 }
 
 .wrap-dd-select .dropdown li i {
