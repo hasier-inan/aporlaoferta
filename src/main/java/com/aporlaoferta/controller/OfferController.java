@@ -220,9 +220,8 @@ public class OfferController {
             if (originalOffer == null) {
                 throw new ValidationException("Invalid offer id");
             }
-            String nickName = this.userManager.getUserNickNameFromSession();
             TheResponse result = ResponseResultHelper.createDefaultResponse();
-            if (!originalOffer.getOfferUser().getUserNickname().equals(nickName)) {
+            if (!this.userManager.isUserAuthorised(originalOffer)) {
                 return ResponseResultHelper.
                         responseResultWithResultCodeError(ResultCode.INVALID_OWNER_ERROR, result);
             }

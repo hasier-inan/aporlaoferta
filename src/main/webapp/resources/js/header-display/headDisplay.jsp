@@ -15,7 +15,7 @@
         <div ng-show="displayResponseFromServer" ng-response-from-server="responseFromServer"
              the-response="theResponse"></div>
         <div ng-show="displayTutorial" ng-quick-tutorial="quickTutorial" is-displayed="tutorialIsDisplayed"></div>
-        <sec:authorize ifAllGranted="ROLE_USER">
+        <sec:authorize access="isAuthenticated()">
             <div ng-offer-creation="offerCreation" ng-show="displayOfferCreation"
                  overhead-display="overheadVisible" custom-close-callback="customCloseCallback"
                  display-callback="displayOfferCreate"></div>
@@ -26,7 +26,7 @@
                  overhead-display="overheadVisible" custom-close-callback="customCloseCallback"
                  display-callback="displayAccountUpdateForm"></div>
         </sec:authorize>
-        <sec:authorize ifNotGranted="ROLE_USER">
+        <sec:authorize access="isAnonymous()">
             <div ng-account-login="accountLogin" ng-show="displayAccountLogin"></div>
             <div ng-account-creation="accountCreation" ng-show="displayAccountCreation"
                  overhead-display="overheadVisible" custom-close-callback="customCloseCallback"

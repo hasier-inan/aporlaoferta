@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <div>
-    <sec:authorize ifAllGranted="ROLE_USER">
+    <sec:authorize access="isAuthenticated()">
 
         <div class="commentContent">
             <form name="commentContentForm">
@@ -24,7 +24,7 @@
             </form>
         </div>
     </sec:authorize>
-    <sec:authorize ifNotGranted="ROLE_USER">
+    <sec:authorize access="isAnonymous()">
         <div class="loginCommentMessage">Inicia sesión para añadir un comentario</div>
     </sec:authorize>
 </div>
@@ -61,7 +61,7 @@
         <div class="commentText">
             <pre class="parsed-text">{{theComment.commentText}}</pre>
         </div>
-        <sec:authorize ifAllGranted="ROLE_USER">
+        <sec:authorize access="isAuthenticated()">
             <div class="commentQuoteCommentAction">
                 <a href="#" class="quoteAction" ng-click="quoteAction(theComment.id)">citar:</a>
 
