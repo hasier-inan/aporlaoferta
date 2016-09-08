@@ -1,6 +1,7 @@
 package com.aporlaoferta.service;
 
 import com.aporlaoferta.controller.ResponseResultHelper;
+import com.aporlaoferta.model.TheOffer;
 import com.aporlaoferta.model.TheResponse;
 import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.model.TheUserRoles;
@@ -148,6 +149,10 @@ public class UserManager {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User theLoggedUser = (User) authentication.getPrincipal();
         return theLoggedUser.getUsername();
+    }
+
+    public boolean isUserAuthorised(TheOffer theOffer) {
+        return theOffer.getOfferUser().getUserNickname().equals(getUserNickNameFromSession());
     }
 
     @Autowired

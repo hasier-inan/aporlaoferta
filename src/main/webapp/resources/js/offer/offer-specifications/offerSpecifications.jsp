@@ -3,7 +3,7 @@
 <div>
     <div ng-repeat="offer in theOffer track by offer.id">
         <div class="offerSpecificationsContainer">
-            <sec:authorize ifAllGranted="ROLE_USER">
+            <sec:authorize access="isAuthenticated()">
                 <sec:authentication var="nickname" property="principal.username"/>
                 <div class="offer-specifications edit-offer"
                      ng-show="offer.offerUser.userNickname == '${nickname}'">
@@ -29,6 +29,32 @@
                             ng-confirm-click="¿Seguro que quieres caducar la oferta?">
                     </button>
                 </div>
+                <sec:authorize ifAllGranted="ROLE_ADMIN">
+                    <div class="offer-specifications edit-offer"
+                         ng-show="offer.offerUser.userNickname != '${nickname}'">
+                        <button class="button small icon fa-pencil whiteButton green-background"
+                                ng-click="updateOffer(offer)">
+                            Editar oferta
+                        </button>
+                        <button class="button mini icon fa-pencil whiteButton green-background"
+                                ng-click="updateOffer(offer)">
+                        </button>
+                    </div>
+                    <div class="offer-specifications edit-offer expire-offer"
+                         ng-show="offer.offerUser.userNickname != '${nickname}'">
+                        <button ng-disabled="offer.offerExpired"
+                                class="button small icon fa-trash whiteButton red-background"
+                                confirmed-click="expireOffer(offer)"
+                                ng-confirm-click="¿Seguro que quieres caducar la oferta?">
+                            Oferta Caducada
+                        </button>
+                        <button ng-disabled="offer.offerExpired"
+                                class="button mini icon fa-trash whiteButton red-background"
+                                confirmed-click="expireOffer(offer)"
+                                ng-confirm-click="¿Seguro que quieres caducar la oferta?">
+                        </button>
+                    </div>
+                </sec:authorize>
             </sec:authorize>
             <div class="offerSpecificationsLeftContainer containerSplitter">
                 <div class="offerSpecificationsImage">
@@ -47,11 +73,11 @@
                                     <div id="offerNegativeFeedback">-{{offer.offerNegativeVote}}</div>
                                 </div>
                             </div>
-                            <sec:authorize ifNotGranted="ROLE_USER">
+                            <sec:authorize access="isAnonymous()">
                                 <div class="loginFeedbackMessage">Inicia sesión para votar esta oferta</div>
                             </sec:authorize>
                         </div>
-                        <sec:authorize ifAllGranted="ROLE_USER">
+                        <sec:authorize access="isAuthenticated()">
                             <div class="feedbackButtons">
                                 <div>
                                     <button class="button small icon fa-plus whiteButton green-background"

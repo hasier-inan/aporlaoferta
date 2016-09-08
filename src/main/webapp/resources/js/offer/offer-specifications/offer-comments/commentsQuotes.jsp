@@ -12,7 +12,7 @@
                      quoted-comment="theComment.commentsQuotedComment"></div>-->
             </div>
             {{theComment.commentText}}
-            <sec:authorize ifAllGranted="ROLE_USER">
+            <sec:authorize access="isAuthenticated()">
                 <div class="commentQuoteCommentAction">
                     <a href="#" class="quoteAction" ng-click="quoteAction(theComment.id)">citar:</a>
 
