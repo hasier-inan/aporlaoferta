@@ -54,7 +54,7 @@
         vertidas por los usuarios a través de los foros, chats, u otras herramientas de participación.
     </p>
 
-    <h1>4. PROTECCIóN DE DATOS</h1>
+    <h1>4. PROTECCIÓN DE DATOS</h1>
 
     <p>aporlaoferta cumple con las directrices de la Ley Orgánica 15/1999 de 13 de diciembre de Protección de
         Datos de Carácter
@@ -107,7 +107,7 @@
         protección o sistema de seguridad que estuviera instalado en el las páginas de aporlaoferta.
     </p>
 
-    <h1>6. EXCLUSIóN DE GARANTíAS Y RESPONSABILIDAD</h1>
+    <h1>6. EXCLUSIÓN DE GARANTíAS Y RESPONSABILIDAD</h1>
 
     <p>aporlaoferta no se hace responsable, en ningún caso, de los daños y perjuicios de cualquier naturaleza que
         pudieran
@@ -145,7 +145,7 @@
         participación con las entidades conectadas.
     </p>
 
-    <h1>9. DERECHO DE EXCLUSIóN</h1>
+    <h1>9. DERECHO DE EXCLUSIÓN</h1>
 
     <p>aporlaoferta se reserva el derecho a denegar o retirar el acceso a portal y/o los servicios ofrecidos sin necesidad de
         preaviso, a instancia propia o de un tercero, a aquellos usuarios que incumplan las presentes Condiciones
@@ -159,7 +159,7 @@
         portal ejerciendo todas las acciones civiles y penales que le puedan corresponder en derecho.
     </p>
 
-    <h1>11.MODIFICACIóN DE LAS PRESENTES CONDICIONES Y DURACIóN</h1>
+    <h1>11.MODIFICACIóN DE LAS PRESENTES CONDICIONES Y DURACIÓN</h1>
 
     <p>aporlaoferta podrá modificar en cualquier momento las condiciones aquí determinadas, siendo debidamente
         publicadas como
@@ -171,7 +171,7 @@
         publicadas. que sean modificadas por otras.
     </p>
 
-    <h1>12. LEGISLACIóN APLICABLE Y JURIDISCCIóN</h1>
+    <h1>12. LEGISLACIóN APLICABLE Y JURIDISCCIÓN</h1>
 
     <p>La relación entre aporlaoferta y el USUARIO se regirá por la normativa española vigente y cualquier
         controversia se

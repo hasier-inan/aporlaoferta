@@ -43,7 +43,7 @@ public class CompanyController {
             } else {
                 String okMessage = String.format("Company successfully created. Id: %s", company.getId());
                 LOG.info(okMessage);
-                result.assignResultCode(ResultCode.ALL_OK, okMessage, "Compañía creada satisfactoriamente");
+                result.assignResultCode(ResultCode.ALL_OK, okMessage, "Compañía creada");
             }
         } catch (ValidationException e) {
             String resultDescription = ResultCode.CREATE_COMPANY_VALIDATION_ERROR.getResultDescription();

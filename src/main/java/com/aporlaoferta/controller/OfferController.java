@@ -366,7 +366,7 @@ public class OfferController {
         } else {
             String okMessage = String.format("Offer successfully updated. Id: %s", theOffer.getId());
             LOG.info(okMessage);
-            result.assignResultCode(ResultCode.ALL_OK, okMessage, "Oferta actualizada satisfactoriamente");
+            result.assignResultCode(ResultCode.ALL_OK, okMessage, "Oferta actualizada");
         }
 
     }

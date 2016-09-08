@@ -11,8 +11,8 @@ aporlaofertaApp
                 nick: '=',
                 customCloseCallback: '='
             },
-            controller: ['$scope', '$http', 'requestManager', 'configService', 'alertService',
-                function ($scope, http, requestManager, configService, alertService) {
+            controller: ['$scope', '$http', 'requestManager', 'configService', 'alertService','$timeout',
+                function ($scope, http, requestManager, configService, alertService,$timeout) {
                     $scope.validPassword= /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!$%@#£€*?&]{8,}$/;
                     $scope.theUser = {userNickname: $scope.nick, uuid: $scope.uuid};
                     $scope.updatePassword = function (theUser) {
@@ -28,12 +28,12 @@ aporlaofertaApp
                         $scope.theUser = {userNickname: $scope.nick, uuid: $scope.uuid};
                     }
                     $scope.processPasswordResponse = function (data) {
-                        if(alertService.isAllOk(data)){
-                            $scope.customCloseCallback = function(){
-                                window.location.replace("/");
-                            };
-                        }
                         alertService.sendErrorMessage(data.descriptionEsp);
+                        if(alertService.isAllOk(data)){
+                            $timeout(function () {
+                                window.location.replace("/");
+                            }, 2000);
+                        }
                     }
                 }]
         }
