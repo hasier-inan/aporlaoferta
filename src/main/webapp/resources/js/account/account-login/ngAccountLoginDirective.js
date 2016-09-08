@@ -9,6 +9,12 @@ aporlaofertaApp
             controller: ['$scope', 'requestManager', 'configService', 'alertService',
                 function ($scope, requestManager, configService, alertService) {
                     $scope.validMail = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
+
+                    $scope.processLogin=function(){
+                        $scope.processing=true;
+                        angular.element('#loginForm').trigger('submit');
+                    }
+
                     $scope.requestPassword = function (userEmail) {
                         $scope.processing = true;
 
@@ -21,12 +27,14 @@ aporlaofertaApp
                                 $scope.processing = false;
                             });
                     }
+
                     $scope.processAccountResponse = function (data) {
                         alertService.sendErrorMessage(data.descriptionEsp);
                         if ($scope.restartRecaptcha) {
                             $scope.restartRecaptcha();
                         }
                     }
+
                     $scope.accountDefaultError = function () {
                         alertService.sendDefaultErrorMessage();
                     }

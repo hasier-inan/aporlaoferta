@@ -24,11 +24,14 @@
     <div class="centeredForm" ng-hide="isPasswordForgotten">
         <button ng-disabled="!loginForm.$valid || processing" class="button small icon fa-sign-in overheadButton"
                 name="loginSubmit"
-                ng-click="loginForm.submit()">
+                ng-click="processLogin()">
             Identificarse
         </button>
         <button ng-disabled="!loginForm.$valid || processing" class="button mini icon fa-sign-in overheadButton"
-                ng-click="loginForm.submit()"></button>
+                ng-click="processLogin()"></button>
+        <div class="loading-dialogue ">
+            <i class="fa fa-refresh loadingdialogue white popup-loading" ng-class="!processing?'hideLoading':''"></i>
+        </div>
     </div>
 
 </form>

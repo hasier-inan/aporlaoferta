@@ -242,7 +242,7 @@ public class AccountController {
             } else {
                 String okMessage = String.format("User successfully updated. Id: %s", nuUser.getId());
                 LOG.info(okMessage);
-                result.assignResultCode(ResultCode.ALL_OK, okMessage, "Usuario actualizado satisfactoriamente");
+                result.assignResultCode(ResultCode.ALL_OK, okMessage, "Usuario actualizado");
             }
         } catch (ValidationException e) {
             String resultDescription = ResultCode.UPDATE_USER_VALIDATION_ERROR.getResultDescription();
