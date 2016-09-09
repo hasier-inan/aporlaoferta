@@ -12,14 +12,14 @@
         <!-- Restrict URLs based on role -->
         <security:intercept-url method="GET" pattern="/admin**" access="hasRole('ROLE_ADMIN')"/>
         <security:intercept-url method="POST" pattern="/createCompany**" access="hasRole('ROLE_ADMIN')"/>
-        <security:intercept-url method="POST" pattern="/updateUser**" access="hasRole('ROLE_USER')"/>
-        <security:intercept-url method="POST" pattern="/createComment**" access="hasRole('ROLE_USER')"/>
-        <security:intercept-url method="POST" pattern="/updateComment**" access="hasRole('ROLE_USER')"/>
-        <security:intercept-url method="POST" pattern="/createOffer**" access="hasRole('ROLE_USER')"/>
-        <security:intercept-url method="POST" pattern="/updateOffer**" access="hasRole('ROLE_USER')"/>
-        <security:intercept-url method="POST" pattern="/votePositive**" access="hasRole('ROLE_USER')"/>
-        <security:intercept-url method="POST" pattern="/voteNegative**" access="hasRole('ROLE_USER')"/>
-        <security:intercept-url pattern="favicon.ico" access="permitAll" />
+        <security:intercept-url method="POST" pattern="/updateUser**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
+        <security:intercept-url method="POST" pattern="/createComment**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
+        <security:intercept-url method="POST" pattern="/updateComment**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
+        <security:intercept-url method="POST" pattern="/createOffer**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
+        <security:intercept-url method="POST" pattern="/updateOffer**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
+        <security:intercept-url method="POST" pattern="/votePositive**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
+        <security:intercept-url method="POST" pattern="/voteNegative**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
+        <security:intercept-url pattern="favicon.ico" access="permitAll"/>
         <!-- access denied page -->
         <security:access-denied-handler error-page="/403"/>
 
