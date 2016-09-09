@@ -316,9 +316,8 @@ public class OfferController {
     }
 
     private TheResponse updateOfferFromOriginal(TheOffer theOffer, TheOffer originalOffer) throws UnsupportedEncodingException, UnhealthyException, MalformedURLException {
-        String nickName = this.userManager.getUserNickNameFromSession();
         TheResponse result = new TheResponse();
-        if (!originalOffer.getOfferUser().getUserNickname().equals(nickName)) {
+        if (this.userManager.isUserAuthorised(theOffer)) {
             return ResponseResultHelper.
                     responseResultWithResultCodeError(ResultCode.INVALID_OWNER_ERROR, result);
         }
