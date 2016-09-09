@@ -152,7 +152,10 @@ public class UserManager {
     }
 
     public boolean isUserAuthorised(TheOffer theOffer) {
-        return theOffer.getOfferUser().getUserNickname().equals(getUserNickNameFromSession());
+        String originalNickname = theOffer.getOfferUser().getUserNickname();
+        String sessionNickname = getUserNickNameFromSession();
+        UserRoles userRole = this.transactionalManager.getUserRoleFromNickname(sessionNickname).get(0).getUserRole();
+        return originalNickname.equals(sessionNickname) || UserRoles.ROLE_ADMIN.equals(userRole);
     }
 
     @Autowired

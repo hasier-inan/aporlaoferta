@@ -154,6 +154,11 @@ public class TransactionalManager {
         return this.userRolesDAO.save(theUserRoles);
     }
 
+    @Transactional(readOnly = true)
+    public List<TheUserRoles> getUserRoleFromNickname(String nickname) {
+        return this.userRolesDAO.findByUserNickname(nickname);
+    }
+
     @Transactional
     public TheUser saveUser(TheUser theUser) {
         return this.userDAO.save(theUser);
