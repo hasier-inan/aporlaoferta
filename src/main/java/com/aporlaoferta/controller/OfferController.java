@@ -317,7 +317,7 @@ public class OfferController {
 
     private TheResponse updateOfferFromOriginal(TheOffer theOffer, TheOffer originalOffer) throws UnsupportedEncodingException, UnhealthyException, MalformedURLException {
         TheResponse result = new TheResponse();
-        if (this.userManager.isUserAuthorised(theOffer)) {
+        if (!this.userManager.isUserAuthorised(theOffer)) {
             return ResponseResultHelper.
                     responseResultWithResultCodeError(ResultCode.INVALID_OWNER_ERROR, result);
         }
@@ -340,7 +340,6 @@ public class OfferController {
         originalOffer.setOfferImage(theUpdatedOffer.getOfferImage());
         originalOffer.setOfferLink(theUpdatedOffer.getOfferLink());
         originalOffer.setOriginalPrice(theUpdatedOffer.getOriginalPrice());
-        originalOffer.setOfferCreatedDate(new Date());
         return originalOffer;
     }
 
