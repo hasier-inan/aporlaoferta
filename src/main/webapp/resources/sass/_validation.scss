@@ -44,6 +44,7 @@ div.offer-creation-category.ng-valid .category-droangulpdown:hover,
 .content-validation.ng-valid:focus:hover {
   background: $validation-focus-background-color url(images/valid.png) no-repeat scroll right;
   background-size: 20px;
+  color: $validation-focus-color;
 }
 
 div.offer-creation-category.ng-invalid .category-dropdown,
@@ -63,6 +64,7 @@ div.offer-creation-category.ng-invalid .category-dropdown:hover,
 .content-validation.ng-invalid:focus:hover {
   background: $validation-focus-background-color url(images/invalid.png) no-repeat scroll right;
   background-size: 20px;
+  color: $validation-focus-color;
 }
 
 .content-validation.ng-invalid.comment-textarea {

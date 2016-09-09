@@ -136,7 +136,7 @@ public class OfferControllerTest {
                 .aBasicOfferWithoutId().withUser(UserBuilderManager.aRegularUserWithNickname(nickname).build())
                 .build();
         when(this.offerManager.getOfferFromId(offerId)).thenReturn(offerFromUser);
-        when(this.userManager.getUserNickNameFromSession()).thenReturn(nickname);
+        when(this.userManager.isUserAuthorised(Mockito.any(TheOffer.class))).thenReturn(true);
         when(this.userManager.saveUser(offerFromUser.getOfferUser())).thenReturn(makeAProperUserWithLastOffer());
         TheOffer offerToBeUpdated = OfferBuilderManager.aBasicOfferWithId(offerId).build();
         String captcha = "cappp";
