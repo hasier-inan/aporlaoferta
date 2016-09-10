@@ -23,7 +23,7 @@ configManager.service('configService', [function () {
     var REQUEST_PASSWORD = "requestForgottenPassword";
     var TUTORIAL_COOKIE = "aporlaoferta-tut";
     var LAW_COOKIE = "aporlaoferta-cle";
-    var IMAGE_MAX_SIZE = 2000;
+    var IMAGE_MAX_SIZE = 4500;
     configService.getEndpoint = function (key) {
         return configMap[key];
     };

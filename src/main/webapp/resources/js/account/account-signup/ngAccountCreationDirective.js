@@ -18,8 +18,8 @@ aporlaofertaApp
                     $scope.publicKey = "6LdqHQoTAAAAAAht2VhkrLGU26eBOjL-nK9zXxcn";
                     $scope.disableNickname = false;
                     $scope.passwordUpdateRequired = true;
-                    $scope.validMail = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
-                    $scope.validPassword= /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!$%@#£€*?&]{8,}$/;
+                    $scope.validMail = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*(\+[a-z0-9-]+)?@[a-z]+\.[a-z.]{2,5}$/;
+                    $scope.validPassword= /^(?=.*?)(?=.*?[a-z])(?=.*?[0-9])(?=.*?).{8,}$/;
                     $scope.createAccount = function (theUser) {
                         if (vcRecaptchaService.getResponse($scope.widgetId) === "") {
                             $scope.displayErrorMessageAndDisplayAccount();
