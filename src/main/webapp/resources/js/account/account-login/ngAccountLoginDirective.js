@@ -8,8 +8,7 @@ aporlaofertaApp
             templateUrl: 'view/login.jsp',
             controller: ['$scope', 'requestManager', 'configService', 'alertService',
                 function ($scope, requestManager, configService, alertService) {
-                    $scope.validMail = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
-
+                    $scope.validMail = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*(\+[a-z0-9-]+)?@[a-z]+\.[a-z.]{2,5}$/;
                     $scope.processLogin=function(){
                         $scope.processing=true;
                         angular.element('#loginForm').trigger('submit');
