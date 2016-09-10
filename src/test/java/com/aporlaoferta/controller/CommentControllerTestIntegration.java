@@ -5,6 +5,7 @@ import com.aporlaoferta.data.CommentBuilderManager;
 import com.aporlaoferta.model.OfferComment;
 import com.aporlaoferta.model.TheOffer;
 import com.aporlaoferta.rawmap.RequestMap;
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.http.MediaType;
 import org.springframework.security.web.csrf.CsrfToken;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Map;
 
 import static org.hamcrest.Matchers.startsWith;
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -89,6 +91,30 @@ public class CommentControllerTestIntegration extends ControllerTestIntegration 
     }
 
     @Test
+    public void testAdminUserCanDeleteCommentAndSuccessCodeIsReceived() throws Exception {
+        String commentId = createDummyComment();
+        performPostRequestToDeleteComment(commentId, ADMIN_USER)
+                .andExpect(status().is2xxSuccessful());
+    }
+
+    @Test
+    public void testRegularUsersCanNotDeleteCommentAndErrorCodeIsReceived() throws Exception {
+        String commentId = createDummyComment();
+        performPostRequestToDeleteComment(commentId, REGULAR_USER)
+                .andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    public void testDeletedCommentHasStaticMessageOnIt() throws Exception {
+        String commentId = createDummyComment();
+        performPostRequestToDeleteComment(commentId, ADMIN_USER)
+                .andExpect(status().is2xxSuccessful());
+        this.theUser = this.userManagerTest.getUserFromNickname(REGULAR_USER);
+        assertEquals("Expected static message regarding to comment delete",
+                theUser.obtainLatestComment().getCommentText(), ResultCode.COMMENT_DELETED_INFO.getResultDescriptionEsp());
+    }
+
+    @Test
     public void testUpdateCommentThatHasDifferentOwnerReturnsErrorCode() throws Exception {
         String jsonRequest = RequestMap.getJsonFromMap(CommentBuilderManager.aBasicCommentWithoutId().build());
         this.theUser = this.userManagerTest.getUserFromNickname(REGULAR_USER);
@@ -130,5 +156,17 @@ public class CommentControllerTestIntegration extends ControllerTestIntegration 
         )
                 .andExpect(status().is3xxRedirection());
     }
+
+    private String createDummyComment() throws Exception {
+        String jsonRequest = RequestMap.getJsonFromMap(CommentBuilderManager.aBasicCommentWithoutId().build());
+        this.theUser = this.userManagerTest.getUserFromNickname(REGULAR_USER);
+        TheOffer theOffer = theUser.obtainLatestOffer();
+        String offerId = String.valueOf(theOffer.getId());
+        performPostRequestToCreateComment(jsonRequest, offerId, REGULAR_USER)
+                .andExpect(status().is2xxSuccessful());
+        this.theUser = this.userManagerTest.getUserFromNickname(REGULAR_USER);
+        return String.valueOf(theUser.obtainLatestComment().getId());
+    }
+
 
 }

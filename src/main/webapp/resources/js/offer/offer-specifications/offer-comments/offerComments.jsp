@@ -38,6 +38,11 @@
         <img ng-src="{{theComment.commentOwner.userAvatar}}"/>
     </div>
     <div class="commentsTheComment">
+        <sec:authorize ifAllGranted="ROLE_ADMIN">
+            <div class="remove-comment" ng-click="deleteComment(theComment.id)">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+            </div>
+        </sec:authorize>
         <div ng-if="theComment.commentsQuotedComment" class="quotedContent">
             <div style="display: none">
                 {{quotedComment=getQuotedComment(theComment.commentsQuotedComment, theComments)}}

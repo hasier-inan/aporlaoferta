@@ -40,6 +40,7 @@ public class ControllerTestIntegration {
 
     protected static final String REGULAR_USER = "regularUser";
     protected static final String ANOTHER_USER = "anotherUser";
+    protected static final String ADMIN_USER = "theboss";
 
     @Autowired
     protected UserManager userManagerTest;
@@ -57,19 +58,22 @@ public class ControllerTestIntegration {
     public void setup() throws Exception {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac)
                 .addFilters(this.springSecurityFilterChain).build();
-        if (!this.userManagerTest.doesUserExist(REGULAR_USER)) {
-            TheUser theUser = UserBuilderManager.aRegularUserWithNickname(REGULAR_USER).build();
-            createUserFromController(theUser);
-            TheUser userDetails = this.userManagerTest.getUserFromNickname(theUser.getUserNickname());
-            confirmUserFromController(userDetails);
-        }
-        if (!this.userManagerTest.doesUserExist(ANOTHER_USER)) {
-            TheUser theUser = UserBuilderManager.aRegularUserWithNickname(ANOTHER_USER).build();
-            createUserFromController(theUser);
-            TheUser userDetails = this.userManagerTest.getUserFromNickname(theUser.getUserNickname());
-            confirmUserFromController(userDetails);
+        createUser(REGULAR_USER);
+        createUser(ANOTHER_USER);
+
+        if (!this.userManagerTest.doesUserExist(ADMIN_USER)) {
+            this.userManagerTest.createAdminUser(UserBuilderManager.aRegularUserWithNickname(ADMIN_USER).build());
         }
         createOfferForTheUser();
+    }
+
+    private void createUser(String name) throws Exception {
+        if (!this.userManagerTest.doesUserExist(name)) {
+            TheUser theUser = UserBuilderManager.aRegularUserWithNickname(name).build();
+            createUserFromController(theUser);
+            TheUser userDetails = this.userManagerTest.getUserFromNickname(theUser.getUserNickname());
+            confirmUserFromController(userDetails);
+        }
     }
 
     protected void createOfferForTheUser() throws Exception {
@@ -171,6 +175,19 @@ public class ControllerTestIntegration {
                 .sessionAttr("_csrf", csrfToken)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonRequest)
+                .param("comment", commentId)
+                .param("_csrf", csrfToken.getToken())
+                .sessionAttrs(SessionAttributeBuilder
+                        .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
+        );
+    }
+
+    protected ResultActions performPostRequestToDeleteComment(String commentId, String identifiedUser) throws Exception {
+        CsrfToken csrfToken = CsrfTokenBuilder.generateAToken();
+        return this.mockMvc.perform(post("/deleteComment")
+                .with(userDeatilsService(identifiedUser))
+                .sessionAttr("_csrf", csrfToken)
+                .contentType(MediaType.APPLICATION_JSON)
                 .param("comment", commentId)
                 .param("_csrf", csrfToken.getToken())
                 .sessionAttrs(SessionAttributeBuilder

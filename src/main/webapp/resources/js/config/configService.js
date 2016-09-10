@@ -16,6 +16,7 @@ configManager.service('configService', [function () {
     var POSITIVE_FEEDBACK_ENDPOINT = "votePositive";
     var NEGATIVE_FEEDBACK_ENDPOINT = "voteNegative";
     var CREATE_COMMENT_ENDPOINT = "createComment";
+    var DELETE_COMMENT_ENDPOINT = "deleteComment";
     var QUOTE_COMMENT_ENDPOINT = "quoteComment";
     var GET_FILTERED_ENDPOINT = "getFilteredOffers";
     var REQUEST_PASSWORD_UPDATE = "forgottenPassword";
@@ -41,6 +42,7 @@ configManager.service('configService', [function () {
         'positive.feedback': POSITIVE_FEEDBACK_ENDPOINT,
         'negative.feedback': NEGATIVE_FEEDBACK_ENDPOINT,
         'create.comment': CREATE_COMMENT_ENDPOINT,
+        'delete.comment': DELETE_COMMENT_ENDPOINT,
         'quote.comment': QUOTE_COMMENT_ENDPOINT,
         'get.filtered.offers': GET_FILTERED_ENDPOINT,
         'password.forgotten': REQUEST_PASSWORD_UPDATE,
