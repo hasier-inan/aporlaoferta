@@ -5,7 +5,7 @@ aporlaofertaApp
     .directive('ngAccountUpdate', function () {
         return {
             restrict: 'A',
-            templateUrl: 'resources/js/account/account-signup/createAccount.html',
+            templateUrl: 'resources/js/account/account-signup/createAccount.jsp',
             scope: {
                 overheadDisplay: '=',
                 customCloseCallback: '=',
@@ -43,6 +43,11 @@ aporlaofertaApp
                             //$scope.overheadDisplay = false;
                         }
                     }
+
+                    $scope.processLogin = function(){
+                        $rootScope.$broadcast('userLoginRequest');
+                    }
+
                     $scope.getUserDetails = function () {
                         requestManager.makePostCall({}, {}, configService.getEndpoint('get.account.details'))
                             .success(function (data, status, headers, config) {

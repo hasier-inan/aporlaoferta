@@ -34,6 +34,10 @@
         <security:logout logout-success-url="/"/>
         <!-- enable csrf protection -->
         <security:csrf/>
+        <security:remember-me
+                remember-me-parameter="remember-me"
+                token-validity-seconds="1209600"
+                data-source-ref="dataSource"/>
     </security:http>
 
     <security:authentication-manager>

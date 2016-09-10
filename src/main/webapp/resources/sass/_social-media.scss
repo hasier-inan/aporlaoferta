@@ -6,10 +6,6 @@ div.social-media-shares {
   z-index: 1000;
 }
 
-div.offerSpecificationsRightContainer div > div.social-media-shares {
-  margin: 0;
-}
-
 a.social-share {
   height: 2em;
   line-height: 2em;
@@ -73,34 +69,22 @@ a.social-share.mini {
     display: inline-block;
   }
 
-  div.social-media-shares {
+  .social-media-shares {
     left: 50%;
   }
 }
 
-@media screen and (max-width: 736px) {
+@media screen and (max-width: 737px) {
   a.social-share {
     margin-top: .3em;
   }
 
-  div.social-media-shares {
-    width: 2em;
-    margin-top: 4em;
-    left: 20px;
-    z-index: 995;
+  header {
+    .social-media-shares {
+      left: 20px !important;
+      margin-top: 5em;
+      width: 2em;
+    }
   }
 }
 
-@media screen and (max-width: 480px) {
-  div.social-media-shares {
-    width: auto;
-    left: 35%;
-    margin-top: 1em;
-  }
-
-  div.offerSpecificationsRightContainer div > div.social-media-shares {
-    width: 2em;
-    left: 20px;
-    margin: 0;
-  }
-}

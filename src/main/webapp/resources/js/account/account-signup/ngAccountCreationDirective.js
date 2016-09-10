@@ -5,7 +5,7 @@ aporlaofertaApp
     .directive('ngAccountCreation', function () {
         return {
             restrict: 'A',
-            templateUrl: 'resources/js/account/account-signup/createAccount.html',
+            templateUrl: 'resources/js/account/account-signup/createAccount.jsp',
             scope: {
                 overheadDisplay: '=',
                 customCloseCallback: '=',
