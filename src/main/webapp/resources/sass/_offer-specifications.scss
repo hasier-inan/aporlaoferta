@@ -245,6 +245,17 @@ div.commentText {
   margin-top: .5em;
 }
 
+div.remove-comment {
+  text-align: right;
+  color: $main-font-color;
+  transition: color 1s ease;
+  cursor: pointer;
+
+  &:hover {
+    color: $offer-specifications-subtitle-color;
+  }
+}
+
 div.commentsTheComment.quotedComment {
   margin-right: 1em;
   margin-left: 2em;

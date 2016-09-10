@@ -89,6 +89,35 @@ public class CommentController {
         return updateCommentFromOriginal(thatComment, originalComment);
     }
 
+    @RequestMapping(value = "/deleteComment", method = RequestMethod.POST)
+    @ResponseBody
+    public TheResponse deleteComment(@RequestParam(value = "comment", required = true) String commentId
+    ) {
+        if (!this.userManager.isUserAdmin()) {
+            return ResponseResultHelper.
+                    responseResultWithResultCodeError(ResultCode.DEFAULT_ERROR, new TheResponse());
+        }
+        OfferComment originalComment = null;
+        try {
+            originalComment = this.commentManager.getCommentFromId(Long.parseLong(commentId));
+        } catch (NumberFormatException e) {
+            LOG.error("Could not parse invalid comment id: ", e);
+        }
+        if (originalComment == null) {
+            return ResponseResultHelper.
+                    responseResultWithResultCodeError(ResultCode.UPDATE_COMMENT_VALIDATION_ERROR, new TheResponse());
+        }
+        return updateDeleteComment(originalComment);
+    }
+
+    private TheResponse updateDeleteComment(OfferComment originalComment) {
+        TheResponse result = new TheResponse();
+        originalComment.setCommentText(ResultCode.COMMENT_DELETED_INFO.getResultDescriptionEsp());
+        OfferComment updatedOfferComment = this.commentManager.saveComment(originalComment);
+        ResponseResultHelper.updateResultWithSuccessCode(result, updatedOfferComment);
+        return result;
+    }
+
     private TheResponse updateCommentFromOriginal(OfferComment thatComment, OfferComment originalComment) {
         String nickName = this.userManager.getUserNickNameFromSession();
         TheResponse result = new TheResponse();

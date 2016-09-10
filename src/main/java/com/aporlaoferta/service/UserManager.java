@@ -158,6 +158,12 @@ public class UserManager {
         return originalNickname.equals(sessionNickname) || UserRoles.ROLE_ADMIN.equals(userRole);
     }
 
+    public boolean isUserAdmin() {
+        String sessionNickname = getUserNickNameFromSession();
+        UserRoles userRole = this.transactionalManager.getUserRoleFromNickname(sessionNickname).get(0).getUserRole();
+        return UserRoles.ROLE_ADMIN.equals(userRole);
+    }
+
     @Autowired
     public void setTransactionalManager(TransactionalManager transactionalManager) {
         this.transactionalManager = transactionalManager;

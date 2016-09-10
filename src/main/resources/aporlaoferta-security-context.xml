@@ -14,6 +14,7 @@
         <security:intercept-url method="POST" pattern="/createCompany**" access="hasRole('ROLE_ADMIN')"/>
         <security:intercept-url method="POST" pattern="/updateUser**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
         <security:intercept-url method="POST" pattern="/createComment**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
+        <security:intercept-url method="POST" pattern="/deleteComment**" access="hasRole('ROLE_ADMIN')"/>
         <security:intercept-url method="POST" pattern="/updateComment**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
         <security:intercept-url method="POST" pattern="/createOffer**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
         <security:intercept-url method="POST" pattern="/updateOffer**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>

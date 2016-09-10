@@ -29,6 +29,7 @@ public enum ResultCode {
             "Validation process failed while updating offer", "El proceso de validación ha fallado mientras se procedía a actualizar la oferta"),
     UPDATE_COMMENT_VALIDATION_ERROR(17, ResponseResult.VALIDATION_ERROR,
             "Validation process failed while updating comment", "El proceso de validación ha fallado mientras se procedía a comentar la oferta"),
+    COMMENT_DELETED_INFO(19, ResponseResult.OK, "~ Comment has been deleted ~", "~ El comentario ha sido eliminado ~"),
     DATABASE_RETURNED_EMPTY_OBJECT(20, ResponseResult.SYSTEM_ERROR,
             "Database has not been updated , empty object returned", ""),
     INVALID_OWNER_ERROR(30, ResponseResult.INVALID_DATA_PROVIDED, "Invalid owner found", "Usuario inválido"),

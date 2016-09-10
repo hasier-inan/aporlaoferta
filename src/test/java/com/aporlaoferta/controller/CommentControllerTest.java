@@ -103,4 +103,38 @@ public class CommentControllerTest {
         assertThat(result.getDescription(), Matchers.is("Comment successfully created. Id: " + id));
     }
 
+    @Test
+    public void testDeleteCommentIsForAdminOnly() {
+        OfferComment theComment = CommentBuilderManager.aBasicCommentWithId(3L).build();
+        when(this.commentManager.getCommentFromId(3L)).thenReturn(theComment);
+        when(this.commentManager.saveComment(theComment)).thenReturn(theComment);
+        TheResponse result = this.commentController.deleteComment("3");
+        assertTrue(ResultCode.DEFAULT_ERROR.getCode() == result.getCode());
+    }
+
+    @Test
+    public void testDeleteCommentWhenCommentDoesNotExistReturnsValidationError() {
+        when(this.userManager.isUserAdmin()).thenReturn(true);
+        when(this.commentManager.getCommentFromId(3L)).thenReturn(null);
+        TheResponse result = this.commentController.deleteComment("3");
+        assertTrue(ResultCode.UPDATE_COMMENT_VALIDATION_ERROR.getCode() == result.getCode());
+    }
+
+    @Test
+    public void testDeleteCommentWhenCommentIdIsWrongReturnsValidationError() {
+        when(this.userManager.isUserAdmin()).thenReturn(true);
+        TheResponse result = this.commentController.deleteComment("wrong");
+        assertTrue(ResultCode.UPDATE_COMMENT_VALIDATION_ERROR.getCode() == result.getCode());
+    }
+
+    @Test
+    public void testDeleteCommentIsReturnsOKResult() {
+        when(this.userManager.isUserAdmin()).thenReturn(true);
+        OfferComment theComment = CommentBuilderManager.aBasicCommentWithId(3L).build();
+        when(this.commentManager.getCommentFromId(3L)).thenReturn(theComment);
+        when(this.commentManager.saveComment(theComment)).thenReturn(theComment);
+        TheResponse result = this.commentController.deleteComment("3");
+        assertTrue(ResultCode.ALL_OK.getCode() == result.getCode());
+    }
+
 }
