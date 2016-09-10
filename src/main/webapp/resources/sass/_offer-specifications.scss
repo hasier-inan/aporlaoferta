@@ -15,6 +15,10 @@ div.containerSplitter {
 
 div.offerSpecificationsRightContainer {
   width: 70%;
+
+  div > div.social-media-shares {
+    margin: 0;
+  }
 }
 
 a.quoteAction:hover {
@@ -42,44 +46,64 @@ div.offerSpecificationsTitle > h1 > a:hover {
   color: $offer-specifications-title-color;
 }
 
-div.offer-specifications.edit-offer {
-  position: absolute;
-  top: 0;
-  margin-top: -15px;
-  margin-left: 12px;
-}
+.offer-specifications {
+  &.edit-offer {
+    position: absolute;
+    top: 0;
+    margin-top: -15px;
+    margin-left: 12px;
 
-div.offer-specifications.expire-offer {
-  margin-left: 12em;
+    button {
+      height: 22px;
+      line-height: 11px;
+      font-size: 11px;
+
+      &.mini {
+        display: none;
+      }
+
+      &.small {
+        display: block;
+      }
+    }
+  }
+
+  &.expire-offer {
+    margin-left: 13em;
+  }
 }
 
 @media screen and (max-width: 480px) {
-  div.offer-specifications.edit-offer > button.small {
-    display: none !important;
+  .offer-specifications {
+    &.edit-offer {
+      .small {
+        display: none !important;
+      }
+
+      .mini {
+        display: block !important;
+        border-radius: 6px;
+        padding: 0;
+
+        &:before {
+          font-size: 15px;
+          margin: 0;
+        }
+      }
+    }
+
+    &.expire-offer {
+      margin-left: 5em;
+    }
   }
 
-  div.offer-specifications.edit-offer > button.mini {
-    display: block !important;
+  .offerSpecificationsRightContainer {
+    div > .social-media-shares {
+      width: 2em;
+      left: 20px;
+      margin-top: 2em !important;
+    }
   }
-
-  div.offer-specifications.expire-offer {
-    margin-left: 5em;
-  }
-}
-
-div.offer-specifications.edit-offer > button {
-  height: 22px;
-  line-height: 11px;
-  font-size: 11px;
-}
-
-div.offer-specifications.edit-offer > button.mini {
-  display: none;
-  width: 3.5em;
-}
-
-div.offer-specifications.edit-offer > button.small {
-  display: block;
 }
 
 div.offerSpecificationsTitle > h1 {
@@ -149,29 +173,33 @@ div.offerSpecificationsFeedback {
 div.feedbackButtons {
   text-align: center;
   margin-top: -1.4em;
+
+  div {
+    display: inline-block;
+
+    button.small {
+      display: inline-block;
+      margin: 0 1em 0 1em;
+      border-radius: 100%;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+
+      &:hover {
+        background-color: $offer-autocomplete-background;
+      }
+
+      &:before {
+        font-size: 16px;
+        margin: 0;
+        line-height: 40px;
+      }
+    }
+  }
 }
 
-div.loginFeedbackMessage,
-div.feedbackButtons div {
+.loginFeedbackMessage {
   display: inline-block;
-}
-
-div.feedbackButtons div > button.small {
-  display: inline-block;
-  margin: 0 1em 0 1em;
-  border-radius: 100%;
-  width: 3em;
-  height: 3em;
-}
-
-div.feedbackButtons div > button.small:hover {
-  background-color: $main-background-color;
-}
-
-div.feedbackButtons div > button.small::before {
-  position: absolute;
-  top: .1em;
-  right: .71em;
 }
 
 div.offerSpecificationsFeedbackTotal {
@@ -317,6 +345,13 @@ div.commentQuoteButtons {
   div.offerSpecificationsRightContainer {
     width: 96%;
     max-width: 96%;
+
+    div > .social-media-shares {
+      margin-top: 2em !important;
+      left: 20px;
+      width: 2em;
+      z-index: 995;
+    }
   }
 }
 

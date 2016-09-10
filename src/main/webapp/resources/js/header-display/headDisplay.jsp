@@ -26,8 +26,9 @@
                  overhead-display="overheadVisible" custom-close-callback="customCloseCallback"
                  display-callback="displayAccountUpdateForm"></div>
         </sec:authorize>
+
+        <div ng-account-login="accountLogin" ng-show="displayAccountLogin"></div>
         <sec:authorize access="isAnonymous()">
-            <div ng-account-login="accountLogin" ng-show="displayAccountLogin"></div>
             <div ng-account-creation="accountCreation" ng-show="displayAccountCreation"
                  overhead-display="overheadVisible" custom-close-callback="customCloseCallback"
                  display-callback="displaySignup"></div>

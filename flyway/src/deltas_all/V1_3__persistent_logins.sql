@@ -1,7 +1,7 @@
-CREATE TABLE thatpersistentlogins (
-    TPL_USERNAME varchar(255) not null,
-    TPL_SERIES varchar(255) not null,
-    TPL_TOKEN varchar(255) not null,
-    TPL_LAST_USED timestamp not null,
-    PRIMARY KEY (TPL_SERIES)
+CREATE TABLE persistent_logins (
+    username varchar(255) not null,
+    series varchar(64) not null,
+    token varchar(64) not null,
+    last_used timestamp not null,
+    PRIMARY KEY (series)
 );

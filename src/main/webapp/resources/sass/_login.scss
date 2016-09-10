@@ -1,0 +1,48 @@
+div#userProfileLogout {
+  display: block;
+  text-align: right;
+}
+
+div#userProfileLogout > label {
+  display: inline;
+  text-align: right;
+}
+
+div#userProfileLogout > img {
+  border-radius: .5em;
+  border: 0;
+  display: inline;
+  height: 40px;
+  margin-bottom: .5em;
+  width: 40px;
+}
+
+.remember-me-option {
+  margin-bottom: 1em;
+}
+
+.password-forgotten-option {
+  hr {
+    border-color: $offer-image-background-color;
+    margin: 1em;
+  }
+}
+
+.remember-me-security {
+  color: $main-font-color;
+  margin-left: 10%;
+  width: 80%;
+
+  div {
+    margin-bottom: 1em;
+  }
+
+  button.mini {
+    padding-left: 0;
+    position: relative;
+
+    &:before {
+      margin-left: 10px !important;
+    }
+  }
+}

@@ -132,6 +132,16 @@ input#filter-by {
   margin: .5em 1em;
 }
 
+button.displayFilterContents{
+  left: 50%;
+  margin-left: -20px;
+  padding-left: 0;
+
+  &:before{
+    margin: 0 0 0 2px !important;
+  }
+}
+
 input.filter-input {
   width: 20em;
 }
