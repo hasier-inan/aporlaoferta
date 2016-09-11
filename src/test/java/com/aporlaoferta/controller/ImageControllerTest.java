@@ -73,7 +73,7 @@ public class ImageControllerTest {
 
     @Test
     public void testTooLargeImageIsNotSaved() throws IOException {
-        when(this.tooLargeImage.getSize()).thenReturn(2000001L);
+        when(this.tooLargeImage.getSize()).thenReturn(4500001L);
         TheResponse theResponse = imageController.uploadImage(tooLargeImage);
         verify(this.imageUploadManager, never()).copyUploadedFileIntoServer(any(MultipartFile.class));
         Assert.assertThat("Expected the response to contain image too large code",

@@ -37,6 +37,8 @@ import static org.mockito.Mockito.when;
 public class CommentControllerTest {
 
     private static final String OFFER_ID = "2";
+    private static final String LOGGED_USER = "imtheloggedUser";
+
     @InjectMocks
     CommentController commentController;
     @Mock
@@ -51,11 +53,10 @@ public class CommentControllerTest {
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        String imtheloggedUser = "imtheloggedUser";
-        when(this.userManager.getUserNickNameFromSession()).thenReturn(imtheloggedUser);
-        TheUser theUser = UserBuilderManager.aRegularUserWithNickname(imtheloggedUser).build();
+        when(this.userManager.getUserNickNameFromSession()).thenReturn(LOGGED_USER);
+        TheUser theUser = UserBuilderManager.aRegularUserWithNickname(LOGGED_USER).build();
         theUser.addComment(CommentBuilderManager.aBasicCommentWithoutId().build());
-        when(this.userManager.getUserFromNickname(imtheloggedUser)).thenReturn(theUser);
+        when(this.userManager.getUserFromNickname(LOGGED_USER)).thenReturn(theUser);
         when(this.userManager.saveUser(any(TheUser.class))).thenReturn(theUser);
         when(this.offerManager.getOfferFromId(anyLong())).thenReturn(OfferBuilderManager.aBasicOfferWithoutId().build());
     }
@@ -104,6 +105,27 @@ public class CommentControllerTest {
     }
 
     @Test
+    public void testCreateCommentIsForNonBannedUsersOnly() {
+        userIsBanned();
+        TheResponse result = this.commentController.createComment(CommentBuilderManager.aBasicCommentWithoutId().build(), "1");
+        assertTrue(ResultCode.USER_BANNED.getCode() == result.getCode());
+    }
+
+    @Test
+    public void testQuoteCommentIsForNonBannedUsersOnly() {
+        userIsBanned();
+        TheResponse result = this.commentController.quoteComment(CommentBuilderManager.aBasicCommentWithoutId().build(), "1");
+        assertTrue(ResultCode.USER_BANNED.getCode() == result.getCode());
+    }
+
+    @Test
+    public void testUpdateCommentIsForNonBannedUsersOnly() {
+        when(this.userManager.userIsBanned()).thenReturn(true);
+        TheResponse result = this.commentController.updateComment(CommentBuilderManager.aBasicCommentWithoutId().build(), "1");
+        assertTrue(ResultCode.USER_BANNED.getCode() == result.getCode());
+    }
+
+    @Test
     public void testDeleteCommentIsForAdminOnly() {
         OfferComment theComment = CommentBuilderManager.aBasicCommentWithId(3L).build();
         when(this.commentManager.getCommentFromId(3L)).thenReturn(theComment);
@@ -135,6 +157,11 @@ public class CommentControllerTest {
         when(this.commentManager.saveComment(theComment)).thenReturn(theComment);
         TheResponse result = this.commentController.deleteComment("3");
         assertTrue(ResultCode.ALL_OK.getCode() == result.getCode());
+    }
+
+    private void userIsBanned() {
+        TheUser bannedUser = UserBuilderManager.aRegularUserWithNickname(LOGGED_USER).isEnabled(false).build();
+        when(this.userManager.getUserFromNickname(LOGGED_USER)).thenReturn(bannedUser);
     }
 
 }

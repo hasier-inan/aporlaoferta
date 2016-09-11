@@ -91,6 +91,15 @@ aporlaofertaApp
                             $scope.sendDefaultErrorMessageAndShowSpecifications();
                         });
                     }
+
+                    $scope.banUser = function (nickname) {
+                        requestManager.makePostCall({}, {'nickname': nickname}, configService.getEndpoint('ban.user'))
+                            .success(function (data) {
+                                alertService.sendErrorMessage(data.descriptionEsp);
+                            }).error(function () {
+                            alertService.sendErrorMessage(data.descriptionEsp);
+                        });
+                    }
                 }
             ]
         }

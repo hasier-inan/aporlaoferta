@@ -19,19 +19,19 @@ aporlaofertaApp
 
                     $scope.votePositive = function (id) {
                         requestManager.makePostCall({}, {'offerId': id}, configService.getEndpoint('positive.feedback'))
-                            .success(function (data, status, headers, config) {
+                            .success(function (data) {
                                 $scope.sendMessageAndShowSpecifications(data, id, 'offerPositiveVote');
-                            }).error(function (data, status, headers, config) {
-                                $scope.sendDefaultErrorMessageAndShowSpecifications(id);
-                            });
+                            }).error(function () {
+                            $scope.sendDefaultErrorMessageAndShowSpecifications(id);
+                        });
                     }
                     $scope.voteNegative = function (id) {
                         requestManager.makePostCall({}, {'offerId': id}, configService.getEndpoint('negative.feedback'))
-                            .success(function (data, status, headers, config) {
+                            .success(function (data) {
                                 $scope.sendMessageAndShowSpecifications(data, id, 'offerNegativeVote');
-                            }).error(function (data, status, headers, config) {
-                                $scope.sendDefaultErrorMessageAndShowSpecifications(id);
-                            });
+                            }).error(function () {
+                            $scope.sendDefaultErrorMessageAndShowSpecifications(id);
+                        });
                     }
                     $scope.sendMessageAndShowSpecifications = function (data, id, feedback) {
                         if (!alertService.isAllOk(data)) {
@@ -55,25 +55,33 @@ aporlaofertaApp
                     }
                     $scope.expireOffer = function (theOffer) {
                         requestManager.makePostCall({}, {'id': theOffer.id}, configService.getEndpoint('expire.offer'))
-                            .success(function (data, status, headers, config) {
+                            .success(function (data) {
                                 if (!alertService.isAllOk(data)) {
-                                    $scope.offerCreationError(data.descriptionEsp);
+                                    alertService.sendErrorMessage(data.descriptionEsp);
                                 }
                                 else {
                                     alertService.sendErrorMessage(data.descriptionEsp);
-                                    $scope.resetValues();
                                     $scope.customCloseCallback = function () {
                                         offerManager.requestNewestOffers($scope.appliedOfferFilters);
                                     }
                                 }
-                            }).error(function (data, status, headers, config) {
-                                $scope.offerCreationError(alertService.getDefaultMessage());
-                            });
+                            }).error(function () {
+                            alertService.sendDefaultErrorMessage();
+                        });
+                    }
+
+                    $scope.banUser = function (nickname) {
+                        requestManager.makePostCall({}, {'nickname': nickname}, configService.getEndpoint('ban.user'))
+                            .success(function (data) {
+                                alertService.sendErrorMessage(data.descriptionEsp);
+                            }).error(function () {
+                            alertService.sendErrorMessage(data.descriptionEsp);
+                        });
                     }
 
                     $scope.parsePrice = function (price) {
-                        if(price){
-                        return price.toString().replace(/\./, ',');
+                        if (price) {
+                            return price.toString().replace(/\./, ',');
                         }
                     }
 

@@ -10,6 +10,7 @@ configManager.service('configService', [function () {
     var EXPIRE_OFFER_ENDPOINT = "expireOffer";
     var CREATE_ACCOUNT_ENDPOINT = "createUser";
     var UPDATE_ACCOUNT_ENDPOINT = "updateUser";
+    var BAN_USER = "banUser";
     var GET_ACCOUNT_DETAILS_ENDPOINT = "accountDetails";
     var GET_COMPANIES_ENDPOINT = "companyList";
     var GET_OFFER_CATEGORIES_ENDPOINT = "getOfferCategories";
@@ -39,6 +40,7 @@ configManager.service('configService', [function () {
         'get.account.details': GET_ACCOUNT_DETAILS_ENDPOINT,
         'get.companies': GET_COMPANIES_ENDPOINT,
         'get.offer.categories': GET_OFFER_CATEGORIES_ENDPOINT,
+        'ban.user': BAN_USER,
         'positive.feedback': POSITIVE_FEEDBACK_ENDPOINT,
         'negative.feedback': NEGATIVE_FEEDBACK_ENDPOINT,
         'create.comment': CREATE_COMMENT_ENDPOINT,

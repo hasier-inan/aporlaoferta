@@ -32,15 +32,26 @@
 <hr/>
 <div ng-repeat="theComment in theComments track by theComment.id" class="commentBlock">
     <div class="commentsHeadOwner">
-        {{theComment.commentOwner.userNickname}} - {{theComment.commentCreationDate | date:'MM/dd/yyyy @ h:mma'}}
+        <span ng-class="{'user-banned' : (!theComment.commentOwner.enabled)}">{{theComment.commentOwner.userNickname}}</span>
+        <span ng-hide="theComment.commentOwner.enabled"> (Usuario expulsado) </span>
+        <span>- {{theComment.commentCreationDate | date:'MM/dd/yyyy @ h:mma'}}</span>
     </div>
     <div class="theCommentAvatar commentAvatar" ng-if="theComment.commentOwner.userAvatar">
         <img ng-src="{{theComment.commentOwner.userAvatar}}"/>
+        <sec:authorize ifAllGranted="ROLE_ADMIN">
+            <div class="remove-owner" ng-show="theComment.commentOwner.enabled">
+                <i class="fa fa-trash" aria-hidden="true"
+                   ng-confirm-click="Confirmar expulsión del usuario {{theComment.commentOwner.userNickname}}"
+                   confirmed-click="banUser(theComment.commentOwner.userNickname)"></i>
+            </div>
+        </sec:authorize>
     </div>
     <div class="commentsTheComment">
         <sec:authorize ifAllGranted="ROLE_ADMIN">
-            <div class="remove-comment" ng-click="deleteComment(theComment.id)">
-                <i class="fa fa-trash" aria-hidden="true"></i>
+            <div class="remove-comment">
+                <i class="fa fa-trash" aria-hidden="true"
+                   ng-confirm-click="Confirmar borrado de comentario"
+                   confirmed-click="deleteComment(theComment.id)"></i>
             </div>
         </sec:authorize>
         <div ng-if="theComment.commentsQuotedComment" class="quotedContent">
@@ -48,8 +59,9 @@
                 {{quotedComment=getQuotedComment(theComment.commentsQuotedComment, theComments)}}
             </div>
             <div class="commentsHeadOwner">
-                {{quotedComment.commentOwner.userNickname}} - {{quotedComment.commentCreationDate | date:'MM/dd/yyyy @
-                h:mma'}}
+                <span ng-class="{'user-banned' : (!quotedComment.commentOwner.enabled)}">{{quotedComment.commentOwner.userNickname}}</span>
+                <span ng-hide="theComment.commentOwner.enabled"> (Usuario expulsado) </span>
+                <span>- {{quotedComment.commentCreationDate | date:'MM/dd/yyyy @ h:mma'}}</span>
             </div>
             <div class="quotedCommentAvatar commentAvatar" ng-if="quotedComment.commentOwner.userAvatar">
                 <img ng-src="{{quotedComment.commentOwner.userAvatar}}"/>

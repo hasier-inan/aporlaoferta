@@ -7,7 +7,7 @@
             <section class="spotlight" ng-class="offer.offerExpired?'offer-expired':''">
                 <div class="offerImageAndFeedback">
                     <div class="image offerImage">
-                        <div class="offer-image-expired" ng-show="offer.offerExpired">Oferta caducada</div>
+                        <div class="offer-image-expired" ng-show="offer.offerExpired"></div>
                         <img ng-src="{{offer.offerImage}}" alt="" ng-click="showSpecifications(offer.id)"
                              ng-class="offer.offerExpired?'offer-expired':''"/>
                     </div>

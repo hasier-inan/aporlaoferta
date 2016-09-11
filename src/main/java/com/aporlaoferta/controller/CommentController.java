@@ -6,6 +6,7 @@ import com.aporlaoferta.model.TheResponse;
 import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.model.validators.ValidationException;
 import com.aporlaoferta.service.CommentManager;
+import com.aporlaoferta.service.InvalidUserException;
 import com.aporlaoferta.service.OfferManager;
 import com.aporlaoferta.service.UserManager;
 import com.aporlaoferta.utils.OfferValidatorHelper;
@@ -51,11 +52,16 @@ public class CommentController {
     public TheResponse createComment(@RequestBody OfferComment thatComment,
                                      @RequestParam(value = "offer", required = true) String offerId
     ) {
-        includeCommentInOffer(thatComment, offerId);
-        includeCommentInUser(thatComment);
-        thatComment.setCommentCreationDate(new Date());
-        TheResponse theResponse = validateAndPersistComment(thatComment, ResultCode.COMMENT_VALIDATION_ERROR);
-        return theResponse;
+        try {
+            includeCommentInUser(thatComment);
+            includeCommentInOffer(thatComment, offerId);
+            thatComment.setCommentCreationDate(new Date());
+            TheResponse theResponse = validateAndPersistComment(thatComment, ResultCode.COMMENT_VALIDATION_ERROR);
+            return theResponse;
+        } catch (InvalidUserException e) {
+            LOG.error("Banned user request catch. User details: ", e.getMessage());
+        }
+        return ResponseResultHelper.createInvalidUserResponse();
     }
 
     @RequestMapping(value = "/quoteComment", method = RequestMethod.POST)
@@ -63,11 +69,16 @@ public class CommentController {
     public TheResponse quoteComment(@RequestBody OfferComment thatQuotedComment,
                                     @RequestParam(value = "quotedComment", required = true) String quotedCommentId
     ) {
-        includeCommentInUser(thatQuotedComment);
-        includeQuoteInComment(thatQuotedComment, quotedCommentId);
-        includeCommentInQuotedOffer(thatQuotedComment, quotedCommentId);
-        thatQuotedComment.setCommentCreationDate(new Date());
-        return validateAndPersistComment(thatQuotedComment, ResultCode.QUOTE_VALIDATION_ERROR);
+        try {
+            includeCommentInUser(thatQuotedComment);
+            includeQuoteInComment(thatQuotedComment, quotedCommentId);
+            includeCommentInQuotedOffer(thatQuotedComment, quotedCommentId);
+            thatQuotedComment.setCommentCreationDate(new Date());
+            return validateAndPersistComment(thatQuotedComment, ResultCode.QUOTE_VALIDATION_ERROR);
+        } catch (InvalidUserException e) {
+            LOG.error("Banned user request catch. User details: ", e.getMessage());
+        }
+        return ResponseResultHelper.createInvalidUserResponse();
     }
 
     @RequestMapping(value = "/updateComment", method = RequestMethod.POST)
@@ -75,6 +86,10 @@ public class CommentController {
     public TheResponse updateComment(@RequestBody OfferComment thatComment,
                                      @RequestParam(value = "comment", required = false) String commentId
     ) {
+        if (this.userManager.userIsBanned()) {
+            return ResponseResultHelper.createInvalidUserResponse();
+        }
+
         OfferComment originalComment = null;
         try {
             originalComment = this.commentManager.getCommentFromId(Long.parseLong(commentId));
@@ -145,9 +160,12 @@ public class CommentController {
     }
 
 
-    private void includeCommentInUser(OfferComment thatComment) {
+    private void includeCommentInUser(OfferComment thatComment) throws InvalidUserException {
         String nickName = this.userManager.getUserNickNameFromSession();
         TheUser theUser = this.userManager.getUserFromNickname(nickName);
+        if (!theUser.getEnabled()) {
+            throw new InvalidUserException(theUser.getUserNickname());
+        }
         theUser.addComment(thatComment);
     }
 

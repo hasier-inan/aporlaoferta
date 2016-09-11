@@ -58,7 +58,7 @@
             </sec:authorize>
             <div class="offerSpecificationsLeftContainer containerSplitter">
                 <div class="offerSpecificationsImage">
-                    <div class="offer-image-expired" ng-show="offer.offerExpired">Oferta caducada</div>
+                    <div class="offer-image-expired" ng-show="offer.offerExpired"></div>
                     <img ng-src="{{offer.offerImage}}" ng-class="offer.offerExpired?'offer-expired':''"/>
 
                     <div class=" offerSpecificationsFeedback">
@@ -112,7 +112,17 @@
                 <div class="offerSpecificationsSubtitle">
                     <img ng-src="{{offer.offerUser.userAvatar}}"/>
 
-                    <div class="offerOwner">Creado por: <i>{{offer.offerUser.userNickname}}</i></div>
+                    <div class="offerOwner">Creado por: <i
+                            ng-class="{'user-banned' : (!offer.offerUser.enabled)}">{{offer.offerUser.userNickname}}</i>
+                        <i ng-show="!offer.offerUser.enabled"> (Usuario expulsado)</i>
+                    </div>
+                    <sec:authorize ifAllGranted="ROLE_ADMIN">
+                        <div class="remove-owner" ng-show="offer.offerUser.enabled">
+                            <i class="fa fa-trash" aria-hidden="true"
+                               ng-confirm-click="Confirmar expulsión del usuario {{offer.offerUser.userNickname}}"
+                               confirmed-click="banUser(offer.offerUser.userNickname)"></i>
+                        </div>
+                    </sec:authorize>
                     <div class="offerCreatedDate">el {{offer.offerCreatedDate | date:'MM/dd/yyyy @h:mma'}}
                     </div>
                 </div>

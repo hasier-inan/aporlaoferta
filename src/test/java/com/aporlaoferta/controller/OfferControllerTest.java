@@ -66,6 +66,7 @@ public class OfferControllerTest {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         when(this.userManager.getUserFromNickname(anyString())).thenReturn(UserBuilderManager.aRegularUserWithNickname("dsf").build());
+        when(this.userManager.userIsBanned()).thenReturn(false);
         when(this.companyManager.getCompanyFromName(anyString())).thenReturn(CompanyBuilderManager.aRegularCompanyWithId(1L).build());
         when(this.captchaHttpManager.validHuman(anyString())).thenReturn(true);
     }
@@ -119,16 +120,6 @@ public class OfferControllerTest {
     }
 
     @Test
-    public void testValidationErrorCodeIsReceivedIfUpdatedOfferThrowsValidationException() throws Exception {
-        when(this.userManager.getUserFromNickname(anyString())).thenReturn(null);
-        doThrow(new ValidationException("error")).when(this.offerValidatorHelper)
-                .validateOffer((TheOffer) anyObject());
-        TheResponse result = this.offerController.createOffer(new TheOffer(), "recaptcha");
-        assertTrue(result.getResponseResult() == ResultCode.COMMENT_VALIDATION_ERROR.getResponseResult());
-        assertEquals(result.getDescription(), "Validation process failed while creating offer");
-    }
-
-    @Test
     public void testSuccessCodeIsReturnedWhenUpdateProcessRunsCorrectly() throws Exception {
         Long offerId = 1L;
         String nickname = "JohnWick";
@@ -165,7 +156,7 @@ public class OfferControllerTest {
     public void testHottestOffersAreReturnedInTheResponseWhenRequested() throws Exception {
         List<TheOffer> sampleOfferList = createSampleHotOfferList();
         when(this.offerManager.getNextHundredHottestOffers(1L, DateRange.ALL)).thenReturn(sampleOfferList);
-        TheOfferResponse result = this.offerController.getHottestOffers(0L,3);
+        TheOfferResponse result = this.offerController.getHottestOffers(0L, 3);
         assertOfferListIsInResponse(result, sampleOfferList);
         List<TheOffer> receivedOffers = result.getTheOffers();
         Long hottest = 1000L;
@@ -185,7 +176,7 @@ public class OfferControllerTest {
     @Test
     public void testEmptyListIsReturnedIfNoOffersAreCreated() throws Exception {
         when(this.offerManager.getNextHundredOffers(0L, DateRange.ALL)).thenReturn(new ArrayList<TheOffer>());
-        TheOfferResponse result = this.offerController.getOffers(null,3);
+        TheOfferResponse result = this.offerController.getOffers(null, 3);
         Assert.assertEquals(result.getTheOffers().size(), 0);
     }
 
@@ -220,7 +211,27 @@ public class OfferControllerTest {
                 Arrays.asList(new OfferCompany[]{CompanyBuilderManager.aRegularCompanyWithName(original).build()}));
         mockAndCreateOfferForCompanyName(typo);
         verifyCompanyNameIsUpdated(original);
+    }
 
+    @Test
+    public void testBannedUsersCanNotCreateNewOffers() throws Exception {
+        when(this.userManager.userIsBanned()).thenReturn(true);
+        TheResponse result = this.offerController.createOffer(new TheOffer(), "captcha");
+        assertTrue(ResultCode.USER_BANNED.getCode() == result.getCode());
+    }
+
+    @Test
+    public void testBannedUsersCanNotUpdateOwnedOffers() throws Exception {
+        when(this.userManager.userIsBanned()).thenReturn(true);
+        TheResponse result = this.offerController.updateOffer(new TheOffer(), "captcha");
+        assertTrue(ResultCode.USER_BANNED.getCode() == result.getCode());
+    }
+
+    @Test
+    public void testBannedUsersCanNotExpireOwnedOffers() throws Exception {
+        when(this.userManager.userIsBanned()).thenReturn(true);
+        TheResponse result = this.offerController.expireOffer(1L);
+        assertTrue(ResultCode.USER_BANNED.getCode() == result.getCode());
     }
 
     private void verifyCompanyNameIsUpdated(String original) {

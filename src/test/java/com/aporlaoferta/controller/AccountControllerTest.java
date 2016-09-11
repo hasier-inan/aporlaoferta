@@ -5,6 +5,7 @@ import com.aporlaoferta.data.UserBuilderManager;
 import com.aporlaoferta.email.EmailSendingException;
 import com.aporlaoferta.email.EmailService;
 import com.aporlaoferta.model.TheForgettableUser;
+import com.aporlaoferta.model.TheNewUser;
 import com.aporlaoferta.model.TheResponse;
 import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.service.CaptchaHTTPManager;
@@ -27,6 +28,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.startsWith;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.anyBoolean;
@@ -59,6 +61,7 @@ public class AccountControllerTest {
         when(this.userManager.doesUserExist(anyString())).thenReturn(false);
         when(this.userManager.isUserPending(any(TheUser.class)))
                 .thenReturn(false);
+        when(this.userManager.userIsBanned()).thenReturn(false);
         when(this.captchaHTTPManager.validHuman(anyString())).thenReturn(true);
     }
 
@@ -169,35 +172,40 @@ public class AccountControllerTest {
     @Test
     public void testForgottenPasswordReturnsInvalidUserIfDoesNotExist() throws Exception, EmailSendingException {
         String email = "nickname@email.com";
-        when(this.userManager.doesUserEmailExist(email))
-                .thenReturn(false);
+        when(this.userManager.getUserFromEmail(email)).thenReturn(null);
         TheResponse theResponse = this.accountController.requestForgottenPassword(email);
-        assertThat("Expected invalid user email code", theResponse.getCode(), is(7));
+        assertThat("Expected invalid user email code", theResponse.getCode(), is(ResultCode.USER_EMAIL_IS_INVALID.getCode()));
+    }
+
+    @Test
+    public void testForgottenPasswordReturnsInvalidUserIfItHasBeenBanned() throws Exception, EmailSendingException {
+        String email = "nickname@email.com";
+        when(this.userManager.getUserFromEmail(email)).thenReturn(
+                UserBuilderManager.aRegularUserWithEmail(email).isEnabled(false).build());
+        TheResponse theResponse = this.accountController.requestForgottenPassword(email);
+        assertThat("Expected invalid user email code", theResponse.getCode(), is(ResultCode.USER_EMAIL_IS_INVALID.getCode()));
     }
 
     @Test
     public void testForgottenPasswordReturnsUnconfirmedUserIfItIsPending() throws Exception, EmailSendingException {
-        when(this.userManager.doesUserEmailExist(anyString()))
-                .thenReturn(true);
-        when(this.userManager.isUserPending(any(TheUser.class)))
-                .thenReturn(true);
+        TheUser user = UserBuilderManager.aRegularUserWithEmail("anunconfirmed@email.com").isPending(true).build();
+        when(this.userManager.getUserFromEmail("anunconfirmed@email.com"))
+                .thenReturn(user);
         TheResponse theResponse = this.accountController.requestForgottenPassword("anunconfirmed@email.com");
-        assertThat("Expected unconfirmed email", theResponse.getCode(), is(8));
+        assertThat("Expected unconfirmed email", theResponse.getCode(), is(ResultCode.USER_EMAIL_NOT_CONFIRMED.getCode()));
     }
 
     @Test
     public void testForgottenPasswordReturnsGenericErrorIfEmailFails() throws Exception, EmailSendingException {
         String email = "nickname@email.com";
         TheUser user = UserBuilderManager.aRegularUserWithEmail(email).build();
-        when(this.userManager.doesUserEmailExist(email))
-                .thenReturn(true);
         when(this.userManager.getUserFromEmail(email))
                 .thenReturn(user);
 
         doThrow(new EmailSendingException("", new Throwable())).when(this.emailService)
                 .sendPasswordForgotten(user);
         TheResponse theResponse = this.accountController.requestForgottenPassword(email);
-        assertThat("Expected an ok response", theResponse.getCode(), is(66));
+        assertThat("Expected generic error response", theResponse.getCode(), is(ResultCode.DEFAULT_ERROR.getCode()));
     }
 
     @Test
@@ -208,6 +216,41 @@ public class AccountControllerTest {
         TheUser theUser = UserBuilderManager.aRegularUserWithEmail(existingEmail).build();
         TheResponse theResponse = this.accountController.createUser(theUser, "captcha");
         assertThat("Expected invalid user email code", theResponse.getCode(), is(6));
+    }
+
+    @Test
+    public void testUpdateAccountIsForNonBannedUsersOnly() {
+        when(this.userManager.userIsBanned()).thenReturn(true);
+        TheResponse result = this.accountController.updateUser(
+                new TheNewUser(),
+                "1");
+        assertTrue(ResultCode.USER_BANNED.getCode() == result.getCode());
+    }
+
+    @Test
+    public void testBanUsertIsForAdminOnly() {
+        when(this.userManager.isUserAdmin()).thenReturn(false);
+        TheResponse result = this.accountController.banUser("aUserToBeBanned");
+        assertTrue(ResultCode.DEFAULT_ERROR.getCode() == result.getCode());
+    }
+
+    @Test
+    public void testBanUserWhenNicknameDoesNotExistReturnsValidationError() {
+        when(this.userManager.isUserAdmin()).thenReturn(true);
+        when(this.userManager.getUserFromNickname("aUserToBeBanned")).thenReturn(null);
+        TheResponse result = this.accountController.banUser("aUserToBeBanned");
+        assertTrue(ResultCode.UPDATE_USER_VALIDATION_ERROR.getCode() == result.getCode());
+    }
+
+    @Test
+    public void testDeleteCommentIsReturnsOKResult() {
+        TheUser aUserToBeBanned = UserBuilderManager.aRegularUserWithNickname("aUserToBeBanned").build();
+        TheResponse mockedResult = new TheResponse();
+        when(this.userManager.isUserAdmin()).thenReturn(true);
+        when(this.userManager.getUserFromNickname("aUserToBeBanned")).thenReturn(aUserToBeBanned);
+        when(this.userManager.banUser(aUserToBeBanned)).thenReturn(mockedResult);
+        TheResponse result = this.accountController.banUser("aUserToBeBanned");
+        assertTrue(mockedResult == result);
     }
 
     private TheResponse performPasswordUpdate() {

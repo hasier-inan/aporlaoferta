@@ -279,6 +279,35 @@ public class AccountControllerTestIntegration {
         assertThat("Expected result to be ok", jsonResult.get("description"), startsWith("User successfully updated"));
     }
 
+    @Test
+    public void testAdminUserCanBanUsersAndSuccessCodeIsReceived() throws Exception {
+        String aUserToBeBanned = "aUserToBeBanned";
+        createDummyNewUserReadyToBeBanned(aUserToBeBanned);
+        performPostRequestToBanUser(aUserToBeBanned, ADMIN_USER)
+                .andExpect(status().is2xxSuccessful());
+    }
+
+    @Test
+    public void testRegularUsersCanNotBanUserAndErrorCodeIsReceived() throws Exception {
+        String aUserToBeBanned = "aUserToBeBanned";
+        createDummyNewUserReadyToBeBanned(aUserToBeBanned);
+        performPostRequestToBanUser(aUserToBeBanned, REGULAR_USER)
+                .andExpect(status().is4xxClientError());
+    }
+
+    private ResultActions performPostRequestToBanUser(String nickname, String identifiedUser) throws Exception {
+        CsrfToken csrfToken = CsrfTokenBuilder.generateAToken();
+        return this.mockMvc.perform(post("/banUser")
+                .with(userDeatilsService(identifiedUser))
+                .sessionAttr("_csrf", csrfToken)
+                .contentType(MediaType.APPLICATION_JSON)
+                .param("nickname", nickname)
+                .param("_csrf", csrfToken.getToken())
+                .sessionAttrs(SessionAttributeBuilder
+                        .getSessionAttributeWithHttpSessionCsrfTokenRepository(csrfToken))
+        );
+    }
+
     //forgotten password
     @Test
     public void testForgottenPasswordIsPerformedWithRequiredValidData() throws Exception {
@@ -387,6 +416,11 @@ public class AccountControllerTestIntegration {
         theNewUser.setUserPassword("sdfasd");
         theNewUser.setUserNickname(REGULAR_ENCODED_USER);
         return theNewUser;
+    }
+
+    private TheUser createDummyNewUserReadyToBeBanned(String nickname) {
+        TheUser theUser = UserBuilderManager.aRegularUserWithNickname(nickname).build();
+        return this.userManagerTest.saveUser(theUser);
     }
 
     private TheNewUser createDummyNewUserWithInvalidOldPassword() {

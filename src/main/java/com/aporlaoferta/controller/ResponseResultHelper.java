@@ -52,6 +52,22 @@ public class ResponseResultHelper {
         return updateWithCode(ResultCode.INVALID_CONFIRMATION_ID);
     }
 
+    public static TheResponse createInvalidUserResponse() {
+        return updateWithCode(ResultCode.USER_BANNED);
+    }
+
+    public static TheResponse offerUpdateResponse() {
+        TheResponse theResponse = new TheResponse();
+        theResponse.assignResultCode(ResultCode.ALL_OK, "Offer updated", "Oferta actualizada");
+        return theResponse;
+    }
+
+    public static TheResponse offerValidationErrorResponse() {
+        TheResponse theResponse = new TheResponse();
+        theResponse.assignResultCode(ResultCode.CREATE_OFFER_VALIDATION_ERROR);
+        return theResponse;
+    }
+
     public static TheResponse createForgottenPasswordResponse() {
         TheResponse theResponse = new TheResponse();
         theResponse.assignResultCode(ResultCode.ALL_OK, "Password reset email request has been sent", "Recibirá un correo electrónico donde podrá reiniciar su contraseña");
@@ -61,6 +77,12 @@ public class ResponseResultHelper {
     public static TheResponse createUserConfirmationResponse() {
         TheResponse theResponse = new TheResponse();
         theResponse.assignResultCode(ResultCode.ALL_OK, "User has been confirmed", "Usuario confirmado, ya puede identificarse");
+        return theResponse;
+    }
+
+    public static TheResponse createUserBannedConfirmationResponse() {
+        TheResponse theResponse = new TheResponse();
+        theResponse.assignResultCode(ResultCode.ALL_OK, "User has been banned", "Usuario expulsado");
         return theResponse;
     }
 
