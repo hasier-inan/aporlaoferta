@@ -22,7 +22,7 @@ import java.io.IOException;
 @Controller
 public class ImageController {
 
-    private static final long MAXIMUM_FILE_SIZE = 2000000L;
+    private static final long MAXIMUM_FILE_SIZE = 4500000L;
     private final Logger LOG = LoggerFactory.getLogger(ImageController.class);
 
     @Autowired

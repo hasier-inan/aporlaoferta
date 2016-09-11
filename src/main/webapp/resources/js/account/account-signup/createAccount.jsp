@@ -20,7 +20,7 @@
         </div>
     </sec:authorize>
 
-    <sec:authorize access="isFullyAuthenticated()">
+    <sec:authorize access="isFullyAuthenticated()||isAnonymous()">
         <div>
             <form name="accountCreationContainer" class="centeredForm">
                 <ul>
