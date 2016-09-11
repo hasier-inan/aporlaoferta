@@ -135,23 +135,40 @@ public class AccountController {
     @ResponseBody
     public TheResponse updateUser(@RequestBody TheNewUser theNewUser,
                                   @RequestParam(value = "recaptcha", required = true) String reCaptcha) {
-        if (this.captchaHttpManager.validHuman(reCaptcha)) {
-            return processUserUpdate(theNewUser);
-        } else {
+        if (!this.captchaHttpManager.validHuman(reCaptcha)) {
             return ResponseResultHelper.createInvalidCaptchaResponse();
         }
+        if(this.userManager.userIsBanned()){
+            return ResponseResultHelper.createInvalidUserResponse();
+        }
+        return processUserUpdate(theNewUser);
+    }
+
+    @RequestMapping(value = "/banUser", method = RequestMethod.POST)
+    @ResponseBody
+    public TheResponse banUser(@RequestParam(value = "nickname", required = true) String nickname) {
+        if (!this.userManager.isUserAdmin()) {
+            return ResponseResultHelper.
+                    responseResultWithResultCodeError(ResultCode.DEFAULT_ERROR, new TheResponse());
+        }
+        TheUser theUser = this.userManager.getUserFromNickname(nickname);
+        if (theUser == null) {
+            return ResponseResultHelper.
+                    responseResultWithResultCodeError(ResultCode.UPDATE_USER_VALIDATION_ERROR, new TheResponse());
+        }
+        return this.userManager.banUser(theUser);
     }
 
     @RequestMapping(value = "/requestForgottenPassword", method = RequestMethod.POST)
     @ResponseBody
     public TheResponse requestForgottenPassword(@RequestParam(value = "userEmail", required = true) String userEmail) {
         TheResponse theResponse = new TheResponse();
-        if (!this.userManager.doesUserEmailExist(userEmail)) {
+        TheUser userFromEmail = this.userManager.getUserFromEmail(userEmail);
+        if (isEmpty(userFromEmail) || !userFromEmail.getEnabled()) {
             return ResponseResultHelper.responseResultWithResultCodeError(
                     ResultCode.USER_EMAIL_IS_INVALID, theResponse);
         }
-        TheUser userFromEmail = this.userManager.getUserFromEmail(userEmail);
-        if (this.userManager.isUserPending(userFromEmail)) {
+        if (userFromEmail.getPending()) {
             sendConfirmationEmail(userFromEmail);
             return ResponseResultHelper.responseResultWithResultCodeError(
                     ResultCode.USER_EMAIL_NOT_CONFIRMED, theResponse);

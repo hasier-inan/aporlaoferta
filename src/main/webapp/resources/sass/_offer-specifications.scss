@@ -125,18 +125,37 @@ div.offerSpecificationsOriginalPrice {
   text-decoration: line-through;
 }
 
-div.offerSpecificationsSubtitle div {
-  display: inline-block;
-  margin-top: .5em;
+.user-banned {
+  text-decoration: line-through;
 }
 
-div.content div.offerSpecificationsSubtitle {
-  color: $offer-specifications-subtitle-color;
+.offerSpecificationsSubtitle {
+  color: $main-font-color;
   font-size: .8em;
-}
 
-div.offerSpecificationsSubtitle img {
-  width: 15px;
+  div {
+    display: inline-block;
+    margin-top: .5em;
+  }
+
+  img {
+    width: 15px;
+  }
+
+  .remove-owner {
+    margin-right: 10px;
+    transition: color 1s ease;
+    cursor: pointer;
+
+    &:hover {
+      color: $offer-specifications-subtitle-color;
+    }
+
+    &:disabled {
+      color: $offer-specifications-subtitle-color;
+      opacity: .5;
+    }
+  }
 }
 
 div.offerSpecificationsDescription {
@@ -258,6 +277,16 @@ div.commentsTheComment {
 div.theCommentAvatar {
   width: 3em;
   position: absolute;
+
+  .remove-owner {
+    cursor: pointer;
+    margin: -20px 0 0 5px;
+    transition: color 1s ease;
+
+    &:hover {
+      color: $offer-specifications-subtitle-color;
+    }
+  }
 }
 
 div.quotedCommentAvatar {

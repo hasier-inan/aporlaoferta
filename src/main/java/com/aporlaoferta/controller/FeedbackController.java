@@ -33,6 +33,10 @@ public class FeedbackController {
     //@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public TheResponse votePositive(@RequestParam(value = "offerId", required = true) String offerId) {
         TheUser theUser = obtainUserFromSession();
+        if(!theUser.getEnabled()){
+            return ResponseResultHelper.createInvalidUserResponse();
+        }
+
         TheOffer theOffer = getOfferFromId(offerId);
         if (theOffer == null) {
             return ResponseResultHelper.
@@ -46,6 +50,10 @@ public class FeedbackController {
     //@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public TheResponse voteNegative(@RequestParam(value = "offerId", required = true) String offerId) {
         TheUser theUser = obtainUserFromSession();
+        if(!theUser.getEnabled()){
+            return ResponseResultHelper.createInvalidUserResponse();
+        }
+
         TheOffer theOffer = getOfferFromId(offerId);
         if (theOffer == null) {
             return ResponseResultHelper.

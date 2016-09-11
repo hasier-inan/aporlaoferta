@@ -27,6 +27,7 @@ public class UserBuilderManager {
                 .withAvatar("http://this.is.my.avatar.jpg")
                 .withEmail(String.format("%s@mail.com", UUID.randomUUID().toString()))
                 .withNickName(nickname)
+                .isEnabled(true)
                 .withPassword("thisistheencodedPassword")
                 ;
     }
@@ -36,6 +37,7 @@ public class UserBuilderManager {
                 .withAvatar("http://this.is.my.avatar.jpg")
                 .withEmail(existingEmail)
                 .withNickName("duck")
+                .isEnabled(true)
                 .withPassword("thisistheencodedPassword")
                 ;
     }

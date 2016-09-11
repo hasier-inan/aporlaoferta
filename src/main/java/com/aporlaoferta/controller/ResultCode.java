@@ -17,6 +17,7 @@ public enum ResultCode {
     USER_EMAIL_ALREADY_EXISTS(6, ResponseResult.INVALID_DATA_PROVIDED, "Provided user email already exists", "Actualmente ya existe un usuario vinculado a ese correo electrónico"),
     USER_EMAIL_IS_INVALID(7, ResponseResult.INVALID_DATA_PROVIDED, "Provided user email is incorrect", "El correo electrónico facilitado es inválido"),
     USER_EMAIL_NOT_CONFIRMED(8, ResponseResult.INVALID_DATA_PROVIDED, "User is not confirmed", "El usuario no está confirmado, por favor verifica tu correo electrónico"),
+    USER_BANNED(9, ResponseResult.INVALID_DATA_PROVIDED, "User is banned", "El usuario está deshabilitado"),
     UPDATE_USER_VALIDATION_ERROR(10, ResponseResult.VALIDATION_ERROR, "Validation process failed while updating user", "El proceso de validación ha fallado mientras se procedía a actualizar el usuario"),
     CREATE_USER_VALIDATION_ERROR(11, ResponseResult.VALIDATION_ERROR, "Validation process failed while creating user", "El proceso de validación ha fallado mientras se procedía a crear el usuario"),
     COMMENT_VALIDATION_ERROR(12, ResponseResult.VALIDATION_ERROR, "Validation process failed while creating comment", "El proceso de validación ha fallado mientras se procedía a comentar la oferta"),

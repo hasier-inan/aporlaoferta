@@ -38,6 +38,8 @@ public class FeedbackControllerTest {
     @Mock
     OfferManager offerManager;
 
+    TheUser bannedUser = UserBuilderManager.aRegularUserWithNickname("banned").isEnabled(false).build();
+
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
@@ -46,6 +48,7 @@ public class FeedbackControllerTest {
         when(this.userManager.getUserFromNickname(THE_USER)).thenReturn(user);
         when(this.offerManager.getOfferFromId(Long.parseLong(OFFER_ID))).thenReturn(
                 OfferBuilderManager.aBasicOfferWithoutId().build());
+        when(this.userManager.userIsBanned()).thenReturn(false);
     }
 
     @Test
@@ -62,6 +65,20 @@ public class FeedbackControllerTest {
         TheResponse theResponse = this.feedbackController.voteNegative(OFFER_ID);
         assertThat("Expected feedback already performed code", theResponse.getCode(), is(42));
         assertThat("Expected validation error description in response", theResponse.getDescription(), startsWith("Feedback process was already performed by user and given offer"));
+    }
+
+    @Test
+    public void testPositiveFeedbackRequestsAreForNonBannedUsersOnly() {
+        when(this.userManager.getUserFromNickname(THE_USER)).thenReturn(bannedUser);
+        TheResponse result = this.feedbackController.votePositive("1");
+        assertTrue(ResultCode.USER_BANNED.getCode() == result.getCode());
+    }
+
+    @Test
+    public void testNegativeFeedbackRequestsAreForNonBannedUsersOnly() {
+        when(this.userManager.getUserFromNickname(THE_USER)).thenReturn(bannedUser);
+        TheResponse result = this.feedbackController.voteNegative("1");
+        assertTrue(ResultCode.USER_BANNED.getCode() == result.getCode());
     }
 
     @Test

@@ -134,11 +134,15 @@ public class OfferController {
     @ResponseBody
     public TheResponse createOffer(@RequestBody TheOffer thatOffer,
                                    @RequestParam(value = "recaptcha", required = true) String reCaptcha) {
-        if (this.captchaHttpManager.validHuman(reCaptcha)) {
-            return processOfferCreation(thatOffer);
-        } else {
+        if (!this.captchaHttpManager.validHuman(reCaptcha)) {
             return ResponseResultHelper.createInvalidCaptchaResponse();
         }
+
+        if (this.userManager.userIsBanned()) {
+            return ResponseResultHelper.createInvalidUserResponse();
+        }
+
+        return processOfferCreation(thatOffer);
     }
 
     private TheResponse processOfferCreation(TheOffer thatOffer) {
@@ -216,6 +220,10 @@ public class OfferController {
     @ResponseBody
     public TheResponse expireOffer(@RequestParam(value = "id", required = true) Long offerId) {
         try {
+            if (this.userManager.userIsBanned()) {
+                return ResponseResultHelper.createInvalidUserResponse();
+            }
+
             TheOffer originalOffer = this.offerManager.getOfferFromId(offerId);
             if (originalOffer == null) {
                 throw new ValidationException("Invalid offer id");
@@ -239,11 +247,15 @@ public class OfferController {
     @ResponseBody
     public TheResponse updateOffer(@RequestBody TheOffer theOffer,
                                    @RequestParam(value = "recaptcha", required = true) String reCaptcha) {
-        if (this.captchaHttpManager.validHuman(reCaptcha)) {
-            return processOfferUpdate(theOffer);
-        } else {
+        if (!this.captchaHttpManager.validHuman(reCaptcha)) {
             return ResponseResultHelper.createInvalidCaptchaResponse();
         }
+
+        if (this.userManager.userIsBanned()) {
+            return ResponseResultHelper.createInvalidUserResponse();
+        }
+
+        return processOfferUpdate(theOffer);
     }
 
     private TheResponse processOfferUpdate(TheOffer theOffer) {
@@ -344,29 +356,27 @@ public class OfferController {
     }
 
     private TheResponse validateAndPersistOffer(TheOffer thatOffer) {
-        TheResponse result = new TheResponse();
         try {
             this.offerValidatorHelper.validateOffer(thatOffer);
-            saveOfferAndUpdateResult(thatOffer, result);
+            return saveOfferAndUpdateResult(thatOffer);
         } catch (ValidationException e) {
-            String resultDescription = ResultCode.CREATE_OFFER_VALIDATION_ERROR.getResultDescription();
-            LOG.warn(resultDescription, e);
-            result.assignResultCode(ResultCode.CREATE_OFFER_VALIDATION_ERROR);
+            LOG.warn(ResultCode.CREATE_OFFER_VALIDATION_ERROR.getResultDescription(), e);
+            return ResponseResultHelper.offerValidationErrorResponse();
         }
-        return result;
     }
 
-    private void saveOfferAndUpdateResult(TheOffer thatOffer, TheResponse result) {
+    private TheResponse saveOfferAndUpdateResult(TheOffer thatOffer) {
         TheUser theUser = this.userManager.saveUser(thatOffer.getOfferUser());
         TheOffer theOffer = theUser.obtainLatestOffer();
+        TheResponse result = new TheResponse();
         if (theOffer == null) {
             ControllerHelper.addEmptyDatabaseObjectMessage(result, LOG);
         } else {
             String okMessage = String.format("Offer successfully updated. Id: %s", theOffer.getId());
             LOG.info(okMessage);
-            result.assignResultCode(ResultCode.ALL_OK, okMessage, "Oferta actualizada");
+            result = ResponseResultHelper.offerUpdateResponse();
         }
-
+        return result;
     }
 
 

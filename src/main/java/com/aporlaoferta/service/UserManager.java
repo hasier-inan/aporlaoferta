@@ -122,6 +122,13 @@ public class UserManager {
         }
     }
 
+    public TheResponse banUser(TheUser theUser) {
+        theUser.setEnabled(false);
+        theUser.setUuid(UUID.randomUUID().toString());
+        saveUser(theUser);
+        return ResponseResultHelper.createUserBannedConfirmationResponse();
+    }
+
     public boolean doesUserEmailExist(String userEmail) {
         return !isEmpty(getUserFromEmail(userEmail));
     }
@@ -158,6 +165,12 @@ public class UserManager {
         return originalNickname.equals(sessionNickname) || UserRoles.ROLE_ADMIN.equals(userRole);
     }
 
+    public boolean userIsBanned() {
+        String sessionNickname = getUserNickNameFromSession();
+        TheUser theUser = getUserFromNickname(sessionNickname);
+        return !theUser.getEnabled();
+    }
+
     public boolean isUserAdmin() {
         String sessionNickname = getUserNickNameFromSession();
         UserRoles userRole = this.transactionalManager.getUserRoleFromNickname(sessionNickname).get(0).getUserRole();
@@ -168,5 +181,4 @@ public class UserManager {
     public void setTransactionalManager(TransactionalManager transactionalManager) {
         this.transactionalManager = transactionalManager;
     }
-
 }
