@@ -82,7 +82,7 @@ public class DefaultEmailService implements EmailService {
     }
 
     private String getUserAvatar(TheUser theUser) {
-        if(TheDefaultOffer.AVATAR_IMAGE_URL.getCode().equals(theUser.getUserAvatar())){
+        if (TheDefaultOffer.AVATAR_IMAGE_URL.getCode().equals(theUser.getUserAvatar())) {
             return TheDefaultOffer.AVATAR_EXTERNAL_IMAGE_URL.getCode();
         }
         return theUser.getUserAvatar();
@@ -98,8 +98,7 @@ public class DefaultEmailService implements EmailService {
             EmailTemplate template = this.emailTemplateDAO.findByName(templateName);
             Assert.notNull(template, "templateName: " + templateName);
             return createEmailFromVelocityTemplate(model, toAddress, template);
-        }
-        catch (IllegalArgumentException | ParseErrorException | MethodInvocationException | ResourceNotFoundException e) {
+        } catch (IllegalArgumentException | ParseErrorException | MethodInvocationException | ResourceNotFoundException e) {
             String message = String.format("Could not populate mail template with templateName %s. Email address: %s",
                     templateName, toAddress);
             throw new EmailSendingException(message, e);

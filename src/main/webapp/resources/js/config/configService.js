@@ -8,6 +8,7 @@ configManager.service('configService', [function () {
     var CREATE_OFFER_ENDPOINT = "createOffer";
     var UPDATE_OFFER_ENDPOINT = "updateOffer";
     var EXPIRE_OFFER_ENDPOINT = "expireOffer";
+    var REMOVE_OFFER_ENDPOINT = "removeOffer";
     var CREATE_ACCOUNT_ENDPOINT = "createUser";
     var UPDATE_ACCOUNT_ENDPOINT = "updateUser";
     var BAN_USER = "banUser";
@@ -35,6 +36,7 @@ configManager.service('configService', [function () {
         'create.offer': CREATE_OFFER_ENDPOINT,
         'update.offer': UPDATE_OFFER_ENDPOINT,
         'expire.offer': EXPIRE_OFFER_ENDPOINT,
+        'remove.offer': REMOVE_OFFER_ENDPOINT,
         'create.account': CREATE_ACCOUNT_ENDPOINT,
         'update.account': UPDATE_ACCOUNT_ENDPOINT,
         'get.account.details': GET_ACCOUNT_DETAILS_ENDPOINT,

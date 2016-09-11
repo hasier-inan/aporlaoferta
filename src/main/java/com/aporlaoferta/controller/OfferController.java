@@ -258,6 +258,13 @@ public class OfferController {
         return processOfferUpdate(theOffer);
     }
 
+    @RequestMapping(value = "/removeOffer", method = RequestMethod.POST)
+    @ResponseBody
+    public TheResponse removeOffer(@RequestParam(value = "id", required = true) Long id) {
+        this.offerManager.deleteOffer(id);
+        return ResponseResultHelper.offerUpdateResponse();
+    }
+
     private TheResponse processOfferUpdate(TheOffer theOffer) {
         try {
             Long offerId = isEmpty(theOffer.getId()) ? -1L : theOffer.getId();

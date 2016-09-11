@@ -52,10 +52,17 @@ public class OfferManager {
         return null;
     }
 
+    public void deleteOffer(Long id) {
+        TheOffer theOffer = getOfferFromId(id);
+        if (theOffer != null) {
+            theOffer.setDisabled(true);
+            this.transactionalManager.saveOffer(theOffer);
+        }
+    }
+
     public List<TheOffer> getNextHundredOffers(Long lastShownNumber, DateRange dateRange) {
         return this.transactionalManager.getNextHundredOffers(lastShownNumber, DateUtils.parseDateRangeOnDate(dateRange));
     }
-
 
     public List<TheOffer> getNextHundredOffersByCategory(Long lastShownNumber, OfferCategory offerCategory, DateRange dateRange) {
         return this.transactionalManager.getNextHundredOffersByCategory(lastShownNumber, offerCategory, DateUtils.parseDateRangeOnDate(dateRange));
@@ -64,6 +71,7 @@ public class OfferManager {
     public List<TheOffer> getNextHundredHottestOffers(Long lastShownNumber, DateRange dateRange) {
         return this.transactionalManager.getNextHottestHundredOffers(lastShownNumber, DateUtils.parseDateRangeOnDate(dateRange));
     }
+
 
     public List<TheOffer> getFilteredNextHundredResults(OfferFilters offerFilters, Long lastShownNumber) {
         if (offerFilters.containsCategoryOnlyFilter()) {
@@ -102,7 +110,6 @@ public class OfferManager {
                     : this.transactionalManager.getNextHundredOffers(lastShownNumber, DateUtils.parseDateRangeOnDate(offerFilters.getDateRange()));
         }
     }
-
 
     public Long countAllOffers() {
         return this.transactionalManager.countAllOffers();

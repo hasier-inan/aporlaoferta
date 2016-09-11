@@ -173,4 +173,5 @@ public class TransactionalManager {
     public TheUser getUserFromEmail(String email) {
         return this.userDAO.findByUserEmail(email);
     }
+
 }

@@ -12,5 +12,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface EmailService {
     void sendAccountConfirmationEmail(TheUser theUser) throws EmailSendingException;
+
     void sendPasswordForgotten(TheUser theUser) throws EmailSendingException;
 }

@@ -17,7 +17,7 @@ public enum CompanyAffiliations {
     }
 
     public static boolean isCompanyAffiliated(String company) {
-      return fromCode(company) != null;
+        return fromCode(company) != null;
     }
 
     public static CompanyAffiliations fromCode(String company) {

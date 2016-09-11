@@ -75,7 +75,19 @@ aporlaofertaApp
                             .success(function (data) {
                                 alertService.sendErrorMessage(data.descriptionEsp);
                             }).error(function () {
-                            alertService.sendErrorMessage(data.descriptionEsp);
+                            alertService.sendDefaultErrorMessage();
+                        });
+                    }
+
+                    $scope.removeOffer = function (id) {
+                        requestManager.makePostCall({}, {'id': id}, configService.getEndpoint('remove.offer'))
+                            .success(function (data) {
+                                alertService.sendErrorMessage(data.descriptionEsp);
+                                $scope.customCloseCallback = function () {
+                                    offerManager.requestNewestOffers($scope.appliedOfferFilters);
+                                }
+                            }).error(function () {
+                            alertService.sendDefaultErrorMessage();
                         });
                     }
 

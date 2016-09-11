@@ -58,6 +58,13 @@
             </sec:authorize>
             <div class="offerSpecificationsLeftContainer containerSplitter">
                 <div class="offerSpecificationsImage">
+                    <sec:authorize ifAllGranted="ROLE_ADMIN">
+                        <div class="remove-offer">
+                            <i class="fa fa-trash" aria-hidden="true"
+                               ng-confirm-click="Confirmar borrado de oferta"
+                               confirmed-click="removeOffer(offer.id)"></i>
+                        </div>
+                    </sec:authorize>
                     <div class="offer-image-expired" ng-show="offer.offerExpired"></div>
                     <img ng-src="{{offer.offerImage}}" ng-class="offer.offerExpired?'offer-expired':''"/>
 
