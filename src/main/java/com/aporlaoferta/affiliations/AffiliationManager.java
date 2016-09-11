@@ -5,7 +5,6 @@ import com.aporlaoferta.service.CompanyAffiliations;
 import com.aporlaoferta.utils.UnhealthyException;
 import com.aporlaoferta.utils.UrlParser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;

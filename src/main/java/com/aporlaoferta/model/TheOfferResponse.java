@@ -8,7 +8,6 @@ import java.util.List;
  * User: hasiermetal
  * Date: 11/02/2015
  * Time: 18:23
- *
  */
 public class TheOfferResponse extends TheResponse {
 

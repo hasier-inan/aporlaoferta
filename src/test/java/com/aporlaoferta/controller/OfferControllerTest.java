@@ -234,6 +234,12 @@ public class OfferControllerTest {
         assertTrue(ResultCode.USER_BANNED.getCode() == result.getCode());
     }
 
+    @Test
+    public void offerDeleteReturnsUpdatedCodeWhenSuccess() throws Exception {
+        TheResponse result = this.offerController.removeOffer(1L);
+        assertTrue(ResultCode.ALL_OK.getCode() == result.getCode());
+    }
+
     private void verifyCompanyNameIsUpdated(String original) {
         ArgumentCaptor<TheOffer> theOfferArgumentCaptor = ArgumentCaptor.forClass(TheOffer.class);
         Mockito.verify(this.offerValidatorHelper).validateOffer(theOfferArgumentCaptor.capture());

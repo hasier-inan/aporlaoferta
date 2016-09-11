@@ -4,7 +4,12 @@ import com.aporlaoferta.model.OfferComment;
 import com.aporlaoferta.model.OfferCompany;
 import com.aporlaoferta.model.TheOffer;
 import com.aporlaoferta.model.TheUser;
-import com.aporlaoferta.model.validators.*;
+import com.aporlaoferta.model.validators.OfferCommentQuoteValidator;
+import com.aporlaoferta.model.validators.OfferCommentValidator;
+import com.aporlaoferta.model.validators.OfferCompanyValidator;
+import com.aporlaoferta.model.validators.TheOfferValidator;
+import com.aporlaoferta.model.validators.TheUserValidator;
+import com.aporlaoferta.model.validators.ValidationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.validation.BindingResult;
@@ -62,7 +67,7 @@ public class OfferValidatorHelper {
      *
      * @param offerComment: Comment offer
      * @throws ValidationException if mandatory fields are not included (although front-end validation will be
-     * performed)
+     *                             performed)
      */
     public void validateComment(OfferComment offerComment) throws ValidationException {
         BindingResult bindingResult = getValidationErrors(offerComment, this.offerCommentValidator);

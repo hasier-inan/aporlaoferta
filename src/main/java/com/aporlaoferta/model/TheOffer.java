@@ -60,11 +60,14 @@ public class TheOffer implements Serializable {
     @Column(name = "TO_DESCRIPTION", nullable = false, length = 2000)
     private String offerDescription;
 
-    @Column(name = "TO_LINK", nullable = false,length = 2000)
+    @Column(name = "TO_LINK", nullable = false, length = 2000)
     private String offerLink;
 
     @Column(name = "TO_EXPIRED", nullable = false)
     private boolean offerExpired;
+
+    @Column(name = "TO_DISABLED", nullable = false)
+    private boolean disabled;
 
     @Column(name = "TO_FINAL_PRICE", nullable = false)
     private BigDecimal finalPrice;
@@ -269,6 +272,14 @@ public class TheOffer implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public boolean isDisabled() {
+        return disabled;
+    }
+
+    public void setDisabled(boolean disabled) {
+        this.disabled = disabled;
     }
 
     @Override

@@ -68,6 +68,13 @@ public class OfferManagerTestIntegration {
     }
 
     @Test
+    public void testOfferCanBeDeleted() {
+        this.offerManager.deleteOffer(1L);
+        TheOffer theOffer = this.offerManager.getOfferFromId(1L);
+        assertTrue("Expected the offer to be removed", theOffer.isDisabled());
+    }
+
+    @Test
     public void testOfferFeedbackIsUpdated() {
         TheOffer theOffer = this.offerManager.getOfferFromId(1L);
         assertTrue("Expected the offer positive feedback to be zero", theOffer.getOfferPositiveVote() == 0);

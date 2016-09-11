@@ -2,10 +2,7 @@ package com.aporlaoferta.utils;
 
 import com.aporlaoferta.model.TheOffer;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 
 /**
  * Created by hasiermetal on 2/03/14.

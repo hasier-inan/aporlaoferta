@@ -1,7 +1,5 @@
 package com.aporlaoferta.model;
 
-import static org.springframework.util.StringUtils.isEmpty;
-
 /**
  * Created with IntelliJ IDEA.
  * User: hasiermetal

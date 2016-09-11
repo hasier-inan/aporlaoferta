@@ -138,7 +138,7 @@ public class AccountController {
         if (!this.captchaHttpManager.validHuman(reCaptcha)) {
             return ResponseResultHelper.createInvalidCaptchaResponse();
         }
-        if(this.userManager.userIsBanned()){
+        if (this.userManager.userIsBanned()) {
             return ResponseResultHelper.createInvalidUserResponse();
         }
         return processUserUpdate(theNewUser);
