@@ -41,6 +41,8 @@ ul.dropdown li {
 .wrap-dd-select:after {
     position: absolute;
     left: 15px;
+    margin-top: -10px;
+    top: 50%;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     font-family: FontAwesome;
@@ -71,7 +73,7 @@ ul.dropdown li {
     font-weight: normal;
     list-style: none;
     visibility: hidden;
-    max-height: 500px;
+    max-height: 300px;
     overflow-y: auto; /*Provide an auto overflow to display scroll*/
     color: #FFFFFF;
 }

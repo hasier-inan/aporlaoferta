@@ -95,7 +95,8 @@ aporlaofertaApp
                         return $scope.offer.offerCategory != ""
                             && $scope.offer.offerCategory != null
                             && $scope.offer.offerCategory != undefined
-                            && $scope.offer.offerCategory != "CATEGORÍA";
+                            && $scope.offer.offerCategory != "CATEGORÍA"
+                            && $scope.offer.offerCategory != "Categoría";
                     };
                     $scope.selectionPerformed = function () {
                         return $scope.isCompanyDefined() && $scope.isCategorySelected();
