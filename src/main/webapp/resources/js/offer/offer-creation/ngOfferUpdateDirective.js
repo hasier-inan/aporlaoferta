@@ -89,6 +89,7 @@ aporlaofertaApp
                             && $scope.offer.offerCategory != ""
                             && $scope.offer.offerCategory != null
                             && $scope.offer.offerCategory != undefined
+                            && $scope.offer.offerCategory != "Categoría"
                             && $scope.offer.offerCategory != "CATEGORÍA";
                     };
                     $scope.selectionPerformed = function () {

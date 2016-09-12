@@ -304,6 +304,7 @@ public class OfferController {
         Map<String, String> offerCategories = new HashMap<>();
         offerCategories.put("text", offerCategory.name());
         offerCategories.put("value", offerCategory.getCode());
+        offerCategories.put("display", offerCategory.getText());
         offerCategoriesList.add(offerCategories);
     }
 

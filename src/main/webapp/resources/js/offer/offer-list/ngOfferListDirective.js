@@ -50,6 +50,7 @@ aporlaofertaApp
                         return $scope.offerFilter.selectedcategory != ""
                             && $scope.offerFilter.selectedcategory != null
                             && $scope.offerFilter.selectedcategory != undefined
+                            && $scope.offerFilter.selectedcategory != "Categoría"
                             && $scope.offerFilter.selectedcategory != "CATEGORÍA";
                     };
                     $scope.initialiseScrollyButtons();

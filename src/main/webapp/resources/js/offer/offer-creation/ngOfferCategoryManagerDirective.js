@@ -14,21 +14,22 @@ aporlaofertaApp
             controller: ['$rootScope', '$scope', 'requestManager', 'configService', function ($rootScope, $scope, requestManager, configService) {
                 $scope.offerCategories = {};
                 $scope.offerCategory = {
-                    text: "CATEGORÍA"
+                    text: "CATEGORÍA",
+                    display: "Categoría"
                 };
                 $scope.populateAllCategories = function () {
                     requestManager.makePostCall({}, {}, configService.getEndpoint('get.offer.categories'))
-                        .success(function (data, status, headers, config) {
+                        .success(function (data) {
                             $scope.offerCategories = angular.copy(data);
                             if ($scope.includeAll) {
-                                $scope.offerCategories.push({text: "TODAS", value: ""})
+                                $scope.offerCategories.push({text: "TODAS", value: "", display: "Todas"})
                             }
-                        }).error(function (data, status, headers, config) {
-                            var theResponse = {};
-                            theResponse.description = data;
-                            theResponse.responseResult = "error";
-                            $rootScope.$broadcast('serverResponse', theResponse);
-                        });
+                        }).error(function (data) {
+                        var theResponse = {};
+                        theResponse.description = data;
+                        theResponse.responseResult = "error";
+                        $rootScope.$broadcast('serverResponse', theResponse);
+                    });
                 }
                 $scope.onCategoryChange = function (category) {
                     $scope.selectedcategory = category;
@@ -37,7 +38,8 @@ aporlaofertaApp
                 $scope.$watch('reset', function () {
                     if ($scope.reset) {
                         $scope.offerCategory = {
-                            text: "CATEGORÍA"
+                            text: "CATEGORÍA",
+                            display: "Categoría"
                         };
                     }
                     $scope.reset = false;
