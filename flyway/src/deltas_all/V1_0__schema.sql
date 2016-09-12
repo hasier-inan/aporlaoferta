@@ -1,3 +1,4 @@
+SET NAMES utf8;
 CREATE TABLE `offer_has_negative` (
   `TO_ID` bigint(20) NOT NULL,
   `TU_ID` bigint(20) NOT NULL,
