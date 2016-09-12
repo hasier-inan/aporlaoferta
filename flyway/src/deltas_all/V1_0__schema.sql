@@ -1,10 +1,9 @@
-SET NAMES utf8;
 CREATE TABLE `offer_has_negative` (
   `TO_ID` bigint(20) NOT NULL,
   `TU_ID` bigint(20) NOT NULL,
   PRIMARY KEY  (`TO_ID`,`TU_ID`),
   KEY `FK_gbya7duw9vacmaibupib0dfeb` (`TU_ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `offer_has_negative` WRITE;
 /*!40000 ALTER TABLE `offer_has_negative` DISABLE KEYS */;
@@ -16,7 +15,7 @@ CREATE TABLE `offer_has_positive` (
   `TU_ID` bigint(20) NOT NULL,
   PRIMARY KEY  (`TO_ID`,`TU_ID`),
   KEY `FK_hdhhm9c8lx8yl7yux3uu0y62h` (`TU_ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `offer_has_positive` WRITE;
 /*!40000 ALTER TABLE `offer_has_positive` DISABLE KEYS */;
@@ -34,7 +33,7 @@ CREATE TABLE `thatcomment` (
   PRIMARY KEY  (`TCM_ID`),
   KEY `FK_pca10vp0hi163livr2eo72iq4` (`TCM_USER`),
   KEY `FK_nxb8j7ts03mnvfco4h5qdahhn` (`TCM_OFFER`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `thatcomment` WRITE;
 /*!40000 ALTER TABLE `thatcomment` DISABLE KEYS */;
@@ -50,7 +49,7 @@ CREATE TABLE `thatcompany` (
   `TC_WATERMARKS` varchar(255) default NULL,
   `TC_VERSION_ID` bigint(20) default NULL,
   PRIMARY KEY  (`TC_ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `thatcompany` WRITE;
 /*!40000 ALTER TABLE `thatcompany` DISABLE KEYS */;
@@ -76,7 +75,7 @@ CREATE TABLE `thatoffer` (
   PRIMARY KEY  (`TO_ID`),
   KEY `FK_pwxf1riagtphtplh6oe5dq77p` (`TO_COMPANY`),
   KEY `FK_5ss85bp8f40mxwrvxbgmbjjoo` (`TO_USER`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `thatoffer` WRITE;
 /*!40000 ALTER TABLE `thatoffer` DISABLE KEYS */;
@@ -89,7 +88,7 @@ CREATE TABLE `thattemplate` (
   `EMT_NAME` varchar(255) NOT NULL,
   `EMT_SUBJECT` varchar(255) NOT NULL,
   PRIMARY KEY  (`EMT_ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `thattemplate` WRITE;
 /*!40000 ALTER TABLE `thattemplate` DISABLE KEYS */;
@@ -107,7 +106,7 @@ CREATE TABLE `thatuser` (
   `TU_UUID` varchar(255) NOT NULL,
   `TU_VERSION_ID` bigint(20) default NULL,
   PRIMARY KEY  (`TU_ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `thatuser` WRITE;
 /*!40000 ALTER TABLE `thatuser` DISABLE KEYS */;
@@ -123,7 +122,7 @@ CREATE TABLE `thatuserroles` (
   `TUR_ROLE` varchar(255) NOT NULL,
   `TUR_VERSION_ID` bigint(20) default NULL,
   PRIMARY KEY  (`TUR_ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `thatuserroles` WRITE;
 /*!40000 ALTER TABLE `thatuserroles` DISABLE KEYS */;
