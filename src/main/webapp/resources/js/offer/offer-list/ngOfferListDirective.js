@@ -13,6 +13,7 @@ aporlaofertaApp
                 function ($scope, offerManager) {
                     $scope.offerList = [];
                     $scope.moreOffersLoading = false;
+                    $scope.lastOffer = 0;
 
                     $scope.showMoreOffers = function (lastOffer) {
                         $scope.moreOffersLoading = true;
@@ -28,6 +29,11 @@ aporlaofertaApp
                                 $scope.moreOffersLoading = false;
                             });
                     }
+
+                    $scope.updateIndex = function (index) {
+                        $scope.lastOffer = index;
+                    }
+
                     $scope.$on('offerList', function (event, args) {
                         $scope.offerList = args;
                     })
@@ -42,7 +48,7 @@ aporlaofertaApp
                             });
                     }
                     $scope.parsePrice = function (price) {
-                        if(price){
+                        if (price) {
                             return price.toString().replace(/\./, ',');
                         }
                     }

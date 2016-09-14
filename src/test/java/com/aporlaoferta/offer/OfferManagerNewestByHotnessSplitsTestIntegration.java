@@ -62,14 +62,15 @@ public class OfferManagerNewestByHotnessSplitsTestIntegration {
 
     private void addOneThousandDummyRandomHotnessOffers() {
         for (int i = 0; i < 1000; i++) {
-            addRandomHotnessOffer();
+            addRandomHotnessOffer(i);
         }
     }
 
-    private void addRandomHotnessOffer() {
+    private void addRandomHotnessOffer(int index) {
         TheOffer anotherOffer = OfferBuilderManager.aBasicOfferWithoutId()
                 .withPositives(selectRandomFeedback(499))
                 .withNegatives(selectRandomFeedback(100))
+                .withTitle(String.format("%s - %s", index, UUID.randomUUID().toString()))
                 .build();
         this.theUser.addOffer(anotherOffer);
         this.offerManager.createOffer(anotherOffer);

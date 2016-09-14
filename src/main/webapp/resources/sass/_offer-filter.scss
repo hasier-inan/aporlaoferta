@@ -134,11 +134,11 @@ input#filter-by {
 
 button.displayFilterContents{
   left: 50%;
-  margin-left: -20px;
+  margin: 0 0 10px -20px;
   padding-left: 0;
 
   &:before{
-    margin: 0 0 0 2px !important;
+    margin: 0 !important;
   }
 }
 
@@ -150,7 +150,7 @@ input.filter-input {
   text-decoration: none;
 }
 
-@media screen and (max-width: 480px) and (orientation: portrait) {
+@media screen and (max-width: 480px){
   div.filters-contents {
     display: none;
   }
@@ -160,47 +160,17 @@ input.filter-input {
   }
 }
 
-@media screen and (max-width: 480px) and (orientation: landscape) {
+@media screen and (max-width: 736px){
   div.filters-contents {
     display: none;
   }
 
   .displayFilterContents {
-    display: block;
+    display: block !important;
   }
 }
 
-@media screen and (max-width: 736px) and (orientation: portrait) {
-  div.filters-contents {
-    display: none;
-  }
-
-  .displayFilterContents {
-    display: block;
-  }
-}
-
-@media screen and (max-width: 736px) and (orientation: landscape) {
-  div.filters-contents {
-    display: none;
-  }
-
-  .displayFilterContents {
-    display: block;
-  }
-}
-
-@media screen and (min-width: 737px) and (orientation: portrait) {
-  div.filters-contents {
-    display: block;
-  }
-
-  .displayFilterContents {
-    display: none;
-  }
-}
-
-@media screen and (min-width: 737px) and (orientation: landscape) {
+@media screen and (min-width: 737px){
   div.filters-contents {
     display: inline !important;
   }

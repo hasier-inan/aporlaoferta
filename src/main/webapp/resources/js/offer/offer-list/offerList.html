@@ -35,7 +35,7 @@
                         <pre class="parsed-text list">{{offer.offerDescription | characters:400}}</pre>
                     </p>
 
-                    <div>
+                    <div class="offer-call-to-actions">
                         <a class="button get-offer hot-background icon fa-fire whiteButton blue-text"
                            href="{{offer.offerLink}}" target="_blank">Obtener oferta</a>
                         <a class="button icon fa-sign-in moreDetailButton" ng-click="showSpecifications(offer.id)">
@@ -45,19 +45,27 @@
                     </div>
                 </div>
             </section>
-            <div ng-if="$last" class="more-offers-button">
+            <div ng-if="$last" class="more-offers-container">
                 <button class="button small icon fa-cart-plus whiteButton get-offer more-offers-button"
+                        ng-init="updateIndex($index)"
                         ng-class="!moreOffersLoading?'':'hideLoading'"
-                        ng-click="showMoreOffers($index)">M&aacute;s ofertas
+                        ng-click="showMoreOffers(lastOffer)">M&aacute;s ofertas
                 </button>
             </div>
         </div>
-        <div ng-hide="offerList.length>0" class="no-offers">
-            <i class="fa no-offers">:</i><i class="fa fa-cart-plus no-offers">(</i>
-
-            <p>No hay ofertas que mostrar</p>
-        </div>
     </div>
+    <div ng-hide="offerList.length>0" class="no-offers">
+        <i class="fa no-offers">:</i><i class="fa fa-cart-plus no-offers">(</i>
+
+        <p>No hay ofertas que mostrar</p>
+    </div>
+    <div class="more-offers-container--centered">
+        <button class="button small icon fa-cart-plus whiteButton get-offer more-offers-button"
+                ng-class="!moreOffersLoading?'':'hideLoading'"
+                ng-click="showMoreOffers(lastOffer)">M&aacute;s ofertas
+        </button>
+    </div>
+
     <div class="loading-dialogue">
         <i class="fa fa-refresh loadingdialogue grey" ng-class="!moreOffersLoading?'hideLoading':''"></i>
     </div>
