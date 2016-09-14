@@ -3148,7 +3148,7 @@ header.major:after {
 }
 
 .spotlight .content {
-    width: 70%;
+    width: 67%;
 }
 
 .spotlight .content > :last-child {
@@ -3859,7 +3859,7 @@ table.alt tbody tr td {
 @media screen and (max-width: 980px) {
 
     .wrapper {
-        padding: 2em 0em 2em 4em;
+        padding: 2em;
     }
 
     .wrapper > .inner {
