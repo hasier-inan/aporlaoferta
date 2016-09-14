@@ -25,14 +25,23 @@
                 <div class="content">
                     <div class="offerSpecificationsSubtitle">
                         <img ng-src="{{offer.offerUser.userAvatar}}"/>
-                        <div class="offerCreatedDate">{{offer.offerCreatedDate | date:'MM/dd/yyyy @h:mma'}}
+
+                        <div class="offerCreatedDate created-date-list">{{offer.offerCreatedDate | date:'MM/dd/yyyy
+                            @h:mma'}}
                         </div>
                     </div>
-                    <h3 ng-class="offer.offerExpired?'offer-expired':''">{{offer.offerTitle}} - {{parsePrice(offer.finalPrice)}}€
-                        <div class="offerCompanyInTitle">{{offer.offerCompany.companyName}}</div>
+                    <h3 ng-class="offer.offerExpired?'offer-expired':''">
+                        <div>
+                            <span>{{offer.offerTitle  | characters:120}}</span>
+                            <span> - {{parsePrice(offer.finalPrice)}}€</span>
+                        </div>
+                        <div class="offerCompanyInTitle">
+                            <i class="fa fa-tag" aria-hidden="true"></i>
+                            {{offer.offerCompany.companyName}}
+                        </div>
                     </h3>
                     <p class="offerDescription">
-                        <pre class="parsed-text list">{{offer.offerDescription | characters:400}}</pre>
+                    <pre class="parsed-text list">{{offer.offerDescription | characters:400}}</pre>
                     </p>
 
                     <div class="offer-call-to-actions">
