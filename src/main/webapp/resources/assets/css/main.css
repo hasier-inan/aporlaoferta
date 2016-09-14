@@ -3318,7 +3318,7 @@ table.alt tbody tr td {
 .wrapper > .inner.alt > *:first-child {
     border-top: 0;
     margin-top: 0;
-    padding-top: 0;
+    padding-top: 1em;
 }
 
 .wrapper.style1 {

@@ -96,104 +96,6 @@ pre.parsed-text {
   margin: 0 20px 0 0;
 }
 
-@media screen and (max-width: 736px) {
-  .offerImageAndFeedback {
-    width: 100%;
-    margin: 0;
-  }
-
-  .spotlight {
-    .image {
-      width: 100%;
-      max-width: 100%;
-    }
-    .content {
-      width: 100%;
-    }
-  }
-
-}
-
-@media screen and (min-width: 960px) {
-  .wrapper {
-    padding: 2em 0;
-
-    .more-offers-container {
-      display: none;
-    }
-
-    .more-offers-container--centered {
-      display: block;
-      text-align: center;
-
-      .more-offers-button {
-        text-align: center;
-        display: inline;
-        font-size: 1em;
-        height: 3.5em;
-        color: $offer-list-font-color !important;
-      }
-    }
-
-    > .inner {
-      width: 90%;
-
-      &.alt {
-        width: 100%;
-
-        > * {
-          border-top: solid 2px $offer-list-separator-border-color;
-          display: inline-block;
-          padding-top: 1em;
-          width: 50%;
-
-          &:first-child {
-            border-top: 0;
-            border-right: 0;
-          }
-
-          &:nth-child(2) {
-            border-top: 0;
-            border-left: 0;
-          }
-
-          &:nth-child(odd) {
-            border-right: solid 1px $offer-list-separator-border-color;
-          }
-
-          &:nth-child(even) {
-            border-left: solid 1px $offer-list-separator-border-color;
-          }
-
-          .spotlight {
-            margin: 0 1em;
-            -moz-flex-direction: column !important;
-            -webkit-flex-direction: column !important;
-            -ms-flex-direction: column !important;
-            flex-direction: column !important;
-
-            .offerImageAndFeedback {
-              width: 150px;
-            }
-
-            .content {
-              width: 100%;
-
-              .offer-call-to-actions {
-                margin-bottom: 1em;
-                text-align: center;
-              }
-            }
-          }
-
-        }
-      }
-
-    }
-  }
-
-}
-
 .image.offerImage {
   cursor: pointer;
   display: inline-block;
@@ -239,6 +141,10 @@ pre.parsed-text {
 
 div.content > h3 {
   margin-top: 0;
+}
+
+.created-date-list{
+  color: $offer-specifications-subtitle-color;
 }
 
 p.invalid-image {
