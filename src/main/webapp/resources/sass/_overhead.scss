@@ -14,7 +14,7 @@ div.overhead_container {
   position: fixed;
   width: 100%;
   height: 100%;
-  z-index: 1001;
+  z-index: 1002;
   background-color: $overhead-container-background-color;
   opacity: 0.4;
   -webkit-opacity: 0.4;
@@ -40,7 +40,7 @@ div.overhead_subcontainer {
   border-radius: 8px;
   box-shadow: inset 0 0 0 5px rgba(255, 255, 255, 0.25);
   background-color: $main-background-color;
-  z-index: 1002;
+  z-index: 1003;
   top: 5%;
   background-image: url("images/background_head5.png"), url("images/pattern-size1.svg");
   background-position: top left, center center;

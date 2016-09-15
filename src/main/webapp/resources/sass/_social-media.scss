@@ -88,3 +88,25 @@ a.social-share.mini {
   }
 }
 
+@media screen and (max-width: 737px) {
+  a.social-share {
+    margin-top: .3em;
+  }
+
+  header {
+    .social-media-shares {
+      left: 20px !important;
+      margin-top: 5em;
+      width: 2em;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  header {
+    .social-media-shares {
+      margin-top: 120px;
+    }
+  }
+}
+

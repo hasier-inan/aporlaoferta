@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="terms-and-conditions">
-    <h1>1. DATOS IDENTIFICATIVOS</h1>
+    <h2>1. DATOS IDENTIFICATIVOS</h2>
 
     <p>En cumplimiento con el deber de información recogido en artículo 10 de la Ley 34/2002, de 11 de
         julio, de
@@ -9,7 +9,7 @@
         datos: el titular de dominio web es aporlaoferta. Correo electrónico de contacto: aporlaoferta@gmail.com del sitio web.
     </p>
 
-    <h1>2. USUARIOS</h1>
+    <h2>2. USUARIOS</h2>
 
     <p>El acceso y/o uso de este portal de aporlaoferta atribuye la condición de USUARIO, que acepta, desde dicho acceso
         y/o
@@ -18,7 +18,7 @@
         cumplimiento.
     </p>
 
-    <h1>3. USO DEL PORTAL</h1>
+    <h2>3. USO DEL PORTAL</h2>
 
     <p>www.aporlaoferta.com proporciona el acceso a multitud de informaciones, servicios, programas o datos (en adelante, “los
         contenidos”) en Internet pertenecientes a aporlaoferta o a sus licenciantes a los que el USUARIO pueda tener acceso. El
@@ -54,7 +54,7 @@
         vertidas por los usuarios a través de los foros, chats, u otras herramientas de participación.
     </p>
 
-    <h1>4. PROTECCIÓN DE DATOS</h1>
+    <h2>4. PROTECCIÓN DE DATOS</h2>
 
     <p>aporlaoferta cumple con las directrices de la Ley Orgánica 15/1999 de 13 de diciembre de Protección de
         Datos de Carácter
@@ -79,7 +79,7 @@
         con fines comerciales en cada momento.
     </p>
 
-    <h1>5. PROPIEDAD INTELECTUAL E INDUSTRIAL</h1>
+    <h2>5. PROPIEDAD INTELECTUAL E INDUSTRIAL</h2>
 
     <p>aporlaoferta por sí o como cesionaria, es titular de todos los derechos de propiedad intelectual e industrial
         desu
@@ -107,7 +107,7 @@
         protección o sistema de seguridad que estuviera instalado en el las páginas de aporlaoferta.
     </p>
 
-    <h1>6. EXCLUSIÓN DE GARANTíAS Y RESPONSABILIDAD</h1>
+    <h2>6. EXCLUSIÓN DE GARANTíAS Y RESPONSABILIDAD</h2>
 
     <p>aporlaoferta no se hace responsable, en ningún caso, de los daños y perjuicios de cualquier naturaleza que
         pudieran
@@ -118,7 +118,7 @@
         medidas tecnológicas necesarias para evitarlo.
     </p>
 
-    <h1>7. MODIFICACIONES</h1>
+    <h2>7. MODIFICACIONES</h2>
 
     <p>aporlaoferta se reserva el derecho de efectuar sin previo aviso las modificaciones que considere oportunas en su portal,
         pudiendocambiar, suprimir o añadir tanto los contenidos y servicios que se presten a través de la
@@ -126,7 +126,7 @@
         forma en la que éstos aparezcan presentados o localizados en su portal.
     </p>
 
-    <h1>8. ENLACES</h1>
+    <h2>8. ENLACES</h2>
 
     <p>En el caso de que en www.aporlaoferta.com se dispusiesen enlaces o hipervínculos hacía otros sitios de Internet,
         aporlaoferta no
@@ -145,21 +145,21 @@
         participación con las entidades conectadas.
     </p>
 
-    <h1>9. DERECHO DE EXCLUSIÓN</h1>
+    <h2>9. DERECHO DE EXCLUSIÓN</h2>
 
     <p>aporlaoferta se reserva el derecho a denegar o retirar el acceso a portal y/o los servicios ofrecidos sin necesidad de
         preaviso, a instancia propia o de un tercero, a aquellos usuarios que incumplan las presentes Condiciones
         Generales de Uso.
     </p>
 
-    <h1>10.GENERALIDADES</h1>
+    <h2>10.GENERALIDADES</h2>
 
     <p>aporlaoferta perseguirá el incumplimiento de las presentes condiciones así como cualquier utilización
         indebida de su
         portal ejerciendo todas las acciones civiles y penales que le puedan corresponder en derecho.
     </p>
 
-    <h1>11.MODIFICACIóN DE LAS PRESENTES CONDICIONES Y DURACIÓN</h1>
+    <h2>11.MODIFICACIóN DE LAS PRESENTES CONDICIONES Y DURACIÓN</h2>
 
     <p>aporlaoferta podrá modificar en cualquier momento las condiciones aquí determinadas, siendo debidamente
         publicadas como
@@ -171,7 +171,7 @@
         publicadas. que sean modificadas por otras.
     </p>
 
-    <h1>12. LEGISLACIóN APLICABLE Y JURIDISCCIÓN</h1>
+    <h2>12. LEGISLACIóN APLICABLE Y JURIDISCCIÓN</h2>
 
     <p>La relación entre aporlaoferta y el USUARIO se regirá por la normativa española vigente y cualquier
         controversia se
