@@ -72,8 +72,8 @@
                         <div class="offerSpecificationsFeedbackTotal">
 
                             <div class="feedbackSumatory">
-                                <h1 class="feedbackSumatory">{{offer.offerPositiveVote - offer.offerNegativeVote |
-                                    number:0}}</h1>
+                                <h2 class="feedbackSumatory">{{offer.offerPositiveVote - offer.offerNegativeVote |
+                                    number:0}}</h2>
 
                                 <div class="offerSpecificationsFeedbackSmall">
                                     <div id="offerPositiveFeedback">+{{offer.offerPositiveVote}}</div>
@@ -103,10 +103,10 @@
             </div>
             <div class="offerSpecificationsRightContainer containerSplitter">
                 <div class="offerSpecificationsTitle">
-                    <h1 ng-class="offer.offerExpired?'offer-expired':''">
+                    <h2 ng-class="offer.offerExpired?'offer-expired':''">
                         <a href="{{offer.offerLink}}" target="_blank">{{offer.offerTitle}}:
                             {{parsePrice(offer.finalPrice)}}€</a>
-                    </h1>
+                    </h2>
 
                     <div class="offerCompany offerSpecificationsBox">Compañía: {{offer.offerCompany.companyName}}</div>
                     <div class="offerSpecificationsOriginalPrice offerSpecificationsBox" ng-show="offer.originalPrice">

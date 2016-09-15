@@ -90,10 +90,18 @@ pre.parsed-text {
   text-align: justify;
 }
 
-.offerImageAndFeedback {
-  max-width: 200px;
+.offer-image-presentation {
   width: 30%;
-  margin: 0 20px 0 0;
+
+  .offer-call-to-actions{
+    display: none;
+  }
+
+  .offerImageAndFeedback {
+    max-width: 200px;
+    width: 100%;
+    margin: 0 20px 0 0;
+  }
 }
 
 .image.offerImage {
@@ -143,7 +151,7 @@ div.content > h3 {
   margin-top: 0;
 }
 
-.created-date-list{
+.created-date-list {
   color: $offer-specifications-subtitle-color;
 }
 

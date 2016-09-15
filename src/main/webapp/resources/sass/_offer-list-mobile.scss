@@ -46,7 +46,6 @@
         > * {
           border-top: solid 2px $offer-list-separator-border-color;
           display: inline-block;
-          min-height: 560px;
           padding-top: 1em;
           width: 50%;
 
@@ -73,16 +72,30 @@
             -ms-flex-direction: column !important;
             flex-direction: column !important;
 
-            .offerImageAndFeedback {
-              width: 150px;
+            .offer-image-presentation {
+              width: 100%;
+
+              .offer-call-to-actions{
+                display: inline-block;
+                vertical-align: top;
+
+                a{
+                  display: block;
+                  margin-top: .5em;
+                }
+              }
+
+              .offerImageAndFeedback {
+                display: inline-block;
+                width: 150px;
+              }
             }
 
             .content {
               width: 100%;
 
               .offer-call-to-actions {
-                margin-bottom: 1em;
-                text-align: center;
+                display: none;
               }
             }
           }
