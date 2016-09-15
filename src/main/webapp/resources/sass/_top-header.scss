@@ -21,8 +21,7 @@ ul.actions.top_header {
   position: absolute;
   top: 1em;
   left: 1em;
-  z-index: 999;
-  width: 100%;
+  z-index: 1001;
 }
 
 button {
@@ -82,7 +81,7 @@ ul.top_header > .overflown-left {
 }
 
 ul.top_header > .overflown-right {
-  right: 10px;
+  right: 25px;
 }
 
 ul.top_header > .overflown.hidden {
