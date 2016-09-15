@@ -5,23 +5,32 @@
     <div class="inner alt">
         <div ng-repeat="offer in offerList | unique: 'offer.id'">
             <section class="spotlight" ng-class="offer.offerExpired?'offer-expired':''">
-                <div class="offerImageAndFeedback">
-                    <div class="image offerImage">
-                        <div class="offer-image-expired" ng-show="offer.offerExpired"></div>
-                        <img ng-src="{{offer.offerImage}}" alt="" ng-click="showSpecifications(offer.id)"
-                             ng-class="offer.offerExpired?'offer-expired':''"/>
-                    </div>
-                    <div class="centeredForm">
-                        <div class="offerListFeedback feedbackSumatory">
-                            <h1 class="feedbackSumatory ng-binding" ng-class="(offer.offerPositiveVote - offer.offerNegativeVote |
+                <div class="offer-image-presentation">
+                    <div class="offerImageAndFeedback">
+                        <div class="image offerImage">
+                            <div class="offer-image-expired" ng-show="offer.offerExpired"></div>
+                            <img ng-src="{{offer.offerImage}}" alt="" ng-click="showSpecifications(offer.id)"
+                                 ng-class="offer.offerExpired?'offer-expired':''"/>
+                        </div>
+                        <div class="centeredForm">
+                            <div class="offerListFeedback feedbackSumatory">
+                                <h1 class="feedbackSumatory ng-binding" ng-class="(offer.offerPositiveVote - offer.offerNegativeVote |
                             number:0)>0?'hotFeedback':((offer.offerPositiveVote - offer.offerNegativeVote |
                             number:0)<0?'coldFeedback':'neutralFeedback')">{{offer.offerPositiveVote -
-                                offer.offerNegativeVote |
-                                number:0}}</h1>
+                                    offer.offerNegativeVote |
+                                    number:0}}</h1>
+                            </div>
                         </div>
                     </div>
+                    <div class="offer-call-to-actions">
+                        <a class="button get-offer hot-background icon fa-fire whiteButton blue-text"
+                           href="{{offer.offerLink}}" target="_blank">Obtener oferta</a>
+                        <a class="button icon fa-sign-in moreDetailButton" ng-click="showSpecifications(offer.id)">
+                            M&aacute;s
+                            detalle
+                        </a>
+                    </div>
                 </div>
-
                 <div class="content">
                     <div class="offerSpecificationsSubtitle">
                         <img ng-src="{{offer.offerUser.userAvatar}}"/>
