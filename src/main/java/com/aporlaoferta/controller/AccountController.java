@@ -94,7 +94,7 @@ public class AccountController {
                               @RequestParam(value = "logout", required = false) String logout) {
         ModelAndView model = new ModelAndView();
         if (error != null) {
-            model.addObject("msg", "Los datos introducidos son invalidos");
+            model.addObject("msg", isEmpty(error) ? "Los datos introducidos son invalidos" : error);
         }
         if (logout != null) {
             model.addObject("msg", "Se ha cerrado la sesión");

@@ -78,10 +78,13 @@
               .offer-call-to-actions{
                 display: inline-block;
                 vertical-align: top;
+                margin-top: 32px;
 
                 a{
                   display: block;
-                  margin-top: .5em;
+                  &:last-child{
+                    margin-top: .5em;
+                  }
                 }
               }
 

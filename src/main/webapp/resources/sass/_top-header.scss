@@ -20,8 +20,9 @@ a.whiteButton {
 ul.actions.top_header {
   position: absolute;
   top: 1em;
-  left: 1em;
+  padding-left: 1em;
   z-index: 1001;
+  width: 100%;
 }
 
 button {
@@ -187,7 +188,7 @@ button.right-aligned:before {
 div.profileForm {
   position: absolute;
   display: inline-block;
-  right: 2em;
+  right: 1em;
 }
 
 header.top-header {

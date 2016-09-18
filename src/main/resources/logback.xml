@@ -11,9 +11,11 @@
             </Pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- create file for every day, maximum size of 10MB, compress it, and remove after 10 days -->
             <fileNamePattern>
-                ${APOR_LOG_HOME}/archived/debug.%d{yyyy-MM-dd}.%i.log
+                ${APOR_LOG_HOME}/archived/debug.%d{yyyy-MM-dd}.%i.log.gz
             </fileNamePattern>
+            <MaxHistory>15</MaxHistory>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>10MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>

@@ -32,13 +32,21 @@
                              authentication-failure-url="/login?error"
                              username-parameter="username"
                              password-parameter="password"/>
-        <security:logout logout-success-url="/"/>
+        <security:logout logout-success-url="/"
+                         invalidate-session="true"
+                         delete-cookies="JSESSIONID"/>
         <!-- enable csrf protection -->
         <security:csrf/>
         <security:remember-me
                 remember-me-parameter="remember-me"
                 token-validity-seconds="1209600"
                 data-source-ref="dataSource"/>
+        <security:session-management invalid-session-url="/login"
+                                     session-authentication-error-url="/login?error=sesion%20invalida">
+            <security:concurrency-control max-sessions="1"
+                                          error-if-maximum-exceeded="true"
+                                          expired-url="/login?error=sesion%20expirada"/>
+        </security:session-management>
     </security:http>
 
     <security:authentication-manager>
