@@ -2046,7 +2046,6 @@ html, input, select, textarea {
 }
 
 body, input, select, textarea {
-    font-family: Arial, Helvetica, sans-serif;
     font-weight: normal;
     line-height: 1.5em;
     letter-spacing: -0.015em;
@@ -2163,7 +2162,6 @@ code {
     border-radius: 6px;
     border-style: solid;
     border-width: 1px;
-    font-family: "Courier New", monospace;
     font-size: 0.9em;
     margin: 0 0.25em;
     padding: 0.25em 0.65em;
@@ -2171,7 +2169,6 @@ code {
 
 pre {
     -webkit-overflow-scrolling: touch;
-    font-family: "Courier New", monospace;
     font-size: 0.9em;
     margin: 0 0 2em 0;
 }

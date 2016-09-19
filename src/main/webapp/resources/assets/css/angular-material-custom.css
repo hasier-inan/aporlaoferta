@@ -217,10 +217,6 @@ body, html {
     letter-spacing: .010em
 }
 
-button, html, input, select, textarea {
-    font-family: Roboto, "Helvetica Neue", sans-serif
-}
-
 button, input, select, textarea {
     font-size: 100%
 }
@@ -9975,7 +9971,6 @@ md-bottom-sheet.ng-leave-active {
 
 md-bottom-sheet .md-subheader {
     background-color: transparent;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
     line-height: 56px;
     padding: 0;
     white-space: nowrap
@@ -10867,7 +10862,6 @@ md-checkbox .md-label bdo[dir=ltr] {
 
 .md-chips {
     display: block;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
     font-size: 16px;
     padding: 0 0 8px 3px;
     vertical-align: middle
