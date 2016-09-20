@@ -41,7 +41,7 @@
                 remember-me-parameter="remember-me"
                 token-validity-seconds="1209600"
                 data-source-ref="dataSource"/>
-        <security:session-management invalid-session-url="/login"
+        <security:session-management invalid-session-url="/"
                                      session-authentication-error-url="/login?error=sesion%20invalida">
             <security:concurrency-control max-sessions="1"
                                           error-if-maximum-exceeded="true"
