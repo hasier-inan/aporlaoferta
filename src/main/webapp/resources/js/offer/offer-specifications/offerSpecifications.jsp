@@ -7,24 +7,24 @@
                 <sec:authentication var="nickname" property="principal.username"/>
                 <div class="offer-specifications edit-offer"
                      ng-show="offer.offerUser.userNickname == '${nickname}'">
-                    <button class="button small icon fa-pencil whiteButton green-background"
+                    <button class="button small small--rounded icon hvr-icon-grow fa-pencil whiteButton green-background"
                             ng-click="updateOffer(offer)">
                         Editar oferta
                     </button>
-                    <button class="button mini icon fa-pencil whiteButton green-background"
+                    <button class="button mini icon hvr-icon-grow fa-pencil whiteButton green-background"
                             ng-click="updateOffer(offer)">
                     </button>
                 </div>
                 <div class="offer-specifications edit-offer expire-offer"
                      ng-show="offer.offerUser.userNickname == '${nickname}'">
                     <button ng-disabled="offer.offerExpired"
-                            class="button small icon fa-trash whiteButton red-background"
+                            class="button small small--rounded icon hvr-icon-grow fa-trash whiteButton red-background"
                             confirmed-click="expireOffer(offer)"
                             ng-confirm-click="¿Seguro que quieres caducar la oferta?">
                         Oferta Caducada
                     </button>
                     <button ng-disabled="offer.offerExpired"
-                            class="button mini icon fa-trash whiteButton red-background"
+                            class="button mini icon hvr-icon-grow fa-trash whiteButton red-background"
                             confirmed-click="expireOffer(offer)"
                             ng-confirm-click="¿Seguro que quieres caducar la oferta?">
                     </button>
@@ -32,24 +32,24 @@
                 <sec:authorize ifAllGranted="ROLE_ADMIN">
                     <div class="offer-specifications edit-offer"
                          ng-show="offer.offerUser.userNickname != '${nickname}'">
-                        <button class="button small icon fa-pencil whiteButton green-background"
+                        <button class="button small small--rounded icon hvr-icon-grow fa-pencil whiteButton green-background"
                                 ng-click="updateOffer(offer)">
                             Editar oferta
                         </button>
-                        <button class="button mini icon fa-pencil whiteButton green-background"
+                        <button class="button mini icon hvr-icon-grow fa-pencil whiteButton green-background"
                                 ng-click="updateOffer(offer)">
                         </button>
                     </div>
                     <div class="offer-specifications edit-offer expire-offer"
                          ng-show="offer.offerUser.userNickname != '${nickname}'">
                         <button ng-disabled="offer.offerExpired"
-                                class="button small icon fa-trash whiteButton red-background"
+                                class="button small small--rounded  icon hvr-icon-grow fa-trash whiteButton red-background"
                                 confirmed-click="expireOffer(offer)"
                                 ng-confirm-click="¿Seguro que quieres caducar la oferta?">
                             Oferta Caducada
                         </button>
                         <button ng-disabled="offer.offerExpired"
-                                class="button mini icon fa-trash whiteButton red-background"
+                                class="button mini icon hvr-icon-grow fa-trash whiteButton red-background"
                                 confirmed-click="expireOffer(offer)"
                                 ng-confirm-click="¿Seguro que quieres caducar la oferta?">
                         </button>
@@ -87,11 +87,11 @@
                         <sec:authorize access="isAuthenticated()">
                             <div class="feedbackButtons">
                                 <div>
-                                    <button class="button small icon fa-plus whiteButton green-background"
+                                    <button class="button small icon hvr-icon-grow fa-plus whiteButton green-background"
                                             ng-click="votePositive(offer.id)"></button>
                                 </div>
                                 <div>
-                                    <button class="button small icon fa-minus whiteButton red-background"
+                                    <button class="button small icon hvr-icon-grow fa-minus whiteButton red-background"
                                             ng-click="voteNegative(offer.id)"></button>
                                 </div>
                             </div>

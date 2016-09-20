@@ -34,10 +34,10 @@
                  display-callback="displaySignup"></div>
         </sec:authorize>
         <li>
-            <button class="button small icon fa-times close_button red-background"
+            <button class="button small small--rounded icon hvr-icon-grow fa-times close_button red-background"
                     ng-click="closeOverheadDisplay(customCloseCallback)">Cerrar
             </button>
-            <button class="button mini icon fa-times close_button red-background"
+            <button class="button mini icon hvr-icon-grow fa-times close_button red-background"
                     ng-click="closeOverheadDisplay(customCloseCallback)"></button>
         </li>
     </ul>

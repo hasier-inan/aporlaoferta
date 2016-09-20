@@ -14,11 +14,11 @@
 
                 <div class="commentQuoteButtons">
                     <button ng-disabled="!commentContentForm.$valid || processing"
-                            class="button small icon fa-pencil-square whiteButton green-background"
+                            class="button small small--rounded icon hvr-icon-grow fa-pencil-square whiteButton green-background"
                             ng-click="writeComment(comment, theOffer)">a&ntilde;adir comentario
                     </button>
                     <button ng-disabled="!commentContentForm.$valid || processing"
-                            class="button mini icon fa-pencil-square whiteButton inline green-background write-comment"
+                            class="button mini icon hvr-icon-grow fa-pencil-square whiteButton inline green-background write-comment"
                             ng-click="writeComment(comment, theOffer)"></button>
                 </div>
             </form>
@@ -92,11 +92,11 @@
 
                         <div class="commentQuoteButtons">
                             <button ng-disabled="!quoteCommentForm.$valid || processing"
-                                    class="button small icon fa-pencil-square whiteButton green-background"
+                                    class="button small small--rounded icon hvr-icon-grow fa-pencil-square whiteButton green-background"
                                     ng-click="quoteComment(qComment, theComment.id)">citar
                             </button>
                             <button ng-disabled="!quoteCommentForm.$valid || processing"
-                                    class="button mini icon fa-pencil-square whiteButton inline green-background write-comment"
+                                    class="button mini icon hvr-icon-grow fa-pencil-square whiteButton inline green-background write-comment"
                                     ng-click="quoteComment(qComment, theComment.id)"></button>
                         </div>
                     </form>
