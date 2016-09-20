@@ -14,7 +14,7 @@
     </div>
     <div dropdown-select="profileOptions"
          dropdown-model="profileModel"
-         dropdown-item-label="text" class="icon fa fa-cogs profile-options-dropdown">
+         dropdown-item-label="text" class="icon hvr-icon-grow fa fa-cogs profile-options-dropdown">
 
     </div>
 </c:if>
