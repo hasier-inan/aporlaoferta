@@ -14,20 +14,23 @@ import java.io.IOException;
  */
 public class ImageTransformer {
 
-    private static final int MAXIMUM_SIZE = 600;
+    private static final int MAXIMUM_WIDTH = 600;
+    private static final int MAXIMUM_HEIGHT = 450;
 
     public ImageTransformer() {
     }
 
     public void createSquareImage(final File originalFile, final String imagePath) throws IOException {
         BufferedImage originalImage = ImageIO.read(originalFile);
-        final int squareSize = widthIsBiggerThanHeight(originalImage) ? originalImage.getWidth() : originalImage.getHeight();
-        BufferedImage alteredImage = new BufferedImage(squareSize, squareSize, BufferedImage.TYPE_INT_RGB);
+        final int unit = (originalImage.getWidth() * 3 / 4) - originalImage.getHeight();
+        final int width = unit >= 0 ? originalImage.getWidth() : (originalImage.getHeight() * 4 / 3);
+        final int height = unit >= 0 ? (originalImage.getWidth() * 3 / 4) : originalImage.getHeight();
+        BufferedImage alteredImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         Graphics2D graphics2D = alteredImage.createGraphics();
         graphics2D.setColor(Color.WHITE);
-        fillImageRects(originalImage, squareSize, graphics2D);
+        fillImageRects(originalImage, width, height, unit, graphics2D);
         graphics2D.dispose();
-        BufferedImage scaledImage = scaleImage(alteredImage, MAXIMUM_SIZE, MAXIMUM_SIZE, Color.white);
+        BufferedImage scaledImage = scaleImage(alteredImage, MAXIMUM_WIDTH, MAXIMUM_HEIGHT, Color.white);
         ImageIO.write(scaledImage, "JPG", new File(imagePath));
     }
 
@@ -56,32 +59,24 @@ public class ImageTransformer {
     }
 
 
-    private void fillImageRects(BufferedImage originalImage, int squareSize, Graphics2D graphics2D) {
-        if (widthIsBiggerThanHeight(originalImage)) {
-            fillRectInTopAndBottom(originalImage, squareSize, graphics2D);
+    private void fillImageRects(BufferedImage originalImage, int width, int height, int unit, Graphics2D graphics2D) {
+        if (unit >= 0) {
+            fillRectInTopAndBottom(originalImage, width, height, (height - originalImage.getHeight()) / 2, graphics2D);
         } else {
-            fillRectInLeftAndRight(originalImage, squareSize, graphics2D);
+            fillRectInLeftAndRight(originalImage, width, height, (width - originalImage.getWidth()) / 2, graphics2D);
         }
     }
 
-    private void fillRectInLeftAndRight(BufferedImage originalImage, int squareSize, Graphics2D graphics2D) {
-        int diff = originalImage.getHeight() - originalImage.getWidth();
-        int propSize = diff / 2;
-        graphics2D.fillRect(0, 0, propSize, squareSize);
-        graphics2D.fillRect(squareSize - propSize, 0, propSize, squareSize);
+    private void fillRectInLeftAndRight(BufferedImage originalImage, int width, int height, int propSize, Graphics2D graphics2D) {
+        graphics2D.fillRect(0, 0, propSize, height);
+        graphics2D.fillRect(width - propSize, 0, propSize, height);
         graphics2D.drawImage(originalImage, propSize, 0, null);
     }
 
-    private void fillRectInTopAndBottom(BufferedImage originalImage, int squareSize, Graphics2D graphics2D) {
-        int diff = originalImage.getWidth() - originalImage.getHeight();
-        int propSize = diff / 2;
-        graphics2D.fillRect(0, 0, squareSize, propSize);
-        graphics2D.fillRect(0, squareSize - propSize, squareSize, propSize);
+    private void fillRectInTopAndBottom(BufferedImage originalImage, int width, int height, int propSize, Graphics2D graphics2D) {
+        graphics2D.fillRect(0, 0, width, propSize);
+        graphics2D.fillRect(0, height - propSize, width, propSize);
         graphics2D.drawImage(originalImage, 0, propSize, null);
-    }
-
-    private boolean widthIsBiggerThanHeight(BufferedImage originalImage) {
-        return originalImage.getWidth() > originalImage.getHeight();
     }
 
 }
