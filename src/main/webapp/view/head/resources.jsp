@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="resources/assets/css/angular-material-custom.css">
 <link rel="stylesheet" href="resources/assets/css/angular-dropdowns-custom.css">
 <link rel="stylesheet" href="resources/assets/css/slick.css">
+<link rel="stylesheet" href="resources/assets/css/hover-custom-min.css">
 <link rel="stylesheet" href="resources/assets/css/styles.css"/>
 <script src="resources/assets/js/jquery.min.js"></script>
 <script src="resources/assets/js/jquery.scrolly.min.js"></script>

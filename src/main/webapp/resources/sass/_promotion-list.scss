@@ -1,20 +1,32 @@
 button.tutorial-info {
+  background-color: $redirect-container-hover-background;
+  border: solid 2px;
+  border-color: $redirect-container-hover-background;
+  border-radius: 15px;
+  height: 30px;
+  line-height: 30px;
   padding: 0 !important;
-  width: 40px;
-}
+  width: 30px;
 
-button.tutorial-info:hover {
-  color: $button-blueish-color !important;
-}
+  &:hover {
+    border-color: $button-blueish-color;
+    color: $button-blueish-color;
+  }
 
-button.tutorial-info::before {
-  margin: 0 !important;
-  font-size: 2em;
+  &::before {
+    font-size: 25px;
+    margin: 0 !important;
+  }
 }
 
 @media screen and (max-width: 480px) and (orientation: portrait) {
   button.tutorial-info {
-    width: 40px !important;
+    border-radius: 10px;
+    line-height: 28px;
     margin-top: 2em !important;
+
+    &::before {
+      font-size: 20px;
+    }
   }
 }

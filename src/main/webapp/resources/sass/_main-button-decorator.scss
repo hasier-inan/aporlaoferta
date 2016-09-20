@@ -1,0 +1,143 @@
+button, a {
+  &.small {
+    display: inline-block;
+    line-height: 2em;
+  }
+
+  &.small--rounded {
+    height: 28px;
+    border-radius: 14px;
+    border: solid 2px;
+  }
+
+  &.medium--rounded {
+    height: 44px;
+    border-radius: 22px;
+    border: solid 2px;
+
+    &.newest-offers {
+      background-color: transparent;
+      border-color: $redirect-container-hover-background;
+
+      &:hover{
+        background-color: $redirect-container-hover-background;
+        border-color: $main-font-color;
+      }
+    }
+
+    &.hot-offers {
+      background-color: $button-hot-offers-background;
+      border-color: $button-hot-offers-background;
+
+      &::before{
+        transform: translateZ(0);
+        transition-timing-function: ease-out;
+      }
+
+      &:hover{
+        background-color: $redirect-container-hover-background;
+        border-color: $button-hot-offers-background;
+
+        &::before{
+          color: $get-offer-hot-color;
+        }
+      }
+    }
+  }
+
+  &.mini {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    margin: 0;
+    padding: 0 0em 0em 2.5em;
+    display: none;
+
+    &:before {
+      font-size: 20px;
+    }
+
+    &.fixed {
+      position: fixed;
+      &.nth {
+        margin-top: 40px !important;
+      }
+    }
+  }
+
+  &.whiteButton {
+    color: $main-font-color;
+    text-decoration: none;
+  }
+
+  &.red-background {
+    background-color: $button-red-background-color;
+    border-color: $button-red-background-color;
+  }
+
+  &.blueish-background {
+    background-color: $button-blueish-background-color;
+    border-color: $button-blueish-background-color;
+  }
+
+  &.green-background {
+    background-color: $button-green-background-color;
+    border-color: $button-green-background-color;
+  }
+
+  &.dark-green-background {
+    background-color: $button-dark-green-background-color;
+    border-color: $button-dark-green-background-color;
+  }
+
+  &.get-offer {
+    background-color: $get-offer-background-color;
+    border-color: $get-offer-background-color;
+
+    &:hover {
+      color: $get-offer-hot-color !important;
+      background-color: $get-offer-hover-background-color;
+      border-color: $get-offer-hover-background-color;
+      text-decoration: none;
+    }
+  }
+
+  .moreDetailButton {
+    color: $main-font-color !important;
+    background-color: $more-detail-background-color !important;
+    border-color: $more-detail-background-color;
+
+    &:hover {
+      text-decoration: none;
+      background-color: $more-detail-hover-background-color !important;
+      border-color: $more-detail-hover-background-color;
+    }
+  }
+
+  .orange-background {
+    background-color: $button-orange-background-color;
+    border-color: $button-orange-background-color;
+  }
+
+  .moreDetailButtons {
+    background-color: $more-detail-buttons-background-color;
+    border-color: $more-detail-buttons-background-color;
+  }
+
+  &.cl-policy {
+    @extend .blueish-background;
+  }
+
+  &.cl-accept {
+    @extend .green-background;
+  }
+}
+
+
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
