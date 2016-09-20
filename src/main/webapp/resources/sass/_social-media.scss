@@ -1,75 +1,84 @@
 /*social-media*/
-div.social-media-shares {
+.social-media-shares {
   top: 0;
   margin-top: 1em;
   position: absolute;
   z-index: 1001;
+
+  .social-share {
+    display: inline-block;
+    color: $main-font-color !important;
+    font-size: 12px;
+    line-height: 2em;
+    text-decoration: none;
+    padding: 0 1.75em;
+    font-weight: bold;
+    cursor: pointer;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    -moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+
+    &:hover {
+      text-decoration: none;
+      background: none !important;
+    }
+
+    &.fa-google-plus {
+      background-color: $social-google-background-color;
+      border-color: $social-google-background-color;
+    }
+
+    &.fa-twitter {
+      background-color: $social-twitter-background-color;
+      border-color: $social-twitter-background-color;
+    }
+
+    &.fa-facebook {
+      background-color: $social-fb-background-color;
+      border-color: $social-fb-background-color;
+    }
+
+  }
 }
 
-a.social-share {
-  height: 2em;
-  line-height: 2em;
-  display: inline-block;
-  font-size: 0.8em;
-  color: $main-font-color !important;
-  text-decoration: none;
-  padding: 0 1.75em;
-  font-weight: bold;
-  border-radius: 6px;
-  border: 0;
-  cursor: pointer;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  -ms-appearance: none;
-  appearance: none;
-  -moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-  -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-  -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-}
+@media screen and (min-width: 1201px) {
+  .social-share {
+    &.small {
+      display: inline-block;
+    }
 
-a.social-share:hover {
-  text-decoration: none;
-  background: none !important;
-}
-
-a.social-share.fa-google-plus {
-  background-color: $social-google-background-color;
-}
-
-a.social-share.fa-twitter {
-  background-color: $social-twitter-background-color;
-}
-
-a.social-share.fa-facebook {
-  background-color: $social-fb-background-color;
-}
-
-a.social-share.small {
-  display: inline-block;
-}
-
-a.social-share.mini {
-  display: none;
-  font-size: 15px;
-  width: 2em !important;
-  height: 2em !important;
-  line-height: 2em;
-  border-radius: 100%;
-  padding: 0 .6em !important;
+    &.mini {
+      display: none !important;
+    }
+  }
 }
 
 @media screen and (max-width: 1200px) {
-  a.social-share.small {
-    display: none;
-  }
-
-  a.social-share.mini {
-    display: inline-block;
-  }
-
   .social-media-shares {
     left: 50%;
+
+    .social-share.small {
+      display: none;
+    }
+
+    .social-share.mini {
+      display: inline-block;
+      font-size: 15px;
+      width: 2em;
+      height: 2em;
+      line-height: 2em;
+      border-radius: 100%;
+      padding: 0 .6em;
+
+      &:before{
+        font-size: 15px;
+      }
+    }
   }
 }
 

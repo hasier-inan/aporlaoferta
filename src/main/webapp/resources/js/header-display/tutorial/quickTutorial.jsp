@@ -51,11 +51,11 @@
                 <p>Puedes encontrarnos en las redes sociales más populares.</p>
 
                 <div class="social-media-shares">
-                    <a class="icon mini fa-facebook social-share" target="_blank" href="#">
+                    <a class="icon mini hvr-icon-grow fa-facebook social-share" target="_blank" href="#">
                     </a>
-                    <a class="icon mini fa-twitter social-share" target="_blank" href="#" >
+                    <a class="icon mini hvr-icon-grow fa-twitter social-share" target="_blank" href="#" >
                     </a>
-                    <a class="icon mini fa-google-plus social-share" target="_blank" href="#">
+                    <a class="icon mini hvr-icon-grow fa-google-plus social-share" target="_blank" href="#">
                     </a>
                 </div>
 
