@@ -35,10 +35,6 @@ ul.top_header > .overflown {
   transition: all .3s linear;
 }
 
-button.to-the-top:hover {
-  background-color: transparent;
-}
-
 ul.top_header > .overflown-second {
   top: 65px;
 }
@@ -67,11 +63,16 @@ ul.top_header > .overflown:before {
 
 .overflown.to-the-top {
   background-color: $overflown-background;
-}
 
-.overflown.to-the-top:before {
-  padding: 0 !important;
-  margin-left: -2px;
+  &::before{
+    padding: 0 !important;
+    margin-left: -2px;
+  }
+
+  &:hover{
+    background-color: transparent;
+    border-color: $overflown-background;
+  }
 }
 
 button.right-aligned:before {

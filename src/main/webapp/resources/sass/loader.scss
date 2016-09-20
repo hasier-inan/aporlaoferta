@@ -13,6 +13,8 @@ $button-dark-green-background-color: #b7d77a;
 $button-orange-background-color: #d7b554;
 $button-blueish-color: #69d2e7;
 
+$button-hot-offers-background: #f38630;
+$button-new-offers-background: #f38630;
 $get-offer-background-color: #ffffff;
 $get-offer-hover-background-color: #d0e4f8;
 $get-offer-hot-color: #d70000;
@@ -109,6 +111,8 @@ $slick-disabled-background: rgba(255, 255, 255, .15);
 @charset "UTF-8";
 @import "main";
 @import "main-decorator";
+@import "main-button-decorator";
+@import "hover-decorator";
 @import "overhead";
 @import "top-header";
 @import "offer-list";
