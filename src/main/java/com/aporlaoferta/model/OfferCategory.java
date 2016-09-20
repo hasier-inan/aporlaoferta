@@ -8,6 +8,7 @@ public enum OfferCategory {
     VIDEOJUEGOS("V", "Videojuegos"),
     CINE_TV_MUSICA("C", "Cine, TV y Música"),
     INFORMATICA("I", "Informática"),
+    LIBROS_COMICS("L", "Libros y Cómics"),
     HOGAR("H", "Hogar y Bricolaje"),
     JUGUETES("J","Juguetes"),
     MODA("MO", "Moda y Complementos"),
