@@ -151,13 +151,13 @@ input::-moz-selection {
   background: $button-red-background-color;
 }
 
-button,a{
+button, a {
   &.small {
     display: inline-block;
     line-height: 2em;
   }
 
-  &.small--rounded{
+  &.small--rounded {
     height: 28px;
     border-radius: 14px;
     border: solid 2px;
@@ -212,7 +212,7 @@ button,a{
     background-color: $get-offer-background-color;
     border-color: $get-offer-background-color;
 
-    &:hover{
+    &:hover {
       color: $get-offer-hot-color !important;
       background-color: $get-offer-hover-background-color;
       border-color: $get-offer-hover-background-color;
@@ -225,7 +225,7 @@ button,a{
     background-color: $more-detail-background-color !important;
     border-color: $more-detail-background-color;
 
-    &:hover{
+    &:hover {
       text-decoration: none;
       background-color: $more-detail-hover-background-color !important;
       border-color: $more-detail-hover-background-color;
@@ -241,6 +241,18 @@ button,a{
     background-color: $more-detail-buttons-background-color;
     border-color: $more-detail-buttons-background-color;
   }
+
+  &.cl-policy {
+    @extend .blueish-background;
+  }
+
+  &.cl-accept {
+    @extend .green-background;
+  }
+}
+
+@media screen and (max-width: 545px) {
+  font-size: 12px;
 }
 
 body {
@@ -266,10 +278,10 @@ button:focus {
 
 @font-face {
   font-family: font-family-main;
-  src:url('./fonts/Ubuntu-L.ttf');
+  src: url('./fonts/Ubuntu-L.ttf');
 }
 
-html,body{
+html, body {
   font-family: font-family-main;
 }
 
