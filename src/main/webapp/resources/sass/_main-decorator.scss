@@ -22,50 +22,6 @@ pre.parsed-text.list {
   color: $parsed-text-color;
 }
 
-.red-background {
-  background-color: $button-red-background-color;
-}
-
-.blueish-background {
-  background-color: $button-blueish-background-color;
-}
-
-.green-background {
-  background-color: $button-green-background-color;
-}
-
-.dark-green-background {
-  background-color: $button-dark-green-background-color;
-}
-
-.get-offer {
-  background-color: $get-offer-background-color;
-}
-
-.get-offer:hover {
-  color: $get-offer-hot-color !important;
-  background-color: $get-offer-hover-background-color;
-  text-decoration: none;
-}
-
-.moreDetailButton {
-  color: $main-font-color !important;
-  background-color: $more-detail-background-color !important;
-}
-
-.moreDetailButton:hover {
-  text-decoration: none;
-  background-color: $more-detail-hover-background-color !important;
-}
-
-.orange-background {
-  background-color: $button-orange-background-color;
-}
-
-.moreDetailButtons {
-  background-color: $more-detail-buttons-background-color;
-}
-
 .button.fa-fire.whiteButton.blue-text {
   color: $button-blueish-color;
 }
@@ -193,6 +149,98 @@ input::selection {
 textarea::-moz-selection,
 input::-moz-selection {
   background: $button-red-background-color;
+}
+
+button,a{
+  &.small {
+    display: inline-block;
+    line-height: 2em;
+  }
+
+  &.small--rounded{
+    height: 28px;
+    border-radius: 14px;
+    border: solid 2px;
+  }
+
+  &.mini {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    margin: 0;
+    padding: 0 0em 0em 2.5em;
+    display: none;
+
+    &:before {
+      font-size: 20px;
+    }
+
+    &.fixed {
+      position: fixed;
+      &.nth {
+        margin-top: 40px !important;
+      }
+    }
+  }
+
+  &.whiteButton {
+    color: $main-font-color;
+    text-decoration: none;
+  }
+
+  &.red-background {
+    background-color: $button-red-background-color;
+    border-color: $button-red-background-color;
+  }
+
+  &.blueish-background {
+    background-color: $button-blueish-background-color;
+    border-color: $button-blueish-background-color;
+  }
+
+  &.green-background {
+    background-color: $button-green-background-color;
+    border-color: $button-green-background-color;
+  }
+
+  &.dark-green-background {
+    background-color: $button-dark-green-background-color;
+    border-color: $button-dark-green-background-color;
+  }
+
+  &.get-offer {
+    background-color: $get-offer-background-color;
+    border-color: $get-offer-background-color;
+
+    &:hover{
+      color: $get-offer-hot-color !important;
+      background-color: $get-offer-hover-background-color;
+      border-color: $get-offer-hover-background-color;
+      text-decoration: none;
+    }
+  }
+
+  .moreDetailButton {
+    color: $main-font-color !important;
+    background-color: $more-detail-background-color !important;
+    border-color: $more-detail-background-color;
+
+    &:hover{
+      text-decoration: none;
+      background-color: $more-detail-hover-background-color !important;
+      border-color: $more-detail-hover-background-color;
+    }
+  }
+
+  .orange-background {
+    background-color: $button-orange-background-color;
+    border-color: $button-orange-background-color;
+  }
+
+  .moreDetailButtons {
+    background-color: $more-detail-buttons-background-color;
+    border-color: $more-detail-buttons-background-color;
+  }
 }
 
 body {

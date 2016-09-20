@@ -11,46 +11,12 @@ ul#overheadSubContainerContent {
   margin-top: 2em;
 }
 
-button.whiteButton,
-a.whiteButton {
-  color: $main-font-color;
-  text-decoration: none;
-}
-
 ul.actions.top_header {
   position: absolute;
   top: 1em;
   padding-left: 1em;
   z-index: 1001;
   width: 100%;
-}
-
-button {
-  &.small {
-    height: 2em;
-    line-height: 2em;
-    display: inline-block;
-  }
-
-  &.mini {
-    width: 40px !important;
-    height: 40px;
-    border-radius: 100%;
-    margin: 0;
-    padding: 0 0em 0em 2.5em;
-    display: none;
-
-    &:before {
-      font-size: 20px;
-    }
-
-    &.fixed {
-      position: fixed;
-      &.nth {
-        margin-top: 40px !important;
-      }
-    }
-  }
 }
 
 ul.top_header > .overflown {

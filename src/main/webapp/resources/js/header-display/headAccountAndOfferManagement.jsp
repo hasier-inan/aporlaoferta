@@ -3,14 +3,14 @@
 <ul class="actions top_header">
     <sec:authorize access="isAnonymous()">
         <li>
-            <button class="button small icon fa-sign-in whiteButton green-background" ng-click="displayLogin()">
+            <button class="button small small--rounded icon fa-sign-in whiteButton green-background" ng-click="displayLogin()">
                 Identificarse
             </button>
             <button class="button mini icon fa-sign-in whiteButton green-background account-management fixed"
                     ng-click="displayLogin()"></button>
         </li>
         <li>
-            <button class="button small icon fa-user whiteButton blueish-background" ng-click="displaySignup()">
+            <button class="button small small--rounded icon fa-user whiteButton blueish-background" ng-click="displaySignup()">
                 Registrarse
             </button>
             <button class="button mini icon fa-user whiteButton blueish-background account-management fixed nth"
@@ -25,7 +25,7 @@
     </sec:authorize>
 
     <sec:authorize access="isAuthenticated()">
-        <button class="button small icon fa-pencil-square whiteButton green-background" ng-click="displayOfferCreate()">
+        <button class="button small small--rounded icon fa-pencil-square whiteButton green-background" ng-click="displayOfferCreate()">
             Crear Oferta
         </button>
         <button class="button mini icon fa-pencil-square whiteButton inline right-aligned green-background fixed"
