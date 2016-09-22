@@ -130,7 +130,7 @@ div.offerSpecificationsOriginalPrice {
 }
 
 .offerSpecificationsSubtitle {
-  color: $main-font-color;
+  color: $offer-list-font-color;
   font-size: .8em;
 
   div {
@@ -247,12 +247,6 @@ div.offerSpecificationsFeedbackTotal {
   height: 5em;
   margin-left: 10%;
   text-align: center;
-}
-
-h1.feedbackSumatory {
-  margin: 0;
-  /*font-size: 3vw;*/
-  font-size: 24px;
 }
 
 div.offerSpecificationsFeedbackSmall {
