@@ -36,22 +36,25 @@ aporlaofertaApp
 
                     $scope.$on('offerList', function (event, args) {
                         $scope.offerList = args;
-                    })
+                    });
 
                     $scope.showSpecifications = function (id) {
                         offerManager.showSpecifications(id);
                     }
+
                     $scope.initialiseScrollyButtons = function () {
                         $('.scrolly')
                             .scrolly({
                                 speed: 1500
                             });
                     }
+
                     $scope.parsePrice = function (price) {
                         if (price) {
                             return price.toString().replace(/\./, ',');
                         }
                     }
+
                     $scope.isCategorySelected = function () {
                         return $scope.offerFilter.selectedcategory != ""
                             && $scope.offerFilter.selectedcategory != null
@@ -59,6 +62,17 @@ aporlaofertaApp
                             && $scope.offerFilter.selectedcategory != "Categoría"
                             && $scope.offerFilter.selectedcategory != "CATEGORÍA";
                     };
+
+                    $scope.offerFeedbackStyle=function(offer){
+                        if (offer.offerPositiveVote - offer.offerNegativeVote>0){
+                          return 'hotFeedback';
+                        }
+                        else if(offer.offerPositiveVote - offer.offerNegativeVote <0){
+                             return 'coldFeedback';
+                        }
+                        return 'neutralFeedback';
+                    }
+
                     $scope.initialiseScrollyButtons();
                 }]
         }

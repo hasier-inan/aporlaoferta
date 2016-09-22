@@ -3190,11 +3190,11 @@
 }
 
 .hvr-icon-forward:before {
-    content: "\f138";
-    position: absolute;
-    right: 1em;
-    padding: 0 1px;
-    font-family: FontAwesome;
+    /*content: "\f138";*/
+    /*position: absolute;*/
+    /*right: 1em;*/
+    /*padding: 0 1px;*/
+    /*font-family: FontAwesome;*/
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
     -webkit-transition-duration: .1s;

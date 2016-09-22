@@ -3,9 +3,8 @@ $main-background-color: #f38630;
 $main-background-clear-color: rgba(243, 134, 48, .65);
 $offer-color: #e0e4cc;
 
-$more-detail-background-color: #69d2e7;
-$more-detail-buttons-background-color: #7aae76;
-$more-detail-hover-background-color: #a7dbd8;
+$more-detail-background-color: #ffffff;
+$more-detail-color: #000000;
 $button-blueish-background-color: #69d2e7;
 $button-red-background-color: #D76060;
 $button-green-background-color: #97d779;
@@ -21,11 +20,11 @@ $get-offer-hot-color: #d70000;
 $get-offer-hot-background: #ffffff;
 $offer-captcha-border-color: #c5caca;
 
-$offer-list-font-color: #828282;
-$parsed-text-color: #828282;
+$offer-list-font-color: #000000;
 $main-font-color: #ffffff;
 
 $filter-tab-color: #828282;
+$filter-tab-unselected-color: #616161;
 $filter-background-color: #A0A0A0;
 $filter-hover-background-color: #a7dbd8;
 $filter-category-background: rgba(160, 160, 160, 0.76);
@@ -74,15 +73,17 @@ $image-uploader-border: .50em solid #fa6900;
 $image-uploader-background-color: rgba(255, 255, 255, 0.5);
 $image-uploader-content-border: 1px solid #e6e6e6;
 
-$hotty-process-start-background-color: rgba(87, 215, 53, 0.50);
-$hotty-process-half-background-color: rgba(87, 215, 53, 0.80);
-$hotty-process-full-background-color: rgba(87, 215, 53, 1);
-$coldy-process-start-background-color: rgba(215, 83, 48, 0.50);
-$coldy-process-half-background-color: rgba(215, 83, 48, 0.80);
-$coldy-process-full-background-color: rgba(215, 83, 48, 1);
-$neutraly-process-start-background-color: rgba(0, 0, 0, .2);
-$neutraly-process-half-background-color: rgba(0, 0, 0, .3);
-$neutraly-process-full-background-color: rgba(0, 0, 0, .4);
+$hotty-process-start-background-color: rgba(243, 134, 48, .60);
+$hotty-process-half-background-color: rgba(243, 134, 48, 0.80);
+$hotty-process-full-background-color: rgba(243, 134, 48, 1);
+$hotty-process-half-burning-background-color: rgba(243, 117, 44,1);
+$hotty-process-burning-background-color: rgba(243, 67, 30,1);
+$coldy-process-start-background-color: rgba(97, 141, 186, 0.60);
+$coldy-process-half-background-color: rgba(97, 141, 186, 0.80);
+$coldy-process-full-background-color: rgba(97, 141, 186, 1);
+$neutraly-process-start-background-color: rgba(104, 104, 104, 0.60);
+$neutraly-process-half-background-color: rgba(104, 104, 104, 0.80);
+$neutraly-process-full-background-color: rgba(104, 104, 104, 1);
 
 $overflown-background: rgba(255, 255, 255, .25);
 $overhead-container-background-color: #000000;

@@ -5,9 +5,33 @@ button, a {
   }
 
   &.small--rounded {
-    height: 28px;
     border-radius: 14px;
     border: solid 2px;
+    font-size: 14px;
+    line-height: 24px;
+    height: 28px;
+
+    &.offer-cta {
+      color: $main-font-color;
+      background-color: $button-hot-offers-background;
+      border-color: $button-hot-offers-background;
+
+      &:hover {
+        &::before {
+          color: $get-offer-hot-color;
+        }
+      }
+    }
+
+    &.more-detail-cta {
+      color: $more-detail-color;
+      background-color: $more-detail-background-color;
+      border-color: $more-detail-color;
+
+      &:hover {
+        border-color: $button-hot-offers-background;
+      }
+    }
   }
 
   &.medium--rounded {
@@ -19,7 +43,7 @@ button, a {
       background-color: transparent;
       border-color: $redirect-container-hover-background;
 
-      &:hover{
+      &:hover {
         background-color: $redirect-container-hover-background;
         border-color: $main-font-color;
       }
@@ -29,16 +53,11 @@ button, a {
       background-color: $button-hot-offers-background;
       border-color: $button-hot-offers-background;
 
-      &::before{
-        transform: translateZ(0);
-        transition-timing-function: ease-out;
-      }
-
-      &:hover{
+      &:hover {
         background-color: $redirect-container-hover-background;
         border-color: $button-hot-offers-background;
 
-        &::before{
+        &::before {
           color: $get-offer-hot-color;
         }
       }
@@ -102,26 +121,9 @@ button, a {
     }
   }
 
-  .moreDetailButton {
-    color: $main-font-color !important;
-    background-color: $more-detail-background-color !important;
-    border-color: $more-detail-background-color;
-
-    &:hover {
-      text-decoration: none;
-      background-color: $more-detail-hover-background-color !important;
-      border-color: $more-detail-hover-background-color;
-    }
-  }
-
   .orange-background {
     background-color: $button-orange-background-color;
     border-color: $button-orange-background-color;
-  }
-
-  .moreDetailButtons {
-    background-color: $more-detail-buttons-background-color;
-    border-color: $more-detail-buttons-background-color;
   }
 
   &.cl-policy {
@@ -132,8 +134,6 @@ button, a {
     @extend .green-background;
   }
 }
-
-
 
 input:focus,
 select:focus,
