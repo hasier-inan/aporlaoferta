@@ -14,7 +14,7 @@ aporlaofertaApp
             controller: ['$scope', '$rootScope', 'requestManager', 'configService', function ($scope, $rootScope, requestManager, configService) {
                 $scope.filter = {};
                 $scope.displayFilterContent = "";
-                $scope.previousCategory = "all";
+                $scope.previousCategory = "";
 
                 $scope.requestFilterApply = function () {
                     $scope.processing = true;
@@ -31,13 +31,13 @@ aporlaofertaApp
                         .success(function (data, status, headers, config) {
                             $scope.offerList = data.theOffers;
                         }).error(function (data, status, headers, config) {
-                            var theResponse = {};
-                            theResponse.description = data;
-                            theResponse.responseResult = "error";
-                            $rootScope.$broadcast('serverResponse', theResponse);
-                        }).finally(function () {
-                            $scope.processing = false;
-                        });
+                        var theResponse = {};
+                        theResponse.description = data;
+                        theResponse.responseResult = "error";
+                        $rootScope.$broadcast('serverResponse', theResponse);
+                    }).finally(function () {
+                        $scope.processing = false;
+                    });
                 };
 
                 $scope.$watch('filter.dateRange', function () {
@@ -46,13 +46,15 @@ aporlaofertaApp
 
                 $scope.searchCriteriaChanged = function () {
                     $scope.offerFilter = angular.copy($scope.filter);
-                    if ($scope.filter.text.length > 2 || $scope.filter.text.length==0) {
+                    if ($scope.filter.text.length > 2 || $scope.filter.text.length == 0) {
                         $scope.requestFilterApply();
                     }
                 };
 
                 $scope.$watch('filter.selectedcategory', function () {
-                    if ($scope.previousCategory !== $scope.filter.selectedcategory) {
+                    if (!($scope.isEmptyCategory($scope.previousCategory) &&
+                        $scope.isEmptyCategory($scope.filter.selectedcategory)) &&
+                        $scope.previousCategory !== $scope.filter.selectedcategory) {
                         $scope.previousCategory = $scope.filter.selectedcategory;
                         $scope.requestFilterApply();
                     }
@@ -74,14 +76,13 @@ aporlaofertaApp
                         'filters-hidden' : 'filters-displayed';
                 };
                 $scope.isCategorySelected = function () {
-                    return $scope.filter.selectedcategory != ""
-                        && $scope.filter.selectedcategory != null
-                        && $scope.filter.selectedcategory != undefined
-                        && $scope.filter.selectedcategory != "Categoría"
-                        && $scope.filter.selectedcategory != "Todas"
-                        && $scope.filter.selectedcategory != "CATEGORÍA"
-                        && $scope.filter.selectedcategory != "TODAS";
+                    return !$scope.isEmptyCategory($scope.filter.selectedcategory);
                 };
+
+                $scope.isEmptyCategory = function (category) {
+                    return ["", null, undefined, "Categoría", "Todas", "CATEGORÍA", "TODAS"].indexOf(category) > -1;
+                }
+
                 $scope.cleanFilters();
             }]
         }
