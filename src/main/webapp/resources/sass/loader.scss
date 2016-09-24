@@ -44,6 +44,7 @@ $offer-specifications-subtitle-color: rgb(130, 130, 130);
 $offer-total-feedback-background: rgba(0, 0, 0, 0.5);
 $offer-list-feedback-background: rgba(0, 0, 0, 0.2);
 $offer-list-separator-border-color: rgba(57, 70, 86, .65);
+$offer-expired-color: rgba(104, 104, 104, 0.80);
 $offer-expired-background-color: #825b49;
 $offer-expired-image-color: #ff1f17;
 
@@ -79,7 +80,7 @@ $coldy-process-half-background-color: rgba(97, 141, 186, 0.80);
 $coldy-process-full-background-color: rgba(97, 141, 186, 1);
 $neutraly-process-start-background-color: rgba(104, 104, 104, 0.60);
 $neutraly-process-half-background-color: rgba(104, 104, 104, 0.80);
-$neutraly-process-full-background-color: rgba(104, 104, 104, 1);
+$neutraly-process-full-background-color: rgba(104, 104, 104, 0.60);
 
 $overflown-background: rgba(255, 255, 255, .25);
 $overhead-container-background-color: #000000;

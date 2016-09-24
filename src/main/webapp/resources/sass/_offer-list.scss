@@ -1,25 +1,3 @@
-h3.offer-expired, h1.offer-expired {
-  text-decoration: line-through;
-}
-
-img.offer-expired {
-  background-color: $offer-expired-background-color;
-  opacity: 0.4;
-  filter: alpha(opacity=40);
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
-  -moz-opacity: 0.4;
-  -khtml-opacity: 0.4;
-}
-
-.offer-image-expired {
-  background: url("images/expired_offer.png") no-repeat;
-  background-size: 96%;
-  height: 100%;
-  margin: 2%;
-  position: absolute;
-  width: 100%;
-}
-
 .more-offers-container {
   display: block;
   text-align: center;
@@ -29,7 +7,7 @@ img.offer-expired {
     display: inline;
     font-size: 1em;
 
-    &:hover{
+    &:hover {
       color: $offer-list-font-color !important;
     }
   }
@@ -108,28 +86,101 @@ pre.parsed-text {
     .centeredForm {
       margin-bottom: 2px;
 
+      .feedbackSumatory {
+        &.offerListFeedback {
+          display: inline-block;
+          font-size: 1em;
+          text-align: center;
+          width: 4em;
+        }
+
+        &.hotFeedback {
+          background-color: $hotty-process-start-background-color;
+          animation: hotty 10s infinite;
+          -webkit-animation: hotty 10s infinite;
+        }
+
+        &.coldFeedback {
+          background-color: $coldy-process-start-background-color;
+          -webkit-animation: coldy 10s infinite;
+          animation: coldy 10s infinite;
+        }
+
+        &.neutralFeedback {
+          background-color: $neutraly-process-start-background-color;
+          -webkit-animation: neutraly 10s infinite;
+          animation: neutraly 10s infinite;
+        }
+
+      }
+
       .termometer {
         display: inline-block;
         width: 20px;
         height: 20px;
         vertical-align: bottom;
         transition: fill .5s ease;
+      }
+    }
 
-        &.hotFeedback {
-          fill: $hotty-process-full-background-color;
-          animation: hot-termometer 4s infinite;
-          -webkit-animation: hot-termometer 4s infinite;
-        }
+    &:not(.offer-expired) {
+      .centeredForm {
 
-        &.coldFeedback {
-          fill: $coldy-process-full-background-color;
-        }
+        .termometer {
+          &.hotFeedback {
+            fill: $hotty-process-full-background-color;
+            animation: hot-termometer 4s infinite;
+            -webkit-animation: hot-termometer 4s infinite;
+          }
 
-        &.neutralFeedback {
-          fill: $neutraly-process-start-background-color;
+          &.coldFeedback {
+            fill: $coldy-process-full-background-color;
+          }
+
+          &.neutralFeedback {
+            fill: $neutraly-process-start-background-color;
+          }
         }
       }
     }
+
+    &.offer-expired {
+      .centeredForm {
+
+        .feedbackSumatory {
+          h1 {
+            background-color: $neutraly-process-start-background-color;
+            -webkit-animation: neutraly 10s infinite;
+            animation: neutraly 10s infinite;
+          }
+        }
+
+        .termometer {
+          fill: $neutraly-process-start-background-color;
+        }
+      }
+
+      .offerImage {
+        .offer-image-expired {
+          background: url("images/expired_offer.png") no-repeat;
+          background-size: 96%;
+          margin: 2%;
+          position: absolute;
+          width: 150px;
+          height: 113.5px;
+        }
+
+        img {
+          background-color: $offer-expired-background-color;
+          opacity: 0.4;
+          filter: alpha(opacity=40);
+          -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+          -moz-opacity: 0.4;
+          -khtml-opacity: 0.4;
+        }
+      }
+    }
+
   }
 }
 
@@ -183,41 +234,24 @@ h1.feedbackSumatory {
   }
 }
 
-.feedbackSumatory {
-  &.offerListFeedback {
-    display: inline-block;
-    font-size: 1em;
-    text-align: center;
-    width: 4em;
+div.content {
+  > h3 {
+    margin-top: 0;
   }
 
-  &.hotFeedback {
-    background-color: $hotty-process-start-background-color;
-    animation: hotty 10s infinite;
-    -webkit-animation: hotty 10s infinite;
+  &.offer-expired{
+    :not(a,button) {
+      color: $offer-expired-color;
+    }
+    .offer-title{
+      text-decoration: line-through;
+    }
   }
-
-  &.coldFeedback {
-    background-color: $coldy-process-start-background-color;
-    -webkit-animation: coldy 10s infinite;
-    animation: coldy 10s infinite;
-  }
-
-  &.neutralFeedback {
-    background-color: $neutraly-process-start-background-color;
-    -webkit-animation: neutraly 10s infinite;
-    animation: neutraly 10s infinite;
-  }
-
-}
-
-div.content > h3 {
-  margin-top: 0;
 }
 
 .created-date-list,
 .short-description,
-.offer-title{
+.offer-title {
   color: $offer-list-font-color;
 }
 
