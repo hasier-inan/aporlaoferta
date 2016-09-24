@@ -12,7 +12,7 @@ aporlaofertaApp
             controller: ['$scope', 'offerManager',
                 function ($scope, offerManager) {
                     $scope.offerList = [];
-                    $scope.moreOffersLoading = false;
+                    $scope.moreOffersLoading = true;
                     $scope.lastOffer = 0;
 
                     $scope.showMoreOffers = function (lastOffer) {
@@ -35,6 +35,8 @@ aporlaofertaApp
                     }
 
                     $scope.$on('offerList', function (event, args) {
+                        console.log("received offer list from broadcast: ");
+                        $scope.moreOffersLoading = false;
                         $scope.offerList = args;
                     });
 
@@ -63,15 +65,23 @@ aporlaofertaApp
                         return ["", null, undefined, "Categoría", "Todas", "CATEGORÍA", "TODAS"].indexOf(category) > -1;
                     }
 
-                    $scope.offerFeedbackStyle=function(offer){
-                        if (offer.offerPositiveVote - offer.offerNegativeVote>0){
-                          return 'hotFeedback';
+                    $scope.offerFeedbackStyle = function (offer) {
+                        if (offer.offerPositiveVote - offer.offerNegativeVote > 0) {
+                            return 'hotFeedback';
                         }
-                        else if(offer.offerPositiveVote - offer.offerNegativeVote <0){
-                             return 'coldFeedback';
+                        else if (offer.offerPositiveVote - offer.offerNegativeVote < 0) {
+                            return 'coldFeedback';
                         }
                         return 'neutralFeedback';
                     }
+
+                    $scope.$on('appliedOfferFilters', function () {
+                        $scope.moreOffersLoading = true;
+                    });
+
+                    $scope.$watch('offerList', function () {
+                        $scope.moreOffersLoading = false;
+                    });
 
                     $scope.initialiseScrollyButtons();
                 }]
