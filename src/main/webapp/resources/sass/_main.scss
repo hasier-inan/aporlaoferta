@@ -129,7 +129,7 @@ input[type="radio"]:checked + label:before,
 #header {
   background-color: $main-background-color;
   color: $main-font-color;
-  background-image: url("images/background_head5.png"), url("images/pattern-size1.svg");
+  background-image: url("images/background_head5.png");
   background-position: top left, center center;
   background-attachment: fixed, fixed;
   background-size: auto, cover;
@@ -142,7 +142,7 @@ input[type="radio"]:checked + label:before,
 #footer {
   color: $footer-font-color;
   background-color: $main-background-color;
-  background-image: url("images/background_head5.png"), url("images/pattern-size3.svg");
+  background-image: url("images/background_head5.png");
   input, select, textarea{
     color: $footer-font-color;
   }

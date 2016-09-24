@@ -63,7 +63,7 @@
                 </div>
             </section>
             <div ng-if="$last" class="more-offers-container">
-                <button class="button small icon fa-cart-plus whiteButton get-offer more-offers-button"
+                <button class="button small small--rounded icon hvr-icon-spin fa-refresh whiteButton more-offers-button blueish-background"
                         ng-init="updateIndex($index)"
                         ng-class="!moreOffersLoading?'':'hideLoading'"
                         ng-click="showMoreOffers(lastOffer)">M&aacute;s ofertas
@@ -77,7 +77,7 @@
         <p>No hay ofertas que mostrar</p>
     </div>
     <div class="more-offers-container--centered">
-        <button class="button small icon fa-cart-plus whiteButton get-offer more-offers-button"
+        <button class="button small small--rounded icon hvr-icon-spin fa-refresh whiteButton more-offers-button blueish-background"
                 ng-class="!moreOffersLoading?'':'hideLoading'"
                 ng-click="showMoreOffers(lastOffer)">M&aacute;s ofertas
         </button>

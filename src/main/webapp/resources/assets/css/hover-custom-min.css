@@ -3332,11 +3332,11 @@
 }
 
 .hvr-icon-spin:before {
-    content: "\f021";
-    position: absolute;
-    right: 1em;
-    padding: 0 1px;
-    font-family: FontAwesome;
+    /*content: "\f021";*/
+    /*position: absolute;*/
+    /*right: 1em;*/
+    /*padding: 0 1px;*/
+    /*font-family: FontAwesome;*/
     -webkit-transition-duration: 1s;
     transition-duration: 1s;
     -webkit-transition-property: transform;
