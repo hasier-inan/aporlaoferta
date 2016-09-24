@@ -8,6 +8,10 @@
     .image {
       width: 100%;
       max-width: 100%;
+      img{
+        width: 200px;
+        height: 150px;
+      }
     }
     .content {
       width: 100%;
@@ -32,8 +36,10 @@
         text-align: center;
         display: inline;
         font-size: 1em;
-        height: 3.5em;
-        color: $offer-list-font-color !important;
+
+        &:hover{
+          color: $offer-list-font-color !important;
+        }
       }
     }
 

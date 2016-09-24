@@ -17,16 +17,16 @@ public interface OfferDAO extends CrudRepository<TheOffer, Long> {
             "WHERE a.TO_EXPIRED=false " +
             "AND a.TO_DISABLED=false " +
             "AND a.TO_CREATED_DATE>=:minimumDate " +
-            "order by a.TO_ID desc LIMIT 50 OFFSET :number";
+            "order by a.TO_ID desc LIMIT 30 OFFSET :number";
     String OFFER_QUERY_HOTTEST = "SELECT * FROM thatoffer a " +
             "WHERE a.TO_EXPIRED=false " +
             "AND a.TO_DISABLED=false " +
             "AND a.TO_CREATED_DATE>=:minimumDate " +
-            "order by a.TO_POSITIVE-a.TO_NEGATIVE desc LIMIT 50 OFFSET :number";
+            "order by a.TO_POSITIVE-a.TO_NEGATIVE desc LIMIT 30 OFFSET :number";
     String OFFER_QUERY_CATEGORY = "SELECT * FROM thatoffer a " +
             "WHERE a.TO_CATEGORY=:category " +
             "AND a.TO_CREATED_DATE>=:minimumDate " +
-            "order by a.TO_ID desc LIMIT 50 OFFSET :number";
+            "order by a.TO_ID desc LIMIT 30 OFFSET :number";
 
     String OFFER_QUERY_FILTER = "SELECT * " +
             "FROM thatoffer a LEFT JOIN thatcompany c on a.TO_COMPANY=c.TC_ID " +
@@ -35,7 +35,7 @@ public interface OfferDAO extends CrudRepository<TheOffer, Long> {
             "AND (lower(a.TO_DESCRIPTION) LIKE lower(:text) OR lower(a.TO_TITLE) LIKE lower(:text) OR lower(c.TC_NAME) LIKE lower(:text)) " +
             "AND (a.TO_EXPIRED=false OR a.TO_EXPIRED=:expired) " +
             "AND a.TO_CREATED_DATE>=:minimumDate " +
-            "order by a.TO_ID desc LIMIT 100 OFFSET :number";
+            "order by a.TO_ID desc LIMIT 30 OFFSET :number";
     String OFFER_QUERY_FILTER_HOT = "SELECT * " +
             "FROM thatoffer a LEFT JOIN thatcompany c on a.TO_COMPANY=c.TC_ID " +
             "WHERE a.TO_CATEGORY =:category " +
@@ -43,13 +43,13 @@ public interface OfferDAO extends CrudRepository<TheOffer, Long> {
             "AND (lower(a.TO_DESCRIPTION) LIKE lower(:text) OR lower(a.TO_TITLE) LIKE lower(:text) OR lower(c.TC_NAME) LIKE lower(:text)) " +
             "AND (a.TO_EXPIRED=false OR a.TO_EXPIRED=:expired) " +
             "AND a.TO_CREATED_DATE>=:minimumDate " +
-            "order by a.TO_POSITIVE-a.TO_NEGATIVE desc LIMIT 100 OFFSET :number";
+            "order by a.TO_POSITIVE-a.TO_NEGATIVE desc LIMIT 30 OFFSET :number";
     String OFFER_QUERY_FILTER_CATEGORY = "SELECT * " +
             "FROM thatoffer a " +
             "WHERE a.TO_CATEGORY =:category AND (a.TO_EXPIRED=false OR a.TO_EXPIRED=:expired) " +
             "AND a.TO_DISABLED=false " +
             "AND a.TO_CREATED_DATE>=:minimumDate " +
-            "order by a.TO_ID desc LIMIT 100 OFFSET :number";
+            "order by a.TO_ID desc LIMIT 30 OFFSET :number";
     String OFFER_QUERY_FILTER_CATEGORY_HOT = "SELECT * " +
             "FROM thatoffer a " +
             "WHERE a.TO_CATEGORY =:category AND (a.TO_EXPIRED=false OR a.TO_EXPIRED=:expired) " +
@@ -61,27 +61,27 @@ public interface OfferDAO extends CrudRepository<TheOffer, Long> {
             "WHERE (a.TO_EXPIRED=false OR a.TO_EXPIRED=:expired) " +
             "AND a.TO_DISABLED=false " +
             "AND a.TO_CREATED_DATE>=:minimumDate " +
-            "order by a.TO_ID desc LIMIT 100 OFFSET :number";
+            "order by a.TO_ID desc LIMIT 30 OFFSET :number";
     String OFFER_QUERY_FILTER_EXPIRED_HOT = "SELECT * " +
             "FROM thatoffer a " +
             "WHERE (a.TO_EXPIRED=false OR a.TO_EXPIRED=:expired) " +
             "AND a.TO_DISABLED=false " +
             "AND a.TO_CREATED_DATE>=:minimumDate " +
-            "order by a.TO_POSITIVE-a.TO_NEGATIVE desc LIMIT 100 OFFSET :number";
+            "order by a.TO_POSITIVE-a.TO_NEGATIVE desc LIMIT 30 OFFSET :number";
     String OFFER_QUERY_FILTER_TEXT = "SELECT * " +
             "FROM thatoffer a LEFT JOIN thatcompany c on a.TO_COMPANY=c.TC_ID " +
             "WHERE (lower(a.TO_DESCRIPTION) LIKE lower(:text) OR lower(a.TO_TITLE) LIKE lower(:text) OR lower(c.TC_NAME) LIKE lower(:text)) " +
             "AND a.TO_DISABLED=false " +
             "AND (a.TO_EXPIRED=false OR a.TO_EXPIRED=:expired) " +
             "AND a.TO_CREATED_DATE>=:minimumDate " +
-            "order by a.TO_ID desc LIMIT 100 OFFSET :number";
+            "order by a.TO_ID desc LIMIT 30 OFFSET :number";
     String OFFER_QUERY_FILTER_TEXT_HOT = "SELECT * " +
             "FROM thatoffer a LEFT JOIN thatcompany c on a.TO_COMPANY=c.TC_ID " +
             "WHERE (lower(a.TO_DESCRIPTION) LIKE lower(:text) OR lower(a.TO_TITLE) LIKE lower(:text) OR lower(c.TC_NAME) LIKE lower(:text)) " +
             "AND a.TO_DISABLED=false " +
             "AND (a.TO_EXPIRED=false OR a.TO_EXPIRED=:expired) " +
             "AND a.TO_CREATED_DATE>=:minimumDate " +
-            "order by a.TO_POSITIVE-a.TO_NEGATIVE desc LIMIT 100 OFFSET :number";
+            "order by a.TO_POSITIVE-a.TO_NEGATIVE desc LIMIT 30 OFFSET :number";
 
     @Query(value = OFFER_QUERY, nativeQuery = true)
     List<TheOffer> getOneHundredOffersAfterId(@Param("number") Long number,

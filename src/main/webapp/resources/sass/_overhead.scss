@@ -42,7 +42,7 @@ div.overhead_subcontainer {
   background-color: $main-background-color;
   z-index: 1003;
   top: 5%;
-  background-image: url("images/background_head5.png"), url("images/pattern-size1.svg");
+  background-image: url("images/background_head5.png");
   background-position: top left, center center;
   background-size: auto, cover;
   overflow-y: auto !important;
@@ -61,12 +61,12 @@ div.overhead_subcontainer {
   }
 
   &.userRelated {
-    background-image: url("images/background_usr5.png"), url("images/pattern-size1.svg");
+    background-image: url("images/background_usr5.png");
     @extend .overhead_subcontainer--fixed;
   }
 
   &.offerRelated {
-    background-image: url("images/background_offer5.png"), url("images/pattern-size1.svg");
+    background-image: url("images/background_offer5.png");
     width: 80%;
     left: 10%;
   }

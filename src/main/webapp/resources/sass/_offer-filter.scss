@@ -1,21 +1,22 @@
 .filter-tabs {
   label {
-    height: 45px;
-    width: 20%;
-    margin: 0;
     bottom: -2px;
-    position: relative;
+    color: $main-font-color !important;
+    cursor: pointer;
+    font-size: 1em;
+    height: 45px;
+    margin: 0;
     padding: .75em 2em;
+    position: relative;
+    width: 20%;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     border: 2px solid $filter-tab-color;
-    background-color: #b9b9b9;
+    background-color: $filter-tab-background-color;
     -moz-transition: background-color .3s linear;
     -webkit-transition: background-color .3s linear;
     -o-transition: background-color .3s linear;
     transition: background-color .3s linear;
-    cursor: pointer;
-    font-size: 1em;
 
     &.selected {
       border-bottom: 2px solid $main-font-color;
@@ -25,16 +26,36 @@
       &:hover {
         background-color: $main-font-color;
       }
+
+      .calendar-label {
+
+        &.day {
+          background-image: url("images/calendar_1.png");
+        }
+
+        &.week {
+          background-image: url("images/calendar_7.png");
+        }
+
+        &.month {
+          background-image: url("images/calendar_31.png");
+        }
+
+        &.all {
+          background-image: url("images/calendar_all.png");
+        }
+      }
     }
 
     &:hover {
-      background-color: #c6c6c6;
+      background-color: $filter-tab-hover-background-color;
     }
 
     input {
       display: none;
     }
   }
+
 }
 
 div.calendar-label {
@@ -45,22 +66,22 @@ div.calendar-label {
   height: 30px;
   background-size: contain;
   background-repeat: no-repeat;
-}
 
-div.calendar-label.day {
-  background-image: url("images/calendar_1.png");
-}
+  &.day {
+    background-image: url("images/calendar_1_w.png");
+  }
 
-div.calendar-label.week {
-  background-image: url("images/calendar_7.png");
-}
+  &.week {
+    background-image: url("images/calendar_7_w.png");
+  }
 
-div.calendar-label.month {
-  background-image: url("images/calendar_31.png");
-}
+  &.month {
+    background-image: url("images/calendar_31_w.png");
+  }
 
-div.calendar-label.all {
-  background-image: url("images/calendar_all.png");
+  &.all {
+    background-image: url("images/calendar_all_w.png");
+  }
 }
 
 @media screen and (max-width: 760px) {
@@ -97,16 +118,6 @@ section#contentFilter {
 div.filter-header > h3,
 a#applyFilter, a#cleanFilter {
   color: #fff !important;
-}
-
-a#applyFilter, a#cleanFilter {
-  border: solid 1px #ffffff !important;
-  box-shadow: inset 0 0 0 0px #e6e6e6;
-}
-
-a#applyFilter:hover, a#cleanFilter:hover {
-  text-decoration: none !important;
-  background-color: $filter-hover-background-color;
 }
 
 label#label-for-filter-by {
@@ -229,9 +240,9 @@ div.filterByCategoryContent {
     color: $main-font-color !important;
     font-weight: normal !important;
     font-family: font-family-main !important;
-    border: solid 1px $main-font-color !important;
+    border: solid 1px $filter-category-dropdown-background !important;
     box-shadow: inset 0 0 0 0px #e6e6e6;
-    background: transparent !important;
+    background: $filter-category-dropdown-background !important;
     -moz-transition: all .3s linear;
     -webkit-transition: all .3s linear;
     -o-transition: all .3s linear;
@@ -239,21 +250,7 @@ div.filterByCategoryContent {
 
     &:hover {
       text-decoration: none !important;
-      background-color: $filter-hover-background-color !important;
-    }
-  }
-
-  .wrap-dd-select {
-    .dropdown {
-      border: 1px solid $filter-category-dropdown-border;
-      li a {
-        background: $filter-category-background;
-        border: 1px solid $filter-category-border;
-        &:hover {
-          background: $filter-category-content-background-hover !important;
-          color: $filter-category-content-color !important;
-        }
-      }
+      background-color: $filter-tab-hover-background-color !important;
     }
   }
 }

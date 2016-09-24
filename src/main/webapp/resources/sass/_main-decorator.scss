@@ -48,7 +48,7 @@ label.overhead-hint-label {
 }
 
 .mainLogo {
-  background: url("images/logoright200.png"), url("images/pattern-size1.svg") center;
+  background: url("images/logoright200.png") center;
   background-size: 90%;
   width: 2em;
   background-repeat: no-repeat;
@@ -133,6 +133,16 @@ input::-moz-selection {
   background: $button-red-background-color;
 }
 
+.wrapper {
+  &.style2 {
+    border-top: 2px solid $filter-tab-color !important;
+  }
+
+  > .inner.alt > * {
+    border-top: solid 2px $offer-list-separator-border-color;
+  }
+}
+
 @media screen and (max-width: 545px) {
   font-size: 12px;
 }
@@ -144,7 +154,7 @@ body {
   margin: 0px;
   padding: 0px;
   background-color: $main-background-color;
-  background-image: url("images/background_head5.png"), url("images/pattern-size1.svg");
+  background-image: url("images/background_head5.png");
 }
 
 body.no-overflow {
@@ -160,6 +170,6 @@ html, body {
   font-family: font-family-main;
 }
 
-a:hover{
+a:hover {
   text-decoration: none;
 }

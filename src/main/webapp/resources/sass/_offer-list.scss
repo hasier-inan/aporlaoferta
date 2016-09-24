@@ -28,8 +28,10 @@ img.offer-expired {
     text-align: center;
     display: inline;
     font-size: 1em;
-    height: 3.5em;
-    color: $offer-list-font-color !important;
+
+    &:hover{
+      color: $offer-list-font-color !important;
+    }
   }
 }
 
@@ -149,6 +151,8 @@ pre.parsed-text {
     border: solid 2px;
     border-color: $offer-color;
     background-color: rgba(118, 118, 118, 0.3);
+    width: 150px;
+    height: 113.5px;
 
     &.hotFeedback {
       border-color: $hotty-process-full-background-color;

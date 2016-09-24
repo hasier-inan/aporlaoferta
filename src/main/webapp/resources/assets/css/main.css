@@ -4048,7 +4048,7 @@ table.alt tbody tr td {
 @media screen and (max-width: 1280px) {
 
     #header {
-        background-image: url("images/background_head5.png"), url("images/pattern-size2.svg");
+        background-image: url("images/background_head5.png");
     }
 
 }
@@ -4092,7 +4092,7 @@ table.alt tbody tr td {
 @media screen and (max-width: 736px) {
 
     #header {
-        background-image: url("images/background_head5.png"), url("images/pattern-size3.svg");
+        background-image: url("images/background_head5.png");
     }
 
     #header h1 {
