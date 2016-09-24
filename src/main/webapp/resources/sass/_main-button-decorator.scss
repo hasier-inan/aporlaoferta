@@ -141,3 +141,7 @@ textarea:focus,
 button:focus {
   outline: none;
 }
+
+a, button {
+  outline: none !important;
+}
