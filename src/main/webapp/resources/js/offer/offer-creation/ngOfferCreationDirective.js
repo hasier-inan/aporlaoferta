@@ -92,12 +92,13 @@ aporlaofertaApp
                         }
                     };
                     $scope.isCategorySelected = function () {
-                        return $scope.offer.offerCategory != ""
-                            && $scope.offer.offerCategory != null
-                            && $scope.offer.offerCategory != undefined
-                            && $scope.offer.offerCategory != "CATEGORÍA"
-                            && $scope.offer.offerCategory != "Categoría";
+                        return !$scope.isEmptyCategory($scope.offer.offerCategory);
                     };
+
+                    $scope.isEmptyCategory = function (category) {
+                        return ["", null, undefined, "Categoría", "Todas", "CATEGORÍA", "TODAS"].indexOf(category) > -1;
+                    }
+
                     $scope.selectionPerformed = function () {
                         return $scope.isCompanyDefined() && $scope.isCategorySelected();
                     }
