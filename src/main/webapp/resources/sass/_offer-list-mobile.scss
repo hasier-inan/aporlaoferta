@@ -8,9 +8,15 @@
     .image {
       width: 100%;
       max-width: 100%;
+
+      .offer-image-expired {
+        width: 200px !important;
+        height: 150px !important;
+      }
+
       img{
-        width: 200px;
-        height: 150px;
+        width: 200px !important;
+        height: 150px !important;
       }
     }
     .content {
