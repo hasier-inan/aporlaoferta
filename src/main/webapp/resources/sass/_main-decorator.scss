@@ -143,6 +143,11 @@ input::-moz-selection {
   }
 }
 
+.wrapper.style2 input[type="checkbox"]:hover + label:before,
+.wrapper.style2 input[type="radio"]:hover + label:before {
+  background-color: $filter-tab-hover-background-color;
+}
+
 @media screen and (max-width: 545px) {
   font-size: 12px;
 }
