@@ -15,7 +15,6 @@ button.special,
   color: $main-font-color !important;
 }
 
-
 input[type="checkbox"] + label.overheadLabel:before,
 input[type="radio"] + label.overheadLabel:before {
   border-color: $input-border-color;
@@ -48,7 +47,7 @@ input[type="radio"]:focus + label:before,
 .wrapper.style3 select:focus,
 .wrapper.style3 textarea:focus,
 .wrapper.style3 input[type="checkbox"]:focus + label:before,
-.wrapper.style3 input[type="radio"]:focus + label:before{
+.wrapper.style3 input[type="radio"]:focus + label:before {
   border-color: $input-focus-border-color;
   box-shadow: $input-focus-box-shadow-color;
 }
@@ -58,7 +57,7 @@ input[type="radio"]:checked + label:before,
 .wrapper.style2 input[type="checkbox"]:checked + label:before,
 .wrapper.style2 input[type="radio"]:checked + label:before,
 .wrapper.style3 input[type="checkbox"]:checked + label:before,
-.wrapper.style3 input[type="radio"]:checked + label:before{
+.wrapper.style3 input[type="radio"]:checked + label:before {
   background-color: $main-background-color;
   border-color: $main-background-color;
   color: $main-font-color;
@@ -73,7 +72,7 @@ input[type="radio"]:checked + label:before,
 
 .wrapper.style1,
 .wrapper.style2 input[type="checkbox"]:checked:hover + label:before,
-.wrapper.style2 input[type="radio"]:checked:hover + label:before{
+.wrapper.style2 input[type="radio"]:checked:hover + label:before {
   background-color: $main-background-color;
 }
 
@@ -106,7 +105,7 @@ input[type="radio"]:checked + label:before,
 #header input[type="reset"].special,
 #header input[type="button"].special,
 #header button.special,
-#header .button.special{
+#header .button.special {
   box-shadow: none;
   background-color: $main-font-color;
   color: $main-background-color !important;
@@ -122,7 +121,7 @@ input[type="radio"]:checked + label:before,
 }
 
 .wrapper.style2 a:hover,
-.wrapper.style3 a:hover{
+.wrapper.style3 a:hover {
   color: $main-background-color;
 }
 
@@ -134,19 +133,7 @@ input[type="radio"]:checked + label:before,
   background-attachment: fixed, fixed;
   background-size: auto, cover;
 
-  image{
+  image {
     box-shadow: 0 0 0 4px $main-background-color, 0 0 0 5px rgba(255, 255, 255, 0.25);
-  }
-}
-
-#footer {
-  color: $footer-font-color;
-  background-color: $main-background-color;
-  background-image: url("images/background_head5.png");
-  input, select, textarea{
-    color: $footer-font-color;
-  }
-  a:hover{
-    color: $footer-font-hover-color !important;
   }
 }

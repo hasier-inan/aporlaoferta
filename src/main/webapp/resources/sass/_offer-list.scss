@@ -1,6 +1,7 @@
 .more-offers-container {
   display: block;
   text-align: center;
+  margin-bottom: 2em;
 
   .more-offers-button {
     text-align: center;
@@ -184,6 +185,12 @@ pre.parsed-text {
   }
 }
 
+@media screen and (max-width: 480px) {
+  .more-offers-container {
+    margin-bottom: 3.5em;
+  }
+}
+
 @media screen and (max-width: 737px) {
   .offer-image-presentation {
     width: 100%;
@@ -239,11 +246,11 @@ div.content {
     margin-top: 0;
   }
 
-  &.offer-expired{
+  &.offer-expired {
     :not(a,button) {
       color: $offer-expired-color;
     }
-    .offer-title{
+    .offer-title {
       text-decoration: line-through;
     }
   }
