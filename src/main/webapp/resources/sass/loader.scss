@@ -60,8 +60,8 @@ $validation-invalid-comment-border-color: #e6e6e6;
 $password-forgotten-background: rgba(231, 0, 21, 1);
 $input-focus-border-color: #618eb8;
 $input-focus-box-shadow-color: 0 0 0 1px #618eb8;
-$footer-font-color: #e0e4cc;
-$footer-font-hover-color: #a7dbd8;
+$footer-font-color: #618eb8;
+$footer-font-hover-color: #ffffff;
 $input-border-color: #ffffff;
 $input-background-color: #ffffff;
 $autocomplete-suggestions-color: rgba(0, 0, 0, .8);
@@ -108,6 +108,7 @@ $slick-disabled-background: rgba(255, 255, 255, .15);
 
 @charset "UTF-8";
 @import "main";
+@import "footer";
 @import "main-decorator";
 @import "main-button-decorator";
 @import "hover-decorator";
