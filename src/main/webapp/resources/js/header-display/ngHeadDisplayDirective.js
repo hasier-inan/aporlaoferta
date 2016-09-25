@@ -163,7 +163,7 @@ aporlaofertaApp
                     if ($cookies.get(configService.getEndpoint('tutorial.cookie')) != 'true') {
                         $timeout(function () {
                             $scope.displayTutorialDiagram();
-                        }, 1000);
+                        }, 2000);
                     }
                 }]
         }
