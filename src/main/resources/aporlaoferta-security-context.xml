@@ -10,6 +10,7 @@
 
     <security:http auto-config="true" use-expressions="true">
         <!-- Restrict URLs based on role -->
+        <security:intercept-url method="GET" pattern="/login**" access="permitAll"/>
         <security:intercept-url method="GET" pattern="/admin**" access="hasRole('ROLE_ADMIN')"/>
         <security:intercept-url method="POST" pattern="/createCompany**" access="hasRole('ROLE_ADMIN')"/>
         <security:intercept-url method="POST" pattern="/updateUser**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
@@ -41,8 +42,10 @@
                 remember-me-parameter="remember-me"
                 token-validity-seconds="1209600"
                 data-source-ref="dataSource"/>
-        <security:session-management invalid-session-url="/"
-                                     session-authentication-error-url="/login?error=autenticacion%20invalida">
+        <security:session-management invalid-session-url="/login?error=La%20sesion%20ha%20expirado"
+                                     session-authentication-error-url="/login?error=La%20sesion%20es%20invalida">
+            <security:concurrency-control expired-url="/login?error=La%20sesion%20ha%20expirado"
+                                          error-if-maximum-exceeded="false"/>
         </security:session-management>
     </security:http>
 

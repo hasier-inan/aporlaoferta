@@ -25,6 +25,16 @@ aporlaofertaApp.controller('APorLaOfertaController', ['$scope', '$rootScope', fu
     $scope.keyHandler = function ($event) {
         $rootScope.$broadcast('keydownControl', $event.keyCode);
     };
+
+    $scope.time = new Date().getTime();
+    angular.element(document.body).bind("mousemove keypress", function () {
+        $scope.time = new Date().getTime();
+    });
+    $scope.minute = 60000;
+    $scope.refresh = function () {
+        (new Date().getTime() - $scope.time >= 20 * $scope.minute) ? window.location.reload() : setTimeout($scope.refresh, 10 * $scope.minute);
+    }
+    setTimeout($scope.refresh, 10 * $scope.minute);
 }]);
 
 aporlaofertaApp.directive('ngConfirmClick', [
@@ -38,21 +48,6 @@ aporlaofertaApp.directive('ngConfirmClick', [
                         scope.$eval(clickAction)
                     }
                 });
-
-                scope.time = new Date().getTime();
-                angular.element(document.body).bind("mousemove keypress", function () {
-                    scope.time = new Date().getTime();
-                });
-
-                scope.minute=60000;
-                scope.refresh = function () {
-                    if (new Date().getTime() - scope.time >= 20*scope.minute)
-                        window.location.reload();
-                    else
-                        setTimeout(scope.refresh, 10*scope.minute);
-                }
-
-                setTimeout(scope.refresh, 10*scope.minute);
             }
         };
     }]);
