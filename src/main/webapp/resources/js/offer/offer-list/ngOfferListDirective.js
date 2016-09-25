@@ -35,7 +35,6 @@ aporlaofertaApp
                     }
 
                     $scope.$on('offerList', function (event, args) {
-                        console.log("received offer list from broadcast: ");
                         $scope.moreOffersLoading = false;
                         $scope.offerList = args;
                     });
