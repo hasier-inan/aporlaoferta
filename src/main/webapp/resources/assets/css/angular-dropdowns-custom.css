@@ -72,7 +72,7 @@ ul.dropdown li {
     border: 1px solid #f35bd6;
     font-weight: normal;
     list-style: none;
-    visibility: hidden;
+    display: none;
     max-height: 300px;
     overflow-y: auto; /*Provide an auto overflow to display scroll*/
     color: #FFFFFF;
@@ -149,7 +149,7 @@ ul.dropdown li {
 }
 
 .wrap-dd-select.active .dropdown {
-    visibility: visible;
+    display: block;
 }
 
 /****** dropdown-menu *******/
