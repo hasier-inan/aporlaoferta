@@ -33,6 +33,10 @@ ul.top_header > .overflown {
   -webkit-transition: all .3s linear;
   -o-transition: all .3s linear;
   transition: all .3s linear;
+
+  &:hover{
+    background-color: $overflown-hover-background;
+  }
 }
 
 ul.top_header > .overflown-second {
