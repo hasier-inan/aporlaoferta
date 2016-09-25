@@ -141,8 +141,7 @@
             </div>
 
             <div class="offerSpecificationsLink">
-                <a href="{{offer.offerLink}}" target="_blank">Ir a la oferta <i
-                        class="fa fa-cart-arrow-down"></i></a>
+                <a href="{{offer.offerLink}}" target="_blank" class="icon medium--rounded hvr-icon-grow fa-cart-arrow-down hot-offers" ng-class="offer.offerExpired?'offer-expired':''">A por la oferta!</a>
             </div>
 
             <div ng-offer-comments="offerComments" the-comments="offer.offerComments" the-offer="offer.id"

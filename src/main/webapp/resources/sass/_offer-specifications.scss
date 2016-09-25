@@ -19,6 +19,10 @@ div.offerSpecificationsRightContainer {
   div > div.social-media-shares {
     margin: 0;
   }
+
+  .offerSpecificationsSubtitle {
+    color: $main-font-color;
+  }
 }
 
 a.quoteAction:hover {
@@ -26,24 +30,57 @@ a.quoteAction:hover {
   text-decoration: none;
 }
 
-div.offerSpecificationsLink {
+.offerSpecificationsLink {
   bottom: 0;
   left: 0;
   text-align: center;
   width: 100%;
+
+  a {
+    background-color: $offer-specifications-title-color;
+    color: $main-font-color;
+    font-size: 28px;
+    margin: 10px;
+    padding-left: 40px;
+    transition: background-color 1s ease, border 1s ease;
+    text-decoration: none;
+
+    &:hover {
+      &::before {
+        color: $button-hot-offers-background !important;
+      }
+    }
+
+    &.offer-expired {
+      background-color: $offer-expired-color;
+      border-color: $offer-expired-color;
+
+      &:hover {
+        color: $offer-expired-color;
+
+        &::before{
+          color: $offer-expired-color !important;
+        }
+      }
+    }
+  }
 }
 
-div.offerSpecificationsLink > a {
-  color: $main-font-color;
-  text-decoration: none;
-  background-color: $offer-specifications-title-color;
-  font-size: 3em;
-}
+.offerSpecificationsTitle {
+  h2 {
+    a:hover {
+      text-decoration: none;
+      color: $button-hot-offers-background;
+    }
 
-div.offerSpecificationsLink > a:hover,
-div.offerSpecificationsTitle > h1 > a:hover {
-  text-decoration: none;
-  color: $offer-specifications-title-color;
+    &.offer-expired {
+      text-decoration: line-through;
+
+      a:hover {
+        color: $offer-expired-color;
+      }
+    }
+  }
 }
 
 .offer-specifications {
@@ -147,8 +184,8 @@ div.offerSpecificationsOriginalPrice {
     transition: color 1s ease;
     cursor: pointer;
 
-    i{
-      text-shadow: -1px 0 #000,0 1px #000,1px 0 #000,0 -1px #000;
+    i {
+      text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
     }
 
     &:hover {
@@ -169,14 +206,24 @@ div.offerSpecificationsDescription {
   font-weight: normal;
 }
 
-div.offerSpecificationsImage {
+.offerSpecificationsImage {
   position: relative;
   display: inline-block;
   width: 100%;
   height: 100%;
   margin-left: 2%;
 
-  > img {
+  .offer-image-expired {
+    background: url("images/expired_offer.png") no-repeat;
+    background-size: 96%;
+    margin: 2%;
+    position: absolute;
+    width: 100%;
+    height: 75%;
+    z-index: 1;
+  }
+
+  img {
     display: block;
     vertical-align: middle;
     background-color: $offer-image-background-color;
@@ -184,29 +231,40 @@ div.offerSpecificationsImage {
     border: 2px solid $offer-specifications-borders-color;
     border-radius: 20px;
     width: 100%;
+
+    &.offer-expired {
+      background-color: $offer-expired-background-color;
+      opacity: 0.4;
+      filter: alpha(opacity=40);
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+      -moz-opacity: 0.4;
+      -khtml-opacity: 0.4;
+    }
   }
 
-  .remove-offer{
+  .remove-offer {
     cursor: pointer;
     font-size: 20px;
     margin: 1em;
     position: absolute;
     transition: color 1s ease;
+    z-index: 1005;
 
-    i{
-      text-shadow: -1px 0 #000,0 1px #000,1px 0 #000,0 -1px #000;
+    i {
+      text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
     }
 
-    &:hover{
+    &:hover {
       color: $offer-specifications-subtitle-color;
     }
   }
 }
 
-div.offerSpecificationsFeedback {
+.offerSpecificationsFeedback {
   display: inline-block;
   width: 100%;
   margin-top: -1.5em;
+  z-index: 2;
 }
 
 div.feedbackButtons {
@@ -297,8 +355,8 @@ div.theCommentAvatar {
     margin: -20px 0 0 5px;
     transition: color 1s ease;
 
-    i{
-      text-shadow: -1px 0 #000,0 1px #000,1px 0 #000,0 -1px #000;
+    i {
+      text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
     }
 
     &:hover {
@@ -326,8 +384,8 @@ div.remove-comment {
   transition: color 1s ease;
   cursor: pointer;
 
-  i{
-    text-shadow: -1px 0 #000,0 1px #000,1px 0 #000,0 -1px #000;
+  i {
+    text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
   }
 
   &:hover {
@@ -374,8 +432,10 @@ div.commentQuoteButtons {
 
 @media screen and (max-width: 737px) {
 
-  div.offerSpecificationsLink > a {
-    font-size: 2.5em;
+  .offerSpecificationsLink {
+    a {
+      font-size: 24px;
+    }
   }
 
   div.offerSpecificationsTitle > h1 {
