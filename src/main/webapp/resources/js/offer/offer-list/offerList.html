@@ -1,7 +1,7 @@
 <section id="contentFilter" class="wrapper style2 special" ng-offer-filter="offerFilter"
          offer-list="offerList" selection="defaultList" offer-filter="offerFilter"></section>
 
-<section id="promotion_list" class="wrapper style2">
+<section class="wrapper style2">
     <div class="inner alt">
         <div ng-repeat="offer in offerList | unique: 'offer.id'">
             <section class="spotlight" ng-class="offer.offerExpired?'offer-expired':''">
