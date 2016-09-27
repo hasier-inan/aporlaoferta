@@ -26,7 +26,7 @@
         <div class="remember-me-option">
             <input type="checkbox" id="remember-login-request"
                    name="remember-me" ng-model="isRememberNeeded"/>
-            <label id="rememberLoginRequestLabel" for="remember-login-request" class="overheadLabel">Permanecer
+            <label id="rememberLoginRequestLabel" for="remember-login-request" class="overheadLabel">Mantenerme
                 identificado</label>
         </div>
         <button ng-disabled="!loginForm.$valid || processing" class="button small icon fa-sign-in overheadButton"
