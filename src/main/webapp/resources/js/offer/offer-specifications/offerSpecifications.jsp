@@ -108,7 +108,7 @@
                             {{parsePrice(offer.finalPrice)}}€</a>
                     </h2>
 
-                    <div class="offerCompany offerSpecificationsBox">Compañía: {{offer.offerCompany.companyName}}</div>
+                    <div class="offerCompany offerSpecificationsBox"><i class="fa fa-tag" aria-hidden="true"></i>Tienda: {{offer.offerCompany.companyName}}</div>
                     <div class="offerSpecificationsOriginalPrice offerSpecificationsBox" ng-show="offer.originalPrice">
                         Precio original: {{parsePrice(offer.originalPrice)}}€
                     </div>

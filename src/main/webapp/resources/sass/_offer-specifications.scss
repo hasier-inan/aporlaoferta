@@ -53,7 +53,7 @@ div.offerSpecificationsRightContainer {
       &:hover {
         color: $offer-expired-color;
 
-        &::before{
+        &::before {
           color: $offer-expired-color !important;
         }
       }
@@ -62,6 +62,14 @@ div.offerSpecificationsRightContainer {
 }
 
 .offerSpecificationsTitle {
+
+  .offerCompany {
+    i {
+      margin-right: 5px;
+      font-size: 12px;
+    }
+  }
+
   h2 {
     a:hover {
       text-decoration: none;
@@ -107,8 +115,8 @@ div.offerSpecificationsRightContainer {
 
 @media screen and (max-width: 480px) {
 
-  .offerSpecificationsLink{
-    a{
+  .offerSpecificationsLink {
+    a {
       font-size: 20px;
       line-height: 40px;
     }
