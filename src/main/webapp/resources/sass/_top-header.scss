@@ -14,7 +14,7 @@ ul#overheadSubContainerContent {
 ul.actions.top_header {
   position: absolute;
   top: 1em;
-  padding-left: 1em;
+  padding-right: 1em;
   z-index: 1001;
   width: 100%;
 }
@@ -122,9 +122,9 @@ button.right-aligned:before {
     transform: scale(0.77);
     transform-origin: 0;
     -webkit-transform: scale(0.77);
-    transform: scale(0.77);
-    -webkit-transform-origin: 0 0;
-    transform-origin: 0 0;
+    -webkit-transform-origin: 0;
+    padding-left: 50%;
+    margin-left: -27% !important;
   }
 
   div#userProfileLogout {

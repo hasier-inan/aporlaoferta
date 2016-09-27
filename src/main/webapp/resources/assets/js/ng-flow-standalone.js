@@ -376,7 +376,7 @@
                     input.setAttribute('type', 'file');
                     // display:none - not working in opera 12
                     extend(input.style, {
-                        visibility: 'hidden',
+                        display: 'none',
                         position: 'absolute'
                     });
                     // for opera 12 browser, input must be assigned to a document
