@@ -56,6 +56,10 @@ ul.top_header > .overflown.hidden {
 }
 
 @media screen and (max-width: 480px) {
+  #overheadSubContainerContent{
+    padding-left: 0;
+  }
+
   ul.top_header > .overflown.desktop {
     display: none;
   }

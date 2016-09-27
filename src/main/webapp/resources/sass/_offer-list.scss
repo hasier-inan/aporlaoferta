@@ -18,46 +18,6 @@
   display: none;
 }
 
-.hideLoading {
-  display: none !important;
-}
-
-i.loadingdialogue {
-  font-family: FontAwesome;
-  font-size: 2em !important;
-  box-shadow: none !important;
-}
-
-i.loadingdialogue.white {
-  color: $main-font-color !important;
-}
-
-i.loadingdialogue.grey {
-  color: $offer-list-font-color !important;
-}
-
-i.loadingdialogue.popup-loading {
-  position: absolute;
-  margin: -1em 0 0 -.4em;
-}
-
-.loading-dialogue {
-  text-align: center;
-  margin: -4em 0 1em;
-}
-
-@media screen and (max-width: 960px) {
-  .loading-dialogue {
-    margin-top: -2em;
-  }
-}
-
-@media screen and (max-width: 736px) {
-  .loading-dialogue {
-    margin-bottom: 2em;
-  }
-}
-
 div.no-offers{
   margin-bottom: 2em;
 }
