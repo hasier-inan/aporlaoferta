@@ -70,13 +70,13 @@ public class ResponseResultHelper {
 
     public static TheResponse createForgottenPasswordResponse() {
         TheResponse theResponse = new TheResponse();
-        theResponse.assignResultCode(ResultCode.ALL_OK, "Password reset email request has been sent", "Recibirá un correo electrónico donde podrá reiniciar su contraseña");
+        theResponse.assignResultCode(ResultCode.ALL_OK, "Password reset email request has been sent", "En breve recibirás un correo electrónico donde podrás reiniciar tu contraseña");
         return theResponse;
     }
 
     public static TheResponse createUserConfirmationResponse() {
         TheResponse theResponse = new TheResponse();
-        theResponse.assignResultCode(ResultCode.ALL_OK, "User has been confirmed", "Usuario confirmado, ya puede identificarse");
+        theResponse.assignResultCode(ResultCode.ALL_OK, "User has been confirmed", "Usuario confirmado, ya puedes identificarte");
         return theResponse;
     }
 

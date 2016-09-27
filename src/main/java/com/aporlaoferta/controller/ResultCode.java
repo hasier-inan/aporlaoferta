@@ -37,9 +37,9 @@ public enum ResultCode {
     FEEDBACK_VALIDATION_ERROR(41, ResponseResult.VALIDATION_ERROR,
             "Validation process failed while adding feedback", "El proceso de validación ha fallado mientras se procedía a valorar la oferta"),
     FEEDBACK_ALREADY_PERFORMED_ERROR(42, ResponseResult.VALIDATION_ERROR,
-            "Feedback process was already performed by user and given offer", "Esta oferta ya ha sido valorada previamente"),
+            "Feedback process was already performed by user and given offer", "Ya has valorado esta oferta anteriormente"),
     FEEDBACK_FROM_OWNER_PERFORMED_ERROR(43, ResponseResult.VALIDATION_ERROR,
-            "Feedback process can't be performed by offer owner", "El creador de la oferta no puede valorarse a sí mismo"),
+            "Feedback process can't be performed by offer owner", "No puedes valorar tu propia oferta"),
     IMAGE_UPLOAD_ERROR(56, ResponseResult.INVALID_DATA_PROVIDED,
             "Could not perform image upload process", "No se ha podido cargar la imagen"),
     IMAGE_TOO_HEAVY_ERROR(57, ResponseResult.INVALID_DATA_PROVIDED,
@@ -49,7 +49,7 @@ public enum ResultCode {
     UNHEALTHY_ENDPOINT(70, ResponseResult.INVALID_DATA_PROVIDED,
             "Provided url is not healthy", "La dirección url de la oferta no es correcta"),
     INVALID_CAPTCHA(75, ResponseResult.INVALID_DATA_PROVIDED, "Invalid Captcha", "Captcha inválido"),
-    INVALID_CONFIRMATION_ID(78, ResponseResult.INVALID_DATA_PROVIDED, "Invalid confirmation id", "Id de confirmación inválido");
+    INVALID_CONFIRMATION_ID(78, ResponseResult.INVALID_DATA_PROVIDED, "Invalid confirmation id", "Identificador de confirmación inválido");
 
     private int code;
     private String resultDescription;
