@@ -1,5 +1,32 @@
-/*social-media*/
+header {
+  .social-media-shares {
+    right: 0;
+    margin: 120px 20px 0 0;
+    width: 2em;
+    z-index: 1000;
+    left: auto;
+
+    a{
+      margin-bottom: 5px;
+      background-color: $footer-font-color !important;
+
+      &.fa-google-plus:hover {
+        background-color: $social-google-background-color !important;;
+      }
+
+      &.fa-twitter:hover {
+        background-color: $social-twitter-background-color !important;;
+      }
+
+      &.fa-facebook:hover {
+        background-color: $social-fb-background-color !important;
+      }
+    }
+  }
+}
+
 .social-media-shares {
+  left: 50%;
   top: 0;
   margin-top: 1em;
   position: absolute;
@@ -23,9 +50,27 @@
     -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 
+    &.small {
+      display: none;
+    }
+
+    &.mini {
+      display: inline-block !important;
+      font-size: 15px;
+      width: 2em;
+      height: 2em;
+      line-height: 2em;
+      border-radius: 100%;
+      padding: 0 .6em;
+
+      &:before{
+        font-size: 15px;
+      }
+    }
+
     &:hover {
       text-decoration: none;
-      background: none !important;
+      background: none;
     }
 
     &.fa-google-plus {
@@ -58,64 +103,9 @@
   }
 }
 
-@media screen and (max-width: 1200px) {
-  .social-media-shares {
-    left: 50%;
-
-    .social-share.small {
-      display: none;
-    }
-
-    .social-share.mini {
-      display: inline-block;
-      font-size: 15px;
-      width: 2em;
-      height: 2em;
-      line-height: 2em;
-      border-radius: 100%;
-      padding: 0 .6em;
-
-      &:before{
-        font-size: 15px;
-      }
-    }
-  }
-}
-
 @media screen and (max-width: 737px) {
   a.social-share {
     margin-top: .3em;
-  }
-
-  header {
-    .social-media-shares {
-      left: 20px !important;
-      margin-top: 5em;
-      width: 2em;
-      z-index: 1000;
-    }
-  }
-}
-
-@media screen and (max-width: 737px) {
-  a.social-share {
-    margin-top: .3em;
-  }
-
-  header {
-    .social-media-shares {
-      left: 20px !important;
-      margin-top: 5em;
-      width: 2em;
-    }
-  }
-}
-
-@media screen and (max-width: 480px) {
-  header {
-    .social-media-shares {
-      margin-top: 120px;
-    }
   }
 }
 
