@@ -1,7 +1,4 @@
-<header class="major">
-    <div class="filter-header">
-        <h3>Filtrar contenidos</h3>
-    </div>
+<header id="offerFilterContainer" class="major">
     <button class="displayFilterContents button mini icon fa-chevron-down whiteButton no-decoration"
             ng-class="displayFilterContent" ng-click="displayFilterContents()"></button>
     <div class="filters-contents" ng-class="displayFilterContent">
@@ -15,7 +12,7 @@
                 <label for="filter-by" id="label-for-filter-by"><i class="fa fa-search"></i></label>
                 <input id="filter-by" type="text" ng-model="filter.text"
                        class="fa-search filter-input inline-block " id="filter-text-finder"
-                       value="" placeholder="Buscar (m&iacute;inimo 3 car&aacute;cteres)"
+                       value="" placeholder="Buscar (m&iacute;nimo 3 car&aacute;cteres)"
                        ng-change="searchCriteriaChanged()">
             </div>
 

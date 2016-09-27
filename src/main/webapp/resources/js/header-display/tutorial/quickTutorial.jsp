@@ -33,7 +33,7 @@
                 <p>También puedes filtrar las ofertas que más te interesen.</p>
                 <br/>
                 <p>Para ello selecciona tu categoría preferia y/o haz una búsqueda por texto en la sección de
-                    <strong>Filtrar contenidos</strong></p>
+                    <strong>Filtrar ofertas</strong></p>
             </div>
         </div>
         <div class="tutorial-slide">
