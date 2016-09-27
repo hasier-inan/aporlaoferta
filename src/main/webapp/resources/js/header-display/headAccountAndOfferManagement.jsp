@@ -1,17 +1,18 @@
 <%@taglib prefix="sec"
           uri="http://www.springframework.org/security/tags" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <ul class="actions top_header">
     <sec:authorize access="isAnonymous()">
         <li>
             <button class="button small small--rounded hvr-icon-grow icon fa-sign-in whiteButton green-background" ng-click="displayLogin()">
-                Identificarse
+                Identifícate
             </button>
             <button class="button mini icon hvr-icon-grow fa-sign-in whiteButton green-background account-management fixed"
                     ng-click="displayLogin()"></button>
         </li>
         <li>
             <button class="button small small--rounded hvr-icon-grow icon fa-user whiteButton blueish-background" ng-click="displaySignup()">
-                Registrarse
+                Regístrate
             </button>
             <button class="button mini icon hvr-icon-grow fa-user whiteButton blueish-background account-management fixed nth"
                     ng-click="displaySignup()"></button>

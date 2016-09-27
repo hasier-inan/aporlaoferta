@@ -13,7 +13,7 @@
             <button class="button small icon fa-sign-in whiteButton green-background"
                     ng-click="processLogin()"
                     tabindex="0">
-                Identificarse
+                Identifícate
             </button>
             <button class="button mini icon fa-sign-in whiteButton green-background account-management fixed"
                     ng-click="processLogin()" tabindex="0"></button>
