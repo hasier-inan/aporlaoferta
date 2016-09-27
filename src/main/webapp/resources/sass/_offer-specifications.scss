@@ -111,6 +111,13 @@ a.quoteAction:hover {
 }
 
 @media screen and (max-width: 480px) {
+
+  .offerSpecificationsLink{
+    a{
+      font-size: 20px;
+      line-height: 40px;
+    }
+  }
   .offer-specifications {
     &.edit-offer {
       .small {
