@@ -7,6 +7,10 @@
   position: fixed;
   width: 100%;
 
+  .social__find_us{
+    font-size: 12px;
+  }
+
   .footer_legals {
     display: inline-block;
     width: 58%;
@@ -67,6 +71,10 @@
   #footer {
     .footer_legals {
       width: 74%;
+    }
+
+    .social__find_us{
+      display: none;
     }
 
     ul {
