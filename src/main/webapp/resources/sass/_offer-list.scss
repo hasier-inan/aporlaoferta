@@ -1,7 +1,7 @@
 .more-offers-container {
   display: block;
   text-align: center;
-  margin-bottom: 2em;
+  margin-bottom: 4em;
 
   .more-offers-button {
     text-align: center;
@@ -41,11 +41,27 @@ i.loadingdialogue.popup-loading {
   margin: -1em 0 0 -.4em;
 }
 
-div.loading-dialogue {
+.loading-dialogue {
   text-align: center;
+  margin: -4em 0 1em;
 }
 
-div.no-offers, i.no-offers {
+@media screen and (max-width: 960px) {
+  .loading-dialogue {
+    margin-top: -2em;
+  }
+}
+
+@media screen and (max-width: 736px) {
+  .loading-dialogue {
+    margin-bottom: 2em;
+  }
+}
+
+div.no-offers{
+  margin-bottom: 2em;
+}
+.no-offers{
   text-align: center !important;
   color: $offer-list-font-color !important;
   font-size: 2em;
