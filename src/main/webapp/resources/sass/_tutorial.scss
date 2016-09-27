@@ -36,13 +36,8 @@
       display: inline-block !important;
       color: $main-font-color !important;
       margin: 0 1em;
+      padding: 1px 0 0 8px!important;
     }
-  }
-}
-
-@media screen and (min-width: 1200px) {
-  .tutorial-slide-content .social-media-shares .icon.mini {
-    padding: 9px 0 0 12px !important;
   }
 }
 
