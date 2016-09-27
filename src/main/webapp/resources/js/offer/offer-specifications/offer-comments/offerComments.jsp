@@ -1,33 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<div>
-    <sec:authorize access="isAuthenticated()">
-
-        <div class="commentContent">
-            <form name="commentContentForm">
-                <textarea ng-model="comment.commentText"
-                          class="overheadField ng-pristine ng-valid content-validation comment-textarea"
-                          ng-maxlength="2000" rows="6"
-                          placeholder="A&ntilde;ade un comentario (m&aacute;ximo 2000 car&aacute;cteres)"
-                          required>
-                </textarea>
-
-                <div class="commentQuoteButtons">
-                    <button ng-disabled="!commentContentForm.$valid || processing"
-                            class="button small small--rounded icon hvr-icon-grow fa-pencil-square whiteButton green-background"
-                            ng-click="writeComment(comment, theOffer)">a&ntilde;adir comentario
-                    </button>
-                    <button ng-disabled="!commentContentForm.$valid || processing"
-                            class="button mini icon hvr-icon-grow fa-pencil-square whiteButton inline green-background write-comment"
-                            ng-click="writeComment(comment, theOffer)"></button>
-                </div>
-            </form>
-        </div>
-    </sec:authorize>
-    <sec:authorize access="isAnonymous()">
-        <div class="loginCommentMessage">Inicia sesión para añadir un comentario</div>
-    </sec:authorize>
-</div>
 <div class="commentsHeadTitle">Comentarios:</div>
 <hr/>
 <div ng-repeat="theComment in theComments track by theComment.id" class="commentBlock">
@@ -80,7 +52,7 @@
         </div>
         <sec:authorize access="isAuthenticated()">
             <div class="commentQuoteCommentAction">
-                <a href="#" class="quoteAction" ng-click="quoteAction(theComment.id)">citar:</a>
+                <a href="#" class="quoteAction" ng-click="quoteAction(theComment.id)">Citar:</a>
 
                 <div class="commentQuoteCommentContent" ng-show="isQuoteActionEnabled(theComment.id)">
                     <form name="quoteCommentForm">
@@ -93,7 +65,7 @@
                         <div class="commentQuoteButtons">
                             <button ng-disabled="!quoteCommentForm.$valid || processing"
                                     class="button small small--rounded icon hvr-icon-grow fa-pencil-square whiteButton green-background"
-                                    ng-click="quoteComment(qComment, theComment.id)">citar
+                                    ng-click="quoteComment(qComment, theComment.id)">Citar
                             </button>
                             <button ng-disabled="!quoteCommentForm.$valid || processing"
                                     class="button mini icon hvr-icon-grow fa-pencil-square whiteButton inline green-background write-comment"
@@ -106,3 +78,32 @@
 
     </div>
 </div>
+<sec:authorize access="isAuthenticated()">
+    <br/>
+
+    <div class="commentContent">
+        <form name="commentContentForm">
+            <label class="quoteAction"><input type="checkbox" ng-model="commentEnabled">Añadir comentario</label>
+                <textarea ng-model="comment.commentText"
+                          ng-show="commentEnabled"
+                          class="overheadField ng-pristine ng-valid content-validation comment-textarea"
+                          ng-maxlength="2000" rows="6"
+                          placeholder="Añade un comentario (máximo 2000 carácteres)"
+                          required>
+                </textarea>
+
+            <div class="commentQuoteButtons" ng-show="commentEnabled">
+                <button ng-disabled="!commentContentForm.$valid || processing"
+                        class="button small small--rounded icon hvr-icon-grow fa-pencil-square whiteButton green-background"
+                        ng-click="writeComment(comment, theOffer)">Añadir comentario
+                </button>
+                <button ng-disabled="!commentContentForm.$valid || processing"
+                        class="button mini icon hvr-icon-grow fa-pencil-square whiteButton inline green-background write-comment"
+                        ng-click="writeComment(comment, theOffer)"></button>
+            </div>
+        </form>
+    </div>
+</sec:authorize>
+<sec:authorize access="isAnonymous()">
+    <div class="loginCommentMessage">Inicia sesión para añadir un comentario</div>
+</sec:authorize>

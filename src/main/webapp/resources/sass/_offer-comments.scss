@@ -1,0 +1,129 @@
+div.commentsTheComment {
+  border-bottom-right-radius: 6px;
+  background-color: $offer-comment-quote-background-color;
+  min-height: 3em;
+  padding: .5em 1em .5em 1em;
+  margin-left: 3em;
+}
+
+div.theCommentAvatar {
+  width: 3em;
+  position: absolute;
+
+  .remove-owner {
+    cursor: pointer;
+    margin: -20px 0 0 5px;
+    transition: color 1s ease;
+
+    i {
+      text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+    }
+
+    &:hover {
+      color: $offer-specifications-subtitle-color;
+    }
+  }
+}
+
+div.quotedCommentAvatar {
+  width: 2em;
+  position: absolute;
+}
+
+div.commentAvatar > img {
+  width: 100%;
+}
+
+div.commentText {
+  margin-top: .5em;
+}
+
+div.remove-comment {
+  text-align: right;
+  color: $main-font-color;
+  transition: color 1s ease;
+  cursor: pointer;
+
+  i {
+    text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+  }
+
+  &:hover {
+    color: $offer-specifications-subtitle-color;
+  }
+}
+
+div.commentsTheComment.quotedComment {
+  margin-right: 1em;
+  margin-left: 2em;
+}
+
+div.commentQuoteCommentContent {
+  width: 98%;
+}
+
+.commentQuoteCommentAction{
+    .commentQuoteCommentContent{
+      text-align: left;
+    }
+}
+
+.offerSpecificationsComments{
+  width: 96%;
+  margin-left: 2%;
+  font-size: 14px;
+  font-weight: normal;
+  margin-top: .5em;
+
+  .commentsHeadTitle {
+    text-decoration: underline;
+  }
+
+  .commentContent{
+    text-align: center !important;
+  }
+}
+
+.commentContent,.commentQuoteCommentContent{
+  form{
+    display: inline-block;
+    width: 100%;
+    max-width: 600px;
+
+    textarea{
+      background-color: $offer-comment-background-color;
+    }
+  }
+}
+
+div.quotedContent {
+  font-style: italic;
+}
+
+div.commentBlock {
+  margin-top: 1em;
+}
+
+div.quotedContent div.commentsHeadOwner {
+  font-size: .8em;
+  margin-left: 1em;
+}
+
+.quoteAction {
+  color: #97d779;
+  text-decoration: underline;
+  font-size: 12px;
+  border: 0;
+  transition: color .3s ease;
+  cursor: pointer;
+
+  &:hover {
+    color: $offer-comment-quote-button-hover;
+    text-decoration: none;
+  }
+}
+
+div.commentQuoteButtons {
+  margin-top: .5em;
+  text-align: right;
+}

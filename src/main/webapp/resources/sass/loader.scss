@@ -33,7 +33,7 @@ $filter-category-content-background: rgba(57, 70, 86, .65);
 
 $offer-autocomplete-background: rgba(57, 70, 86, .65);
 $offer-comment-quote-button: #97d779;
-$offer-comment-quote-button-hover: rgba(0, 0, 0, 0.3);
+$offer-comment-quote-button-hover: #f38630;
 $offer-comment-background-color: rgba(0, 0, 0, 0.1);
 $offer-comment-quote-background-color: rgba(0, 0, 0, 0.3);
 $offer-image-background-color: rgba(118, 118, 118, 0.3);
@@ -129,4 +129,5 @@ $slick-disabled-background: rgba(255, 255, 255, .15);
 @import "tutorial";
 @import "promotion-list";
 @import "offer-specifications";
+@import "offer-comments";
 @import "image-upload";
