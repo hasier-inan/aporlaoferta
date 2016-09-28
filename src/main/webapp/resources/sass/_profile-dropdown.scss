@@ -51,6 +51,7 @@
   color: $main-font-color;
   font-family: font-family-main;
   transition: background-color .5s ease;
+  z-index: 1005;
 
   &.active {
     border-bottom-right-radius: 0;
