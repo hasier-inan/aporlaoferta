@@ -65,10 +65,14 @@ aporlaofertaApp
                     }
 
                     $scope.offerFeedbackStyle = function (offer) {
-                        if (offer.offerPositiveVote - offer.offerNegativeVote > 0) {
+                        var offerFeedback = offer.offerPositiveVote - offer.offerNegativeVote;
+                        if (offerFeedback > 0 && offerFeedback <= 100) {
                             return 'hotFeedback';
                         }
-                        else if (offer.offerPositiveVote - offer.offerNegativeVote < 0) {
+                        else if (offerFeedback > 100) {
+                            return 'veryHotFeedback';
+                        }
+                        else if (offerFeedback < 0) {
                             return 'coldFeedback';
                         }
                         return 'neutralFeedback';

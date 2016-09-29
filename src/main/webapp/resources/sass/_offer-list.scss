@@ -73,14 +73,14 @@ pre.parsed-text {
 
         &.hotFeedback {
           background-color: $hotty-process-start-background-color;
-          animation: hotty 10s infinite;
-          -webkit-animation: hotty 10s infinite;
+        }
+
+        &.veryHotFeedback {
+          background-color: $hotty-process-burning-background-color;
         }
 
         &.coldFeedback {
           background-color: $coldy-process-start-background-color;
-          -webkit-animation: coldy 10s infinite;
-          animation: coldy 10s infinite;
         }
 
         &.neutralFeedback {
@@ -91,31 +91,41 @@ pre.parsed-text {
 
       }
 
-      .termometer {
-        display: inline-block;
-        width: 20px;
-        height: 20px;
+      .offer-thermometer {
+        width: 9px;
+        margin-left: -14px;
+        height: 18px;
+        position: absolute;
+        transition: background-color .5s ease;
         vertical-align: bottom;
-        transition: fill .5s ease;
+        -webkit-mask-box-image: url("images/termo-cold.png") 9;
       }
     }
 
     &:not(.offer-expired) {
       .centeredForm {
 
-        .termometer {
+        .offer-thermometer {
           &.hotFeedback {
-            fill: $hotty-process-full-background-color;
-            animation: hot-termometer 4s infinite;
-            -webkit-animation: hot-termometer 4s infinite;
+            background-color: $hotty-process-full-background-color;
+            animation: hotty 4s infinite;
+            -webkit-animation: hotty 4s infinite;
+            -webkit-mask-box-image: url("images/termo-hot.png") 9;
+          }
+
+          &.veryHotFeedback {
+            background-color: $hotty-process-burning-background-color;
+            animation: very-hotty 4s infinite;
+            -webkit-animation: very-hotty 4s infinite;
+            -webkit-mask-box-image: url("images/termo-super-hot.png") 9;
           }
 
           &.coldFeedback {
-            fill: $coldy-process-full-background-color;
+            background-color: $coldy-process-full-background-color;
           }
 
           &.neutralFeedback {
-            fill: $neutraly-process-start-background-color;
+            background-color: $neutraly-process-start-background-color;
           }
         }
       }
@@ -132,8 +142,8 @@ pre.parsed-text {
           }
         }
 
-        .termometer {
-          fill: $neutraly-process-start-background-color;
+        .offer-thermometer {
+          background-color: $neutraly-process-start-background-color;
         }
       }
 
@@ -190,6 +200,10 @@ pre.parsed-text {
 
     &.hotFeedback {
       border-color: $hotty-process-full-background-color;
+    }
+
+    &.veryHotFeedback {
+      border-color: $hotty-process-burning-background-color;
     }
 
     &.coldFeedback {
