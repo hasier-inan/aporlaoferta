@@ -8,9 +8,10 @@
                 <div class="offer-image-presentation">
                     <div class="offerImageAndFeedback" ng-class="offer.offerExpired?'offer-expired':''">
                         <div class="centeredForm">
-                            <svg viewBox="0 0 12 30" width="10" height="18" class="termometer" ng-class="offerFeedbackStyle(offer)"> enable-background="new -0.2 0 18 30" height="30px" version="1.1" viewBox="-0.2 0 18 30" width="18px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs/><path clip-rule="evenodd" d="M8.6,29.8c-4.8,0-8.6-3.9-8.6-8.6c0-3.1,1.6-5.8,4-7.3V4.5  C4,2,6.1,0,8.5,0S13,2,13,4.5v9.2c2.5,1.5,4.2,4.3,4.2,7.4C17.3,25.9,13.4,29.8,8.6,29.8z M11.3,15.4L11.1,5c0-1.2-1.4-2.1-2.6-2.1  S6,3.8,6,5l0,10.5c-2.1,1-3.6,3.2-3.6,5.7c0,3.5,2.8,6.3,6.3,6.3c3.5,0,6.3-2.8,6.3-6.3C15,18.6,13.5,16.4,11.3,15.4z M8.6,25.9  c-2.6,0-4.7-2.1-4.7-4.7c0-2,1.3-3.7,3.1-4.4V8h3v8.8c1.9,0.6,3.3,2.3,3.3,4.4C13.3,23.8,11.2,25.9,8.6,25.9z" fill-rule="evenodd"/></svg>
+                            <span class="offer-thermometer" ng-class="offerFeedbackStyle(offer)"></span>
                             <div class="offerListFeedback feedbackSumatory">
-                                <h1 class="feedbackSumatory ng-binding" ng-class="offerFeedbackStyle(offer)">{{offer.offerPositiveVote -
+                                <h1 class="feedbackSumatory ng-binding" ng-class="offerFeedbackStyle(offer)">
+                                    {{offer.offerPositiveVote -
                                     offer.offerNegativeVote |
                                     number:0}}º</h1>
                             </div>
@@ -22,7 +23,8 @@
                         </div>
                     </div>
                     <div class="offer-call-to-actions">
-                        <a class="button icon small--rounded hvr-icon-forward fa-sign-in more-detail-cta" ng-click="showSpecifications(offer.id)">
+                        <a class="button icon small--rounded hvr-icon-forward fa-sign-in more-detail-cta"
+                           ng-click="showSpecifications(offer.id)">
                             M&aacute;s
                             detalle
                         </a>
@@ -55,7 +57,8 @@
                     <div class="offer-call-to-actions">
                         <a class="button icon small--rounded hvr-icon-pulse-grow offer-cta fa-fire"
                            href="{{offer.offerLink}}" target="_blank">¡A por la oferta!</a>
-                        <a class="button icon small--rounded hvr-icon-forward fa-sign-in more-detail-cta" ng-click="showSpecifications(offer.id)">
+                        <a class="button icon small--rounded hvr-icon-forward fa-sign-in more-detail-cta"
+                           ng-click="showSpecifications(offer.id)">
                             M&aacute;s
                             detalle
                         </a>

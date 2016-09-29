@@ -158,59 +158,57 @@ scotch.io
   }
 }
 
-
-
-@-moz-keyframes hot-termometer {
+@-moz-keyframes very-hotty {
   0% {
-    fill: $hotty-process-full-background-color;
+    background-color: $hotty-process-full-background-color;
   }
   25% {
-    fill: $hotty-process-half-burning-background-color;
+    background-color: $hotty-process-burning-background-color;
   }
   50% {
-    fill: $hotty-process-burning-background-color;
+    background-color: $hotty-process-burning-ashes-background-color;
   }
   75% {
-    fill: $hotty-process-half-burning-background-color;
+    background-color: $hotty-process-burning-background-color;
   }
   100% {
-    fill: $hotty-process-full-background-color;
+    background-color: $hotty-process-full-background-color;
   }
 }
 
-@-webkit-keyframes hot-termometer {
+@-webkit-keyframes very-hotty {
   0% {
-    fill: $hotty-process-full-background-color;
+    background-color: $hotty-process-full-background-color;
   }
   25% {
-    fill: $hotty-process-half-burning-background-color;
+    background-color: $hotty-process-burning-background-color;
   }
   50% {
-    fill: $hotty-process-burning-background-color;
+    background-color: $hotty-process-burning-ashes-background-color;
   }
   75% {
-    fill: $hotty-process-half-burning-background-color;
+    background-color: $hotty-process-burning-background-color;
   }
   100% {
-    fill: $hotty-process-full-background-color;
+    background-color: $hotty-process-full-background-color;
   }
 }
 
-@keyframes hot-termometer {
+@keyframes very-hotty {
   0% {
-    fill: $hotty-process-full-background-color;
+    background-color: $hotty-process-full-background-color;
   }
   25% {
-    fill: $hotty-process-half-burning-background-color;
+    background-color: $hotty-process-burning-background-color;
   }
   50% {
-    fill: $hotty-process-burning-background-color;
+    background-color: $hotty-process-burning-ashes-background-color;
   }
   75% {
-    fill: $hotty-process-half-burning-background-color;
+    background-color: $hotty-process-burning-background-color;
   }
   100% {
-    fill: $hotty-process-full-background-color;
+    background-color: $hotty-process-full-background-color;
   }
 }
 
