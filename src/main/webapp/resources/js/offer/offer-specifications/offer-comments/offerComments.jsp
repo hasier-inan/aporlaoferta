@@ -105,5 +105,5 @@
     </div>
 </sec:authorize>
 <sec:authorize access="isAnonymous()">
-    <div class="loginCommentMessage">Inicia sesión para añadir un comentario</div>
+    <div class="loginCommentMessage"><span ng-click="processLogin()">Identifícate</span> o <span ng-click="processRegister()">Regístrate</span> para añadir un comentario</div>
 </sec:authorize>

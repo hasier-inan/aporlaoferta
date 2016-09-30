@@ -62,13 +62,13 @@ div.commentQuoteCommentContent {
   width: 98%;
 }
 
-.commentQuoteCommentAction{
-    .commentQuoteCommentContent{
-      text-align: left;
-    }
+.commentQuoteCommentAction {
+  .commentQuoteCommentContent {
+    text-align: left;
+  }
 }
 
-.offerSpecificationsComments{
+.offerSpecificationsComments {
   width: 96%;
   margin-left: 2%;
   font-size: 14px;
@@ -79,18 +79,18 @@ div.commentQuoteCommentContent {
     text-decoration: underline;
   }
 
-  .commentContent{
+  .commentContent {
     text-align: center !important;
   }
 }
 
-.commentContent,.commentQuoteCommentContent{
-  form{
+.commentContent, .commentQuoteCommentContent {
+  form {
     display: inline-block;
     width: 100%;
     max-width: 600px;
 
-    textarea{
+    textarea {
       background-color: $offer-comment-background-color;
     }
   }
@@ -126,4 +126,13 @@ div.quotedContent div.commentsHeadOwner {
 div.commentQuoteButtons {
   margin-top: .5em;
   text-align: right;
+}
+
+.loginCommentMessage {
+  margin-top: 1em;
+  text-align: center;
+  span {
+    color: $button-hot-offers-background;
+    cursor: pointer;
+  }
 }

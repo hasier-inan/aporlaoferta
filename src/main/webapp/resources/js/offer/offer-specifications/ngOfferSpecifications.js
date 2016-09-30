@@ -97,6 +97,14 @@ aporlaofertaApp
                         }
                     }
 
+                    $scope.processLogin = function(){
+                        $rootScope.$broadcast('userLoginRequest');
+                    }
+
+                    $scope.processRegister = function(){
+                        $rootScope.$broadcast('userRegisterRequest');
+                    }
+
                     $scope.$on('commentsCustomCloseCallback', function (event, args) {
                         var customCallback = args;
                         $scope.customCloseCallback = customCallback;

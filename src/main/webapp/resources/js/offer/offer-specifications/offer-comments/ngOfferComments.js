@@ -83,6 +83,14 @@ aporlaofertaApp
                         $scope.qComment.commentText = "";
                     }
 
+                    $scope.processLogin = function(){
+                        $rootScope.$broadcast('userLoginRequest');
+                    }
+
+                    $scope.processRegister = function(){
+                        $rootScope.$broadcast('userRegisterRequest');
+                    }
+
                     $scope.deleteComment = function (id) {
                         requestManager.makePostCall({}, {'comment': id}, configService.getEndpoint('delete.comment'))
                             .success(function (data) {

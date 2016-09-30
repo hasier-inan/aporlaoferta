@@ -307,6 +307,10 @@ div.feedbackButtons {
 
 .loginFeedbackMessage {
   display: inline-block;
+  span {
+    color: $button-hot-offers-background;
+    cursor: pointer;
+  }
 }
 
 div.offerSpecificationsFeedbackTotal {
