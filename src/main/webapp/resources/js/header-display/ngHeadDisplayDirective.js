@@ -123,6 +123,10 @@ aporlaofertaApp
                         $scope.displayLogin();
                     });
 
+                    $scope.$on('userRegisterRequest', function () {
+                        $scope.displaySignup();
+                    });
+
                     $scope.$on('keydownControl', function (event, args) {
                         var keyDownCode = args;
                         if (keyDownCode == 27) {

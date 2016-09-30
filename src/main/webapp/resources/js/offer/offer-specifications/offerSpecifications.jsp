@@ -81,7 +81,7 @@
                                 </div>
                             </div>
                             <sec:authorize access="isAnonymous()">
-                                <div class="loginFeedbackMessage">Inicia sesión para votar esta oferta</div>
+                                <div class="loginFeedbackMessage"><span ng-click="processLogin()">Identifícate</span> o <span ng-click="processRegister()">Regístrate</span> para votar esta oferta</div>
                             </sec:authorize>
                         </div>
                         <sec:authorize access="isAuthenticated()">
