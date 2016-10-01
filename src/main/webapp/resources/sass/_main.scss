@@ -133,7 +133,33 @@ input[type="radio"]:checked + label:before,
   background-attachment: fixed, fixed;
   background-size: auto, cover;
 
+  .content{
+    text-align: center;
+    margin-top: 3.5em;
+
+    .actions{
+      padding-left: 15px;
+    }
+  }
+
   image {
     box-shadow: 0 0 0 4px $main-background-color, 0 0 0 5px rgba(255, 255, 255, 0.25);
+  }
+}
+
+@media screen and (min-width: 641px) {
+  #header {
+    max-height: 300px !important;
+    min-height: 300px !important;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  #header {
+    .content{
+      .actions{
+        padding: 0;
+      }
+    }
   }
 }

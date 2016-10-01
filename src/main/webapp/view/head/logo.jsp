@@ -4,7 +4,6 @@
         <h1 class="only-page">
             <em>aporlaoferta</em>
         </h1>
-        <div class="mainLogo only-page"/>
         <div ng-main-slogan="mainSlogan"/>
     </div>
 </header>
