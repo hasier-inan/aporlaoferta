@@ -34,7 +34,7 @@ ul.top_header > .overflown {
   -o-transition: all .3s linear;
   transition: all .3s linear;
 
-  &:hover{
+  &:hover {
     background-color: $overflown-hover-background;
   }
 }
@@ -56,7 +56,7 @@ ul.top_header > .overflown.hidden {
 }
 
 @media screen and (max-width: 480px) {
-  #overheadSubContainerContent{
+  #overheadSubContainerContent {
     padding-left: 0;
   }
 
@@ -72,12 +72,12 @@ ul.top_header > .overflown:before {
 .overflown.to-the-top {
   background-color: $overflown-background;
 
-  &::before{
+  &::before {
     padding: 0 !important;
     margin-left: -2px;
   }
 
-  &:hover{
+  &:hover {
     background-color: transparent;
     border-color: $overflown-background;
   }
@@ -87,7 +87,7 @@ button.right-aligned:before {
   margin-right: 0.5em !important;
 }
 
-@media screen and (max-width: 480px){
+@media screen and (max-width: 480px) {
   button {
     &.small {
       display: none;
@@ -150,8 +150,13 @@ button.right-aligned:before {
     margin: .5em 0em !important;
   }
 
-  #header h1 {
-    font-size: 2em;
+  #header {
+    h1 {
+      font-size: 3em;
+    }
+    .main-slogan {
+      font-size: 1em;
+    }
   }
 
 }

@@ -8,7 +8,6 @@
                     <em>aporlaoferta</em>
                 </h1>
 
-                <div class="mainLogo only-page"/>
                 <p>¡Bienvenido!</p>
 
                 <p>aporlaoferta es un portal para buscar y compartir ofertas nacionales con el resto de usuarios.</p>
