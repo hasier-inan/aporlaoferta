@@ -31,7 +31,7 @@
     <sec:authorize access="isAuthenticated()">
         <button class="button small small--rounded hvr-icon-grow icon fa-pencil-square whiteButton green-background"
                 ng-click="displayOfferCreate()">
-            Crear Oferta
+            Publica una oferta
         </button>
         <button class="button mini hvr-icon-grow icon fa-pencil-square whiteButton inline right-aligned green-background fixed"
                 ng-click="displayOfferCreate()"></button>

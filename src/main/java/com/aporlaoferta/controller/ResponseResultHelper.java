@@ -58,7 +58,7 @@ public class ResponseResultHelper {
 
     public static TheResponse offerUpdateResponse() {
         TheResponse theResponse = new TheResponse();
-        theResponse.assignResultCode(ResultCode.ALL_OK, "Offer updated", "Oferta actualizada");
+        theResponse.assignResultCode(ResultCode.ALL_OK, "Offer updated", "Oferta publicada");
         return theResponse;
     }
 
