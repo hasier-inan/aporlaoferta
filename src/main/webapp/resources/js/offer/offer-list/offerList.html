@@ -42,8 +42,9 @@
                     </div>
                     <h3 class="offer-title">
                         <div>
-                            <span>{{offer.offerTitle  | characters:120}}</span>
-                            <span> - {{parsePrice(offer.finalPrice)}}€</span>
+                            <span>{{offer.offerTitle  | characters:120}} - </span>
+                            <span ng-if="offer.finalPrice">{{parsePrice(offer.finalPrice)}}€</span>
+                            <span ng-if="offer.finalPrice==0">Gratis</span>
                         </div>
                         <div class="offerCompanyInTitle">
                             <i class="fa fa-tag" aria-hidden="true"></i>
