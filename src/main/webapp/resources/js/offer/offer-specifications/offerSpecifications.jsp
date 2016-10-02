@@ -104,8 +104,11 @@
             <div class="offerSpecificationsRightContainer containerSplitter">
                 <div class="offerSpecificationsTitle">
                     <h2 ng-class="offer.offerExpired?'offer-expired':''">
-                        <a href="{{offer.offerLink}}" target="_blank">{{offer.offerTitle}}:
-                            {{parsePrice(offer.finalPrice)}}€</a>
+                        <a href="{{offer.offerLink}}" target="_blank">
+                            <span>{{offer.offerTitle}}: </span>
+                            <span ng-if="offer.finalPrice">{{parsePrice(offer.finalPrice)}}€</span>
+                            <span ng-if="offer.finalPrice==0">Gratis</span>
+                        </a>
                     </h2>
 
                     <div class="offerCompany offerSpecificationsBox"><i class="fa fa-tag" aria-hidden="true"></i>{{offer.offerCompany.companyName}}</div>
