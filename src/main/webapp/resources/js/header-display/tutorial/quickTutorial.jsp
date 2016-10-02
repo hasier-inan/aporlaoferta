@@ -17,9 +17,10 @@
         </div>
         <div class="tutorial-slide">
             <div class="tutorial-slide-content">
-                <p>Puedes buscar las ofertas más populares del momento...!</p>
+                <p></p>
                 <br/>
                 <ul>
+                    <li>Puedes buscar las ofertas más populares del momento...</li>
                     <li>Selecciona las <strong>Últimas promociones</strong> para ver las ofertas más recientes.</li>
                     <li>Las <strong>Ofertas calientes</strong> muestran las mejores promociones de acuerdo al resto de
                         usuarios.
@@ -29,7 +30,7 @@
         </div>
         <div class="tutorial-slide">
             <div class="tutorial-slide-content">
-                <p>También puedes filtrar las ofertas que más te interesen.</p>
+                <p>También puedes filtrar las ofertas que más te interesen, ¡hay de todo y para todos!</p>
                 <br/>
                 <p>Para ello selecciona tu categoría preferia y/o haz una búsqueda por texto en la sección de
                     <strong>Filtrar ofertas</strong></p>
@@ -37,12 +38,12 @@
         </div>
         <div class="tutorial-slide">
             <div class="tutorial-slide-content">
-                <p>Y si encuentras una oferta que te parezca apetitosa... ¡no dudes en compartirla!</p>
+                <p>Y si encuentras una oferta que te parezca suculenta... ¡no dudes en compartirla!</p>
                 <br/>
                 <p>Si quieres crear ofertas y opinar sobre el resto de promociones, puedes crearte un perfil de
-                    usuario</p>
+                    usuario. </p>
                 <br/>
-                <p>¡...es totalmente gratuito!</p>
+                <p>¡Es totalmente gratuito!</p>
             </div>
         </div>
         <div class="tutorial-slide">

@@ -6,7 +6,7 @@
         <a class="copyright__mobile" href="tc">c. legales</a>
     </span>
     <span class="copyright">
-        <a class="copyright__desktop" href="#" ng-click="displayTutorialModal()">functionamiento</a>
+        <a class="copyright__desktop" href="#" ng-click="displayTutorialModal()">funcionamiento</a>
         <a class="copyright__mobile" href="#" ng-click="displayTutorialModal()"><i class="fa fa-info-circle hvr-icon-grow"></i></a>
     </span>
 </div>
