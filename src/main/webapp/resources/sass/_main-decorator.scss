@@ -142,6 +142,7 @@ input::-moz-selection {
 
 body {
   overflow-x: hidden;
+  overflow-y: auto;
   width: 100%;
   height: 100%;
   margin: 0px;
@@ -151,7 +152,7 @@ body {
 }
 
 body.no-overflow {
-  //overflow-y: hidden;
+  overflow-y: hidden !important;
 }
 
 @font-face {

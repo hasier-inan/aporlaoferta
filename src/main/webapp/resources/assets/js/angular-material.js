@@ -257,7 +257,7 @@
 
                 function i() {
                     var e = d.parentNode, t = e.style.cssText || "", n = d.style.cssText || "", o = E.scrollTop(d), r = d.clientWidth;
-                    return d.scrollHeight > d.clientHeight + 1 && (a(d, {position: "fixed", width: "100%", top: -o + "px"}), a(e, {overflowY: "scroll"})), d.clientWidth < r && a(d, {overflow: "hidden"}), function () {
+                    return d.scrollHeight > d.clientHeight + 1 && (a(d, {position: "fixed", width: "100%", top: -o + "px"})), d.clientWidth < r && a(d, {overflow: "hidden"}), function () {
                         d.style.cssText = n, e.style.cssText = t, d.scrollTop = o, e.scrollTop = o
                     }
                 }
@@ -5111,7 +5111,7 @@
 
                 if (!me)return d.nextTick(g, !1, e);
                 var c, s = me.wrap.getBoundingClientRect(), l = me.snap.getBoundingClientRect(), m = me.root.getBoundingClientRect(), u = l.bottom - m.top, h = m.bottom - l.top, f = s.left - m.left, b = s.width, E = t();
-                p.mdFloatingLabel && (f += a, b -= 2 * a), c = {left: f + "px", minWidth: b + "px", maxWidth: Math.max(s.right - m.left, m.right - s.left) - i + "px"}, u > h && m.height - s.bottom - i < r ? (c.top = "auto", c.bottom = h + "px", c.maxHeight = Math.min(r, s.top - m.top - i) + "px") : (c.top = u - E + "px", c.bottom = "auto", c.maxHeight = Math.min(r, m.bottom + d.scrollTop() - s.bottom - i) + "px"), me.$.scrollContainer.css(c), d.nextTick(n, !1)
+                p.mdFloatingLabel && (f += a, b -= 2 * a), c = {left: f + "px", minWidth: b + "px", maxWidth: Math.max(s.right - m.left, m.right - s.left) - i + "px"}, u > h && m.height - s.bottom - i < r ? (c.top = u - E + "px", c.bottom = h + "px", c.maxHeight = Math.min(r, s.top - m.top - i) + "px") : (c.top = u - E + "px", c.bottom = "auto", c.maxHeight = Math.min(r, m.bottom + d.scrollTop() - s.bottom - i) + "px"), me.$.scrollContainer.css(c), d.nextTick(n, !1)
             }
 
             function b() {
