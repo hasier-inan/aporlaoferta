@@ -71,6 +71,7 @@ ul.top_header > .overflown:before {
 
 .overflown.to-the-top {
   background-color: $overflown-background;
+  z-index: 1010;
 
   &::before {
     padding: 0 !important;
