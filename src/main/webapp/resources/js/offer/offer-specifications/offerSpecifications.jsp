@@ -108,12 +108,12 @@
                             {{parsePrice(offer.finalPrice)}}€</a>
                     </h2>
 
-                    <div class="offerCompany offerSpecificationsBox"><i class="fa fa-tag" aria-hidden="true"></i>Tienda: {{offer.offerCompany.companyName}}</div>
+                    <div class="offerCompany offerSpecificationsBox"><i class="fa fa-tag" aria-hidden="true"></i>{{offer.offerCompany.companyName}}</div>
                     <div class="offerSpecificationsOriginalPrice offerSpecificationsBox" ng-show="offer.originalPrice">
-                        Precio original: {{parsePrice(offer.originalPrice)}}€
+                        {{parsePrice(offer.originalPrice)}}€
                     </div>
                     <div class="offerSpecificationsFinalPrice offerSpecificationsBox">
-                        Precio de oferta: {{parsePrice(offer.finalPrice)}}€
+                        {{parsePrice(offer.finalPrice)}}€
                     </div>
                 </div>
                 <div class="offerSpecificationsSubtitle">
