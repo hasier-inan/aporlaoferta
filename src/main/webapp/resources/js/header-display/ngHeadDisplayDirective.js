@@ -58,8 +58,8 @@ aporlaofertaApp
                         }
                         $scope.setDefaultVisibility();
                         $scope.displayTutorial = true;
-                        $scope.tutorialIsDisplayed = true;
                         $scope.overheadVisible = true;
+                        $scope.tutorialIsDisplayed = true;
                     }
                     $scope.setDefaultVisibility = function () {
                         $scope.overheadVisible = false;
