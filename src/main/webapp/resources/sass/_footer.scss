@@ -42,17 +42,20 @@
       width: 20px;
       transition: background-color .3s ease;
 
-      &.fa-google-plus:hover {
+      &.fa-google-plus:hover,
+      &.fa-google-plus:active{
         background-color: $social-google-background-color;
         border-color: $social-google-background-color;
       }
 
-      &.fa-twitter:hover {
+      &.fa-twitter:hover,
+      &.fa-twitter:active{
         background-color: $social-twitter-background-color;
         border-color: $social-twitter-background-color;
       }
 
-      &.fa-facebook:hover {
+      &.fa-facebook:hover,
+      &.fa-facebook:active{
         background-color: $social-fb-background-color;
         border-color: $social-fb-background-color;
       }

@@ -149,6 +149,10 @@ div.offerSpecificationsRightContainer {
       width: 2em;
       left: 20px;
       margin-top: 2em !important;
+
+      a {
+        margin: .5em 0 .5em 0 !important;
+      }
     }
   }
 }
@@ -376,6 +380,10 @@ div#offerPositiveFeedback {
       left: 20px;
       width: 2em;
       z-index: 995;
+
+      a {
+        margin: .5em 0 .5em 0 !important;
+      }
     }
   }
 }
