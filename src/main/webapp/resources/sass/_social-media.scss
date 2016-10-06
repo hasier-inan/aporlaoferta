@@ -19,18 +19,21 @@
       display: inline-block;
 
       a {
-        margin-bottom: 5px;
+        margin: 0 0 5px 0 !important;
         background-color: $footer-font-color !important;
 
-        &.fa-google-plus:hover {
-          background-color: $social-google-background-color !important;;
+        &.fa-google-plus:hover,
+        &.fa-google-plus:active{
+          background-color: $social-google-background-color !important;
         }
 
-        &.fa-twitter:hover {
-          background-color: $social-twitter-background-color !important;;
+        &.fa-twitter:hover,
+        &.fa-twitter:active{
+          background-color: $social-twitter-background-color !important;
         }
 
-        &.fa-facebook:hover {
+        &.fa-facebook:hover,
+        &.fa-facebook:active{
           background-color: $social-fb-background-color !important;
         }
       }
@@ -48,7 +51,9 @@
   .social-share {
     display: inline-block;
     color: $main-font-color !important;
+    background-color: $footer-font-color !important;
     font-size: 12px;
+    margin: 0 1em;
     line-height: 2em;
     text-decoration: none;
     padding: 0 1.75em;
@@ -86,19 +91,19 @@
       background: none;
     }
 
-    &.fa-google-plus {
-      background-color: $social-google-background-color;
-      border-color: $social-google-background-color;
+    &.fa-google-plus:hover,
+    &.fa-google-plus:active{
+      background-color: $social-google-background-color !important;
     }
 
-    &.fa-twitter {
-      background-color: $social-twitter-background-color;
-      border-color: $social-twitter-background-color;
+    &.fa-twitter:hover,
+    &.fa-twitter:active{
+      background-color: $social-twitter-background-color !important;
     }
 
-    &.fa-facebook {
-      background-color: $social-fb-background-color;
-      border-color: $social-fb-background-color;
+    &.fa-facebook:hover,
+    &.fa-facebook:active{
+      background-color: $social-fb-background-color !important;
     }
 
   }
