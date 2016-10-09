@@ -32,7 +32,7 @@ div.offerSpecificationsRightContainer {
   }
 
   .offerSpecificationsSubtitle {
-    color: $main-font-color;
+    color: $button-blueish-color;
   }
 }
 
@@ -295,15 +295,19 @@ div.offerSpecificationsTitle > h1 {
     text-align: center;
 
     .feedbackSumatory {
-      margin-bottom: 8px;
-      .feedbackSumatory__temperature{
-        cursor: pointer;
+      margin: -20px 0 8px 0;
 
-        input{
+      .feedbackSumatory__temperature {
+        cursor: pointer;
+        border-color: $main-font-color;
+        color: $main-font-color;
+
+        input {
           margin: 0;
         }
 
         .feedbackTemperature {
+          background-color: $offer-specifications-temperature-background;
           border: solid 2px;
           border-radius: 12px;
           font-size: 20px;

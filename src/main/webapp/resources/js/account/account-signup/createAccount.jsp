@@ -10,11 +10,12 @@
                 Por razones de seguridad tendrás que identificarte de nuevo para modificar tu perfil.
             </div>
 
-            <button class="button small icon fa-sign-in whiteButton green-background"
+            <button class="button small small--rounded hvr-icon-grow icon fa-sign-in whiteButton green-background"
                     ng-click="processLogin()"
                     tabindex="0">
                 Identifícate
             </button>
+
             <button class="button mini icon fa-sign-in whiteButton green-background account-management fixed"
                     ng-click="processLogin()" tabindex="0"></button>
         </div>

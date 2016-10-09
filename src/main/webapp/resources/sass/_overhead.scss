@@ -22,7 +22,7 @@ div.overhead_container {
   overflow: hidden;
 }
 
-.overhead_subcontainer--fixed{
+.overhead_subcontainer--fixed {
   width: 650px;
   left: 50%;
   margin-left: -325px;
@@ -39,10 +39,10 @@ div.overhead_subcontainer {
   border: 0;
   border-radius: 14px;
   box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.25);
-  background-color: $main-background-color;
+  background-color: $offer-specifications-background-color;
   z-index: 1003;
   top: 5%;
-  background-image: url("images/background_head5.png");
+  background-image: url("images/background_head6.png");
   background-position: top left, center center;
   background-size: auto, cover;
   overflow-y: auto !important;
@@ -50,7 +50,16 @@ div.overhead_subcontainer {
   -webkit-opacity: 1;
   -moz-opacity: 1;
 
+  label {
+    color: $button-blueish-color;
 
+    &.overheadLabel {
+      font-size: 1em;
+      font-weight: normal;
+      margin: 0;
+      display: block;
+    }
+  }
 
   &.overhead_subcontainer-fullscreen {
     left: 0;
@@ -61,12 +70,12 @@ div.overhead_subcontainer {
   }
 
   &.userRelated {
-    background-image: url("images/background_usr5.png");
+    background-image: url("images/background_usr6.png");
     @extend .overhead_subcontainer--fixed;
   }
 
   &.offerRelated {
-    background-image: url("images/background_offer5.png");
+    background-image: url("images/background_offer6.png");
     width: 80%;
     left: 10%;
   }
@@ -75,8 +84,6 @@ div.overhead_subcontainer {
     width: 90%;
     left: 5%;
     margin-left: 0;
-    //background-color: $offer-specifications-background-color;
-    box-shadow: inset 0 0 0 2px hsla(0,0%,100%,1);
   }
 
   &.tutorialRelated {
@@ -135,18 +142,6 @@ div.overhead_subcontainer {
       margin-left: 0;
     }
   }
-}
-
-label.overheadLabel {
-  color: $main-font-color !important;
-  font-size: 1.1em;
-  font-weight: normal;
-  margin: 0;
-  display: block;
-}
-
-div.profileForm > label.overheadLabel {
-  display: inline-block;
 }
 
 input.overheadField,

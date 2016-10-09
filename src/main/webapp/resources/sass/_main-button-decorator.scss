@@ -110,11 +110,11 @@ button, a {
   }
 
   &.blue-border {
-    border-color: $button-blueish-background-color;
-    color: $button-blueish-background-color;
+    border-color: $button-grey-background-color;
+    color: $button-grey-background-color;
 
     &:hover{
-      background-color: $button-blueish-background-color;
+      background-color: $button-grey-background-color;
       color: $main-font-color;
     }
   }
@@ -136,7 +136,7 @@ button, a {
     }
   }
 
-  .orange-background {
+  &.orange-background {
     background-color: $button-orange-background-color;
     border-color: $button-orange-background-color;
   }
