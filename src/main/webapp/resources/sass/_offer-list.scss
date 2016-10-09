@@ -90,45 +90,6 @@ pre.parsed-text {
         }
 
       }
-
-      .offer-thermometer {
-        width: 9px;
-        margin-left: -14px;
-        height: 18px;
-        position: absolute;
-        transition: background-color .5s ease;
-        vertical-align: bottom;
-        -webkit-mask-box-image: url("images/termo-cold.png") 9;
-      }
-    }
-
-    &:not(.offer-expired) {
-      .centeredForm {
-
-        .offer-thermometer {
-          &.hotFeedback {
-            background-color: $hotty-process-full-background-color;
-            animation: hotty 4s infinite;
-            -webkit-animation: hotty 4s infinite;
-            -webkit-mask-box-image: url("images/termo-hot.png") 9;
-          }
-
-          &.veryHotFeedback {
-            background-color: $hotty-process-burning-background-color;
-            animation: very-hotty 4s infinite;
-            -webkit-animation: very-hotty 4s infinite;
-            -webkit-mask-box-image: url("images/termo-super-hot.png") 9;
-          }
-
-          &.coldFeedback {
-            background-color: $coldy-process-full-background-color;
-          }
-
-          &.neutralFeedback {
-            background-color: $neutraly-process-start-background-color;
-          }
-        }
-      }
     }
 
     &.offer-expired {
@@ -140,10 +101,6 @@ pre.parsed-text {
             -webkit-animation: neutraly 10s infinite;
             animation: neutraly 10s infinite;
           }
-        }
-
-        .offer-thermometer {
-          background-color: $neutraly-process-start-background-color;
         }
       }
 
