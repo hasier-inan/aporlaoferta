@@ -26,13 +26,13 @@
         <div class="remember-me-option">
             <input type="checkbox" id="remember-login-request"
                    name="remember-me" ng-model="isRememberNeeded"/>
-            <label id="rememberLoginRequestLabel" for="remember-login-request" class="overheadLabel">Mantenerme
+            <label id="rememberLoginRequestLabel" for="remember-login-request" class="inline-block overheadLabel">Mantenerme
                 identificado</label>
         </div>
         <button ng-disabled="!loginForm.$valid || processing" class="button small icon fa-sign-in overheadButton"
                 name="loginSubmit"
                 ng-click="processLogin()">
-            Identificarse
+            Identifícate
         </button>
         <button ng-disabled="!loginForm.$valid || processing" class="button mini icon fa-sign-in overheadButton"
                 ng-click="processLogin()"></button>
@@ -60,6 +60,6 @@
 
     <input type="checkbox" id="forgottenPasswordRequest"
            name="forgottenPasswordRequest" ng-model="isPasswordForgotten"/>
-    <label id="forgottePasswordRequestLabel" for="forgottenPasswordRequest" class="overheadLabel">He olvidado la
+    <label id="forgottePasswordRequestLabel" for="forgottenPasswordRequest" class="inline-block overheadLabel">He olvidado la
         contraseña</label>
 </form>

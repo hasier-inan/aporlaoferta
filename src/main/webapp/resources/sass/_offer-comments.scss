@@ -36,11 +36,16 @@ div.commentAvatar > img {
 
 div.commentText {
   margin-top: .5em;
+  pre.parsed-text {
+    color: $main-font-color;
+  }
 }
 
 div.remove-comment {
-  text-align: right;
   color: $main-font-color;
+  text-align: right;
+  position: absolute;
+  right: 50px;
   transition: color 1s ease;
   cursor: pointer;
 
@@ -53,9 +58,12 @@ div.remove-comment {
   }
 }
 
-div.commentsTheComment.quotedComment {
+.commentsTheComment.quotedComment {
   margin-right: 1em;
   margin-left: 2em;
+  pre.parsed-text {
+    color: $button-grey-background-color;
+  }
 }
 
 div.commentQuoteCommentContent {
@@ -77,6 +85,7 @@ div.commentQuoteCommentContent {
 
   .commentsHeadTitle {
     text-decoration: underline;
+    color: $button-blueish-color;
   }
 
   .commentContent {
@@ -104,9 +113,15 @@ div.commentBlock {
   margin-top: 1em;
 }
 
-div.quotedContent div.commentsHeadOwner {
-  font-size: .8em;
-  margin-left: 1em;
+.commentsHeadOwner {
+  color: $button-blueish-color;
+}
+
+.quotedContent {
+  .commentsHeadOwner {
+    font-size: .8em;
+    margin-left: 1em;
+  }
 }
 
 .quoteAction {
