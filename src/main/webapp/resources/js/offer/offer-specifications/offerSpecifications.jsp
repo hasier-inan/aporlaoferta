@@ -7,24 +7,24 @@
                 <sec:authentication var="nickname" property="principal.username"/>
                 <div class="offer-specifications edit-offer"
                      ng-show="offer.offerUser.userNickname == '${nickname}'">
-                    <button class="button small small--rounded icon hvr-icon-grow fa-pencil whiteButton green-background"
+                    <button class="button small small--rounded icon hvr-icon-grow fa-pencil whiteButton blue-border"
                             ng-click="updateOffer(offer)">
                         Editar oferta
                     </button>
-                    <button class="button mini icon hvr-icon-grow fa-pencil whiteButton green-background"
+                    <button class="button mini icon hvr-icon-grow fa-pencil whiteButton blue-border"
                             ng-click="updateOffer(offer)">
                     </button>
                 </div>
                 <div class="offer-specifications edit-offer expire-offer"
                      ng-show="offer.offerUser.userNickname == '${nickname}'">
                     <button ng-disabled="offer.offerExpired"
-                            class="button small small--rounded icon hvr-icon-grow fa-trash whiteButton red-background"
+                            class="button small small--rounded icon hvr-icon-grow fa-trash whiteButton blue-border"
                             confirmed-click="expireOffer(offer)"
                             ng-confirm-click="¿Seguro que quieres caducar la oferta?">
                         Oferta Caducada
                     </button>
                     <button ng-disabled="offer.offerExpired"
-                            class="button mini icon hvr-icon-grow fa-trash whiteButton red-background"
+                            class="button mini icon hvr-icon-grow fa-trash whiteButton blue-border"
                             confirmed-click="expireOffer(offer)"
                             ng-confirm-click="¿Seguro que quieres caducar la oferta?">
                     </button>
@@ -72,28 +72,31 @@
                         <div class="offerSpecificationsFeedbackTotal">
 
                             <div class="feedbackSumatory">
-                                <h2 class="feedbackSumatory">{{offer.offerPositiveVote - offer.offerNegativeVote |
-                                    number:0}}</h2>
+                                <label class="feedbackSumatory__temperature">
+                                    <input type="checkbox" ng-model="specificFeedback">
+                                    <span class="feedbackTemperature">{{offer.offerPositiveVote - offer.offerNegativeVote |
+                                        number:0}}º</span>
+                                </label>
 
-                                <div class="offerSpecificationsFeedbackSmall">
+                                <div class="offerSpecificationsFeedbackSmall" ng-show="specificFeedback">
                                     <div id="offerPositiveFeedback">+{{offer.offerPositiveVote}}</div>
                                     <div id="offerNegativeFeedback">-{{offer.offerNegativeVote}}</div>
                                 </div>
                             </div>
                             <sec:authorize access="isAnonymous()">
-                                <div class="loginFeedbackMessage"><span ng-click="processLogin()">Identifícate</span> o <span ng-click="processRegister()">Regístrate</span> para votar esta oferta</div>
+                                <div class="loginFeedbackMessage"><span ng-click="processLogin()">Identifícate</span> o
+                                    <span ng-click="processRegister()">Regístrate</span> para votar esta oferta
+                                </div>
                             </sec:authorize>
                         </div>
                         <sec:authorize access="isAuthenticated()">
                             <div class="feedbackButtons">
-                                <div>
-                                    <button class="button small icon hvr-icon-grow fa-plus whiteButton green-background"
-                                            ng-click="votePositive(offer.id)"></button>
-                                </div>
-                                <div>
-                                    <button class="button small icon hvr-icon-grow fa-minus whiteButton red-background"
-                                            ng-click="voteNegative(offer.id)"></button>
-                                </div>
+                                <button class="button small icon whiteButton positive"
+                                        ng-click="votePositive(offer.id)">+
+                                </button>
+                                <button class="button small icon whiteButton negative"
+                                        ng-click="voteNegative(offer.id)">-
+                                </button>
                             </div>
                         </sec:authorize>
 
@@ -111,7 +114,8 @@
                         </a>
                     </h2>
 
-                    <div class="offerCompany offerSpecificationsBox"><i class="fa fa-tag" aria-hidden="true"></i>{{offer.offerCompany.companyName}}</div>
+                    <div class="offerCompany offerSpecificationsBox"><i class="fa fa-tag" aria-hidden="true"></i>{{offer.offerCompany.companyName}}
+                    </div>
                     <div class="offerSpecificationsOriginalPrice offerSpecificationsBox" ng-show="offer.originalPrice">
                         {{parsePrice(offer.originalPrice)}}€
                     </div>
@@ -144,7 +148,9 @@
             </div>
 
             <div class="offerSpecificationsLink">
-                <a href="{{offer.offerLink}}" target="_blank" class="icon medium--rounded hvr-icon-grow fa-cart-arrow-down hot-offers" ng-class="offer.offerExpired?'offer-expired':''">¡A por la oferta!</a>
+                <a href="{{offer.offerLink}}" target="_blank"
+                   class="icon medium--rounded hvr-icon-grow fa-cart-arrow-down hot-offers"
+                   ng-class="offer.offerExpired?'offer-expired':''">¡A por la oferta!</a>
             </div>
 
             <div ng-offer-comments="offerComments" the-comments="offer.offerComments" the-offer="offer.id"
