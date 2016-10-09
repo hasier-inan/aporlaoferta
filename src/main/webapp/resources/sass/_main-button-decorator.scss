@@ -104,6 +104,21 @@ button, a {
     border-color: $button-green-background-color;
   }
 
+  &.grey-background {
+    background-color: $button-grey-background-color;
+    border-color: $button-grey-background-color;
+  }
+
+  &.blue-border {
+    border-color: $button-blueish-background-color;
+    color: $button-blueish-background-color;
+
+    &:hover{
+      background-color: $button-blueish-background-color;
+      color: $main-font-color;
+    }
+  }
+
   &.dark-green-background {
     background-color: $button-dark-green-background-color;
     border-color: $button-dark-green-background-color;
