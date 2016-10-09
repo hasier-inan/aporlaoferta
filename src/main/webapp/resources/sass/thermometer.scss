@@ -1,0 +1,50 @@
+.offer-thermometer {
+  width: 9px;
+  margin-left: -14px;
+  height: 18px;
+  position: absolute;
+  vertical-align: bottom;
+  transition: background-color .5s ease, scale .2s ease;;
+  background-image: url("images/termo-cold-expired.png");
+  background-size: 100%;
+
+  &.offer-thermometer--big{
+    margin-left: -25px;
+    margin-top: -4px;
+    height: 36px;
+    width: 18px;
+  }
+}
+
+.offerImageAndFeedback, .offer-temperature {
+  &:not(.offer-expired) {
+    .offer-thermometer {
+      &.coldFeedback {
+        background-image: url("images/termo-cold.png");
+      }
+
+      &.hotFeedback {
+        background-image: url("images/termo-hot.png");
+      }
+
+      &.veryHotFeedback {
+        animation: very-hotty .5s infinite;
+        -webkit-animation: very-hotty-increase .5s infinite;
+        background-image: url("images/termo-super-hot.png");
+      }
+    }
+  }
+  &.offer-expired {
+    .offer-thermometer {
+      background-image: url("images/termo-cold-expired.png");
+
+      &.hotFeedback {
+        background-image: url("images/termo-hot-expired.png");
+      }
+
+      &.veryHotFeedback {
+        background-image: url("images/termo-super-hot-expired.png");
+      }
+    }
+  }
+}

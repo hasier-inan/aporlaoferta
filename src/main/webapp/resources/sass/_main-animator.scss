@@ -212,6 +212,60 @@ scotch.io
   }
 }
 
+@-moz-keyframes very-hotty-increase {
+  0% {
+    transform: scale(.95);
+  }
+  25% {
+    transform: scale(1.05);
+  }
+  50% {
+    transform: scale(1.10);
+  }
+  75% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(.95);
+  }
+}
+
+@-webkit-keyframes very-hotty-increase {
+  0% {
+    transform: scale(.95);
+  }
+  25% {
+    transform: scale(1.05);
+  }
+  50% {
+    transform: scale(1.10);
+  }
+  75% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(.95);
+  }
+}
+
+@keyframes very-hotty-increase {
+  0% {
+    transform: scale(.95);
+  }
+  25% {
+    transform: scale(1.05);
+  }
+  50% {
+    transform: scale(1.10);
+  }
+  75% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(.95);
+  }
+}
+
 @-moz-keyframes coldy {
   0% {
     background-color: $coldy-process-start-background-color;

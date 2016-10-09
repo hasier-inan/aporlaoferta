@@ -66,6 +66,10 @@
                         </div>
                     </sec:authorize>
                     <div class="offer-image-expired" ng-show="offer.offerExpired"></div>
+                    <div class="offer-temperature" ng-class="offer.offerExpired?'offer-expired':''">
+                        <span class="offer-thermometer offer-thermometer--big"
+                              ng-class="offerFeedbackStyle(offer)"></span>
+                    </div>
                     <img ng-src="{{offer.offerImage}}" ng-class="offer.offerExpired?'offer-expired':''"/>
 
                     <div class=" offerSpecificationsFeedback">
