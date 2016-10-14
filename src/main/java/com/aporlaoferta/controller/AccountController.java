@@ -344,7 +344,7 @@ public class AccountController {
             } else {
                 String okMessage = String.format("User successfully created. Id: %s", user.getId());
                 LOG.info(okMessage);
-                result.assignResultCode(ResultCode.ALL_OK, okMessage, "Usuario creado satisfactoriamente, se ha enviado un correo electrónico para verificar la cuenta");
+                result.assignResultCode(ResultCode.ALL_OK, okMessage, "Confirma tu cuenta en el correo electrónico que te hemos enviado");
                 this.emailService.sendAccountConfirmationEmail(user);
             }
         } catch (EmailSendingException | ValidationException e) {
