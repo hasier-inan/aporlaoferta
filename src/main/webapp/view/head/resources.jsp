@@ -22,6 +22,7 @@
 <script src="resources/assets/js/mainHTML.js"></script>
 <!--core-->
 <script src="resources/assets/js/angular.min.js"></script>
+<script src="resources/assets/js/autofill-event.js"></script>
 <script src="resources/assets/js/angular-recaptcha.js"></script>
 <script src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit&hl=es" async defer></script>
 <script src="resources/assets/js/angular-filter.min.js"></script>
