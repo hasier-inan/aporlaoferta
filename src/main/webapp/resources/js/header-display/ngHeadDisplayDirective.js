@@ -154,7 +154,9 @@ aporlaofertaApp
                     };
 
                     $scope.setTutorialCookie = function () {
-                        $cookies.put(configService.getEndpoint('tutorial.cookie'), 'true');
+                        var expireDate = new Date();
+                        expireDate.setDate(expireDate.getDate() + 365);
+                        $cookies.put(configService.getEndpoint('tutorial.cookie'), 'true', {'expires': expireDate});
                     };
 
                     $scope.setDefaultVisibility();

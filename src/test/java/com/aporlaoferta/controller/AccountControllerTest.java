@@ -93,9 +93,9 @@ public class AccountControllerTest {
     @Test
     public void testUserConfirmationWithEmptyValuesReturnsInvalidUUIDResponse() throws Exception {
         ModelAndView modelAndViewNoUUID = this.accountController.confirmUser("", "uuid");
-        assertThat("Expected the message to contain the invalid uuid log", (String) modelAndViewNoUUID.getModel().get("msg"), startsWith("Id de confirmación inválido"));
+        assertThat("Expected the message to contain the invalid uuid log", (String) modelAndViewNoUUID.getModel().get("msg"), startsWith("Identificador de confirmación inválido"));
         ModelAndView modelAndViewNoNickname = this.accountController.confirmUser("sdsd", "");
-        assertThat("Expected the message to contain the invalid uuid log", (String) modelAndViewNoNickname.getModel().get("msg"), startsWith("Id de confirmación inválido"));
+        assertThat("Expected the message to contain the invalid uuid log", (String) modelAndViewNoNickname.getModel().get("msg"), startsWith("Identificador de confirmación inválido"));
     }
 
     @Test
