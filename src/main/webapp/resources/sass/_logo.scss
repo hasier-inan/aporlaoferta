@@ -1,0 +1,63 @@
+.main-logo{
+  font-family: font-family-logo;
+  font-style: normal;
+}
+
+.only-page .main-slogan {
+  text-align: right;
+  font-size: 12px;
+  width: 200px;
+  top: 5em;
+  left: -17em;
+  position: absolute;
+}
+
+.only-page .main-slogan > p {
+  font-size: 100% !important;
+  line-height: 100% !important;
+}
+
+.main-slogan {
+  font-size: 0.75em;
+  height: 100%;
+  margin-bottom: 2em;
+  -moz-transition: opacity 0.5s ease, -moz-transform 1s ease;
+  -webkit-transition: opacity 0.5s ease, -webkit-transform 1s ease;
+  -ms-transition: opacity 0.5s ease, -ms-transform 1s ease;
+  transition: opacity 0.5s ease, transform 1s ease;
+  opacity: 0;
+}
+
+.main-slogan.visible {
+  opacity: 1;
+}
+
+.main-slogan p {
+  line-height: 0 !important;
+}
+
+.main-slogan p:last-child {
+  margin-top: -0.5em !important;
+}
+
+@media screen and (max-width: 738px) and (min-width: 481px) {
+  .main-slogan {
+    font-size: 1em;
+    margin-left: 2em;
+  }
+
+  .only-page .main-slogan {
+    left: -19em;
+  }
+}
+
+@media screen and (max-width: 980px) {
+
+  .only-page .main-slogan {
+    left: -17em;
+  }
+
+  .only-page .main-slogan > p:first-child {
+    margin-top: -2.5em !important;
+  }
+}
