@@ -2,7 +2,7 @@
 <header id="header" class="top-header">
     <div class="content only-page">
         <h1 class="only-page">
-            <em>aporlaoferta</em>
+            <em class="main-logo">aporlaoferta</em>
         </h1>
         <div ng-main-slogan="mainSlogan"/>
     </div>
