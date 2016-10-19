@@ -5,7 +5,7 @@
         <div class="tutorial-slide">
             <div class="tutorial-slide-content">
                 <h1 class="only-page">
-                    <em class="main-logo">aporlaoferta</em>
+                    <em class="main-logo__brand">aporlaoferta</em>
                 </h1>
 
                 <p>¡Bienvenido!</p>
