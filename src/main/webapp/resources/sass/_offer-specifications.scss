@@ -229,6 +229,9 @@ div.offerSpecificationsTitle > h1 {
   margin: 2em 0 3em 0;
   font-size: 14px;
   font-weight: normal;
+  pre.parsed-text {
+    color: $main-font-color;
+  }
 }
 
 .offerSpecificationsImage {
