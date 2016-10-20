@@ -75,23 +75,27 @@
                            class="overheadField content-validation"
                            placeholder="Email" required ng-pattern="validMail" ng-maxlength="250"/>
                 </ul>
-                <label id="imageUploadLabel" for="imageUploadContent" class="overhead-hint-label"
-                       ng-hide="disableNickname">Puedes añadir opcionalmente una imagen de perfil</label>
+                <ul>
+                    <label id="imageUploadLabel" for="imageUploadContent" class="overhead-hint-label"
+                           ng-hide="disableNickname">Puedes añadir opcionalmente una imagen de perfil</label>
 
-                <div id="imageUploadContent" ng-image-uploader="createAccountImageUploader"
-                     already-uploaded-image="theUser.userAvatar"
-                     final-url="theUser.userAvatar"></div>
+                    <div id="imageUploadContent" ng-image-uploader="createAccountImageUploader"
+                         already-uploaded-image="theUser.userAvatar"
+                         final-url="theUser.userAvatar"></div>
+                    <input type="hidden" id="createUserAvatar" ng-model="theUser.userAvatar" class="overheadField"/>
+                </ul>
 
-                <input type="hidden" id="createUserAvatar" ng-model="theUser.userAvatar" class="overheadField"/>
-                <label for="createAccountCaptcha" class="overhead-hint-label">Selecciona la casilla para probar que no
-                    eres
-                    un robot</label>
+                <ul>
+                    <label for="createAccountCaptcha" class="overhead-hint-label">Selecciona la casilla para probar que
+                        no
+                        eres
+                        un robot</label>
+
+                </ul>
                 <ul class="regular-bottom">
                     <li>
-
                         <div id="createAccountCaptcha" on-create="setWidgetId(widgetId)" vc-recaptcha key="publicKey"
                              class="offerCaptcha"></div>
-
                     </li>
                 </ul>
             </form>
