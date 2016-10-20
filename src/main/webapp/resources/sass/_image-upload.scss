@@ -12,26 +12,26 @@ span.helper {
   vertical-align: middle;
 }
 
-div.imageUploaderContent {
+.imageUploaderContent {
   border: $image-uploader-content-border;
   border-radius: .5em;
   color: $main-font-color;
   display: inline-block;
   margin-bottom: 1em;
-  margin-left: 1em;
+
+  .thumbnail {
+    background-color: $image-uploader-background-color;
+    border: $image-uploader-border;
+    border-style: dashed;
+    display: inline-block;
+    height: 10em;
+    margin: .5em;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 10em;
+  }
 }
 
-div.imageUploaderContent div.thumbnail {
-  background-color: $image-uploader-background-color;
-  border: $image-uploader-border;
-  border-style: dashed;
-  display: inline-block;
-  height: 10em;
-  margin: .5em;
-  vertical-align: middle;
-  white-space: nowrap;
-  width: 10em;
-}
 
 div.thumbnailButtons > .small {
   height: 2em;
