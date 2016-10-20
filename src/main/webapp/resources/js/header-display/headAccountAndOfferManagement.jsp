@@ -21,10 +21,10 @@
                     ng-click="displaySignup()"></button>
         </li>
         <button ng-class="{hidden:scrollPosition}"
-                class="button desktop overflown overflown-left icon hvr-icon-grow fa-sign-in whiteButton green-background"
+                class="button desktop overflown overflown-top overflown-left icon hvr-icon-grow fa-sign-in whiteButton green-background"
                 ng-click="displayLogin()"></button>
         <button ng-class="{hidden:scrollPosition}"
-                class="button desktop overflown overflown-left overflown-second icon hvr-icon-grow fa-user whiteButton blueish-background"
+                class="button desktop overflown overflown-top overflown-left overflown-second icon hvr-icon-grow fa-user whiteButton blueish-background"
                 ng-click="displaySignup()"></button>
     </sec:authorize>
 
@@ -36,7 +36,7 @@
         <button class="button mini hvr-icon-grow icon fa-pencil-square whiteButton inline right-aligned green-background fixed"
                 ng-click="displayOfferCreate()"></button>
         <button ng-class="{hidden:scrollPosition}"
-                class="button desktop overflown overflown-left icon hvr-icon-grow fa-pencil-square whiteButton inline right-aligned green-background"
+                class="button desktop overflown overflown-top overflown-left icon hvr-icon-grow fa-pencil-square whiteButton inline right-aligned green-background"
                 ng-click="displayOfferCreate()"></button>
     </sec:authorize>
 
@@ -48,7 +48,7 @@
     <div class="social-media-container ${pageContext.request.userPrincipal.name != null}">
         <div ng-social-media="socialMedia" share-url="shareUrl" share-text="shareText"></div>
     </div>
-    <button class="button to-the-top hvr-icon-bob overflown overflown-right icon fa-chevron-down whiteButton no-decoration filters-displayed"
+    <button class="button to-the-top hvr-icon-bob overflown overflown-bottom overflown-right icon fa-chevron-down whiteButton no-decoration filters-displayed"
             ng-class="{hidden:scrollPosition}"
             ng-click="toTheTop()"></button>
 </ul>

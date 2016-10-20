@@ -20,7 +20,6 @@ ul.actions.top_header {
 }
 
 ul.top_header > .overflown {
-  top: 10px;
   width: 40px;
   height: 40px;
   border-radius: 100%;
@@ -39,8 +38,16 @@ ul.top_header > .overflown {
   }
 }
 
+ul.top_header > .overflown-top {
+  top: 10px;
+}
+
+ul.top_header > .overflown-bottom {
+  bottom: 40px;
+}
+
 ul.top_header > .overflown-second {
-  top: 65px;
+  top: 65px !important;
 }
 
 ul.top_header > .overflown-left {
@@ -48,7 +55,7 @@ ul.top_header > .overflown-left {
 }
 
 ul.top_header > .overflown-right {
-  right: 25px;
+  right: 10px;
 }
 
 ul.top_header > .overflown.hidden {
