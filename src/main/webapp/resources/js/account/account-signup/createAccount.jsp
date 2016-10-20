@@ -62,7 +62,7 @@
                            ng-required="passwordUpdateRequired"/>
                     <input type="password" id="createUserPassword2" ng-model="userPassword2" ng-pattern="validPassword"
                            class="overheadField content-validation"
-                           placeholder="Repita la Contraseña" ng-maxlength="250"
+                           placeholder="Repite la Contraseña" ng-maxlength="250"
                            pw-check="createUserPassword"
                            ng-required="passwordUpdateRequired"/>
                 </ul>
