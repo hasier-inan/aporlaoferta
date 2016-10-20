@@ -45,7 +45,7 @@ div.offerSpecificationsRightContainer {
   a {
     background-color: $offer-specifications-title-color;
     color: $main-font-color;
-    font-size: 20px !important;
+    font-size: 18px !important;
     line-height: 40px;
     margin: 10px;
     padding-left: 40px;
@@ -164,10 +164,10 @@ div.offerSpecificationsRightContainer {
   }
 }
 
-div.offerSpecificationsTitle > h1 {
-  /*font-size: 3vw;*/
-  font-size: 36px;
-  margin-bottom: 0;
+div.offerSpecificationsTitle{
+  h2{
+    font-size: 28px;
+  }
 }
 
 .offerSpecificationsBox {
@@ -411,8 +411,10 @@ div#offerPositiveFeedback {
     font-size: .8em;
   }
 
-  div.offerSpecificationsTitle > h1 {
-    font-size: 20px;
+  div.offerSpecificationsTitle {
+    h2{
+      font-size: 24px;
+    }
   }
 
   div.containerSplitter {
