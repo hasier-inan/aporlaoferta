@@ -92,8 +92,15 @@ body {
   background-image: url("images/background_head5.png");
 }
 
-body.no-overflow {
-  overflow-y: hidden !important;
+body {
+  .body-container {
+
+    &.no-overflow {
+      overflow-y: hidden !important;
+      position: absolute;
+      height: 100%;
+    }
+  }
 }
 
 @font-face {
