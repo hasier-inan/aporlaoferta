@@ -93,13 +93,8 @@ body {
 }
 
 body {
-  .body-container {
-
-    &.no-overflow {
-      overflow-y: hidden !important;
-      position: absolute;
-      height: 100%;
-    }
+  &.no-overflow {
+    overflow-y: hidden !important;
   }
 }
 
