@@ -19,23 +19,22 @@
           href="resources/images/favicon.ico"/>
     <%@include file="head/resources.jsp" %>
 </head>
-<body id="top" data-ng-controller="APorLaOfertaController" flow-prevent-drop ng-keydown="keyHandler($event)">
+<body id="top" data-ng-controller="APorLaOfertaController" flow-prevent-drop ng-keydown="keyHandler($event)"
+      ng-class="{'no-overflow':overheadVisible}">
 
-<div class="body-container" ng-class="{'no-overflow':overheadVisible}">
-    <c:if test="${not empty msg}">
-        <input type="text" id="errorMessage" style="display:none" value="${msg}"/>
-    </c:if>
+<c:if test="${not empty msg}">
+    <input type="text" id="errorMessage" style="display:none" value="${msg}"/>
+</c:if>
 
-    <div ng-overhead-display="overheadDisplay" specific-offer="${specificOffer}"
-         overhead-visible="overheadVisible"></div>
+<div ng-overhead-display="overheadDisplay" specific-offer="${specificOffer}"
+     overhead-visible="overheadVisible"></div>
 
-    <div ng-promotion-list="promotionList"></div>
+<div ng-promotion-list="promotionList"></div>
 
-    <!-- Footer -->
-    <footer id="footer">
-        <div ng-footer="footer"/>
-    </footer>
-    <%@include file="footer/cookie.jsp" %>
-</div>
+<!-- Footer -->
+<footer id="footer">
+    <div ng-footer="footer"/>
+</footer>
+<%@include file="footer/cookie.jsp" %>
 </body>
 </html>
