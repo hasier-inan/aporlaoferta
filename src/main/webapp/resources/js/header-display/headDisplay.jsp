@@ -1,7 +1,8 @@
 <%@taglib prefix="sec"
           uri="http://www.springframework.org/security/tags" %>
-<div id="overheadSubContainer" class="overhead_subcontainer fadein hiddencontainer"
-     ng-class="{'userRelated' :(displayAccountCreation || displayAccountUpdate),
+<div id="overheadSubContainer" class="overhead_subcontainer hiddencontainer"
+     ng-class="{ 'overhead_subcontainer--visible' : (overheadVisible),
+                 'userRelated' :(displayAccountCreation || displayAccountUpdate),
                  'loginRelated' : (displayAccountLogin),
                  'offerRelated' : (displayOfferCreation),
                  'tutorialRelated' : (displayTutorial),

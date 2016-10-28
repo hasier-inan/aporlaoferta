@@ -29,9 +29,9 @@ div.overhead_container {
 }
 
 div.overhead_subcontainer {
-  width: 90%;
-  left: 5%;
-  margin-left: 0;
+  width: 500px;
+  left: 50%;
+  margin-left: -250px;
   position: fixed;
   height: auto;
   max-height: 90%;
@@ -46,19 +46,10 @@ div.overhead_subcontainer {
   background-position: top left, center center;
   background-size: auto, cover;
   overflow-y: auto !important;
-  opacity: 1;
-  -webkit-opacity: 1;
-  -moz-opacity: 1;
+  opacity: 0;
 
-  label {
-    color: $button-blueish-color;
-
-    &.overheadLabel {
-      font-size: 1em;
-      font-weight: normal;
-      margin: 0;
-      display: block;
-    }
+  &.overhead_subcontainer--visible{
+    opacity: 1;
   }
 
   &.overhead_subcontainer-fullscreen {
@@ -77,6 +68,10 @@ div.overhead_subcontainer {
     @extend .overhead_subcontainer--fixed;
   }
 
+  &.tutorialRelated {
+    @extend .overhead_subcontainer--fixed;
+  }
+
   &.offerRelated {
     background-image: url("images/background_offer6.png");
     width: 80%;
@@ -89,10 +84,23 @@ div.overhead_subcontainer {
     margin-left: 0;
   }
 
-  &.tutorialRelated {
-    @extend .overhead_subcontainer--fixed;
+  label {
+    color: $button-blueish-color;
+
+    &.overheadLabel {
+      font-size: 1em;
+      font-weight: normal;
+      margin: 0;
+      display: block;
+    }
   }
 
+}
+
+@media (min-width: 481px){
+  div.overhead_subcontainer {
+    transition: all .5s ease;
+  }
 }
 
 @media (min-width: 481px) and (max-width: 736px) {
