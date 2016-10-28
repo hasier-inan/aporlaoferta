@@ -32,6 +32,7 @@ offerManager.service('offerManager', ['$rootScope', 'alertService', 'requestMana
                 });
         }
         offerManagerController.showSpecifications = function (id) {
+            $rootScope.$broadcast('loadingOfferSpecifications');
             requestManager.makePostCall({}, {'id': id}, configService.getEndpoint('get.offer'))
                 .success(function (data, status, headers, config) {
                     $rootScope.$broadcast('offerSpecifications', data.theOffers);

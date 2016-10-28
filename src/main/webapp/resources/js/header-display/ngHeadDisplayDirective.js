@@ -17,6 +17,8 @@ aporlaofertaApp
                     $scope.theResponse = {};
                     $scope.fullscreen = false;
                     $scope.tutorialIsDisplayed = false;
+                    $scope.loadingOfferSpecifications = false;
+
                     $scope.displayLogin = function () {
                         $scope.setDefaultVisibility();
                         $scope.displayAccountLogin = true;
@@ -47,6 +49,11 @@ aporlaofertaApp
                         $scope.displayOfferSpecifications = true;
                         $scope.overheadVisible = true;
                     };
+                    $scope.displayOfferLoading = function () {
+                        $scope.setDefaultVisibility();
+                        $scope.loadingOfferSpecifications = true;
+                        $scope.overheadVisible = true;
+                    };
                     $scope.displayServerResponse = function () {
                         $scope.setDefaultVisibility();
                         $scope.displayResponseFromServer = true;
@@ -72,6 +79,7 @@ aporlaofertaApp
                         $scope.displayResponseFromServer = false;
                         $scope.displayTutorial = false;
                         $scope.tutorialIsDisplayed = false;
+                        $scope.loadingOfferSpecifications = false;
                     };
                     $scope.closeOverheadDisplay = function (customCloseCallback) {
                         $scope.setDefaultVisibility();
@@ -91,14 +99,15 @@ aporlaofertaApp
                     });
                     $scope.$on('offerSpecifications', function (event, args) {
                         $scope.offerSpecifications = args;
+                        $scope.loadingOfferSpecifications = false;
                         $scope.displayOfferDetails();
                         $scope.customCloseCallback = function () {
-                            $timeout(function () {
-                                $scope.offerSpecifications = [];
-                            }, 0);
+                            $scope.offerSpecifications = [];
                             $scope.fullscreen = false;
                         }
-
+                    });
+                    $scope.$on('loadingOfferSpecifications', function () {
+                        $scope.displayOfferLoading();
                     });
 
                     $scope.$on('updateTheOffer', function (event, args) {
