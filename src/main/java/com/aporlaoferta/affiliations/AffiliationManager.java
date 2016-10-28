@@ -91,7 +91,7 @@ public class AffiliationManager {
                 && !isEmpty(offerCompany.getCompanyAffiliateId());
     }
 
-    public int isUrlAlive(String rawLink) throws UnhealthyException {
+    public String isUrlAlive(String rawLink) throws UnhealthyException {
         return this.urlParser.isAlive(rawLink);
     }
 

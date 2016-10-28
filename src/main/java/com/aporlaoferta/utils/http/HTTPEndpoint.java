@@ -8,10 +8,5 @@ package com.aporlaoferta.utils.http;
  */
 public interface HTTPEndpoint {
     //returns true if connection is healthy
-    Boolean executeConnection();
-
-    //get raw response (if it is not healthy error details should be provided)
-    String getEndpointResponse();
-
-    int getEndpointStatusCode();
+    String executeConnection();
 }

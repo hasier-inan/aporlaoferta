@@ -47,7 +47,7 @@ public enum ResultCode {
     DEFAULT_ERROR(66, ResponseResult.INVALID_DATA_PROVIDED,
             "Could not perform operation", "No se ha podido ejecutar la operación"),
     UNHEALTHY_ENDPOINT(70, ResponseResult.INVALID_DATA_PROVIDED,
-            "Provided url is not healthy", "La dirección url de la oferta no es correcta"),
+            "Provided url is not healthy", "La dirección URL de la oferta no es correcta"),
     INVALID_CAPTCHA(75, ResponseResult.INVALID_DATA_PROVIDED, "Invalid Captcha", "Captcha inválido"),
     INVALID_CONFIRMATION_ID(78, ResponseResult.INVALID_DATA_PROVIDED, "Invalid confirmation id", "Identificador de confirmación inválido");
 

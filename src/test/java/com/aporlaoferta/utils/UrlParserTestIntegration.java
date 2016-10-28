@@ -1,15 +1,13 @@
 package com.aporlaoferta.utils;
 
-import org.apache.commons.httpclient.HttpStatus;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
 import java.util.Map;
 
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.springframework.util.Assert.notNull;
 import static org.springframework.util.StringUtils.isEmpty;
 
@@ -19,9 +17,10 @@ import static org.springframework.util.StringUtils.isEmpty;
  * Date: 19/07/15
  * Time: 18:24
  */
-public class UrlParserTest {
+public class UrlParserTestIntegration {
 
-    private final String correctUrl = "www.amazon.es/gp/product/B00K690INE/?aka=2#";
+    private final String correctUrl = "http://www.amazon.es/gp/product/B00K690INE/?aka=2#";
+    private final String incorrectUrl = "https://www.amazon.co.uk/Borderlandsz";
     private final String correctEndpointUrl = "http://www.amazon.es/gp/product/B00K690INE/theEndpoint?aka=2";
     private final String nonExistingUrl = "http://amazon.ez/gp/product/B00K690INE/?aka=2";
     private final String incorrectEncodingUrl = "http://www.amazon.es/gp/product/B00K690INE/?aká~ñ=伊2";
@@ -63,6 +62,12 @@ public class UrlParserTest {
     @Test
     public void testHealthyURLReturnsCorrectResponse() throws Exception {
         UrlParser urlParser = new UrlParser();
-        Assert.assertThat("Expected a 200 code response", urlParser.isAlive(this.correctUrl), is(HttpStatus.SC_OK));
+        Assert.assertThat("Expected a 200 code response", urlParser.isAlive(this.correctUrl), containsString(this.correctUrl));
+    }
+
+    @Test(expected = UnhealthyException.class)
+    public void testUnHealthyNonExistingURLReturnsException() throws Exception {
+        UrlParser urlParser = new UrlParser();
+        urlParser.isAlive(this.incorrectUrl);
     }
 }

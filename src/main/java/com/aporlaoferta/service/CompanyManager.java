@@ -42,18 +42,18 @@ public class CompanyManager {
     }
 
     public String createAffiliationLink(OfferCompany offerCompany, String rawLink) throws MalformedURLException, UnsupportedEncodingException, UnhealthyException {
-        this.affiliationManager.isUrlAlive(rawLink);
+        String lastRedirect = this.affiliationManager.isUrlAlive(rawLink);
 
-        if (offerCompany == null || isEmpty(offerCompany.getCompanyAffiliateId()) || isEmpty(rawLink)) {
+        if (offerCompany == null || isEmpty(offerCompany.getCompanyAffiliateId()) || isEmpty(lastRedirect)) {
             LOG.info("No affiliation found for the given company");
-            return UrlUtils.parseUrl(rawLink);
+            return UrlUtils.parseUrl(lastRedirect);
         }
         try {
-            return this.affiliationManager.constructAffiliatedLink(offerCompany, UrlUtils.parseUrl(rawLink));
+            return this.affiliationManager.constructAffiliatedLink(offerCompany, UrlUtils.parseUrl(lastRedirect));
         } catch (InvalidAffiliatedCompany e) {
             LOG.error("Could not add custom affiliation id to offer url: ", e);
         }
-        return UrlUtils.parseUrl(rawLink);
+        return UrlUtils.parseUrl(lastRedirect);
     }
 
     public String getWatermarkedCompany(String uri) {
