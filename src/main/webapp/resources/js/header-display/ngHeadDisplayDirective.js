@@ -74,7 +74,7 @@ aporlaofertaApp
                         $scope.tutorialIsDisplayed = false;
                     };
                     $scope.closeOverheadDisplay = function (customCloseCallback) {
-                        $scope.overheadVisible = false;
+                        $scope.setDefaultVisibility();
                         if (typeof customCloseCallback == "function") {
                             customCloseCallback();
                             $scope.customCloseCallback = {};
@@ -95,7 +95,7 @@ aporlaofertaApp
                         $scope.customCloseCallback = function () {
                             $timeout(function () {
                                 $scope.offerSpecifications = [];
-                            }, 100);
+                            }, 0);
                             $scope.fullscreen = false;
                         }
 

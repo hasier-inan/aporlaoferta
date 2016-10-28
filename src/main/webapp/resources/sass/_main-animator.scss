@@ -2,14 +2,6 @@
 scotch.io
 */
 
-.overhead_subcontainer.ng-hide-add {
-  animation: 0.3s fadeOut ease;
-}
-
-.overhead_subcontainer.ng-hide-remove {
-  animation: 0.5s flipInX ease;
-}
-
 @keyframes flipInX {
   0% {
     /*transform: perspective(400px) rotate3d(1, 0, 0, 90deg);*/
