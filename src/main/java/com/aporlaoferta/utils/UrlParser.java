@@ -55,11 +55,12 @@ public class UrlParser {
         return extractHost(UrlUtils.parseUrl(initialUrl)) + parameters;
     }
 
-    public int isAlive(String url) throws UnhealthyException {
+    public String isAlive(String url) throws UnhealthyException {
         HTTPEndpoint httpEndpoint = new HTTPGetEndpoint(UrlUtils.parseUrl(url), TIMEOUT);
-        if (!httpEndpoint.executeConnection()) {
+        String lastRedirect = httpEndpoint.executeConnection();
+        if (isEmpty(lastRedirect)) {
             throw new UnhealthyException();
         }
-        return httpEndpoint.getEndpointStatusCode();
+        return lastRedirect;
     }
 }

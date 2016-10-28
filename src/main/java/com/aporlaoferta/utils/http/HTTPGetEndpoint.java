@@ -1,14 +1,12 @@
 package com.aporlaoferta.utils.http;
 
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.config.RequestConfig;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.HttpClientBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 /**
  * Created with IntelliJ IDEA.
@@ -30,21 +28,24 @@ public class HTTPGetEndpoint extends HTTPRequestEndpoint implements HTTPEndpoint
     }
 
     @Override
-    public Boolean executeConnection() {
-        //initialize client
+    public String executeConnection() {
         try {
-            RequestConfig.Builder requestBuilder = RequestConfig.custom();
-            requestBuilder = requestBuilder.setConnectTimeout(getConnectionTimeout());
-            requestBuilder = requestBuilder.setConnectionRequestTimeout(getConnectionTimeout());
-            HttpClient client = HttpClientBuilder.create().setDefaultRequestConfig(requestBuilder.build()).build();
-            setResponse(client.execute(new HttpGet(this.getUrl())));
-            return isHealthyConnection();
+            URL url = new URL(this.getUrl());
+            HttpURLConnection http = (HttpURLConnection) url.openConnection();
+            http.setInstanceFollowRedirects(true);
+            int statusCode = http.getResponseCode();
+
+            String lastUrl = http.getURL().toString();
+            setResponse(http);
+            if (isHealthyConnection()) {
+                return lastUrl;
+            }
         } catch (IOException e) {
             this.LOG.error(e.getMessage());
         } catch (Exception e) {
             this.LOG.error(e.getMessage());
         }
-        return false;
+        return null;
     }
 
 }
