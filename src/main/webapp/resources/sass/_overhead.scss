@@ -48,11 +48,11 @@ div.overhead_subcontainer {
   overflow-y: auto !important;
   opacity: 0;
 
-  &.offer-specifications-loading{
-      opacity: 1;
+  &.offer-specifications-loading {
+    opacity: 1;
   }
 
-  &.overhead_subcontainer--visible{
+  &.overhead_subcontainer--visible {
     opacity: 1;
   }
 
@@ -60,14 +60,15 @@ div.overhead_subcontainer {
     width: 100% !important;
     max-height: 100% !important;
     left: 0 !important;
-    top: 0 !important;
+    top: 50px !important;
     box-shadow: none !important;
     margin: 0 !important;
-    height: 100% !important;
+    height: 93% !important;
     border: 0 !important;
+    border-radius: 0;
   }
 
-  &.userRelated,&.loginRelated {
+  &.userRelated, &.loginRelated {
     background-image: url("images/background_usr6.png");
     @extend .overhead_subcontainer--fixed;
   }
@@ -101,7 +102,7 @@ div.overhead_subcontainer {
 
 }
 
-@media (min-width: 481px){
+@media (min-width: 481px) {
   div.overhead_subcontainer {
     transition: all .5s ease;
   }
@@ -111,7 +112,7 @@ div.overhead_subcontainer {
   div.overhead_subcontainer {
     width: 90%;
 
-    &.userRelated,&.loginRelated {
+    &.userRelated, &.loginRelated {
       width: 80%;
       left: 10%;
       margin-left: 0;
@@ -139,28 +140,35 @@ div.overhead_subcontainer {
 
 @media (max-width: 480px) {
   div.overhead_subcontainer {
+    &:not(.overhead_subcontainer-fullscreen) {
+      top: 0 !important;
+      height: 100% !important;
+      max-height: 100% !important;
+    }
+    &.overhead_subcontainer-fullscreen {
+      top: 50px!important;
+      height: 88%!important;
+      max-height: 88%!important;
+    }
 
     &.userRelated,
     &.offer-specifications-background,
     &.offerRelated,
-    &.offer-specifications-loading{
+    &.offer-specifications-loading {
       width: 100% !important;
-      max-height: 100% !important;
       left: 0 !important;
-      top: 0 !important;
       box-shadow: none !important;
       margin: 0 !important;
-      height: 100% !important;
       border: 0 !important;
     }
 
-    &.tutorialRelated,&.loginRelated {
+    &.tutorialRelated, &.loginRelated {
       width: 90%;
       left: 5%;
       margin-left: 0;
     }
 
-    .loading-specifications{
+    .loading-specifications {
       padding-left: 1em;
       margin-top: 50%;
     }

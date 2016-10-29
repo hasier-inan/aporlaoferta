@@ -70,7 +70,7 @@ public class AccountController {
         return tc;
     }
 
-    @RequestMapping(value = {"/", "/start**", "/index**"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "/start**", "/index**", "/offer"}, method = RequestMethod.GET)
     public ModelAndView start(@RequestParam(value = "sh", required = false) Long number) {
         ModelAndView model = new ModelAndView();
         if (!isEmpty(number)) {
