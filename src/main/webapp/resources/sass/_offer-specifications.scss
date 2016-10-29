@@ -9,7 +9,7 @@
     opacity: .75;
   }
 
-  .main-logo {
+  .main-logo.main-logo--header {
     position: inherit;
     width: 60px;
     display: inline-block;
@@ -113,8 +113,11 @@ div.offerSpecificationsRightContainer {
     text-decoration: none;
 
     &:hover {
-      &::before {
-        color: $button-hot-offers-background !important;
+      .main-logo{
+        background-image: url("images/logo_cover_large.svg");
+        width: 45px;
+        height: 40px;
+        left: 10px;
       }
     }
 
@@ -129,6 +132,19 @@ div.offerSpecificationsRightContainer {
           color: $offer-expired-color !important;
         }
       }
+    }
+
+    .main-logo{
+      width: 40px;
+      height: 35px;
+      left: 15px;
+      position: absolute;
+      display: inline-block;
+      background-image: url("images/logo_cover_white_large.svg");
+    }
+
+    .main-logo__cta{
+      margin-left: 20px;
     }
   }
 }

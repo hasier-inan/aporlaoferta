@@ -28,8 +28,11 @@
                             M&aacute;s
                             detalle
                         </a>
-                        <a class="button icon small--rounded hvr-icon-pulse-grow offer-cta fa-fire"
-                           href="{{offer.offerLink}}" target="_blank">¡A por la oferta!</a>
+                        <a class="button icon small--rounded offer-cta"
+                           href="{{offer.offerLink}}" target="_blank">
+                            <div class="main-logo"></div>
+                            <div class="main-logo__cta">¡A por la oferta!</div>
+                        </a>
                     </div>
                 </div>
                 <div class="content" ng-class="offer.offerExpired?'offer-expired':''">
@@ -56,8 +59,11 @@
                     </p>
 
                     <div class="offer-call-to-actions">
-                        <a class="button icon small--rounded hvr-icon-pulse-grow offer-cta fa-fire"
-                           href="{{offer.offerLink}}" target="_blank">¡A por la oferta!</a>
+                        <a class="button icon small--rounded offer-cta"
+                           href="{{offer.offerLink}}" target="_blank">
+                            <div class="main-logo"></div>
+                            <div class="main-logo__cta">¡A por la oferta!</div>
+                        </a>
                         <a class="button icon small--rounded hvr-icon-forward fa-sign-in more-detail-cta"
                            ng-click="showSpecifications(offer.id)">
                             M&aacute;s

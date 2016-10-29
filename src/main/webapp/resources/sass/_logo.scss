@@ -21,38 +21,42 @@ body.is-loading #header .content {
 }
 
 .main-logo {
-  width: 130px;
-  height: 105px;
   background-size: 100%;
   background-repeat: no-repeat;
   background-image: url("images/logo_cover_large.svg");
   text-align: center;
-  position: absolute;
-  margin-top: -65px;
-  left: 50%;
-  margin-left: -65px;
   transition: all ease .5s;
 
-  @media (min-width: 738px) and (max-width: 980px) {
-    width: 116px;
-    height: 95px;
-    margin-left: -58px;
-    margin-top: -60px;
-  }
-
-  @media (min-width: 481px) and (max-width: 737px) {
-    width: 106px;
-    height: 85px;
-    margin-left: -53px;
-    margin-top: -55px;
-  }
-
-  @media (max-width: 480px) {
+  &.main-logo--list{
     width: 130px;
     height: 105px;
-    margin-top: -75px;
+    position: absolute;
+    margin-top: -65px;
     margin-left: -65px;
+    left: 50%;
+
+    @media (min-width: 738px) and (max-width: 980px) {
+      width: 116px;
+      height: 95px;
+      margin-left: -58px;
+      margin-top: -60px;
+    }
+
+    @media (min-width: 481px) and (max-width: 737px) {
+      width: 106px;
+      height: 85px;
+      margin-left: -53px;
+      margin-top: -55px;
+    }
+
+    @media (max-width: 480px) {
+      width: 130px;
+      height: 105px;
+      margin-top: -75px;
+      margin-left: -65px;
+    }
   }
+
 
   &__brand {
     font-family: font-family-logo;

@@ -2,12 +2,11 @@
           uri="http://www.springframework.org/security/tags" %>
 <div ng-show="overheadVisible && fullscreen" ng-click="redirectHome()">
     <div class="offer-specifications_brand-logo">
-        <div class="main-logo">
+        <div class="main-logo main-logo--header">
         </div>
         <h1 class="only-page">
             <em class="main-logo__brand">aporlaoferta</em>
         </h1>
-
         <div class="main-logo__slogan" ng-main-slogan="mainSlogan"/>
     </div>
 </div>
