@@ -153,8 +153,11 @@
 
             <div class="offerSpecificationsLink">
                 <a href="{{offer.offerLink}}" target="_blank"
-                   class="icon medium--rounded hvr-icon-grow fa-cart-arrow-down hot-offers"
-                   ng-class="offer.offerExpired?'offer-expired':''">¡A por la oferta!</a>
+                   class="icon medium--rounded hvr-icon-grow hot-offers"
+                   ng-class="offer.offerExpired?'offer-expired':''">
+                    <div class="main-logo"></div>
+                    <div class="main-logo__cta">¡A por la oferta!</div>
+                </a>
             </div>
 
             <div ng-offer-comments="offerComments" the-comments="offer.offerComments" the-offer="offer.id"

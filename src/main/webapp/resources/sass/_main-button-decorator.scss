@@ -17,9 +17,23 @@ button, a {
       border-color: $button-hot-offers-background;
 
       &:hover {
-        &::before {
-          color: $get-offer-hot-color;
+        .main-logo{
+          background-image: url("images/logo_cover_large.svg");
+          left: 8px;
         }
+      }
+
+      .main-logo{
+        width: 27px;
+        height: 22px;
+        left: 10px;
+        position: absolute;
+        display: inline-block;
+        background-image: url("images/logo_cover_white_large.svg");
+      }
+
+      .main-logo__cta{
+        margin-left: 18px;
       }
     }
 
