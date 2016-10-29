@@ -26,13 +26,16 @@
     <input type="text" id="errorMessage" style="display:none" value="${msg}"/>
 </c:if>
 
-<div ng-overhead-display="overheadDisplay" specific-offer="${specificOffer}"
+<div ng-overhead-display="overheadDisplay"
+     specific-offer="${specificOffer}"
+     fullscreen="fullscreen"
+     no-accounts="fullscreen"
      overhead-visible="overheadVisible"></div>
 
-<div ng-promotion-list="promotionList"></div>
+<div ng-promotion-list="promotionList" ng-hide="fullscreen"></div>
 
 <!-- Footer -->
-<footer id="footer">
+<footer id="footer" ng-class="{'overhead-footer' : (fullscreen)}">
     <div ng-footer="footer"/>
 </footer>
 <%@include file="footer/cookie.jsp" %>

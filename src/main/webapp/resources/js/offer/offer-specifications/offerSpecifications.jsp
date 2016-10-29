@@ -32,24 +32,24 @@
                 <sec:authorize ifAllGranted="ROLE_ADMIN">
                     <div class="offer-specifications edit-offer"
                          ng-show="offer.offerUser.userNickname != '${nickname}'">
-                        <button class="button small small--rounded icon hvr-icon-grow fa-pencil whiteButton green-background"
+                        <button class="button small small--rounded icon hvr-icon-grow fa-pencil whiteButton blue-border"
                                 ng-click="updateOffer(offer)">
                             Editar oferta
                         </button>
-                        <button class="button mini icon hvr-icon-grow fa-pencil whiteButton green-background"
+                        <button class="button mini icon hvr-icon-grow fa-pencil whiteButton blue-border"
                                 ng-click="updateOffer(offer)">
                         </button>
                     </div>
                     <div class="offer-specifications edit-offer expire-offer"
                          ng-show="offer.offerUser.userNickname != '${nickname}'">
                         <button ng-disabled="offer.offerExpired"
-                                class="button small small--rounded  icon hvr-icon-grow fa-trash whiteButton red-background"
+                                class="button small small--rounded  icon hvr-icon-grow fa-trash whiteButton blue-border"
                                 confirmed-click="expireOffer(offer)"
                                 ng-confirm-click="¿Seguro que quieres caducar la oferta?">
                             Oferta Caducada
                         </button>
                         <button ng-disabled="offer.offerExpired"
-                                class="button mini icon hvr-icon-grow fa-trash whiteButton red-background"
+                                class="button mini icon hvr-icon-grow fa-trash whiteButton blue-border"
                                 confirmed-click="expireOffer(offer)"
                                 ng-confirm-click="¿Seguro que quieres caducar la oferta?">
                         </button>

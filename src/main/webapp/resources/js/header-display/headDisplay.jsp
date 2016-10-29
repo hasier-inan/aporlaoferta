@@ -1,5 +1,16 @@
 <%@taglib prefix="sec"
           uri="http://www.springframework.org/security/tags" %>
+<div ng-show="overheadVisible && fullscreen" ng-click="redirectHome()">
+    <div class="offer-specifications_brand-logo">
+        <div class="main-logo">
+        </div>
+        <h1 class="only-page">
+            <em class="main-logo__brand">aporlaoferta</em>
+        </h1>
+
+        <div class="main-logo__slogan" ng-main-slogan="mainSlogan"/>
+    </div>
+</div>
 <div id="overheadSubContainer" class="overhead_subcontainer hiddencontainer"
      ng-class="{ 'overhead_subcontainer--visible' : (overheadVisible),
                  'userRelated' :(displayAccountCreation || displayAccountUpdate),
@@ -17,7 +28,8 @@
             <i class="fa fa-refresh loadingdialogue white"></i>
         </div>
         <div ng-show="displayOfferSpecifications" ng-offer-specifications="offerSpecifications"
-             the-offer="offerSpecifications" custom-close-callback="customCloseCallback"></div>
+             the-offer="offerSpecifications" custom-close-callback="customCloseCallback">
+        </div>
         <div ng-show="displayResponseFromServer" ng-response-from-server="responseFromServer"
              the-response="theResponse"></div>
         <div ng-show="displayTutorial" ng-quick-tutorial="quickTutorial" is-displayed="tutorialIsDisplayed"></div>
@@ -48,7 +60,7 @@
         </li>
     </ul>
 </div>
-<div id="overheadContainer" class="overhead_container " ng-show="overheadVisible" ng-keypress="keyHandler($event)">
+<div id="overheadContainer" class="overhead_container " ng-show="overheadVisible && !fullscreen" ng-keypress="keyHandler($event)">
 </div>
 
 <div ng-head-account-and-offer-management

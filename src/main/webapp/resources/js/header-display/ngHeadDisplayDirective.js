@@ -9,10 +9,11 @@ aporlaofertaApp
             scope: {
                 specificOffer: '@',
                 overheadVisible: '=',
-                noAccounts: '='
+                noAccounts: '=',
+                fullscreen: '='
             },
-            controller: ['$scope', 'offerManager', '$timeout', '$cookies', 'configService',
-                function ($scope, $offerManager, $timeout, $cookies, configService) {
+            controller: ['$scope', '$window', 'offerManager', '$timeout', '$cookies', 'configService',
+                function ($scope, $window, $offerManager, $timeout, $cookies, configService) {
                     $scope.customCloseCallback = {};
                     $scope.theResponse = {};
                     $scope.fullscreen = false;
@@ -106,6 +107,9 @@ aporlaofertaApp
                             $scope.fullscreen = false;
                         }
                     });
+                    $scope.redirectHome = function () {
+                        $window.location.href = '/';
+                    };
                     $scope.$on('loadingOfferSpecifications', function () {
                         $scope.displayOfferLoading();
                     });
@@ -175,7 +179,7 @@ aporlaofertaApp
                         angular.element($('#overheadSubContainer')).removeClass('hiddencontainer');
                     }, 100);
 
-                    if ($cookies.get(configService.getEndpoint('tutorial.cookie')) != 'true') {
+                    if (($cookies.get(configService.getEndpoint('tutorial.cookie')) != 'true') && !$scope.specificOffer) {
                         $timeout(function () {
                             $scope.displayTutorialDiagram();
                         }, 2000);

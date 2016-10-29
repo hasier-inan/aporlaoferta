@@ -1,3 +1,63 @@
+.offer-specifications_brand-logo {
+  width: 100%;
+  height: 50px;
+  z-index: 1020;
+  color: $main-font-color;
+  cursor: pointer;
+  transition: opacity .5s ease;
+  &:hover{
+    opacity: .75;
+  }
+
+  .main-logo {
+    position: inherit;
+    width: 60px;
+    display: inline-block;
+    height: 100%;
+    margin: 0;
+    @media screen and (max-width: 480px) {
+      width: 55px;
+    }
+  }
+
+  .only-page {
+    vertical-align: top;
+    margin: 0 0 0 5px;
+
+    .main-logo__brand {
+      font-size: 42px;
+      @media screen and (max-width: 480px) {
+        font-size: 30px;
+      }
+    }
+  }
+
+  .main-logo__slogan {
+    display: inline-block;
+    vertical-align: middle;
+    .main-slogan {
+      height: auto !important;
+      p:last-child {
+        margin-top: 0 !important;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      vertical-align: top;
+      margin-top: -25px;
+      text-align: center;
+      width: 100%;
+      .main-slogan {
+        display: inline-block;
+        margin-bottom: 0;
+        p {
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
+
 .offerSpecificationsContainer {
   font-size: 0.8em;
   color: $main-font-color;
@@ -164,8 +224,8 @@ div.offerSpecificationsRightContainer {
   }
 }
 
-div.offerSpecificationsTitle{
-  h2{
+div.offerSpecificationsTitle {
+  h2 {
     font-size: 28px;
   }
 }
@@ -241,21 +301,21 @@ div.offerSpecificationsTitle{
   height: 100%;
   margin-left: 2%;
 
-  .offer-temperature{
-    .offer-thermometer{
+  .offer-temperature {
+    .offer-thermometer {
       margin-left: -15px !important;
       left: 30px;
       top: 15px;
 
       @media screen and (min-width: 738px) and (max-width: 960px) {
-        &.offer-thermometer--big{
+        &.offer-thermometer--big {
           height: 26px;
           width: 13px;
         }
       }
 
       @media screen and (max-width: 480px) {
-        &.offer-thermometer--big{
+        &.offer-thermometer--big {
           height: 26px;
           width: 13px;
         }
@@ -412,7 +472,7 @@ div#offerPositiveFeedback {
   }
 
   div.offerSpecificationsTitle {
-    h2{
+    h2 {
       font-size: 24px;
     }
   }
