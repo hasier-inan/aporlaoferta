@@ -33,10 +33,12 @@
                            placeholder="usuario" ng-disabled="disableNickname" required ng-maxlength="250"/>
                 </ul>
                 <ul ng-show="disableNickname">
-                    <input type="checkbox" id="updatePasswordIsRequired" name="updatePasswordIsRequired"
-                           ng-model="passwordUpdateRequired" ng-click="resetPassword()">
-                    <label id="updatePasswordIsRequiredLabel" for="updatePasswordIsRequired" class="overheadLabel">Actualizar
-                        Contraseña</label>
+                    <div class="inline-block">
+                        <input type="checkbox" id="updatePasswordIsRequired" name="updatePasswordIsRequired"
+                               ng-model="passwordUpdateRequired" ng-click="resetPassword()">
+                        <label id="updatePasswordIsRequiredLabel" for="updatePasswordIsRequired" class="overheadLabel">Actualizar
+                            Contraseña</label>
+                    </div>
                 </ul>
                 <ul ng-show="disableNickname && passwordUpdateRequired">
                     <label for="oldUserPassword" class="overhead-hint-label">
