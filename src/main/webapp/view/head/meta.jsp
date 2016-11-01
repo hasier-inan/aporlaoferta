@@ -7,5 +7,5 @@
 <meta property="og:type" content="gestor y buscador de ofertas online"/>
 <meta property="og:title" content="aporlaoferta ~ comparte ofertas y promociones online"/>
 <meta property="og:description"
-      content="aporlaoferta es un gestor de ofertas, promociones, rebajas y chollos online, creados por y para todos los usuarios españoles"/>
+      content="Promociones, rebajas y chollos online. Si conoces una oferta, ¡publícala! También hay miles para ti."/>
 <meta property="og:image" content="https://s3-us-west-2.amazonaws.com/aporlaofertaimages/static/logo2.png"/>
