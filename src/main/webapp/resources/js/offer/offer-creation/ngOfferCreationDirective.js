@@ -11,8 +11,8 @@ aporlaofertaApp
                 customCloseCallback: '=',
                 displayCallback: '='
             },
-            controller: ['$scope', 'offerManager', 'requestManager', 'configService', 'alertService', 'vcRecaptchaService',
-                function ($scope, offerManager, requestManager, configService, alertService, vcRecaptchaService) {
+            controller: ['$scope', '$rootScope', 'offerManager', 'requestManager', 'configService', 'alertService', 'vcRecaptchaService',
+                function ($scope, $rootScope, offerManager, requestManager, configService, alertService, vcRecaptchaService) {
                     $scope.offer = {};
                     $scope.widgetId = null;
                     $scope.publicKey = "6LdqHQoTAAAAAAht2VhkrLGU26eBOjL-nK9zXxcn";
@@ -80,7 +80,6 @@ aporlaofertaApp
                         $scope.offer = {};
                         $scope.brandNewCompany = false;
                         $scope.resetCategory = true;
-                        $scope.resetCompany = true;
                     };
                     $scope.setWidgetId = function (widgetId) {
                         $scope.widgetId = widgetId;
@@ -88,9 +87,10 @@ aporlaofertaApp
 
                     $scope.isCompanyDefined = function () {
                         if ($scope.offer) {
-                            return $scope.offer.offerCompany != undefined && $scope.selectedcompany != "";
+                            return $scope.offer.offerCompany && $scope.offer.offerCompany.companyName;
                         }
                     };
+
                     $scope.isCategorySelected = function () {
                         return !$scope.isEmptyCategory($scope.offer.offerCategory);
                     };
@@ -102,6 +102,37 @@ aporlaofertaApp
                     $scope.selectionPerformed = function () {
                         return $scope.isCompanyDefined() && $scope.isCategorySelected();
                     }
+
+                    $scope.offerCompanies = {};
+
+                    $scope.suggest_company=function(term) {
+                        var q = term.toLowerCase().trim();
+                        var results = [];
+                        for (var i = 0; i < $scope.offerCompanies.length && results.length < 10; i++) {
+                            var company = $scope.offerCompanies[i].companyName;
+                            if (company.toLowerCase().indexOf(q) === 0)
+                                results.push({ label: company, value: company });
+                        }
+                        return results;
+                    }
+
+                    $scope.autocomplete_options = {
+                        suggest: $scope.suggest_company
+                    };
+
+                    $scope.populateCompanyList = function () {
+                        requestManager.makePostCall({}, {}, configService.getEndpoint('get.companies'))
+                            .success(function (data, status, headers, config) {
+                                $scope.offerCompanies = angular.copy(data);
+                            }).error(function (data, status, headers, config) {
+                            var theResponse = {};
+                            theResponse.description = data;
+                            theResponse.responseResult = "error";
+                            $rootScope.$broadcast('serverResponse', theResponse);
+                        });
+                    };
+
+                    $scope.populateCompanyList();
                 }]
         }
     });

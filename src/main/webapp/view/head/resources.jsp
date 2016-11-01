@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="resources/assets/css/ie9.css"/><![endif]-->
 <link rel="stylesheet" href="resources/assets/css/bootstrap.min.css"/>
 <link rel="stylesheet" href="resources/assets/css/angular-cookie-law.css">
-<link rel="stylesheet" href="resources/assets/css/angular-material-custom.css">
 <link rel="stylesheet" href="resources/assets/css/angular-dropdowns-custom.css">
 <link rel="stylesheet" href="resources/assets/css/slick.css">
 <link rel="stylesheet" href="resources/assets/css/hover-custom-min.css">
@@ -29,15 +28,16 @@
 <script src="resources/assets/js/ng-flow-standalone.js"></script>
 <!--angular material dependencies-->
 <script src="resources/assets/js/angular-animate.js"></script>
+<script src="resources/assets/js/angular-sanitize.js"></script>
 <script src="resources/assets/js/angular-route.min.js"></script>
 <script src="resources/assets/js/angular-aria.min.js"></script>
 <script src="resources/assets/js/angular-messages.min.js"></script>
 <script src="resources/assets/js/angular-cookie-law.js"></script>
 <script src="resources/assets/js/angular-cookies.js"></script>
-<script src="resources/assets/js/angular-material.js"></script>
 <script src="resources/assets/js/truncate.js"></script>
 <!-- angular dropdown-->
 <script src="resources/assets/js/angular-dropdowns.js"></script>
+<script src="resources/assets/js/massautocomplete.min.js"></script>
 <!-- angular slick-->
 <script src="resources/assets/js/slick.js"></script>
 <script src="resources/assets/js/angular-slick.js"></script>

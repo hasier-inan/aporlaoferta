@@ -1,27 +1,3 @@
-#createOfferCompanySection {
-  border-radius: 6px;
-  border: solid 1px;
-  color: $main-font-color;
-}
-
-#createOfferCompanySection md-autocomplete {
-  background: none !important;
-}
-
-.md-autocomplete-suggestions {
-  background: transparent !important;
-  border: 1px solid $main-background-color;
-  color: $main-font-color;
-}
-
-.md-autocomplete-suggestions li {
-  color: $main-font-color !important;
-}
-
-.md-autocomplete-suggestions li:hover {
-  color: $autocomplete-suggestions-color !important;
-}
-
 .category-dropdown {
   color: $main-font-color;
   font-weight: normal;
