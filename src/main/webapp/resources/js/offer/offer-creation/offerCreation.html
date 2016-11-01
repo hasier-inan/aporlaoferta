@@ -66,9 +66,13 @@
                 <label for="createOfferCompanySection" class="overhead-hint-label">Selecciona la tienda donde se
                     encuentra la oferta o a&ntilde;ade su nombre</label>
 
-                <div id="createOfferCompanySection" ng-company-manager="companyManager" reset="resetCompany"
-                     selectedcompany="offer.offerCompany" class="content-validation"
-                     ng-class="isCompanyDefined()?'ng-valid':'ng-invalid'" required></div>
+                <div id="createOfferCompanySection" mass-autocomplete>
+                    <input ng-model="offer.offerCompany.companyName"
+                           class="company-input content-validation"
+                           placeholder="Nombre de la tienda"
+                           on_select="selectedc"
+                           mass-autocomplete-item="autocomplete_options" required>
+                </div>
             </li>
         </ul>
         <ul>

@@ -23,7 +23,6 @@ module.exports = {
         './src/main/webapp/resources/js/offer/offer-specifications/offer-comments/ngOfferCommentsQuotes.js',
         './src/main/webapp/resources/js/offer/offer-creation/ngOfferCreationDirective.js',
         './src/main/webapp/resources/js/offer/offer-creation/ngOfferUpdateDirective.js',
-        './src/main/webapp/resources/js/offer/offer-creation/ngCompanyManagerDirective.js',
         './src/main/webapp/resources/js/offer/offer-creation/ngOfferCategoryManagerDirective.js',
         './src/main/webapp/resources/js/offer/offer-filter/ngOfferFilterDirective.js',
         './src/main/webapp/resources/js/header-display/ngHeadDisplayDirective.js',
