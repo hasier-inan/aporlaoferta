@@ -26,6 +26,8 @@ public enum ResultCode {
             "Validation process failed while creating company", "El proceso de validación ha fallado mientras se procedía a crear la compañía"),
     CREATE_OFFER_VALIDATION_ERROR(15, ResponseResult.VALIDATION_ERROR,
             "Validation process failed while creating offer", "El proceso de validación ha fallado mientras se procedía a crear la oferta"),
+    INVALID_OFFER_ERROR(21, ResponseResult.INVALID_DATA_PROVIDED,
+            "Provided offer does not exist or it is invalid", "La oferta no existe o es inválida"),
     UPDATE_OFFER_VALIDATION_ERROR(16, ResponseResult.VALIDATION_ERROR,
             "Validation process failed while updating offer", "El proceso de validación ha fallado mientras se procedía a actualizar la oferta"),
     UPDATE_COMMENT_VALIDATION_ERROR(17, ResponseResult.VALIDATION_ERROR,

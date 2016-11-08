@@ -70,12 +70,9 @@ public class AccountController {
         return tc;
     }
 
-    @RequestMapping(value = {"/", "/start**", "/index**", "/offer"}, method = RequestMethod.GET)
-    public ModelAndView start(@RequestParam(value = "sh", required = false) Long number) {
+    @RequestMapping(value = {"/", "/start**", "/index**"}, method = RequestMethod.GET)
+    public ModelAndView start() {
         ModelAndView model = new ModelAndView();
-        if (!isEmpty(number)) {
-            model.addObject("specificOffer", number);
-        }
         model.setViewName("index");
         return model;
     }

@@ -4,14 +4,14 @@ offerManager.service('offerManager', ['$rootScope', 'alertService', 'requestMana
     function ($rootScope, alertService, requestManager, configService) {
         var offerManagerController = {};
         offerManagerController.requestNewestOffers = function (offerFilter) {
-            offerFilter.hot=false;
+            offerFilter.hot = false;
             offerManagerController.requestMoreOffers(offerFilter, undefined, offerManagerController.broadcastOfferList,
                 function () {
                 });
         }
 
         offerManagerController.requestHottestOffers = function (offerFilter) {
-            offerFilter.hot=true;
+            offerFilter.hot = true;
             offerManagerController.requestMoreOffers(offerFilter, undefined, offerManagerController.broadcastOfferList,
                 function () {
                 });
@@ -27,18 +27,23 @@ offerManager.service('offerManager', ['$rootScope', 'alertService', 'requestMana
                     callback(data.theOffers);
                     //$rootScope.$broadcast('offerList', data.theOffers);
                 }).error(function (data, status, headers, config) {
-                    alertService.sendDefaultErrorMessage();
-                    errorCallback();
-                });
+                alertService.sendDefaultErrorMessage();
+                errorCallback();
+            });
         }
         offerManagerController.showSpecifications = function (id) {
             $rootScope.$broadcast('loadingOfferSpecifications');
             requestManager.makePostCall({}, {'id': id}, configService.getEndpoint('get.offer'))
                 .success(function (data, status, headers, config) {
-                    $rootScope.$broadcast('offerSpecifications', data.theOffers);
+                    if (alertService.isAllOk(data)){
+                        $rootScope.$broadcast('offerSpecifications', data.theOffers);
+                    }
+                    else {
+                        alertService.sendErrorMessage(data.descriptionEsp);
+                    }
                 }).error(function (data, status, headers, config) {
                     alertService.sendDefaultErrorMessage();
-                });
+            });
         }
         return offerManagerController;
     }]);
