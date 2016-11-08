@@ -44,11 +44,12 @@
                         </div>
                     </div>
                     <h3 class="offer-title">
-                        <div>
+                        <a ng-href="/offer?sh={{offer.id}}" target="_blank" class="offer-title__link">
                             <span>{{offer.offerTitle  | characters:120}} - </span>
                             <span ng-if="offer.finalPrice">{{parsePrice(offer.finalPrice)}}€</span>
                             <span ng-if="offer.finalPrice==0">Gratis</span>
-                        </div>
+                            <span class="offer-title__external-link"><i class="fa fa-external-link" aria-hidden="true"></i></span>
+                        </a>
                         <div class="offerCompanyInTitle">
                             <i class="fa fa-tag" aria-hidden="true"></i>
                             {{offer.offerCompany.companyName}}
