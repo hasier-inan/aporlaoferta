@@ -8,6 +8,7 @@ aporlaofertaApp
             templateUrl: 'resources/js/header-display/headDisplay.jsp',
             scope: {
                 specificOffer: '@',
+                specificOfferData: '@',
                 overheadVisible: '=',
                 noAccounts: '=',
                 fullscreen: '='
@@ -95,18 +96,23 @@ aporlaofertaApp
                             $scope.customCloseCallback = function () {
                                 $scope.fullscreen = false;
                             };
-                            $offerManager.showSpecifications($scope.specificOffer);
+                            $scope.openOfferSpecifications(JSON.parse($scope.specificOfferData));
                         }
                     });
                     $scope.$on('offerSpecifications', function (event, args) {
-                        $scope.offerSpecifications = args;
+                        $scope.openOfferSpecifications(args);
+                    });
+
+                    $scope.openOfferSpecifications = function(offerSpecifications){
+                        $scope.offerSpecifications = offerSpecifications;
                         $scope.loadingOfferSpecifications = false;
                         $scope.displayOfferDetails();
                         $scope.customCloseCallback = function () {
                             $scope.offerSpecifications = [];
                             $scope.fullscreen = false;
                         }
-                    });
+                    }
+
                     $scope.redirectHome = function () {
                         $window.location.href = '/';
                     };
@@ -124,8 +130,8 @@ aporlaofertaApp
 
                     $scope.$on('serverResponse', function (event, args) {
                         $scope.theResponse = args;
+                        $scope.fullscreen = false;
                         $scope.displayServerResponse();
-
                     });
 
                     $scope.$on('displayTutorial', function () {

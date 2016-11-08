@@ -13,12 +13,15 @@ import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.model.validators.ValidationException;
 import com.aporlaoferta.service.CaptchaHTTPManager;
 import com.aporlaoferta.service.CompanyManager;
+import com.aporlaoferta.service.InvalidOfferException;
 import com.aporlaoferta.service.OfferManager;
 import com.aporlaoferta.service.UserManager;
 import com.aporlaoferta.utils.DateUtils;
 import com.aporlaoferta.utils.LevenshteinDistance;
 import com.aporlaoferta.utils.OfferValidatorHelper;
 import com.aporlaoferta.utils.UnhealthyException;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +33,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
@@ -37,6 +41,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -65,6 +70,36 @@ public class OfferController {
 
     @Autowired
     private CaptchaHTTPManager captchaHttpManager;
+
+
+    @RequestMapping(value = {"/offer"}, method = RequestMethod.GET)
+    public ModelAndView start(@RequestParam(value = "sh", required = true) Long number) {
+        ModelAndView model = new ModelAndView();
+        model.addObject("specificOffer", number);
+        try {
+            TheOffer theOffer = getFixedOfferFromId(number);
+            ObjectMapper mapper = new ObjectMapper();
+            String offerMap = mapper.writeValueAsString(Arrays.asList(new TheOffer[]{theOffer}));
+            model.addObject("specificOfferData", offerMap);
+            includeOfferMeta(model, theOffer);
+        } catch (JsonProcessingException e) {
+            LOG.error("Could not parse offer to json: ", e);
+        } catch (InvalidOfferException e) {
+            model.addObject("msg", ResultCode.INVALID_OFFER_ERROR.getResultDescriptionEsp());
+            LOG.warn("Invalid offer retrieved: ", e);
+        }
+        model.setViewName("index");
+        return model;
+    }
+
+    private void includeOfferMeta(ModelAndView model, TheOffer theOffer) {
+        model.addObject("offerId", theOffer.getId());
+        model.addObject("offerTitle", String.format("%s: %s", theOffer.getOfferTitle(), theOffer.getFinalPrice().toString()));
+        model.addObject("offerDescription", theOffer.getOfferDescription());
+        String offerImage = theOffer.getOfferImage();
+        model.addObject("offerImage", offerImage.indexOf("offer.png") >= 0 ?
+                String.format("http://www.aporlaoferta.com%s", offerImage) : offerImage);
+    }
 
     @RequestMapping(value = "/getOffers", method = RequestMethod.POST)
     @ResponseBody
@@ -114,19 +149,17 @@ public class OfferController {
     @ResponseBody
     public TheOfferResponse getOfferById(@RequestParam(value = "id", required = true) Long number) {
         TheOfferResponse theOfferResponse = new TheOfferResponse();
-        TheOffer theOffer = this.offerManager.getOfferFromId(number);
-        resetUserSensibleDataFromOffer(theOffer);
-        theOffer.sortOfferComments();
-        List<OfferComment> offerComments = theOffer.getOfferComments();
-
-        if (offerComments != null && offerComments.size() >= 0) {
-            //do we need this hack for the lazy var?
-            for (OfferComment offerComment : offerComments) {
-                resetUserSensibleDataFromComment(offerComment);
-            }
+        TheOffer theOffer = null;
+        try {
+            theOffer = getFixedOfferFromId(number);
+            theOfferResponse.setTheOffers(Arrays.asList(new TheOffer[]{theOffer}));
+            updateResponseWithSuccessCode(theOfferResponse);
+        } catch (InvalidOfferException e) {
+            LOG.warn("Invalid offer retrieved: ", e);
+            theOfferResponse.setCode(ResultCode.INVALID_OFFER_ERROR.getCode());
+            theOfferResponse.setDescriptionEsp(ResultCode.INVALID_OFFER_ERROR.getResultDescriptionEsp());
+            theOfferResponse.setResponseResult(ResultCode.INVALID_OFFER_ERROR.getResponseResult());
         }
-        theOfferResponse.setTheOffers(Arrays.asList(new TheOffer[]{theOffer}));
-        updateResponseWithSuccessCode(theOfferResponse);
         return theOfferResponse;
     }
 
@@ -315,20 +348,6 @@ public class OfferController {
         }
     }
 
-    private void resetUserSensibleDataFromOffer(TheOffer theOffer) {
-        TheUser offerUser = theOffer.getOfferUser();
-        offerUser.setUserEmail(null);
-        offerUser.setUserPassword(null);
-        theOffer.setOfferUser(offerUser);
-    }
-
-    private void resetUserSensibleDataFromComment(OfferComment theComment) {
-        TheUser offerUser = theComment.getCommentOwner();
-        offerUser.setUserEmail(null);
-        offerUser.setUserPassword(null);
-        theComment.setCommentOwner(offerUser);
-    }
-
     private void updateResponseWithSuccessCode(TheOfferResponse theOfferResponse) {
         theOfferResponse.setCode(ResultCode.ALL_OK.getCode());
         theOfferResponse.setDescription(ResultCode.ALL_OK.getResultDescriptionEsp());
@@ -387,12 +406,50 @@ public class OfferController {
         return result;
     }
 
-
     private void includeOfferInUser(TheOffer thatOffer) {
         String nickName = this.userManager.getUserNickNameFromSession();
         TheUser theUser = this.userManager.getUserFromNickname(nickName);
         if (theUser != null) {
             theUser.addOffer(thatOffer);
         }
+    }
+
+    private TheOffer getFixedOfferFromId(Long number) throws InvalidOfferException {
+        TheOffer theOffer = this.offerManager.getOfferFromId(number);
+        if (isEmpty(theOffer)) {
+            throw new InvalidOfferException(String.format("Offer %s not found.", number.toString()));
+        }
+        resetUserSensibleDataFromOffer(theOffer);
+        resetCompanySensibleDataFromOffer(theOffer);
+        theOffer.sortOfferComments();
+        List<OfferComment> offerComments = theOffer.getOfferComments();
+
+        if (offerComments != null && offerComments.size() >= 0) {
+            //TODO do we need this hack for the lazy var?
+            for (OfferComment offerComment : offerComments) {
+                resetUserSensibleDataFromComment(offerComment);
+            }
+        }
+        return theOffer;
+    }
+
+    private void resetCompanySensibleDataFromOffer(TheOffer theOffer) {
+        OfferCompany offerCompany = theOffer.getOfferCompany();
+        offerCompany.setCompanyOffers(new HashSet<TheOffer>());
+        theOffer.setOfferCompany(offerCompany);
+    }
+
+    private void resetUserSensibleDataFromOffer(TheOffer theOffer) {
+        TheUser offerUser = theOffer.getOfferUser();
+        offerUser.setUserEmail(null);
+        offerUser.setUserPassword(null);
+        theOffer.setOfferUser(offerUser);
+    }
+
+    private void resetUserSensibleDataFromComment(OfferComment theComment) {
+        TheUser offerUser = theComment.getCommentOwner();
+        offerUser.setUserEmail(null);
+        offerUser.setUserPassword(null);
+        theComment.setCommentOwner(offerUser);
     }
 }

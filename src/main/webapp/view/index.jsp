@@ -28,6 +28,7 @@
 
 <div ng-overhead-display="overheadDisplay"
      specific-offer="${specificOffer}"
+     specific-offer-data='${specificOfferData}'
      fullscreen="fullscreen"
      no-accounts="fullscreen"
      overhead-visible="overheadVisible"></div>
