@@ -18,10 +18,11 @@
   display: none;
 }
 
-div.no-offers{
+div.no-offers {
   margin-bottom: 2em;
 }
-.no-offers{
+
+.no-offers {
   text-align: center !important;
   color: $offer-list-font-color !important;
   font-size: 2em;
@@ -208,6 +209,29 @@ div.content {
 .short-description,
 .offer-title {
   color: $offer-list-font-color;
+}
+
+.offer-title {
+
+  .offer-title__link {
+    &:hover {
+      color: $button-hot-offers-background !important;
+      .offer-title__external-link {
+        font-size: .8em;
+      }
+    }
+
+    &:visited {
+      color: $button-blueish-color;
+      text-decoration: none;
+    }
+
+    .offer-title__external-link {
+      font-size: .5em;
+      margin-left: 2px;
+      transition: font-size .5s ease;
+    }
+  }
 }
 
 p.invalid-image {
