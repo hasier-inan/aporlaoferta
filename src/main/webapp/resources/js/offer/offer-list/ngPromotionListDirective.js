@@ -9,19 +9,14 @@ aporlaofertaApp
             controller: ['$scope', '$rootScope', 'offerManager',
                 function ($scope, $rootScope, offerManager) {
                     $scope.defaultList = "";
-                    $scope.appliedOfferFilters = {};
-
-                    $scope.$on('appliedOfferFilters', function (event, args) {
-                        $scope.appliedOfferFilters = args;
-                    });
 
                     $scope.requestNewestOffers = function () {
-                        offerManager.requestNewestOffers($scope.appliedOfferFilters);
+                        offerManager.requestNewestOffers();
                         $scope.defaultList = 'newestOffers';
                     }
 
                     $scope.requestHottestOffers = function () {
-                        offerManager.requestHottestOffers($scope.appliedOfferFilters);
+                        offerManager.requestHottestOffers();
                         $scope.defaultList = 'hottestOffers';
                     }
 

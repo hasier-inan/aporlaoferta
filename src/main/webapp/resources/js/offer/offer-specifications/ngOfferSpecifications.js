@@ -15,7 +15,6 @@ aporlaofertaApp
                     $scope.sharePrefix = "www.aporlaoferta.com/offer?sh=";
                     $scope.sharePrice = "€: ";
                     $scope.commentsCustomCloseCallback = {};
-                    $scope.appliedOfferFilters = {};
 
                     $scope.votePositive = function (id) {
                         requestManager.makePostCall({}, {'offerId': id}, configService.getEndpoint('positive.feedback'))
@@ -42,6 +41,7 @@ aporlaofertaApp
                         }
                         else {
                             $scope.theOffer[0][feedback] = $scope.theOffer[0][feedback] + 1;
+                            offerManager.requestNewestOffers();
                         }
                     }
                     $scope.sendDefaultErrorMessageAndShowSpecifications = function (id) {
@@ -62,7 +62,7 @@ aporlaofertaApp
                                 else {
                                     alertService.sendErrorMessage(data.descriptionEsp);
                                     $scope.customCloseCallback = function () {
-                                        offerManager.requestNewestOffers($scope.appliedOfferFilters);
+                                        offerManager.requestNewestOffers();
                                     }
                                 }
                             }).error(function () {
@@ -84,7 +84,7 @@ aporlaofertaApp
                             .success(function (data) {
                                 alertService.sendErrorMessage(data.descriptionEsp);
                                 $scope.customCloseCallback = function () {
-                                    offerManager.requestNewestOffers($scope.appliedOfferFilters);
+                                    offerManager.requestNewestOffers();
                                 }
                             }).error(function () {
                             alertService.sendDefaultErrorMessage();
@@ -92,7 +92,7 @@ aporlaofertaApp
                     }
 
                     $scope.parsePrice = function (price) {
-                        if (price || price==0) {
+                        if (price || price == 0) {
                             return price.toString().replace(/\./, ',');
                         }
                     }
@@ -111,21 +111,17 @@ aporlaofertaApp
                         return 'neutralFeedback';
                     }
 
-                    $scope.processLogin = function(){
+                    $scope.processLogin = function () {
                         $rootScope.$broadcast('userLoginRequest');
                     }
 
-                    $scope.processRegister = function(){
+                    $scope.processRegister = function () {
                         $rootScope.$broadcast('userRegisterRequest');
                     }
 
                     $scope.$on('commentsCustomCloseCallback', function (event, args) {
                         var customCallback = args;
                         $scope.customCloseCallback = customCallback;
-                    });
-
-                    $scope.$on('appliedOfferFilters', function (event, args) {
-                        $scope.appliedOfferFilters = args;
                     });
                 }]
         }
