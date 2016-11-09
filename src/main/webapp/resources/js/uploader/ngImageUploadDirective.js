@@ -7,6 +7,7 @@ aporlaofertaApp
             restrict: 'A',
             scope: {
                 finalUrl: '=',
+                reset: '=',
                 alreadyUploadedImage: '='
             },
             templateUrl: 'resources/js/uploader/imageUpload.html',
@@ -75,6 +76,12 @@ aporlaofertaApp
                 $scope.$watch('finalUrl', function (newValue, oldValue) {
                     if (newValue === "" || typeof newValue === 'undefined') {
                         $scope.uploader.flow.cancel();
+                    }
+                });
+                $scope.$watch('reset', function () {
+                    if ($scope.reset==true) {
+                        console.log("Resetiong image?");
+                        $scope.deleteImage();
                     }
                 });
 
