@@ -96,14 +96,17 @@ aporlaofertaApp
                             $scope.customCloseCallback = function () {
                                 $scope.fullscreen = false;
                             };
-                            $scope.openOfferSpecifications(JSON.parse($scope.specificOfferData));
+                            var offerSpecifications = $scope.specificOfferData
+                                .replace(new RegExp("xx#!!#xx", 'g'), "\\\"")
+                                .replace(new RegExp("xx#!#xx", 'g'), "'");
+                            $scope.openOfferSpecifications(JSON.parse(offerSpecifications));
                         }
                     });
                     $scope.$on('offerSpecifications', function (event, args) {
                         $scope.openOfferSpecifications(args);
                     });
 
-                    $scope.openOfferSpecifications = function(offerSpecifications){
+                    $scope.openOfferSpecifications = function (offerSpecifications) {
                         $scope.offerSpecifications = offerSpecifications;
                         $scope.loadingOfferSpecifications = false;
                         $scope.displayOfferDetails();
