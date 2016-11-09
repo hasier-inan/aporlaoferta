@@ -17,6 +17,7 @@ import com.aporlaoferta.service.InvalidOfferException;
 import com.aporlaoferta.service.OfferManager;
 import com.aporlaoferta.service.UserManager;
 import com.aporlaoferta.utils.DateUtils;
+import com.aporlaoferta.utils.JSONUtils;
 import com.aporlaoferta.utils.LevenshteinDistance;
 import com.aporlaoferta.utils.OfferValidatorHelper;
 import com.aporlaoferta.utils.UnhealthyException;
@@ -80,7 +81,7 @@ public class OfferController {
             TheOffer theOffer = getFixedOfferFromId(number);
             ObjectMapper mapper = new ObjectMapper();
             String offerMap = mapper.writeValueAsString(Arrays.asList(new TheOffer[]{theOffer}));
-            model.addObject("specificOfferData", offerMap);
+            model.addObject("specificOfferData", JSONUtils.escapeQuotes(offerMap));
             includeOfferMeta(model, theOffer);
         } catch (JsonProcessingException e) {
             LOG.error("Could not parse offer to json: ", e);
