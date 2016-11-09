@@ -80,7 +80,6 @@ aporlaofertaApp
                 });
                 $scope.$watch('reset', function () {
                     if ($scope.reset==true) {
-                        console.log("Resetiong image?");
                         $scope.deleteImage();
                     }
                 });

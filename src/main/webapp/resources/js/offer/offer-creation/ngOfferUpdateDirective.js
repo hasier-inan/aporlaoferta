@@ -74,6 +74,7 @@ aporlaofertaApp
                         $scope.brandNewCompany = false;
                         $scope.resetCategory = true;
                         $scope.resetCompany = true;
+                        $scope.resetImage = true;
                     };
                     $scope.setWidgetId = function (widgetId) {
                         $scope.widgetId = widgetId;
