@@ -1,7 +1,6 @@
 package com.aporlaoferta.utils.http;
 
 import org.apache.commons.httpclient.HttpStatus;
-import org.apache.http.HttpResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,7 +29,13 @@ public class HTTPRequestEndpoint implements HTTPEndpoint {
     }
 
     protected Boolean isHealthyConnection() throws IOException {
-        return this.response != null && (this.response.getResponseCode() < HttpStatus.SC_MULTIPLE_CHOICES);
+        return this.response != null && responseIsCorrect();
+    }
+
+    private boolean responseIsCorrect() throws IOException {
+        //TODO: Getting 403 for eligible urls, investigate this issue.
+        return this.response.getResponseCode() != HttpStatus.SC_NOT_FOUND;
+        //return this.response.getResponseCode() < HttpStatus.SC_MULTIPLE_CHOICES;
     }
 
     ///Setter in case a custom post connection is launched
