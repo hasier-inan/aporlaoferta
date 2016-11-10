@@ -402,7 +402,8 @@ public class OfferController {
         } else {
             String okMessage = String.format("Offer successfully updated. Id: %s", theOffer.getId());
             LOG.info(okMessage);
-            result = ResponseResultHelper.offerUpdateResponse(theOffer.getId().toString());
+            Long updatedOfferId = isEmpty(thatOffer.getId()) ? theOffer.getId() : thatOffer.getId();
+            result = ResponseResultHelper.offerUpdateResponse(updatedOfferId.toString());
         }
         return result;
     }
