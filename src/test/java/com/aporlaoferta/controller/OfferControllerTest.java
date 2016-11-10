@@ -7,7 +7,7 @@ import com.aporlaoferta.model.DateRange;
 import com.aporlaoferta.model.OfferCompany;
 import com.aporlaoferta.model.OfferFilters;
 import com.aporlaoferta.model.TheOffer;
-import com.aporlaoferta.model.TheOfferResponse;
+import com.aporlaoferta.model.OfferListResponse;
 import com.aporlaoferta.model.TheResponse;
 import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.model.validators.ValidationException;
@@ -93,7 +93,7 @@ public class OfferControllerTest {
     @Test
     public void testUserIsSavedWithNewCreatedOffer() throws Exception {
         TheUser user = mockUserToCreateOffer();
-        TheOffer theOffer = OfferBuilderManager.aBasicOfferWithoutUserOrId().build();
+        TheOffer theOffer = OfferBuilderManager.aBasicOfferWithId(15L).build();
         TheResponse result = this.offerController.createOffer(theOffer, "recaptcha");
         verify(this.userManager).saveUser(user);
         assertTrue(result.getResponseResult() == ResultCode.ALL_OK.getResponseResult());
@@ -124,7 +124,7 @@ public class OfferControllerTest {
         Long offerId = 1L;
         String nickname = "JohnWick";
         TheOffer offerFromUser = OfferBuilderManager
-                .aBasicOfferWithoutId().withUser(UserBuilderManager.aRegularUserWithNickname(nickname).build())
+                .aBasicOfferWithId(offerId).withUser(UserBuilderManager.aRegularUserWithNickname(nickname).build())
                 .build();
         when(this.offerManager.getOfferFromId(offerId)).thenReturn(offerFromUser);
         when(this.userManager.isUserAuthorised(Mockito.any(TheOffer.class))).thenReturn(true);
@@ -140,7 +140,7 @@ public class OfferControllerTest {
     public void testNewestOffersAreReturnedInTheResponseWhenRequestedMadeWithNoNumber() throws Exception {
         List<TheOffer> sampleOfferList = createSampleOfferList();
         when(this.offerManager.getNextHundredOffers(0L, DateRange.ALL)).thenReturn(sampleOfferList);
-        TheOfferResponse result = this.offerController.getOffers(null, 3);
+        OfferListResponse result = this.offerController.getOffers(null, 3);
         assertOfferListIsInResponse(result, sampleOfferList);
     }
 
@@ -148,7 +148,7 @@ public class OfferControllerTest {
     public void testNextNumberOfOffersAreReturnedInTheResponseWhenRequested() throws Exception {
         List<TheOffer> sampleOfferList = createSampleOfferList();
         when(this.offerManager.getNextHundredOffers(79L, DateRange.ALL)).thenReturn(sampleOfferList);
-        TheOfferResponse result = this.offerController.getOffers(78L, 3);
+        OfferListResponse result = this.offerController.getOffers(78L, 3);
         assertOfferListIsInResponse(result, sampleOfferList);
     }
 
@@ -156,7 +156,7 @@ public class OfferControllerTest {
     public void testHottestOffersAreReturnedInTheResponseWhenRequested() throws Exception {
         List<TheOffer> sampleOfferList = createSampleHotOfferList();
         when(this.offerManager.getNextHundredHottestOffers(1L, DateRange.ALL)).thenReturn(sampleOfferList);
-        TheOfferResponse result = this.offerController.getHottestOffers(0L, 3);
+        OfferListResponse result = this.offerController.getHottestOffers(0L, 3);
         assertOfferListIsInResponse(result, sampleOfferList);
         List<TheOffer> receivedOffers = result.getTheOffers();
         Long hottest = 1000L;
@@ -169,14 +169,14 @@ public class OfferControllerTest {
     public void FilterOffersAreReturnedInResponase() throws Exception {
         List<TheOffer> sampleOfferList = createSampleOfferList();
         when(this.offerManager.getFilteredNextHundredResults(Mockito.any(OfferFilters.class), anyLong())).thenReturn(sampleOfferList);
-        TheOfferResponse result = this.offerController.getFilteredOffers(new OfferFilters(), 0L);
+        OfferListResponse result = this.offerController.getFilteredOffers(new OfferFilters(), 0L);
         assertOfferListIsInResponse(result, sampleOfferList);
     }
 
     @Test
     public void testEmptyListIsReturnedIfNoOffersAreCreated() throws Exception {
         when(this.offerManager.getNextHundredOffers(0L, DateRange.ALL)).thenReturn(new ArrayList<TheOffer>());
-        TheOfferResponse result = this.offerController.getOffers(null, 3);
+        OfferListResponse result = this.offerController.getOffers(null, 3);
         Assert.assertEquals(result.getTheOffers().size(), 0);
     }
 
@@ -249,7 +249,7 @@ public class OfferControllerTest {
     }
 
     private void mockAndCreateOfferForCompanyName(String fakecompany) {
-        TheOffer theOffer = OfferBuilderManager.aBasicOfferWithoutUserOrId()
+        TheOffer theOffer = OfferBuilderManager.aBasicOfferWithId(15L)
                 .withCompany(CompanyBuilderManager.aRegularCompanyWithName(fakecompany).build())
                 .build();
         this.offerController.createOffer(theOffer, "recaptcha");
@@ -262,7 +262,7 @@ public class OfferControllerTest {
         return user;
     }
 
-    private void assertOfferListIsInResponse(TheOfferResponse result, List<TheOffer> expectedOffers) {
+    private void assertOfferListIsInResponse(OfferListResponse result, List<TheOffer> expectedOffers) {
         Assert.assertThat("Expected same result of offers", result.getTheOffers().size(), is(expectedOffers.size()));
         List<TheOffer> receivedOffers = result.getTheOffers();
         for (TheOffer theOffer : receivedOffers) {

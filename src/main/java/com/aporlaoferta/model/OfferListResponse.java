@@ -9,7 +9,7 @@ import java.util.List;
  * Date: 11/02/2015
  * Time: 18:23
  */
-public class TheOfferResponse extends TheResponse {
+public class OfferListResponse extends TheResponse {
 
     private List<TheOffer> theOffers;
 

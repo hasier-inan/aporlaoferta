@@ -5,9 +5,9 @@ import com.aporlaoferta.model.OfferCategory;
 import com.aporlaoferta.model.OfferComment;
 import com.aporlaoferta.model.OfferCompany;
 import com.aporlaoferta.model.OfferFilters;
+import com.aporlaoferta.model.OfferListResponse;
 import com.aporlaoferta.model.TheDefaultOffer;
 import com.aporlaoferta.model.TheOffer;
-import com.aporlaoferta.model.TheOfferResponse;
 import com.aporlaoferta.model.TheResponse;
 import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.model.validators.ValidationException;
@@ -104,9 +104,9 @@ public class OfferController {
 
     @RequestMapping(value = "/getOffers", method = RequestMethod.POST)
     @ResponseBody
-    public TheOfferResponse getOffers(@RequestParam(value = "number", required = false) Long number,
-                                      @RequestParam(value = "dateRange", required = false) Integer dateRange) {
-        TheOfferResponse theOfferResponse = new TheOfferResponse();
+    public OfferListResponse getOffers(@RequestParam(value = "number", required = false) Long number,
+                                       @RequestParam(value = "dateRange", required = false) Integer dateRange) {
+        OfferListResponse theOfferResponse = new OfferListResponse();
         List<TheOffer> hundredOffers = this.offerManager.getNextHundredOffers(number != null ? number + 1 : 0L,
                 isEmpty(dateRange) ? DateRange.WEEK : DateUtils.getDateRange(dateRange));
         //Temporary hack  because Lazy initialisation comments are empty...
@@ -118,10 +118,10 @@ public class OfferController {
 
     @RequestMapping(value = "/getFilteredOffers", method = RequestMethod.POST)
     @ResponseBody
-    public TheOfferResponse getFilteredOffers(
+    public OfferListResponse getFilteredOffers(
             @RequestBody OfferFilters offerFilters,
             @RequestParam(value = "number", required = false) Long number) {
-        TheOfferResponse theOfferResponse = new TheOfferResponse();
+        OfferListResponse theOfferResponse = new OfferListResponse();
         List<TheOffer> hundredOffers = this.offerManager.getFilteredNextHundredResults(offerFilters,
                 number != null ? number + 1 : 0L);
         //Temporary hack  because Lazy initialisation comments are empty.
@@ -134,9 +134,9 @@ public class OfferController {
 
     @RequestMapping(value = "/getHottestOffers", method = RequestMethod.POST)
     @ResponseBody
-    public TheOfferResponse getHottestOffers(@RequestParam(value = "number", required = false) Long number,
-                                             @RequestParam(value = "dateRange", required = false) Integer dateRange) {
-        TheOfferResponse theOfferResponse = new TheOfferResponse();
+    public OfferListResponse getHottestOffers(@RequestParam(value = "number", required = false) Long number,
+                                              @RequestParam(value = "dateRange", required = false) Integer dateRange) {
+        OfferListResponse theOfferResponse = new OfferListResponse();
         List<TheOffer> hundredOffers = this.offerManager.getNextHundredHottestOffers(number != null ? number + 1 : 0L,
                 isEmpty(dateRange) ? DateRange.WEEK : DateUtils.getDateRange(dateRange));
         //Temporary hack  because Lazy initialisation comments are empty.
@@ -148,8 +148,8 @@ public class OfferController {
 
     @RequestMapping(value = "/getOffer", method = RequestMethod.POST)
     @ResponseBody
-    public TheOfferResponse getOfferById(@RequestParam(value = "id", required = true) Long number) {
-        TheOfferResponse theOfferResponse = new TheOfferResponse();
+    public OfferListResponse getOfferById(@RequestParam(value = "id", required = true) Long number) {
+        OfferListResponse theOfferResponse = new OfferListResponse();
         TheOffer theOffer = null;
         try {
             theOffer = getFixedOfferFromId(number);
@@ -296,7 +296,7 @@ public class OfferController {
     @ResponseBody
     public TheResponse removeOffer(@RequestParam(value = "id", required = true) Long id) {
         this.offerManager.deleteOffer(id);
-        return ResponseResultHelper.offerUpdateResponse();
+        return ResponseResultHelper.offerUpdateResponse(id.toString());
     }
 
     private TheResponse processOfferUpdate(TheOffer theOffer) {
@@ -349,7 +349,7 @@ public class OfferController {
         }
     }
 
-    private void updateResponseWithSuccessCode(TheOfferResponse theOfferResponse) {
+    private void updateResponseWithSuccessCode(OfferListResponse theOfferResponse) {
         theOfferResponse.setCode(ResultCode.ALL_OK.getCode());
         theOfferResponse.setDescription(ResultCode.ALL_OK.getResultDescriptionEsp());
         theOfferResponse.setResponseResult(ResultCode.ALL_OK.getResponseResult());
@@ -402,7 +402,7 @@ public class OfferController {
         } else {
             String okMessage = String.format("Offer successfully updated. Id: %s", theOffer.getId());
             LOG.info(okMessage);
-            result = ResponseResultHelper.offerUpdateResponse();
+            result = ResponseResultHelper.offerUpdateResponse(thatOffer.getId().toString());
         }
         return result;
     }

@@ -26,18 +26,18 @@ aporlaofertaApp
                         else {
                             $scope.processing = true;
                             requestManager.makePostCall($scope.parseOffer(), {recaptcha: vcRecaptchaService.getResponse($scope.widgetId)}, configService.getEndpoint('create.offer'))
-                                .success(function (data, status, headers, config) {
+                                .success(function (data) {
                                     if (!alertService.isAllOk(data)) {
                                         $scope.offerCreationError(data.descriptionEsp);
                                     }
                                     else {
                                         alertService.sendErrorMessage(data.descriptionEsp);
                                         $scope.resetValues();
+                                        offerManager.requestUpdatedOffer(data.other);
                                         $scope.customCloseCallback = function () {
-                                            offerManager.requestNewestOffers();
                                         }
                                     }
-                                }).error(function (data, status, headers, config) {
+                                }).error(function () {
                                     $scope.offerCreationError(alertService.getDefaultMessage());
                                 }).finally(function () {
                                     $scope.processing = false;
