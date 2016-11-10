@@ -11,15 +11,13 @@
     <c:when test="${not empty offerId}">
         <meta property="og:title" content="aporlaoferta ~ ${offerTitle}"/>
         <meta property="og:url" content="http://www.aporlaoferta.com/offer?sh=${offerId}"/>
-        <meta property="og:description"
-              content="${offerDescription}"/>
+        <meta property="og:description" content="${offerDescription}"/>
         <meta property="og:image" content="${offerImage}"/>
     </c:when>
     <c:otherwise>
         <meta property="og:title" content="aporlaoferta ~ comparte ofertas y promociones online"/>
         <meta property="og:url" content="http://www.aporlaoferta.com"/>
-        <meta property="og:description"
-              content="Promociones, rebajas y chollos online! Si conoces una oferta, ¡publícala! También hay miles para ti."/>
+        <meta property="og:description" content="Promociones, rebajas y chollos online! Si conoces una oferta, ¡publícala! También hay miles para ti."/>
         <meta property="og:image" content="https://s3-us-west-2.amazonaws.com/aporlaofertaimages/static/logo2.png"/>
     </c:otherwise>
 </c:choose>
