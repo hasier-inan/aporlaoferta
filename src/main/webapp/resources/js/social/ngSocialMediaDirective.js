@@ -14,7 +14,7 @@ aporlaofertaApp
                 function ($scope) {
                     $scope.facebookUrl = "https://www.facebook.com/sharer/sharer.php?u=" + $scope.shareUrl;
                     $scope.twitterUrl = "https://twitter.com/intent/tweet?url=" +
-                        $scope.shareUrl + "&text=" + $scope.shareText + "&via=aporlaoferta";
+                        $scope.shareUrl + "&text=" + encodeURIComponent($scope.shareText); + "&via=aporlaoferta";
                     $scope.googlePlusUrl = "https://plus.google.com/share?url=" + $scope.shareUrl
                 }]
 
