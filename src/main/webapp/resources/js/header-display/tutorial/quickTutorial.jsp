@@ -51,7 +51,7 @@
                 <p>Puedes encontrarnos en las redes sociales más populares.</p>
 
                 <div class="social-media-shares">
-                    <a class="icon mini hvr-icon-grow fa-facebook social-share" target="_blank" href=ref="https://www.facebook.com/aporlaoferta">
+                    <a class="icon mini hvr-icon-grow fa-facebook social-share" target="_blank" href="https://www.facebook.com/aporlaoferta">
                     </a>
                     <a class="icon mini hvr-icon-grow fa-twitter social-share" target="_blank" href="https://twitter.com/aporlaoferta" >
                     </a>
