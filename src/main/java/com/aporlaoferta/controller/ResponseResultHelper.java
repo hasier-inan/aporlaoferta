@@ -56,9 +56,10 @@ public class ResponseResultHelper {
         return updateWithCode(ResultCode.USER_BANNED);
     }
 
-    public static TheResponse offerUpdateResponse() {
+    public static TheResponse offerUpdateResponse(String other) {
         TheResponse theResponse = new TheResponse();
         theResponse.assignResultCode(ResultCode.ALL_OK, "Offer updated", "Oferta publicada");
+        theResponse.setOther(other);
         return theResponse;
     }
 

@@ -41,7 +41,7 @@ aporlaofertaApp
                         }
                         else {
                             $scope.theOffer[0][feedback] = $scope.theOffer[0][feedback] + 1;
-                            offerManager.requestNewestOffers();
+                            offerManager.requestUpdatedOffer(id);
                         }
                     }
                     $scope.sendDefaultErrorMessageAndShowSpecifications = function (id) {
@@ -62,7 +62,7 @@ aporlaofertaApp
                                 else {
                                     alertService.sendErrorMessage(data.descriptionEsp);
                                     $scope.customCloseCallback = function () {
-                                        offerManager.requestNewestOffers();
+                                        offerManager.requestUpdatedOffer(theOffer.id);
                                     }
                                 }
                             }).error(function () {
@@ -84,7 +84,7 @@ aporlaofertaApp
                             .success(function (data) {
                                 alertService.sendErrorMessage(data.descriptionEsp);
                                 $scope.customCloseCallback = function () {
-                                    offerManager.requestNewestOffers();
+                                    $rootScope.$broadcast('removedOffer', id);
                                 }
                             }).error(function () {
                             alertService.sendDefaultErrorMessage();

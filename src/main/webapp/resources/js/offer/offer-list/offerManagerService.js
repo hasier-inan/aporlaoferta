@@ -21,6 +21,15 @@ offerManager.service('offerManager', ['$rootScope', 'alertService', 'requestMana
                 });
         }
 
+        offerManagerController.requestUpdatedOffer = function (id) {
+            requestManager.makePostCall({}, {'id': id}, configService.getEndpoint('get.offer'))
+                .success(function (data) {
+                    if (alertService.isAllOk(data) && data.theOffers.length>0) {
+                        $rootScope.$broadcast('updatedOffer', data.theOffers[0]);
+                    }
+                });
+        }
+
         $rootScope.$on('appliedOfferFilters', function (event, args) {
             offerManagerController.appliedOfferFilters = args;
         });

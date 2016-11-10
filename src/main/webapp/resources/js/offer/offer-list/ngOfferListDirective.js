@@ -39,6 +39,26 @@ aporlaofertaApp
                         $scope.offerList = args;
                     });
 
+                    $scope.$on('updatedOffer', function (event, args) {
+                        var updatedOffer = args;
+                        for (var i = 0; i < $scope.offerList.length; i++) {
+                            if ($scope.offerList[i].id == updatedOffer.id) {
+                                $scope.offerList[i] = updatedOffer;
+                                break;
+                            }
+                        }
+                    });
+
+                    $scope.$on('removedOffer', function (event, args) {
+                        var id = args;
+                        for (var i = 0; i < $scope.offerList.length; i++) {
+                            if ($scope.offerList[i].id == id) {
+                                $scope.offerList.splice(i, 1);
+                                break;
+                            }
+                        }
+                    });
+
                     $scope.showSpecifications = function (id) {
                         offerManager.showSpecifications(id);
                     }
@@ -51,7 +71,7 @@ aporlaofertaApp
                     }
 
                     $scope.parsePrice = function (price) {
-                        if (price || price==0) {
+                        if (price || price == 0) {
                             return price.toString().replace(/\./, ',');
                         }
                     }

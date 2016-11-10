@@ -15,6 +15,7 @@ public class TheResponse {
     private ResponseResult responseResult;
     private String description;
     private String descriptionEsp;
+    private String other;
 
     public void assignResultCode(ResultCode resultCode) {
         setCode(resultCode.getCode());
@@ -28,6 +29,14 @@ public class TheResponse {
         setResponseResult(resultCode.getResponseResult());
         setDescription(description);
         setDescriptionEsp(descriptionEsp);
+    }
+
+    public String getOther() {
+        return other;
+    }
+
+    public void setOther(String other) {
+        this.other = other;
     }
 
     public int getCode() {
