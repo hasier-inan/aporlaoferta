@@ -36,7 +36,55 @@
       display: inline-block !important;
       color: $main-font-color !important;
       margin: 0 1em;
-      padding: 1px 0 0 8px!important;
+      padding: 1px 0 0 8px !important;
+    }
+  }
+
+  .tutorial-slide-content__referenced-text {
+    a {
+      font-size: 14px;
+      height: 28px;
+      line-height: 24px;
+    }
+  }
+
+  p {
+    .tutorial-slide-content__icon {
+      font-size: 22px !important;
+      display: inline-block;
+      margin: 0;
+      position: relative;
+
+      &.tutorial-slide-content__icon--margin-right {
+        margin-right: 15px;
+      }
+
+      &.tutorial-slide-content__icon--blue {
+        color: $button-blueish-color;
+      }
+
+      &.main-logo {
+        height: 28px;
+        width: 35px;
+      }
+    }
+  }
+
+  p.no-margin {
+    margin: 0;
+  }
+
+  #contentFilterTutorial {
+    background: transparent;
+    padding: 0;
+    margin: 12px 0 12px;
+    font-size: 14px;
+    border-bottom: 2px solid $filter-tab-color;
+
+    header {
+      .filter-tabs {
+        display: none;
+      }
     }
   }
 }
@@ -51,3 +99,4 @@
 ul.slick-dots a {
   border-bottom: 0;
 }
+

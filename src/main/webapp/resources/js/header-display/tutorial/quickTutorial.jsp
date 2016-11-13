@@ -8,60 +8,84 @@
                     <em class="main-logo__brand">aporlaoferta</em>
                 </h1>
 
+                <div class="social-media-shares">
+                    <a class="icon mini hvr-icon-grow fa-facebook social-share" target="_blank"
+                       href="https://www.facebook.com/aporlaoferta">
+                    </a>
+                    <a class="icon mini hvr-icon-grow fa-twitter social-share" target="_blank"
+                       href="https://twitter.com/aporlaoferta">
+                    </a>
+                    <a class="icon mini hvr-icon-grow fa-google-plus social-share" target="_blank"
+                       href="https://plus.google.com/112814296578233509279">
+                    </a>
+                </div>
+                <br/>
+
                 <p>¡Bienvenido!</p>
 
-                <p>aporlaoferta es un portal para buscar y compartir ofertas nacionales con el resto de usuarios.</p>
-                <br/>
-                <p>Pulsa el botón de la derecha para saber cómo funciona.</p>
+                <p>
+                    aporlaoferta.com es un portal donde compartir y conseguir las mejores ofertas en todo lo que te
+                    puedas imaginar.
+                </p>
             </div>
         </div>
+
         <div class="tutorial-slide">
             <div class="tutorial-slide-content">
-                <p></p>
                 <br/>
+                <p><i class="tutorial-slide-content__icon fa fa-refresh loadingdialogue"></i></p>
                 <ul>
-                    <li>Puedes buscar las ofertas más populares del momento...</li>
-                    <li>Selecciona las <strong>Últimas promociones</strong> para ver las ofertas más recientes.</li>
-                    <li>Las <strong>Ofertas calientes</strong> muestran las mejores promociones de acuerdo al resto de
-                        usuarios.
+                    <li class="tutorial-slide-content__referenced-text">Con un solo click en <a href="#"
+                                                                                                class="button medium--rounded hvr-icon-grow newest-offers icon fa-shopping-cart whiteButton scrolly main-selection"
+                                                                                                ng-click="requestNewestOffers()">
+                        Últimas promociones</a> podrás ser el primero en conseguir las ofertas más recientes.
+                    </li>
+                </ul>
+                <br/>
+                <p class="offer-temperature">
+                    <i class="tutorial-slide-content__icon offer-thermometer offer-thermometer--big veryHotFeedback"></i>
+                </p>
+                <ul>
+                    <li class="tutorial-slide-content__referenced-text">
+                        Elige las <a href="#"
+                                     class="button medium--rounded hvr-icon-pulse-grow hot-offers icon fa-fire whiteButton scrolly main-selection"
+                                     ng-click="requestHottestOffers()">
+                        Ofertas calientes</a> para conseguir los chollos más populares del momento.
                     </li>
                 </ul>
             </div>
         </div>
+
         <div class="tutorial-slide">
             <div class="tutorial-slide-content">
-                <p>También puedes filtrar las ofertas que más te interesen, ¡hay de todo y para todos!</p>
                 <br/>
-                <p>Para ello selecciona tu categoría preferia y/o haz una búsqueda por texto en la sección de
-                    <strong>Filtrar ofertas</strong></p>
+                <p>Selecciona tu <strong>Categoría</strong> preferida o utiliza la casilla de <strong>Buscar</strong>
+                    para encontrar las ofertas que más te interesan:</p>
+
+                <div id="contentFilterTutorial" class="wrapper style2 special" ng-offer-filter="offerFilter"
+                     offer-list="offerList" selection="defaultList" offer-filter="offerFilter"></div>
+                <p>¡Hay de todo y para todos!</p>
             </div>
         </div>
+
         <div class="tutorial-slide">
             <div class="tutorial-slide-content">
-                <p>Y si encuentras una oferta que te parezca suculenta... ¡no dudes en compartirla!</p>
+                <p class="no-margin">
+                    <i class="tutorial-slide-content__icon main-logo"></i>
+                </p>
+                <ul>
+                    <li>¡Nunca te pierdas una oferta!</li>
+                    <li>Accede a todas las promociones y compártelas con todos tus amigos sin necesidad de
+                        registrarte.
+                    </li>
+                </ul>
                 <br/>
-                <p>Si quieres crear ofertas y opinar sobre el resto de promociones, puedes crearte un perfil de
-                    usuario. </p>
-                <br/>
-                <p>¡Es totalmente gratuito!</p>
-            </div>
-        </div>
-        <div class="tutorial-slide">
-            <div class="tutorial-slide-content">
-                <p>Puedes encontrarnos en las redes sociales más populares.</p>
-
-                <div class="social-media-shares">
-                    <a class="icon mini hvr-icon-grow fa-facebook social-share" target="_blank" href="https://www.facebook.com/aporlaoferta">
-                    </a>
-                    <a class="icon mini hvr-icon-grow fa-twitter social-share" target="_blank" href="https://twitter.com/aporlaoferta" >
-                    </a>
-                    <a class="icon mini hvr-icon-grow fa-google-plus social-share" target="_blank" href="https://plus.google.com/112814296578233509279">
-                    </a>
-                </div>
-
-                <br/><br/>
-                <p>También puedes compartir las ofertas que más te gusten con tus amigos, encontrarás los botones de
-                    compartir dentro de las especificaciones de la oferta</p>
+                <p class="no-margin">
+                    <i class="tutorial-slide-content__icon tutorial-slide-content__icon--margin-right tutorial-slide-content__icon--blue fa fa-user"></i>
+                    <i class="tutorial-slide-content__icon tutorial-slide-content__icon--blue fa fa-sign-in"></i></p>
+                <p>…Pero no dudes en unirte a nosotros si quieres publicar, comentar y votar las ofertas. ¡Vive la
+                    experiencia al máximo!</p>
+                <p>¡Registrarse es rápido y totalmente gratuito!</p>
             </div>
         </div>
 
