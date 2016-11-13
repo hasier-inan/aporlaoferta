@@ -29,6 +29,13 @@ aporlaofertaApp
                         $scope.isDisplayed = 0;
                     }
 
+                    $scope.requestNewestOffers = function(){
+
+                    }
+
+                    $scope.requestHottestOffers = function(){
+
+                    }
 
                 }]
         }

@@ -153,7 +153,7 @@ button.displayFilterContents {
 }
 
 input.filter-input {
-  width: 20em;
+  width: 16em;
 }
 
 .no-decoration {
@@ -171,6 +171,7 @@ input.filter-input {
 }
 
 @media screen and (max-width: 736px) {
+
   div.filters-contents {
     display: none;
   }
@@ -232,6 +233,12 @@ button.filters-displayed {
   padding: 0 0 0 .5em;
   background-color: $filter-category-content-background;
   display: inline;
+}
+
+.filters-contents {
+  ul{
+    padding-left: 0;
+  }
 }
 
 div.filterByCategoryContent {
