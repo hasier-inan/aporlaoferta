@@ -11,6 +11,7 @@
 <!-- file upload base by ng-flow -->
 <!-- angular material auto-complete from https://material.angularjs.org -->
 <!-- custom dropdown from https://github.com/jseppi/angular-dropdowns -->
+<!-- design by http://aitormaguregi.com/ -->
 <html data-ng-app="aPorLaOferta" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <%@include file="head/meta.jsp" %>
