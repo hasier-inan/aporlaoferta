@@ -96,8 +96,7 @@ public class ImageUploadManager {
     }
 
     public String createCustomFilePath(String fileName) {
-        return this.uploadFolder +
-                fileName;
+        return String.format("%s%s%s", this.uploadFolder, UUID.randomUUID().toString(), fileExtension(fileName));
     }
 
 
