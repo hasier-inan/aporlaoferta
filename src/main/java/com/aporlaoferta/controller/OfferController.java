@@ -443,15 +443,19 @@ public class OfferController {
 
     private void resetUserSensibleDataFromOffer(TheOffer theOffer) {
         TheUser offerUser = theOffer.getOfferUser();
-        offerUser.setUserEmail(null);
-        offerUser.setUserPassword(null);
-        theOffer.setOfferUser(offerUser);
+        theOffer.setOfferUser(resetUserSensibleData(offerUser));
     }
 
     private void resetUserSensibleDataFromComment(OfferComment theComment) {
         TheUser offerUser = theComment.getCommentOwner();
+        theComment.setCommentOwner(resetUserSensibleData(offerUser));
+    }
+
+    private TheUser resetUserSensibleData(TheUser offerUser){
         offerUser.setUserEmail(null);
         offerUser.setUserPassword(null);
-        theComment.setCommentOwner(offerUser);
+        offerUser.setUuid(null);
+        offerUser.setPending(null);
+        return offerUser;
     }
 }
