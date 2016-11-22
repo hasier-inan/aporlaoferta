@@ -345,7 +345,6 @@ public class OfferController {
     private void createEmptyFields(List<TheOffer> hundredOffers) {
         for (TheOffer theOffer : hundredOffers) {
             theOffer.setOfferComments(new ArrayList<OfferComment>());
-            resetUserSensibleDataFromOffer(theOffer);
         }
     }
 
@@ -421,17 +420,8 @@ public class OfferController {
         if (isEmpty(theOffer)) {
             throw new InvalidOfferException(String.format("Offer %s not found.", number.toString()));
         }
-        resetUserSensibleDataFromOffer(theOffer);
         resetCompanySensibleDataFromOffer(theOffer);
         theOffer.sortOfferComments();
-        List<OfferComment> offerComments = theOffer.getOfferComments();
-
-        if (offerComments != null && offerComments.size() >= 0) {
-            //TODO do we need this hack for the lazy var?
-            for (OfferComment offerComment : offerComments) {
-                resetUserSensibleDataFromComment(offerComment);
-            }
-        }
         return theOffer;
     }
 
@@ -439,23 +429,5 @@ public class OfferController {
         OfferCompany offerCompany = theOffer.getOfferCompany();
         offerCompany.setCompanyOffers(new HashSet<TheOffer>());
         theOffer.setOfferCompany(offerCompany);
-    }
-
-    private void resetUserSensibleDataFromOffer(TheOffer theOffer) {
-        TheUser offerUser = theOffer.getOfferUser();
-        theOffer.setOfferUser(resetUserSensibleData(offerUser));
-    }
-
-    private void resetUserSensibleDataFromComment(OfferComment theComment) {
-        TheUser offerUser = theComment.getCommentOwner();
-        theComment.setCommentOwner(resetUserSensibleData(offerUser));
-    }
-
-    private TheUser resetUserSensibleData(TheUser offerUser){
-        offerUser.setUserEmail(null);
-        offerUser.setUserPassword(null);
-        offerUser.setUuid(null);
-        offerUser.setPending(null);
-        return offerUser;
     }
 }

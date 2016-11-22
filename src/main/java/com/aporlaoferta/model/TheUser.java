@@ -2,6 +2,7 @@ package com.aporlaoferta.model;
 
 import com.aporlaoferta.utils.CommentComparator;
 import com.aporlaoferta.utils.OfferComparator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -33,7 +34,8 @@ import static org.springframework.util.Assert.notNull;
 @Entity
 @Table(name = "thatuser")
 @SequenceGenerator(name = "GEN_THATUSER", sequenceName = "SEQ_THATUSER")
-@com.fasterxml.jackson.annotation.JsonIgnoreProperties({"userOffers", "userComments", "negativeOffers", "positiveOffers"})
+@JsonIgnoreProperties({"userOffers", "userComments", "negativeOffers", "positiveOffers", "userPassword", "uuid",
+"pending", "userEmail"})
 public class TheUser implements Serializable {
 
     private static final long serialVersionUID = 3178810385898694540L;
