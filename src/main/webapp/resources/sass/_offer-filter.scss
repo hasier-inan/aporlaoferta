@@ -115,22 +115,18 @@ section#contentFilter {
   border-bottom: 0;
 }
 
-a#applyFilter, a#cleanFilter {
-  color: #fff !important;
-}
-
-label#label-for-filter-by {
+.label-for-filter-by {
   position: absolute;
   color: #fff;
   margin-left: .5em;
   margin-top: .4em;
 }
 
-input#filter-by {
+input.filter-by {
   padding-left: 2em;
 }
 
-#filter-text-finder {
+.filter-text-finder {
   display: inline-block;
 }
 
@@ -225,7 +221,6 @@ button.filters-displayed {
 }
 
 .displayFilterContents {
-  /*border: solid 1px #fff;*/
   box-shadow: none;
   border-radius: 100%;
   width: 3em;

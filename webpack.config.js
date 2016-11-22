@@ -25,6 +25,7 @@ module.exports = {
         './src/main/webapp/resources/js/offer/offer-creation/ngOfferUpdateDirective.js',
         './src/main/webapp/resources/js/offer/offer-creation/ngOfferCategoryManagerDirective.js',
         './src/main/webapp/resources/js/offer/offer-filter/ngOfferFilterDirective.js',
+        './src/main/webapp/resources/js/offer/offer-filter/ngDummyOfferFilterDirective.js',
         './src/main/webapp/resources/js/header-display/ngHeadDisplayDirective.js',
         './src/main/webapp/resources/js/header-display/ngHeadAccountAndOfferManagementDirective.js',
         './src/main/webapp/resources/js/header-display/ngMainSlogan.js',

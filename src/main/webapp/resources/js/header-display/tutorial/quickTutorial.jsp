@@ -62,7 +62,7 @@
                 <p>Selecciona tu <strong>Categoría</strong> preferida o utiliza la casilla de <strong>Buscar</strong>
                     para encontrar las ofertas que más te interesan:</p>
 
-                <div id="contentFilterTutorial" class="wrapper style2 special" ng-offer-filter="offerFilter"
+                <div id="contentFilterTutorial" class="wrapper style2 special" ng-dummy-offer-filter="dummyOfferFilter"
                      offer-list="offerList" selection="defaultList" offer-filter="offerFilter"></div>
                 <p>¡Hay de todo y para todos!</p>
             </div>

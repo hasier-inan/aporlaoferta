@@ -15,6 +15,9 @@ aporlaofertaApp
                 $scope.filter = {};
                 $scope.displayFilterContent = "";
                 $scope.previousCategory = "";
+                $scope.offerFilterContainer = "offerFilterContainer";
+                $scope.filterBy = "filter-by";
+                $scope.filterByExpiredCheckbox = "filterByExpiredCheckbox";
 
                 $scope.requestFilterApply = function () {
                     $scope.processing = true;
