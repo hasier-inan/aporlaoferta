@@ -5,6 +5,7 @@
         <div class="main-logo main-logo--header">
         </div>
         <h1 class="only-page">
+            <span class="season-campaign-container--header"></span>
             <em class="main-logo__brand">aporlaoferta</em>
         </h1>
         <div class="main-logo__slogan" ng-main-slogan="mainSlogan"/>
