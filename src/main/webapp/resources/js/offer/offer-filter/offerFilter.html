@@ -1,4 +1,4 @@
-<header id="offerFilterContainer" class="major">
+<header id="{{offerFilterContainer}}" class="major">
     <button class="displayFilterContents button mini icon fa-chevron-down whiteButton no-decoration"
             ng-class="displayFilterContent" ng-click="displayFilterContents()"></button>
     <div class="filters-contents" ng-class="displayFilterContent">
@@ -9,19 +9,19 @@
                  include-all="true"
                  changeevent="requestFilterApply"></div>
             <div class="filter-parent inline-block basic-margin">
-                <label for="filter-by" id="label-for-filter-by"><i class="fa fa-search"></i></label>
-                <input id="filter-by" type="text" ng-model="filter.text"
-                       class="fa-search filter-input inline-block " id="filter-text-finder"
+                <label for="{{filterBy}}" class="label-for-filter-by"><i class="fa fa-search"></i></label>
+                <input type="text" ng-model="filter.text"
+                       id="{{filterBy}}"
+                       class="fa-search filter-input inline-block filter-by filter-text-finder"
                        value="" placeholder="Buscar (m&iacute;nimo 3 car&aacute;cteres)"
                        ng-change="searchCriteriaChanged()">
             </div>
 
             <div class="filterWithExpiredContent inline-block basic-margin">
-                <input type="checkbox" id="filterByExpiredCheckbox"
-                       name="filterByExpiredCheckbox" ng-model="filter.expired"
+                <input type="checkbox" id="{{filterByExpiredCheckbox}}"
+                       ng-model="filter.expired"
                        ng-change="requestFilterApply()"/>
-                <label id="filterByExpiredLabel" for="filterByExpiredCheckbox" class="overheadLabel">Mostrar
-                    caducados</label>
+                <label for="{{filterByExpiredCheckbox}}" class="overheadLabel">Mostrar caducados</label>
             </div>
         </ul>
 
