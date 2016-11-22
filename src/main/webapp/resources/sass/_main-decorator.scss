@@ -45,11 +45,11 @@ div.offerCaptcha {
 
 /*default values*/
 ::selection {
-  background: transparent;
+  background: $button-red-background-color;
 }
 
 ::-moz-selection {
-  background: transparent;
+  background: $button-red-background-color;
 }
 
 textarea::selection,
