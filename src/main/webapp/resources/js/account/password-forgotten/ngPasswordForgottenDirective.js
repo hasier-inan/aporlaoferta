@@ -14,18 +14,18 @@ aporlaofertaApp
             controller: ['$scope', '$http', 'requestManager', 'configService', 'alertService','$timeout',
                 function ($scope, http, requestManager, configService, alertService,$timeout) {
                     $scope.validPassword = /^(?=.*?)(?=.*?[a-z])(?=.*?[0-9])(?=.*?).{8,}$/;
-                    $scope.theUser = {userNickname: $scope.nick, uuid: $scope.uuid};
+                    $scope.theUser = {userNickname: $scope.nick, track: $scope.uuid};
                     $scope.updatePassword = function (theUser) {
                         $scope.processing=true;
                         requestManager.makePostCall(theUser, {}, configService.getEndpoint('password.forgotten'))
-                            .success(function (data, status, headers, config) {
+                            .success(function (data) {
                                 $scope.processPasswordResponse(data)
-                            }).error(function (data, status, headers, config) {
+                            }).error(function () {
                                 alertService.sendDefaultErrorMessage();
                             }).finally(function(){
                                 $scope.processing=false;
                             });
-                        $scope.theUser = {userNickname: $scope.nick, uuid: $scope.uuid};
+                        $scope.theUser = {userNickname: $scope.nick, track: $scope.uuid};
                     }
                     $scope.processPasswordResponse = function (data) {
                         alertService.sendErrorMessage(data.descriptionEsp);
