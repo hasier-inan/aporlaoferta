@@ -13,7 +13,7 @@ aporlaofertaApp
             },
             controller: ['$scope', '$http', 'requestManager', 'configService', 'alertService','$timeout',
                 function ($scope, http, requestManager, configService, alertService,$timeout) {
-                    $scope.validPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!$%@#£€*?&]{8,}$/;
+                    $scope.validPassword = /^(?=.*?)(?=.*?[a-z])(?=.*?[0-9])(?=.*?).{8,}$/;
                     $scope.theUser = {userNickname: $scope.nick, uuid: $scope.uuid};
                     $scope.updatePassword = function (theUser) {
                         $scope.processing=true;
