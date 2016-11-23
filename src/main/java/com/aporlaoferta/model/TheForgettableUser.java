@@ -11,6 +11,7 @@ import static org.springframework.util.StringUtils.isEmpty;
 public class TheForgettableUser extends TheUser {
     private String firstPassword;
     private String secondPassword;
+    private String track;
 
     public String getFirstPassword() {
         return firstPassword;
@@ -26,6 +27,14 @@ public class TheForgettableUser extends TheUser {
 
     public void setSecondPassword(String secondPassword) {
         this.secondPassword = secondPassword;
+    }
+
+    public String getTrack() {
+        return track;
+    }
+
+    public void setTrack(String track) {
+        this.track = track;
     }
 
     public boolean passMatches() {

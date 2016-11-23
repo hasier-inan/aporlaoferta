@@ -186,7 +186,8 @@ public class AccountController {
         if (!theForgettableUser.passMatches()) {
             return ResponseResultHelper.updateWithCode(ResultCode.USER_NAME_PASSWORD_INVALID);
         }
-        if (theUser == null || !theForgettableUser.getUuid().equals(theUser.getUuid())) {
+        if (theUser == null || isEmpty(theForgettableUser.getTrack()) ||
+                !theForgettableUser.getTrack().equals(theUser.getUuid())) {
             return ResponseResultHelper.updateWithCode(ResultCode.INVALID_PASSWORD_VERIFICATION);
         }
         theUser.setUserPassword(theForgettableUser.getFirstPassword());

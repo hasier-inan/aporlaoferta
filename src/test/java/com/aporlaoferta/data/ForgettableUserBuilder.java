@@ -12,7 +12,7 @@ public class ForgettableUserBuilder {
 
     private String pass1;
     private String pass2;
-    private String uuid;
+    private String track;
     private String nickname;
 
     public static ForgettableUserBuilder aForgettableUser() {
@@ -33,8 +33,8 @@ public class ForgettableUserBuilder {
         return this;
     }
 
-    public ForgettableUserBuilder withUUID(String uuid) {
-        this.uuid = uuid;
+    public ForgettableUserBuilder withTrack(String uuid) {
+        this.track = uuid;
         return this;
     }
 
@@ -46,7 +46,7 @@ public class ForgettableUserBuilder {
     public TheForgettableUser build() {
         TheForgettableUser theUser = new TheForgettableUser();
         theUser.setUserNickname(this.nickname);
-        theUser.setUuid(this.uuid);
+        theUser.setTrack(this.track);
         theUser.setFirstPassword(this.pass1);
         theUser.setSecondPassword(this.pass2);
         return theUser;
