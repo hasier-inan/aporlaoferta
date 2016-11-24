@@ -19,6 +19,7 @@
                  'tutorialRelated' : (displayTutorial),
                  'offer-specifications-background' :displayOfferSpecifications,
                  'offer-specifications-loading' :loadingOfferSpecifications,
+                 'server-response':displayResponseFromServer,
                  'overhead_subcontainer-fullscreen':fullscreen}"
      ng-show="overheadVisible">
     <ul id="overheadSubContainerContent" class="actions top_header">
