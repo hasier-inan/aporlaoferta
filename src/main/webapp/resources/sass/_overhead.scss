@@ -113,7 +113,7 @@ div.overhead_subcontainer {
   div.overhead_subcontainer {
     width: 90%;
 
-    &.userRelated, &.loginRelated {
+    &.userRelated, &.loginRelated,&.server-response {
       width: 80%;
       left: 10%;
       margin-left: 0;
@@ -157,7 +157,8 @@ div.overhead_subcontainer {
     &.offerRelated,
     &.tutorialRelated,
     &.loginRelated,
-    &.offer-specifications-loading {
+    &.offer-specifications-loading,
+    &.server-response{
       width: 100% !important;
       left: 0 !important;
       box-shadow: none !important;
