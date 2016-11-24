@@ -5,7 +5,7 @@ import com.aporlaoferta.data.UserBuilderManager;
 import com.aporlaoferta.email.EmailSendingException;
 import com.aporlaoferta.email.EmailService;
 import com.aporlaoferta.model.TheForgettableUser;
-import com.aporlaoferta.model.TheNewUser;
+import com.aporlaoferta.model.TheEnhancedUser;
 import com.aporlaoferta.model.TheResponse;
 import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.service.CaptchaHTTPManager;
@@ -68,7 +68,7 @@ public class AccountControllerTest {
     @Test
     public void testCreateUserCantAddUserToDBReturnsMessage() {
         when(this.userManager.createUser(any(TheUser.class))).thenReturn(null);
-        TheUser user = UserBuilderManager.aRegularUserWithNickname("fu1").build();
+        TheEnhancedUser user = UserBuilderManager.aRegularEnhancedUserWithNickname("fu1").build();
         TheResponse result = this.accountController.createUser(
                 user, "recaptcha");
         assertThat("Expected empty object message", result.getResponseResult(),
@@ -115,8 +115,9 @@ public class AccountControllerTest {
 
     @Test
     public void testSuccessfulUserCreationTriggersEmail() throws Exception, EmailSendingException {
-        TheForgettableUser theUser = (TheForgettableUser)UserBuilderManager.aPendingUserWithNickname("theUser").build();
-        when(this.userManager.createUser(theUser)).thenReturn(theUser);
+        TheEnhancedUser theUser = UserBuilderManager.aPendingEnhancedUserWithNickname("theUser").build();
+        TheUser thePendingUser = UserBuilderManager.aPendingUserWithNickname("theUser").build();
+        when(this.userManager.createUser(any(TheUser.class))).thenReturn(thePendingUser);
         this.accountController.createUser(theUser, "recaptcha");
         verify(this.emailService, times(1)).sendAccountConfirmationEmail(any(TheUser.class));
     }
@@ -213,8 +214,7 @@ public class AccountControllerTest {
         String existingEmail = "nickname@existing.com";
         when(this.userManager.doesUserEmailExist(existingEmail))
                 .thenReturn(true);
-        TheForgettableUser theUser = (TheForgettableUser) UserBuilderManager.aRegularUserWithEmail(existingEmail).build();
-        theUser.setFirstPassword(theUser.getUserPassword());
+        TheEnhancedUser theUser = UserBuilderManager.aRegularEnhancedUserWithEmail(existingEmail).build();
         TheResponse theResponse = this.accountController.createUser(theUser, "captcha");
         assertThat("Expected invalid user email code", theResponse.getCode(), is(6));
     }
@@ -223,7 +223,7 @@ public class AccountControllerTest {
     public void testUpdateAccountIsForNonBannedUsersOnly() {
         when(this.userManager.userIsBanned()).thenReturn(true);
         TheResponse result = this.accountController.updateUser(
-                new TheNewUser(),
+                new TheEnhancedUser(),
                 "1");
         assertTrue(ResultCode.USER_BANNED.getCode() == result.getCode());
     }

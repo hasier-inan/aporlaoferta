@@ -4,7 +4,7 @@ package com.aporlaoferta.controller;
 import com.aporlaoferta.data.ForgettableUserBuilderManager;
 import com.aporlaoferta.data.UserBuilderManager;
 import com.aporlaoferta.model.TheForgettableUser;
-import com.aporlaoferta.model.TheNewUser;
+import com.aporlaoferta.model.TheEnhancedUser;
 import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.rawmap.RequestMap;
 import com.aporlaoferta.service.UserManager;
@@ -231,7 +231,7 @@ public class AccountControllerTestIntegration {
     @Test
     public void testUpdateUserWithIncorrectOldPasswordReturnsExpectedCode() throws Exception {
         CsrfToken csrfToken = CsrfTokenBuilder.generateAToken();
-        TheNewUser theUser = createDummyNewUserWithInvalidOldPassword();
+        TheEnhancedUser theUser = createDummyNewUserWithInvalidOldPassword();
         String jsonRequest = RequestMap.getJsonFromMap(theUser);
         ResultActions result = getResultActions(csrfToken, jsonRequest, REGULAR_USER);
         String mvcResult = result.andReturn().getResponse().getContentAsString();
@@ -242,7 +242,7 @@ public class AccountControllerTestIntegration {
     @Test
     public void testUpdateUserWithNoPasswordProvidedReturnsExpectedCode() throws Exception {
         CsrfToken csrfToken = CsrfTokenBuilder.generateAToken();
-        TheNewUser theUser = createDummyNewUserWithNoPasswordUpdate();
+        TheEnhancedUser theUser = createDummyNewUserWithNoPasswordUpdate();
         String jsonRequest = RequestMap.getJsonFromMap(theUser);
         ResultActions result = getResultActions(csrfToken, jsonRequest, REGULAR_USER);
         String mvcResult = result.andReturn().getResponse().getContentAsString();
@@ -408,14 +408,14 @@ public class AccountControllerTestIntegration {
                 .andExpect(status().is2xxSuccessful());
     }
 
-    private TheNewUser createDummyNewUserWithValidOldPassword() {
-        TheNewUser theNewUser = new TheNewUser();
-        theNewUser.setOldPassword(uncodedPassword);
-        theNewUser.setUserEmail("sdfasd");
-        theNewUser.setUserAvatar("sdfasd");
-        theNewUser.setUserPassword("sdfasd");
-        theNewUser.setUserNickname(REGULAR_ENCODED_USER);
-        return theNewUser;
+    private TheEnhancedUser createDummyNewUserWithValidOldPassword() {
+        TheEnhancedUser theEnhancedUser = new TheEnhancedUser();
+        theEnhancedUser.setOldPassword(uncodedPassword);
+        theEnhancedUser.setUserEmail("sdfasd");
+        theEnhancedUser.setUserAvatar("sdfasd");
+        theEnhancedUser.setUserPassword("sdfasd");
+        theEnhancedUser.setUserNickname(REGULAR_ENCODED_USER);
+        return theEnhancedUser;
     }
 
     private TheUser createDummyNewUserReadyToBeBanned(String nickname) {
@@ -423,22 +423,22 @@ public class AccountControllerTestIntegration {
         return this.userManagerTest.saveUser(theUser);
     }
 
-    private TheNewUser createDummyNewUserWithInvalidOldPassword() {
-        TheNewUser theNewUser = new TheNewUser();
-        theNewUser.setOldPassword(uncodedPassword + "wrong");
-        theNewUser.setUserEmail("sdfasd");
-        theNewUser.setUserAvatar("sdfasd");
-        theNewUser.setUserPassword("sdfasd");
-        theNewUser.setUserNickname("sdfasd");
-        return theNewUser;
+    private TheEnhancedUser createDummyNewUserWithInvalidOldPassword() {
+        TheEnhancedUser theEnhancedUser = new TheEnhancedUser();
+        theEnhancedUser.setOldPassword(uncodedPassword + "wrong");
+        theEnhancedUser.setUserEmail("sdfasd");
+        theEnhancedUser.setUserAvatar("sdfasd");
+        theEnhancedUser.setUserPassword("sdfasd");
+        theEnhancedUser.setUserNickname("sdfasd");
+        return theEnhancedUser;
     }
 
-    private TheNewUser createDummyNewUserWithNoPasswordUpdate() {
-        TheNewUser theNewUser = new TheNewUser();
-        theNewUser.setUserEmail("sdfasd");
-        theNewUser.setUserAvatar("sdfasd");
-        theNewUser.setUserNickname("sdfasd");
-        return theNewUser;
+    private TheEnhancedUser createDummyNewUserWithNoPasswordUpdate() {
+        TheEnhancedUser theEnhancedUser = new TheEnhancedUser();
+        theEnhancedUser.setUserEmail("sdfasd");
+        theEnhancedUser.setUserAvatar("sdfasd");
+        theEnhancedUser.setUserNickname("sdfasd");
+        return theEnhancedUser;
     }
 
 }
