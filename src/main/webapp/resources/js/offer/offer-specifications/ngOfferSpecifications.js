@@ -14,6 +14,8 @@ aporlaofertaApp
                 function (offerManager, alertService, $scope, $rootScope, requestManager, configService) {
                     $scope.sharePrefix = "www.aporlaoferta.com/offer?sh=";
                     $scope.sharePrice = "€: ";
+                    $scope.offer = {offerImage: "/resources/images/offer.png"}
+
                     $scope.commentsCustomCloseCallback = {};
 
                     $scope.votePositive = function (id) {
@@ -53,6 +55,11 @@ aporlaofertaApp
                     $scope.updateOffer = function (theOffer) {
                         $rootScope.$broadcast('updateTheOffer', angular.copy(theOffer));
                     }
+
+                    $scope.$watch('theOffer', function () {
+                        $scope.offer = $scope.theOffer[0];
+                    });
+
                     $scope.expireOffer = function (theOffer) {
                         requestManager.makePostCall({}, {'id': theOffer.id}, configService.getEndpoint('expire.offer'))
                             .success(function (data) {
