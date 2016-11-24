@@ -28,9 +28,9 @@ aporlaofertaApp
                             delete $scope.theUser.oldPassword;
                             $scope.processing = true;
                             requestManager.makePostCall(theUser, {recaptcha: vcRecaptchaService.getResponse($scope.widgetId)}, configService.getEndpoint('create.account'))
-                                .success(function (data, status, headers, config) {
+                                .success(function (data) {
                                     $scope.processAccountResponse(data);
-                                }).error(function (data, status, headers, config) {
+                                }).error(function () {
                                     $scope.accountDefaultError();
                                 }).finally(function () {
                                     $scope.processing = false;

@@ -27,11 +27,11 @@ aporlaofertaApp
                         else {
                             $scope.processing = true;
                             requestManager.makePostCall(theUser, {recaptcha: vcRecaptchaService.getResponse($scope.widgetId)}, configService.getEndpoint('update.account'))
-                                .success(function (data, status, headers, config) {
+                                .success(function (data) {
                                     if ($scope.processAccountResponse(data)) {
                                         $rootScope.$broadcast('userAvatar', angular.copy(theUser));
                                     }
-                                }).error(function (data, status, headers, config) {
+                                }).error(function () {
                                     $scope.accountDefaultError();
                                 })
                                 .finally(function () {

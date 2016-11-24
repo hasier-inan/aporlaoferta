@@ -115,7 +115,7 @@ public class AccountControllerTest {
 
     @Test
     public void testSuccessfulUserCreationTriggersEmail() throws Exception, EmailSendingException {
-        TheUser theUser = UserBuilderManager.aPendingUserWithNickname("theUser").build();
+        TheForgettableUser theUser = (TheForgettableUser)UserBuilderManager.aPendingUserWithNickname("theUser").build();
         when(this.userManager.createUser(theUser)).thenReturn(theUser);
         this.accountController.createUser(theUser, "recaptcha");
         verify(this.emailService, times(1)).sendAccountConfirmationEmail(any(TheUser.class));
@@ -213,7 +213,8 @@ public class AccountControllerTest {
         String existingEmail = "nickname@existing.com";
         when(this.userManager.doesUserEmailExist(existingEmail))
                 .thenReturn(true);
-        TheUser theUser = UserBuilderManager.aRegularUserWithEmail(existingEmail).build();
+        TheForgettableUser theUser = (TheForgettableUser) UserBuilderManager.aRegularUserWithEmail(existingEmail).build();
+        theUser.setFirstPassword(theUser.getUserPassword());
         TheResponse theResponse = this.accountController.createUser(theUser, "captcha");
         assertThat("Expected invalid user email code", theResponse.getCode(), is(6));
     }
