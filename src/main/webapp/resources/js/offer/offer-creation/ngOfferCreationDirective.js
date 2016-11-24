@@ -11,8 +11,8 @@ aporlaofertaApp
                 customCloseCallback: '=',
                 displayCallback: '='
             },
-            controller: ['$scope', '$rootScope', 'offerManager', 'requestManager', 'configService', 'alertService', 'vcRecaptchaService',
-                function ($scope, $rootScope, offerManager, requestManager, configService, alertService, vcRecaptchaService) {
+            controller: ['$scope', '$rootScope', 'offerManager', 'requestManager', 'configService', 'alertService', 'vcRecaptchaService', 'offerHelper',
+                function ($scope, $rootScope, offerManager, requestManager, configService, alertService, vcRecaptchaService,offerHelper) {
                     $scope.offer = {};
                     $scope.widgetId = null;
                     $scope.publicKey = "6LdqHQoTAAAAAAht2VhkrLGU26eBOjL-nK9zXxcn";
@@ -88,12 +88,8 @@ aporlaofertaApp
                     };
 
                     $scope.isCategorySelected = function () {
-                        return !$scope.isEmptyCategory($scope.offer.offerCategory);
+                        return !offerHelper.isEmptyCategory($scope.offer.offerCategory);
                     };
-
-                    $scope.isEmptyCategory = function (category) {
-                        return ["", null, undefined, "Categoría", "Todas", "CATEGORÍA", "TODAS"].indexOf(category) > -1;
-                    }
 
                     $scope.selectionPerformed = function () {
                         return $scope.isCompanyDefined() && $scope.isCategorySelected();

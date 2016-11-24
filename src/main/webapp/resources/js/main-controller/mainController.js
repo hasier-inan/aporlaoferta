@@ -10,6 +10,7 @@ aporlaofertaApp = angular.module('aPorLaOferta', [
     'ngAnimate',
     'vcRecaptcha',
     'offerManager',
+    'offerHelper',
     'pwCheckModule',
     'ngMessages',
     'ngDropdowns',
