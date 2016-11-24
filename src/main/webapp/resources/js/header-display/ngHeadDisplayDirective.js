@@ -11,13 +11,15 @@ aporlaofertaApp
                 specificOfferData: '@',
                 overheadVisible: '=',
                 noAccounts: '=',
-                fullscreen: '='
+                fullscreen: '=',
+                overflowEnabled: '='
             },
             controller: ['$scope', '$window', 'offerManager', '$timeout', '$cookies', 'configService',
                 function ($scope, $window, $offerManager, $timeout, $cookies, configService) {
                     $scope.customCloseCallback = {};
                     $scope.theResponse = {};
                     $scope.fullscreen = false;
+                    $scope.overflowEnabled=false;
                     $scope.tutorialIsDisplayed = false;
                     $scope.loadingOfferSpecifications = false;
 
@@ -93,6 +95,7 @@ aporlaofertaApp
                     $scope.$watch('specificOffer', function () {
                         if (/^\d+$/.exec($scope.specificOffer) != null) {
                             $scope.fullscreen = true;
+                            $scope.overflowEnabled=true;
                             $scope.customCloseCallback = function () {
                                 $scope.fullscreen = false;
                             };
@@ -113,6 +116,7 @@ aporlaofertaApp
                         $scope.customCloseCallback = function () {
                             $scope.offerSpecifications = [];
                             $scope.fullscreen = false;
+                            $scope.overflowEnabled=false;
                         }
                     }
 
@@ -134,6 +138,7 @@ aporlaofertaApp
                     $scope.$on('serverResponse', function (event, args) {
                         $scope.theResponse = args;
                         $scope.fullscreen = false;
+                        $scope.overflowEnabled=false;
                         $scope.displayServerResponse();
                     });
 
@@ -160,6 +165,7 @@ aporlaofertaApp
                         $scope.customCloseCallback = {};
                         $scope.closeOverheadDisplay();
                         $scope.fullscreen = false;
+                        $scope.overflowEnabled=false;
                     }
 
                     $scope.checkForErrors = function () {
