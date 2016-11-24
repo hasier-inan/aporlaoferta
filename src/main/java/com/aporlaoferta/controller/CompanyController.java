@@ -1,5 +1,6 @@
 package com.aporlaoferta.controller;
 
+import com.aporlaoferta.controller.helpers.DatabaseHelper;
 import com.aporlaoferta.model.OfferCompany;
 import com.aporlaoferta.model.TheResponse;
 import com.aporlaoferta.model.validators.ValidationException;
@@ -39,7 +40,7 @@ public class CompanyController {
             this.offerValidatorHelper.validateCompany(offerCompany);
             OfferCompany company = this.companyManager.createCompany(offerCompany);
             if (company == null) {
-                ControllerHelper.addEmptyDatabaseObjectMessage(result, LOG);
+                DatabaseHelper.addEmptyDatabaseObjectMessage(result, LOG);
             } else {
                 String okMessage = String.format("Company successfully created. Id: %s", company.getId());
                 LOG.info(okMessage);

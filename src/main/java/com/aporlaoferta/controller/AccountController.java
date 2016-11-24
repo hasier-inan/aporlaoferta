@@ -1,5 +1,6 @@
 package com.aporlaoferta.controller;
 
+import com.aporlaoferta.controller.helpers.DatabaseHelper;
 import com.aporlaoferta.email.EmailSendingException;
 import com.aporlaoferta.email.EmailService;
 import com.aporlaoferta.model.TheDefaultOffer;
@@ -205,6 +206,37 @@ public class AccountController {
         return model;
     }
 
+
+    @RequestMapping(value = "/accountDetails", method = RequestMethod.POST)
+    @ResponseBody
+    public TheUser accountDetails() {
+        String userNickname = this.userManager.getUserNickNameFromSession();
+        if (isEmpty(userNickname)) {
+            return new TheUser();
+        } else {
+            TheUser theUser = this.userManager.getUserFromNickname(userNickname);
+            theUser.setUserPassword("");
+            theUser.setUuid("");
+            return theUser;
+        }
+    }
+
+    @RequestMapping(value = "/confirmUser", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView confirmUser(@RequestParam(value = "user", required = true) String nickname,
+                                    @RequestParam(value = "confirmationID", required = true) String uuid) {
+        TheResponse theResponse;
+        if (!isEmpty(uuid) && !isEmpty(nickname)) {
+            theResponse = this.userManager.confirmUser(uuid, nickname);
+        } else {
+            theResponse = ResponseResultHelper.createInvalidUUIDResponse();
+        }
+        ModelAndView model = new ModelAndView();
+        model.addObject("msg", theResponse.getDescriptionEsp());
+        model.setViewName("index");
+        return model;
+    }
+
     private TheResponse processUserUpdate(TheEnhancedUser theEnhancedUser) {
         TheResponse result = new TheResponse();
         String userNickname = this.userManager.getUserNickNameFromSession();
@@ -259,7 +291,7 @@ public class AccountController {
             this.offerValidatorHelper.validateUser(theNewUser);
             TheUser nuUser = this.userManager.updateUser(theNewUser, passwordIsPopulated);
             if (nuUser == null) {
-                ControllerHelper.addEmptyDatabaseObjectMessage(result, ". Nickname: " + userNickname, LOG);
+                DatabaseHelper.addEmptyDatabaseObjectMessage(result, ". Nickname: " + userNickname, LOG);
             } else {
                 String okMessage = String.format("User successfully updated. Id: %s", nuUser.getId());
                 LOG.info(okMessage);
@@ -309,36 +341,6 @@ public class AccountController {
         }
     }
 
-    @RequestMapping(value = "/accountDetails", method = RequestMethod.POST)
-    @ResponseBody
-    public TheUser accountDetails() {
-        String userNickname = this.userManager.getUserNickNameFromSession();
-        if (isEmpty(userNickname)) {
-            return new TheUser();
-        } else {
-            TheUser theUser = this.userManager.getUserFromNickname(userNickname);
-            theUser.setUserPassword("");
-            theUser.setUuid("");
-            return theUser;
-        }
-    }
-
-    @RequestMapping(value = "/confirmUser", method = RequestMethod.GET)
-    @ResponseBody
-    public ModelAndView confirmUser(@RequestParam(value = "user", required = true) String nickname,
-                                    @RequestParam(value = "confirmationID", required = true) String uuid) {
-        TheResponse theResponse;
-        if (!isEmpty(uuid) && !isEmpty(nickname)) {
-            theResponse = this.userManager.confirmUser(uuid, nickname);
-        } else {
-            theResponse = ResponseResultHelper.createInvalidUUIDResponse();
-        }
-        ModelAndView model = new ModelAndView();
-        model.addObject("msg", theResponse.getDescriptionEsp());
-        model.setViewName("index");
-        return model;
-    }
-
     private void validatePassword(TheUser theUser) {
         theUser.setUserPassword(encryptPassword(theUser.getUserPassword()));
     }
@@ -353,7 +355,7 @@ public class AccountController {
             this.offerValidatorHelper.validateUser(theUser);
             TheUser user = this.userManager.createUser(theUser);
             if (user == null) {
-                ControllerHelper.addEmptyDatabaseObjectMessage(result, ". Nickname: " + userNickname, LOG);
+                DatabaseHelper.addEmptyDatabaseObjectMessage(result, ". Nickname: " + userNickname, LOG);
             } else {
                 String okMessage = String.format("User successfully created. Id: %s", user.getId());
                 LOG.info(okMessage);

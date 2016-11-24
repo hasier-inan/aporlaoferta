@@ -1,5 +1,6 @@
-package com.aporlaoferta.controller;
+package com.aporlaoferta.controller.helpers;
 
+import com.aporlaoferta.controller.ResultCode;
 import com.aporlaoferta.model.TheResponse;
 import org.slf4j.Logger;
 
@@ -9,7 +10,7 @@ import org.slf4j.Logger;
  * Date: 03/02/2015
  * Time: 08:27
  */
-public class ControllerHelper {
+public class DatabaseHelper {
 
     public static void addEmptyDatabaseObjectMessage(TheResponse result, Logger LOG) {
         String resultDescription = String.format(ResultCode.DATABASE_RETURNED_EMPTY_OBJECT.getResultDescription());
