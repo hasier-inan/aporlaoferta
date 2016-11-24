@@ -8,6 +8,7 @@ module.exports = {
         './src/main/webapp/resources/js/config/configService.js',
         './src/main/webapp/resources/js/response/alertService.js',
         './src/main/webapp/resources/js/offer/offer-list/offerManagerService.js',
+        './src/main/webapp/resources/js/offer/offer-specifications/offerHelper.js',
         './src/main/webapp/resources/js/main-controller/mainController.js',
         './src/main/webapp/resources/js/account/account-signup/ngAccountCreationDirective.js',
         './src/main/webapp/resources/js/account/account-signup/ngAccountUpdateDirective.js',

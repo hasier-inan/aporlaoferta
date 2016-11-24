@@ -10,8 +10,8 @@ aporlaofertaApp
                 theOffer: '=',
                 customCloseCallback: '='
             },
-            controller: ['offerManager', 'alertService', '$scope', '$rootScope', 'requestManager', 'configService',
-                function (offerManager, alertService, $scope, $rootScope, requestManager, configService) {
+            controller: ['offerManager', 'alertService', '$scope', '$rootScope', 'requestManager', 'configService', 'offerHelper',
+                function (offerManager, alertService, $scope, $rootScope, requestManager, configService, offerHelper) {
                     $scope.sharePrefix = "www.aporlaoferta.com/offer?sh=";
                     $scope.sharePrice = "€: ";
                     $scope.offer = {offerImage: "/resources/images/offer.png"}
@@ -57,7 +57,9 @@ aporlaofertaApp
                     }
 
                     $scope.$watch('theOffer', function () {
-                        $scope.offer = $scope.theOffer[0];
+                        if ($scope.theOffer) {
+                            $scope.offer = $scope.theOffer[0];
+                        }
                     });
 
                     $scope.expireOffer = function (theOffer) {
@@ -105,17 +107,7 @@ aporlaofertaApp
                     }
 
                     $scope.offerFeedbackStyle = function (offer) {
-                        var offerFeedback = offer.offerPositiveVote - offer.offerNegativeVote;
-                        if (offerFeedback > 0 && offerFeedback <= 100) {
-                            return 'hotFeedback';
-                        }
-                        else if (offerFeedback > 100) {
-                            return 'veryHotFeedback';
-                        }
-                        else if (offerFeedback < 0) {
-                            return 'coldFeedback';
-                        }
-                        return 'neutralFeedback';
+                        return offerHelper.offerFeedbackStyle(offer);
                     }
 
                     $scope.processLogin = function () {
@@ -132,4 +124,5 @@ aporlaofertaApp
                     });
                 }]
         }
-    });
+    })
+;

@@ -9,8 +9,8 @@ aporlaofertaApp
             scope: {
                 defaultList: '='
             },
-            controller: ['$scope', 'offerManager',
-                function ($scope, offerManager) {
+            controller: ['$scope', 'offerManager', 'offerHelper',
+                function ($scope, offerManager,offerHelper) {
                     $scope.offerList = [];
                     $scope.moreOffersLoading = true;
                     $scope.lastOffer = 0;
@@ -77,25 +77,11 @@ aporlaofertaApp
                     }
 
                     $scope.isCategorySelected = function () {
-                        return !$scope.isEmptyCategory($scope.offerFilter.selectedcategory);
+                        return !offerHelper.isEmptyCategory($scope.offerFilter.selectedcategory);
                     };
 
-                    $scope.isEmptyCategory = function (category) {
-                        return ["", null, undefined, "Categoría", "Todas", "CATEGORÍA", "TODAS"].indexOf(category) > -1;
-                    }
-
                     $scope.offerFeedbackStyle = function (offer) {
-                        var offerFeedback = offer.offerPositiveVote - offer.offerNegativeVote;
-                        if (offerFeedback > 0 && offerFeedback <= 100) {
-                            return 'hotFeedback';
-                        }
-                        else if (offerFeedback > 100) {
-                            return 'veryHotFeedback';
-                        }
-                        else if (offerFeedback < 0) {
-                            return 'coldFeedback';
-                        }
-                        return 'neutralFeedback';
+                       return offerHelper.offerFeedbackStyle(offer);
                     }
 
                     $scope.$on('appliedOfferFilters', function () {
