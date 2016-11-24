@@ -11,14 +11,14 @@ aporlaofertaApp
                 customCloseCallback: '=',
                 displayCallback: '='
             },
-            controller: ['$scope', 'vcRecaptchaService', 'alertService', '$http', 'requestManager', 'configService', '$rootScope',
-                function ($scope, vcRecaptchaService, alertService, http, requestManager, configService, $rootScope) {
+            controller: ['$scope', 'vcRecaptchaService', 'alertService', '$http', 'requestManager', 'configService', '$rootScope','accountHelper',
+                function ($scope, vcRecaptchaService, alertService, http, requestManager, configService, $rootScope,accountHelper) {
                     $scope.disableNickname = true;
                     $scope.theUser = {};
                     $scope.widgetId = null;
                     $scope.passwordUpdateRequired = false;
-                    $scope.validMail = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*(\+[a-z0-9-]+)?@[a-z]+\.[a-z.]{2,5}$/;
-                    $scope.validPassword = /^(?=.*?)(?=.*?[a-z])(?=.*?[0-9])(?=.*?).{8,}$/;
+                    $scope.validMail = accountHelper.validMail;
+                    $scope.validPassword = accountHelper.validPassword;
                     $scope.publicKey = "6LdqHQoTAAAAAAht2VhkrLGU26eBOjL-nK9zXxcn";
                     $scope.createAccount = function (theUser) {
                         if (vcRecaptchaService.getResponse($scope.widgetId) === "") {

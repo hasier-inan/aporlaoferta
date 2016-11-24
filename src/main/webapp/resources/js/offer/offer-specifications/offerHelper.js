@@ -3,7 +3,6 @@ var offerHelper = angular.module('offerHelper', []);
 offerHelper.service('offerHelper', [
     function () {
         var offerUtils = {};
-        offerUtils.appliedOfferFilters = {};
 
         offerUtils.offerFeedbackStyle = function (offer) {
             if (offer) {

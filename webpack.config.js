@@ -13,6 +13,7 @@ module.exports = {
         './src/main/webapp/resources/js/account/account-signup/ngAccountCreationDirective.js',
         './src/main/webapp/resources/js/account/account-signup/ngAccountUpdateDirective.js',
         './src/main/webapp/resources/js/account/account-signup/pwdCheck.js',
+        './src/main/webapp/resources/js/account/account-signup/accountHelper.js',
         './src/main/webapp/resources/js/account/account-login/ngAccountLoginDirective.js',
         './src/main/webapp/resources/js/account/account-logout/ngAccountLogoutDirective.js',
         './src/main/webapp/resources/js/offer/offer-list/ngOfferListDirective.js',
