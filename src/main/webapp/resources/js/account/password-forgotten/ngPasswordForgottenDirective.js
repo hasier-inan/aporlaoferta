@@ -11,9 +11,9 @@ aporlaofertaApp
                 nick: '=',
                 customCloseCallback: '='
             },
-            controller: ['$scope', '$http', 'requestManager', 'configService', 'alertService','$timeout',
-                function ($scope, http, requestManager, configService, alertService,$timeout) {
-                    $scope.validPassword = /^(?=.*?)(?=.*?[a-z])(?=.*?[0-9])(?=.*?).{8,}$/;
+            controller: ['$scope', '$http', 'requestManager', 'configService', 'alertService','$timeout','accountHelper',
+                function ($scope, http, requestManager, configService, alertService,$timeout,accountHelper) {
+                    $scope.validPassword = accountHelper.validPassword;
                     $scope.theUser = {userNickname: $scope.nick, track: $scope.uuid};
                     $scope.updatePassword = function (theUser) {
                         $scope.processing=true;
