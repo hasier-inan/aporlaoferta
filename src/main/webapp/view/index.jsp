@@ -21,7 +21,7 @@
     <%@include file="head/resources.jsp" %>
 </head>
 <body id="top" data-ng-controller="APorLaOfertaController" flow-prevent-drop ng-keydown="keyHandler($event)"
-      ng-class="{'no-overflow':overheadVisible}">
+      ng-class="{'no-overflow':overheadVisible && !fullscreen}">
 
 <c:if test="${not empty msg}">
     <input type="text" id="errorMessage" style="display:none" value="${msg}"/>
