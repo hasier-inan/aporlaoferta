@@ -34,8 +34,8 @@ import static org.springframework.util.Assert.notNull;
 @Entity
 @Table(name = "thatuser")
 @SequenceGenerator(name = "GEN_THATUSER", sequenceName = "SEQ_THATUSER")
-@JsonIgnoreProperties({"userOffers", "userComments", "negativeOffers", "positiveOffers", "uuid",
-"pending"})
+@JsonIgnoreProperties({"userOffers", "userComments", "negativeOffers", "positiveOffers", "userPassword", "uuid",
+        "pending", "userEmail"})
 public class TheUser implements Serializable {
 
     private static final long serialVersionUID = 3178810385898694540L;

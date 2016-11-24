@@ -61,7 +61,7 @@ aporlaofertaApp
 
                     $scope.resetPassword=function(){
                         $scope.theUser.oldPassword=null;
-                        $scope.theUser.userPassword=null;
+                        $scope.theUser.userSpecifiedPassword=null;
                         $scope.userPassword2=null;
                     }
 

@@ -4,7 +4,7 @@ import com.aporlaoferta.email.EmailSendingException;
 import com.aporlaoferta.email.EmailService;
 import com.aporlaoferta.model.TheDefaultOffer;
 import com.aporlaoferta.model.TheForgettableUser;
-import com.aporlaoferta.model.TheNewUser;
+import com.aporlaoferta.model.TheEnhancedUser;
 import com.aporlaoferta.model.TheResponse;
 import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.model.validators.ValidationException;
@@ -115,12 +115,11 @@ public class AccountController {
 
     @RequestMapping(value = "/createUser", method = RequestMethod.POST)
     @ResponseBody
-    public TheResponse createUser(@RequestBody TheUser theUser,
+    public TheResponse createUser(@RequestBody TheEnhancedUser theUser,
                                   @RequestParam(value = "recaptcha", required = true) String reCaptcha) {
         if (!this.captchaHttpManager.validHuman(reCaptcha)) {
             return ResponseResultHelper.createInvalidCaptchaResponse();
-
-        } else if (this.userManager.doesUserEmailExist(theUser.getUserEmail())) {
+        } else if (this.userManager.doesUserEmailExist(theUser.getUserSpecifiedEmail())) {
             return ResponseResultHelper.createExistingEmailResponse();
         } else {
             return processUserCreation(theUser);
@@ -130,7 +129,7 @@ public class AccountController {
 
     @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
     @ResponseBody
-    public TheResponse updateUser(@RequestBody TheNewUser theNewUser,
+    public TheResponse updateUser(@RequestBody TheEnhancedUser theEnhancedUser,
                                   @RequestParam(value = "recaptcha", required = true) String reCaptcha) {
         if (!this.captchaHttpManager.validHuman(reCaptcha)) {
             return ResponseResultHelper.createInvalidCaptchaResponse();
@@ -138,7 +137,7 @@ public class AccountController {
         if (this.userManager.userIsBanned()) {
             return ResponseResultHelper.createInvalidUserResponse();
         }
-        return processUserUpdate(theNewUser);
+        return processUserUpdate(theEnhancedUser);
     }
 
     @RequestMapping(value = "/banUser", method = RequestMethod.POST)
@@ -206,12 +205,12 @@ public class AccountController {
         return model;
     }
 
-    private TheResponse processUserUpdate(TheNewUser theNewUser) {
+    private TheResponse processUserUpdate(TheEnhancedUser theEnhancedUser) {
         TheResponse result = new TheResponse();
         String userNickname = this.userManager.getUserNickNameFromSession();
-        theNewUser.setUserNickname(userNickname);
-        Boolean passwordPopulated = passwordUpdateIsNotRequired(theNewUser);
-        if (!verifyOldPasswordAndUpdateNewestAvatar(theNewUser, userNickname)) {
+        updateDefaultUserValues(theEnhancedUser, userNickname);
+        Boolean passwordPopulated = passwordUpdateIsNotRequired(theEnhancedUser);
+        if (!verifyOldPasswordAndUpdateNewestAvatar(theEnhancedUser, userNickname)) {
             result.assignResultCode(ResultCode.USER_NAME_PASSWORD_INVALID);
             return result;
         }
@@ -220,30 +219,37 @@ public class AccountController {
         } else if (!this.userManager.doesUserExist(userNickname)) {
             result.assignResultCode(ResultCode.USER_NAME_DOES_NOT_EXIST);
         } else {
-            validateAndUpdateUser(theNewUser, result, userNickname, passwordPopulated);
+            validateAndUpdateUser(theEnhancedUser, result, userNickname, passwordPopulated);
         }
         return result;
     }
 
-    private boolean verifyOldPasswordAndUpdateNewestAvatar(TheNewUser theNewUser, String userNickname) {
+    private void updateDefaultUserValues(TheEnhancedUser theEnhancedUser, String userNickname) {
+        theEnhancedUser.setUserNickname(userNickname);
+        theEnhancedUser.setUserEmail(theEnhancedUser.getUserSpecifiedEmail());
+        theEnhancedUser.setUserPassword(theEnhancedUser.getUserSpecifiedPassword());
+        theEnhancedUser.setUserNickname(userNickname);
+    }
+
+    private boolean verifyOldPasswordAndUpdateNewestAvatar(TheEnhancedUser theEnhancedUser, String userNickname) {
         TheUser theOldUser = this.userManager.getUserFromNickname(userNickname);
-        if (isEmpty(theNewUser.getUserAvatar())) {
-            theNewUser.setUserAvatar(theOldUser.getUserAvatar());
+        if (isEmpty(theEnhancedUser.getUserAvatar())) {
+            theEnhancedUser.setUserAvatar(theOldUser.getUserAvatar());
         }
-        if (passwordUpdateIsNotRequired(theNewUser)) {
-            theNewUser.setUserPassword(theOldUser.getUserPassword());
+        if (passwordUpdateIsNotRequired(theEnhancedUser)) {
+            theEnhancedUser.setUserPassword(theOldUser.getUserPassword());
             return true;
         }
-        return isSamePersistedPassword(theNewUser, theOldUser);
+        return isSamePersistedPassword(theEnhancedUser, theOldUser);
     }
 
-    private boolean passwordUpdateIsNotRequired(TheNewUser theNewUser) {
-        return isEmpty(theNewUser.getOldPassword()) && isEmpty(theNewUser.getUserPassword());
+    private boolean passwordUpdateIsNotRequired(TheEnhancedUser theEnhancedUser) {
+        return isEmpty(theEnhancedUser.getOldPassword()) && isEmpty(theEnhancedUser.getUserPassword());
     }
 
-    private boolean isSamePersistedPassword(TheNewUser theNewUser, TheUser theOldUser) {
+    private boolean isSamePersistedPassword(TheEnhancedUser theEnhancedUser, TheUser theOldUser) {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(11);
-        String oldPassword = theNewUser.getOldPassword();
+        String oldPassword = theEnhancedUser.getOldPassword();
         return !isEmpty(oldPassword) && bCryptPasswordEncoder.matches(oldPassword, theOldUser.getUserPassword());
     }
 
@@ -267,20 +273,29 @@ public class AccountController {
         return result;
     }
 
-    private TheResponse processUserCreation(TheUser theUser) {
+    private TheResponse processUserCreation(TheEnhancedUser theUser) {
         TheResponse result = new TheResponse();
         String userNickname = theUser.getUserNickname();
-        addDefaultAvatar(theUser);
-        addPendingFlag(theUser);
         if (isEmpty(userNickname)) {
             result.assignResultCode(ResultCode.USER_NAME_IS_INVALID);
         } else if (this.userManager.doesUserExist(userNickname)) {
             result.assignResultCode(ResultCode.USER_NAME_ALREADY_EXISTS);
         } else {
-            validatePassword(theUser);
-            validateAndCreateUser(theUser, result, userNickname);
+            TheUser defaultUser = createDefaultUserValues(theUser);
+            validatePassword(defaultUser);
+            validateAndCreateUser(defaultUser, result, userNickname);
         }
         return result;
+    }
+
+    private TheUser createDefaultUserValues(TheEnhancedUser theUser) {
+        TheUser defaultUser = new TheUser();
+        defaultUser.setUserPassword(theUser.getUserSpecifiedPassword());
+        defaultUser.setUserEmail(theUser.getUserSpecifiedEmail());
+        defaultUser.setUserNickname(theUser.getUserNickname());
+        addDefaultAvatar(defaultUser);
+        addPendingFlag(defaultUser);
+        return defaultUser;
     }
 
     private void addPendingFlag(TheUser theUser) {

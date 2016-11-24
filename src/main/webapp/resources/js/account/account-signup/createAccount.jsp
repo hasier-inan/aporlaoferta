@@ -57,7 +57,7 @@
                            ng-show="disableNickname && passwordUpdateRequired">
                         Recuerda que la contraseña debe tener un mínimo de 8 carácteres, compuesto por lo
                         menos por un número y una letra</label>
-                    <input type="password" id="createUserPassword" ng-model="theUser.userPassword"
+                    <input type="password" id="createUserPassword" ng-model="theUser.userSpecifiedPassword"
                            ng-pattern="validPassword"
                            class="overheadField content-validation"
                            placeholder="Contraseña" ng-maxlength="250"
@@ -73,7 +73,7 @@
                         Recibirás un correo electrónico para confirmar tu cuenta</label>
                     <label for="createUserEmail" class="overhead-hint-label" ng-show="disableNickname">
                         Puedes cambiar tu correo electrónico y avatar</label>
-                    <input type="text" id="createUserEmail" ng-model="theUser.userEmail"
+                    <input type="text" id="createUserEmail" ng-model="theUser.userSpecifiedEmail"
                            class="overheadField content-validation"
                            placeholder="Email" required ng-pattern="validMail" ng-maxlength="250"/>
                 </ul>
