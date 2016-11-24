@@ -25,6 +25,12 @@ offerHelper.service('offerHelper', [
             return ["", null, undefined, "Categoría", "Todas", "CATEGORÍA", "TODAS"].indexOf(category) > -1;
         }
 
+        offerUtils.parsePrice = function (price) {
+            if (price || price == 0) {
+                return price.toString().replace(/\./, ',');
+            }
+        }
+
         return offerUtils;
     }]);
 
