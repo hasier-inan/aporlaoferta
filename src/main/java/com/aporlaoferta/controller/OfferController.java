@@ -1,5 +1,6 @@
 package com.aporlaoferta.controller;
 
+import com.aporlaoferta.controller.helpers.DatabaseHelper;
 import com.aporlaoferta.model.DateRange;
 import com.aporlaoferta.model.OfferCategory;
 import com.aporlaoferta.model.OfferComment;
@@ -93,15 +94,6 @@ public class OfferController {
         return model;
     }
 
-    private void includeOfferMeta(ModelAndView model, TheOffer theOffer) {
-        model.addObject("offerId", theOffer.getId());
-        model.addObject("offerTitle", String.format("%s: %s", theOffer.getOfferTitle(), theOffer.getFinalPrice().toString()));
-        model.addObject("offerDescription", theOffer.getOfferDescription());
-        String offerImage = theOffer.getOfferImage();
-        model.addObject("offerImage", offerImage.indexOf("offer.png") >= 0 ?
-                String.format("http://www.aporlaoferta.com%s", offerImage) : offerImage);
-    }
-
     @RequestMapping(value = "/getOffers", method = RequestMethod.POST)
     @ResponseBody
     public OfferListResponse getOffers(@RequestParam(value = "number", required = false) Long number,
@@ -179,6 +171,75 @@ public class OfferController {
         return processOfferCreation(thatOffer);
     }
 
+    @RequestMapping(value = "/expireOffer", method = RequestMethod.POST)
+    @ResponseBody
+    public TheResponse expireOffer(@RequestParam(value = "id", required = true) Long offerId) {
+        try {
+            if (this.userManager.userIsBanned()) {
+                return ResponseResultHelper.createInvalidUserResponse();
+            }
+
+            TheOffer originalOffer = this.offerManager.getOfferFromId(offerId);
+            if (originalOffer == null) {
+                throw new ValidationException("Invalid offer id");
+            }
+            TheResponse result = ResponseResultHelper.createDefaultResponse();
+            if (!this.userManager.isUserAuthorised(originalOffer)) {
+                return ResponseResultHelper.
+                        responseResultWithResultCodeError(ResultCode.INVALID_OWNER_ERROR, result);
+            }
+            if (this.offerManager.expireOffer(originalOffer).isOfferExpired()) {
+                result.assignResultCode(ResultCode.ALL_OK, ResponseResult.OK.value(), "La Oferta ha sido marcada como caducada");
+            }
+            return result;
+        } catch (ValidationException | NumberFormatException e) {
+            return ResponseResultHelper.
+                    responseResultWithResultCodeError(ResultCode.UPDATE_OFFER_VALIDATION_ERROR, new TheResponse());
+        }
+    }
+
+    @RequestMapping(value = "/updateOffer", method = RequestMethod.POST)
+    @ResponseBody
+    public TheResponse updateOffer(@RequestBody TheOffer theOffer,
+                                   @RequestParam(value = "recaptcha", required = true) String reCaptcha) {
+        if (!this.captchaHttpManager.validHuman(reCaptcha)) {
+            return ResponseResultHelper.createInvalidCaptchaResponse();
+        }
+
+        if (this.userManager.userIsBanned()) {
+            return ResponseResultHelper.createInvalidUserResponse();
+        }
+
+        return processOfferUpdate(theOffer);
+    }
+
+    @RequestMapping(value = "/removeOffer", method = RequestMethod.POST)
+    @ResponseBody
+    public TheResponse removeOffer(@RequestParam(value = "id", required = true) Long id) {
+        this.offerManager.deleteOffer(id);
+        return ResponseResultHelper.offerUpdateResponse(id.toString());
+    }
+
+    @RequestMapping(value = "/getOfferCategories", method = RequestMethod.POST)
+    @ResponseBody
+    public List<Map<String, String>> getOfferCategories() {
+        List<Map<String, String>> offerCategoriesList = new ArrayList<>();
+        OfferCategory[] categoryValues = OfferCategory.values();
+        for (OfferCategory offerCategory : categoryValues) {
+            addCategoryIntoList(offerCategoriesList, offerCategory);
+        }
+        return offerCategoriesList;
+    }
+
+    private void includeOfferMeta(ModelAndView model, TheOffer theOffer) {
+        model.addObject("offerId", theOffer.getId());
+        model.addObject("offerTitle", String.format("%s: %s", theOffer.getOfferTitle(), theOffer.getFinalPrice().toString()));
+        model.addObject("offerDescription", theOffer.getOfferDescription());
+        String offerImage = theOffer.getOfferImage();
+        model.addObject("offerImage", offerImage.indexOf("offer.png") >= 0 ?
+                String.format("http://www.aporlaoferta.com%s", offerImage) : offerImage);
+    }
+
     private TheResponse processOfferCreation(TheOffer thatOffer) {
         includeInitialValues(thatOffer);
         updateCompany(thatOffer);
@@ -250,55 +311,6 @@ public class OfferController {
         }
     }
 
-    @RequestMapping(value = "/expireOffer", method = RequestMethod.POST)
-    @ResponseBody
-    public TheResponse expireOffer(@RequestParam(value = "id", required = true) Long offerId) {
-        try {
-            if (this.userManager.userIsBanned()) {
-                return ResponseResultHelper.createInvalidUserResponse();
-            }
-
-            TheOffer originalOffer = this.offerManager.getOfferFromId(offerId);
-            if (originalOffer == null) {
-                throw new ValidationException("Invalid offer id");
-            }
-            TheResponse result = ResponseResultHelper.createDefaultResponse();
-            if (!this.userManager.isUserAuthorised(originalOffer)) {
-                return ResponseResultHelper.
-                        responseResultWithResultCodeError(ResultCode.INVALID_OWNER_ERROR, result);
-            }
-            if (this.offerManager.expireOffer(originalOffer).isOfferExpired()) {
-                result.assignResultCode(ResultCode.ALL_OK, ResponseResult.OK.value(), "La Oferta ha sido marcada como caducada");
-            }
-            return result;
-        } catch (ValidationException | NumberFormatException e) {
-            return ResponseResultHelper.
-                    responseResultWithResultCodeError(ResultCode.UPDATE_OFFER_VALIDATION_ERROR, new TheResponse());
-        }
-    }
-
-    @RequestMapping(value = "/updateOffer", method = RequestMethod.POST)
-    @ResponseBody
-    public TheResponse updateOffer(@RequestBody TheOffer theOffer,
-                                   @RequestParam(value = "recaptcha", required = true) String reCaptcha) {
-        if (!this.captchaHttpManager.validHuman(reCaptcha)) {
-            return ResponseResultHelper.createInvalidCaptchaResponse();
-        }
-
-        if (this.userManager.userIsBanned()) {
-            return ResponseResultHelper.createInvalidUserResponse();
-        }
-
-        return processOfferUpdate(theOffer);
-    }
-
-    @RequestMapping(value = "/removeOffer", method = RequestMethod.POST)
-    @ResponseBody
-    public TheResponse removeOffer(@RequestParam(value = "id", required = true) Long id) {
-        this.offerManager.deleteOffer(id);
-        return ResponseResultHelper.offerUpdateResponse(id.toString());
-    }
-
     private TheResponse processOfferUpdate(TheOffer theOffer) {
         try {
             Long offerId = isEmpty(theOffer.getId()) ? -1L : theOffer.getId();
@@ -320,18 +332,6 @@ public class OfferController {
             return ResponseResultHelper.createUnhealthyResponse();
         }
         return ResponseResultHelper.createDefaultResponse();
-    }
-
-
-    @RequestMapping(value = "/getOfferCategories", method = RequestMethod.POST)
-    @ResponseBody
-    public List<Map<String, String>> getOfferCategories() {
-        List<Map<String, String>> offerCategoriesList = new ArrayList<>();
-        OfferCategory[] categoryValues = OfferCategory.values();
-        for (OfferCategory offerCategory : categoryValues) {
-            addCategoryIntoList(offerCategoriesList, offerCategory);
-        }
-        return offerCategoriesList;
     }
 
     private void addCategoryIntoList(List<Map<String, String>> offerCategoriesList, OfferCategory offerCategory) {
@@ -397,7 +397,7 @@ public class OfferController {
         TheOffer theOffer = theUser.obtainLatestOffer();
         TheResponse result = new TheResponse();
         if (theOffer == null) {
-            ControllerHelper.addEmptyDatabaseObjectMessage(result, LOG);
+            DatabaseHelper.addEmptyDatabaseObjectMessage(result, LOG);
         } else {
             String okMessage = String.format("Offer successfully updated. Id: %s", theOffer.getId());
             LOG.info(okMessage);

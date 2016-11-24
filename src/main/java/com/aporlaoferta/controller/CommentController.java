@@ -1,5 +1,6 @@
 package com.aporlaoferta.controller;
 
+import com.aporlaoferta.controller.helpers.DatabaseHelper;
 import com.aporlaoferta.model.OfferComment;
 import com.aporlaoferta.model.TheOffer;
 import com.aporlaoferta.model.TheResponse;
@@ -212,7 +213,7 @@ public class CommentController {
         TheUser theUser = this.userManager.saveUser(thatComment.getCommentOwner());
         OfferComment comment = theUser.obtainLatestComment();
         if (comment == null) {
-            ControllerHelper.addEmptyDatabaseObjectMessage(result, LOG);
+            DatabaseHelper.addEmptyDatabaseObjectMessage(result, LOG);
         } else {
             ResponseResultHelper.updateResultWithSuccessCode(result, comment);
         }
