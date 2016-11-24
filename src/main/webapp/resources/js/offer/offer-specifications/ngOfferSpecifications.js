@@ -101,9 +101,7 @@ aporlaofertaApp
                     }
 
                     $scope.parsePrice = function (price) {
-                        if (price || price == 0) {
-                            return price.toString().replace(/\./, ',');
-                        }
+                        return offerHelper.parsePrice(price);
                     }
 
                     $scope.offerFeedbackStyle = function (offer) {
