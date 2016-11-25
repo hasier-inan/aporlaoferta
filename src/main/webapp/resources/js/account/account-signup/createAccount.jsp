@@ -68,14 +68,24 @@
                            pw-check="createUserPassword"
                            ng-required="passwordUpdateRequired"/>
                 </ul>
+                <ul ng-show="disableNickname">
+                    <div class="inline-block margin-top--small margin-bottom--small">
+                        <input type="checkbox" id="updateEmailIsRequired" name="updateEmailIsRequired"
+                               ng-model="updateEmailRequired" ng-click="resetEmail()">
+                        <label for="updateEmailIsRequired" class="overheadLabel">Actualizar
+                            Correo Electrónico</label>
+                    </div>
+                </ul>
                 <ul>
                     <label for="createUserEmail" class="overhead-hint-label" ng-hide="disableNickname">
                         Recibirás un correo electrónico para confirmar tu cuenta</label>
-                    <label for="createUserEmail" class="overhead-hint-label" ng-show="disableNickname">
+                    <label for="createUserEmail" class="overhead-hint-label" ng-show="disableNickname && updateEmailRequired">
                         Puedes cambiar tu correo electrónico y avatar</label>
                     <input type="text" id="createUserEmail" ng-model="theUser.userSpecifiedEmail"
+                           ng-show="!disableNickname || updateEmailRequired"
+                           ng-required="!disableNickname || updateEmailRequired"
                            class="overheadField content-validation"
-                           placeholder="Email" required ng-pattern="validMail" ng-maxlength="250"/>
+                           placeholder="Email" ng-pattern="validMail" ng-maxlength="250"/>
                 </ul>
                 <ul>
                     <label id="imageUploadLabel" for="imageUploadContent" class="overhead-hint-label"

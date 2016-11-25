@@ -64,6 +64,9 @@ aporlaofertaApp
                         $scope.theUser.userSpecifiedPassword=null;
                         $scope.userPassword2=null;
                     }
+                    $scope.resetEmail=function(){
+                        $scope.theUser.userSpecifiedEmail=null;
+                    }
 
                     $scope.displayErrorMessageAndDisplayAccount = function () {
                         alertService.sendErrorMessage("Por favor, haga click en el captcha para demostrar que no es un robot");

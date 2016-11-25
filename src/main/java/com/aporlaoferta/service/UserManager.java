@@ -96,8 +96,16 @@ public class UserManager {
      * @param theNewUser: User object with newest data
      * @return original User object with updated details
      */
+    public TheUser updateUser(TheUser theNewUser, TheUser theUser, Boolean passwordIsPopulated) {
+        return updateUserFromNewOne(theNewUser, passwordIsPopulated, theUser);
+    }
+
     public TheUser updateUser(TheUser theNewUser, Boolean passwordIsPopulated) {
         TheUser theUser = getUserFromNickname(theNewUser.getUserNickname());
+        return updateUserFromNewOne(theNewUser, passwordIsPopulated, theUser);
+    }
+
+    private TheUser updateUserFromNewOne(TheUser theNewUser, Boolean passwordIsPopulated, TheUser theUser) {
         if (theUser != null) {
             theUser.setUserAvatar(theNewUser.getUserAvatar());
             theUser.setUserEmail(theNewUser.getUserEmail());

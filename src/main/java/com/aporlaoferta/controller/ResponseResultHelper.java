@@ -69,6 +69,13 @@ public class ResponseResultHelper {
         return theResponse;
     }
 
+    public static TheResponse userUpdatedResponse(TheResponse result, ValidationException e) {
+        String resultDescription = ResultCode.UPDATE_USER_VALIDATION_ERROR.getResultDescription();
+        LOG.warn(resultDescription, e);
+        result.assignResultCode(ResultCode.UPDATE_USER_VALIDATION_ERROR);
+        return result;
+    }
+
     public static TheResponse createForgottenPasswordResponse() {
         TheResponse theResponse = new TheResponse();
         theResponse.assignResultCode(ResultCode.ALL_OK, "Password reset email request has been sent", "En breve recibirás un correo electrónico donde podrás reiniciar tu contraseña");
