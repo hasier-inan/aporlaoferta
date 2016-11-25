@@ -28,9 +28,9 @@ aporlaofertaApp
 
                 $scope.getUserDetails = function () {
                     requestManager.makePostCall({}, {}, configService.getEndpoint('get.account.details'))
-                        .success(function (data, status, headers, config) {
+                        .success(function (data) {
                             $scope.userAvatar = data.userAvatar;
-                        }).error(function (data, status, headers, config) {
+                        }).error(function () {
                             alertService.sendErrorMessage("No se ha podido obtener la información del usuario");
                             $scope.customCloseCallback = false;
                         });

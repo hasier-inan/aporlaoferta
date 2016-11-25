@@ -75,6 +75,12 @@ input::-moz-selection {
 .inline-block{
   display: inline-block;
 }
+.margin-top--small{
+  margin-top: 1em;
+}
+.margin-bottom--small{
+  margin-bottom: 1em;
+}
 
 .wrapper.style2 input[type="checkbox"]:hover + label:before,
 .wrapper.style2 input[type="radio"]:hover + label:before {

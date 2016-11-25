@@ -191,7 +191,17 @@ public class AccountController {
             return ResponseResultHelper.updateWithCode(ResultCode.INVALID_PASSWORD_VERIFICATION);
         }
         theUser.setUserPassword(theForgettableUser.getFirstPassword());
-        return validateAndUpdateUser(theUser, new TheResponse(), theForgettableUser.getSecondPassword(), false);
+
+        TheResponse result = new TheResponse();
+        try {
+            validatePassword(theUser);
+            this.offerValidatorHelper.validateUser(theUser);
+            TheUser nuUser = this.userManager.updateUser(theUser, false);
+            updatedUserResponse(result, theForgettableUser.getSecondPassword(), nuUser);
+        } catch (ValidationException e) {
+            return ResponseResultHelper.userUpdatedResponse(result, e);
+        }
+        return result;
     }
 
     @RequestMapping(value = {"/passwordForgotten**"}, method = RequestMethod.GET)
@@ -240,9 +250,10 @@ public class AccountController {
     private TheResponse processUserUpdate(TheEnhancedUser theEnhancedUser) {
         TheResponse result = new TheResponse();
         String userNickname = this.userManager.getUserNickNameFromSession();
-        updateDefaultUserValues(theEnhancedUser, userNickname);
-        Boolean passwordPopulated = passwordUpdateIsNotRequired(theEnhancedUser);
-        if (!verifyOldPasswordAndUpdateNewestAvatar(theEnhancedUser, userNickname)) {
+        TheUser theOldUser = this.userManager.getUserFromNickname(userNickname);
+
+        updateDefaultUserValues(theEnhancedUser, userNickname, theOldUser);
+        if (!verifyOldPasswordAndUpdateNewestAvatar(theEnhancedUser, theOldUser)) {
             result.assignResultCode(ResultCode.USER_NAME_PASSWORD_INVALID);
             return result;
         }
@@ -251,32 +262,52 @@ public class AccountController {
         } else if (!this.userManager.doesUserExist(userNickname)) {
             result.assignResultCode(ResultCode.USER_NAME_DOES_NOT_EXIST);
         } else {
-            validateAndUpdateUser(theEnhancedUser, result, userNickname, passwordPopulated);
+            try {
+                this.offerValidatorHelper.validateUser(theEnhancedUser);
+                TheUser nuUser = this.userManager.updateUser(theEnhancedUser, theOldUser, passwordUpdateIsNotRequired(theEnhancedUser));
+                updatedUserResponse(result, userNickname, nuUser);
+            } catch (ValidationException e) {
+                return ResponseResultHelper.userUpdatedResponse(result, e);
+            }
         }
         return result;
     }
 
-    private void updateDefaultUserValues(TheEnhancedUser theEnhancedUser, String userNickname) {
+    private void updateDefaultUserValues(TheEnhancedUser theEnhancedUser, String userNickname, TheUser theUser) {
         theEnhancedUser.setUserNickname(userNickname);
-        theEnhancedUser.setUserEmail(theEnhancedUser.getUserSpecifiedEmail());
-        theEnhancedUser.setUserPassword(theEnhancedUser.getUserSpecifiedPassword());
-        theEnhancedUser.setUserNickname(userNickname);
+        String specifiedEmail = theEnhancedUser.getUserSpecifiedEmail();
+        if (!isEmpty(specifiedEmail)) {
+            theEnhancedUser.setUserEmail(specifiedEmail);
+        } else {
+            theEnhancedUser.setUserEmail(theUser.getUserEmail());
+        }
     }
 
-    private boolean verifyOldPasswordAndUpdateNewestAvatar(TheEnhancedUser theEnhancedUser, String userNickname) {
-        TheUser theOldUser = this.userManager.getUserFromNickname(userNickname);
-        if (isEmpty(theEnhancedUser.getUserAvatar())) {
-            theEnhancedUser.setUserAvatar(theOldUser.getUserAvatar());
-        }
+    private boolean verifyOldPasswordAndUpdateNewestAvatar(TheEnhancedUser theEnhancedUser, TheUser theOldUser) {
+        verifyAvatar(theEnhancedUser, theOldUser);
+        return verifyOldPassword(theEnhancedUser, theOldUser);
+    }
+
+    private boolean verifyOldPassword(TheEnhancedUser theEnhancedUser, TheUser theOldUser) {
         if (passwordUpdateIsNotRequired(theEnhancedUser)) {
             theEnhancedUser.setUserPassword(theOldUser.getUserPassword());
             return true;
         }
+        else{
+            theEnhancedUser.setUserPassword(theEnhancedUser.getUserSpecifiedPassword());
+            validatePassword(theEnhancedUser);
+        }
         return isSamePersistedPassword(theEnhancedUser, theOldUser);
     }
 
+    private void verifyAvatar(TheEnhancedUser theEnhancedUser, TheUser theOldUser) {
+        if (isEmpty(theEnhancedUser.getUserAvatar())) {
+            theEnhancedUser.setUserAvatar(theOldUser.getUserAvatar());
+        }
+    }
+
     private boolean passwordUpdateIsNotRequired(TheEnhancedUser theEnhancedUser) {
-        return isEmpty(theEnhancedUser.getOldPassword()) && isEmpty(theEnhancedUser.getUserPassword());
+        return isEmpty(theEnhancedUser.getOldPassword()) && isEmpty(theEnhancedUser.getUserSpecifiedPassword());
     }
 
     private boolean isSamePersistedPassword(TheEnhancedUser theEnhancedUser, TheUser theOldUser) {
@@ -285,24 +316,14 @@ public class AccountController {
         return !isEmpty(oldPassword) && bCryptPasswordEncoder.matches(oldPassword, theOldUser.getUserPassword());
     }
 
-    private TheResponse validateAndUpdateUser(TheUser theNewUser, TheResponse result, String userNickname, boolean passwordIsPopulated) {
-        try {
-            validatePassword(theNewUser);
-            this.offerValidatorHelper.validateUser(theNewUser);
-            TheUser nuUser = this.userManager.updateUser(theNewUser, passwordIsPopulated);
-            if (nuUser == null) {
-                DatabaseHelper.addEmptyDatabaseObjectMessage(result, ". Nickname: " + userNickname, LOG);
-            } else {
-                String okMessage = String.format("User successfully updated. Id: %s", nuUser.getId());
-                LOG.info(okMessage);
-                result.assignResultCode(ResultCode.ALL_OK, okMessage, "Usuario actualizado");
-            }
-        } catch (ValidationException e) {
-            String resultDescription = ResultCode.UPDATE_USER_VALIDATION_ERROR.getResultDescription();
-            LOG.warn(resultDescription, e);
-            result.assignResultCode(ResultCode.UPDATE_USER_VALIDATION_ERROR);
+    private void updatedUserResponse(TheResponse result, String userNickname, TheUser nuUser) {
+        if (nuUser == null) {
+            DatabaseHelper.addEmptyDatabaseObjectMessage(result, ". Nickname: " + userNickname, LOG);
+        } else {
+            String okMessage = String.format("User successfully updated. Id: %s", nuUser.getId());
+            LOG.info(okMessage);
+            result.assignResultCode(ResultCode.ALL_OK, okMessage, "Usuario actualizado");
         }
-        return result;
     }
 
     private TheResponse processUserCreation(TheEnhancedUser theUser) {
