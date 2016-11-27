@@ -4,8 +4,8 @@ import com.aporlaoferta.controller.helpers.DatabaseHelper;
 import com.aporlaoferta.email.EmailSendingException;
 import com.aporlaoferta.email.EmailService;
 import com.aporlaoferta.model.TheDefaultOffer;
-import com.aporlaoferta.model.TheForgettableUser;
 import com.aporlaoferta.model.TheEnhancedUser;
+import com.aporlaoferta.model.TheForgettableUser;
 import com.aporlaoferta.model.TheResponse;
 import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.model.validators.ValidationException;
@@ -51,32 +51,6 @@ public class AccountController {
 
     @Autowired
     private EmailService emailService;
-
-    @RequestMapping("favicon.ico")
-    String favicon() {
-        return "forward:/resources/images/favicon.ico";
-    }
-
-    @RequestMapping(value = {"/tc"}, method = RequestMethod.GET)
-    public ModelAndView termsAndConditions() {
-        ModelAndView tc = new ModelAndView();
-        tc.setViewName("termsAndConditions");
-        return tc;
-    }
-
-    @RequestMapping(value = {"/cp"}, method = RequestMethod.GET)
-    public ModelAndView cookiePolicies() {
-        ModelAndView tc = new ModelAndView();
-        tc.setViewName("cookieTerms");
-        return tc;
-    }
-
-    @RequestMapping(value = {"/", "/start**", "/index**"}, method = RequestMethod.GET)
-    public ModelAndView start() {
-        ModelAndView model = new ModelAndView();
-        model.setViewName("index");
-        return model;
-    }
 
     @RequestMapping(value = "/admin**", method = RequestMethod.GET)
     public ModelAndView adminPage() {
@@ -292,8 +266,7 @@ public class AccountController {
         if (passwordUpdateIsNotRequired(theEnhancedUser)) {
             theEnhancedUser.setUserPassword(theOldUser.getUserPassword());
             return true;
-        }
-        else{
+        } else {
             theEnhancedUser.setUserPassword(theEnhancedUser.getUserSpecifiedPassword());
             validatePassword(theEnhancedUser);
         }

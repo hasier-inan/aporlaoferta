@@ -27,12 +27,15 @@
                     aporlaoferta.com es un portal donde compartir y conseguir las mejores ofertas en todo lo que te
                     puedas imaginar.
                 </p>
+
+                <p class="tutorial-slide__faq"><a href="faq">Preguntas frecuentes</a></p>
             </div>
         </div>
 
         <div class="tutorial-slide">
             <div class="tutorial-slide-content">
                 <br/>
+
                 <p><i class="tutorial-slide-content__icon fa fa-refresh loadingdialogue"></i></p>
                 <ul>
                     <li class="tutorial-slide-content__referenced-text">Con un solo click en <a href="#"
@@ -42,6 +45,7 @@
                     </li>
                 </ul>
                 <br/>
+
                 <p class="offer-temperature">
                     <i class="tutorial-slide-content__icon offer-thermometer offer-thermometer--big veryHotFeedback"></i>
                 </p>
@@ -59,6 +63,7 @@
         <div class="tutorial-slide">
             <div class="tutorial-slide-content">
                 <br/>
+
                 <p>Selecciona tu <strong>Categoría</strong> preferida o utiliza la casilla de <strong>Buscar</strong>
                     para encontrar las ofertas que más te interesan:</p>
 
@@ -80,12 +85,17 @@
                     </li>
                 </ul>
                 <br/>
+
                 <p class="no-margin">
                     <i class="tutorial-slide-content__icon tutorial-slide-content__icon--margin-right tutorial-slide-content__icon--blue fa fa-user"></i>
                     <i class="tutorial-slide-content__icon tutorial-slide-content__icon--blue fa fa-sign-in"></i></p>
+
                 <p>…Pero no dudes en unirte a nosotros si quieres publicar, comentar y votar las ofertas. ¡Vive la
                     experiencia al máximo!</p>
+
                 <p>¡Registrarse es rápido y totalmente gratuito!</p>
+
+                <p>¿Necesitas más? lee <a href="faq">aquí</a></p>
             </div>
         </div>
 
