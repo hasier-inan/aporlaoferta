@@ -21,7 +21,7 @@
             <li class="no-listed-condition">¿Perdiste la oportunidad de comprar tu producto favorito cuando estuvo en
                 rebajas?
             </li>
-            <li class="no-listed-condition">¿Estás pensando en comprarte algo pero no sabes si está en el mejor
+            <li class="no-listed-condition">¿Estás pensando en comprarte algo pero no sabes si está al mejor
                 precio?
             </li>
         </ul>
@@ -65,11 +65,11 @@
                 Es probable que solo te interesen ofertas concretas o que estés buscando algo específico;
                 no te preocupes, puedes filtrar las ofertas de la web seleccionando una categoría concreta (por ejemplo <i>Electrónica</i>
                 o <i>Moda</i>) y/o buscando una o un conjunto de palabras particulares.
-                También puedes encontrar ofertas ya caducadas seleccionando la casilla <i>Mostrar caducados</i>
+                También puedes encontrar ofertas ya caducadas seleccionando la casilla <i>Mostrar caducados</i>.
             </p>
 
             <p>
-                Asimismo, podrás dividir las ofertas dependiendo de cuándo se crearon.
+                Asimismo, podrás ver las ofertas dependiendo de cuándo se crearon.
                 Elige la pestaña de <i>24h</i> para las ofertas más recientes,
                 <i>Semana</i> para los chollos de los últimos 7 días (seleccionado por defecto),
                 <i>Mes</i> para los últimos 31, y <i>Todos</i> para disponer de todas las ofertas.
@@ -105,9 +105,9 @@
         <div class="listed-conditions__condition" id="feedback">
             <h3>Valoración de ofertas existentes</h3>
             <ul>
-                <li class="no-listed-condition">¿Crées que ésa ganga es la repera?
+                <li class="no-listed-condition">¿Crées que ésa ganga es la repera...?
                 </li>
-                <li class="no-listed-condition">¿o que aquella otra puede ser mucho mejor?
+                <li class="no-listed-condition">¿...O que aquella otra puede ser mucho mejor?
                 </li>
             </ul>
             <p>
@@ -125,7 +125,7 @@
         <h2>Redes sociales</h2>
 
         <p>
-            Cuanta mayor sea la comunidad, más precisas y enriquecidas estarán las ofertas.
+            Cuanta mayor sea la comunidad, más y mejores ofertas tendremos.
             ¡Comparte aporlaoferta y las ofertas que se encuentran en la web para hacérselo llegar al que más le
             interese!
             También puedes encontrarnos en las redes sociales más comunes si quieres seguirnos o contactarnos:
