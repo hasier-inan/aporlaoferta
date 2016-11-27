@@ -114,7 +114,7 @@ div.offerSpecificationsRightContainer {
 
     &:hover {
       .main-logo{
-        background-image: url("images/logo_cover_large.svg");
+        background-image: url("images/logo/logo_cover_large.svg");
         width: 45px;
         height: 40px;
         left: 10px;
@@ -140,7 +140,7 @@ div.offerSpecificationsRightContainer {
       left: 15px;
       position: absolute;
       display: inline-block;
-      background-image: url("images/logo_cover_white_large.svg");
+      background-image: url("images/logo/logo_cover_white_large.svg");
     }
 
     .main-logo__cta{
@@ -341,7 +341,7 @@ div.offerSpecificationsTitle {
   }
 
   .offer-image-expired {
-    background: url("images/expired_offer.png") no-repeat;
+    background: url("images/offer/expired_offer.png") no-repeat;
     background-size: 96%;
     margin: 2%;
     position: absolute;

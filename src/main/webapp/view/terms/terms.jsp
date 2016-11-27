@@ -1,15 +1,34 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div class="terms-and-conditions">
-    <h2>1. DATOS IDENTIFICATIVOS</h2>
+<div class="listed-conditions">
+    <div class="listed-conditions__navigation">
+        <ol>
+            <li><a href="#identification" class="scrolly">Datos identificativos</a></li>
+            <li><a href="#users" class="scrolly">Usuarios</a></li>
+            <li><a href="#use" class="scrolly">Uso del portal</a></li>
+            <li><a href="#data-protection" class="scrolly">Protección de datos</a></li>
+            <li><a href="#intelectual-property" class="scrolly">Propiedad intelectual e industrial</a></li>
+            <li><a href="#responsability" class="scrolly">Propiedad intelectual e industrial</a></li>
+            <li><a href="#modifications" class="scrolly">Modificaciones</a></li>
+            <li><a href="#links" class="scrolly">Enlaces</a></li>
+            <li><a href="#exclusion-right" class="scrolly">Derecho de exclusión</a></li>
+            <li><a href="#general" class="scrolly">Generalidades</a></li>
+            <li><a href="#modification" class="scrolly">Modificación de las presentes condiciones y duración</a></li>
+            <li><a href="#legislation" class="scrolly">Legislación aplicable y jurisdicción</a></li>
+        </ol>
+    </div>
+    <hr/>
+
+    <h2 id="identification">1. DATOS IDENTIFICATIVOS</h2>
 
     <p>En cumplimiento con el deber de información recogido en artículo 10 de la Ley 34/2002, de 11 de
         julio, de
         Servicios de la Sociedad de la Información y del Comercio Electrónico, a continuación se
         reflejan los siguientes
-        datos: el titular de dominio web es aporlaoferta. Correo electrónico de contacto: aporlaoferta@gmail.com del sitio web.
+        datos: el titular de dominio web es aporlaoferta. Correo electrónico de contacto: aporlaoferta@gmail.com del
+        sitio web.
     </p>
 
-    <h2>2. USUARIOS</h2>
+    <h2 id="users">2. USUARIOS</h2>
 
     <p>El acceso y/o uso de este portal de aporlaoferta atribuye la condición de USUARIO, que acepta, desde dicho acceso
         y/o
@@ -18,10 +37,12 @@
         cumplimiento.
     </p>
 
-    <h2>3. USO DEL PORTAL</h2>
+    <h2 id="use">3. USO DEL PORTAL</h2>
 
-    <p>www.aporlaoferta.com proporciona el acceso a multitud de informaciones, servicios, programas o datos (en adelante, “los
-        contenidos”) en Internet pertenecientes a aporlaoferta o a sus licenciantes a los que el USUARIO pueda tener acceso. El
+    <p>www.aporlaoferta.com proporciona el acceso a multitud de informaciones, servicios, programas o datos (en
+        adelante, “los
+        contenidos”) en Internet pertenecientes a aporlaoferta o a sus licenciantes a los que el USUARIO pueda tener
+        acceso. El
         USUARIO asume la responsabilidad del uso del portal. Dicha responsabilidad se extiende al registro que fuese
         necesario para acceder a determinados servicios o contenidos.
         En dicho registro el USUARIO será responsable de aportar información veraz y lícita. Como
@@ -54,7 +75,7 @@
         vertidas por los usuarios a través de los foros, chats, u otras herramientas de participación.
     </p>
 
-    <h2>4. PROTECCIÓN DE DATOS</h2>
+    <h2 id="data-protection">4. PROTECCIÓN DE DATOS</h2>
 
     <p>aporlaoferta cumple con las directrices de la Ley Orgánica 15/1999 de 13 de diciembre de Protección de
         Datos de Carácter
@@ -63,7 +84,8 @@
         tratamiento de
         los datos personales del usuario. Para ello, junto a cada formulario de recabo de datos de carácter
         personal, en
-        los servicios que el usuario pueda solicitar a admin@aporlaoferta.com, hará saber al usuario de la existencia y aceptación
+        los servicios que el usuario pueda solicitar a admin@aporlaoferta.com, hará saber al usuario de la existencia y
+        aceptación
         de las
         condiciones particulares del tratamiento de sus datos en cada caso, informándole de la responsabilidad
         del
@@ -73,13 +95,14 @@
         su caso.
     </p>
 
-    <p>Asimismo, aporlaoferta informa que da cumplimiento a la Ley 34/2002 de 11 de julio, de Servicios de la Sociedad de la
+    <p>Asimismo, aporlaoferta informa que da cumplimiento a la Ley 34/2002 de 11 de julio, de Servicios de la Sociedad
+        de la
         Información y el Comercio Electrónico y le solicitará su consentimiento al tratamiento de
         su correo electrónico
         con fines comerciales en cada momento.
     </p>
 
-    <h2>5. PROPIEDAD INTELECTUAL E INDUSTRIAL</h2>
+    <h2 id="intelectual-property">5. PROPIEDAD INTELECTUAL E INDUSTRIAL</h2>
 
     <p>aporlaoferta por sí o como cesionaria, es titular de todos los derechos de propiedad intelectual e industrial
         desu
@@ -99,7 +122,8 @@
         de esta página
         web, con fines comerciales, en cualquier soporte y por cualquier medio técnico, sin la autorización
         de aporlaoferta. El
-        USUARIO se compromete a respetar los derechos de Propiedad Intelectual e Industrial titularidad de aporlaoferta. Podrá
+        USUARIO se compromete a respetar los derechos de Propiedad Intelectual e Industrial titularidad de aporlaoferta.
+        Podrá
         visualizar los elementos del portal e incluso imprimirlos, copiarlos y almacenarlos en el disco duro de su
         ordenador o en cualquier otro soporte físico siempre y cuando sea, única y exclusivamente, para su
         uso personal
@@ -107,7 +131,7 @@
         protección o sistema de seguridad que estuviera instalado en el las páginas de aporlaoferta.
     </p>
 
-    <h2>6. EXCLUSIÓN DE GARANTíAS Y RESPONSABILIDAD</h2>
+    <h2 id="responsability">6. EXCLUSIÓN DE GARANTíAS Y RESPONSABILIDAD</h2>
 
     <p>aporlaoferta no se hace responsable, en ningún caso, de los daños y perjuicios de cualquier naturaleza que
         pudieran
@@ -118,15 +142,16 @@
         medidas tecnológicas necesarias para evitarlo.
     </p>
 
-    <h2>7. MODIFICACIONES</h2>
+    <h2 id="modifications">7. MODIFICACIONES</h2>
 
-    <p>aporlaoferta se reserva el derecho de efectuar sin previo aviso las modificaciones que considere oportunas en su portal,
+    <p>aporlaoferta se reserva el derecho de efectuar sin previo aviso las modificaciones que considere oportunas en su
+        portal,
         pudiendocambiar, suprimir o añadir tanto los contenidos y servicios que se presten a través de la
         misma como la
         forma en la que éstos aparezcan presentados o localizados en su portal.
     </p>
 
-    <h2>8. ENLACES</h2>
+    <h2 id="links">8. ENLACES</h2>
 
     <p>En el caso de que en www.aporlaoferta.com se dispusiesen enlaces o hipervínculos hacía otros sitios de Internet,
         aporlaoferta no
@@ -145,21 +170,22 @@
         participación con las entidades conectadas.
     </p>
 
-    <h2>9. DERECHO DE EXCLUSIÓN</h2>
+    <h2 id="exclusion-right">9. DERECHO DE EXCLUSIÓN</h2>
 
-    <p>aporlaoferta se reserva el derecho a denegar o retirar el acceso a portal y/o los servicios ofrecidos sin necesidad de
+    <p>aporlaoferta se reserva el derecho a denegar o retirar el acceso a portal y/o los servicios ofrecidos sin
+        necesidad de
         preaviso, a instancia propia o de un tercero, a aquellos usuarios que incumplan las presentes Condiciones
         Generales de Uso.
     </p>
 
-    <h2>10.GENERALIDADES</h2>
+    <h2 id="general">10.GENERALIDADES</h2>
 
     <p>aporlaoferta perseguirá el incumplimiento de las presentes condiciones así como cualquier utilización
         indebida de su
         portal ejerciendo todas las acciones civiles y penales que le puedan corresponder en derecho.
     </p>
 
-    <h2>11.MODIFICACIóN DE LAS PRESENTES CONDICIONES Y DURACIÓN</h2>
+    <h2 id="modification">11.MODIFICACIÓN DE LAS PRESENTES CONDICIONES Y DURACIÓN</h2>
 
     <p>aporlaoferta podrá modificar en cualquier momento las condiciones aquí determinadas, siendo debidamente
         publicadas como
@@ -171,7 +197,7 @@
         publicadas. que sean modificadas por otras.
     </p>
 
-    <h2>12. LEGISLACIóN APLICABLE Y JURIDISCCIÓN</h2>
+    <h2 id="legislation">12. LEGISLACIÓN APLICABLE Y JURIDISCCIÓN</h2>
 
     <p>La relación entre aporlaoferta y el USUARIO se regirá por la normativa española vigente y cualquier
         controversia se

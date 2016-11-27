@@ -5,7 +5,7 @@
 
 div.offer-creation-category.ng-valid .category-dropdown,
 .content-validation.ng-valid {
-  background: $validation-background-color url(images/valid.png) no-repeat scroll right;
+  background: $validation-background-color url(images/offer/valid.png) no-repeat scroll right;
   background-size: 20px;
   border-color: $validation-border-color !important;
   padding-right: 25px;
@@ -13,19 +13,19 @@ div.offer-creation-category.ng-valid .category-dropdown,
 
 div.offer-creation-category.ng-valid .category-droangulpdown:hover,
 .content-validation.ng-valid:hover {
-  background: $validation-hover-background-color url(images/valid.png) no-repeat scroll right;
+  background: $validation-hover-background-color url(images/offer/valid.png) no-repeat scroll right;
   background-size: 20px;
 }
 
 .content-validation.ng-valid:focus:hover {
-  background: $validation-focus-background-color url(images/valid.png) no-repeat scroll right;
+  background: $validation-focus-background-color url(images/offer/valid.png) no-repeat scroll right;
   background-size: 20px;
   color: $validation-focus-color;
 }
 
 div.offer-creation-category.ng-invalid .category-dropdown,
 .content-validation.ng-invalid {
-  background: $validation-invalid-background-color url(images/invalid.png) no-repeat scroll right;
+  background: $validation-invalid-background-color url(images/offer/invalid.png) no-repeat scroll right;
   background-size: 20px;
   border-color: $validation-invalid-color !important;
   padding-right: 25px;
@@ -33,12 +33,12 @@ div.offer-creation-category.ng-invalid .category-dropdown,
 
 div.offer-creation-category.ng-invalid .category-dropdown:hover,
 .content-validation.ng-invalid:hover {
-  background: $validation-hover-background-color url(images/invalid.png) no-repeat scroll right;
+  background: $validation-hover-background-color url(images/offer/invalid.png) no-repeat scroll right;
   background-size: 20px;
 }
 
 .content-validation.ng-invalid:focus:hover {
-  background: $validation-focus-background-color url(images/invalid.png) no-repeat scroll right;
+  background: $validation-focus-background-color url(images/offer/invalid.png) no-repeat scroll right;
   background-size: 20px;
   color: $validation-focus-color;
 }

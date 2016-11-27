@@ -20,7 +20,7 @@
 <div ng-overhead-display="overheadDisplay" no-accounts="true" overhead-visible="overheadVisible"></div>
 
 <%@include file="head/logo.jsp" %>
-<%@include file="terms/cookie-policy.jsp" %>
+<%@include file="faq/definition.jsp" %>
 
 <footer id="footer">
     <div ng-footer="footer"/>

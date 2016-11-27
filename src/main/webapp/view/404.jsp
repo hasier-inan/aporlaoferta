@@ -24,6 +24,6 @@
 <footer id="footer" class="forgotten_footer">
     <div ng-footer="footer"/>
 </footer>
-
+<%@include file="footer/cookie.jsp" %>
 </body>
 </html>

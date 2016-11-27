@@ -42,7 +42,7 @@ div.overhead_subcontainer {
   background-color: $offer-specifications-background-color;
   z-index: 1003;
   top: 5%;
-  background-image: url("images/background_head6.png");
+  background-image: url("images/background/background_head6.png");
   background-position: top left, center center;
   background-size: auto, cover;
   overflow-y: auto !important;
@@ -69,7 +69,7 @@ div.overhead_subcontainer {
   }
 
   &.userRelated, &.loginRelated {
-    background-image: url("images/background_usr6.png");
+    background-image: url("images/background/background_usr6.png");
     @extend .overhead_subcontainer--fixed;
   }
 
@@ -78,7 +78,7 @@ div.overhead_subcontainer {
   }
 
   &.offerRelated {
-    background-image: url("images/background_offer6.png");
+    background-image: url("images/background/background_offer6.png");
     width: 80%;
     left: 10%;
     margin-left: 0;

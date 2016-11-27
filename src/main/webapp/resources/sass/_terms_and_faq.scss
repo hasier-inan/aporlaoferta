@@ -1,0 +1,43 @@
+.listed-conditions {
+  color: #ffffff;
+  margin-left: 5%;
+  max-width: 90%;
+
+  .listed-conditions__navigation{
+    margin-bottom: 2em;
+  }
+
+  hr{
+    margin: 3em 0;
+  }
+
+  .listed-conditions__condition{
+    margin-bottom: 2em;
+    .listed-conditions__condition{
+      padding-left: 1em;
+    }
+  }
+
+  .no-listed-condition{
+    list-style-type:none;
+    font-style:italic;
+  }
+
+  .hightlight-condition{
+    color: $button-hot-offers-background;
+  }
+
+  a{
+    &:hover{
+      color: $button-hot-offers-background;
+    }
+  }
+
+  .logo-icon{
+    width: 100%;
+    height: 100px;
+    background-position-x: center;
+    background-size: auto 100%;
+    background: url("images/tutorial/logo.png") no-repeat;
+  }
+}

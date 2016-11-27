@@ -30,19 +30,19 @@
       .calendar-label {
 
         &.day {
-          background-image: url("images/calendar_1.png");
+          background-image: url("images/calendar/calendar_1.png");
         }
 
         &.week {
-          background-image: url("images/calendar_7.png");
+          background-image: url("images/calendar/calendar_7.png");
         }
 
         &.month {
-          background-image: url("images/calendar_31.png");
+          background-image: url("images/calendar/calendar_31.png");
         }
 
         &.all {
-          background-image: url("images/calendar_all.png");
+          background-image: url("images/calendar/calendar_all.png");
         }
       }
     }
@@ -68,19 +68,19 @@ div.calendar-label {
   background-repeat: no-repeat;
 
   &.day {
-    background-image: url("images/calendar_1_w.png");
+    background-image: url("images/calendar/calendar_1_w.png");
   }
 
   &.week {
-    background-image: url("images/calendar_7_w.png");
+    background-image: url("images/calendar/calendar_7_w.png");
   }
 
   &.month {
-    background-image: url("images/calendar_31_w.png");
+    background-image: url("images/calendar/calendar_31_w.png");
   }
 
   &.all {
-    background-image: url("images/calendar_all_w.png");
+    background-image: url("images/calendar/calendar_all_w.png");
   }
 }
 
@@ -110,7 +110,7 @@ section#contentFilter {
   padding-bottom: 0;
   padding-top: 1em;
   background-color: $filter-background-color;
-  background-image: url("images/background_list_20_3.png");
+  background-image: url("images/background/background_list_20_3.png");
   color: #fff;
   border-bottom: 0;
 }
