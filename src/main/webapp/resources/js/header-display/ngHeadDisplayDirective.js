@@ -194,11 +194,6 @@ aporlaofertaApp
                         angular.element($('#overheadSubContainer')).removeClass('hiddencontainer');
                     }, 100);
 
-                    if (($cookies.get(configService.getEndpoint('tutorial.cookie')) != 'true') && !$scope.specificOffer) {
-                        $timeout(function () {
-                            $scope.displayTutorialDiagram();
-                        }, 2000);
-                    }
                 }]
         }
     });
