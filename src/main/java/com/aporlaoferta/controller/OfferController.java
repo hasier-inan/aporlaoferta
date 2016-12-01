@@ -233,6 +233,7 @@ public class OfferController {
 
     private void includeOfferMeta(ModelAndView model, TheOffer theOffer) {
         model.addObject("offerId", theOffer.getId());
+        model.addObject("offerKeywords", theOffer.getOfferTitle());
         model.addObject("offerTitle", String.format("%s: %s", theOffer.getOfferTitle(), theOffer.getFinalPrice().toString()));
         model.addObject("offerDescription", theOffer.getOfferDescription());
         String offerImage = theOffer.getOfferImage();
