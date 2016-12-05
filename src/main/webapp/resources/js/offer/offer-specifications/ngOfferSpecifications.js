@@ -14,7 +14,8 @@ aporlaofertaApp
                 function (offerManager, alertService, $scope, $rootScope, requestManager, configService, offerHelper) {
                     $scope.sharePrefix = "www.aporlaoferta.com/offer?sh=";
                     $scope.sharePrice = "€: ";
-                    $scope.offer = {offerImage: "/resources/images/offer.png"}
+                    $scope.offer = {};
+                    $scope.offerImage = "/resources/images/offer.png";
 
                     $scope.commentsCustomCloseCallback = {};
 
@@ -59,6 +60,7 @@ aporlaofertaApp
                     $scope.$watch('theOffer', function () {
                         if ($scope.theOffer) {
                             $scope.offer = $scope.theOffer[0];
+                            $scope.offerImage = $scope.theOffer[0].offerImage;
                         }
                     });
 
