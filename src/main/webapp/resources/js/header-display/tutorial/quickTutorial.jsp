@@ -16,7 +16,7 @@
                        href="https://twitter.com/aporlaoferta">
                     </a>
                     <a class="icon mini hvr-icon-grow fa-google-plus social-share" target="_blank"
-                       href="https://plus.google.com/112814296578233509279">
+                       href="https://google.com/+aporlaoferta">
                     </a>
                 </div>
                 <br/>
