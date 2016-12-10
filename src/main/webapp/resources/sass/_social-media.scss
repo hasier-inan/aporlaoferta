@@ -36,6 +36,11 @@
         &.fa-facebook:active{
           background-color: $social-fb-background-color !important;
         }
+
+        &.fa-whatsapp:hover,
+        &.fa-whatsapp:active{
+          background-color: $social-whatsapp-background-color !important;
+        }
       }
     }
   }
@@ -106,6 +111,11 @@
       background-color: $social-fb-background-color !important;
     }
 
+    &.fa-whatsapp:hover,
+    &.fa-whatsapp:active{
+      background-color: $social-whatsapp-background-color !important;
+    }
+
   }
 }
 
@@ -126,10 +136,3 @@
     margin-top: .3em;
   }
 }
-
-@media screen and (max-width: 737px) {
-  a.social-share {
-    margin-top: .3em;
-  }
-}
-

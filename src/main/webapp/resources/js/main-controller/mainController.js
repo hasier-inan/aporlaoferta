@@ -55,7 +55,8 @@ aporlaofertaApp.directive('ngConfirmClick', [
         };
     }]);
 
-aporlaofertaApp.config(['flowFactoryProvider', function (flowFactoryProvider) {
+aporlaofertaApp.config(['flowFactoryProvider', '$compileProvider',
+    function (flowFactoryProvider, $compileProvider) {
     flowFactoryProvider.defaults = {
         target: 'uploadImage',
         permanentErrors: [404, 500, 501],
@@ -64,5 +65,6 @@ aporlaofertaApp.config(['flowFactoryProvider', function (flowFactoryProvider) {
         simultaneousUploads: 4,
         singleFile: true
     };
+        $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|mailto|whatsapp):/);
 
 }]);
