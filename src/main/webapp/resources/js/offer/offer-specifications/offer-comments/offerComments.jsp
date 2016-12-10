@@ -6,7 +6,7 @@
     <div class="commentsHeadOwner">
         <span ng-class="{'user-banned' : (!theComment.commentOwner.enabled)}">{{theComment.commentOwner.userNickname}}</span>
         <span ng-hide="theComment.commentOwner.enabled"> (Usuario expulsado) </span>
-        <span>- {{theComment.commentCreationDate | date:'MM/dd/yyyy @ h:mma'}}</span>
+        <span>- {{theComment.commentCreationDate | date:'dd/MM/yyyy @ h:mma'}}</span>
     </div>
     <div class="theCommentAvatar commentAvatar" ng-if="theComment.commentOwner.userAvatar">
         <img ng-src="{{theComment.commentOwner.userAvatar}}"/>
@@ -33,7 +33,7 @@
             <div class="commentsHeadOwner">
                 <span ng-class="{'user-banned' : (!quotedComment.commentOwner.enabled)}">{{quotedComment.commentOwner.userNickname}}</span>
                 <span ng-hide="theComment.commentOwner.enabled"> (Usuario expulsado) </span>
-                <span>- {{quotedComment.commentCreationDate | date:'MM/dd/yyyy @ h:mma'}}</span>
+                <span>- {{quotedComment.commentCreationDate | date:'dd/MM/yyyy @ h:mma'}}</span>
             </div>
             <div class="quotedCommentAvatar commentAvatar" ng-if="quotedComment.commentOwner.userAvatar">
                 <img ng-src="{{quotedComment.commentOwner.userAvatar}}"/>

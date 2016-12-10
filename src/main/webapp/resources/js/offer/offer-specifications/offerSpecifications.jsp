@@ -140,7 +140,7 @@
                            confirmed-click="banUser(offer.offerUser.userNickname)"></i>
                     </div>
                 </sec:authorize>
-                <div class="offerCreatedDate">el {{offer.offerCreatedDate | date:'MM/dd/yyyy @h:mma'}}
+                <div class="offerCreatedDate">el {{offer.offerCreatedDate | date:'dd/MM/yyyy @h:mma'}}
                 </div>
             </div>
             <div class="offerSpecificationsDescription offerDescription">
