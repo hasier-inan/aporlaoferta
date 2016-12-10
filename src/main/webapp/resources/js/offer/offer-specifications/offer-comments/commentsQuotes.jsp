@@ -4,7 +4,7 @@
 <div ng-repeat="theComment in theComments track by theComment.id">
     <div ng-if="theComment.id==quotedComment">
         <div class="commentsHeadOwner">
-            {{theComment.commentOwner.userNickname}} - {{theComment.commentCreationDate | date:'MM/dd/yyyy @ h:mma'}}
+            {{theComment.commentOwner.userNickname}} - {{theComment.commentCreationDate | date:'dd/MM/yyyy @ h:mma'}}
         </div>
         <div class="commentsTheComment quotedComment">
             <div ng-if="theComment.commentsQuotedComment">
