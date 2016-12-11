@@ -12,7 +12,7 @@ aporlaofertaApp
             },
             controller: ['offerManager', 'alertService', '$scope', '$rootScope', 'requestManager', 'configService', 'offerHelper',
                 function (offerManager, alertService, $scope, $rootScope, requestManager, configService, offerHelper) {
-                    $scope.sharePrefix = "www.aporlaoferta.com/offer?sh=";
+                    $scope.sharePrefix = "http://www.aporlaoferta.com/offer?sh=";
                     $scope.sharePrice = "€: ";
                     $scope.offer = {};
                     $scope.offerImage = "/resources/images/offer.png";
