@@ -17,7 +17,7 @@ public class CompanyBuilder {
     private String url;
     private String logo;
     private String affiliateId;
-    private Set<TheOffer> offers;
+    private String affiliateIdKey;
     private Long id;
     private String watermarks;
 
@@ -54,8 +54,8 @@ public class CompanyBuilder {
         return this;
     }
 
-    public CompanyBuilder withOffers(Set<TheOffer> offers) {
-        this.offers = offers;
+    public CompanyBuilder withAffiliateIdKey(String affiliateIdKey) {
+        this.affiliateIdKey = affiliateIdKey;
         return this;
     }
 
@@ -67,11 +67,11 @@ public class CompanyBuilder {
     public OfferCompany build() {
         OfferCompany offerCompany = new OfferCompany();
         offerCompany.setCompanyAffiliateId(this.affiliateId);
+        offerCompany.setCompanyAffiliateIdKey(this.affiliateIdKey);
         offerCompany.setCompanyLogoUrl(this.logo);
         offerCompany.setCompanyUrl(this.url);
         offerCompany.setCompanyName(this.name);
         offerCompany.setId(this.id);
-        offerCompany.setCompanyOffers(this.offers);
         offerCompany.setCompanyWatermarks(this.watermarks);
         return offerCompany;
     }

@@ -54,6 +54,9 @@ public class OfferCompany implements Serializable {
     @Column(name = "TC_AFFILIATE_ID", nullable = true)
     private String companyAffiliateId;
 
+    @Column(name = "TC_AFFILIATE_ID_KEY", nullable = true)
+    private String companyAffiliateIdKey;
+
     @Column(name = "TC_WATERMARKS", nullable = true)
     private String companyWatermarks;
 
@@ -115,6 +118,14 @@ public class OfferCompany implements Serializable {
 
     public void setCompanyAffiliateId(String companyAffiliateId) {
         this.companyAffiliateId = companyAffiliateId;
+    }
+
+    public String getCompanyAffiliateIdKey() {
+        return companyAffiliateIdKey;
+    }
+
+    public void setCompanyAffiliateIdKey(String companyAffiliateIdKey) {
+        this.companyAffiliateIdKey = companyAffiliateIdKey;
     }
 
     public String getCompanyWatermarks() {

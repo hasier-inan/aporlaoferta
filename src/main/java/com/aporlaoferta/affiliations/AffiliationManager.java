@@ -1,7 +1,6 @@
 package com.aporlaoferta.affiliations;
 
 import com.aporlaoferta.model.OfferCompany;
-import com.aporlaoferta.service.CompanyAffiliations;
 import com.aporlaoferta.utils.UnhealthyException;
 import com.aporlaoferta.utils.UrlParser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,34 +31,25 @@ public class AffiliationManager {
      * @return updated url with corresponding affiliation it
      */
     public String constructAffiliatedLink(OfferCompany offerCompany, String rawLink) throws InvalidAffiliatedCompany, MalformedURLException, UnsupportedEncodingException {
-
-        String companyName = offerCompany.getCompanyName();
-        if (companyIsNotAffiliatedButHasAffiliatedId(offerCompany, companyName)
-                || companyIsAffiliatedButHasNoAffiliateId(offerCompany, companyName)) {
-            throw new InvalidAffiliatedCompany(companyName);
-        }
-        if (!companyIsAffiliated(companyName)) {
+        if (!companyIsAffiliated(offerCompany)) {
             return rawLink;
         }
-        return parseDependingOnCompany(offerCompany, rawLink, companyName);
+        return obtainAffiliationUrl(offerCompany, rawLink);
     }
 
-    private String parseDependingOnCompany(OfferCompany offerCompany, String rawLink, String companyName) throws InvalidAffiliatedCompany, MalformedURLException, UnsupportedEncodingException {
-        switch (CompanyAffiliations.fromCode(companyName)) {
-            case AMAZON:
-                return obtainAmazonAffiliationUrl(offerCompany, rawLink);
-            default:
-                throw new InvalidAffiliatedCompany(companyName);
-        }
-    }
-
-    private String obtainAmazonAffiliationUrl(OfferCompany offerCompany, String rawLink) throws MalformedURLException, UnsupportedEncodingException {
-        String parameterName = "tag";
+    private String obtainAffiliationUrl(OfferCompany offerCompany, String rawLink) throws InvalidAffiliatedCompany, MalformedURLException, UnsupportedEncodingException {
+        String[] parameterNames = offerCompany.getCompanyAffiliateIdKey().split(" ");
+        String[] parameterValues = offerCompany.getCompanyAffiliateId().split(" ");
         Map urlParameters = this.urlParser.extractParameters(rawLink);
-        //remove previous existing tags
-        urlParameters.remove(parameterName);
-        urlParameters.put(parameterName, createCompanyAffiliateIdList(offerCompany.getCompanyAffiliateId()));
-        return urlParser.createLinkWithParameters(rawLink, getParameterList(urlParameters));
+        try {
+            for (int id = 0; id < parameterValues.length; id++) {
+                urlParameters.remove(parameterNames[id]);
+                urlParameters.put(parameterNames[id], createCompanyAffiliateIdList(parameterValues[id]));
+            }
+            return urlParser.createLinkWithParameters(rawLink, getParameterList(urlParameters));
+        } catch (Exception e) {
+            throw new InvalidAffiliatedCompany(offerCompany.getCompanyName());
+        }
     }
 
     private List<String> createCompanyAffiliateIdList(String companyAffiliateId) {
@@ -77,18 +67,8 @@ public class AffiliationManager {
         return theUrl;
     }
 
-    private boolean companyIsAffiliated(String companyName) {
-        return CompanyAffiliations.isCompanyAffiliated(companyName);
-    }
-
-    private boolean companyIsAffiliatedButHasNoAffiliateId(OfferCompany offerCompany, String companyName) {
-        return companyIsAffiliated(companyName)
-                && isEmpty(offerCompany.getCompanyAffiliateId());
-    }
-
-    private boolean companyIsNotAffiliatedButHasAffiliatedId(OfferCompany offerCompany, String companyName) {
-        return !companyIsAffiliated(companyName)
-                && !isEmpty(offerCompany.getCompanyAffiliateId());
+    private boolean companyIsAffiliated(OfferCompany offerCompany) {
+        return !isEmpty(offerCompany.getCompanyAffiliateId());
     }
 
     public String isUrlAlive(String rawLink) throws UnhealthyException {
