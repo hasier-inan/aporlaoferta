@@ -52,20 +52,12 @@ public class AccountController {
     @Autowired
     private EmailService emailService;
 
-
     @RequestMapping(value = "/admin**", method = RequestMethod.GET)
     public ModelAndView adminPage() {
         ModelAndView model = new ModelAndView();
         model.addObject("title", "Spring Security Login Form - Database Authentication");
         model.addObject("message", "This page is for admins only!");
         model.setViewName("admin");
-        return model;
-    }
-
-    @RequestMapping(value = "/2913754.html", method = RequestMethod.GET)
-    public ModelAndView temp() {
-        ModelAndView model = new ModelAndView();
-        model.setViewName("index");
         return model;
     }
 
