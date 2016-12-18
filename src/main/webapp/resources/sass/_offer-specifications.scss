@@ -367,6 +367,18 @@ div.offerSpecificationsTitle {
       -moz-opacity: 0.4;
       -khtml-opacity: 0.4;
     }
+
+    &.offer-image-default{
+      z-index: -1;
+      position: absolute;
+      top: 0;
+
+      &.offer-image-loading{
+        position: relative;
+        top: auto;
+      }
+    }
+
   }
 
   .remove-offer {

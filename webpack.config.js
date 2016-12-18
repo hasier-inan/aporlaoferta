@@ -42,7 +42,7 @@ module.exports = {
         path: 'src/main/webapp/resources/assets/js',
         filename: "bundle.js"
     },
-    devtool: 'source-map',
+    //devtool: 'source-map',
     module: {
         loaders: [
             {
