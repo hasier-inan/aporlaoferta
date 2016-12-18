@@ -22,6 +22,13 @@
     <bean id="urlParser" class="com.aporlaoferta.utils.UrlParser"/>
 
     <bean id="affiliationManager" class="com.aporlaoferta.affiliations.AffiliationManager">
+        <property name="linkManager" ref="linkManager"/>
+        <property name="tradedoublerManager" ref="tradedoublerManager"/>
+    </bean>
+
+    <bean id="linkManager" class="com.aporlaoferta.affiliations.LinkManager">
         <property name="urlParser" ref="urlParser"/>
     </bean>
+
+    <bean id="tradedoublerManager" class="com.aporlaoferta.affiliations.TradedoublerManager"/>
 </beans>
