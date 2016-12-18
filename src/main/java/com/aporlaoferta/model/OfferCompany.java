@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -59,6 +61,10 @@ public class OfferCompany implements Serializable {
 
     @Column(name = "TC_WATERMARKS", nullable = true)
     private String companyWatermarks;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "TC_COMPANY_AFFILIATE_TYPE", nullable = true)
+    private CompanyAffiliateType companyAffiliateType;
 
     @OneToMany(mappedBy = "offerCompany", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<TheOffer> companyOffers = new HashSet<TheOffer>();
@@ -126,6 +132,14 @@ public class OfferCompany implements Serializable {
 
     public void setCompanyAffiliateIdKey(String companyAffiliateIdKey) {
         this.companyAffiliateIdKey = companyAffiliateIdKey;
+    }
+
+    public CompanyAffiliateType getCompanyAffiliateType() {
+        return companyAffiliateType;
+    }
+
+    public void setCompanyAffiliateType(CompanyAffiliateType companyAffiliateType) {
+        this.companyAffiliateType = companyAffiliateType;
     }
 
     public String getCompanyWatermarks() {

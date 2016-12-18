@@ -1,0 +1,14 @@
+ALTER TABLE `thatcompany`
+ADD `TC_COMPANY_AFFILIATE_TYPE` varchar(255) default NULL;
+
+UPDATE `thatcompany`
+SET `TC_COMPANY_AFFILIATE_TYPE` = 'LINK'
+WHERE `TC_NAME` = 'Dealextreme';
+
+UPDATE `thatcompany`
+SET `TC_COMPANY_AFFILIATE_TYPE` = 'LINK'
+WHERE `TC_NAME` = 'Amazon';
+
+UPDATE `thatcompany`
+SET `TC_COMPANY_AFFILIATE_TYPE` = 'LINK'
+WHERE `TC_NAME` = 'Opirata';

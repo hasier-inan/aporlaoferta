@@ -1,5 +1,6 @@
 package com.aporlaoferta.data;
 
+import com.aporlaoferta.model.CompanyAffiliateType;
 import com.aporlaoferta.model.OfferCompany;
 import com.aporlaoferta.model.TheOffer;
 
@@ -20,6 +21,7 @@ public class CompanyBuilder {
     private String affiliateIdKey;
     private Long id;
     private String watermarks;
+    private CompanyAffiliateType companyAffiliateType;
 
     public static CompanyBuilder aCompany() {
         return new CompanyBuilder();
@@ -64,6 +66,11 @@ public class CompanyBuilder {
         return this;
     }
 
+    public CompanyBuilder withCompanyAffiliateType(CompanyAffiliateType companyAffiliateType) {
+        this.companyAffiliateType = companyAffiliateType;
+        return this;
+    }
+
     public OfferCompany build() {
         OfferCompany offerCompany = new OfferCompany();
         offerCompany.setCompanyAffiliateId(this.affiliateId);
@@ -73,6 +80,9 @@ public class CompanyBuilder {
         offerCompany.setCompanyName(this.name);
         offerCompany.setId(this.id);
         offerCompany.setCompanyWatermarks(this.watermarks);
+        if (this.companyAffiliateType != null) {
+            offerCompany.setCompanyAffiliateType(this.companyAffiliateType);
+        }
         return offerCompany;
     }
 }

@@ -2,14 +2,10 @@ package com.aporlaoferta.affiliations;
 
 import com.aporlaoferta.model.OfferCompany;
 import com.aporlaoferta.utils.UnhealthyException;
-import com.aporlaoferta.utils.UrlParser;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
 
 import static org.springframework.util.StringUtils.isEmpty;
 
@@ -21,7 +17,8 @@ import static org.springframework.util.StringUtils.isEmpty;
  */
 public class AffiliationManager {
 
-    private UrlParser urlParser;
+    private LinkManager linkManager;
+    private TradedoublerManager tradedoublerManager;
 
     /**
      * Checks different affiliated companies in the enum, and, if listed, will generate corresponding link
@@ -38,45 +35,35 @@ public class AffiliationManager {
     }
 
     private String obtainAffiliationUrl(OfferCompany offerCompany, String rawLink) throws InvalidAffiliatedCompany, MalformedURLException, UnsupportedEncodingException {
-        String[] parameterNames = offerCompany.getCompanyAffiliateIdKey().split(" ");
-        String[] parameterValues = offerCompany.getCompanyAffiliateId().split(" ");
-        Map urlParameters = this.urlParser.extractParameters(rawLink);
         try {
-            for (int id = 0; id < parameterValues.length; id++) {
-                urlParameters.remove(parameterNames[id]);
-                urlParameters.put(parameterNames[id], createCompanyAffiliateIdList(parameterValues[id]));
+            switch (offerCompany.getCompanyAffiliateType()) {
+                case LINK:
+                    return this.linkManager.createLinkAffiliation(offerCompany, rawLink);
+                case TRADEDOUBLER:
+                    return this.tradedoublerManager.createLinkAffiliation(offerCompany, rawLink);
+                default:
+                    throw new InvalidAffiliatedCompany(offerCompany.getCompanyName());
             }
-            return urlParser.createLinkWithParameters(rawLink, getParameterList(urlParameters));
         } catch (Exception e) {
             throw new InvalidAffiliatedCompany(offerCompany.getCompanyName());
         }
     }
 
-    private List<String> createCompanyAffiliateIdList(String companyAffiliateId) {
-        return Arrays.asList(new String[]{companyAffiliateId});
-    }
-
-    private String getParameterList(Map<String, List<String>> urlParameters) {
-        String theUrl = "";
-        for (String parameter : urlParameters.keySet()) {
-            List<String> values = urlParameters.get(parameter);
-            for (String value : values) {
-                theUrl += (isEmpty(theUrl)) ? "?" + parameter + "=" + value : "&" + parameter + "=" + value;
-            }
-        }
-        return theUrl;
-    }
-
     private boolean companyIsAffiliated(OfferCompany offerCompany) {
-        return !isEmpty(offerCompany.getCompanyAffiliateId());
+        return !isEmpty(offerCompany.getCompanyAffiliateType());
     }
 
     public String isUrlAlive(String rawLink) throws UnhealthyException {
-        return this.urlParser.isAlive(rawLink);
+        return this.linkManager.isUrlAlive(rawLink);
     }
 
     @Autowired
-    public void setUrlParser(UrlParser urlParser) {
-        this.urlParser = urlParser;
+    public void setLinkManager(LinkManager linkManager) {
+        this.linkManager = linkManager;
+    }
+
+    @Autowired
+    public void setTradedoublerManager(TradedoublerManager tradedoublerManager) {
+        this.tradedoublerManager = tradedoublerManager;
     }
 }

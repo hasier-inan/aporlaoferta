@@ -40,10 +40,15 @@
     <bean id="transactionalManagerTest" class="com.aporlaoferta.service.TransactionalManager"/>
 
     <bean id="affiliationManagerTest" class="com.aporlaoferta.affiliations.AffiliationManager">
-        <property name="urlParser" ref="urlManagerTest"/>
+        <property name="linkManager" ref="linkManagerTest"/>
+        <property name="tradedoublerManager" ref="tradedoublerManagerTest"/>
     </bean>
 
     <bean id="urlManagerTest" class="com.aporlaoferta.utils.UrlParser"/>
+    <bean id="linkManagerTest" class="com.aporlaoferta.affiliations.LinkManager">
+        <property name="urlParser" ref="urlManagerTest"/>
+    </bean>
+    <bean id="tradedoublerManagerTest" class="com.aporlaoferta.affiliations.TradedoublerManager"/>
 
     <bean id="httpManagerTest" class="com.aporlaoferta.offer.CaptchaHTTPManagerMock"/>
 </beans>

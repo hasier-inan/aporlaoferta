@@ -1,6 +1,7 @@
 package com.aporlaoferta.affiliations;
 
 import com.aporlaoferta.data.CompanyBuilderManager;
+import com.aporlaoferta.model.CompanyAffiliateType;
 import com.aporlaoferta.model.OfferCompany;
 import com.aporlaoferta.utils.UrlParser;
 import org.junit.Assert;
@@ -30,14 +31,17 @@ public class AffiliationManagerTest {
             "&pf_rd_r=0YP4M8XZTZQRA7VN6Y28&pf_rd_t=36701" +
             "&pf_rd_p=579624687&pf_rd_i=desktop&tag=sdfsdf";
 
-    private final String dxAffiliationIds="17266950 affiliate";
-    private final String dxAffiliationIdKeys="Utm_rid Utm_source";
-    private final String dxRawUrl= "http://www.dx.com/p/fidget-dice-cubic-toy-for-focusing-stress-relieving-black-452239#.WE06HbLJxhF";
+    private final String dxAffiliationIds = "17266950 affiliate";
+    private final String dxAffiliationIdKeys = "Utm_rid Utm_source";
+    private final String dxRawUrl = "http://www.dx.com/p/fidget-dice-cubic-toy-for-focusing-stress-relieving-black-452239#.WE06HbLJxhF";
 
     @Before
     public void setUp() throws Exception {
         affiliationManager = new AffiliationManager();
-        affiliationManager.setUrlParser(new UrlParser());
+        affiliationManager.setTradedoublerManager(new TradedoublerManager());
+        LinkManager linkManager = new LinkManager();
+        linkManager.setUrlParser(new UrlParser());
+        affiliationManager.setLinkManager(linkManager);
     }
 
     @Test
@@ -78,12 +82,14 @@ public class AffiliationManagerTest {
     protected OfferCompany createAmazonAffiliationCompany() {
         return CompanyBuilderManager.aRegularCompanyWithName("Amazon")
                 .withAffiliateId(affiliateId)
+                .withCompanyAffiliateType(CompanyAffiliateType.LINK)
                 .withAffiliateIdKey(affiliateIdKey).build();
     }
 
     protected OfferCompany createDXAffiliationCompany() {
         return CompanyBuilderManager.aRegularCompanyWithName("Dealextreme")
                 .withAffiliateId(dxAffiliationIds)
+                .withCompanyAffiliateType(CompanyAffiliateType.LINK)
                 .withAffiliateIdKey(dxAffiliationIdKeys).build();
     }
 
