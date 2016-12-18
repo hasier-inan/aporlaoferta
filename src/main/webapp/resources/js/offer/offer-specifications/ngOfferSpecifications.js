@@ -16,6 +16,7 @@ aporlaofertaApp
                     $scope.sharePrice = "€: ";
                     $scope.offer = {};
                     $scope.offerImage = "/resources/images/offer.png";
+                    $scope.offerImageLoading = true;
 
                     $scope.commentsCustomCloseCallback = {};
 
@@ -57,10 +58,11 @@ aporlaofertaApp
                         $rootScope.$broadcast('updateTheOffer', angular.copy(theOffer));
                     }
 
-                    $scope.$watch('theOffer', function () {
-                        if ($scope.theOffer) {
+                    $scope.$watch('theOffer[0].offerImage', function () {
+                        if ($scope.theOffer && $scope.theOffer[0].offerImage) {
                             $scope.offer = $scope.theOffer[0];
                             $scope.offerImage = $scope.theOffer[0].offerImage;
+                            $scope.offerImageLoading = false;
                         }
                     });
 
