@@ -273,6 +273,7 @@ public class OfferController {
     }
 
     private void includeAffiliationLink(TheOffer thatOffer) throws MalformedURLException, UnsupportedEncodingException, UnhealthyException {
+        thatOffer.setOfferLinkUser(thatOffer.getOfferLink());
         thatOffer.setOfferLink(this.companyManager.createAffiliationLink(
                 thatOffer.getOfferCompany(), thatOffer.getOfferLink()));
     }

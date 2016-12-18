@@ -63,6 +63,9 @@ public class TheOffer implements Serializable {
     @Column(name = "TO_LINK", nullable = false, length = 2000)
     private String offerLink;
 
+    @Column(name = "TO_LINK_USER", nullable = true, length = 2000)
+    private String offerLinkUser;
+
     @Column(name = "TO_EXPIRED", nullable = false)
     private boolean offerExpired;
 
@@ -211,6 +214,14 @@ public class TheOffer implements Serializable {
 
     public void setOfferLink(String offerLink) {
         this.offerLink = offerLink;
+    }
+
+    public String getOfferLinkUser() {
+        return offerLinkUser;
+    }
+
+    public void setOfferLinkUser(String offerLinkUser) {
+        this.offerLinkUser = offerLinkUser;
     }
 
     public OfferCompany getOfferCompany() {
