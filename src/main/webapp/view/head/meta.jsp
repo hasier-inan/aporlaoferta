@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Security-Policy"
       content="script-src 'self' https://ajax.googleapis.com https://www.google.com https://www.gstatic.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://ajax.googleapis.com https://www.google.com https://www.gstatic.com">
 <meta property="og:site_name" content="aporlaoferta">
+<meta name="verification" content="25876478671ec9fd1b889918e4ff3c2c" />
 <c:choose>
     <c:when test="${not empty offerId}">
         <meta property="og:title" content="aporlaoferta ~ ${offerTitle}"/>
