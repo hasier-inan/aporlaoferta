@@ -36,6 +36,6 @@ public class TradedoublerManager implements LinkProvider {
      */
     private String buildExceptionCompanyUrl(OfferCompany offerCompany, String rawLink) {
         TradedoublerPostfix tradedoublerPostfix = TradedoublerPostfix.fromValue(offerCompany.getCompanyName());
-        return rawLink + String.format(tradedoublerPostfix.getText(), rawLink);
+        return String.format(tradedoublerPostfix.getText(), rawLink);
     }
 }
