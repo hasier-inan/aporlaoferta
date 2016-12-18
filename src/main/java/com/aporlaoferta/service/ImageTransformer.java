@@ -69,13 +69,13 @@ public class ImageTransformer {
 
     private void fillRectInLeftAndRight(BufferedImage originalImage, int width, int height, int propSize, Graphics2D graphics2D) {
         graphics2D.fillRect(0, 0, propSize, height);
-        graphics2D.fillRect(width - propSize, 0, propSize, height);
+        graphics2D.fillRect(width - propSize - 1, 0, propSize + 1, height);
         graphics2D.drawImage(originalImage, propSize, 0, null);
     }
 
     private void fillRectInTopAndBottom(BufferedImage originalImage, int width, int height, int propSize, Graphics2D graphics2D) {
         graphics2D.fillRect(0, 0, width, propSize);
-        graphics2D.fillRect(0, height - propSize, width, propSize);
+        graphics2D.fillRect(0, height - propSize - 1, width, propSize + 1);
         graphics2D.drawImage(originalImage, 0, propSize, null);
     }
 
