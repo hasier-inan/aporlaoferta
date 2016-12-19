@@ -69,7 +69,7 @@
                         <span class="offer-thermometer offer-thermometer--big"
                               ng-class="offerFeedbackStyle(offer)"></span>
                 </div>
-                <img ng-src="{{offerImage}}" ng-class="{'offer-expired':offer.offerExpired,
+                <img ng-src="{{offer.offerImage}}" ng-class="{'offer-expired':offer.offerExpired,
                                                        'offer-image-loading':offerImageLoading}"/>
                 <img src="/resources/images/offer.png" ng-class="{'offer-expired':offer.offerExpired,
                                                        'offer-image-loading':offerImageLoading}"
