@@ -44,7 +44,7 @@ aporlaofertaApp
                             }
                         }
                         else {
-                            $scope.theOffer[0][feedback] = $scope.theOffer[0][feedback] + 1;
+                            $scope.offer[feedback] = $scope.offer[feedback] + 1;
                             offerManager.requestUpdatedOffer(id);
                         }
                     }
