@@ -24,6 +24,7 @@
     <bean id="affiliationManager" class="com.aporlaoferta.affiliations.AffiliationManager">
         <property name="linkManager" ref="linkManager"/>
         <property name="tradedoublerManager" ref="tradedoublerManager"/>
+        <property name="belboonManager" ref="belboonManager"/>
     </bean>
 
     <bean id="linkManager" class="com.aporlaoferta.affiliations.LinkManager">
@@ -31,4 +32,5 @@
     </bean>
 
     <bean id="tradedoublerManager" class="com.aporlaoferta.affiliations.TradedoublerManager"/>
+    <bean id="belboonManager" class="com.aporlaoferta.affiliations.BelboonManager"/>
 </beans>

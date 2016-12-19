@@ -19,6 +19,7 @@ public class AffiliationManager {
 
     private LinkManager linkManager;
     private TradedoublerManager tradedoublerManager;
+    private BelboonManager belboonManager;
 
     /**
      * Checks different affiliated companies in the enum, and, if listed, will generate corresponding link
@@ -41,6 +42,8 @@ public class AffiliationManager {
                     return this.linkManager.createLinkAffiliation(offerCompany, rawLink);
                 case TRADEDOUBLER:
                     return this.tradedoublerManager.createLinkAffiliation(offerCompany, rawLink);
+                case BELBOON:
+                    return this.belboonManager.createLinkAffiliation(offerCompany, rawLink);
                 default:
                     throw new InvalidAffiliatedCompany(offerCompany.getCompanyName());
             }
@@ -65,5 +68,10 @@ public class AffiliationManager {
     @Autowired
     public void setTradedoublerManager(TradedoublerManager tradedoublerManager) {
         this.tradedoublerManager = tradedoublerManager;
+    }
+
+    @Autowired
+    public void setBelboonManager(BelboonManager belboonManager) {
+        this.belboonManager = belboonManager;
     }
 }

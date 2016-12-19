@@ -39,6 +39,7 @@ public class AffiliationManagerTest {
     public void setUp() throws Exception {
         affiliationManager = new AffiliationManager();
         affiliationManager.setTradedoublerManager(new TradedoublerManager());
+        affiliationManager.setBelboonManager(new BelboonManager());
         LinkManager linkManager = new LinkManager();
         linkManager.setUrlParser(new UrlParser());
         affiliationManager.setLinkManager(linkManager);

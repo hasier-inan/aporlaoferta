@@ -1,0 +1,4 @@
+UPDATE `thatcompany`
+SET `TC_AFFILIATE_ID` = '0395c2093bd10450020052f1', `TC_AFFILIATE_ID_KEY` = '', `TC_WATERMARKS` = 'Opirta pirata Opirata.es', `TC_COMPANY_AFFILIATE_TYPE` = 'BELBOON'
+WHERE `TC_NAME` = 'Opirata';
+
