@@ -12,8 +12,8 @@ aporlaofertaApp
                 displayCallback: '='
             },
             controller: ['$scope', '$rootScope', 'offerManager', 'requestManager', 'configService', 'alertService', 'vcRecaptchaService', 'offerHelper',
-                function ($scope, $rootScope, offerManager, requestManager, configService, alertService, vcRecaptchaService,offerHelper) {
-                    $scope.offer = {};
+                function ($scope, $rootScope, offerManager, requestManager, configService, alertService, vcRecaptchaService, offerHelper) {
+                    $scope.offer = {offerImage: ""};
                     $scope.widgetId = null;
                     $scope.publicKey = "6LdqHQoTAAAAAAht2VhkrLGU26eBOjL-nK9zXxcn";
                     $scope.resetCategory = true;
@@ -38,10 +38,10 @@ aporlaofertaApp
                                         }
                                     }
                                 }).error(function () {
-                                    $scope.offerCreationError(alertService.getDefaultMessage());
-                                }).finally(function () {
-                                    $scope.processing = false;
-                                });
+                                $scope.offerCreationError(alertService.getDefaultMessage());
+                            }).finally(function () {
+                                $scope.processing = false;
+                            });
                             //$scope.overheadDisplay = false;
                         }
                     };
@@ -97,13 +97,13 @@ aporlaofertaApp
 
                     $scope.offerCompanies = {};
 
-                    $scope.suggest_company=function(term) {
+                    $scope.suggest_company = function (term) {
                         var q = term.toLowerCase().trim();
                         var results = [];
                         for (var i = 0; i < $scope.offerCompanies.length && results.length < 10; i++) {
                             var company = $scope.offerCompanies[i].companyName;
                             if (company.toLowerCase().indexOf(q) === 0)
-                                results.push({ label: company, value: company });
+                                results.push({label: company, value: company});
                         }
                         return results;
                     }
