@@ -19,6 +19,7 @@ public class AffiliationManager {
 
     private LinkManager linkManager;
     private TradedoublerManager tradedoublerManager;
+    private TradetrackerManager tradetrackerManager;
     private BelboonManager belboonManager;
 
     /**
@@ -44,6 +45,8 @@ public class AffiliationManager {
                     return this.tradedoublerManager.createLinkAffiliation(offerCompany, rawLink);
                 case BELBOON:
                     return this.belboonManager.createLinkAffiliation(offerCompany, rawLink);
+                case TRADETRACKER:
+                    return this.tradetrackerManager.createLinkAffiliation(offerCompany, rawLink);
                 default:
                     throw new InvalidAffiliatedCompany(offerCompany.getCompanyName());
             }
@@ -68,6 +71,11 @@ public class AffiliationManager {
     @Autowired
     public void setTradedoublerManager(TradedoublerManager tradedoublerManager) {
         this.tradedoublerManager = tradedoublerManager;
+    }
+
+    @Autowired
+    public void setTradetrackerManager(TradetrackerManager tradetrackerManager) {
+        this.tradetrackerManager = tradetrackerManager;
     }
 
     @Autowired
