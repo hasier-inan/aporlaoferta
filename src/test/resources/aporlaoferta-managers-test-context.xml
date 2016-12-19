@@ -42,6 +42,7 @@
     <bean id="affiliationManagerTest" class="com.aporlaoferta.affiliations.AffiliationManager">
         <property name="linkManager" ref="linkManagerTest"/>
         <property name="tradedoublerManager" ref="tradedoublerManagerTest"/>
+        <property name="tradetrackerManager" ref="tradetrackerManagerTest"/>
         <property name="belboonManager" ref="belboonManagerTest"/>
     </bean>
 
@@ -50,6 +51,7 @@
         <property name="urlParser" ref="urlManagerTest"/>
     </bean>
     <bean id="tradedoublerManagerTest" class="com.aporlaoferta.affiliations.TradedoublerManager"/>
+    <bean id="tradetrackerManagerTest" class="com.aporlaoferta.affiliations.TradetrackerManager"/>
     <bean id="belboonManagerTest" class="com.aporlaoferta.affiliations.BelboonManager"/>
 
     <bean id="httpManagerTest" class="com.aporlaoferta.offer.CaptchaHTTPManagerMock"/>
