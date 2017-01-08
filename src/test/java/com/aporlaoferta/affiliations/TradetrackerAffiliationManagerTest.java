@@ -4,6 +4,7 @@ import com.aporlaoferta.model.CompanyAffiliateType;
 import com.aporlaoferta.model.OfferCompany;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -20,6 +21,7 @@ public class TradetrackerAffiliationManagerTest extends AffiliationManagerTest {
     private static final String c = "15716";
     private static final String m = "12";
     private static final String a = "265784";
+    private static final String NO_KEY_PREFIX = "http://www.banggood.com/bang/?tt=16944_12_265784_&r=";
 
     @Test
     public void testOnlyTradedoublerAffiliationsAreRecognised() throws Exception {
@@ -32,6 +34,22 @@ public class TradetrackerAffiliationManagerTest extends AffiliationManagerTest {
                 affiliatedLink.indexOf(String.format("&m=%s", m)) > 0);
         assertTrue("Expected Tradetracker formatted link to have a parameter",
                 affiliatedLink.indexOf(String.format("&a=%s", a)) > 0);
+    }
+
+    @Test
+    public void testAffiliationWithNoIdKeyCreatesUrlBasedOnAffiliationID() throws Exception {
+        String affiliatedLink = this.affiliationManager.constructAffiliatedLink(createTradetrackerCompanyWithNoId(), url);
+        assertEquals("Expected no-key Tradetracker formatted link to have url",
+                affiliatedLink, String.format("%s%s", NO_KEY_PREFIX, url_encoded));
+    }
+
+    private OfferCompany createTradetrackerCompanyWithNoId() {
+        OfferCompany tradedoublerAffiliatedCompany = new OfferCompany();
+        tradedoublerAffiliatedCompany.setCompanyName("CoolAffiliatedCompany");
+        tradedoublerAffiliatedCompany.setCompanyAffiliateType(CompanyAffiliateType.TRADETRACKER);
+        tradedoublerAffiliatedCompany.setCompanyAffiliateId(NO_KEY_PREFIX);
+        tradedoublerAffiliatedCompany.setCompanyAffiliateIdKey("");
+        return tradedoublerAffiliatedCompany;
     }
 
     private OfferCompany createTradetrackerCompany() {
