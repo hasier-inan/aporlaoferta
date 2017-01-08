@@ -26,6 +26,7 @@
         <property name="tradedoublerManager" ref="tradedoublerManager"/>
         <property name="tradetrackerManager" ref="tradetrackerManager"/>
         <property name="belboonManager" ref="belboonManager"/>
+        <property name="zanoxManager" ref="zanoxManager"/>
     </bean>
 
     <bean id="linkManager" class="com.aporlaoferta.affiliations.LinkManager">
@@ -35,4 +36,5 @@
     <bean id="tradedoublerManager" class="com.aporlaoferta.affiliations.TradedoublerManager"/>
     <bean id="tradetrackerManager" class="com.aporlaoferta.affiliations.TradetrackerManager"/>
     <bean id="belboonManager" class="com.aporlaoferta.affiliations.BelboonManager"/>
+    <bean id="zanoxManager" class="com.aporlaoferta.affiliations.ZanoxManager"/>
 </beans>

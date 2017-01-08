@@ -20,6 +20,7 @@ public class AffiliationManager {
     private LinkManager linkManager;
     private TradedoublerManager tradedoublerManager;
     private TradetrackerManager tradetrackerManager;
+    private ZanoxManager zanoxManager;
     private BelboonManager belboonManager;
 
     /**
@@ -47,6 +48,8 @@ public class AffiliationManager {
                     return this.belboonManager.createLinkAffiliation(offerCompany, rawLink);
                 case TRADETRACKER:
                     return this.tradetrackerManager.createLinkAffiliation(offerCompany, rawLink);
+                case ZANOX:
+                    return this.zanoxManager.createLinkAffiliation(offerCompany, rawLink);
                 default:
                     throw new InvalidAffiliatedCompany(offerCompany.getCompanyName());
             }
@@ -76,6 +79,11 @@ public class AffiliationManager {
     @Autowired
     public void setTradetrackerManager(TradetrackerManager tradetrackerManager) {
         this.tradetrackerManager = tradetrackerManager;
+    }
+
+    @Autowired
+    public void setZanoxManager(ZanoxManager zanoxManager) {
+        this.zanoxManager = zanoxManager;
     }
 
     @Autowired

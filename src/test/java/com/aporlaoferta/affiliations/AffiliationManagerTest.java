@@ -41,6 +41,7 @@ public class AffiliationManagerTest {
         affiliationManager.setTradedoublerManager(new TradedoublerManager());
         affiliationManager.setTradetrackerManager(new TradetrackerManager());
         affiliationManager.setBelboonManager(new BelboonManager());
+        affiliationManager.setZanoxManager(new ZanoxManager());
         LinkManager linkManager = new LinkManager();
         linkManager.setUrlParser(new UrlParser());
         affiliationManager.setLinkManager(linkManager);

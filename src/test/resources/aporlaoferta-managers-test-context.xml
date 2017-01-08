@@ -44,6 +44,7 @@
         <property name="tradedoublerManager" ref="tradedoublerManagerTest"/>
         <property name="tradetrackerManager" ref="tradetrackerManagerTest"/>
         <property name="belboonManager" ref="belboonManagerTest"/>
+        <property name="zanoxManager" ref="zanoxManagerTest"/>
     </bean>
 
     <bean id="urlManagerTest" class="com.aporlaoferta.utils.UrlParser"/>
@@ -53,6 +54,7 @@
     <bean id="tradedoublerManagerTest" class="com.aporlaoferta.affiliations.TradedoublerManager"/>
     <bean id="tradetrackerManagerTest" class="com.aporlaoferta.affiliations.TradetrackerManager"/>
     <bean id="belboonManagerTest" class="com.aporlaoferta.affiliations.BelboonManager"/>
+    <bean id="zanoxManagerTest" class="com.aporlaoferta.affiliations.ZanoxManager"/>
 
     <bean id="httpManagerTest" class="com.aporlaoferta.offer.CaptchaHTTPManagerMock"/>
 </beans>
