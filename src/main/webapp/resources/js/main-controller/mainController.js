@@ -63,7 +63,9 @@ aporlaofertaApp.config(['flowFactoryProvider', '$compileProvider',
         maxChunkRetries: 1,
         chunkRetryInterval: 5000,
         simultaneousUploads: 4,
-        singleFile: true
+        singleFile: true,
+        chunkSize: 4500000,
+        testChunks: false
     };
         $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|mailto|whatsapp):/);
 
