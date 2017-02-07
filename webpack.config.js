@@ -36,7 +36,7 @@ module.exports = {
         './src/main/webapp/resources/js/social/ngSocialMediaDirective.js',
         './src/main/webapp/resources/js/error/ngRedirectComponents.js',
         './src/main/webapp/resources/js/account/password-forgotten/ngPasswordForgottenDirective.js',
-        './src/main/webapp/resources/sass/loader.js'
+        './src/main/webapp/resources/sass/loader.scss'
     ],
     output: {
         path: 'src/main/webapp/resources/assets/js',
