@@ -28,18 +28,33 @@ public class LevenshteinDistanceTest {
     }
 
     @Test
-    public void testMatchWhenWordIsPartOfTarget() throws Exception {
+    public void testMatchWhenWordIsPartOfTargetByTwoLetters() throws Exception {
         String name = "Amazon";
-        String typoName = "amazon jpain";
+        String typoName = "amazon es";
         Assert.assertTrue("Expected true match because it is part of the word",
                 LevenshteinDistance.process(typoName, name, -1));
     }
 
     @Test
-    public void testMatchWhenTargetIsPartOfWord() throws Exception {
-        String name = "Amazon jpain";
+    public void testMatchWhenTargetIsPartOfWordByTwoLetters() throws Exception {
+        String name = "Amazon ES";
         String typoName = "amazon";
         Assert.assertTrue("Expected true match because it is part of the word",
+                LevenshteinDistance.process(typoName, name, -1));
+    }
+    @Test
+    public void testNotMatchWhenWordIsPartOfTargetButThereAreMoreThanTwoLetters() throws Exception {
+        String name = "Amazon";
+        String typoName = "amazon españa";
+        Assert.assertFalse("Expected false match because although it is part of the word there is a big length difference",
+                LevenshteinDistance.process(typoName, name, -1));
+    }
+
+    @Test
+    public void testNotMatchWhenTargetIsPartOfWordButThereAreMoreThanTwoLetters() throws Exception {
+        String name = "Amazon España";
+        String typoName = "amazon";
+        Assert.assertFalse("Expected false match because although it is part of the word there is a big length difference",
                 LevenshteinDistance.process(typoName, name, -1));
     }
 
