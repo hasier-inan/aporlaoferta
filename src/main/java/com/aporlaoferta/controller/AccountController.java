@@ -1,25 +1,15 @@
 package com.aporlaoferta.controller;
 
-import com.aporlaoferta.controller.helpers.DatabaseHelper;
 import com.aporlaoferta.email.EmailSendingException;
-import com.aporlaoferta.email.EmailService;
-import com.aporlaoferta.model.TheDefaultOffer;
 import com.aporlaoferta.model.TheEnhancedUser;
 import com.aporlaoferta.model.TheForgettableUser;
 import com.aporlaoferta.model.TheResponse;
 import com.aporlaoferta.model.TheUser;
 import com.aporlaoferta.model.validators.ValidationException;
-import com.aporlaoferta.service.CaptchaHTTPManager;
-import com.aporlaoferta.service.UserManager;
-import com.aporlaoferta.utils.OfferValidatorHelper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,29 +18,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.UUID;
-
 import static org.springframework.util.StringUtils.isEmpty;
 
 /**
  * Created by hasiermetal on 18/01/15.
  */
 @Controller
-public class AccountController {
-
-    private final Logger LOG = LoggerFactory.getLogger(AccountController.class);
-
-    @Autowired
-    private UserManager userManager;
-
-    @Autowired
-    private OfferValidatorHelper offerValidatorHelper;
-
-    @Autowired
-    private CaptchaHTTPManager captchaHttpManager;
-
-    @Autowired
-    private EmailService emailService;
+public class AccountController extends AccountHelper {
 
     @RequestMapping(value = "/admin**", method = RequestMethod.GET)
     public ModelAndView adminPage() {
@@ -221,153 +195,4 @@ public class AccountController {
         return model;
     }
 
-    private TheResponse processUserUpdate(TheEnhancedUser theEnhancedUser) {
-        TheResponse result = new TheResponse();
-        String userNickname = this.userManager.getUserNickNameFromSession();
-        TheUser theOldUser = this.userManager.getUserFromNickname(userNickname);
-
-        updateDefaultUserValues(theEnhancedUser, userNickname, theOldUser);
-        if (!verifyOldPasswordAndUpdateNewestAvatar(theEnhancedUser, theOldUser)) {
-            result.assignResultCode(ResultCode.USER_NAME_PASSWORD_INVALID);
-            return result;
-        }
-        if (isEmpty(userNickname)) {
-            result.assignResultCode(ResultCode.USER_NAME_IS_INVALID);
-        } else if (!this.userManager.doesUserExist(userNickname)) {
-            result.assignResultCode(ResultCode.USER_NAME_DOES_NOT_EXIST);
-        } else {
-            try {
-                this.offerValidatorHelper.validateUser(theEnhancedUser);
-                TheUser nuUser = this.userManager.updateUser(theEnhancedUser, theOldUser, passwordUpdateIsNotRequired(theEnhancedUser));
-                updatedUserResponse(result, userNickname, nuUser);
-            } catch (ValidationException e) {
-                return ResponseResultHelper.userUpdatedResponse(result, e);
-            }
-        }
-        return result;
-    }
-
-    private void updateDefaultUserValues(TheEnhancedUser theEnhancedUser, String userNickname, TheUser theUser) {
-        theEnhancedUser.setUserNickname(userNickname);
-        String specifiedEmail = theEnhancedUser.getUserSpecifiedEmail();
-        if (!isEmpty(specifiedEmail)) {
-            theEnhancedUser.setUserEmail(specifiedEmail);
-        } else {
-            theEnhancedUser.setUserEmail(theUser.getUserEmail());
-        }
-    }
-
-    private boolean verifyOldPasswordAndUpdateNewestAvatar(TheEnhancedUser theEnhancedUser, TheUser theOldUser) {
-        verifyAvatar(theEnhancedUser, theOldUser);
-        return verifyOldPassword(theEnhancedUser, theOldUser);
-    }
-
-    private boolean verifyOldPassword(TheEnhancedUser theEnhancedUser, TheUser theOldUser) {
-        if (passwordUpdateIsNotRequired(theEnhancedUser)) {
-            theEnhancedUser.setUserPassword(theOldUser.getUserPassword());
-            return true;
-        } else {
-            theEnhancedUser.setUserPassword(theEnhancedUser.getUserSpecifiedPassword());
-            validatePassword(theEnhancedUser);
-        }
-        return isSamePersistedPassword(theEnhancedUser, theOldUser);
-    }
-
-    private void verifyAvatar(TheEnhancedUser theEnhancedUser, TheUser theOldUser) {
-        if (isEmpty(theEnhancedUser.getUserAvatar())) {
-            theEnhancedUser.setUserAvatar(theOldUser.getUserAvatar());
-        }
-    }
-
-    private boolean passwordUpdateIsNotRequired(TheEnhancedUser theEnhancedUser) {
-        return isEmpty(theEnhancedUser.getOldPassword()) && isEmpty(theEnhancedUser.getUserSpecifiedPassword());
-    }
-
-    private boolean isSamePersistedPassword(TheEnhancedUser theEnhancedUser, TheUser theOldUser) {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(11);
-        String oldPassword = theEnhancedUser.getOldPassword();
-        return !isEmpty(oldPassword) && bCryptPasswordEncoder.matches(oldPassword, theOldUser.getUserPassword());
-    }
-
-    private void updatedUserResponse(TheResponse result, String userNickname, TheUser nuUser) {
-        if (nuUser == null) {
-            DatabaseHelper.addEmptyDatabaseObjectMessage(result, ". Nickname: " + userNickname, LOG);
-        } else {
-            String okMessage = String.format("User successfully updated. Id: %s", nuUser.getId());
-            LOG.info(okMessage);
-            result.assignResultCode(ResultCode.ALL_OK, okMessage, "Usuario actualizado");
-        }
-    }
-
-    private TheResponse processUserCreation(TheEnhancedUser theUser) {
-        TheResponse result = new TheResponse();
-        String userNickname = theUser.getUserNickname();
-        if (isEmpty(userNickname)) {
-            result.assignResultCode(ResultCode.USER_NAME_IS_INVALID);
-        } else if (this.userManager.doesUserExist(userNickname)) {
-            result.assignResultCode(ResultCode.USER_NAME_ALREADY_EXISTS);
-        } else {
-            TheUser defaultUser = createDefaultUserValues(theUser);
-            validatePassword(defaultUser);
-            validateAndCreateUser(defaultUser, result, userNickname);
-        }
-        return result;
-    }
-
-    private TheUser createDefaultUserValues(TheEnhancedUser theUser) {
-        TheUser defaultUser = new TheUser();
-        defaultUser.setUserPassword(theUser.getUserSpecifiedPassword());
-        defaultUser.setUserEmail(theUser.getUserSpecifiedEmail());
-        defaultUser.setUserNickname(theUser.getUserNickname());
-        addDefaultAvatar(defaultUser);
-        addPendingFlag(defaultUser);
-        return defaultUser;
-    }
-
-    private void addPendingFlag(TheUser theUser) {
-        theUser.setPending(true);
-        theUser.setUuid(UUID.randomUUID().toString());
-    }
-
-    private void addDefaultAvatar(TheUser theUser) {
-        if (isEmpty(theUser.getUserAvatar())) {
-            theUser.setUserAvatar(TheDefaultOffer.AVATAR_IMAGE_URL.getCode());
-        }
-    }
-
-    private void validatePassword(TheUser theUser) {
-        theUser.setUserPassword(encryptPassword(theUser.getUserPassword()));
-    }
-
-    private String encryptPassword(String original) {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(11);
-        return bCryptPasswordEncoder.encode(original);
-    }
-
-    private void validateAndCreateUser(TheUser theUser, TheResponse result, String userNickname) {
-        try {
-            this.offerValidatorHelper.validateUser(theUser);
-            TheUser user = this.userManager.createUser(theUser);
-            if (user == null) {
-                DatabaseHelper.addEmptyDatabaseObjectMessage(result, ". Nickname: " + userNickname, LOG);
-            } else {
-                String okMessage = String.format("User successfully created. Id: %s", user.getId());
-                LOG.info(okMessage);
-                result.assignResultCode(ResultCode.ALL_OK, okMessage, "Confirma tu cuenta en el correo electrónico que te hemos enviado");
-                this.emailService.sendAccountConfirmationEmail(user);
-            }
-        } catch (EmailSendingException | ValidationException e) {
-            String resultDescription = ResultCode.CREATE_USER_VALIDATION_ERROR.getResultDescription();
-            LOG.warn(resultDescription, e);
-            result.assignResultCode(ResultCode.CREATE_USER_VALIDATION_ERROR);
-        }
-    }
-
-    private void sendConfirmationEmail(TheUser userFromEmail) {
-        try {
-            this.emailService.sendAccountConfirmationEmail(userFromEmail);
-        } catch (EmailSendingException e) {
-            LOG.error("Could not send confirmarion email: ", e.getMessage());
-        }
-    }
 }
