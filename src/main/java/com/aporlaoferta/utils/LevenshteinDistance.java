@@ -17,8 +17,8 @@ public class LevenshteinDistance {
      * @return
      */
     public static boolean process(String first, String second, int threshold) {
-        String word = first.toUpperCase();
-        String original = second.toUpperCase();
+        String word = first.toUpperCase().replaceAll("\\s+","");
+        String original = second.toUpperCase().replaceAll("\\s+","");
         if (isPartOfWord(word, original) || isPartOfWord(original, word)) {
             return true;
         }
@@ -28,13 +28,18 @@ public class LevenshteinDistance {
     /**
      * Checks whether 'original' is part of 'word' or not
      * Minimum length is 3 to avoid unique char
+     * Checks for char length to avoid having same word in a different (longer/shorter) word
      *
      * @param word
      * @param original
      * @return
      */
     private static boolean isPartOfWord(String word, String original) {
-        return original.length() > 2 && word.indexOf(original) >= 0;
+        return similarLength(word, original) && original.length() > 2 && word.indexOf(original) >= 0;
+    }
+
+    private static boolean similarLength(String word, String original) {
+        return Math.abs(word.length() - original.length()) <= 2;
     }
 
     /**

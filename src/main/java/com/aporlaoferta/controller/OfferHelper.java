@@ -132,7 +132,7 @@ public class OfferHelper {
     protected void updateCompanyFromLevenshtein(TheOffer thatOffer, String usedName) {
         List<OfferCompany> allCompanies = this.companyManager.getAllCompanies();
         for (OfferCompany company : allCompanies) {
-            if (LevenshteinDistance.process(usedName, company.getCompanyName(), 4)) {
+            if (LevenshteinDistance.process(usedName, company.getCompanyName(), 3)) {
                 thatOffer.setOfferCompany(company);
                 return;
             }
