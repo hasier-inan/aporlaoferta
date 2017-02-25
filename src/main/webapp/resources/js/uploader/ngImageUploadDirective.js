@@ -8,7 +8,8 @@ aporlaofertaApp
             scope: {
                 finalUrl: '=',
                 reset: '=',
-                alreadyUploadedImage: '='
+                alreadyUploadedImage: '=',
+                fileIsBeingUploaded: '='
             },
             templateUrl: 'resources/js/uploader/imageUpload.html',
             controller: ['$rootScope', '$scope', 'configService', '$timeout', function ($rootScope, $scope, configService, $timeout) {
@@ -17,6 +18,7 @@ aporlaofertaApp
                 $scope.invalidSize = false;
                 $scope.invalidImage = false;
                 $scope.maxImageSize = configService.getEndpoint('max.image.size');
+                $scope.fileIsBeingUploaded=false;
                 $scope.fileAdded = function (file) {
                     var fileReader = new FileReader();
                     fileReader.onload = function (event) {
@@ -41,17 +43,27 @@ aporlaofertaApp
                     fileReader.readAsDataURL(file.file);
                 };
 
+                $scope.showProgress = function(file){
+                    $scope.fileIsBeingUploaded = file.isUploading();
+                }
+
                 $scope.deleteImage=function(){
                     $scope.alreadyUploadedImage = "";
+                    $scope.fileIsBeingUploaded=false;
                     $scope.uploader.flow.cancel();
                 }
 
                 $scope.changeImage=function(){
                     $scope.alreadyUploadedImage = "";
+                    $scope.fileIsBeingUploaded=false;
                 }
 
-                $scope.alreadyUploaded = function () {
+                $scope.imageUploadSet = function () {
                     return $scope.alreadyUploadedImage !== "";
+                }
+
+                $scope.imageProgress = function(){
+                     return $scope.uploader.flow.progress()*100;
                 }
 
                 $scope.defaultThumbnailView = function () {

@@ -94,6 +94,7 @@
 
                 <div id="offerImageUploadContent" ng-image-uploader="createOfferImageUploader"
                      already-uploaded-image="offer.offerImage"
+                     file-is-being-uploaded="userAvatarUploading"
                      reset="resetImage"
                      final-url="offer.offerImage"></div>
                 <input type="hidden" id="createOfferImage"
@@ -110,12 +111,12 @@
         </ul>
 
         <button
-                ng-disabled="!createOfferForm.$valid || processing || !selectionPerformed()"
+                ng-disabled="!createOfferForm.$valid || processing || !selectionPerformed() || userAvatarUploading"
                 ng-click="createOffer()"
                 class="button small icon fa-shopping-cart overheadButton">Publicar oferta
         </button>
         <button
-                ng-disabled="!createOfferForm.$valid || processing || !selectionPerformed()"
+                ng-disabled="!createOfferForm.$valid || processing || !selectionPerformed() || userAvatarUploading"
                 ng-click="createOffer()"
                 class="button mini icon fa-shopping-cart overheadButton"></button>
         <div class="loading-dialogue ">

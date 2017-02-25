@@ -1,9 +1,23 @@
-div.thumbnail > img {
-  display: inline-block;
-  max-height: 100%;
-  padding-right: 5px;
-  vertical-align: middle;
-  width: 100%;
+div.thumbnail {
+  .thumbnail__image {
+    display: inline-block;
+    max-height: 100%;
+    padding-right: 5px;
+    vertical-align: middle;
+    width: 100%;
+    transition: opacity .5s ease;
+
+    &.thumbnail__image--uploading {
+      opacity: 0.2;
+    }
+  }
+
+  .thumbnail__loading {
+    position: absolute;
+    width: 8.5em;
+    height: 8.5em;
+    margin-top: 3em;
+  }
 }
 
 span.helper {
@@ -31,7 +45,6 @@ span.helper {
     width: 10em;
   }
 }
-
 
 div.thumbnailButtons > .small {
   height: 2em;
