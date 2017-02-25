@@ -93,6 +93,7 @@
 
                     <div id="imageUploadContent" ng-image-uploader="createAccountImageUploader"
                          already-uploaded-image="theUser.userAvatar"
+                         file-is-being-uploaded="userAvatarUploading"
                          final-url="theUser.userAvatar"></div>
                     <input type="hidden" id="createUserAvatar" ng-model="theUser.userAvatar" class="overheadField"/>
                 </ul>
@@ -113,17 +114,17 @@
             </form>
         </div>
 
-        <button ng-disabled="!accountCreationContainer.$valid || processing"
+        <button ng-disabled="!accountCreationContainer.$valid || processing || userAvatarUploading"
                 class="button small icon fa-user overheadButton"
                 ng-click="createAccount(theUser)" class="overheadButton" ng-hide="disableNickname">
             Crear perfil
         </button>
-        <button ng-disabled="!accountCreationContainer.$valid || processing"
+        <button ng-disabled="!accountCreationContainer.$valid || processing || userAvatarUploading"
                 class="button small icon fa-user overheadButton"
                 ng-click="createAccount(theUser)" class="overheadButton" ng-show="disableNickname">
             Actualizar perfil
         </button>
-        <button ng-disabled="!accountCreationContainer.$valid || processing"
+        <button ng-disabled="!accountCreationContainer.$valid || processing || userAvatarUploading"
                 class="button mini icon fa-user overheadButton"
                 ng-click="createAccount(theUser)"></button>
         <div class="loading-dialogue ">

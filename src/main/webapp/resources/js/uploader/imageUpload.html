@@ -1,5 +1,6 @@
 <div flow-init
      flow-name="uploader.flow"
+     flow-file-progress="showProgress($file)"
      flow-file-added="fileAdded($file)"
      flow-file-success="filesIsUploaded($message)"
      class="imageUploaderContent content-validation">
@@ -10,37 +11,42 @@
         <p class="invalid-image" ng-class="invalidImage?'invalid-display':''">La imagen no es v&aacute;lida</p>
     </div>
     <div class="thumbnail" ng-hide="(displayThumbnail && $flow.files.length) ||
-    isInvalidThumbnailShown()  || alreadyUploaded()">
+    isInvalidThumbnailShown()  || imageUploadSet()">
         <p class="invalid-image"></p>
     </div>
-    <div class="thumbnail" ng-show="alreadyUploaded() && !$flow.files.length">
+    <div class="thumbnail" ng-show="imageUploadSet() && !$flow.files.length">
         <span class="helper"></span>
-        <img ng-src="{{alreadyUploadedImage}}"/>
+        <img ng-src="{{alreadyUploadedImage}}" class="thumbnail__image"/>
     </div>
     <div class="thumbnail" ng-show="displayThumbnail && $flow.files.length">
         <span class="helper"></span>
-        <img flow-img="$flow.files[0]"/>
+        <span class="thumbnail__loading" ng-show="fileIsBeingUploaded">
+            <i class="fa fa-refresh loadingdialogue"></i>
+            <div>{{imageProgress()}}%</div>
+        </span>
+        <img flow-img="$flow.files[0]" class="thumbnail__image"
+             ng-class="fileIsBeingUploaded ? 'thumbnail__image--uploading' : ''"/>
     </div>
     <div class="thumbnailButtons">
-        <button class="button small icon fa-upload whiteButton orange-background" ng-hide="$flow.files.length || alreadyUploaded()" flow-btn
+        <button class="button small icon fa-upload whiteButton orange-background" ng-hide="$flow.files.length || imageUploadSet()" flow-btn
                 flow-attrs="{accept:'image/*'}">Seleccionar imagen
         </button>
-        <button class="button mini icon fa-upload whiteButton orange-background" ng-hide="$flow.files.length || alreadyUploaded()"
+        <button class="button mini icon fa-upload whiteButton orange-background" ng-hide="$flow.files.length || imageUploadSet()"
                 flow-btn></button>
-        <button class="button small icon fa-exchange whiteButton  orange-background" ng-show="$flow.files.length || alreadyUploaded()"
+        <button class="button small icon fa-exchange whiteButton  orange-background" ng-show="$flow.files.length || imageUploadSet()"
                 flow-btn
                 ng-click="changeImage()"
                 flow-attrs="{accept:'image/*'}">Cambiar
         </button>
-        <button class="button mini icon fa-exchange whiteButton  orange-background" ng-show="$flow.files.length || alreadyUploaded()"
+        <button class="button mini icon fa-exchange whiteButton  orange-background" ng-show="$flow.files.length || imageUploadSet()"
                 flow-btn
                 ng-click="changeImage()"
                 flow-attrs="{accept:'image/*'}">
         </button>
-        <button class="button small icon fa-trash whiteButton red-background" ng-show="$flow.files.length || alreadyUploaded()"
+        <button class="button small icon fa-trash whiteButton red-background" ng-show="$flow.files.length || imageUploadSet()"
                 ng-click="deleteImage()">Borrar
         </button>
-        <button class="button mini icon fa-trash whiteButton red-background" ng-show="$flow.files.length || alreadyUploaded()"
+        <button class="button mini icon fa-trash whiteButton red-background" ng-show="$flow.files.length || imageUploadSet()"
                 ng-click="deleteImage()">
         </button>
     </div>
