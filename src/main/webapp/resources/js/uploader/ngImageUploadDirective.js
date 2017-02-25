@@ -63,7 +63,7 @@ aporlaofertaApp
                 }
 
                 $scope.imageProgress = function(){
-                     return $scope.uploader.flow.progress()*100;
+                     return Math.round($scope.uploader.flow.progress()*100);
                 }
 
                 $scope.defaultThumbnailView = function () {
