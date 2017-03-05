@@ -340,6 +340,8 @@
                 <env>stage</env>
                 <outOfOrder>true</outOfOrder>
                 <jdbc.url>jdbc:mysql://localhost:3306/that_aporlaoferta</jdbc.url>
+                <db.username>root</db.username>
+                <db.password>password</db.password>
             </properties>
         </profile>
         <profile>
