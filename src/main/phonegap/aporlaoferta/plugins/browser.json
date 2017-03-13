@@ -63,6 +63,9 @@
         },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.aporlaoferta.phonegap"
+        },
+        "cordova-plugin-crosswalk-webview": {
+            "PACKAGE_NAME": "com.aporlaoferta.phonegap"
         }
     },
     "dependent_plugins": {
