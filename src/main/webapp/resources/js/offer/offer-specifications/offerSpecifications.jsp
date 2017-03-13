@@ -71,9 +71,6 @@
                 </div>
                 <img ng-src="{{offer.offerImage}}" ng-class="{'offer-expired':offer.offerExpired,
                                                        'offer-image-loading':offerImageLoading}"/>
-                <img src="/resources/images/offer.png" ng-class="{'offer-expired':offer.offerExpired,
-                                                       'offer-image-loading':offerImageLoading}"
-                     class="offer-image-default"/>
 
                 <div class=" offerSpecificationsFeedback">
                     <div class="offerSpecificationsFeedbackTotal">
