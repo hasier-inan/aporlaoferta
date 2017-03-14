@@ -25,7 +25,7 @@
         <br/>
 
         <div ng-show="loadingOfferSpecifications" class="centeredForm loading-specifications">
-            <i class="fa fa-refresh loadingdialogue white"></i>
+            <i class="fa fa-refresh loadingdialogue white offer-specifications__loading"></i>
         </div>
         <div ng-show="displayOfferSpecifications" ng-offer-specifications="offerSpecifications"
              the-offer="offerSpecifications" custom-close-callback="customCloseCallback">
