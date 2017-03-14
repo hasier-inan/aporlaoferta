@@ -141,6 +141,8 @@ div.overhead_subcontainer {
 
 @media (max-width: 480px) {
   div.overhead_subcontainer {
+    border-radius: 0;
+
     &:not(.overhead_subcontainer-fullscreen) {
       top: 0;
       height: 100%;

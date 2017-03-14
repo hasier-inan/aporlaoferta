@@ -3,7 +3,7 @@
 
 <title>aporlaoferta ~ comparte ofertas y promociones online </title>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="viewport" content="user-scalable=no, initial-scale=1, minimum-scale=1, width=device-width" />
 <meta http-equiv="Content-Security-Policy"
       content="script-src 'self' https://ajax.googleapis.com https://www.google.com https://www.gstatic.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://ajax.googleapis.com https://www.google.com https://www.gstatic.com">
 <meta property="og:site_name" content="aporlaoferta">
