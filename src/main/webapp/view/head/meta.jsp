@@ -21,7 +21,7 @@
         <meta property="og:url" content="http://www.aporlaoferta.com"/>
         <meta property="og:description" content="Promociones, rebajas y chollos online! Si conoces una oferta, ¡publícala! También hay miles para ti."/>
         <meta property="og:image" content="https://s3-us-west-2.amazonaws.com/aporlaofertaimages/static/logo3.png"/>
-        <meta property="keywords" content="aporlaoferta,ofertas,chollos,rebajas,promociones,ofertas online,publicar,compartir,shopping,descuentos"/>
+        <meta property="keywords" content="aporlaoferta,ofertas,chollos,rebajas,promociones,ofertas online,oferta, a por la oferta,shopping,descuentos"/>
     </c:otherwise>
 </c:choose>
 <meta property="og:type" content="website"/>
