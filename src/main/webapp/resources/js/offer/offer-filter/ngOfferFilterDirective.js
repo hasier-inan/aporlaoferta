@@ -11,8 +11,8 @@ aporlaofertaApp
                 selection: '=',
                 offerFilter: '='
             },
-            controller: ['$scope', '$rootScope', 'requestManager', 'configService','offerHelper',
-                function ($scope, $rootScope, requestManager, configService,offerHelper) {
+            controller: ['$scope', '$rootScope', 'requestManager', 'configService', 'offerHelper', '$cookies',
+                function ($scope, $rootScope, requestManager, configService, offerHelper, $cookies) {
                     $scope.filter = {};
                     $scope.displayFilterContent = "";
                     $scope.previousCategory = "";
@@ -45,6 +45,9 @@ aporlaofertaApp
                     };
 
                     $scope.$watch('filter.dateRange', function () {
+                        if($scope.filter.dateRange){
+                            $scope.setDateRange($scope.filter.dateRange);
+                        }
                         $scope.requestFilterApply();
                     });
 
@@ -70,7 +73,7 @@ aporlaofertaApp
                         $scope.resetCategory = true;
                         $scope.filter.selectedcategory = "";
                         $scope.filter.selectedcategory = "";
-                        $scope.filter.dateRange = 1;
+                        $scope.filter.dateRange = $scope.defaultDateRange();
 //                    $scope.requestFilterApply();
                         $rootScope.$broadcast('appliedOfferFilters', angular.copy($scope.offerFilter));
                     };
@@ -82,6 +85,17 @@ aporlaofertaApp
                     $scope.isCategorySelected = function () {
                         return !offerHelper.isEmptyCategory($scope.filter.selectedcategory);
                     };
+
+                    $scope.defaultDateRange = function () {
+                        var preAssigned = parseInt($cookies.get(configService.getEndpoint('daterange.cookie')));
+                        return preAssigned>=0 ? preAssigned : 2;
+                    }
+
+                    $scope.setDateRange = function(dateRange){
+                        var expireDate = new Date();
+                        expireDate.setDate(expireDate.getDate() + 365);
+                        $cookies.put(configService.getEndpoint('daterange.cookie'), dateRange, {'expires': expireDate});
+                    }
 
                     $scope.cleanFilters();
                 }]
