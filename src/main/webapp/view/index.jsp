@@ -41,6 +41,8 @@
 <footer id="footer" ng-class="{'overhead-footer' : (fullscreen)}">
     <div ng-footer="footer"/>
 </footer>
-<%@include file="footer/cookie.jsp" %>
+<c:if test="${!cookiesAccepted}">
+    <%@include file="footer/cookie.jsp" %>
+</c:if>
 </body>
 </html>
