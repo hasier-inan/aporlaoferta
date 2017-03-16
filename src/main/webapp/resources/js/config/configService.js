@@ -24,6 +24,7 @@ configManager.service('configService', [function () {
     var REQUEST_PASSWORD_UPDATE = "forgottenPassword";
     var REQUEST_PASSWORD = "requestForgottenPassword";
     var TUTORIAL_COOKIE = "aporlaoferta-tut";
+    var DATERANGE_COOKIE = "aporlaoferta-dar";
     var LAW_COOKIE = "aporlaoferta-cle";
     var IMAGE_MAX_SIZE = 4500;
     configService.getEndpoint = function (key) {
@@ -53,6 +54,7 @@ configManager.service('configService', [function () {
         'password.forgotten.request': REQUEST_PASSWORD,
         'max.image.size': IMAGE_MAX_SIZE,
         'tutorial.cookie':TUTORIAL_COOKIE,
+        'daterange.cookie':DATERANGE_COOKIE,
         'law.cookie':LAW_COOKIE
     };
     return configService;
