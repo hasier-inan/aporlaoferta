@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="footer_legals">
-    <span class="copyright">&copy; aporlaoferta, 2016</span>
+    <span class="copyright">&copy; aporlaoferta, 2017</span>
     <span class="copyright">
         <a class="copyright__desktop" href="tc">condiciones legales</a>
         <a class="copyright__mobile" href="tc">c. legales</a>
