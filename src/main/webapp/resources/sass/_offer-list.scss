@@ -214,6 +214,7 @@ div.content {
 .offer-title {
 
   .offer-title__link {
+    cursor: pointer;
     &:hover {
       color: $button-hot-offers-background !important;
       .offer-title__external-link {
