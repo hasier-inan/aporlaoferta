@@ -1,4 +1,4 @@
-var URL = "http://localhost:8080/";//"http://www.aporlaoferta.com/";
+var URL = "http://www.aporlaoferta.com/";
 var APP_START = "start?cookies-accepted=true";
 var HEALTHCHECK = "healthcheck";
 var TIMEOUT = 20000;
