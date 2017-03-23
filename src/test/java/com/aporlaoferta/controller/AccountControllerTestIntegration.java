@@ -80,30 +80,6 @@ public class AccountControllerTestIntegration {
                 .addFilters(this.springSecurityFilterChain).build();
     }
 
-    ////// admin
-
-    @Test
-    public void testForbiddenAccessToRegularUser() throws Exception {
-        this.mockMvc.perform(get("/admin").with(userDeatilsService(REGULAR_USER)))
-                .andExpect(status().isForbidden())
-                .andExpect(forwardedUrl("/403"));
-    }
-
-    @Test
-    public void testForbiddenAccessToAnonymousUser() throws Exception {
-        this.mockMvc.perform(get("/admin"))
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrlPattern("**/login"));
-        ;
-    }
-
-    @Test
-    public void testAccessGrantedForAdminUser() throws Exception {
-        this.mockMvc.perform(get("/admin").with(userDeatilsService(ADMIN_USER)))
-                .andExpect(status().is2xxSuccessful())
-                .andExpect(forwardedUrl("/view/admin.jsp"));
-    }
-
     ////// 403
 
     @Test

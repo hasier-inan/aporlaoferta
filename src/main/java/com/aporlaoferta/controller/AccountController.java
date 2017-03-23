@@ -26,15 +26,6 @@ import static org.springframework.util.StringUtils.isEmpty;
 @Controller
 public class AccountController extends AccountHelper {
 
-    @RequestMapping(value = "/admin**", method = RequestMethod.GET)
-    public ModelAndView adminPage() {
-        ModelAndView model = new ModelAndView();
-        model.addObject("title", "Spring Security Login Form - Database Authentication");
-        model.addObject("message", "This page is for admins only!");
-        model.setViewName("admin");
-        return model;
-    }
-
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView login(@RequestParam(value = "error", required = false) String error,
                               @RequestParam(value = "logout", required = false) String logout) {
