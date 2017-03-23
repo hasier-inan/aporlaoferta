@@ -1,0 +1,106 @@
+.top-header {
+    background-color: #394656;
+    background-image: url(../img/background_head5.png);
+    color: #fff;
+    padding: 50px 0 20px;
+}
+
+.content {
+    text-align: center;
+    margin-top: 3.5em;
+    width: 100% !important;
+    display: inline-block;
+}
+
+.main-logo {
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-image: url(../img/logo_cover_large.svg);
+    text-align: center;
+    transition: all ease .5s;
+}
+
+.main-logo--list {
+    width: 130px;
+    height: 105px;
+    position: absolute;
+    margin-top: -65px;
+    margin-left: -65px;
+    left: 50%;
+}
+
+@media (min-width: 738px) and (max-width: 980px) {
+    .main-logo--list {
+        width: 116px;
+        height: 95px;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 737px) {
+    .main-logo--list {
+        width: 106px;
+        height: 85px;
+        margin-left: -53px;
+        margin-top: -55px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-logo--list {
+        width: 130px;
+        height: 105px;
+        margin-top: -75px;
+        margin-left: -65px;
+    }
+}
+
+.main-logo__brand {
+    font-family: aporlaofertaLogo;
+    font-style: normal;
+    transition: font-size ease .5s;
+}
+
+@media (min-width: 980px) {
+    .main-logo__brand {
+        font-size: 1.5em;
+    }
+}
+
+@media (min-width: 738px) and (max-width: 979px) {
+    .main-logo__brand {
+        font-size: 1.2em;
+    }
+}
+
+.only-page .main-slogan {
+    text-align: center;
+    font-size: 16px;
+}
+
+.only-page .main-slogan > p {
+    font-size: 100% !important;
+    line-height: 100% !important;
+}
+
+.main-slogan {
+    font-size: 0.75em;
+    height: 100%;
+    margin-bottom: 3em;
+    -moz-transition: opacity 0.5s ease, -moz-transform 1s ease;
+    -webkit-transition: opacity 0.5s ease, -webkit-transform 1s ease;
+    -ms-transition: opacity 0.5s ease, -ms-transform 1s ease;
+    transition: opacity 0.5s ease, transform 1s ease;
+    opacity: 0;
+}
+
+.main-slogan.visible {
+    opacity: 1;
+}
+
+.main-slogan p {
+    line-height: 0 !important;
+}
+
+.main-slogan p:last-child {
+    margin-top: -0.5em !important;
+}

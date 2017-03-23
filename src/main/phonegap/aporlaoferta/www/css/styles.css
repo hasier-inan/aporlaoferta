@@ -1,3 +1,13 @@
+@font-face {
+    font-family: aporlaofertaLogo;
+    src: url(../fonts/Oduda-Bold-Demo.ttf);
+}
+
+@font-face {
+    font-family: mainFontFamily;
+    src: url(../fonts/Ubuntu-L.ttf);
+}
+
 .aporlaoferta-container {
     position: absolute;
     top: 0;
@@ -15,5 +25,7 @@ body{
     margin: 0;
     padding: 0;
     background-color: #394656;
-    background-image: url(background_head5.png);
+    background-image: url(../img/background_head5.png);
+    font-family: mainFontFamily;
+    color: #FFFFFF;
 }

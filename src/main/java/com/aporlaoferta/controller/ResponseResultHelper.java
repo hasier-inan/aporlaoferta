@@ -94,6 +94,12 @@ public class ResponseResultHelper {
         return theResponse;
     }
 
+    public static TheResponse createDefaultSuccessResponse() {
+        TheResponse theResponse = new TheResponse();
+        theResponse.assignResultCode(ResultCode.ALL_OK, "Response updated.", "Respuesta actualizada.");
+        return theResponse;
+    }
+
     public static TheResponse updateWithCode(ResultCode resultCode) {
         TheResponse theResponse = new TheResponse();
         theResponse.setCode(resultCode.getCode());

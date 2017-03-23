@@ -7,8 +7,7 @@
     <title>aporlaoferta ~ comparte ofertas y promociones online </title>
     <meta charset="utf-8"/>
     <meta http-equiv="Content-Security-Policy"
-          content="default-src *;
-                  style-src * 'self' 'unsafe-inline' 'unsafe-eval';
+          content="style-src * 'self' 'unsafe-inline' 'unsafe-eval';
                   script-src * 'self' 'unsafe-inline' 'unsafe-eval';">
     <meta property="og:site_name" content="aporlaoferta">
     <meta property="og:title" content="aporlaoferta ~ comparte ofertas y promociones online"/>
@@ -22,10 +21,46 @@
     <meta name="msapplication-tap-highlight" content="no"/>
     <meta name="viewport"
           content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width"/>
+    <link rel="stylesheet" href="css/font-awesome.min.css"/>
     <link rel="stylesheet" href="css/styles.css"/>
+    <link rel="stylesheet" href="css/loading.css"/>
+    <link rel="stylesheet" href="css/header.css"/>
+    <link rel="stylesheet" href="css/message.css"/>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/scripts.js"></script>
 </head>
 <body>
-<iframe class="aporlaoferta-container" src="http://www.aporlaoferta.com/start?cookies-accepted=true"/>
+
+<header id="header" class="top-header">
+    <div class="content only-page">
+        <div class="main-logo main-logo--list">
+        </div>
+        <h1 class="only-page">
+            <em class="main-logo__brand">aporlaoferta</em>
+        </h1>
+
+        <div ng-main-slogan="mainSlogan">
+            <div class="main-slogan visible" ng-class="{'visible':faded}">
+                <p>Si conoces una oferta, ¡publícala!</p>
+
+                <p>También hay miles para ti.</p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="loading-container">
+    <i class="fa fa-refresh loading-container_spinner"></i>
+</div>
+
+<div class="message-container">
+    <p>Error en la conexión</p>
+    <button class="button small--rounded" onClick="loadPage()">
+        Reintentar
+    </button>
+</div>
+
+<iframe id="aporlaoferta-container" class="aporlaoferta-container"/>
 <script type="text/javascript" src="cordova.js"></script>
 </body>
 </html>

@@ -1,0 +1,31 @@
+.message-container {
+    text-align: center;
+}
+
+button.small--rounded {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    box-shadow: 0 0 1px transparent;
+
+    text-align: center;
+    display: inline;
+    font-size: 1em;
+    background-color: #618eb8;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 14px;
+    border: 2px solid #618eb8;
+    height: 28px;
+    padding: 1px 25px;
+    cursor: pointer;
+}
+
+button:focus {
+    outline: 0;
+}
+
+button:hover {
+    background-color: transparent;
+}
