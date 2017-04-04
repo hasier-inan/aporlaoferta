@@ -13,7 +13,8 @@
     <preference name="SplashScreen" value="splash" />
     <preference name="ShowSplashScreenSpinner" value="true" />
     <preference name="AutoHideSplashScreen" value="false" />
-    <preference name="FadeSplashScreen" value="false" />
+    <preference name="FadeSplashScreen" value="true" />
+    <!--<preference name="SplashScreenDelay" value="10000" />-->
     <plugin name="cordova-plugin-battery-status" source="npm" spec="~1.1.1" />
     <plugin name="cordova-plugin-crosswalk-webview" source="npm" spec="~2.3.0" />
     <plugin name="cordova-plugin-camera" source="npm" spec="~2.1.1" />

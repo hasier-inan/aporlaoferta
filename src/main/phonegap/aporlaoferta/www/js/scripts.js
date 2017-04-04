@@ -19,7 +19,6 @@ var loadPage = function () {
     $.get(URL + HEALTHCHECK, function () {
         })
         .done(function () {
-            $(".header").hide();
             $(".message-container").hide();
             $("#aporlaoferta-container").attr("src", URL + APP_START);
             $("#aporlaoferta-container").show();
@@ -30,4 +29,10 @@ var loadPage = function () {
         .always(function () {
             $(".loading-container").hide();
         });
+}
+
+document.addEventListener("deviceready", onDeviceReady, false);
+
+function onDeviceReady() {
+    navigator.splashscreen.hide();
 }
