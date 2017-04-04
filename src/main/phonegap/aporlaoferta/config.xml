@@ -11,7 +11,9 @@
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="16" />
     <preference name="SplashScreen" value="splash" />
-    <preference name="show-splash-screen-spinner" value="true"/>
+    <preference name="ShowSplashScreenSpinner" value="true" />
+    <preference name="AutoHideSplashScreen" value="false" />
+    <preference name="FadeSplashScreen" value="false" />
     <plugin name="cordova-plugin-battery-status" source="npm" spec="~1.1.1" />
     <plugin name="cordova-plugin-crosswalk-webview" source="npm" spec="~2.3.0" />
     <plugin name="cordova-plugin-camera" source="npm" spec="~2.1.1" />
