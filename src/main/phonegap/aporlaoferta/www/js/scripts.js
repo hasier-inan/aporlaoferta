@@ -25,9 +25,6 @@ var loadPage = function () {
         })
         .fail(function () {
             $(".message-container").show();
-        })
-        .always(function () {
-            $(".loading-container").hide();
         });
 }
 
