@@ -19,15 +19,17 @@ var loadPage = function () {
     $.get(URL + HEALTHCHECK, function () {
         })
         .done(function () {
-            $(".header").hide();
             $(".message-container").hide();
             $("#aporlaoferta-container").attr("src", URL + APP_START);
             $("#aporlaoferta-container").show();
         })
         .fail(function () {
             $(".message-container").show();
-        })
-        .always(function () {
-            $(".loading-container").hide();
         });
+}
+
+document.addEventListener("deviceready", onDeviceReady, false);
+
+function onDeviceReady() {
+    navigator.splashscreen.hide();
 }
