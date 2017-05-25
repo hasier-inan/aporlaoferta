@@ -11,7 +11,7 @@ aporlaofertaApp
             templateUrl: 'resources/js/header-display/tutorial/quickTutorial.jsp',
             controller: ['$scope', '$element', '$timeout',
                 function ($scope, $element, $timeout) {
-                    $scope.shareUrl = "http://www.aporlaoferta.com";
+                    $scope.shareUrl = "https://www.aporlaoferta.com";
                     $scope.shareText = $("meta[property='og:description']").attr("content");
 
                     $scope.$watch('isDisplayed', function () {

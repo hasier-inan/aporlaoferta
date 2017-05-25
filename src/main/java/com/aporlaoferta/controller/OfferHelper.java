@@ -64,7 +64,7 @@ public class OfferHelper {
         model.addObject("offerDescription", theOffer.getOfferDescription());
         String offerImage = theOffer.getOfferImage();
         model.addObject("offerImage", offerImage.indexOf("offer.png") >= 0 ?
-                String.format("http://www.aporlaoferta.com%s", offerImage) : offerImage);
+                String.format("https://www.aporlaoferta.com%s", offerImage) : offerImage);
     }
 
     protected TheResponse processOfferCreation(TheOffer thatOffer) {

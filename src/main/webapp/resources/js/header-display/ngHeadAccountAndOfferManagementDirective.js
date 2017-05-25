@@ -13,7 +13,7 @@ aporlaofertaApp
                 displayAccountUpdateForm: '='
             },
             link: function ($scope) {
-                $scope.shareUrl = "http://www.aporlaoferta.com";
+                $scope.shareUrl = "https://www.aporlaoferta.com";
                 $scope.shareText = $("meta[property='og:description']").attr("content");
                 $scope.scrollPosition = true;
                 angular.element($window).bind("scroll", function () {

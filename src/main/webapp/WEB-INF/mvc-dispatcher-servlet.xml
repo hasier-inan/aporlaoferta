@@ -28,7 +28,6 @@
         </property>
     </bean>
 
-
     <mvc:resources mapping="/resources/**" location="/resources/" />
     <mvc:resources mapping="/images/**" location="${upload.folder.dispatcher}"/>
     <mvc:annotation-driven />

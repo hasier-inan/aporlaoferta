@@ -47,16 +47,15 @@
         <param-value>classpath:aporlaoferta-context.xml</param-value>
     </context-param>
 
-<!--
     <filter>
-        <filter-name>cors</filter-name>
+        <filter-name>secureRedirect</filter-name>
         <filter-class>com.aporlaoferta.controller.RequestFilter</filter-class>
     </filter>
 
     <filter-mapping>
-        <filter-name>cors</filter-name>
+        <filter-name>secureRedirect</filter-name>
         <url-pattern>/*</url-pattern>
-    </filter-mapping>-->
+    </filter-mapping>
 
     <!-- Enables Spring Security -->
     <filter>
