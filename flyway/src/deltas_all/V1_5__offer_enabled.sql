@@ -1,0 +1,2 @@
+ALTER TABLE `thatoffer`
+ADD `TO_DISABLED` bit(1) NOT NULL
