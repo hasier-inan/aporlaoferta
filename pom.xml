@@ -9,7 +9,7 @@
 
     <properties>
         <spring.version>4.0.4.RELEASE</spring.version>
-        <spring.security.version>3.2.5.RELEASE</spring.security.version>
+        <spring.security.version>5.2.10.RELEASE</spring.security.version>
         <spring-data-jpa.version>1.8.2.RELEASE</spring-data-jpa.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>4.11</junit.version>
